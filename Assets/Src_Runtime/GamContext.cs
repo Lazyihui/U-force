@@ -5,7 +5,7 @@ using UnityEngine;
 namespace UF {
 
     public class GameContext {
-        public GameEntity game;
+        public GameEntity gameEntity;
 
         // ---  Common  ---
         public IDService idService;
@@ -18,7 +18,7 @@ namespace UF {
         public RoleRepository roleRepository;
 
         public GameContext() {
-            game = new GameEntity();
+            gameEntity = new GameEntity();
             idService = new IDService();
 
             assetsCore = new AssetsCore();

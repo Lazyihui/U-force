@@ -7,9 +7,9 @@ namespace UF {
     public class GameEntity {
 
         public float restFixTime;
+        public GameState state;
 
-        public int ownerID;
-        public int curStageID;
+        public IDSignature OwnerIDsig;
 
         public GameEntity() {
 

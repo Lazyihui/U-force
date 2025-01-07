@@ -31,8 +31,7 @@ namespace UF {
                 isInit = true;
 
                 // ---  Enter  ---
-                RoleEntity role = RoleDomain.Spawn(ctx, 100);
-
+                Logic_Business.Enter(ctx);
             };
 
             action.Invoke();
