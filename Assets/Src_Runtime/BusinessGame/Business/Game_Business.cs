@@ -9,7 +9,13 @@ namespace UF {
     public static class Game_Business {
 
         public static void Enter(GameContext ctx) {
-            ctx.gameEntity.state = GameState.Game;
+
+            GameEntity game = ctx.gameEntity;
+
+            game.state = GameState.Game;
+
+            RoleEntity role = RoleDomain.Spawn(ctx, 100);
+            game.OwnerIDsig = role.idSig;
         }
 
 

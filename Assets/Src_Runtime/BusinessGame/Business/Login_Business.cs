@@ -9,11 +9,14 @@ namespace UF {
     public static class Logic_Business {
 
         public static void Enter(GameContext ctx) {
-            GameEntity game = ctx.gameEntity;
+            // ui
+            ctx.appUI.Panel_Login_Open();
 
+            GameEntity game = ctx.gameEntity;
             game.state = GameState.Login;
-            RoleEntity role = RoleDomain.Spawn(ctx, 100);
-            game.OwnerIDsig = role.idSig;
+           
+
+
         }
 
 

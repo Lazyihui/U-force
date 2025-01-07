@@ -39,7 +39,11 @@ namespace UF {
         }
 
         void Binding() {
-
+            var UIEvent = ctx.appUI.eventCenter;
+            UIEvent.OnLoginStartHandle += () => {
+                ctx.appUI.Panel_Login_Close();
+                Game_Business.Enter(ctx);
+            };
         }
 
         void Update() {

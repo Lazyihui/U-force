@@ -69,10 +69,13 @@ namespace UF {
             entities.TryGetValue("Entity_Role", out GameObject role);
             return role;
         }
-        
-        //  ---  Panel  ---
 
-        
+        //  ---  Panel  ---
+        public GameObject Panel_GetLogin() {
+            panels.TryGetValue("Panel_Login", out GameObject panel);
+            return panel;
+        }
+
 
     }
 }

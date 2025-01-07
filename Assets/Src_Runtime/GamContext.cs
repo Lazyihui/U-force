@@ -13,6 +13,7 @@ namespace UF {
         // ---  Core  ---
         public AssetsCore assetsCore;
         public TemplateCore templateCore;
+        public AppUI appUI;
 
         // ---  RoleRepository  ---
         public RoleRepository roleRepository;
@@ -23,12 +24,13 @@ namespace UF {
 
             assetsCore = new AssetsCore();
             templateCore = new TemplateCore();
+            appUI = new AppUI();
 
             roleRepository = new RoleRepository();
         }
 
         public void Inject(Canvas ScreenCanvas) {
-
+            appUI.Inject(ScreenCanvas, assetsCore);
         }
     }
 
