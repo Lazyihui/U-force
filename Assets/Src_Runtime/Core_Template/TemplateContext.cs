@@ -15,7 +15,6 @@ namespace UF.TemplateInternal {
             roles = new Dictionary<int, RoleTM>();
         }
 
-        
 
         public void Role_Add(RoleTM role) {
             roles.Add(role.typeID, role);

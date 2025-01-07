@@ -31,6 +31,7 @@ namespace UF {
                 isInit = true;
 
                 // ---  Enter  ---
+                RoleEntity role = RoleDomain.Spawn(ctx, 100);
 
             };
 
@@ -59,8 +60,8 @@ namespace UF {
             TearDown();
         }
 
-        void TearDown(){
-            if(isTearDown){
+        void TearDown() {
+            if (isTearDown) {
                 return;
             }
             isTearDown = true;
