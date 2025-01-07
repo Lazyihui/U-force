@@ -48,7 +48,6 @@ namespace UF {
             }
 
             float dt = Time.deltaTime;
-            Debug.Log("dt:" + dt);
 
         }
 
