@@ -16,6 +16,8 @@ namespace UF {
 
             RoleEntity role = RoleDomain.Spawn(ctx, 100);
             game.OwnerIDsig = role.idSig;
+
+            BulletEntity bullet = BulletDomain.Spawn(ctx, 100);
         }
 
 

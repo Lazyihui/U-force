@@ -10,13 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Packed Assets3
+  m_Name: So_Bullet
   m_EditorClassIdentifier: 
-  m_GroupName: Packed Assets3
+  m_GroupName: So_Bullet
   m_Data:
     m_SerializedData: []
   m_GUID: b26524238f8b4a646923c29353ffe454
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 669613ee5e0852b4c8d81f6ff150c760
+    m_Address: So_Bullet_100
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Bullet
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 4b47acea7a70a444998ddd6e6fd8b9bf, type: 2}
   m_SchemaSet:

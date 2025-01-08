@@ -11,8 +11,12 @@ namespace UF.TemplateInternal {
         public Dictionary<int, RoleTM> roles;
         public AsyncOperationHandle rolePtr;
 
+        public Dictionary<int, BulletTM> bullets;
+        public AsyncOperationHandle bulletPtr;
+
         public TemplateContext() {
             roles = new Dictionary<int, RoleTM>();
+            bullets = new Dictionary<int, BulletTM>();
         }
 
 
