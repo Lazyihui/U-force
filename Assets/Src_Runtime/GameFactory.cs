@@ -34,22 +34,50 @@ namespace UF {
                 return null;
             }
 
+            // - go
             GameObject prefab = assetsCore.Entity_GetBullet();
             GameObject go = GameObject.Instantiate(prefab);
-            BulletEntity entity = go.GetComponent<BulletEntity>();
+            BulletEntity bullet = go.GetComponent<BulletEntity>();
+            bullet.Reuse();
 
-            entity.idSig = new IDSignature(EntityType.Bullet, idService.PickBulletID());
-            entity.typeID = typeID;
-            entity.hp = tm.hp;
-            entity.hitMaxTimes = tm.hitTimes;
-            entity.hitTimes = tm.hitTimes;
-            // entity.frames = tm.frames;
-            entity.frameIndex = 0;
-            entity.isDisappeared = tm.isDisappeared;
-            
-            entity.Ctor();
+            // - Frames
+            // var frameTMs = tm.frames;
+            // if (frameTMs != null) {
+            //     for (int i = 0; i < frameTMs.Length; i += 1) {
+            //         var frameTM = frameTMs[i];
+            //         var frame = BulletFrame_Create(poolService, frameTM);
+            //         bullet.frames.Add(frame);
+            //     }
+            // }
+            bullet.frameIndex = 0;
 
-            return entity;
+            //  - mod
+            var mod = BulletMod_Creat(typeID, assetsCore, bullet.bodyRoot);
+            bullet.transform.position = pos;
+            bullet.idSig = new IDSignature(EntityType.Bullet, idService.PickBulletID());
+            bullet.typeID = typeID;
+            bullet.hp = tm.hp;
+            bullet.hitMaxTimes = tm.hitTimes;
+            bullet.hitTimes = tm.hitTimes;
+            bullet.isDisappeared = tm.isDisappeared;
+
+            bullet.Ctor();
+
+
+            return bullet;
         }
+
+        #region BulletMod
+
+        static BulletMod BulletMod_Creat(int typeID, AssetsCore assetsCore, Transform bodyRoot) {
+
+            GameObject go = assetsCore.Entity_GetBulletMod(typeID);
+            go = GameObject.Instantiate(go, bodyRoot);
+            BulletMod mod = go.GetComponent<BulletMod>();
+            
+            return mod;
+        }
+
+        #endregion
     }
 }

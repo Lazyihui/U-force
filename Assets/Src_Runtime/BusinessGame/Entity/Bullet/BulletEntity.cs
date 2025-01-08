@@ -62,6 +62,15 @@ namespace UF {
             this.mod = mod;
         }
 
+        public void Reuse(){
+            gameObject.SetActive(true);
+        }
+
+        public void Release(){
+            gameObject.SetActive(false);
+            targetComponent.Release();
+        }
+
         #region frames
 
         public bool Frame_TryGetCurrent(out BulletFrameMod frame) {

@@ -75,6 +75,11 @@ namespace UF {
             return bullet;
         }
 
+        public GameObject Entity_GetBulletMod(int typeID) {
+            entities.TryGetValue("Bullet_Mod_" + typeID, out GameObject roleBullet);
+            return roleBullet;
+        }
+
         //  ---  Panel  ---
         public GameObject Panel_GetLogin() {
             panels.TryGetValue("Panel_Login", out GameObject panel);
