@@ -17,7 +17,6 @@ namespace UF {
             RoleEntity role = RoleDomain.Spawn(ctx, 100);
             game.OwnerIDsig = role.idSig;
 
-            BulletEntity bullet = BulletDomain.Spawn(ctx, 100);
         }
 
 
@@ -50,6 +49,10 @@ namespace UF {
         }
 
         static void LogicTick(GameContext ctx, float dt) {
+
+            RoleEntity owner = ctx.Get_Owner();
+
+            RoleDomain.Tick(ctx, owner);
 
         }
 

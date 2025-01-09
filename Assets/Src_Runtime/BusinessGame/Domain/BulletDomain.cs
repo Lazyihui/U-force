@@ -8,8 +8,9 @@ namespace UF {
         }
 
         public static BulletEntity Spawn(GameContext ctx, int typeID) {
-            BulletEntity entity = GameFactory.Bullet_Create(ctx.assetsCore, ctx.templateCore, ctx.idService, Vector3.zero, typeID);
+            BulletEntity entity = GameFactory.Bullet_Create(ctx.assetsCore, ctx.templateCore, ctx.idService, typeID);
             return null;
         }
+
     }
 }

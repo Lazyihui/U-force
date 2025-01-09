@@ -29,7 +29,7 @@ namespace UF {
         }
 
         public static BulletEntity Bullet_Create(AssetsCore assetsCore, TemplateCore templateCore,
-         IDService idService, Vector3 pos, int typeID) {
+         IDService idService, int typeID) {
             BulletTM tm;
             bool has = templateCore.Bullet_TryGet(typeID, out tm);
             if (!has) {
@@ -56,8 +56,8 @@ namespace UF {
 
             //  - mod
             var mod = BulletMod_Creat(typeID, assetsCore, bullet.bodyRoot);
-            
-            bullet.transform.position = pos;
+
+            bullet.transform.position = new Vector3(-4, 0, 0);
             bullet.idSig = new IDSignature(EntityType.Bullet, idService.PickBulletID());
             bullet.typeID = typeID;
             bullet.hp = tm.hp;

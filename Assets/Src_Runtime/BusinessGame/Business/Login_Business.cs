@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace UF {
 
-    public static class Logic_Business {
+    public static class Login_Business {
 
         public static void Enter(GameContext ctx) {
             // ui

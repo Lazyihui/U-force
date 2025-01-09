@@ -31,7 +31,7 @@ namespace UF {
                 isInit = true;
 
                 // ---  Enter  ---
-                Logic_Business.Enter(ctx);
+                Login_Business.Enter(ctx);
             };
 
             action.Invoke();
@@ -52,6 +52,14 @@ namespace UF {
             }
 
             float dt = Time.deltaTime;
+
+            var game = ctx.gameEntity;
+            if (game.state == GameState.Login) {
+                Login_Business.Tick(ctx, dt);
+            } else if (game.state == GameState.Game) {
+                Game_Business.Tick(ctx, dt);
+            }
+
 
         }
 

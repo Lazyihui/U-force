@@ -10,5 +10,27 @@ namespace UF {
             return role;
         }
 
+        public static void Tick(GameContext ctx, RoleEntity role) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                Debug.Log("RoleDomain: Tick: Space" + role.Fsm.Status);
+                role.Fsm.Casting_Enter();
+            }
+
+
+            if (role.Fsm.Status == RoleFSMStatus.Normal) {
+
+            }
+
+            if (role.Fsm.Status == RoleFSMStatus.Casting) {
+                if (Input.GetKeyDown(KeyCode.J)) {
+                    Debug.Log("RoleDomain: Tick: J" + role.Fsm.Status);
+                    BulletDomain.Spawn(ctx, 100);
+                }
+            }
+
+            if (role.Fsm.Status == RoleFSMStatus.Dead) {
+
+            }
+        }
     }
 }

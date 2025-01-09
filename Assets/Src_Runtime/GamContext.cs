@@ -32,6 +32,11 @@ namespace UF {
         public void Inject(Canvas ScreenCanvas) {
             appUI.Inject(ScreenCanvas, assetsCore);
         }
+
+        public RoleEntity Get_Owner() {
+            roleRepository.TryGet(gameEntity.OwnerIDsig, out RoleEntity role);
+            return role;
+        }
     }
 
 }

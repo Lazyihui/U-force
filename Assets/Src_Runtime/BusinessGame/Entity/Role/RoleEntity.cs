@@ -12,6 +12,10 @@ namespace UF {
 
         public bool isOwner => roleType == RoleType.Player;
 
+        // - FSM
+        RoleFSMConponent fsmConponent;
+        public RoleFSMConponent Fsm => fsmConponent;
+
         // pos 
         [SerializeField] public Transform bodyRoot;
         public Vector2 Centerpos => this.transform.position;
@@ -30,7 +34,7 @@ namespace UF {
 
 
         public void Ctor() {
-
+            fsmConponent = new RoleFSMConponent();
         }
 
 
