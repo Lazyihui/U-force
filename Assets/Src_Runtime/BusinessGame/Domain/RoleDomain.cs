@@ -11,14 +11,14 @@ namespace UF {
         }
 
         public static void Tick(GameContext ctx, RoleEntity role) {
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                Debug.Log("RoleDomain: Tick: Space" + role.Fsm.Status);
-                role.Fsm.Casting_Enter();
-            }
+
 
 
             if (role.Fsm.Status == RoleFSMStatus.Normal) {
-
+                if (Input.GetKeyDown(KeyCode.Space)) {
+                    Debug.Log("RoleDomain: Tick: Space" + role.Fsm.Status);
+                    role.Fsm.Casting_Enter();
+                }
             }
 
             if (role.Fsm.Status == RoleFSMStatus.Casting) {
