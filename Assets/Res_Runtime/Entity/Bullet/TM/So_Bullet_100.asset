@@ -19,4 +19,4 @@ MonoBehaviour:
     hp: 0
     hitTimes: 0
     isDisappeared: 0
-    mod: {fileID: 0}
+    mod: {fileID: -9140247128786338415, guid: bb011586b6e1c234eb9b943c831258c5, type: 3}
