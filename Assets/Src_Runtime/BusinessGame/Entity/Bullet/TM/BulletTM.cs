@@ -11,7 +11,7 @@ namespace UF {
         public int hp;
         public int hitTimes;
 
-        public bool isDisappeared;
+        public bool isBomb;
 
         public BulletMod mod;
 

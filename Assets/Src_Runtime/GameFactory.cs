@@ -18,6 +18,9 @@ namespace UF {
             GameObject go = GameObject.Instantiate(prefab);
             RoleEntity entity = go.GetComponent<RoleEntity>();
 
+
+            var mod = RoleMod_Create(typeID, assetsCore, entity.bodyRoot);
+
             entity.idSig = new IDSignature(EntityType.Role, idService.PickRoleID());
             entity.roleType = tm.roleType;
 
@@ -53,13 +56,14 @@ namespace UF {
 
             //  - mod
             var mod = BulletMod_Creat(typeID, assetsCore, bullet.bodyRoot);
+            
             bullet.transform.position = pos;
             bullet.idSig = new IDSignature(EntityType.Bullet, idService.PickBulletID());
             bullet.typeID = typeID;
             bullet.hp = tm.hp;
             bullet.hitMaxTimes = tm.hitTimes;
             bullet.hitTimes = tm.hitTimes;
-            bullet.isDisappeared = tm.isDisappeared;
+            bullet.isBomb = tm.isBomb;
 
             bullet.Ctor();
 
@@ -74,10 +78,17 @@ namespace UF {
             GameObject go = assetsCore.Entity_GetBulletMod(typeID);
             go = GameObject.Instantiate(go, bodyRoot);
             BulletMod mod = go.GetComponent<BulletMod>();
-            
+
             return mod;
         }
 
         #endregion
+
+        static RoleMod RoleMod_Create(int typeID, AssetsCore assetsCore, Transform bodyRoot) {
+            GameObject go = assetsCore.Entity_GetRoleMod(typeID);
+            go = GameObject.Instantiate(go, bodyRoot);
+            RoleMod mod = go.GetComponent<RoleMod>();
+            return mod;
+        }
     }
 }

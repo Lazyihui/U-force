@@ -30,9 +30,10 @@ namespace UF {
         public int frameIndex;
 
         // -Interaction
-        public bool isDisappeared;
+        public bool isBomb;
 
-        // public int SkillTypeID // 后面写技能系统的时候再加 
+        // TODO:
+        public int SkillTypeID; // 后面写技能系统的时候再加 
 
         // -rigidbody
         [SerializeField] Rigidbody2D rb;
