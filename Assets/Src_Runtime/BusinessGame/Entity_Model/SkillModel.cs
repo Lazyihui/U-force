@@ -8,6 +8,11 @@ namespace UF {
         public IDSignature idSig;
         public int typeID;
         public string name;
-        
+
+        public SkillFrameModel[] frames;
+
+        public SkillModel() {
+        }
+
     }
 }
