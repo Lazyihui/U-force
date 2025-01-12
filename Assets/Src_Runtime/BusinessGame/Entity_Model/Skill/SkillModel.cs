@@ -14,5 +14,14 @@ namespace UF {
         public SkillModel() {
         }
 
+        public void Reset() {
+            if (frames != null) {
+                for (int i = 0; i < frames.Length; i++) {
+                    frames[i].Reset();
+                }
+            }
+        }
+        
+
     }
 }

@@ -31,10 +31,17 @@ namespace UF {
         // Movement
 
         // skillor
+        public RoleSkillSlotComponent skillSlotComponent;
 
 
         public void Ctor() {
             fsmConponent = new RoleFSMConponent();
+            skillSlotComponent = new RoleSkillSlotComponent();
+        }
+
+        public SkillModel Skill_GetByInput(){
+
+            return null;
         }
 
 
