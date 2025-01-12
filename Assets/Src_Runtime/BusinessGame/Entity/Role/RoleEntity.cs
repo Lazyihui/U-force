@@ -22,6 +22,8 @@ namespace UF {
         Vector2 face;
 
         // user input
+        [SerializeField] RoleInpuComponent inputComponent;//TODO:不知道[SerializeField]是干嘛的
+        public RoleInpuComponent InputComponent => inputComponent;
 
 
         // - Physics
@@ -37,9 +39,19 @@ namespace UF {
         public void Ctor() {
             fsmConponent = new RoleFSMConponent();
             skillSlotComponent = new RoleSkillSlotComponent();
+            inputComponent = new RoleInpuComponent();
         }
 
-        public SkillModel Skill_GetByInput(){
+        public void Reuse(){
+            gameObject.SetActive(true);
+        }
+
+        public void Release() {
+            skillSlotComponent.Release();
+            inputComponent.Release();
+        }
+
+        public SkillModel Skill_GetByInput() {
 
             return null;
         }

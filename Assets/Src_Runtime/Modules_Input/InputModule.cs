@@ -12,10 +12,6 @@ namespace UF{
         bool isJump;
         public bool IsJump => isJump;
 
-
-
-
-
         public InputModule(){
             player1 = new InputControls_Player();
             player1.Enable();
@@ -31,7 +27,7 @@ namespace UF{
             // -Input
             {   
                 bool isJumpDown = world.Jump.WasPressedThisFrame();
-                isJump = isJumpDown;
+                isJump = isJumpDown;    
                 if(isJumpDown){
                     Debug.Log("Jump");
                 }
