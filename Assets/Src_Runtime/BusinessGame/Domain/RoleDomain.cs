@@ -15,14 +15,14 @@ namespace UF {
 
 
             if (role.Fsm.Status == RoleFSMStatus.Normal) {
-                if (Input.GetKeyDown(KeyCode.Space)) {
+                if (Input.GetKeyDown(KeyCode.A)) {
                     Debug.Log("RoleDomain: Tick: Space" + role.Fsm.Status);
                     role.Fsm.Casting_Enter();
                 }
             }
 
             if (role.Fsm.Status == RoleFSMStatus.Casting) {
-                if (Input.GetKeyDown(KeyCode.J)) {
+                if (Input.GetKeyDown(KeyCode.S)) {
                     Debug.Log("RoleDomain: Tick: J" + role.Fsm.Status);
                     BulletDomain.Spawn(ctx, 100);
                 }

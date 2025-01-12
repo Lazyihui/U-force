@@ -14,7 +14,7 @@ namespace UF {
         public RoleBehaviourModel roleBehaviour;
 
         public void Reset() {
-
+            
         }
 
         public SkillFrameModel FromTM(int typeID, SkillFrameTM tm) {

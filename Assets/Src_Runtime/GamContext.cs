@@ -15,6 +15,8 @@ namespace UF {
         public TemplateCore templateCore;
         public AppUI appUI;
 
+        public InputModule inputModule;
+
         // ---  RoleRepository  ---
         public RoleRepository roleRepository;
 
@@ -25,6 +27,8 @@ namespace UF {
             assetsCore = new AssetsCore();
             templateCore = new TemplateCore();
             appUI = new AppUI();
+
+            inputModule = new InputModule();
 
             roleRepository = new RoleRepository();
         }

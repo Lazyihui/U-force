@@ -53,6 +53,9 @@ namespace UF {
 
             float dt = Time.deltaTime;
 
+            var input = ctx.inputModule;
+            input.Process(dt);
+
             var game = ctx.gameEntity;
             if (game.state == GameState.Login) {
                 Login_Business.Tick(ctx, dt);
