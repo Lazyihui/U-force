@@ -9,10 +9,24 @@ namespace UF {
         public int typeID;
         public string name;
 
+
+        public InputKeyFlag castKeys;
+
         public SkillFrameModel[] frames;
+        int frameIndex;
+        public int FrameIndex => frameIndex;
+
+        public int restUseTimes;
+
+        public int cd;
+        public int cdMax;
+
+        public int mpCost;
+        public int mpCostMax;
 
         public SkillModel() {
             typeID = 1;
+            frameIndex = 0;
         }
 
         public void Reset() {
@@ -23,19 +37,11 @@ namespace UF {
             }
         }
 
-        public bool isFitFlushKey() {
-            return true;
-            // if (frames == null) {
-            //     return false;
-            // }
-
-            // // for (int i = 0; i < frames.Length; i++) {
-            // //     if (frames[i].inputType == InputType.Flush) {
-            // //         return true;
-            // //     }
-            // // }
-
-            // return false;
+        public bool isFitFlushKey(InputKeyFlag InputKey) {
+            if (InputKey == castKeys) {
+                return true;
+            }
+            return false;
         }
 
 

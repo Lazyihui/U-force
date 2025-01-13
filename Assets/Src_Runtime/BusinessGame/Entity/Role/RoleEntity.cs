@@ -5,16 +5,14 @@ namespace UF {
     public class RoleEntity : MonoBehaviour {
         public IDSignature idSig;
         public RoleType roleType;
-
-        public int typeID;
-
-        public IDSignature belongStage;//在哪一个地图里面
-
         public bool isOwner => roleType == RoleType.Player;
 
+        public int typeID;
+        public IDSignature belongStage;//在哪一个地图里面
+
         // - FSM
-        RoleFSMConponent fsmConponent;
-        public RoleFSMConponent Fsm => fsmConponent;
+        RoleFSMConponent fsmComponent;
+        public RoleFSMConponent FSMComponent => fsmComponent;
 
         // pos 
         [SerializeField] public Transform bodyRoot;
@@ -37,7 +35,7 @@ namespace UF {
 
 
         public void Ctor() {
-            fsmConponent = new RoleFSMConponent();
+            fsmComponent = new RoleFSMConponent();
             skillSlotComponent = new RoleSkillSlotComponent();
             inputComponent = new RoleInpuComponent();
         }
@@ -50,25 +48,40 @@ namespace UF {
             skillSlotComponent.Release();
             inputComponent.Release();
         }
+        public SkillFrameModel Skillor_CurrentFrame() {
 
+            if (fsmComponent.Status != RoleFSMStatus.Casting) {
+                return null;
+            }
+
+            SkillModel skill = skillSlotComponent.CurrentSkill;
+            if (skill == null) {
+                return null;
+            }
+
+            SkillFrameModel[] frames = skill.frames;
+            if (frames == null || frames.Length == 0) {
+                return null;
+            }
+
+            SkillFrameModel frame = frames[skill.FrameIndex];
+            return frame;
+
+        }
         public SkillModel Skill_GetByInput() {
             var inputcom = InputComponent;
             var skillor = skillSlotComponent;
 
             SkillModel skill = null;
-
             if (inputcom.IsJump) {
-                int len = skillor.TakeSkillsByFlushInput(out SkillModel[] result);
-                for (int i = 0; i < len; i++) {
-                    if (result[i].typeID == 1) {
-
-                        skill = result[i];
-                        break;
-                    }
-                }
+                int len = skillor.TakeSkillsByFlushInput(out SkillModel[] result, inputcom.InputKeys);
+                // for (int i = 0; i < len; i++) {
+                //     if (result[i].typeID == 1) {
+                //         skill = result[i];
+                //         break;
+                //     }
+                // }
             }
-
-
             return skill;
         }
 

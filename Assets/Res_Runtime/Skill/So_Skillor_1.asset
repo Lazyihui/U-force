@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: So_Skillor_1
   m_EditorClassIdentifier: 
   tm:
-    typeID: 0
-    typeName: 
+    typeID: 1
+    typeName: jump
     cd: 0
     skillFrameTMs:
     - moveTM:

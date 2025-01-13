@@ -52,7 +52,16 @@ namespace UF {
 
             RoleEntity owner = ctx.Get_Owner();
 
-            RoleDomain.Tick(ctx, owner);
+            var fsm = owner.FSMComponent;
+            var state = fsm.Status;
+
+            if (state == RoleFSMStatus.Normal) {
+                RoleDomain.FSM_Normal_Execute(ctx, owner, dt);
+            } else if (state == RoleFSMStatus.Casting) {
+
+            } else if (state == RoleFSMStatus.Dead) {
+
+            }
 
         }
 
