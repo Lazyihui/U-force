@@ -57,9 +57,13 @@ namespace UF {
             var fsm = owner.FSMComponent;
             var state = fsm.Status;
 
-            var input = owner.InputComponent;
+            RoleInpuComponent input = owner.InputComponent;
+            InputKeyFlag inputKey = input.InputKeys;
             if (input.IsJump) {
-                Debug.Log("Jump");
+                Debug.Log("Jump" + inputKey);
+                input.Set_InputKey(InputKeyFlag.None);
+                Debug.Log("Jumpaaaa" + inputKey);
+
             }
 
             if (state == RoleFSMStatus.Normal) {

@@ -5,25 +5,28 @@ using UnityEngine;
 namespace UF {
 
     [Serializable]
-    public class RoleInpuComponent{
+    public class RoleInpuComponent {
 
         // -Jump
         bool isJump;
         public bool IsJump => isJump;
-        public void Jump_Set(bool value)=>isJump = value;
+        public void Jump_Set(bool value) => isJump = value;
 
         // -input
         InputKeyFlag inputKeys;
         public InputKeyFlag InputKeys => inputKeys;
 
-        public void Clear(){
+        public void Clear() {
             isJump = false;
             inputKeys = InputKeyFlag.None;
         }
 
-        public void Release(){
+        public void Release() {
             Clear();
-            
+        }
+
+        public void Set_InputKey(InputKeyFlag key) {
+            inputKeys = key;
         }
 
     }
