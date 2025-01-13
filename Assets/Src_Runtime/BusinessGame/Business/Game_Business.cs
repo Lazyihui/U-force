@@ -52,8 +52,15 @@ namespace UF {
 
             RoleEntity owner = ctx.Get_Owner();
 
+            RoleDomain.Input_Record(ctx, owner, dt);
+
             var fsm = owner.FSMComponent;
             var state = fsm.Status;
+
+            var input = owner.InputComponent;
+            if (input.IsJump) {
+                Debug.Log("Jump");
+            }
 
             if (state == RoleFSMStatus.Normal) {
                 RoleDomain.FSM_Normal_Execute(ctx, owner, dt);

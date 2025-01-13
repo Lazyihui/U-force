@@ -14,7 +14,15 @@ namespace UF {
             // Skill Cast
             Skillor_Cast(ctx, role, dt);
         }
+        #region Input   
 
+        public static void Input_Record(GameContext ctx, RoleEntity role, float dt) {
+            var inputCom = role.InputComponent;
+            var inputModule = ctx.inputModule;
+            inputCom.Jump_Set(inputModule.IsJump);
+        }
+
+        #endregion
 
 
         #region Skill Cast
@@ -22,6 +30,9 @@ namespace UF {
         public static void Skillor_Cast(GameContext ctx, RoleEntity role, float dt) {
             // 完成
             SkillModel skill = role.Skill_GetByInput();
+            if (skill != null) {
+                Debug.Log("Skillor_Cast");
+            }
             Skillor_Cast(ctx, role, skill, dt);
         }
 

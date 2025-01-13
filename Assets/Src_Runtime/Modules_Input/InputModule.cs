@@ -28,9 +28,6 @@ namespace UF{
             {   
                 bool isJumpDown = world.Jump.WasPressedThisFrame();
                 isJump = isJumpDown;    
-                if(isJumpDown){
-                    Debug.Log("Jump");
-                }
             }
         
         }
