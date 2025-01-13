@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 
 namespace UF {
+    [Serializable]
     public class SkillFrameTM {
         // -移动方式
         public SkillMoveTM moveTM;//没用到

@@ -41,10 +41,25 @@ namespace UF {
 
                 foreach (var so in all) {
                     var tm = so.tm;
-                    ctx.bullets.Add(tm.typeID, tm);
+                    ctx.Bullet_Add(tm);
                 }
 
                 ctx.bulletPtr = handle;
+            }
+            {
+                AssetLabelReference labelReference = new AssetLabelReference();
+
+                labelReference.labelString = "So_Skill";
+                var handle = Addressables.LoadAssetsAsync<SkillSo>(labelReference, null);
+
+                var all = await handle.Task;
+
+                foreach (var so in all) {
+                    var tm = so.tm;
+                    ctx.Skill_Add(tm);
+                }
+
+                ctx.skillPtr = handle;
             }
 
         }
@@ -57,6 +72,9 @@ namespace UF {
             return ctx.bullets.TryGetValue(typeID, out bullet);
         }
 
+        public bool Skill_TryGet(int typeID, out SkillTM skill) {
+            return ctx.skills.TryGetValue(typeID, out skill);
+        }
 
         public void UnLoadAll() {
             if (ctx.rolePtr.IsValid()) {
@@ -64,6 +82,9 @@ namespace UF {
             }
             if (ctx.bulletPtr.IsValid()) {
                 Addressables.Release(ctx.bulletPtr);
+            }
+            if (ctx.skillPtr.IsValid()) {
+                Addressables.Release(ctx.skillPtr);
             }
         }
 

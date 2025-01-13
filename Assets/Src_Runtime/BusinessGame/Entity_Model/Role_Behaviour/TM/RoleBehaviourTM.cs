@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UF {
 
-    [SerializeField]
+    [Serializable]
     public struct RoleBehaviourTM {
         public IDSignature belongWho;// 属于谁的技能
         public IDSignature belongMap;// 属于哪个地图

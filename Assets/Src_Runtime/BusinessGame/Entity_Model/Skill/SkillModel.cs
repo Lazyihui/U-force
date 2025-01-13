@@ -12,6 +12,7 @@ namespace UF {
         public SkillFrameModel[] frames;
 
         public SkillModel() {
+            typeID = 1;
         }
 
         public void Reset() {
@@ -21,7 +22,22 @@ namespace UF {
                 }
             }
         }
-        
+
+        public bool isFitFlushKey() {
+            return true;
+            // if (frames == null) {
+            //     return false;
+            // }
+
+            // // for (int i = 0; i < frames.Length; i++) {
+            // //     if (frames[i].inputType == InputType.Flush) {
+            // //         return true;
+            // //     }
+            // // }
+
+            // return false;
+        }
+
 
     }
 }

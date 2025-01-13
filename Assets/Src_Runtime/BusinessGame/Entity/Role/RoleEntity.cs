@@ -42,7 +42,7 @@ namespace UF {
             inputComponent = new RoleInpuComponent();
         }
 
-        public void Reuse(){
+        public void Reuse() {
             gameObject.SetActive(true);
         }
 
@@ -52,8 +52,24 @@ namespace UF {
         }
 
         public SkillModel Skill_GetByInput() {
+            var inputcom = InputComponent;
+            var skillor = skillSlotComponent;
 
-            return null;
+            SkillModel skill = null;
+
+            if (inputcom.IsJump) {
+                int len = skillor.TakeSkillsByFlushInput(out SkillModel[] result);
+                for (int i = 0; i < len; i++) {
+                    if (result[i].typeID == 1) {
+
+                        skill = result[i];
+                        break;
+                    }
+                }
+            }
+
+
+            return skill;
         }
 
 
