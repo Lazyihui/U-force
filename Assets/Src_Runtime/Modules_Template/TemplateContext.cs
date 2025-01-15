@@ -14,13 +14,13 @@ namespace UF.TemplateInternal {
         public Dictionary<int, BulletTM> bullets;
         public AsyncOperationHandle bulletPtr;
 
-        public Dictionary<int, SkillTM> skills;
+        public Dictionary<int, SkillorTM> skills;
         public AsyncOperationHandle skillPtr;
 
         public TemplateContext() {
             roles = new Dictionary<int, RoleTM>();
             bullets = new Dictionary<int, BulletTM>();
-            skills = new Dictionary<int, SkillTM>();
+            skills = new Dictionary<int, SkillorTM>();
         }
 
 
@@ -32,7 +32,7 @@ namespace UF.TemplateInternal {
             bullets.Add(bullet.typeID, bullet);
         }
 
-        public void Skill_Add(SkillTM skill) {
+        public void Skill_Add(SkillorTM skill) {
             skills.Add(skill.typeID, skill);
         }
 

@@ -8,30 +8,46 @@ namespace UF {
 
         public static RoleEntity Role_CreateBySpawner(AssetsCore assetsCore, TemplateCore templateCore,
          IDService idService, Vector3 pos, int typeID) {
-            RoleTM tm;
-            bool has = templateCore.Role_TryGet(typeID, out tm);
+
+            bool has = templateCore.Role_TryGet(typeID, out var tm);
             if (!has) {
                 Debug.LogError("Role_Create: tm is null" + typeID);
                 return null;
             }
             GameObject prefab = assetsCore.Entity_GetRole();
             GameObject go = GameObject.Instantiate(prefab);
-            RoleEntity entity = go.GetComponent<RoleEntity>();
+            RoleEntity role = go.GetComponent<RoleEntity>();
 
 
-            var mod = RoleMod_Create(typeID, assetsCore, entity.bodyRoot);
+            var mod = RoleMod_Create(typeID, assetsCore, role.bodyRoot);
 
-            entity.idSig = new IDSignature(EntityType.Role, idService.PickRoleID());
-            entity.roleType = tm.roleType;
+            role.idSig = new IDSignature(EntityType.Role, idService.PickRoleID());
+            role.roleType = tm.roleType;
 
-            entity.Ctor();
-            return entity;
+            role.Ctor();
+
+
+
+            // - Skillor
+            var skillorCom = role.skillorSlotComponent;
+            var skillorTMArray = tm.skillorSoArray;
+
+            if (skillorTMArray != null) {
+                for (int i = 0; i < skillorTMArray.Length; i += 1) {
+                    var skillSo = skillorTMArray[i];
+                    var skillor = Skillor_Create(assetsCore, templateCore, idService, skillSo.tm.typeID);
+                    skillorCom.Add(skillor);
+                }
+            }
+
+
+            return role;
         }
+
 
         public static BulletEntity Bullet_Create(AssetsCore assetsCore, TemplateCore templateCore,
          IDService idService, int typeID) {
-            BulletTM tm;
-            bool has = templateCore.Bullet_TryGet(typeID, out tm);
+            bool has = templateCore.Bullet_TryGet(typeID, out var tm);
             if (!has) {
                 Debug.LogError("Bullet_Create: tm is null" + typeID);
                 return null;
@@ -71,7 +87,41 @@ namespace UF {
             return bullet;
         }
 
-        #region BulletMod
+        #region Skillor
+
+        public static SkillModel Skillor_Create(AssetsCore assetsCore, TemplateCore templateCore, IDService idService, int typeID) {
+
+            bool has = templateCore.Skillor_TryGet(typeID, out var tm);
+            if (!has) {
+                Debug.LogError("Skillor_Create: tm is null" + typeID);
+                return null;
+            }
+
+            SkillModel model = new SkillModel();
+
+            model.idSig = new IDSignature(EntityType.Skillor, idService.PickSkillorID());
+            model.typeID = typeID;
+            model.cd = tm.cd;
+            model.cdMax = tm.cd;
+            model.restUseTimes = tm.restUseTimes;
+            model.maxUseTimes = tm.maxUseTimes;
+
+            model.Ctor();
+
+            model.frames = new SkillFrameModel[tm.actionTMs.Length];
+            for (int i = 0; i < tm.actionTMs.Length; i += 1) {
+                var actionTM = tm.actionTMs[i];
+                // new一个新的SkillFrameModel并且赋值
+                var actionModel = new SkillFrameModel().FromTM(typeID, actionTM);
+                model.frames[i] = actionModel;
+            }
+
+            return model;
+        }
+
+        #endregion
+
+        #region Mod
 
         static BulletMod BulletMod_Creat(int typeID, AssetsCore assetsCore, Transform bodyRoot) {
 
@@ -82,13 +132,12 @@ namespace UF {
             return mod;
         }
 
-        #endregion
-
         static RoleMod RoleMod_Create(int typeID, AssetsCore assetsCore, Transform bodyRoot) {
             GameObject go = assetsCore.Entity_GetRoleMod(typeID);
             go = GameObject.Instantiate(go, bodyRoot);
             RoleMod mod = go.GetComponent<RoleMod>();
             return mod;
         }
+        #endregion
     }
 }

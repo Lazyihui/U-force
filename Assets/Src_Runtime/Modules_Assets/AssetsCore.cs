@@ -74,6 +74,8 @@ namespace UF {
             entities.TryGetValue("Entity_Bullet", out GameObject bullet);
             return bullet;
         }
+        
+
 
         // ---  Mod  ---
         public GameObject Entity_GetBulletMod(int typeID) {

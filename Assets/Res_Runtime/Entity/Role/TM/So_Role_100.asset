@@ -16,3 +16,5 @@ MonoBehaviour:
     typeName: Player
     roleType: 0
     typeID: 100
+    skillorSoArray:
+    - {fileID: 11400000, guid: 3c66c4bdc888ec44da2ea3067517bbac, type: 2}

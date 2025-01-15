@@ -9,14 +9,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b00681e47e8f434b82a4ac511db9b4f, type: 3}
+  m_Script: {fileID: 11500000, guid: 3dad6dc5d9069b0469746cbf1136968c, type: 3}
   m_Name: So_Skillor_1
   m_EditorClassIdentifier: 
   tm:
     typeID: 1
     typeName: jump
-    cd: 0
-    skillFrameTMs:
+    cd: 1
+    restUseTimes: 1
+    maxUseTimes: 1
+    actionTMs:
+    - moveTM:
+        moveOffset: {x: 0, y: 0}
+        moveSpeed: 0
+      hasRoleBehaviour: 1
+      roleBehaviourTM:
+        belongWho:
+          value: 0
+          entityType: 0
+          entityID: 0
+        belongMap:
+          value: 0
+          entityType: 0
+          entityID: 0
+        isMoveTo: 0
+        isJump: 1
+        isRestoreSkillTimes: 0
+        isSpawnBullet: 0
+        hasBulletTearDown: 0
+        tearDownBullets: []
+        isRestoreHp: 0
+        restoreHp: 0
+        isRestoreMp: 0
+        restoreMp: 0
+        isAttachBuff: 0
     - moveTM:
         moveOffset: {x: 0, y: 0}
         moveSpeed: 0

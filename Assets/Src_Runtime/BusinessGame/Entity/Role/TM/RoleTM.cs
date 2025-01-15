@@ -9,5 +9,7 @@ namespace UF{
         public RoleType roleType;
         public int typeID;
 
+        public SkillorSo[] skillorSoArray;
+
     }
 }

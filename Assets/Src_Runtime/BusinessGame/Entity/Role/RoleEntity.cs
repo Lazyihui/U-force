@@ -33,12 +33,12 @@ namespace UF {
         // Movement
 
         // skillor
-        public RoleSkillSlotComponent skillSlotComponent;
+        public RoleSkillSlotComponent skillorSlotComponent;
 
 
         public void Ctor() {
             fsmComponent = new RoleFSMConponent();
-            skillSlotComponent = new RoleSkillSlotComponent();
+            skillorSlotComponent = new RoleSkillSlotComponent();
             inputComponent = new RoleInpuComponent();
         }
 
@@ -47,7 +47,7 @@ namespace UF {
         }
 
         public void Release() {
-            skillSlotComponent.Release();
+            skillorSlotComponent.Release();
             inputComponent.Release();
         }
         public SkillFrameModel Skillor_CurrentFrame() {
@@ -56,7 +56,7 @@ namespace UF {
                 return null;
             }
 
-            SkillModel skill = skillSlotComponent.CurrentSkill;
+            SkillModel skill = skillorSlotComponent.CurrentSkill;
             if (skill == null) {
                 return null;
             }
@@ -72,7 +72,7 @@ namespace UF {
         }
         public SkillModel Skill_GetByInput() {
             var inputcom = InputComponent;
-            var skillor = skillSlotComponent;
+            var skillor = skillorSlotComponent;
 
             InputKeyFlag inputKeys = inputcom.CastKeys;
 

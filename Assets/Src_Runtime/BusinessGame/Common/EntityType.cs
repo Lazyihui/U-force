@@ -7,6 +7,8 @@ namespace UF {
         Role,
         Bullet,
 
+        Skillor,
+
     }
 
 }

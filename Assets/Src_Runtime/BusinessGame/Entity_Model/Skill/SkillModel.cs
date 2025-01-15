@@ -16,10 +16,11 @@ namespace UF {
         int frameIndex;
         public int FrameIndex => frameIndex;
 
-        public int restUseTimes;
+        public int restUseTimes;//剩余使用次数
+        public int maxUseTimes;//最大使用次数
 
-        public int cd;
-        public int cdMax;
+        public float cd;
+        public float cdMax;
 
         public int mpCost;
         public int mpCostMax;
@@ -27,6 +28,10 @@ namespace UF {
         public SkillModel() {
             typeID = 1;
             frameIndex = 0;
+        }
+
+        public void Ctor() {
+
         }
 
         public void Reset() {

@@ -7,7 +7,7 @@ namespace UF {
     // -技能槽
     public class RoleSkillSlotComponent {
 
-        Dictionary<IDSignature, SkillModel> all;
+        public Dictionary<IDSignature, SkillModel> all;
         List<SkillModel> orderByInputTypeList; // 临时存放按照输入顺序排序的技能
 
         SkillModel[] tempOrderByInputType; // 临时存放按照输入类型排序的技能 还没用到

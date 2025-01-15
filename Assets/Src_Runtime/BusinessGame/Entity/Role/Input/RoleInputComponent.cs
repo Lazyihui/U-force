@@ -17,8 +17,6 @@ namespace UF {
         InputKeyFlag castKeys;
         public InputKeyFlag CastKeys => castKeys;
 
-
-
         public RoleInpuComponent() {
 
         }
@@ -31,6 +29,7 @@ namespace UF {
         public void Release() {
             Clear();
         }
+        
         public void RecoredCastKey(InputKeyFlag key) {
 
             if (key == InputKeyFlag.None) {

@@ -66,6 +66,12 @@ namespace UF {
 
             }
 
+            var skillorCom = owner.skillorSlotComponent;
+
+            foreach (var skill in skillorCom.all.Values) {
+                Debug.Log(skill.idSig+" "+skill.typeID+" "+skill.frames.Length);
+            }
+
         }
 
         static void LastTick(GameContext ctx, float dt) {

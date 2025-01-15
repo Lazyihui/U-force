@@ -50,7 +50,7 @@ namespace UF {
                 AssetLabelReference labelReference = new AssetLabelReference();
 
                 labelReference.labelString = "So_Skill";
-                var handle = Addressables.LoadAssetsAsync<SkillSo>(labelReference, null);
+                var handle = Addressables.LoadAssetsAsync<SkillorSo>(labelReference, null);
 
                 var all = await handle.Task;
 
@@ -72,7 +72,7 @@ namespace UF {
             return ctx.bullets.TryGetValue(typeID, out bullet);
         }
 
-        public bool Skill_TryGet(int typeID, out SkillTM skill) {
+        public bool Skillor_TryGet(int typeID, out SkillorTM skill) {
             return ctx.skills.TryGetValue(typeID, out skill);
         }
 
