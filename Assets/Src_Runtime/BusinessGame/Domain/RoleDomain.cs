@@ -19,7 +19,9 @@ namespace UF {
         public static void Input_Record(GameContext ctx, RoleEntity role, float dt) {
             var inputCom = role.InputComponent;
             var inputModule = ctx.inputModule;
+
             inputCom.Jump_Set(inputModule.IsJump);
+            inputCom.RecoredCastKey(inputModule.InputKey);
         }
 
         #endregion

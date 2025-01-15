@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace UF {
@@ -13,22 +14,29 @@ namespace UF {
         public void Jump_Set(bool value) => isJump = value;
 
         // -input
-        InputKeyFlag inputKeys;
-        public InputKeyFlag InputKeys => inputKeys;
+        InputKeyFlag castKeys;
+        public InputKeyFlag CastKeys => castKeys;
+
+
+
+        public RoleInpuComponent() {
+
+        }
 
         public void Clear() {
             isJump = false;
-            inputKeys = InputKeyFlag.None;
+            castKeys = InputKeyFlag.None;
         }
 
         public void Release() {
             Clear();
         }
+        public void RecoredCastKey(InputKeyFlag key) {
 
-        public void Set_InputKey(InputKeyFlag key) {
-            inputKeys = key;
-            Debug.Log("Set_InputKey:" + inputKeys);
+            if (key == InputKeyFlag.None) {
+                return;
+            }
+            castKeys = key;
         }
-
     }
 }

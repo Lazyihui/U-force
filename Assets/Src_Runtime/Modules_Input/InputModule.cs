@@ -3,33 +3,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace UF{
-    public class InputModule{
+namespace UF {
+    public class InputModule {
 
         InputControls_Player player1;
         public InputControls_Player Player1 => player1;
 
+        InputKeyFlag inputKey;
+        public InputKeyFlag InputKey => inputKey;
+
         bool isJump;
         public bool IsJump => isJump;
 
-        public InputModule(){
+        public InputModule() {
             player1 = new InputControls_Player();
             player1.Enable();
         }
 
-        public void ReSetJump(){
+        public void ReSetJump() {
             isJump = false;
         }
 
-        public void Process(float dt){
+        public void Process(float dt) {
             var world = player1.World;
 
             // -Input
-            {   
+            {
                 bool isJumpDown = world.Jump.WasPressedThisFrame();
-                isJump = isJumpDown;    
+                isJump = isJumpDown;
+                if (isJumpDown) {
+                    inputKey |= InputKeyFlag.Jump;
+                }
             }
-        
+
         }
 
 

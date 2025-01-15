@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace UF {
@@ -72,10 +74,12 @@ namespace UF {
             var inputcom = InputComponent;
             var skillor = skillSlotComponent;
 
+            InputKeyFlag inputKeys = inputcom.CastKeys;
+
             SkillModel skill = null;
             if (inputcom.IsJump) {
-                int len = skillor.TakeSkillsByFlushInput(out SkillModel[] result, inputcom.InputKeys);
-                Debug.Log("len:" + len + "result:" + result + InputComponent.InputKeys);
+                int len = skillor.TakeSkillsByFlushInput(out SkillModel[] result, inputKeys);
+                Debug.Log("len:" + len + "result:" + result + inputKeys);
                 // for (int i = 0; i < len; i++) {
                 //     if (result[i].typeID == 1) {
                 //         skill = result[i];
@@ -85,7 +89,7 @@ namespace UF {
             }
             if (skill != null) {
                 Debug.Log("skill:" + skill.typeID);
-            }else{
+            } else {
             }
             return skill;
         }
