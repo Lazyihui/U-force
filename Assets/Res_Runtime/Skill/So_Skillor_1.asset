@@ -15,6 +15,7 @@ MonoBehaviour:
   tm:
     typeID: 1
     typeName: jump
+    castKeys: 1
     cd: 1
     restUseTimes: 1
     maxUseTimes: 1

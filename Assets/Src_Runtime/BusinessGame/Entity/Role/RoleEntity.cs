@@ -76,22 +76,21 @@ namespace UF {
 
             InputKeyFlag inputKeys = inputcom.CastKeys;
 
-            SkillModel skill = null;
+            SkillModel result = null;
+            // TODO:inputcom.IsJump这个条件不应该在这里
+
             if (inputcom.IsJump) {
-                int len = skillor.TakeSkillsByFlushInput(out SkillModel[] result, inputKeys);
-                Debug.Log("len:" + len + "result:" + result + inputKeys);
-                // for (int i = 0; i < len; i++) {
-                //     if (result[i].typeID == 1) {
-                //         skill = result[i];
-                //         break;
-                //     }
-                // }
+                Debug.Log("Jump要删掉");
+                int len = skillor.TakeSkillsByFlushInput(out SkillModel[] skills, inputKeys);
+                for (int i = 0; i < len; i++) {
+                    var skill = skills[i];
+                    if (skill != null) {
+                        result = skill;
+                        break;
+                    }
+                }
             }
-            if (skill != null) {
-                Debug.Log("skill:" + skill.typeID);
-            } else {
-            }
-            return skill;
+            return result;
         }
 
 

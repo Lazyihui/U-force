@@ -30,12 +30,17 @@ namespace UF {
         #region Skill Cast
 
         public static void Skillor_Cast(GameContext ctx, RoleEntity role, float dt) {
-            // 完成
+
             SkillModel skill = role.Skill_GetByInput();
             if (skill != null) {
                 Debug.Log("Skillor_Cast");
+                bool succ = Skillor_Cast(ctx, role, skill, dt);
+                if (succ) {
+                    Debug.Log("Skillor_Cast succ");
+                }
             }
-            Skillor_Cast(ctx, role, skill, dt);
+
+
         }
 
 
@@ -43,17 +48,20 @@ namespace UF {
 
             // No Combo, No Input
             if (skill == null) {
+                Debug.Log("Skillor_Cast skill == null");
                 return false;
             }
 
             //TODO:这里不知道有没有反掉
             SkillFrameModel frame = role.Skillor_CurrentFrame();
-            if (frame == null) {
+            if (frame != null) {
+                Debug.Log("Skillor_Cast frame == null");
                 return false;
             }
 
             // 最后决定的技能是否可施放
             if (!Skillor_AllowCast(ctx, role, skill)) {
+                Debug.Log("Skillor_Cast !Skillor_AllowCast");
                 return false;
             }
 

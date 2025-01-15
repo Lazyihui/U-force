@@ -42,7 +42,7 @@ namespace UF {
             }
         }
 
-        public bool isFitFlushKey(InputKeyFlag InputKey) {
+        public bool isFitInputKey(InputKeyFlag InputKey) {
             if (InputKey == castKeys) {
                 return true;
             }

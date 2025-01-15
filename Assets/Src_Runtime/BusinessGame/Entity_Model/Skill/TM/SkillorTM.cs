@@ -10,12 +10,15 @@ namespace UF {
         public int typeID;
         public string typeName;
 
+        [Header("技能基础属性")]
+        public InputKeyFlag castKeys;
+
         public float cd;
 
         public int restUseTimes;
         public int maxUseTimes;
 
-        
+
 
         [Header("技能帧")]
         public SkillFrameTM[] actionTMs;

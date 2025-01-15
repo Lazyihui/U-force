@@ -40,7 +40,7 @@ namespace UF {
 
             for (int i = 0; i < orderByInputTypeList.Count; i++) {
                 var skill = orderByInputTypeList[i];
-                if (skill.isFitFlushKey(inputKeys)) {
+                if (skill.isFitInputKey(inputKeys)) {
                     tempOrderByInputType[count] = skill;
                     currentSkill = skill;
                     count++;

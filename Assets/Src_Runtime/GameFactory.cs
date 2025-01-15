@@ -105,13 +105,14 @@ namespace UF {
             model.cdMax = tm.cd;
             model.restUseTimes = tm.restUseTimes;
             model.maxUseTimes = tm.maxUseTimes;
+            model.castKeys = tm.castKeys;
 
             model.Ctor();
 
             model.frames = new SkillFrameModel[tm.actionTMs.Length];
             for (int i = 0; i < tm.actionTMs.Length; i += 1) {
                 var actionTM = tm.actionTMs[i];
-                // new一个新的SkillFrameModel并且赋值
+                // new一个新的SkillFrameModel并且赋值   
                 var actionModel = new SkillFrameModel().FromTM(typeID, actionTM);
                 model.frames[i] = actionModel;
             }
