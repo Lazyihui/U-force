@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace UF {
     public enum InputKeyFlag {
-        None,
-        Jump,
-        Attack,
+        None = 0,
+        Jump = 1 << 0,
+        Attack = 1 << 1,
     }
 }

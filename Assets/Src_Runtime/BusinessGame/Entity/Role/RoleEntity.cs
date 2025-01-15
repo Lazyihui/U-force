@@ -75,13 +75,17 @@ namespace UF {
             SkillModel skill = null;
             if (inputcom.IsJump) {
                 int len = skillor.TakeSkillsByFlushInput(out SkillModel[] result, inputcom.InputKeys);
-                Debug.Log("len:" + len+"result:"+result+InputComponent.InputKeys);
+                Debug.Log("len:" + len + "result:" + result + InputComponent.InputKeys);
                 // for (int i = 0; i < len; i++) {
                 //     if (result[i].typeID == 1) {
                 //         skill = result[i];
                 //         break;
                 //     }
                 // }
+            }
+            if (skill != null) {
+                Debug.Log("skill:" + skill.typeID);
+            }else{
             }
             return skill;
         }

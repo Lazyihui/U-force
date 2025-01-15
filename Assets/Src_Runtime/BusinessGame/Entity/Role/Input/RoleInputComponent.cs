@@ -27,6 +27,7 @@ namespace UF {
 
         public void Set_InputKey(InputKeyFlag key) {
             inputKeys = key;
+            Debug.Log("Set_InputKey:" + inputKeys);
         }
 
     }

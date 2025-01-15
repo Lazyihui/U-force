@@ -60,8 +60,7 @@ namespace UF {
             RoleInpuComponent input = owner.InputComponent;
             InputKeyFlag inputKey = input.InputKeys;
             if (input.IsJump) {
-                Debug.Log("Jump" + inputKey);
-                input.Set_InputKey(InputKeyFlag.None);
+                input.Set_InputKey(InputKeyFlag.Jump);
                 Debug.Log("Jumpaaaa" + inputKey);
 
             }
