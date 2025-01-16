@@ -30,7 +30,7 @@ namespace UF {
             var stateModel = castingStateModel;
             stateModel.isEntering = true;
             stateModel.frameIndex = 0;
-            stateModel.skill = skill;
+            stateModel.skillor = skill;
         }
 
     }

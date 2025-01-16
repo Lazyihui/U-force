@@ -36,7 +36,7 @@ MonoBehaviour:
         isMoveTo: 0
         isJump: 1
         isRestoreSkillTimes: 0
-        isSpawnBullet: 0
+        isSpawnBullet: 1
         hasBulletTearDown: 0
         tearDownBullets: []
         isRestoreHp: 0

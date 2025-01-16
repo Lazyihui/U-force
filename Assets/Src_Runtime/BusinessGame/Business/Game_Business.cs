@@ -57,7 +57,6 @@ namespace UF {
             var fsm = owner.FSMComponent;
             var state = fsm.Status;
 
-
             if (state == RoleFSMStatus.Normal) {
                 RoleDomain.FSM_Normal_Execute(ctx, owner, dt);
             } else if (state == RoleFSMStatus.Casting) {

@@ -10,6 +10,12 @@ namespace UF {
             return role;
         }
 
+        #region Jump
+        public static void Jump(GameContext ctx, RoleEntity role) {
+            role.Jump();
+        }
+
+        #endregion
 
         #region  FSM
         public static void FSM_Normal_Execute(GameContext ctx, RoleEntity role, float dt) {
@@ -23,7 +29,7 @@ namespace UF {
         }
 
         public static void FSM_Casting_Hand_Execute(GameContext ctx, RoleEntity role, RoleCastingStateModel stateModel, float dt) {
-            var skillor = stateModel.skill;
+            var skillor = stateModel.skillor;
 
             if (skillor == null) {
                 Debug.Log("FSM_Casting_Hand_Execute skillor == null");
@@ -38,8 +44,7 @@ namespace UF {
             ref int actionIndex = ref stateModel.frameIndex;
 
             if (actionIndex >= frames.Length) {
-                // Casting Finish
-                role.FSMComponent.Normal_Enter();
+                FSM_Casting_Exit(ctx, role, dt);
                 return;
             }
 
@@ -48,7 +53,69 @@ namespace UF {
             var action = frames[stateModel.frameIndex];
             // TODO:这里要写Loop Action 的逻辑 逻辑帧LoopModel
 
+
+            // if(''){
+            // Skillor_Act_Acting
+            Skillor_Frame_Acting(ctx, role, stateModel, action, dt);
+            // }
+
+            // if(..){
+            //     actionIndex =+ 1;
+            // }
         }
+
+        static void FSM_Casting_Exit(GameContext ctx, RoleEntity role, float dt) {
+            var fsm = role.FSMComponent;
+            FSM_Normal_Enter(ctx, role, dt);
+        }
+
+        static void FSM_Normal_Enter(GameContext ctx, RoleEntity role, float dt) {
+            var fsm = role.FSMComponent;
+            fsm.Normal_Enter();
+        }
+        #endregion
+
+        #region Act
+        public static void Skillor_Frame_Acting(GameContext ctx, RoleEntity role, RoleCastingStateModel stateModel, SkillFrameModel frame, float dt) {
+            var skillor = stateModel.skillor;
+            if (skillor == null) {
+                return;
+            }
+
+            // -Role Behavior
+            Debug.Assert(frame.hasRoleBehaviour, "frame.hasRoleBehaviour");
+            
+            if (frame.hasRoleBehaviour) {
+                Skillor_Frame_Acting(ctx, role, stateModel, frame, dt);
+            }
+        }
+
+        public static void Behavior_Act(GameContext ctx, RoleEntity role, RoleBehaviorModel model, float dt) {
+
+            if (model.isMoveTo) {
+                // MoveTo
+            }
+
+            if (model.isJump) {
+                RoleDomain.Jump(ctx, role);
+            }
+
+            if (model.isRestoreSkillTimes) {
+                // RestoreSkillTimes
+            }
+
+            if (model.isSpawnBullet) {
+                // SpawnBullet
+                BulletDomain.Spawn(ctx, 1);
+            }
+
+            if (model.hasBulletTearDown) {
+                // TearDown
+            }
+
+
+        }
+
         #endregion
         #region Input   
 

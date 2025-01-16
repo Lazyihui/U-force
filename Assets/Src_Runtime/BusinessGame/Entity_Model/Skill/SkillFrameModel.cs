@@ -11,7 +11,7 @@ namespace UF {
 
         // -Role Behaviour
         public bool hasRoleBehaviour;
-        public RoleBehaviourModel roleBehaviour;
+        public RoleBehaviorModel roleBehaviour;
 
         public void Reset() {
             

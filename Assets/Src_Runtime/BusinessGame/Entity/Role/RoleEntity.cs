@@ -50,6 +50,13 @@ namespace UF {
             skillorSlotComponent.Release();
             inputComponent.Release();
         }
+
+        public void Jump() {
+            // TODO:暂时这么写
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+            Debug.Log("Jump");
+        }
         public SkillFrameModel Skillor_CurrentFrame() {
 
             SkillModel skill = skillorSlotComponent.CurrentSkill;

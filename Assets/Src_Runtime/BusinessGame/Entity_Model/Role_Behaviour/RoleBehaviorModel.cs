@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace UF {
-    public struct RoleBehaviourModel {
+    public struct RoleBehaviorModel {
         public IDSignature belongWho;// 属于谁的技能
         public IDSignature belongMap;// 属于哪个地图
 
