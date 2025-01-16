@@ -10,10 +10,46 @@ namespace UF {
             return role;
         }
 
+
+        #region  FSM
         public static void FSM_Normal_Execute(GameContext ctx, RoleEntity role, float dt) {
             // Skill Cast
-            Skillor_Cast(ctx, role, dt);
+            Skillor_Input_FlushKeys(ctx, role, dt);
         }
+
+        public static void FSM_Casting_Execute(GameContext ctx, RoleEntity role, float dt) {
+            var fsm = role.FSMComponent;
+            FSM_Casting_Hand_Execute(ctx, role, fsm.CastingStateModel, dt);
+        }
+
+        public static void FSM_Casting_Hand_Execute(GameContext ctx, RoleEntity role, RoleCastingStateModel stateModel, float dt) {
+            var skillor = stateModel.skill;
+
+            if (skillor == null) {
+                Debug.Log("FSM_Casting_Hand_Execute skillor == null");
+                return;
+            }
+
+            if (stateModel.isEntering) {
+                stateModel.isEntering = false;
+            }
+
+            var frames = skillor.frames;
+            ref int actionIndex = ref stateModel.frameIndex;
+
+            if (actionIndex >= frames.Length) {
+                // Casting Finish
+                role.FSMComponent.Normal_Enter();
+                return;
+            }
+
+            Skillor_Input_FlushKeys(ctx, role, dt);
+
+            var action = frames[stateModel.frameIndex];
+            // TODO:这里要写Loop Action 的逻辑 逻辑帧LoopModel
+
+        }
+        #endregion
         #region Input   
 
         public static void Input_Record(GameContext ctx, RoleEntity role, float dt) {
@@ -29,7 +65,7 @@ namespace UF {
 
         #region Skill Cast
 
-        public static void Skillor_Cast(GameContext ctx, RoleEntity role, float dt) {
+        public static void Skillor_Input_FlushKeys(GameContext ctx, RoleEntity role, float dt) {
 
             SkillModel skill = role.Skill_GetByInput();
             if (skill != null) {
@@ -71,7 +107,7 @@ namespace UF {
             //TODO:如果有销毁蓝写在这里
 
             // TODO:Buff写在这里
-            
+
             // Remove Maintain Buff
             FSM_Casting_Enter(ctx, role, skill, dt);
             return true;
@@ -101,7 +137,7 @@ namespace UF {
         static void FSM_Casting_Enter(GameContext ctx, RoleEntity role, SkillModel skillor, float dt) {
             // 完成
             var fsm = role.FSMComponent;
-            fsm.Casting_Enter();
+            fsm.Casting_Enter(skillor);
         }
         #endregion
     }

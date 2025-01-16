@@ -6,16 +6,15 @@ namespace UF {
     public class RoleFSMConponent {
 
         RoleFSMStatus status;
-
-        // public RoleFSMStatus Status {
-        //     get {
-        //         return status;
-        //     }
-        // }
         public RoleFSMStatus Status => status;
+
+        RoleCastingStateModel castingStateModel;
+        public RoleCastingStateModel CastingStateModel => castingStateModel;
+
 
         public RoleFSMConponent() {
             status = RoleFSMStatus.Normal;
+            castingStateModel = new RoleCastingStateModel();
         }
 
         public void Normal_Enter() {
@@ -26,8 +25,12 @@ namespace UF {
             status = RoleFSMStatus.Dead;
         }
 
-        public void Casting_Enter() {
+        public void Casting_Enter(SkillModel skill) {
             status = RoleFSMStatus.Casting;
+            var stateModel = castingStateModel;
+            stateModel.isEntering = true;
+            stateModel.frameIndex = 0;
+            stateModel.skill = skill;
         }
 
     }

@@ -61,7 +61,7 @@ namespace UF {
             if (state == RoleFSMStatus.Normal) {
                 RoleDomain.FSM_Normal_Execute(ctx, owner, dt);
             } else if (state == RoleFSMStatus.Casting) {
-
+                RoleDomain.FSM_Casting_Execute(ctx, owner, dt);
             } else if (state == RoleFSMStatus.Dead) {
 
             }
