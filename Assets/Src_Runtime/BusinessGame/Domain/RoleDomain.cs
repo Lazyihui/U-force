@@ -84,9 +84,9 @@ namespace UF {
 
             // -Role Behavior
             Debug.Assert(frame.hasRoleBehaviour, "frame.hasRoleBehaviour");
-            
+
             if (frame.hasRoleBehaviour) {
-                Skillor_Frame_Acting(ctx, role, stateModel, frame, dt);
+                Behavior_Act(ctx, role, frame.roleBehaviour, dt);
             }
         }
 
@@ -106,7 +106,7 @@ namespace UF {
 
             if (model.isSpawnBullet) {
                 // SpawnBullet
-                BulletDomain.Spawn(ctx, 1);
+                BulletDomain.Spawn(ctx, 100);
             }
 
             if (model.hasBulletTearDown) {
