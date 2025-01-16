@@ -52,17 +52,15 @@ namespace UF {
         }
         public SkillFrameModel Skillor_CurrentFrame() {
 
-            if (fsmComponent.Status != RoleFSMStatus.Casting) {
-                return null;
-            }
-
             SkillModel skill = skillorSlotComponent.CurrentSkill;
             if (skill == null) {
+                Debug.Log("skill == null");
                 return null;
             }
 
             SkillFrameModel[] frames = skill.frames;
             if (frames == null || frames.Length == 0) {
+                Debug.Log("frames == null || frames.Length == 0");
                 return null;
             }
 

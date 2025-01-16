@@ -52,9 +52,8 @@ namespace UF {
                 return false;
             }
 
-            //TODO:这里不知道有没有反掉
             SkillFrameModel frame = role.Skillor_CurrentFrame();
-            if (frame != null) {
+            if (frame == null) {
                 Debug.Log("Skillor_Cast frame == null");
                 return false;
             }
@@ -69,9 +68,10 @@ namespace UF {
             skill.restUseTimes -= 1;
             skill.cd = skill.cdMax;
 
-            //TODO:如果有销毁蓝写在这里 
+            //TODO:如果有销毁蓝写在这里
 
             // TODO:Buff写在这里
+            
             // Remove Maintain Buff
             FSM_Casting_Enter(ctx, role, skill, dt);
             return true;
@@ -81,15 +81,20 @@ namespace UF {
         static bool Skillor_AllowCast(GameContext ctx, RoleEntity role, SkillModel skillor) {
             // 完成
             if (skillor == null) {
+                Debug.Log("Skillor_AllowCast skillor == null");
                 return false;
             }
 
             if (skillor.restUseTimes <= 0) {
+                Debug.Log("Skillor_AllowCast skillor.restUseTimes <= 0");
                 return false;
             }
-            if (skillor.cd > 0) {
-                return false;
-            }
+
+            // if (skillor.cd > 0) {
+            //     // TODO:技能冷却提示
+            //     Debug.Log("Skillor_AllowCast skillor.cd > 0");
+            //     return false;
+            // }
 
             return true;
         }
