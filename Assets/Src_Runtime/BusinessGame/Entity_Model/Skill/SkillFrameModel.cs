@@ -6,6 +6,8 @@ namespace UF {
 
     public class SkillFrameModel {
 
+        public LoopModel loopModel;
+
         // -移动方式
         public SkillMoveModel moveModel;
 
@@ -13,11 +15,17 @@ namespace UF {
         public bool hasRoleBehaviour;
         public RoleBehaviorModel roleBehaviour;
 
+        public SkillFrameModel() {
+            this.loopModel = new LoopModel();
+        }
+
         public void Reset() {
-            
+            loopModel.Reset();
         }
 
         public SkillFrameModel FromTM(int typeID, SkillFrameTM tm) {
+
+            this.loopModel.FromTM(tm.loopTM);
 
             // this.moveModel = new SkillMoveModel();
             // this.moveModel.moveOffset = tm.moveTM.moveOffset;

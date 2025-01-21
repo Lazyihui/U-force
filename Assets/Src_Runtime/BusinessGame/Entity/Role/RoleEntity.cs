@@ -85,8 +85,8 @@ namespace UF {
             SkillModel result = null;
             // TODO:inputcom.IsJump这个条件不应该在这里
 
-            if (inputcom.IsJump) {
-                Debug.Log("Jump要删掉");
+            // if (inputcom.IsJump) {
+            //     Debug.Log("Jump要删掉");
                 int len = skillor.TakeSkillsByFlushInput(out SkillModel[] skills, inputKeys);
                 for (int i = 0; i < len; i++) {
                     var skill = skills[i];
@@ -95,7 +95,7 @@ namespace UF {
                         break;
                     }
                 }
-            }
+            // }
             return result;
         }
 

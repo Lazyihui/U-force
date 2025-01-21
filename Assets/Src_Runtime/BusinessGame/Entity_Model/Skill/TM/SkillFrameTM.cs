@@ -6,6 +6,9 @@ using TriInspector;
 namespace UF {
     [Serializable]
     public class SkillFrameTM {
+        
+        public LoopTM loopTM;
+
         // -移动方式
         [Title("Move")]
         public SkillMoveTM moveTM;//没用到

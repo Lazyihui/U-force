@@ -42,26 +42,36 @@ namespace UF {
 
             var frames = skillor.frames;
             ref int actionIndex = ref stateModel.frameIndex;
-
             if (actionIndex >= frames.Length) {
-                FSM_Casting_Exit(ctx, role, dt);
+                var handStateModel = role.FSMComponent.CastingStateModel;
+                if (handStateModel.skillor == null) {
+                    FSM_Casting_Exit(ctx, role, dt);
+                }
+                stateModel.skillor = null;
                 return;
             }
 
             Skillor_Input_FlushKeys(ctx, role, dt);
 
             var action = frames[stateModel.frameIndex];
+            // RoleDomain.Skillor_Act_Move(ctx, role, skillor, action, dt);
             // TODO:这里要写Loop Action 的逻辑 逻辑帧LoopModel
+            action.loopModel.Tick(dt, out bool istrigger, out bool isNextFrame);
 
+            if (istrigger) {
+                RoleDomain.Skillor_Frame_Acting(ctx, role, stateModel, action, dt);
+            }
 
-            // if(''){
-            // Skillor_Act_Acting
-            Skillor_Frame_Acting(ctx, role, stateModel, action, dt);
-            // }
-
-            // if(..){
-            //     actionIndex =+ 1;
-            // }
+            if (isNextFrame) {
+                actionIndex += 1;
+                if (actionIndex >= frames.Length) {
+                    FSM_Casting_Exit(ctx, role, dt);
+                    Debug.Log("FSM_Casting_Hand_Execute actionIndex >= frames.Length");
+                }
+                // if (actionIndex <= frames.Length) {
+                //     // Skillor_Frame_Acting(ctx, role, stateModel, action, dt);
+                // }
+            }
         }
 
         static void FSM_Casting_Exit(GameContext ctx, RoleEntity role, float dt) {
@@ -78,9 +88,16 @@ namespace UF {
         #region Act
         public static void Skillor_Frame_Acting(GameContext ctx, RoleEntity role, RoleCastingStateModel stateModel, SkillFrameModel frame, float dt) {
             var skillor = stateModel.skillor;
+
             if (skillor == null) {
                 return;
             }
+
+            if (frame.loopModel.isDone) {
+                return;
+            }
+
+            frame.loopModel.CheckDone();
 
             // -Role Behavior
             Debug.Assert(frame.hasRoleBehaviour, "frame.hasRoleBehaviour");
@@ -88,6 +105,11 @@ namespace UF {
             if (frame.hasRoleBehaviour) {
                 Behavior_Act(ctx, role, frame.roleBehaviour, dt);
             }
+        }
+
+        public static void Skillor_Act_BeforeActing(GameContext ctx, RoleEntity role, RoleCastingStateModel stateModel, SkillFrameModel frame, float dt) {
+
+
         }
 
         public static void Behavior_Act(GameContext ctx, RoleEntity role, RoleBehaviorModel model, float dt) {

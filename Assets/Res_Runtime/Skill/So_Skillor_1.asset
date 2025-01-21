@@ -17,10 +17,15 @@ MonoBehaviour:
     typeName: jump
     castKeys: 1
     cd: 0
-    restUseTimes: 1
-    maxUseTimes: 1
+    restUseTimes: 3
+    maxUseTimes: 3
     actionTMs:
-    - moveTM:
+    - loopTM:
+        loopFlag: -1
+        maintainFrame: 1
+        triggerIntervalSec: 1
+        triggerTimesMax: 1
+      moveTM:
         moveOffset: {x: 0, y: 0}
         moveSpeed: 0
       hasRoleBehaviour: 1
@@ -36,7 +41,7 @@ MonoBehaviour:
         isMoveTo: 0
         isJump: 1
         isRestoreSkillTimes: 0
-        isSpawnBullet: 1
+        isSpawnBullet: 0
         hasBulletTearDown: 0
         tearDownBullets: []
         isRestoreHp: 0
@@ -44,7 +49,41 @@ MonoBehaviour:
         isRestoreMp: 0
         restoreMp: 0
         isAttachBuff: 0
-    - moveTM:
+    - loopTM:
+        loopFlag: -1
+        maintainFrame: 1
+        triggerIntervalSec: 1
+        triggerTimesMax: 1
+      moveTM:
+        moveOffset: {x: 0, y: 0}
+        moveSpeed: 0
+      hasRoleBehaviour: 1
+      roleBehaviourTM:
+        belongWho:
+          value: 0
+          entityType: 0
+          entityID: 0
+        belongMap:
+          value: 0
+          entityType: 0
+          entityID: 0
+        isMoveTo: 0
+        isJump: 1
+        isRestoreSkillTimes: 0
+        isSpawnBullet: 0
+        hasBulletTearDown: 0
+        tearDownBullets: []
+        isRestoreHp: 0
+        restoreHp: 0
+        isRestoreMp: 0
+        restoreMp: 0
+        isAttachBuff: 0
+    - loopTM:
+        loopFlag: -1
+        maintainFrame: 1
+        triggerIntervalSec: 1
+        triggerTimesMax: 1
+      moveTM:
         moveOffset: {x: 0, y: 0}
         moveSpeed: 0
       hasRoleBehaviour: 1
