@@ -11,12 +11,13 @@ namespace UF {
 
         // -移动方式
         [Title("Move")]
-        public SkillMoveTM moveTM;//没用到
+        public bool hasMove;
+        [ShowIf(nameof(hasMove))] public SkillMoveTM moveTM;//没用到
 
         // -Role Behaviour
         [Title("Role Behaviour")]
         public bool hasRoleBehaviour;
-        public RoleBehaviourTM roleBehaviourTM;
+        [ShowIf(nameof(hasRoleBehaviour))] public RoleBehaviourTM roleBehaviourTM;
 
         public void Transtion() {
             if (hasRoleBehaviour) {
