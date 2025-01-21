@@ -27,7 +27,17 @@ namespace UF {
             var fsm = role.FSMComponent;
             FSM_Casting_Hand_Execute(ctx, role, fsm.CastingStateModel, dt);
         }
-
+        static void FSM_Casting_Enter(GameContext ctx, RoleEntity role, SkillModel skillor, float dt) {
+            // 完成
+            var fsm = role.FSMComponent;
+            fsm.Casting_Enter(skillor);
+            Debug.Log("FSM_Casting_Enter");
+        }
+        static void FSM_Casting_Exit(GameContext ctx, RoleEntity role, float dt) {
+            var fsm = role.FSMComponent;
+            FSM_Normal_Enter(ctx, role, dt);
+            Debug.Log("FSM_Casting_Exit");
+        }
         public static void FSM_Casting_Hand_Execute(GameContext ctx, RoleEntity role, RoleCastingStateModel stateModel, float dt) {
             var skillor = stateModel.skillor;
 
@@ -55,15 +65,16 @@ namespace UF {
 
             var action = frames[stateModel.frameIndex];
             // RoleDomain.Skillor_Act_Move(ctx, role, skillor, action, dt);
-            // TODO:这里要写Loop Action 的逻辑 逻辑帧LoopModel
             action.loopModel.Tick(dt, out bool istrigger, out bool isNextFrame);
 
             if (istrigger) {
                 RoleDomain.Skillor_Frame_Acting(ctx, role, stateModel, action, dt);
+                Debug.Log("FSM_Casting_Hand_Execute istrigger");
             }
 
             if (isNextFrame) {
                 actionIndex += 1;
+                Debug.Log("actionIndex" + actionIndex);
                 if (actionIndex >= frames.Length) {
                     FSM_Casting_Exit(ctx, role, dt);
                     Debug.Log("FSM_Casting_Hand_Execute actionIndex >= frames.Length");
@@ -72,11 +83,6 @@ namespace UF {
                 //     // Skillor_Frame_Acting(ctx, role, stateModel, action, dt);
                 // }
             }
-        }
-
-        static void FSM_Casting_Exit(GameContext ctx, RoleEntity role, float dt) {
-            var fsm = role.FSMComponent;
-            FSM_Normal_Enter(ctx, role, dt);
         }
 
         static void FSM_Normal_Enter(GameContext ctx, RoleEntity role, float dt) {
@@ -120,6 +126,7 @@ namespace UF {
 
             if (model.isJump) {
                 RoleDomain.Jump(ctx, role);
+                Debug.LogWarning("RoleDomin.Jump");
             }
 
             if (model.isRestoreSkillTimes) {
@@ -158,14 +165,8 @@ namespace UF {
 
             SkillModel skill = role.Skill_GetByInput();
             if (skill != null) {
-                Debug.Log("Skillor_Cast");
                 bool succ = Skillor_Cast(ctx, role, skill, dt);
-                if (succ) {
-                    Debug.Log("Skillor_Cast succ");
-                }
             }
-
-
         }
 
 
@@ -223,11 +224,7 @@ namespace UF {
 
             return true;
         }
-        static void FSM_Casting_Enter(GameContext ctx, RoleEntity role, SkillModel skillor, float dt) {
-            // 完成
-            var fsm = role.FSMComponent;
-            fsm.Casting_Enter(skillor);
-        }
+
         #endregion
     }
 }

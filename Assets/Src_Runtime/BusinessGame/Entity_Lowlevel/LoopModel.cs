@@ -11,7 +11,7 @@ namespace UF {
         public float maintainTimer;
 
         public float triggerIntervalSec;//触发间隔
-        public float triggerIntervalTime;
+        public float triggerIntervalTimer;
         public float triggerTimes;//触发时间
         public float triggerTimesMax;
 
@@ -21,7 +21,7 @@ namespace UF {
 
         public void Reset() {
             triggerTimes = 0;
-            triggerIntervalTime = 0;
+            triggerIntervalTimer = 0;
 
             maintainTimer = maintainSec;
 
@@ -30,15 +30,18 @@ namespace UF {
 
         public void FromTM(LoopTM tm) {
 
-            maintainSec = tm.maintainFrame * 1 / 24f;//LOGIC_FPS
-            maintainTimer = tm.maintainFrame * 1 / 24f;//LOGIC_FPS
+            // maintainSec = tm.maintainFrame * 1 / 24f;//LOGIC_FPS
+            // maintainTimer = tm.maintainFrame * 1 / 24f;//LOGIC_FPS
+            // // // Debug.Log(maintainSec + maintainTimer);
+            maintainSec = tm.maintainFrame;
+            maintainTimer = tm.maintainFrame;
 
             if (!tm.loopFlag.HasFlag(FrameLoopFlag.LoopWhenTimeEnd) && tm.triggerIntervalSec == 0) {
                 triggerIntervalSec = 1 * 24f;
             } else {
                 triggerIntervalSec = tm.triggerIntervalSec;
             }
-            triggerIntervalTime = 0;
+            triggerIntervalTimer = 0;
             triggerTimes = 0;
             triggerTimesMax = tm.triggerTimesMax;
 
@@ -49,20 +52,24 @@ namespace UF {
             istrigger = false;
             isNextFrame = false;
 
-            maintainSec -= dt;
-            triggerIntervalSec -= dt;
+            maintainTimer -= dt;
+            triggerIntervalTimer -= dt;
 
             bool isCurFrameEnd = maintainTimer <= 0;
+            Debug.Log("LoopModel Tick maintainTimer:" + maintainTimer + " isCurFrameEnd:" + isCurFrameEnd);
 
             if (!isCurFrameEnd) {
-                if (triggerIntervalTime <= 0) {
-                    triggerIntervalTime += triggerIntervalSec;
+                if (triggerIntervalTimer <= 0) {
+                    triggerIntervalTimer += triggerIntervalSec;
                     istrigger = true;
+                    Debug.Log("LoopModel Tick istrigger");
                 }
+                
             } else {
-                triggerIntervalTime = 0;
+                triggerIntervalTimer = 0;
                 isNextFrame = true;
                 istrigger = true;
+                Debug.Log("LoopModel Tick");
             }
 
         }

@@ -22,9 +22,9 @@ MonoBehaviour:
     actionTMs:
     - loopTM:
         loopFlag: -1
-        maintainFrame: 1
-        triggerIntervalSec: 1
-        triggerTimesMax: 1
+        maintainFrame: 10
+        triggerIntervalSec: 0
+        triggerTimesMax: 0
       moveTM:
         moveOffset: {x: 0, y: 0}
         moveSpeed: 0
@@ -80,9 +80,9 @@ MonoBehaviour:
         isAttachBuff: 0
     - loopTM:
         loopFlag: -1
-        maintainFrame: 1
-        triggerIntervalSec: 1
-        triggerTimesMax: 1
+        maintainFrame: 5
+        triggerIntervalSec: 5
+        triggerTimesMax: 5
       moveTM:
         moveOffset: {x: 0, y: 0}
         moveSpeed: 0
