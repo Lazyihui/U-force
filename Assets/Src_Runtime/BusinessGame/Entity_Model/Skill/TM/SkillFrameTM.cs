@@ -6,6 +6,7 @@ using TriInspector;
 namespace UF {
     [Serializable]
     public class SkillFrameTM {
+        [InfoBox("==== Life Cycle ====")]
         
         public LoopTM loopTM;
 

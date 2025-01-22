@@ -56,20 +56,17 @@ namespace UF {
             triggerIntervalTimer -= dt;
 
             bool isCurFrameEnd = maintainTimer <= 0;
-            Debug.Log("LoopModel Tick maintainTimer:" + maintainTimer + " isCurFrameEnd:" + isCurFrameEnd);
 
             if (!isCurFrameEnd) {
                 if (triggerIntervalTimer <= 0) {
                     triggerIntervalTimer += triggerIntervalSec;
                     istrigger = true;
-                    Debug.Log("LoopModel Tick istrigger");
                 }
                 
             } else {
                 triggerIntervalTimer = 0;
                 isNextFrame = true;
                 istrigger = true;
-                Debug.Log("LoopModel Tick");
             }
 
         }
