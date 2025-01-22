@@ -31,15 +31,15 @@ namespace UF {
 
         // -Bullet: TearDown
         public bool hasBulletTearDown; // 是否有子弹拆解
-        public BulletSo[] tearDownBullets;// 拆解的子弹
+        [ShowIf(nameof(hasBulletTearDown))] public BulletSo[] tearDownBullets;// 拆解的子弹
 
         [Title("Attr")]
         // Attr
         public bool isRestoreHp; // 是否恢复生命值
-        public int restoreHp; // 恢复的生命值
+        [ShowIf(nameof(isRestoreHp))] public int restoreHp; // 恢复的生命值
 
         public bool isRestoreMp; // 是否恢复魔法值
-        public int restoreMp; // 恢复的魔法值
+        [ShowIf(nameof(isRestoreMp))] public int restoreMp; // 恢复的魔法值
 
         // public bool isRestoreGp; // 是否恢复怒气值
         // public int restoreGp; // 恢复的怒气值

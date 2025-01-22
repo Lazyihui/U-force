@@ -25,10 +25,11 @@ MonoBehaviour:
         maintainFrame: 10
         triggerIntervalSec: 0
         triggerTimesMax: 0
+      hasMove: 0
       moveTM:
         moveOffset: {x: 0, y: 0}
         moveSpeed: 0
-      hasRoleBehaviour: 1
+      hasRoleBehaviour: 0
       roleBehaviourTM:
         belongWho:
           value: 0
@@ -54,10 +55,11 @@ MonoBehaviour:
         maintainFrame: 1
         triggerIntervalSec: 1
         triggerTimesMax: 1
+      hasMove: 0
       moveTM:
         moveOffset: {x: 0, y: 0}
         moveSpeed: 0
-      hasRoleBehaviour: 1
+      hasRoleBehaviour: 0
       roleBehaviourTM:
         belongWho:
           value: 0
@@ -83,10 +85,11 @@ MonoBehaviour:
         maintainFrame: 5
         triggerIntervalSec: 5
         triggerTimesMax: 5
+      hasMove: 0
       moveTM:
         moveOffset: {x: 0, y: 0}
         moveSpeed: 0
-      hasRoleBehaviour: 1
+      hasRoleBehaviour: 0
       roleBehaviourTM:
         belongWho:
           value: 0
