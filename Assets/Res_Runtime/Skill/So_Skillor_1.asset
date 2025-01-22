@@ -25,6 +25,7 @@ MonoBehaviour:
         maintainFrame: 10
         triggerIntervalSec: 0
         triggerTimesMax: 0
+      hasMove: 0
       moveTM:
         moveOffset: {x: 0, y: 0}
         moveSpeed: 0
@@ -38,8 +39,8 @@ MonoBehaviour:
           value: 0
           entityType: 0
           entityID: 0
-        isMoveTo: 0
-        isJump: 1
+        isMoveTo: 1
+        isJump: 0
         isRestoreSkillTimes: 0
         isSpawnBullet: 0
         hasBulletTearDown: 0
@@ -54,23 +55,24 @@ MonoBehaviour:
         maintainFrame: 1
         triggerIntervalSec: 1
         triggerTimesMax: 1
+      hasMove: 0
       moveTM:
         moveOffset: {x: 0, y: 0}
         moveSpeed: 0
       hasRoleBehaviour: 1
       roleBehaviourTM:
         belongWho:
-          value: 0
-          entityType: 0
+          value: 1
+          entityType: 1
           entityID: 0
         belongMap:
           value: 0
           entityType: 0
           entityID: 0
         isMoveTo: 0
-        isJump: 1
+        isJump: 0
         isRestoreSkillTimes: 0
-        isSpawnBullet: 0
+        isSpawnBullet: 1
         hasBulletTearDown: 0
         tearDownBullets: []
         isRestoreHp: 0
@@ -83,6 +85,7 @@ MonoBehaviour:
         maintainFrame: 5
         triggerIntervalSec: 5
         triggerTimesMax: 5
+      hasMove: 0
       moveTM:
         moveOffset: {x: 0, y: 0}
         moveSpeed: 0
@@ -97,8 +100,8 @@ MonoBehaviour:
           entityType: 0
           entityID: 0
         isMoveTo: 0
-        isJump: 1
-        isRestoreSkillTimes: 0
+        isJump: 0
+        isRestoreSkillTimes: 1
         isSpawnBullet: 0
         hasBulletTearDown: 0
         tearDownBullets: []

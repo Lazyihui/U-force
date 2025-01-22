@@ -69,7 +69,6 @@ namespace UF {
 
             if (istrigger) {
                 RoleDomain.Skillor_Frame_Acting(ctx, role, stateModel, action, dt);
-                Debug.Log("FSM_Casting_Hand_Execute istrigger");
             }
 
             if (isNextFrame) {
@@ -106,8 +105,6 @@ namespace UF {
             frame.loopModel.CheckDone();
 
             // -Role Behavior
-            Debug.Assert(frame.hasRoleBehaviour, "frame.hasRoleBehaviour");
-
             if (frame.hasRoleBehaviour) {
                 Behavior_Act(ctx, role, frame.roleBehaviour, dt);
             }
@@ -122,24 +119,28 @@ namespace UF {
 
             if (model.isMoveTo) {
                 // MoveTo
+                Debug.LogWarning("RoleDomain.MoveTo");
             }
 
             if (model.isJump) {
-                RoleDomain.Jump(ctx, role);
+                // RoleDomain.Jump(ctx, role);
                 Debug.LogWarning("RoleDomin.Jump");
             }
 
             if (model.isRestoreSkillTimes) {
                 // RestoreSkillTimes
+                Debug.LogWarning("RoleDomain.RestoreSkillTimes");
             }
 
             if (model.isSpawnBullet) {
                 // SpawnBullet
                 BulletDomain.Spawn(ctx, 100);
+                Debug.LogWarning("RoleDomain.SpawnBullet");
             }
 
             if (model.hasBulletTearDown) {
                 // TearDown
+                Debug.LogWarning("RoleDomain.TearDown");
             }
 
 
