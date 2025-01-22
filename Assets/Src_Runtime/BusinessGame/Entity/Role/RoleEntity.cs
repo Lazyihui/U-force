@@ -7,6 +7,7 @@ namespace UF {
     public class RoleEntity : MonoBehaviour {
         public IDSignature idSig;
         public RoleType roleType;
+        public RoleMoveType moveType;
         public bool isOwner => roleType == RoleType.Player;
 
         public int typeID;
@@ -49,6 +50,20 @@ namespace UF {
         public void Release() {
             skillorSlotComponent.Release();
             inputComponent.Release();
+        }
+
+        public void Move(Vector2 moveDir, float moveSpeed, bool hasGravity, float dt)
+        {
+            //TODO: 改
+            Vector2 velo = moveDir * moveSpeed;
+            rb.velocity = velo;
+            
+            if(hasGravity)
+            {
+                Vector2 newVelo = rb.velocity;
+                newVelo.y -= 9.81f * dt;
+                rb.velocity = newVelo;
+            }
         }
 
         public void Jump() {

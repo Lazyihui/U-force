@@ -10,7 +10,26 @@ namespace UF {
             return role;
         }
 
-        #region Jump
+        #region Move & Jump
+        public static void Move(GameContext ctx, RoleEntity role, float moveSpeed, float dt) 
+        {
+            if(dt <= 0)
+            {
+                return;
+            }
+
+            RoleMoveType moveType = role.moveType;
+
+            if(moveType == RoleMoveType.Player)
+            {
+                role.Move(Vector2.up, moveSpeed, true, dt);
+            }
+            else if(moveType == RoleMoveType.Ghost)
+            {
+                role.Move(Vector2.left, moveSpeed, false, dt);
+            }
+        }
+
         public static void Jump(GameContext ctx, RoleEntity role) {
             role.Jump();
         }
@@ -119,6 +138,7 @@ namespace UF {
 
             if (model.isMoveTo) {
                 // MoveTo
+                Move(ctx, role, 5, dt);
                 Debug.LogWarning("RoleDomain.MoveTo");
             }
 
