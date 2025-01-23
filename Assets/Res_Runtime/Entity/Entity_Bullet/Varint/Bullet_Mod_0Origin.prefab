@@ -228,8 +228,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8935139011724497703}
+  - component: {fileID: 3960261325215012575}
   m_Layer: 0
-  m_Name: Bullet_Mod_Origin
+  m_Name: Bullet_Mod_0Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,3 +253,18 @@ Transform:
   - {fileID: 8459099182904672660}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3960261325215012575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8947931116013517591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc11d735e87a7784a89a9fef793d7c77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 315599723140777916}
+  sr: {fileID: 4213919051350942206}
+  coll_circle: {fileID: 7608488796683490248}

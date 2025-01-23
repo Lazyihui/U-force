@@ -11,5 +11,7 @@ namespace UF{
 
         public SkillorSo[] skillorSoArray;
 
+        public RoleMod modPrefab;
+
     }
 }

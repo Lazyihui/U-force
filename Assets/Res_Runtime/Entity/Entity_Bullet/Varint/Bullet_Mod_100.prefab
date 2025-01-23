@@ -71,43 +71,5 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8947931116013517591, guid: 8f0f6a15e3bcc69488d9e40bd047645b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -9140247128786338415}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f0f6a15e3bcc69488d9e40bd047645b, type: 3}
---- !u!1 &717983295242064257 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8947931116013517591, guid: 8f0f6a15e3bcc69488d9e40bd047645b, type: 3}
-  m_PrefabInstance: {fileID: 8492563980587838102}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &-9140247128786338415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 717983295242064257}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc11d735e87a7784a89a9fef793d7c77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 8195031485128092970}
-  sr: {fileID: 5738004825630641000}
-  coll_circle: {fileID: 2039406938284685662}
---- !u!58 &2039406938284685662 stripped
-CircleCollider2D:
-  m_CorrespondingSourceObject: {fileID: 7608488796683490248, guid: 8f0f6a15e3bcc69488d9e40bd047645b, type: 3}
-  m_PrefabInstance: {fileID: 8492563980587838102}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &5738004825630641000 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 4213919051350942206, guid: 8f0f6a15e3bcc69488d9e40bd047645b, type: 3}
-  m_PrefabInstance: {fileID: 8492563980587838102}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &8195031485128092970 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 315599723140777916, guid: 8f0f6a15e3bcc69488d9e40bd047645b, type: 3}
-  m_PrefabInstance: {fileID: 8492563980587838102}
-  m_PrefabAsset: {fileID: 0}

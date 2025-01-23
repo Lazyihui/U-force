@@ -1,4 +1,5 @@
 using System;
+using TriInspector;
 
 namespace UF {
 
@@ -8,13 +9,14 @@ namespace UF {
         public string typeName;
         public BulletType type;
 
+        [Title("life")]
         public int hp;
         public int hitTimes;
 
         public bool isBomb;
 
-        public BulletMod mod;
+        public BulletMod modPrefab;
 
-        
+
     }
 }

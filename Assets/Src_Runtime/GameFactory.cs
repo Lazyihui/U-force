@@ -19,7 +19,7 @@ namespace UF {
             RoleEntity role = go.GetComponent<RoleEntity>();
 
 
-            var mod = RoleMod_Create(typeID, assetsCore, role.bodyRoot);
+            var mod = RoleMod_Create(typeID, templateCore, role.bodyRoot);
 
             role.idSig = new IDSignature(EntityType.Role, idService.PickRoleID());
             role.roleType = tm.roleType;
@@ -71,7 +71,7 @@ namespace UF {
             bullet.frameIndex = 0;
 
             //  - mod
-            var mod = BulletMod_Creat(typeID, assetsCore, bullet.bodyRoot);
+            var mod = BulletMod_Creat(typeID, templateCore, bullet.bodyRoot);
 
             bullet.transform.position = new Vector3(-4, 0, 0);
             bullet.idSig = new IDSignature(EntityType.Bullet, idService.PickBulletID());
@@ -124,19 +124,26 @@ namespace UF {
 
         #region Mod
 
-        static BulletMod BulletMod_Creat(int typeID, AssetsCore assetsCore, Transform bodyRoot) {
-
-            GameObject go = assetsCore.Entity_GetBulletMod(typeID);
-            go = GameObject.Instantiate(go, bodyRoot);
-            BulletMod mod = go.GetComponent<BulletMod>();
-
+        static BulletMod BulletMod_Creat(int typeID, TemplateCore templateCore, Transform bodyRoot) {
+            bool has = templateCore.Bullet_TryGet(typeID, out var tm);
+            if (!has) {
+                Debug.LogError("Bullet_Create: tm is null" + typeID);
+                return null;
+            }
+            var mod = GameObject.Instantiate(tm.modPrefab, bodyRoot).GetComponent<BulletMod>();
+            mod.Ctor();
             return mod;
         }
 
-        static RoleMod RoleMod_Create(int typeID, AssetsCore assetsCore, Transform bodyRoot) {
-            GameObject go = assetsCore.Entity_GetRoleMod(typeID);
-            go = GameObject.Instantiate(go, bodyRoot);
-            RoleMod mod = go.GetComponent<RoleMod>();
+        static RoleMod RoleMod_Create(int typeID, TemplateCore templateCore, Transform bodyRoot) {
+
+            bool has = templateCore.Role_TryGet(typeID, out var tm);
+            if (!has) {
+                Debug.LogError("Role_Create: tm is null" + typeID);
+                return null;
+            }
+            var mod = GameObject.Instantiate(tm.modPrefab, bodyRoot).GetComponent<RoleMod>();
+            mod.Ctor();
             return mod;
         }
         #endregion

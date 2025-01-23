@@ -41,8 +41,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8899091932945846506}
+  - component: {fileID: -247835260703791502}
   m_Layer: 0
-  m_Name: Role_Mod_Origin
+  m_Name: Role_Mod_0Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,6 +67,21 @@ Transform:
   - {fileID: 3503601869690478508}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-247835260703791502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3843750945366943217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade9842caa887ae44bff60cd6049542c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sr: {fileID: 4404888757694596268}
+  muzzle: {fileID: 3503601869690478508}
+  anim: {fileID: 3960015986268815745}
 --- !u!1 &4517794454893373818
 GameObject:
   m_ObjectHideFlags: 0
