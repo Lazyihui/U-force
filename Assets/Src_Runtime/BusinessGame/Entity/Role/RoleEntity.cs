@@ -64,7 +64,6 @@ namespace UF {
         #region Move
         //玩家被动移动，isGround触发
         public void Move_Player(Vector2 moveDir, float jumpForce, float dt) {
-            Debug.Log("Player Move");
             Vector2 oldVelo = rb.velocity;
             oldVelo.y = jumpForce;
             rb.velocity = oldVelo;

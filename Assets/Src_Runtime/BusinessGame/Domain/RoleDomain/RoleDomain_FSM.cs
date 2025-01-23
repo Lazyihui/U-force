@@ -19,6 +19,17 @@ namespace UF {
             // 任何状态都运行的逻辑
             RoleDomain.Move(ctx, role, 15, dt);
             RoleDomain.GroundCheck(ctx, role);
+
+            // skill
+            int skillLen = role.skillorSlotComponent.TakeAll(out var skills);
+            for (int i = 0; i < skillLen; i += 1) {
+                var skill = skills[i];
+                skill.cd -= dt;
+                if (skill.cd < 0) {
+                    skill.cd = 0;
+                }
+            }
+
         }
         static void FSM_Casting_Enter(GameContext ctx, RoleEntity role, SkillModel skillor, float dt) {
             // 完成
@@ -71,19 +82,18 @@ namespace UF {
             action.loopModel.Tick(dt, out bool istrigger, out bool isNextFrame);
 
             if (istrigger) {
+                Debug.Log("FSM_Casting_Hand_Execute istrigger");
                 RoleDomain.Skillor_Frame_Acting(ctx, role, stateModel, action, dt);
             }
 
             if (isNextFrame) {
                 actionIndex += 1;
-                Debug.Log("actionIndex" + actionIndex);
                 if (actionIndex >= frames.Length) {
+                    // var nextFrame = frames[actionIndex];
+                    // RoleDomain.Skillor_Act_BeforeActing(ctx, role, stateModel, nextFrame, dt);// 重置
                     FSM_Casting_Exit(ctx, role, dt);
-                    Debug.Log("FSM_Casting_Hand_Execute actionIndex >= frames.Length");
+                    Debug.Log("FSM_Casting_Hand_Execute actionIndex >= frames.Length" + actionIndex + " " + frames.Length);
                 }
-                // if (actionIndex <= frames.Length) {
-                //     // Skillor_Frame_Acting(ctx, role, stateModel, action, dt);
-                // }
             }
         }
         #endregion

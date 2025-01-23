@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3dad6dc5d9069b0469746cbf1136968c, type: 3}
-  m_Name: So_Skillor_1
+  m_Name: So_Skillor_1_SpawnBullet
   m_EditorClassIdentifier: 
   tm:
     typeID: 1
     typeName: jump
     castKeys: 1
-    cd: 0
-    restUseTimes: 3
-    maxUseTimes: 3
+    cd: 1
+    restUseTimes: 1000
+    maxUseTimes: 1000
     actionTMs:
     - loopTM:
         loopFlag: -1
-        maintainFrame: 5
-        triggerIntervalSec: 5
-        triggerTimesMax: 5
+        maintainFrame: 0
+        triggerIntervalSec: 0
+        triggerTimesMax: 0
       hasMove: 0
       moveTM:
         moveOffset: {x: 0, y: 0}
@@ -46,7 +46,7 @@ MonoBehaviour:
         bulletSpawnerTM:
           bulletSo: {fileID: 11400000, guid: 669613ee5e0852b4c8d81f6ff150c760, type: 2}
           spawnPos: {fileID: 4549695350095514862, guid: c9eea0833c744504aa107299ad0f64b6, type: 3}
-          spawnDir: {fileID: 8899091932945846506, guid: 3c834e1ed8341944493636e32f51514c, type: 3}
+          spawnDir: {fileID: 4549695350095514862, guid: c9eea0833c744504aa107299ad0f64b6, type: 3}
         hasBulletTearDown: 0
         tearDownBullets: []
         isRestoreHp: 0

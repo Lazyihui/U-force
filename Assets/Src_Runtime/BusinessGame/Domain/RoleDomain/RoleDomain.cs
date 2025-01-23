@@ -57,14 +57,17 @@ namespace UF {
             var skillor = stateModel.skillor;
 
             if (skillor == null) {
+                Debug.Log("Skillor_Frame_Acting skillor == null");
                 return;
             }
 
             if (frame.loopModel.isDone) {
+                Debug.Log("Skillor_Frame_Acting frame.loopModel.isDone");
                 return;
             }
 
-            frame.loopModel.CheckDone();
+            // TODO:问J 不懂用法
+            // frame.loopModel.CheckDone();
 
             // -Role Behavior
             if (frame.hasRoleBehaviour) {
@@ -126,6 +129,9 @@ namespace UF {
             SkillModel skill = role.Skill_GetByInput();
             if (skill != null) {
                 bool succ = Skillor_Cast(ctx, role, skill, dt);
+                if (succ) {
+                    Debug.Log("Skillor_Input_FlushKeys succ");
+                }
             }
         }
 
@@ -146,7 +152,6 @@ namespace UF {
 
             // 最后决定的技能是否可施放
             if (!Skillor_AllowCast(ctx, role, skill)) {
-                Debug.Log("Skillor_Cast !Skillor_AllowCast");
                 return false;
             }
 
@@ -176,11 +181,11 @@ namespace UF {
                 return false;
             }
 
-            // if (skillor.cd > 0) {
-            //     // TODO:技能冷却提示
-            //     Debug.Log("Skillor_AllowCast skillor.cd > 0");
-            //     return false;
-            // }
+            if (skillor.cd > 0) {
+                // TODO:技能冷却提示
+                Debug.Log("Skillor_AllowCast skillor.cd > 0");
+                return false;
+            }
 
             return true;
         }

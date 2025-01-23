@@ -21,6 +21,7 @@ namespace UF {
             orderByInputTypeList = new List<SkillModel>();
 
             tempOrderByInputType = new SkillModel[10];
+            temp = new SkillModel[10];
 
         }
 
@@ -33,6 +34,16 @@ namespace UF {
         public void Add(SkillModel skillor) {
             all.Add(skillor.idSig, skillor);
             orderByInputTypeList.Add(skillor);
+        }
+
+        SkillModel[] temp;
+        public int TakeAll(out SkillModel[] result) {
+            if (all.Count > temp.Length) {
+                temp = new SkillModel[all.Count];
+            }
+            all.Values.CopyTo(temp, 0);
+            result = temp;
+            return all.Count;
         }
 
         public int TakeSkillsByFlushInput(out SkillModel[] result, InputKeyFlag inputKeys/*flush不知道啥意思*/) {
