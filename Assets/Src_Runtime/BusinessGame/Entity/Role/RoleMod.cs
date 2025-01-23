@@ -10,7 +10,7 @@ namespace UF {
         [SerializeField] Animator anim;
 
         public void Ctor() { }
-
+        
 
         public void Reuse() {
             this.gameObject.SetActive(true);

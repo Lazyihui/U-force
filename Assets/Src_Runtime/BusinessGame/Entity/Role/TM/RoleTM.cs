@@ -9,8 +9,8 @@ namespace UF{
         public RoleType roleType;
         public int typeID;
 
-        public SkillorSo[] skillorSoArray;
 
+        public SkillorSo[] skillorSoArray;
         public RoleMod modPrefab;
 
     }

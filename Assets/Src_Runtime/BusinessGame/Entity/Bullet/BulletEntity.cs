@@ -11,12 +11,11 @@ namespace UF {
         public int typeID;
         public IDSignature idSig;//自身唯一标识
         public IDSignature belongIDSig;//属于谁的 玩家 还是 敌人
-
-        // public BulletType type; //暂时没用到
+        public BulletType type;
 
         [SerializeField] public Transform bodyRoot; // 子弹生成的根节点        
 
-        public BulletTragetComponent targetComponent;
+        public BulletTragetComponent targetComponent;//暂时没用到
 
         // -life
         public int hp;
@@ -38,6 +37,8 @@ namespace UF {
         // -rigidbody
         [SerializeField] Rigidbody2D rb;
         public Rigidbody2D Rb => rb;
+        public float moveSpeed;
+
 
         public BulletMod mod;
         public Vector2 centerPos => this.transform.position;
@@ -45,6 +46,7 @@ namespace UF {
 
         public bool IsDead() {
             bool isDead = hp <= 0;
+            // TODO:L
             /* 这里还没弄懂
             isDead |= hitTimes < 0;
             isDead |= frameIndex >= frames.Count;
@@ -52,7 +54,14 @@ namespace UF {
             return isDead;
         }
 
-        // -Temp
+        #region  Locomotion
+
+        public void Loco_Shaped() {
+            // 向右移动
+            rb.velocity = new Vector2(1, 0)*moveSpeed;
+        }
+
+        #endregion
 
         public void Ctor() {
             frames = new List<BulletFrameMod>();

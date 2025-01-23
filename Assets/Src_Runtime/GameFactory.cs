@@ -25,6 +25,7 @@ namespace UF {
             role.roleType = tm.roleType;
 
             role.Ctor();
+            role.Inject(mod);
 
 
 
@@ -76,10 +77,13 @@ namespace UF {
             bullet.transform.position = new Vector3(-4, 0, 0);
             bullet.idSig = new IDSignature(EntityType.Bullet, idService.PickBulletID());
             bullet.typeID = typeID;
+            bullet.type = tm.type;
             bullet.hp = tm.hp;
             bullet.hitMaxTimes = tm.hitTimes;
             bullet.hitTimes = tm.hitTimes;
             bullet.isBomb = tm.isBomb;
+            bullet.moveSpeed = tm.moveSpeed;
+
 
             bullet.Inject(mod);
             bullet.Ctor();

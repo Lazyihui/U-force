@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace UF {
     public static class BulletDomain {
-        public static void SpawnBySpawn() {
 
-        }
-
+        #region Lifecycle
         public static BulletEntity Spawn(GameContext ctx, int typeID, Vector3 pos, Vector3 dir) {
             BulletEntity entity = GameFactory.Bullet_Create(ctx.assetsCore, ctx.templateCore, ctx.idService, typeID, pos, dir);
+
+            ctx.bulletRepository.Add(entity);
             return null;
         }
 
@@ -17,6 +17,19 @@ namespace UF {
 
             var BulletEntity = BulletDomain.Spawn(ctx, spawnerTM.bulletSo.tm.typeID, spawnerTM.spawnPos.position, spawnerTM.spawnDir.position);
             return BulletEntity;
+        }
+        #endregion
+
+        #region FSM
+        public static void FSM_All_Execute(GameContext ctx, BulletEntity bullet, float dt) {
+            if (bullet.type == BulletType.Shaped) {
+                Loco_Shaped(ctx, bullet);
+            }
+        }
+        #endregion
+
+        public static void Loco_Shaped(GameContext ctx, BulletEntity bullet) {
+            bullet.Loco_Shaped();
         }
 
     }

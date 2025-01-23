@@ -50,6 +50,7 @@ namespace UF {
 
         static void LogicTick(GameContext ctx, float dt) {
 
+            #region Role
             RoleEntity owner = ctx.Get_Owner();
 
             RoleDomain.Input_Record(ctx, owner, dt);
@@ -64,9 +65,20 @@ namespace UF {
             } else if (state == RoleFSMStatus.Dead) {
 
             }
-
             // 所有状态都要执行
             RoleDomain.FSM_All_Execute(ctx, owner, dt);
+            #endregion
+
+            #region  bullet
+            int len = ctx.bulletRepository.TakeAll(out BulletEntity[] bullets);
+
+            for (int i = 0; i < len; i += 1) {
+                BulletEntity bullet = bullets[i];
+                BulletDomain.FSM_All_Execute(ctx, bullet, dt);
+            }
+
+            #endregion
+
 
         }
 

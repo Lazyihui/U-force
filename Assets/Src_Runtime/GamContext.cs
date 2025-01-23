@@ -19,6 +19,7 @@ namespace UF {
 
         // ---  RoleRepository  ---
         public RoleRepository roleRepository;
+        public BulletRepository bulletRepository;
 
         public GameContext() {
             gameEntity = new GameEntity();
@@ -31,6 +32,7 @@ namespace UF {
             inputModule = new InputModule();
 
             roleRepository = new RoleRepository();
+            bulletRepository = new BulletRepository();
         }
 
         public void Inject(Canvas ScreenCanvas) {

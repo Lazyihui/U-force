@@ -38,11 +38,18 @@ namespace UF {
         // skillor
         public RoleSkillSlotComponent skillorSlotComponent;
 
+        // mod
+        RoleMod mod;
+
 
         public void Ctor() {
             fsmComponent = new RoleFSMConponent();
             skillorSlotComponent = new RoleSkillSlotComponent();
             inputComponent = new RoleInpuComponent();
+        }
+
+        public void Inject(RoleMod mod) {
+            this.mod = mod;
         }
 
         public void Reuse() {
@@ -75,6 +82,10 @@ namespace UF {
 
         public Vector2 GetPos() {
             return transform.position;
+        }
+
+        public Vector3 GetMuzzlePos() {
+            return mod.muzzle.position;
         }
 
         public Vector2 GetVelocity() {

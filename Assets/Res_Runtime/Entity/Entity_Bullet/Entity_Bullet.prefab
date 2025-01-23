@@ -91,7 +91,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 6
+  m_Constraints: 4
 --- !u!114 &4999566481833791267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,6 +113,7 @@ MonoBehaviour:
     value: 0
     entityType: 0
     entityID: 0
+  type: 0
   bodyRoot: {fileID: 6322415404634302611}
   targetComponent:
     isFound: 0
@@ -125,6 +126,8 @@ MonoBehaviour:
   hitTimes: 0
   hitMaxTimes: 0
   frameIndex: 0
-  isDisappeared: 0
+  isBomb: 0
+  SkillTypeID: 0
   rb: {fileID: 2944458334010659338}
+  moveSpeed: 0
   mod: {fileID: 0}

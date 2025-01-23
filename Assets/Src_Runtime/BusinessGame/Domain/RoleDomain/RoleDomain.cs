@@ -91,7 +91,9 @@ namespace UF {
 
             if (model.isSpawnBullet) {
                 // SpawnBullet
-                BulletDomain.SpawnByRole_Spawner(ctx, role, model.bulletSpawnerTM);
+                var spawnTM = model.bulletSpawnerTM;
+                spawnTM.spawnPos.position = role.GetMuzzlePos();
+                BulletDomain.SpawnByRole_Spawner(ctx, role, spawnTM);
                 Debug.LogWarning("RoleDomain.SpawnBullet");
             }
 

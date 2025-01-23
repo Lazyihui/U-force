@@ -15,6 +15,9 @@ namespace UF {
 
         public bool isBomb;
 
+        [Title("Locomotion")]
+        public float moveSpeed;
+
         public BulletMod modPrefab;
 
 
