@@ -32,6 +32,13 @@ public class RoleMoveComponent
         isGround = false;
     }
 
+    public void Move_Ghost(float xAxis, float moveSpeed, float dt)
+    {
+        Vector2 oldVelo = rb.velocity;
+        oldVelo.x = xAxis * moveSpeed;
+        rb.velocity = oldVelo;
+    }
+
     public void EnterGround()
     {
         allowMoveTimes = 1;

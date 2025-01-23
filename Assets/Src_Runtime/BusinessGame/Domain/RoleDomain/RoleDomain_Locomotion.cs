@@ -22,6 +22,10 @@ namespace UF
                     role.Move_Player(jumpForce, dt);
                 }
             }
+            else if (moveType == RoleMoveType.Ghost)
+            {
+                Loco_Move_Ghost(ctx, role, jumpForce, dt);
+            }
         }
 
         public static void Loco_MoveStop(GameContext ctx, RoleEntity role)
@@ -29,6 +33,11 @@ namespace UF
             //TODO
         }
         #endregion
+
+        public static void Loco_Move_Ghost(GameContext ctx, RoleEntity role, float moveSpeed, float dt)
+        {
+            role.Move_Ghost(-1, moveSpeed, dt);
+        }
 
         //地面检测不确定写在哪
         public static void GroundCheck(GameContext ctx, RoleEntity role) {

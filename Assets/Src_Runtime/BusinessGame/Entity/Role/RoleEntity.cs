@@ -70,6 +70,11 @@ namespace UF {
             moveComponent.Move_Player(jumpForce, dt);
         }
 
+        public void Move_Ghost(float xAxis, float moveSpeed, float dt)
+        {
+            moveComponent.Move_Ghost(xAxis, moveSpeed, dt);
+        }
+
         public bool IsGround()
         {
             return moveComponent.IsGround;
