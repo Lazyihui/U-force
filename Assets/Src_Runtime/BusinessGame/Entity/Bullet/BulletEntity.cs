@@ -63,11 +63,19 @@ namespace UF {
             this.mod = mod;
         }
 
-        public void Reuse(){
+        public void TF_SetPosition(Vector3 pos) {
+            transform.position = pos;
+        }
+
+        public void TF_SetRotation(Vector3 rot) {
+            transform.eulerAngles = rot;
+        }
+
+        public void Reuse() {
             gameObject.SetActive(true);
         }
 
-        public void Release(){
+        public void Release() {
             gameObject.SetActive(false);
             targetComponent.Release();
         }

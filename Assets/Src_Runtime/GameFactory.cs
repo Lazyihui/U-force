@@ -46,7 +46,7 @@ namespace UF {
 
 
         public static BulletEntity Bullet_Create(AssetsCore assetsCore, TemplateCore templateCore,
-         IDService idService, int typeID) {
+         IDService idService, int typeID, Vector3 pos, Vector3 dir) {
             bool has = templateCore.Bullet_TryGet(typeID, out var tm);
             if (!has) {
                 Debug.LogError("Bullet_Create: tm is null" + typeID);
@@ -81,8 +81,11 @@ namespace UF {
             bullet.hitTimes = tm.hitTimes;
             bullet.isBomb = tm.isBomb;
 
+            bullet.Inject(mod);
             bullet.Ctor();
 
+            bullet.TF_SetPosition(pos);
+            bullet.TF_SetRotation(dir);
 
             return bullet;
         }

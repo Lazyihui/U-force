@@ -21,7 +21,7 @@ namespace UF {
 
         // -Spawn Bullet
         public bool isSpawnBullet; // 是否生成子弹
-        // public BulletSpawnerTM bulletSpawnerTM;
+        public BulletSpawnerTM bulletSpawnerTM;
 
         // -Bullet: TearDown
         public bool hasBulletTearDown; // 是否有子弹拆解
@@ -58,6 +58,7 @@ namespace UF {
             isAttachBuff = tm.isAttachBuff;
 
             tearDownBullets = tm.tearDownBullets;
+            bulletSpawnerTM = tm.bulletSpawnerTM;
         }
 
     }

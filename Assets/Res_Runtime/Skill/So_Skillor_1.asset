@@ -43,7 +43,11 @@ MonoBehaviour:
         isJump: 0
         isRestoreSkillTimes: 0
         isSpawnBullet: 1
-        hasBulletTearDown: 1
+        bulletSpawnerTM:
+          bulletSo: {fileID: 11400000, guid: 669613ee5e0852b4c8d81f6ff150c760, type: 2}
+          spawnPos: {fileID: 4549695350095514862, guid: c9eea0833c744504aa107299ad0f64b6, type: 3}
+          spawnDir: {fileID: 8899091932945846506, guid: 3c834e1ed8341944493636e32f51514c, type: 3}
+        hasBulletTearDown: 0
         tearDownBullets: []
         isRestoreHp: 0
         restoreHp: 0

@@ -27,9 +27,10 @@ namespace UF {
         [Title("Bullet State")]
         // -Spawn Bullet
         public bool isSpawnBullet; // 是否生成子弹
-        // public BulletSpawnerTM bulletSpawnerTM;
+        [ShowIf(nameof(isSpawnBullet))] public BulletSpawnerTM bulletSpawnerTM;
 
         // -Bullet: TearDown
+        [Title("Bullet TearDown")]
         public bool hasBulletTearDown; // 是否有子弹拆解
         [ShowIf(nameof(hasBulletTearDown))] public BulletSo[] tearDownBullets;// 拆解的子弹
 
