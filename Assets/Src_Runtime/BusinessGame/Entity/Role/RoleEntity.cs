@@ -56,8 +56,7 @@ namespace UF {
 
         #region Move
         //玩家被动移动，isGround触发
-        public void Move_Player(Vector2 moveDir, float jumpForce, float dt)
-        {
+        public void Move_Player(Vector2 moveDir, float jumpForce, float dt) {
             Debug.Log("Player Move");
             Vector2 oldVelo = rb.velocity;
             oldVelo.y = jumpForce;
@@ -65,32 +64,20 @@ namespace UF {
             allowMoveTimes -= 1;
         }
 
-        public void EnterGround()
-        {
+        public void EnterGround() {
             allowMoveTimes = 1;
         }
 
-        public bool AllowPlayerMove()
-        {
+        public bool AllowPlayerMove() {
             return allowMoveTimes > 0;
         }
         #endregion
 
-        public void Jump() {
-            // TODO:暂时这么写
-            float jumpForce = 10;
-            Vector2 oldVelo = rb.velocity;
-            oldVelo.y = jumpForce;
-            rb.velocity = oldVelo;
-        }
-
-        public Vector2 GetPos()
-        {
+        public Vector2 GetPos() {
             return transform.position;
         }
 
-        public Vector2 GetVelocity()
-        {
+        public Vector2 GetVelocity() {
             return rb.velocity;
         }
 
@@ -133,7 +120,7 @@ namespace UF {
                 }
             }
 
-            
+
             return result;
         }
 

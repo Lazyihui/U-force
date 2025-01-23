@@ -65,8 +65,9 @@ namespace UF {
 
             }
 
-            RoleDomain.Move(ctx, owner, 15, dt);
-            RoleDomain.GroundCheck(ctx, owner);
+            // 所有状态都要执行
+            RoleDomain.FSM_All_Execute(ctx, owner, dt);
+
         }
 
         static void LastTick(GameContext ctx, float dt) {

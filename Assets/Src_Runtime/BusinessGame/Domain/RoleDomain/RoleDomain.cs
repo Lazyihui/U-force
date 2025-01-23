@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 
 namespace UF {
-    public static class RoleDomain {
+    public static partial class RoleDomain {
         public static RoleEntity Spawn(GameContext ctx, int typeID) {
             RoleEntity role = GameFactory.Role_CreateBySpawner(ctx.assetsCore, ctx.templateCore, ctx.idService, Vector3.zero, typeID);
             ctx.roleRepository.Add(role);
@@ -11,136 +11,48 @@ namespace UF {
         }
 
         #region Move & Jump
-        public static void Move(GameContext ctx, RoleEntity role, float moveSpeed, float dt) 
-        {
-            if(dt <= 0)
-            {
+        public static void Move(GameContext ctx, RoleEntity role, float moveSpeed, float dt) {
+            if (dt <= 0) {
                 return;
             }
 
             RoleMoveType moveType = role.moveType;
 
-            if(moveType == RoleMoveType.Player)
-            {
-                if (!role.AllowPlayerMove()) 
-                {
+            if (moveType == RoleMoveType.Player) {
+                if (!role.AllowPlayerMove()) {
                     return;
                 }
                 role.Move_Player(Vector2.up, moveSpeed, dt);
-            }
-            
-            else if(moveType == RoleMoveType.Ghost)
-            {
+            } else if (moveType == RoleMoveType.Ghost) {
                 // role.Move(Vector2.left, moveSpeed, false, dt);
             }
         }
 
-        public static void Jump(GameContext ctx, RoleEntity role) {
-            role.Jump();
-        }
-
         #endregion
 
-        public static void GroundCheck(GameContext ctx, RoleEntity role)
-        {
+        public static void GroundCheck(GameContext ctx, RoleEntity role) {
             bool isColliderGround = false;
-            if (role.GetVelocity().y > 0)
-            {
+            if (role.GetVelocity().y > 0) {
                 return;
             }
 
             RaycastHit2D[] hits = Physics2D.RaycastAll(role.GetPos(), Vector2.down, 0.6f);
+            Debug.DrawRay(role.GetPos(), Vector2.down * 0.6f, Color.red, 0.1f);
 
-            for (int i = 0; i < hits.Length; i++)
-            {
+            for (int i = 0; i < hits.Length; i++) {
                 RaycastHit2D hit = hits[i];
-                if (hit.collider.gameObject.CompareTag("Ground"))
-                {
+                if (hit.collider.gameObject.CompareTag("Ground")) {
                     isColliderGround = true;
                     break;
                 }
             }
 
-            if (isColliderGround)
-            {
+            if (isColliderGround) {
                 role.EnterGround();
             }
         }
 
-        #region  FSM
-        public static void FSM_Normal_Execute(GameContext ctx, RoleEntity role, float dt) {
-            // Skill Cast
-            Skillor_Input_FlushKeys(ctx, role, dt);
-        }
-
-        public static void FSM_Casting_Execute(GameContext ctx, RoleEntity role, float dt) {
-            var fsm = role.FSMComponent;
-            FSM_Casting_Hand_Execute(ctx, role, fsm.CastingStateModel, dt);
-        }
-        static void FSM_Casting_Enter(GameContext ctx, RoleEntity role, SkillModel skillor, float dt) {
-            // 完成
-            var fsm = role.FSMComponent;
-            fsm.Casting_Enter(skillor);
-            Debug.Log("FSM_Casting_Enter");
-        }
-        static void FSM_Casting_Exit(GameContext ctx, RoleEntity role, float dt) {
-            var fsm = role.FSMComponent;
-            FSM_Normal_Enter(ctx, role, dt);
-            Debug.Log("FSM_Casting_Exit");
-        }
-        public static void FSM_Casting_Hand_Execute(GameContext ctx, RoleEntity role, RoleCastingStateModel stateModel, float dt) {
-            var skillor = stateModel.skillor;
-
-            if (skillor == null) {
-                Debug.Log("FSM_Casting_Hand_Execute skillor == null");
-                return;
-            }
-
-            if (stateModel.isEntering) {
-                stateModel.isEntering = false;
-            }
-
-            var frames = skillor.frames;
-            ref int actionIndex = ref stateModel.frameIndex;
-            if (actionIndex >= frames.Length) {
-                var handStateModel = role.FSMComponent.CastingStateModel;
-                if (handStateModel.skillor == null) {
-                    FSM_Casting_Exit(ctx, role, dt);
-                }
-                stateModel.skillor = null;
-                return;
-            }
-
-            Skillor_Input_FlushKeys(ctx, role, dt);
-
-            var action = frames[stateModel.frameIndex];
-            // RoleDomain.Skillor_Act_Move(ctx, role, skillor, action, dt);
-            action.loopModel.Tick(dt, out bool istrigger, out bool isNextFrame);
-
-            if (istrigger) {
-                RoleDomain.Skillor_Frame_Acting(ctx, role, stateModel, action, dt);
-            }
-
-            if (isNextFrame) {
-                actionIndex += 1;
-                Debug.Log("actionIndex" + actionIndex);
-                if (actionIndex >= frames.Length) {
-                    FSM_Casting_Exit(ctx, role, dt);
-                    Debug.Log("FSM_Casting_Hand_Execute actionIndex >= frames.Length");
-                }
-                // if (actionIndex <= frames.Length) {
-                //     // Skillor_Frame_Acting(ctx, role, stateModel, action, dt);
-                // }
-            }
-        }
-
-        static void FSM_Normal_Enter(GameContext ctx, RoleEntity role, float dt) {
-            var fsm = role.FSMComponent;
-            fsm.Normal_Enter();
-        }
-        #endregion
-
-        #region Act
+        #region Act 行为
         public static void Skillor_Frame_Acting(GameContext ctx, RoleEntity role, RoleCastingStateModel stateModel, SkillFrameModel frame, float dt) {
             var skillor = stateModel.skillor;
 
@@ -160,16 +72,10 @@ namespace UF {
             }
         }
 
-        public static void Skillor_Act_BeforeActing(GameContext ctx, RoleEntity role, RoleCastingStateModel stateModel, SkillFrameModel frame, float dt) {
-
-
-        }
-
         public static void Behavior_Act(GameContext ctx, RoleEntity role, RoleBehaviorModel model, float dt) {
 
             if (model.isMoveTo) {
                 // MoveTo
-                Move(ctx, role, 5, dt);
                 Debug.LogWarning("RoleDomain.MoveTo");
             }
 
