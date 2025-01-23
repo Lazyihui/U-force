@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace UF {
     public class RoleEntity : MonoBehaviour {
@@ -32,6 +33,7 @@ namespace UF {
         // [SerializeField] Collider2D coll;
 
         // Movement
+        public int allowMoveTimes;
 
         // skillor
         public RoleSkillSlotComponent skillorSlotComponent;
@@ -52,19 +54,27 @@ namespace UF {
             inputComponent.Release();
         }
 
-        public void Move(Vector2 moveDir, float moveSpeed, bool hasGravity, float dt)
+        #region Move
+        //玩家被动移动，isGround触发
+        public void Move_Player(Vector2 moveDir, float jumpForce, float dt)
         {
-            //TODO: 改
-            Vector2 velo = moveDir * moveSpeed;
-            rb.velocity = velo;
-            
-            if(hasGravity)
-            {
-                Vector2 newVelo = rb.velocity;
-                newVelo.y -= 9.81f * dt;
-                rb.velocity = newVelo;
-            }
+            Debug.Log("Player Move");
+            Vector2 oldVelo = rb.velocity;
+            oldVelo.y = jumpForce;
+            rb.velocity = oldVelo;
+            allowMoveTimes -= 1;
         }
+
+        public void EnterGround()
+        {
+            allowMoveTimes = 1;
+        }
+
+        public bool AllowPlayerMove()
+        {
+            return allowMoveTimes > 0;
+        }
+        #endregion
 
         public void Jump() {
             // TODO:暂时这么写
@@ -73,6 +83,17 @@ namespace UF {
             oldVelo.y = jumpForce;
             rb.velocity = oldVelo;
         }
+
+        public Vector2 GetPos()
+        {
+            return transform.position;
+        }
+
+        public Vector2 GetVelocity()
+        {
+            return rb.velocity;
+        }
+
         public SkillFrameModel Skillor_CurrentFrame() {
 
             SkillModel skill = skillorSlotComponent.CurrentSkill;

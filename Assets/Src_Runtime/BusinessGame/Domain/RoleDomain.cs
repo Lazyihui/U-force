@@ -22,11 +22,16 @@ namespace UF {
 
             if(moveType == RoleMoveType.Player)
             {
-                role.Move(Vector2.up, moveSpeed, true, dt);
+                if (!role.AllowPlayerMove()) 
+                {
+                    return;
+                }
+                role.Move_Player(Vector2.up, moveSpeed, dt);
             }
+            
             else if(moveType == RoleMoveType.Ghost)
             {
-                role.Move(Vector2.left, moveSpeed, false, dt);
+                // role.Move(Vector2.left, moveSpeed, false, dt);
             }
         }
 
@@ -35,6 +40,32 @@ namespace UF {
         }
 
         #endregion
+
+        public static void GroundCheck(GameContext ctx, RoleEntity role)
+        {
+            bool isColliderGround = false;
+            if (role.GetVelocity().y > 0)
+            {
+                return;
+            }
+
+            RaycastHit2D[] hits = Physics2D.RaycastAll(role.GetPos(), Vector2.down, 0.6f);
+
+            for (int i = 0; i < hits.Length; i++)
+            {
+                RaycastHit2D hit = hits[i];
+                if (hit.collider.gameObject.CompareTag("Ground"))
+                {
+                    isColliderGround = true;
+                    break;
+                }
+            }
+
+            if (isColliderGround)
+            {
+                role.EnterGround();
+            }
+        }
 
         #region  FSM
         public static void FSM_Normal_Execute(GameContext ctx, RoleEntity role, float dt) {

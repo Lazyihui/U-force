@@ -65,6 +65,8 @@ namespace UF {
 
             }
 
+            RoleDomain.Move(ctx, owner, 15, dt);
+            RoleDomain.GroundCheck(ctx, owner);
         }
 
         static void LastTick(GameContext ctx, float dt) {
