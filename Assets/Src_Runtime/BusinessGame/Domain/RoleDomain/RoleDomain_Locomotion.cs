@@ -6,7 +6,7 @@ namespace UF
     public static partial class RoleDomain
     {
         #region Move: Move
-        public static void Loco_Move(GameContext ctx, RoleEntity role, float jumpForce, float dt)
+        public static void Loco_Move(GameContext ctx, RoleEntity role, float moveSpeed, float dt)
         {
             if (dt <= 0)
             {
@@ -19,12 +19,12 @@ namespace UF
             {
                 if (role.IsGround() && role.AllowPlayerMove())
                 {
-                    role.Move_Player(jumpForce, dt);
+                    role.Move_Player(moveSpeed, dt);
                 }
             }
             else if (moveType == RoleMoveType.Ghost)
             {
-                Loco_Move_Ghost(ctx, role, jumpForce, dt);
+                Loco_Move_Ghost(ctx, role, moveSpeed, dt);
             }
         }
 
@@ -37,6 +37,11 @@ namespace UF
         public static void Loco_Move_Ghost(GameContext ctx, RoleEntity role, float moveSpeed, float dt)
         {
             role.Move_Ghost(-1, moveSpeed, dt);
+        }
+
+        public static void Loco_Jump(GameContext ctx, RoleEntity role, bool isJumpKeyDown, float jumpForce)
+        {
+            role.Jump(isJumpKeyDown, jumpForce);
         }
 
         //地面检测不确定写在哪

@@ -66,13 +66,18 @@ namespace UF {
         }
 
         #region Move
-        public void Move_Player(float jumpForce, float dt) {
-            moveComponent.Move_Player(jumpForce, dt);
+        public void Move_Player(float moveSpeed, float dt) {
+            moveComponent.Move_Player(moveSpeed, dt);
         }
 
         public void Move_Ghost(float xAxis, float moveSpeed, float dt)
         {
             moveComponent.Move_Ghost(xAxis, moveSpeed, dt);
+        }
+
+        public void Jump(bool isJumpKeyDown, float jumpForce)
+        {
+            moveComponent.Jump(isJumpKeyDown, jumpForce);
         }
 
         public bool IsGround()
