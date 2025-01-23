@@ -10,48 +10,6 @@ namespace UF {
             return role;
         }
 
-        #region Move & Jump
-        public static void Move(GameContext ctx, RoleEntity role, float moveSpeed, float dt) {
-            if (dt <= 0) {
-                return;
-            }
-
-            RoleMoveType moveType = role.moveType;
-
-            if (moveType == RoleMoveType.Player) {
-                if (!role.AllowPlayerMove()) {
-                    return;
-                }
-                role.Move_Player(Vector2.up, moveSpeed, dt);
-            } else if (moveType == RoleMoveType.Ghost) {
-                // role.Move(Vector2.left, moveSpeed, false, dt);
-            }
-        }
-
-        #endregion
-
-        public static void GroundCheck(GameContext ctx, RoleEntity role) {
-            bool isColliderGround = false;
-            if (role.GetVelocity().y > 0) {
-                return;
-            }
-
-            RaycastHit2D[] hits = Physics2D.RaycastAll(role.GetPos(), Vector2.down, 0.6f);
-            Debug.DrawRay(role.GetPos(), Vector2.down * 0.6f, Color.red, 0.1f);
-
-            for (int i = 0; i < hits.Length; i++) {
-                RaycastHit2D hit = hits[i];
-                if (hit.collider.gameObject.CompareTag("Ground")) {
-                    isColliderGround = true;
-                    break;
-                }
-            }
-
-            if (isColliderGround) {
-                role.EnterGround();
-            }
-        }
-
         #region Act 行为
         public static void Skillor_Frame_Acting(GameContext ctx, RoleEntity role, RoleCastingStateModel stateModel, SkillFrameModel frame, float dt) {
             var skillor = stateModel.skillor;

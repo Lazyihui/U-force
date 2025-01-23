@@ -17,8 +17,8 @@ namespace UF {
 
         public static void FSM_All_Execute(GameContext ctx, RoleEntity role, float dt) {
             // 任何状态都运行的逻辑
-            RoleDomain.Move(ctx, role, 15, dt);
-            RoleDomain.GroundCheck(ctx, role);
+            GroundCheck(ctx, role);
+            Loco_Move(ctx, role, 15, dt);
 
             // skill
             int skillLen = role.skillorSlotComponent.TakeAll(out var skills);

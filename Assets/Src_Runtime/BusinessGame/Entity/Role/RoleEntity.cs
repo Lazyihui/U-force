@@ -33,7 +33,8 @@ namespace UF {
         // [SerializeField] Collider2D coll;
 
         // Movement
-        public int allowMoveTimes;
+        RoleMoveComponent moveComponent;
+        public RoleMoveComponent MoveComponent => moveComponent;
 
         // skillor
         public RoleSkillSlotComponent skillorSlotComponent;
@@ -46,6 +47,9 @@ namespace UF {
             fsmComponent = new RoleFSMConponent();
             skillorSlotComponent = new RoleSkillSlotComponent();
             inputComponent = new RoleInpuComponent();
+            moveComponent = new RoleMoveComponent();
+
+            moveComponent.Inject(rb);
         }
 
         public void Inject(RoleMod mod) {
@@ -62,21 +66,25 @@ namespace UF {
         }
 
         #region Move
-        //玩家被动移动，isGround触发
-        public void Move_Player(Vector2 moveDir, float jumpForce, float dt) {
-            Vector2 oldVelo = rb.velocity;
-            oldVelo.y = jumpForce;
-            rb.velocity = oldVelo;
-            allowMoveTimes -= 1;
+        public void Move_Player(float jumpForce, float dt) {
+            moveComponent.Move_Player(jumpForce, dt);
         }
 
-        public void EnterGround() {
-            allowMoveTimes = 1;
+        public bool IsGround()
+        {
+            return moveComponent.IsGround;
         }
 
-        public bool AllowPlayerMove() {
-            return allowMoveTimes > 0;
+        public void EnterGround()
+        {
+            moveComponent.EnterGround();
         }
+
+        public bool AllowPlayerMove()
+        {
+            return moveComponent.AllowPlayerMove();
+        }
+
         #endregion
 
         public Vector2 GetPos() {
