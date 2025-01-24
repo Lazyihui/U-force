@@ -2,8 +2,7 @@ using System;
 using UnityEngine;
 using UF;
 
-public class RoleMoveComponent
-{
+public class RoleMoveComponent {
     Rigidbody2D rb;
 
     public Vector2 Velocity => rb.velocity;
@@ -14,18 +13,15 @@ public class RoleMoveComponent
     int allowMoveTimes;
     int allowJumpTimes;
 
-    public RoleMoveComponent()
-    {
+    public RoleMoveComponent() {
         isGround = false;
     }
 
-    public void Inject(Rigidbody2D rb)
-    {
+    public void Inject(Rigidbody2D rb) {
         this.rb = rb;
     }
 
-    public void Move_Player(float moveSpeed, float dt)
-    {
+    public void Move_Player(float moveSpeed, float dt) {
         Vector2 oldVelo = rb.velocity;
         oldVelo.y = moveSpeed;
         rb.velocity = oldVelo;
@@ -33,8 +29,7 @@ public class RoleMoveComponent
         isGround = false;
     }
 
-    public void Move_Ghost(float xAxis, float moveSpeed, float dt)
-    {
+    public void Move_Ghost(float xAxis, float moveSpeed, float dt) {
         rb.gravityScale = 0;
 
         Vector2 oldVelo = rb.velocity;
@@ -43,10 +38,8 @@ public class RoleMoveComponent
         rb.velocity = oldVelo;
     }
 
-    public void Jump(bool isJumpKeyDown, float jumpForce)
-    {
-        if(isJumpKeyDown && allowJumpTimes > 0)
-        {
+    public void Jump(bool isJumpKeyDown, float jumpForce) {
+        if (isJumpKeyDown && allowJumpTimes > 0) {
             Vector2 oldVelo = rb.velocity;
             oldVelo.y += jumpForce;
             rb.velocity = oldVelo;
@@ -54,15 +47,13 @@ public class RoleMoveComponent
         }
     }
 
-    public void EnterGround()
-    {
+    public void EnterGround() {
         allowMoveTimes = 1;
         allowJumpTimes = 1;
         isGround = true;
     }
 
-    public bool AllowPlayerMove()
-    {
+    public bool AllowPlayerMove() {
         return allowMoveTimes > 0;
     }
 }

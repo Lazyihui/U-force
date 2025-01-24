@@ -82,7 +82,6 @@ namespace UF {
             action.loopModel.Tick(dt, out bool istrigger, out bool isNextFrame);
 
             if (istrigger) {
-                Debug.Log("FSM_Casting_Hand_Execute istrigger");
                 RoleDomain.Skillor_Frame_Acting(ctx, role, stateModel, action, dt);
             }
 
@@ -92,7 +91,6 @@ namespace UF {
                     // var nextFrame = frames[actionIndex];
                     // RoleDomain.Skillor_Act_BeforeActing(ctx, role, stateModel, nextFrame, dt);// 重置
                     FSM_Casting_Exit(ctx, role, dt);
-                    Debug.Log("FSM_Casting_Hand_Execute actionIndex >= frames.Length" + actionIndex + " " + frames.Length);
                 }
             }
         }

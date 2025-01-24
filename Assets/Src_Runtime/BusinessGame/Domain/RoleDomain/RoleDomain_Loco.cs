@@ -1,46 +1,35 @@
 using System;
 using UnityEngine;
 
-namespace UF
-{
-    public static partial class RoleDomain
-    {
+namespace UF {
+    public static partial class RoleDomain {
         #region Move: Move
-        public static void Loco_Move(GameContext ctx, RoleEntity role, float moveSpeed, float dt)
-        {
-            if (dt <= 0)
-            {
+        public static void Loco_Move(GameContext ctx, RoleEntity role, float moveSpeed, float dt) {
+            if (dt <= 0) {
                 return;
             }
 
             RoleMoveType moveType = role.moveType;
 
-            if (moveType == RoleMoveType.Player)
-            {
-                if (role.IsGround() && role.AllowPlayerMove())
-                {
+            if (moveType == RoleMoveType.Player) {
+                if (role.IsGround() && role.AllowPlayerMove()) {
                     role.Move_Player(moveSpeed, dt);
                 }
-            }
-            else if (moveType == RoleMoveType.Ghost)
-            {
+            } else if (moveType == RoleMoveType.Ghost) {
                 Loco_Move_Ghost(ctx, role, moveSpeed, dt);
             }
         }
 
-        public static void Loco_MoveStop(GameContext ctx, RoleEntity role)
-        {
+        public static void Loco_MoveStop(GameContext ctx, RoleEntity role) {
             //TODO
         }
         #endregion
 
-        public static void Loco_Move_Ghost(GameContext ctx, RoleEntity role, float moveSpeed, float dt)
-        {
+        public static void Loco_Move_Ghost(GameContext ctx, RoleEntity role, float moveSpeed, float dt) {
             role.Move_Ghost(-1, moveSpeed, dt);
         }
 
-        public static void Loco_Jump(GameContext ctx, RoleEntity role, bool isJumpKeyDown, float jumpForce)
-        {
+        public static void Loco_Jump(GameContext ctx, RoleEntity role, bool isJumpKeyDown, float jumpForce) {
             role.Jump(isJumpKeyDown, jumpForce);
         }
 
