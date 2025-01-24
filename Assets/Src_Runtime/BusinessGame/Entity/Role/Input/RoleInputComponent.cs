@@ -6,36 +6,42 @@ using UnityEngine;
 namespace UF {
 
     [Serializable]
-    public class RoleInpuComponent {
+    public class RoleInputComponent {
 
         // -Jump
         bool isJump;
         public bool IsJump => isJump;
         public void Jump_Set(bool value) => isJump = value;
+        public bool Jump_Get() => isJump;
+
 
         // -input
         InputKeyFlag castKeys;
         public InputKeyFlag CastKeys => castKeys;
 
-        public RoleInpuComponent() {
+        public RoleInputComponent() {
 
         }
-
+        public void RecoredCastKey(InputKeyFlag key) {
+            if (key == InputKeyFlag.None) {
+                return;
+            }
+            castKeys = key;
+        }
         public void Clear() {
             isJump = false;
+            castKeys = InputKeyFlag.None;
+        }
+
+        public void ClearCastKeys() {
             castKeys = InputKeyFlag.None;
         }
 
         public void Release() {
             Clear();
         }
-        
-        public void RecoredCastKey(InputKeyFlag key) {
 
-            if (key == InputKeyFlag.None) {
-                return;
-            }
-            castKeys = key;
-        }
+
+
     }
 }

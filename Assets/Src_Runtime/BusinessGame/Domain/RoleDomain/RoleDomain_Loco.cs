@@ -3,6 +3,14 @@ using UnityEngine;
 
 namespace UF {
     public static partial class RoleDomain {
+
+        public static void Loco_Execute(GameContext ctx, RoleEntity role, float dt) {
+            var moveCom = role.MoveComponent;
+            
+            Loco_Jump(ctx, role, 5);
+            GroundCheck(ctx, role);
+            Loco_Move(ctx, role, 15, dt);
+        }
         #region Move: Move
         public static void Loco_Move(GameContext ctx, RoleEntity role, float moveSpeed, float dt) {
             if (dt <= 0) {
@@ -19,21 +27,24 @@ namespace UF {
                 Loco_Move_Ghost(ctx, role, moveSpeed, dt);
             }
         }
+        public static void Loco_Move_Ghost(GameContext ctx, RoleEntity role, float moveSpeed, float dt) {
+            const float xAxis = -1;
+            role.Move_Ghost(xAxis, moveSpeed, dt);
+        }
 
         public static void Loco_MoveStop(GameContext ctx, RoleEntity role) {
             //TODO
         }
-        #endregion
-
-        public static void Loco_Move_Ghost(GameContext ctx, RoleEntity role, float moveSpeed, float dt) {
-            role.Move_Ghost(-1, moveSpeed, dt);
-        }
-
         public static void Loco_Jump(GameContext ctx, RoleEntity role, float jumpForce) {
+            var inputCom = role.InputComponent;
+            if (!inputCom.Jump_Get()) {
+                return;
+            }
             role.Jump(jumpForce);
         }
 
-        //地面检测不确定写在哪
+        #endregion
+
         public static void GroundCheck(GameContext ctx, RoleEntity role) {
             bool isColliderGround = false;
             if (role.GetVelocity().y > 0) {

@@ -24,8 +24,8 @@ namespace UF {
         Vector2 face;
 
         // user input
-        [SerializeField] RoleInpuComponent inputComponent;//TODO:不知道[SerializeField]是干嘛的
-        public RoleInpuComponent InputComponent => inputComponent;
+        [SerializeField] RoleInputComponent inputComponent;//TODO:不知道[SerializeField]是干嘛的
+        public RoleInputComponent InputComponent => inputComponent;
 
 
         // - Physics
@@ -46,7 +46,7 @@ namespace UF {
         public void Ctor() {
             fsmComponent = new RoleFSMConponent();
             skillorSlotComponent = new RoleSkillSlotComponent();
-            inputComponent = new RoleInpuComponent();
+            inputComponent = new RoleInputComponent();
             moveComponent = new RoleMoveComponent();
 
             moveComponent.Inject(rb);
@@ -70,28 +70,23 @@ namespace UF {
             moveComponent.Move_Player(moveSpeed, dt);
         }
 
-        public void Move_Ghost(float xAxis, float moveSpeed, float dt)
-        {
+        public void Move_Ghost(float xAxis, float moveSpeed, float dt) {
             moveComponent.Move_Ghost(xAxis, moveSpeed, dt);
         }
 
-        public void Jump(float jumpForce)
-        {
+        public void Jump(float jumpForce) {
             moveComponent.Jump(jumpForce);
         }
 
-        public bool IsGround()
-        {
+        public bool IsGround() {
             return moveComponent.IsGround;
         }
 
-        public void EnterGround()
-        {
+        public void EnterGround() {
             moveComponent.EnterGround();
         }
 
-        public bool AllowPlayerMove()
-        {
+        public bool AllowPlayerMove() {
             return moveComponent.AllowPlayerMove();
         }
 
@@ -134,19 +129,15 @@ namespace UF {
             InputKeyFlag inputKeys = inputcom.CastKeys;
 
             SkillModel result = null;
-            // TODO:inputcom.IsJump这个条件不应该在这里
 
-            if (inputcom.IsJump) {
-                int len = skillor.TakeSkillsByFlushInput(out SkillModel[] skills, inputKeys);
-                for (int i = 0; i < len; i++) {
-                    var skill = skills[i];
-                    if (skill != null) {
-                        result = skill;
-                        break;
-                    }
+            int len = skillor.TakeSkillsByFlushInput(out SkillModel[] skills, inputKeys);
+            for (int i = 0; i < len; i++) {
+                var skill = skills[i];
+                if (skill != null) {
+                    result = skill;
+                    break;
                 }
             }
-
 
             return result;
         }

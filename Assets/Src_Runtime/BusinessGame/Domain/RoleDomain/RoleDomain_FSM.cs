@@ -17,8 +17,7 @@ namespace UF {
 
         public static void FSM_All_Execute(GameContext ctx, RoleEntity role, float dt) {
             // 任何状态都运行的逻辑
-            GroundCheck(ctx, role);
-            Loco_Move(ctx, role, 15, dt);
+            Loco_Execute(ctx, role, dt);
 
             // skill
             int skillLen = role.skillorSlotComponent.TakeAll(out var skills);
@@ -45,8 +44,9 @@ namespace UF {
 
         static void FSM_Casting_Exit(GameContext ctx, RoleEntity role, float dt) {
             var fsm = role.FSMComponent;
-            FSM_Normal_Enter(ctx, role, dt);
-            Debug.Log("FSM_Casting_Exit");
+            var inputCom = role.InputComponent;
+            FSM_Normal_Enter(ctx, role, dt);//施法状态结束 进入正常状态
+            inputCom.ClearCastKeys();
         }
 
 
@@ -87,10 +87,13 @@ namespace UF {
 
             if (isNextFrame) {
                 actionIndex += 1;
+                Debug.Log("actionIndex:" + actionIndex);
                 if (actionIndex >= frames.Length) {
                     // var nextFrame = frames[actionIndex];
                     // RoleDomain.Skillor_Act_BeforeActing(ctx, role, stateModel, nextFrame, dt);// 重置
                     FSM_Casting_Exit(ctx, role, dt);
+                    Debug.Log("FSM_Casting_Exit");
+
                 }
             }
         }

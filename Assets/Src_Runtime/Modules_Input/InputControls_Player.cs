@@ -37,9 +37,18 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Attact"",
+                    ""name"": ""Attack"",
                     ""type"": ""Value"",
                     ""id"": ""50c63afa-8dff-4d7f-bd26-80a1310bb069"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Skill_100"",
+                    ""type"": ""Value"",
+                    ""id"": ""1c538e83-1f34-42e5-9d00-ed45f4d942ba"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -65,7 +74,18 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Attact"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""51a2f944-4ef2-483a-80cf-2c64c9154fb6"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skill_100"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -77,7 +97,8 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
         // World
         m_World = asset.FindActionMap("World", throwIfNotFound: true);
         m_World_Jump = m_World.FindAction("Jump", throwIfNotFound: true);
-        m_World_Attact = m_World.FindAction("Attact", throwIfNotFound: true);
+        m_World_Attack = m_World.FindAction("Attack", throwIfNotFound: true);
+        m_World_Skill_100 = m_World.FindAction("Skill_100", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -140,13 +161,15 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_World;
     private List<IWorldActions> m_WorldActionsCallbackInterfaces = new List<IWorldActions>();
     private readonly InputAction m_World_Jump;
-    private readonly InputAction m_World_Attact;
+    private readonly InputAction m_World_Attack;
+    private readonly InputAction m_World_Skill_100;
     public struct WorldActions
     {
         private @InputControls_Player m_Wrapper;
         public WorldActions(@InputControls_Player wrapper) { m_Wrapper = wrapper; }
         public InputAction @Jump => m_Wrapper.m_World_Jump;
-        public InputAction @Attact => m_Wrapper.m_World_Attact;
+        public InputAction @Attack => m_Wrapper.m_World_Attack;
+        public InputAction @Skill_100 => m_Wrapper.m_World_Skill_100;
         public InputActionMap Get() { return m_Wrapper.m_World; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -159,9 +182,12 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @Attact.started += instance.OnAttact;
-            @Attact.performed += instance.OnAttact;
-            @Attact.canceled += instance.OnAttact;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
+            @Skill_100.started += instance.OnSkill_100;
+            @Skill_100.performed += instance.OnSkill_100;
+            @Skill_100.canceled += instance.OnSkill_100;
         }
 
         private void UnregisterCallbacks(IWorldActions instance)
@@ -169,9 +195,12 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @Attact.started -= instance.OnAttact;
-            @Attact.performed -= instance.OnAttact;
-            @Attact.canceled -= instance.OnAttact;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
+            @Skill_100.started -= instance.OnSkill_100;
+            @Skill_100.performed -= instance.OnSkill_100;
+            @Skill_100.canceled -= instance.OnSkill_100;
         }
 
         public void RemoveCallbacks(IWorldActions instance)
@@ -192,6 +221,7 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
     public interface IWorldActions
     {
         void OnJump(InputAction.CallbackContext context);
-        void OnAttact(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+        void OnSkill_100(InputAction.CallbackContext context);
     }
 }

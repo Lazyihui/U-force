@@ -42,7 +42,6 @@ namespace UF {
 
             if (model.isJump) {
                 // RoleDomain.Jump(ctx, role);
-                Loco_Jump(ctx, role, 5);
                 Debug.LogWarning("RoleDomin.Jump");
             }
 
@@ -110,7 +109,7 @@ namespace UF {
             }
 
             // 最后决定的技能是否可施放
-            if (!Skillor_AllowCast(ctx, role, skill)) {
+            if (!Skillor_AllowCast(ctx, role, skill, dt)) {
                 return false;
             }
 
@@ -128,21 +127,24 @@ namespace UF {
 
         }
 
-        static bool Skillor_AllowCast(GameContext ctx, RoleEntity role, SkillModel skillor) {
+        static bool Skillor_AllowCast(GameContext ctx, RoleEntity role, SkillModel skillor, float dt) {
             // 完成
             if (skillor == null) {
                 Debug.Log("Skillor_AllowCast skillor == null");
+                FSM_Casting_Exit(ctx, role, dt);
                 return false;
             }
 
             if (skillor.restUseTimes <= 0) {
                 Debug.Log("Skillor_AllowCast skillor.restUseTimes <= 0");
+                FSM_Casting_Exit(ctx, role, dt);
                 return false;
             }
 
             if (skillor.cd > 0) {
                 // TODO:技能冷却提示
-                Debug.Log("Skillor_AllowCast skillor.cd > 0");
+                Debug.Log("Skillor_AllowCast skillor.cd > 0要做提示+" + skillor.cd);
+                FSM_Casting_Exit(ctx, role, dt);
                 return false;
             }
 

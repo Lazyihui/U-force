@@ -8,5 +8,6 @@ namespace UF {
         None = 0,
         Jump = 1 << 0,
         Attack = 1 << 1,
+        Skill_100 = 1 << 2,
     }
 }

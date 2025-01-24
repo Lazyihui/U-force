@@ -28,14 +28,26 @@ namespace UF {
             var world = player1.World;
 
             // -Input
+            inputKey = InputKeyFlag.None;
             {
                 bool isJumpDown = world.Jump.WasPressedThisFrame();
                 isJump = isJumpDown;
+
                 if (isJumpDown) {
                     inputKey |= InputKeyFlag.Jump;
                 }
+
             }
 
+            // -Attack
+            inputKey = InputKeyFlag.None;
+            {
+                bool isAttackDown = world.Attack.WasPressedThisFrame();
+
+                if (isAttackDown) {
+                    inputKey |= InputKeyFlag.Attack;
+                }
+            }
         }
 
 

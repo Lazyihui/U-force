@@ -20,6 +20,7 @@ namespace UF {
         public void Normal_Enter() {
             status = RoleFSMStatus.Normal;
         }
+        
 
         public void Dead_Enter() {
             status = RoleFSMStatus.Dead;

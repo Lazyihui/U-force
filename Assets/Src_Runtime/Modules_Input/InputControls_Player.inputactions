@@ -15,9 +15,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Attact",
+                    "name": "Attack",
                     "type": "Value",
                     "id": "50c63afa-8dff-4d7f-bd26-80a1310bb069",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Skill_100",
+                    "type": "Value",
+                    "id": "1c538e83-1f34-42e5-9d00-ed45f4d942ba",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
@@ -43,7 +52,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Attact",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "51a2f944-4ef2-483a-80cf-2c64c9154fb6",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Skill_100",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
