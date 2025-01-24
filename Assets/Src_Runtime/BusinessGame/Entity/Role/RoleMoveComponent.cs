@@ -17,6 +17,9 @@ public class RoleMoveComponent {
     public float moveSpeed;//用于调用
     public void SetMoveSpeed(float value) => moveSpeed = value;//用于赋值 只有一个地方赋值
 
+    public float jumpForce;
+    public void SetJumpForce(float value) => jumpForce = value;
+
     public RoleMoveComponent() {
         isGround = false;
     }
@@ -25,7 +28,7 @@ public class RoleMoveComponent {
         this.rb = rb;
     }
 
-    public void Move_Player(float moveSpeed, float dt) {
+    public void Move_Player(float dt) {
         Vector2 oldVelo = rb.velocity;
         oldVelo.y = moveSpeed;
         rb.velocity = oldVelo;
@@ -33,7 +36,7 @@ public class RoleMoveComponent {
         isGround = false;
     }
 
-    public void Move_Ghost(float xAxis, float moveSpeed, float dt) {
+    public void Move_Ghost(float xAxis, float dt) {
         rb.gravityScale = 0;
 
         Vector2 oldVelo = rb.velocity;
@@ -42,7 +45,7 @@ public class RoleMoveComponent {
         rb.velocity = oldVelo;
     }
 
-    public void Jump(float jumpForce) {
+    public void Jump() {
         if (allowJumpTimes > 0) {
             Vector2 oldVelo = rb.velocity;
 

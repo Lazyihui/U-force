@@ -30,7 +30,7 @@ namespace UF {
             // -move
             var moveCom = role.MoveComponent;
             moveCom.SetMoveSpeed(tm.moveSpeed);
-
+            moveCom.SetJumpForce(tm.jumpForce);
 
             // - Skillor
             var skillorCom = role.skillorSlotComponent;

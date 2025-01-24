@@ -11,6 +11,7 @@ namespace UF {
 
         // -move
         public float moveSpeed;
+        public float jumpForce;
 
         // -skillor//一般这种要拖拽绑定的放下面
         public SkillorSo[] skillorSoArray;

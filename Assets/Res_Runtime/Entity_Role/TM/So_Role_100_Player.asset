@@ -16,6 +16,8 @@ MonoBehaviour:
     typeName: Player
     roleType: 0
     typeID: 100
+    moveSpeed: 15
+    jumpForce: 5
     skillorSoArray:
     - {fileID: 11400000, guid: 3c66c4bdc888ec44da2ea3067517bbac, type: 2}
     modPrefab: {fileID: 4094805614534310518, guid: c9eea0833c744504aa107299ad0f64b6, type: 3}

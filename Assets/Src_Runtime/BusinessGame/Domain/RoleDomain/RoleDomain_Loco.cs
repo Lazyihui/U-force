@@ -9,10 +9,10 @@ namespace UF {
             
             Loco_Jump(ctx, role, 5);
             GroundCheck(ctx, role);
-            Loco_Move(ctx, role, 15, dt);
+            Loco_Move(ctx, role, dt);
         }
         #region Move: Move
-        public static void Loco_Move(GameContext ctx, RoleEntity role, float moveSpeed, float dt) {
+        public static void Loco_Move(GameContext ctx, RoleEntity role, float dt) {
             if (dt <= 0) {
                 return;
             }
@@ -21,15 +21,15 @@ namespace UF {
 
             if (moveType == RoleMoveType.Player) {
                 if (role.IsGround() && role.AllowPlayerMove()) {
-                    role.Move_Player(moveSpeed, dt);
+                    role.Move_Player(dt);
                 }
             } else if (moveType == RoleMoveType.Ghost) {
-                Loco_Move_Ghost(ctx, role, moveSpeed, dt);
+                Loco_Move_Ghost(ctx, role, dt);
             }
         }
-        public static void Loco_Move_Ghost(GameContext ctx, RoleEntity role, float moveSpeed, float dt) {
+        public static void Loco_Move_Ghost(GameContext ctx, RoleEntity role, float dt) {
             const float xAxis = -1;
-            role.Move_Ghost(xAxis, moveSpeed, dt);
+            role.Move_Ghost(xAxis, dt);
         }
 
         public static void Loco_MoveStop(GameContext ctx, RoleEntity role) {
@@ -40,7 +40,7 @@ namespace UF {
             if (!inputCom.Jump_Get()) {
                 return;
             }
-            role.Jump(jumpForce);
+            role.Jump();
         }
 
         #endregion
