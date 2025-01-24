@@ -51,7 +51,7 @@ namespace UF {
                 return;
             }
 
-            RaycastHit2D[] hits = Physics2D.RaycastAll(role.GetPos(), Vector2.down, 0.6f);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(role.GetPos(), Vector2.down, 1.1f);
             Debug.DrawRay(role.GetPos(), Vector2.down * 0.6f, Color.red, 0.1f);
 
             for (int i = 0; i < hits.Length; i++) {
