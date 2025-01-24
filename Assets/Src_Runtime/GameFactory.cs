@@ -27,6 +27,9 @@ namespace UF {
             role.Ctor();
             role.Inject(mod);
 
+            // -move
+            var moveCom = role.MoveComponent;
+            moveCom.SetMoveSpeed(tm.moveSpeed);
 
 
             // - Skillor

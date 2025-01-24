@@ -13,6 +13,10 @@ public class RoleMoveComponent {
     int allowMoveTimes;
     int allowJumpTimes;
 
+    // -move
+    public float moveSpeed;//用于调用
+    public void SetMoveSpeed(float value) => moveSpeed = value;//用于赋值 只有一个地方赋值
+
     public RoleMoveComponent() {
         isGround = false;
     }
@@ -42,11 +46,10 @@ public class RoleMoveComponent {
         if (allowJumpTimes > 0) {
             Vector2 oldVelo = rb.velocity;
 
-            if(oldVelo.y <= 0)
-            {
+            if (oldVelo.y <= 0) {
                 oldVelo.y = 0;
             }
-            
+
             oldVelo.y += jumpForce;
             rb.velocity = oldVelo;
             allowJumpTimes -= 1;
