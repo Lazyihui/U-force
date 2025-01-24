@@ -29,8 +29,8 @@ namespace UF {
             role.Move_Ghost(-1, moveSpeed, dt);
         }
 
-        public static void Loco_Jump(GameContext ctx, RoleEntity role, bool isJumpKeyDown, float jumpForce) {
-            role.Jump(isJumpKeyDown, jumpForce);
+        public static void Loco_Jump(GameContext ctx, RoleEntity role, float jumpForce) {
+            role.Jump(jumpForce);
         }
 
         //地面检测不确定写在哪

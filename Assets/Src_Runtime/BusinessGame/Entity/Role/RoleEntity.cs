@@ -75,9 +75,9 @@ namespace UF {
             moveComponent.Move_Ghost(xAxis, moveSpeed, dt);
         }
 
-        public void Jump(bool isJumpKeyDown, float jumpForce)
+        public void Jump(float jumpForce)
         {
-            moveComponent.Jump(isJumpKeyDown, jumpForce);
+            moveComponent.Jump(jumpForce);
         }
 
         public bool IsGround()

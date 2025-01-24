@@ -38,9 +38,15 @@ public class RoleMoveComponent {
         rb.velocity = oldVelo;
     }
 
-    public void Jump(bool isJumpKeyDown, float jumpForce) {
-        if (isJumpKeyDown && allowJumpTimes > 0) {
+    public void Jump(float jumpForce) {
+        if (allowJumpTimes > 0) {
             Vector2 oldVelo = rb.velocity;
+
+            if(oldVelo.y <= 0)
+            {
+                oldVelo.y = 0;
+            }
+            
             oldVelo.y += jumpForce;
             rb.velocity = oldVelo;
             allowJumpTimes -= 1;

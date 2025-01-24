@@ -42,6 +42,7 @@ namespace UF {
 
             if (model.isJump) {
                 // RoleDomain.Jump(ctx, role);
+                Loco_Jump(ctx, role, 5);
                 Debug.LogWarning("RoleDomin.Jump");
             }
 
