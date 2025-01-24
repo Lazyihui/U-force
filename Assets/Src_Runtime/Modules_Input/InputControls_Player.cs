@@ -53,6 +53,15 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Value"",
+                    ""id"": ""e1e1d689-ece1-44e0-8131-3497795469e4"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -88,6 +97,17 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
                     ""action"": ""Skill_100"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a83c6de6-2242-4157-abd0-4b9cd1e7bdba"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -99,6 +119,7 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
         m_World_Jump = m_World.FindAction("Jump", throwIfNotFound: true);
         m_World_Attack = m_World.FindAction("Attack", throwIfNotFound: true);
         m_World_Skill_100 = m_World.FindAction("Skill_100", throwIfNotFound: true);
+        m_World_Pause = m_World.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -163,6 +184,7 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
     private readonly InputAction m_World_Jump;
     private readonly InputAction m_World_Attack;
     private readonly InputAction m_World_Skill_100;
+    private readonly InputAction m_World_Pause;
     public struct WorldActions
     {
         private @InputControls_Player m_Wrapper;
@@ -170,6 +192,7 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_World_Jump;
         public InputAction @Attack => m_Wrapper.m_World_Attack;
         public InputAction @Skill_100 => m_Wrapper.m_World_Skill_100;
+        public InputAction @Pause => m_Wrapper.m_World_Pause;
         public InputActionMap Get() { return m_Wrapper.m_World; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -188,6 +211,9 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
             @Skill_100.started += instance.OnSkill_100;
             @Skill_100.performed += instance.OnSkill_100;
             @Skill_100.canceled += instance.OnSkill_100;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IWorldActions instance)
@@ -201,6 +227,9 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
             @Skill_100.started -= instance.OnSkill_100;
             @Skill_100.performed -= instance.OnSkill_100;
             @Skill_100.canceled -= instance.OnSkill_100;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IWorldActions instance)
@@ -223,5 +252,6 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnSkill_100(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }
