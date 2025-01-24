@@ -81,6 +81,9 @@ namespace UF {
             return panel;
         }
 
-
+        public GameObject Panel_GetGame_Defend() {
+            panels.TryGetValue("Panel_Game_Defend", out GameObject panel);
+            return panel;
+        }
     }
 }

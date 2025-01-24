@@ -1818,6 +1818,7 @@ GameObject:
   - component: {fileID: 8457140556446262576}
   - component: {fileID: 6486233077430930304}
   - component: {fileID: 6127726902441762386}
+  - component: {fileID: -736485012821028056}
   m_Layer: 5
   m_Name: Panel_Game_Defend
   m_TagString: Untagged
@@ -1886,6 +1887,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-736485012821028056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6126773743295859979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 178cebd007203bb4dbdfcf7d58e6e626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider_Waves: {fileID: 2428146835493958130}
+  text_Achievement: {fileID: 4295285165054367602}
+  btn_Pause: {fileID: 5003483856805332436}
+  btn_Attack: {fileID: 8196683483301708807}
+  btn_Tech: {fileID: 4950560746484054128}
+  btn_Weap1: {fileID: 2844300875138724932}
+  btn_Weap2: {fileID: 4578566140220694719}
+  btn_Weap3: {fileID: 4399286287017019653}
+  btn_Weap4: {fileID: 7722290268592454915}
 --- !u!1 &6326142928745653565
 GameObject:
   m_ObjectHideFlags: 0
