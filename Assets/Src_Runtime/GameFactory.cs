@@ -26,6 +26,8 @@ namespace UF {
 
             role.Ctor();
             role.Inject(mod);
+            // TODO:
+            role.Set_RbConstraints();
 
             // -move
             var moveCom = role.MoveComponent;
@@ -130,7 +132,7 @@ namespace UF {
             return model;
         }
 
-        public static TowerEntity Tower_Create(AssetsCore assetsCore, TemplateCore templateCore, IDService idService, int typeID) {
+        public static TowerEntity Tower_Create(AssetsCore assetsCore, TemplateCore templateCore, IDService idService, int typeID, Vector2 pos) {
             bool has = templateCore.Tower_TryGet(typeID, out var tm);
             if (!has) {
                 Debug.LogError("Tower_Create: tm is null" + typeID);
@@ -144,6 +146,8 @@ namespace UF {
 
             tower.idSig = new IDSignature(EntityType.Tower, idService.PickTowerID());
             tower.typeID = typeID;
+
+            tower.TF_SetPos(pos);
             tower.Ctor();
 
             return tower;

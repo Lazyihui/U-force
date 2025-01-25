@@ -11,9 +11,26 @@ namespace UF {
 
         public int typeID;
 
-        public void Ctor() {
+        public float interval;
+        public float intervalTimer;
 
+        public void Ctor() {
+            interval = 2;
+            intervalTimer = 0;
         }
 
+        public void TF_SetPos(Vector2 pos) {
+            transform.position = pos;
+        }
+
+        public bool AllowSpawn(float dt) {
+            intervalTimer -= dt;
+            Debug.Log("intervalTimer:" + intervalTimer);
+            if (intervalTimer <= 0) {
+                intervalTimer = interval;
+                return true;
+            }
+            return false;
+        }
     }
 }

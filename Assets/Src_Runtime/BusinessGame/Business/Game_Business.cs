@@ -17,7 +17,12 @@ namespace UF {
             RoleEntity role = RoleDomain.Spawn(ctx, 100);
             game.OwnerIDsig = role.idSig;
 
-            TowerEntity tower = TowerDomain.Spawn(ctx, 100);
+            TowerDomain.Spawn(ctx, 100, new Vector2(16, 9));
+            TowerDomain.Spawn(ctx, 100, new Vector2(16, 6.5f));
+            TowerDomain.Spawn(ctx, 100, new Vector2(16, 4));
+            TowerDomain.Spawn(ctx, 100, new Vector2(16, 1.5f));
+            TowerDomain.Spawn(ctx, 100, new Vector2(16, -1));
+            TowerDomain.Spawn(ctx, 100, new Vector2(16, -3.5f));
 
         }
 
@@ -72,11 +77,21 @@ namespace UF {
             #endregion
 
             #region  bullet
-            int len = ctx.bulletRepository.TakeAll(out BulletEntity[] bullets);
+            int bulletLen = ctx.bulletRepository.TakeAll(out BulletEntity[] bullets);
 
-            for (int i = 0; i < len; i += 1) {
+            for (int i = 0; i < bulletLen; i += 1) {
                 BulletEntity bullet = bullets[i];
                 BulletDomain.FSM_All_Execute(ctx, bullet, dt);
+            }
+
+            #endregion
+
+            #region tower
+            int towerLen = ctx.towerRepository.TakeAll(out TowerEntity[] towers);
+
+            for (int i = 0; i < towerLen; i += 1) {
+                TowerEntity tower = towers[i];
+                TowerDomain.Tower_Execute(ctx, tower, dt);
             }
 
             #endregion

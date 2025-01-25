@@ -8,7 +8,8 @@ namespace UF {
         public string typeName;
         public int typeID;
 
-
+        public float interval;
+        public float intervalTimer;
 
     }
 }

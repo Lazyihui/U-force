@@ -21,6 +21,7 @@ namespace UF {
         // pos 
         [SerializeField] public Transform bodyRoot;
         public Vector2 Centerpos => this.transform.position;
+        public void TF_SetPos(Vector2 value) => this.transform.position = value;
         Vector2 face;
 
         // user input
@@ -53,6 +54,16 @@ namespace UF {
             spawnerPosComponent = new RoleSpawnerPosComponent();
 
             moveComponent.Inject(rb);
+        }
+
+        public void Set_RbConstraints() {
+            // TODO:先写在这里
+            if (roleType == RoleType.Player) {
+            }
+            if (roleType == RoleType.Minion) {
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+            }
         }
 
         public void Inject(RoleMod mod) {

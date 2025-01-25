@@ -13,6 +13,12 @@ namespace UF {
             return role;
         }
 
+        public static RoleEntity SpawnByPos(GameContext ctx, Vector2 pos, int typeID) {
+            RoleEntity entity = Spawn(ctx, typeID);
+            entity.TF_SetPos(pos);
+            return entity;
+        }
+
         public static RoleEntity SpawnBySpawner(GameContext ctx, RoleSpawnerTM spawnerTM) {
 
             Debug.Log("RoleDomain.SpawnBySpawner");
