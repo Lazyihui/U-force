@@ -28,7 +28,7 @@ public class RoleMoveComponent {
         this.rb = rb;
     }
 
-    public void Move_Player(float dt) {
+    public void Move_Player(float moveSpeed) {
         Vector2 oldVelo = rb.velocity;
         oldVelo.y = moveSpeed;
         rb.velocity = oldVelo;

@@ -6,7 +6,7 @@ namespace UF {
 
         public static void Loco_Execute(GameContext ctx, RoleEntity role, float dt) {
             var moveCom = role.MoveComponent;
-            
+
             Loco_Jump(ctx, role, 5);
             GroundCheck(ctx, role);
             Loco_Move(ctx, role, dt);
@@ -16,12 +16,13 @@ namespace UF {
             if (dt <= 0) {
                 return;
             }
+            var moveCom = role.MoveComponent;
 
             RoleMoveType moveType = role.moveType;
 
             if (moveType == RoleMoveType.Player) {
                 if (role.IsGround() && role.AllowPlayerMove()) {
-                    role.Move_Player(dt);
+                    role.Move_Player(moveCom.moveSpeed);
                 }
             } else if (moveType == RoleMoveType.Ghost) {
                 Loco_Move_Ghost(ctx, role, dt);

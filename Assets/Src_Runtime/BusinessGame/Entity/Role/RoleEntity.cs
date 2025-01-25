@@ -69,8 +69,8 @@ namespace UF {
         }
 
         #region Move
-        public void Move_Player(float dt) {
-            moveComponent.Move_Player(dt);
+        public void Move_Player(float moveSpeed) {
+            moveComponent.Move_Player(moveSpeed);
         }
 
         public void Move_Ghost(float xAxis, float dt) {
