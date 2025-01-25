@@ -42,12 +42,15 @@ namespace UF {
         // mod
         RoleMod mod;
 
+        // pos
+        public RoleSpawnerPosComponent spawnerPosComponent;
 
         public void Ctor() {
             fsmComponent = new RoleFSMConponent();
             skillorSlotComponent = new RoleSkillSlotComponent();
             inputComponent = new RoleInputComponent();
             moveComponent = new RoleMoveComponent();
+            spawnerPosComponent = new RoleSpawnerPosComponent();
 
             moveComponent.Inject(rb);
         }
@@ -141,7 +144,6 @@ namespace UF {
 
             return result;
         }
-
 
     }
 }

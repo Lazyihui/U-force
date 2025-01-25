@@ -4,11 +4,23 @@ using UnityEngine;
 
 namespace UF {
     public static partial class RoleDomain {
+
+        #region LifeCycle
+
         public static RoleEntity Spawn(GameContext ctx, int typeID) {
             RoleEntity role = GameFactory.Role_CreateBySpawner(ctx.assetsCore, ctx.templateCore, ctx.idService, Vector3.zero, typeID);
             ctx.roleRepository.Add(role);
             return role;
         }
+
+        public static RoleEntity SpawnBySpawner(GameContext ctx, RoleSpawnerTM spawnerTM) {
+
+            Debug.Log("RoleDomain.SpawnBySpawner");
+            return null;
+        }
+
+
+        #endregion
 
         #region Act 行为
         public static void Skillor_Frame_Acting(GameContext ctx, RoleEntity role, RoleCastingStateModel stateModel, SkillFrameModel frame, float dt) {

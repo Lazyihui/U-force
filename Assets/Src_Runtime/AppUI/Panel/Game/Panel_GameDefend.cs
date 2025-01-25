@@ -3,10 +3,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UF
-{
-    public class Panel_Game_Defend : MonoBehaviour
-    {
+namespace UF {
+    public class Panel_GameDefend : MonoBehaviour {
         //不清楚Slider和Text要不要用句柄调用，先设公共
         //Waves
         public Slider slider_Waves;
@@ -19,22 +17,25 @@ namespace UF
         public Action OnPauseClickHandle;
 
         //Skill
-        //问: 武器甚至所有技能的句柄可以复用吗？
         [SerializeField] Button btn_Attack;
         public Action OnAttackClickHandle;
+
         [SerializeField] Button btn_Tech;
         public Action OnTechClickHandle;
+
         [SerializeField] Button btn_Weap1;
         public Action OnWeap1ClickHandle;
+
         [SerializeField] Button btn_Weap2;
         public Action OnWeap2ClickHandle;
+
         [SerializeField] Button btn_Weap3;
         public Action OnWeap3ClickHandle;
+
         [SerializeField] Button btn_Weap4;
         public Action OnWeap4ClickHandle;
 
-        public void Ctor()
-        {
+        public void Ctor() {
             //Pause
             btn_Pause.onClick.AddListener(() => {
                 if (OnPauseClickHandle != null) {
@@ -80,13 +81,11 @@ namespace UF
             });
         }
 
-        public void Show()
-        {
+        public void Show() {
             gameObject.SetActive(true);
         }
 
-        public void TearDown()
-        {
+        public void TearDown() {
             Destroy(gameObject);
         }
     }

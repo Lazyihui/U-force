@@ -1820,7 +1820,7 @@ GameObject:
   - component: {fileID: 6127726902441762386}
   - component: {fileID: -736485012821028056}
   m_Layer: 5
-  m_Name: Panel_Game_Defend
+  m_Name: Panel_GameDefend
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

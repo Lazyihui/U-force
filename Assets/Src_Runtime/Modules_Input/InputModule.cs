@@ -32,11 +32,6 @@ namespace UF {
             {
                 bool isJumpDown = world.Jump.WasPressedThisFrame();
                 isJump = isJumpDown;
-
-                if (isJumpDown) {
-                    inputKey |= InputKeyFlag.Jump;
-                }
-
             }
 
             // -Attack

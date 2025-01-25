@@ -49,16 +49,14 @@ namespace UF {
             ctx.panel_Login = null;
         }
 
-        public void Panel_Game_Defend_Open()
-        {
-            Panel_Game_Defend panel = ctx.panel_Game_Defend;
+        public void Panel_Game_Defend_Open() {
+            Panel_GameDefend panel = ctx.panel_Game_Defend;
 
-            if (panel == null)
-            {
-                GameObject prefab = ctx.assetsCore.Panel_GetGame_Defend();
+            if (panel == null) {
+                GameObject prefab = ctx.assetsCore.Panel_GetGameDefend();
 
                 GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
-                panel = go.GetComponent<Panel_Game_Defend>();
+                panel = go.GetComponent<Panel_GameDefend>();
 
                 panel.Ctor();
 
@@ -75,10 +73,9 @@ namespace UF {
 
             panel.Show();
         }
-        
-        public void Panel_Game_Defend_Close()
-        {
-            Panel_Game_Defend panel = ctx.panel_Game_Defend;
+
+        public void Panel_Game_Defend_Close() {
+            Panel_GameDefend panel = ctx.panel_Game_Defend;
             if (panel == null) {
                 return;
             }

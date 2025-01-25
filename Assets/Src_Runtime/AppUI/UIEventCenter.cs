@@ -7,29 +7,22 @@ namespace UF {
 
         //Login
         public Action OnLoginStartHandle;
-
-        //Game_Defend
-        public Action OnGamePauseHandle;
-        public Action OnAttackHandle;
-
         public void OnLoginStart() {
             if (OnLoginStartHandle != null) {
                 OnLoginStartHandle();
             }
         }
-        
-        public void OnGamePause()
-        {
-            if (OnGamePauseHandle!= null)
-            {
+        //Game_Defend
+        public Action OnGamePauseHandle;
+        public void OnGamePause() {
+            if (OnGamePauseHandle != null) {
                 OnGamePauseHandle();
             }
         }
 
-        public void OnAttack()
-        {
-            if (OnAttackHandle!= null)
-            {
+        public Action OnAttackHandle;
+        public void OnAttack() {
+            if (OnAttackHandle != null) {
                 OnAttackHandle();
             }
         }
