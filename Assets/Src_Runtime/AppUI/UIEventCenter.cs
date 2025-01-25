@@ -12,6 +12,28 @@ namespace UF {
                 OnLoginStartHandle();
             }
         }
+
+        public Action OnTrainingHandle;
+        public void OnTraining() {
+            if (OnTrainingHandle != null) {
+                OnTrainingHandle();
+            }
+        }
+
+        public Action OnSettingHandle;
+        public void OnSetting() {
+            if (OnSettingHandle != null) {
+                OnSettingHandle();
+            }
+        }
+
+        public Action OnQuitHandle;
+        public void OnQuit() {
+            if (OnQuitHandle != null) {
+                OnQuitHandle();
+            }
+        }
+
         //Game_Defend
         public Action OnGamePauseHandle;
         public void OnGamePause() {
@@ -59,6 +81,21 @@ namespace UF {
         public void OnWeap4() {
             if (OnWeap4Handle != null) {
                 OnWeap4Handle();
+            }
+        }
+
+        // GamePause
+        public Action OnContinueHandle;
+        public void OnContinue() {
+            if (OnContinueHandle != null) {
+                OnContinueHandle();
+            }
+        }
+
+        public Action OnIllustratedHandle;
+        public void OnIllustrated() {
+            if (OnIllustratedHandle != null) {
+                OnIllustratedHandle();
             }
         }
     }

@@ -41,6 +41,8 @@ namespace UF {
         void Binding() {
             var UIEvent = ctx.appUI.eventCenter;
 
+            #region Handle
+            //Login
             UIEvent.OnLoginStartHandle += () => {
                 ctx.appUI.Panel_Login_Close();
                 Game_Business.Enter(ctx);
@@ -48,7 +50,34 @@ namespace UF {
                 ctx.appUI.Panel_GameDefend_Button_Open();
             };
 
+            UIEvent.OnTrainingHandle += () => {
+                Debug.Log("Training");
+            };
+
+            UIEvent.OnSettingHandle += () => {
+                Debug.Log("Setting");
+            };
+
+            UIEvent.OnQuitHandle += () => {
+                Application.Quit();
+                Debug.Log("Game Quit");
+            };
+
+            //GamePause
+            UIEvent.OnContinueHandle += () => {
+                ctx.appUI.Panel_GamePause_Close();
+                //TODO
+                Debug.Log("Continue");
+            };
+
+            UIEvent.OnIllustratedHandle += () => {
+                Debug.Log("Illustrated");
+            };
+
+            //GameDefend
             UIEvent.OnGamePauseHandle += () => {
+                ctx.appUI.Panel_GamePause_Open();
+                //TODO
                 Debug.Log("Game Pause");
             };
 
@@ -75,6 +104,7 @@ namespace UF {
             UIEvent.OnWeap4Handle += () => {
                 Debug.Log("Weap4");
             };
+            #endregion
         }
 
         void Update() {

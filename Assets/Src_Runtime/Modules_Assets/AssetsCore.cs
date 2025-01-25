@@ -86,6 +86,11 @@ namespace UF {
             return panel;
         }
 
+        public GameObject Panel_GetGamePause() {
+            panels.TryGetValue("Panel_GamePause", out GameObject panel);
+            return panel;
+        }
+
         public GameObject Panel_GetGameDefend_Button() {
             panels.TryGetValue("Panel_GameDefend_Button", out GameObject panel);
             return panel;

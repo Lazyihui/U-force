@@ -35,6 +35,18 @@ namespace UF {
                     eventCenter.OnLoginStart();
                 };
 
+                panel.OnTrainingClickHandle += () => {
+                    eventCenter.OnTraining();
+                };
+
+                panel.OnSettingClickHandle += () => {
+                    eventCenter.OnSetting();
+                };
+
+                panel.OnQuitClickHandle += () => {
+                    eventCenter.OnQuit();
+                };
+
             }
             ctx.panel_Login = panel;
             panel.Show();
@@ -130,6 +142,47 @@ namespace UF {
             
             panel.TearDown();
             ctx.panel_GameDefend_Basic = null;
+        }
+
+        // Panel_GamePause
+        public void Panel_GamePause_Open()
+        {
+            Panel_GamePause panel = ctx.panel_GamePause;
+
+            if (panel == null)
+            {
+                GameObject prefab = ctx.assetsCore.Panel_GetGamePause();
+
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                panel = go.GetComponent<Panel_GamePause>();
+
+                panel.Ctor();
+
+                panel.OnContinueClickHandle += () => {
+                    eventCenter.OnContinue();
+                };
+
+                panel.OnIllustratedClickHandle += () => {
+                    eventCenter.OnIllustrated();
+                };
+
+                panel.OnQuitClickHandle += () => {
+                    eventCenter.OnQuit();
+                };
+            }
+
+            ctx.panel_GamePause = panel;
+
+            panel.Show();
+        }
+
+        public void Panel_GamePause_Close()
+        {
+            Panel_GamePause panel = ctx.panel_GamePause;
+            if (panel == null) { return; }
+            
+            panel.TearDown();
+            ctx.panel_GamePause = null;
         }
     }
 }

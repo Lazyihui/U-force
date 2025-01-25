@@ -43,6 +43,13 @@ namespace UF {
                     inputKey |= InputKeyFlag.Attack;
                 }
             }
+
+            // -Pause
+            inputKey = InputKeyFlag.None;
+            {
+                bool isPauseDown = world.Pause.WasPressedThisFrame();
+                //TODO: Pause
+            }
         }
 
 
