@@ -25,7 +25,6 @@ namespace UF {
 
         public bool AllowSpawn(float dt) {
             intervalTimer -= dt;
-            Debug.Log("intervalTimer:" + intervalTimer);
             if (intervalTimer <= 0) {
                 intervalTimer = interval;
                 return true;

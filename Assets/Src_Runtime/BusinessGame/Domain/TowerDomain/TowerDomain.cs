@@ -18,19 +18,30 @@ namespace UF {
         }
 
         public static void TrySpawnMinion(GameContext ctx, float dt) {
+            // 每隔两秒随机一个Tower生成Role
+           
+            TowerEntity tower = null;
+            bool isSpawn = false;
 
-            // 得到随机的一个Tower
-            int len = ctx.towerRepository.GetRandom(out var tower);
+            if (!isSpawn) {
+                if (tower != null) {
 
-            if (tower == null) {
-                return;
+                } else {
+                    int len = ctx.towerRepository.GetRandom(out tower);
+                    Debug.Log("len: " + len);
+                    isSpawn = true;
+                }
             }
 
-            if (!tower.AllowSpawn(dt)) {
-                return;
+
+            tower.intervalTimer -= dt;
+            if (tower.intervalTimer <= 0) {
+                RoleDomain.SpawnByPos(ctx, tower.transform.position, 200);
+                tower.intervalTimer = tower.interval;
+                isSpawn = false;
             }
+
             // 后面改记录Tower可以生成什么种类的怪物
-            RoleDomain.SpawnByPos(ctx, tower.transform.position, 200);
 
         }
     }

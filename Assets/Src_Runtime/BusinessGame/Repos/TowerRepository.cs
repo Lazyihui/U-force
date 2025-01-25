@@ -37,13 +37,13 @@ namespace UF {
             return all.TryGetValue(idSig, out entity);
         }
 
-        public int GetRandom(out TowerEntity entity) {
+        public int GetRandom(out TowerEntity result) {
             if (all.Count == 0) {
-                entity = null;
+                result = null;
                 return all.Count;
             }
             int index = UnityEngine.Random.Range(0, all.Count);
-            entity = temArray[index];
+            result = temArray[index];
             return all.Count;
         }
 
