@@ -8,6 +8,7 @@ namespace UF {
         Bullet,
 
         Skillor,
+        Tower,
 
     }
 

@@ -17,6 +17,8 @@ namespace UF {
             RoleEntity role = RoleDomain.Spawn(ctx, 100);
             game.OwnerIDsig = role.idSig;
 
+            TowerEntity tower = TowerDomain.Spawn(ctx, 100);
+
         }
 
 

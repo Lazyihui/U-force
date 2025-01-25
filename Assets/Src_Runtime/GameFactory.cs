@@ -130,6 +130,25 @@ namespace UF {
             return model;
         }
 
+        public static TowerEntity Tower_Create(AssetsCore assetsCore, TemplateCore templateCore, IDService idService, int typeID) {
+            bool has = templateCore.Tower_TryGet(typeID, out var tm);
+            if (!has) {
+                Debug.LogError("Tower_Create: tm is null" + typeID);
+                return null;
+            }
+
+            GameObject prefab = assetsCore.Entity_GetTower();
+            GameObject go = GameObject.Instantiate(prefab);
+            TowerEntity tower = go.GetComponent<TowerEntity>();
+
+
+            tower.idSig = new IDSignature(EntityType.Tower, idService.PickTowerID());
+            tower.typeID = typeID;
+            tower.Ctor();
+
+            return tower;
+        }
+
         #endregion
 
         #region Mod

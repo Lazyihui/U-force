@@ -51,6 +51,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9f55c56131e242340abd2c68b9a91f43, type: 2}
   - {fileID: 11400000, guid: 8c0969c77963a45459f7fba2625fae6e, type: 2}
   - {fileID: 11400000, guid: cce76ecc2f9bbfb43b9aa779cd076210, type: 2}
+  - {fileID: 11400000, guid: d01fe522966fd7b489d972b710b03cf8, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -97,6 +98,7 @@ MonoBehaviour:
     - So_Role
     - So_Bullet
     - So_Skill
+    - So_Tower
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 85356f34a9303d744bfbe0a1851e6e54, type: 2}

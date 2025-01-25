@@ -74,7 +74,12 @@ namespace UF {
             entities.TryGetValue("Entity_Bullet", out GameObject bullet);
             return bullet;
         }
-        
+
+        public GameObject Entity_GetTower() {
+            entities.TryGetValue("Entity_Tower", out GameObject tower);
+            return tower;
+        }
+
         //  ---  Panel  ---
         public GameObject Panel_GetLogin() {
             panels.TryGetValue("Panel_Login", out GameObject panel);
@@ -85,5 +90,8 @@ namespace UF {
             panels.TryGetValue("Panel_GameDefend", out GameObject panel);
             return panel;
         }
+
+
+
     }
 }

@@ -20,6 +20,7 @@ namespace UF {
         // ---  RoleRepository  ---
         public RoleRepository roleRepository;
         public BulletRepository bulletRepository;
+        public TowerRepository towerRepository;
 
         public GameContext() {
             gameEntity = new GameEntity();
@@ -33,6 +34,7 @@ namespace UF {
 
             roleRepository = new RoleRepository();
             bulletRepository = new BulletRepository();
+            towerRepository = new TowerRepository();
         }
 
         public void Inject(Canvas ScreenCanvas) {
