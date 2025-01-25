@@ -7,7 +7,7 @@ namespace UF {
         public static void Loco_Execute(GameContext ctx, RoleEntity role, float dt) {
             var moveCom = role.MoveComponent;
 
-            Loco_Jump(ctx, role, 5);
+            Loco_Jump(ctx, role, moveCom.jumpForce);
             GroundCheck(ctx, role);
             Loco_Move(ctx, role, dt);
         }
@@ -25,12 +25,13 @@ namespace UF {
                     role.Move_Player(moveCom.moveSpeed);
                 }
             } else if (moveType == RoleMoveType.Ghost) {
-                Loco_Move_Ghost(ctx, role, dt);
+                Loco_Move_Ghost(ctx, role);
             }
         }
-        public static void Loco_Move_Ghost(GameContext ctx, RoleEntity role, float dt) {
+        public static void Loco_Move_Ghost(GameContext ctx, RoleEntity role) {
+            //怎么改
             const float xAxis = -1;
-            role.Move_Ghost(xAxis, dt);
+            role.Move_Ghost(xAxis);
         }
 
         public static void Loco_MoveStop(GameContext ctx, RoleEntity role) {

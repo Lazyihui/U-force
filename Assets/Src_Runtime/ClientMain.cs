@@ -44,7 +44,8 @@ namespace UF {
             UIEvent.OnLoginStartHandle += () => {
                 ctx.appUI.Panel_Login_Close();
                 Game_Business.Enter(ctx);
-                ctx.appUI.Panel_Game_Defend_Open();
+                ctx.appUI.Panel_GameDefend_Basic_Open();
+                ctx.appUI.Panel_GameDefend_Button_Open();
             };
 
             UIEvent.OnGamePauseHandle += () => {
@@ -53,6 +54,26 @@ namespace UF {
 
             UIEvent.OnAttackHandle += () => {
                 Debug.Log("Attack");
+            };
+
+            UIEvent.OnTechHandle += () => {
+                Debug.Log("Tech");
+            };
+
+            UIEvent.OnWeap1Handle += () => {
+                Debug.Log("Weap1");
+            };
+
+            UIEvent.OnWeap2Handle += () => {
+                Debug.Log("Weap2");
+            };
+
+            UIEvent.OnWeap3Handle += () => {
+                Debug.Log("Weap3");
+            };
+
+            UIEvent.OnWeap4Handle += () => {
+                Debug.Log("Weap4");
             };
         }
 

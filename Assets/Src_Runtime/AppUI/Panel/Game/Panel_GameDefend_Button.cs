@@ -4,14 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace UF {
-    public class Panel_GameDefend : MonoBehaviour {
-        //不清楚Slider和Text要不要用句柄调用，先设公共
-        //Waves
-        public Slider slider_Waves;
-
-        //Achievement
-        public TextMeshProUGUI text_Achievement;
-
+    public class Panel_GameDefend_Button : MonoBehaviour {
         //Pause
         [SerializeField] Button btn_Pause;
         public Action OnPauseClickHandle;

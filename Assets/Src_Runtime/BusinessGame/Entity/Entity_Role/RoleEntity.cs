@@ -84,8 +84,8 @@ namespace UF {
             moveComponent.Move_Player(moveSpeed);
         }
 
-        public void Move_Ghost(float xAxis, float dt) {
-            moveComponent.Move_Ghost(xAxis, dt);
+        public void Move_Ghost(float xAxis) {
+            moveComponent.Move_Ghost(xAxis);
         }
 
         public void Jump() {

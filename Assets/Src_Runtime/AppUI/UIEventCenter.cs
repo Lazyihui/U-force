@@ -26,5 +26,40 @@ namespace UF {
                 OnAttackHandle();
             }
         }
+
+        public Action OnTechHandle;
+        public void OnTech() {
+            if (OnTechHandle != null) {
+                OnTechHandle();
+            }
+        }
+
+        public Action OnWeap1Handle;
+        public void OnWeap1() {
+            if (OnWeap1Handle != null) {
+                OnWeap1Handle();
+            }
+        }
+
+        public Action OnWeap2Handle;
+        public void OnWeap2() {
+            if (OnWeap2Handle != null) {
+                OnWeap2Handle();
+            }
+        }
+
+        public Action OnWeap3Handle;
+        public void OnWeap3() {
+            if (OnWeap3Handle != null) {
+                OnWeap3Handle();
+            }
+        }
+
+        public Action OnWeap4Handle;
+        public void OnWeap4() {
+            if (OnWeap4Handle != null) {
+                OnWeap4Handle();
+            }
+        }
     }
 }

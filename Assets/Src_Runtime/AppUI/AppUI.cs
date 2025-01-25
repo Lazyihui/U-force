@@ -18,6 +18,7 @@ namespace UF {
             ctx.Inject(screenCanvas, assetsCore);
         }
 
+        // Panel_Login
         public void Panel_Login_Open() {
             Panel_Login panel = ctx.panel_Login;
 
@@ -49,14 +50,15 @@ namespace UF {
             ctx.panel_Login = null;
         }
 
-        public void Panel_Game_Defend_Open() {
-            Panel_GameDefend panel = ctx.panel_Game_Defend;
+        // Panel_GameDefend
+        public void Panel_GameDefend_Button_Open() {
+            Panel_GameDefend_Button panel = ctx.panel_GameDefend_Button;
 
             if (panel == null) {
-                GameObject prefab = ctx.assetsCore.Panel_GetGameDefend();
+                GameObject prefab = ctx.assetsCore.Panel_GetGameDefend_Button();
 
                 GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
-                panel = go.GetComponent<Panel_GameDefend>();
+                panel = go.GetComponent<Panel_GameDefend_Button>();
 
                 panel.Ctor();
 
@@ -68,20 +70,66 @@ namespace UF {
                 panel.OnAttackClickHandle += () => {
                     eventCenter.OnAttack();
                 };
+
+                panel.OnTechClickHandle += () => {
+                    eventCenter.OnTech();
+                };
+
+                panel.OnWeap1ClickHandle += () => {
+                    eventCenter.OnWeap1();
+                };
+
+                panel.OnWeap2ClickHandle += () => {
+                    eventCenter.OnWeap2();
+                };
+
+                panel.OnWeap3ClickHandle += () => {
+                    eventCenter.OnWeap3();
+                };
+
+                panel.OnWeap4ClickHandle += () => {
+                    eventCenter.OnWeap4();
+                };
             }
-            ctx.panel_Game_Defend = panel;
+            ctx.panel_GameDefend_Button = panel;
 
             panel.Show();
         }
 
-        public void Panel_Game_Defend_Close() {
-            Panel_GameDefend panel = ctx.panel_Game_Defend;
-            if (panel == null) {
-                return;
-            }
+        public void Panel_GameDefend_Button_Close() {
+            Panel_GameDefend_Button panel = ctx.panel_GameDefend_Button;
+            if (panel == null) { return; }
 
             panel.TearDown();
-            ctx.panel_Game_Defend = null;
+            ctx.panel_GameDefend_Button = null;
+        }
+
+        public void Panel_GameDefend_Basic_Open()
+        {
+            Panel_GameDefend_Basic panel = ctx.panel_GameDefend_Basic;
+
+            if (panel == null)
+            {
+                GameObject prefab = ctx.assetsCore.Panel_GetGameDefend_Basic();
+
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                panel = go.GetComponent<Panel_GameDefend_Basic>();
+
+                panel.Ctor();
+            }
+
+            ctx.panel_GameDefend_Basic = panel;
+
+            panel.Show();
+        }
+
+        public void Panel_GameDefend_Basic_Close()
+        {
+            Panel_GameDefend_Basic panel = ctx.panel_GameDefend_Basic;
+            if (panel == null) { return; }
+            
+            panel.TearDown();
+            ctx.panel_GameDefend_Basic = null;
         }
     }
 }

@@ -11,7 +11,8 @@ namespace UF {
 
         // panel
         public Panel_Login panel_Login;
-        public Panel_GameDefend panel_Game_Defend;
+        public Panel_GameDefend_Button panel_GameDefend_Button;
+        public Panel_GameDefend_Basic panel_GameDefend_Basic;
 
         public UIContext() {
 

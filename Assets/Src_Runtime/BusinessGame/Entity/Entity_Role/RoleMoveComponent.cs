@@ -36,7 +36,7 @@ public class RoleMoveComponent {
         isGround = false;
     }
 
-    public void Move_Ghost(float xAxis, float dt) {
+    public void Move_Ghost(float xAxis) {
         rb.gravityScale = 0;
 
         Vector2 oldVelo = rb.velocity;
