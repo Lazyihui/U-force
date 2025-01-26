@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UF;
+using Unity.VisualScripting;
 
 public class RoleMoveComponent {
     Rigidbody2D rb;
@@ -19,6 +20,10 @@ public class RoleMoveComponent {
 
     public float jumpForce;
     public void SetJumpForce(float value) => jumpForce = value;
+
+    // -PauseMove
+    // 感觉要改，但还没想好
+    Vector2 pauseVelo;
 
     public RoleMoveComponent() {
         isGround = false;
@@ -44,6 +49,32 @@ public class RoleMoveComponent {
         oldVelo.x = xAxis * moveSpeed;
         oldVelo.y = 0;
         rb.velocity = oldVelo;
+    }
+
+    public void Move_Stop()
+    {
+        pauseVelo = rb.velocity;
+        rb.bodyType = RigidbodyType2D.Static;
+
+        Debug.Log(pauseVelo);
+    }
+
+    public void Move_Reset()
+    {
+        rb.bodyType = RigidbodyType2D.Dynamic;
+
+        if(rb.velocity == Vector2.zero)
+        {
+            if (pauseVelo == Vector2.zero)
+            {
+                Debug.Log("pauseVelo is zero");
+                return;
+            }
+            else
+            {
+                rb.velocity = pauseVelo;
+            }
+        }
     }
 
     public void Jump() {

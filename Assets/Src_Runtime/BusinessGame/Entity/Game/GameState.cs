@@ -8,6 +8,7 @@ namespace UF {
         Login,
 
         Game,
+        GamePause,
 
         GameOver,
     }

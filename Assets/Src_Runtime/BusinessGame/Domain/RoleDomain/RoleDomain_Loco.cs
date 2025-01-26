@@ -7,6 +7,7 @@ namespace UF {
         public static void Loco_Execute(GameContext ctx, RoleEntity role, float dt) {
             var moveCom = role.MoveComponent;
 
+            Loco_MoveReset(ctx, role);
             Loco_Jump(ctx, role, moveCom.jumpForce);
             GroundCheck(ctx, role);
             Loco_Move(ctx, role, dt);
@@ -31,8 +32,13 @@ namespace UF {
         }
 
         public static void Loco_MoveStop(GameContext ctx, RoleEntity role) {
-            //TODO
+            role.Move_Stop();
         }
+
+        public static void Loco_MoveReset(GameContext ctx, RoleEntity role) {
+            role.Move_Reset();
+        }
+
         public static void Loco_Jump(GameContext ctx, RoleEntity role, float jumpForce) {
             var inputCom = role.InputComponent;
             if (!inputCom.Jump_Get()) {

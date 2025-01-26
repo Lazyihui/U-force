@@ -88,6 +88,14 @@ namespace UF {
             moveComponent.Move_Ghost(xAxis);
         }
 
+        public void Move_Stop() {
+            moveComponent.Move_Stop();
+        }
+
+        public void Move_Reset() {
+            moveComponent.Move_Reset();
+        }
+
         public void Jump() {
             moveComponent.Jump();
         }

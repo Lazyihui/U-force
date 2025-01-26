@@ -30,6 +30,12 @@ namespace UF {
             }
 
         }
+
+        public static void FSM_All_Pause(GameContext ctx, RoleEntity role) {
+            Loco_MoveStop(ctx, role);
+            //TODO: 施法过程中暂停
+        }
+
         static void FSM_Casting_Enter(GameContext ctx, RoleEntity role, SkillModel skillor, float dt) {
             // 完成
             var fsm = role.FSMComponent;

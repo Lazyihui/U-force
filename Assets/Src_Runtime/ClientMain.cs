@@ -66,7 +66,10 @@ namespace UF {
             //GamePause
             UIEvent.OnContinueHandle += () => {
                 ctx.appUI.Panel_GamePause_Close();
-                //TODO
+                
+                //不知道可不可以这么写
+                var game = ctx.gameEntity;
+                game.state = GameState.Game;
                 Debug.Log("Continue");
             };
 
@@ -77,6 +80,7 @@ namespace UF {
             //GameDefend
             UIEvent.OnGamePauseHandle += () => {
                 ctx.appUI.Panel_GamePause_Open();
+                Pause_Business.Enter(ctx);
                 //TODO
                 Debug.Log("Game Pause");
             };
@@ -122,6 +126,8 @@ namespace UF {
                 Login_Business.Tick(ctx, dt);
             } else if (game.state == GameState.Game) {
                 Game_Business.Tick(ctx, dt);
+            } else if (game.state == GameState.GamePause) {
+                Pause_Business.Tick(ctx, dt);
             }
 
 
