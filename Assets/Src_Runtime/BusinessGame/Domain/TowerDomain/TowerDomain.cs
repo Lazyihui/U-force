@@ -28,7 +28,6 @@ namespace UF {
 
                 } else {
                     int len = ctx.towerRepository.GetRandom(out tower);
-                    Debug.Log("len: " + len);
                     isSpawn = true;
                 }
             }

@@ -7,7 +7,9 @@ namespace UF {
     public class RoleTM {
         public string typeName;
         public RoleType roleType;
+        public RoleMoveType moveType;
         public int typeID;
+
 
         // -move
         public float moveSpeed;

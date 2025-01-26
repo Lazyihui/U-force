@@ -65,6 +65,17 @@ namespace UF {
             var fsm = owner.FSMComponent;
             var state = fsm.Status;
 
+            int len = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
+            for (int i = 0; i < len; i += 1) {
+                RoleEntity role = roles[i];
+                // 这里是player和Minion的逻辑
+                RoleDomain.FSM_All_Execute(ctx, role, dt);
+                if (role.MoveType == RoleMoveType.Ghost) {
+                    RoleDomain.Loco_Move_Ghost(ctx, role);
+                }
+            }
+
+            // 这里是主角的逻辑
             if (state == RoleFSMStatus.Normal) {
                 RoleDomain.FSM_Normal_Execute(ctx, owner, dt);
             } else if (state == RoleFSMStatus.Casting) {
@@ -73,7 +84,9 @@ namespace UF {
 
             }
             // 所有状态都要执行
-            RoleDomain.FSM_All_Execute(ctx, owner, dt);
+
+
+
             #endregion
 
             #region  bullet

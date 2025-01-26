@@ -8,8 +8,9 @@ namespace UF {
     public class RoleEntity : MonoBehaviour {
         public IDSignature idSig;
         public RoleType roleType;
-        public RoleMoveType moveType;
         public bool isOwner => roleType == RoleType.Player;
+
+        public RoleMoveType MoveType;
 
         public int typeID;
         public IDSignature belongStage;//在哪一个地图里面
@@ -61,8 +62,6 @@ namespace UF {
             if (roleType == RoleType.Player) {
             }
             if (roleType == RoleType.Minion) {
-                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-                rb.constraints = RigidbodyConstraints2D.FreezePositionY;
             }
         }
 

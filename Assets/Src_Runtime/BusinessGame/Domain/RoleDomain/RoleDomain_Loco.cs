@@ -18,7 +18,7 @@ namespace UF {
             }
             var moveCom = role.MoveComponent;
 
-            RoleMoveType moveType = role.moveType;
+            RoleMoveType moveType = role.MoveType;
 
             if (moveType == RoleMoveType.Player) {
                 if (role.IsGround() && role.AllowPlayerMove()) {
@@ -32,6 +32,7 @@ namespace UF {
             //怎么改
             const float xAxis = -1;
             role.Move_Ghost(xAxis);
+            Debug.Log("Loco_Move_Ghost");
         }
 
         public static void Loco_MoveStop(GameContext ctx, RoleEntity role) {
