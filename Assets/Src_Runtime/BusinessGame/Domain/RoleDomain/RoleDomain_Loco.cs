@@ -25,14 +25,9 @@ namespace UF {
                     role.Move_Player(moveCom.moveSpeed);
                 }
             } else if (moveType == RoleMoveType.Ghost) {
-                Loco_Move_Ghost(ctx, role);
+                role.Move_Ghost(moveCom.moveSpeed);
+
             }
-        }
-        public static void Loco_Move_Ghost(GameContext ctx, RoleEntity role) {
-            //怎么改
-            const float xAxis = -1;
-            role.Move_Ghost(xAxis);
-            Debug.Log("Loco_Move_Ghost");
         }
 
         public static void Loco_MoveStop(GameContext ctx, RoleEntity role) {

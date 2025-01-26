@@ -17,7 +17,7 @@ MonoBehaviour:
     roleType: 1
     moveType: 1
     typeID: 200
-    moveSpeed: 0
-    jumpForce: 0
+    moveSpeed: 5
+    jumpForce: 5
     skillorSoArray: []
     modPrefab: {fileID: 1663118547299982050, guid: 5a620a83dc403ac4088d098d5ecf911b, type: 3}

@@ -70,9 +70,6 @@ namespace UF {
                 RoleEntity role = roles[i];
                 // 这里是player和Minion的逻辑
                 RoleDomain.FSM_All_Execute(ctx, role, dt);
-                if (role.MoveType == RoleMoveType.Ghost) {
-                    RoleDomain.Loco_Move_Ghost(ctx, role);
-                }
             }
 
             // 这里是主角的逻辑

@@ -36,8 +36,9 @@ public class RoleMoveComponent {
         isGround = false;
     }
 
-    public void Move_Ghost(float xAxis) {
+    public void Move_Ghost(float moveSpeed) {
         rb.gravityScale = 0;
+        const float xAxis = -1;
 
         Vector2 oldVelo = rb.velocity;
         oldVelo.x = xAxis * moveSpeed;

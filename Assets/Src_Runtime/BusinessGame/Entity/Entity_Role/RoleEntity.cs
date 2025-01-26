@@ -62,6 +62,7 @@ namespace UF {
             if (roleType == RoleType.Player) {
             }
             if (roleType == RoleType.Minion) {
+                rb.constraints = RigidbodyConstraints2D.FreezePositionY;
             }
         }
 
