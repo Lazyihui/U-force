@@ -39,14 +39,18 @@ namespace UF {
         }
 
         public TowerEntity tempTower;
-        public int GetRandom(out TowerEntity result) {
+        public TowerEntity GetRandom() {
             if (all.Count == 0) {
-                result = null;
-                return all.Count;
+                return null;
             }
-            int index = UnityEngine.Random.Range(0, all.Count);
-            result = temArray[index];
-            return all.Count;
+
+            if (tempTower != null) {
+                return tempTower;
+            }
+            int index = -1;
+            index = UnityEngine.Random.Range(0, all.Count);
+            tempTower = temArray[index];
+            return tempTower;
         }
 
         public void Clear() {

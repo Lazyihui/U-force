@@ -18,22 +18,19 @@ namespace UF {
 
         public static void TrySpawnMinion(GameContext ctx, float dt) {
             // TODO:问j 有没有更好的写法
-            TowerEntity tower = ctx.towerRepository.tempTower;
 
+            TowerEntity tower = ctx.towerRepository.GetRandom();
             if (tower == null) {
-                ctx.towerRepository.GetRandom(out tower);
-                ctx.towerRepository.tempTower = tower;
-            } else {
-                tower.intervalTimer -= dt;
-                if (tower.intervalTimer <= 0) {
-                    RoleDomain.SpawnByPos(ctx, tower.GetPos(), 200);
-                    tower.intervalTimer = tower.interval;
-                    ctx.towerRepository.tempTower = null;
-                }
+                return;
+            }
+            tower.intervalTimer -= dt;
+            if (tower.intervalTimer <= 0) {
+                ctx.towerRepository.tempTower = null;
+                RoleDomain.SpawnByPos(ctx, tower.GetPos(), 200);
+                tower.intervalTimer = tower.interval;
             }
 
             // // 后面改记录Tower可以生成什么种类的怪物
-
             // var game = ctx.gameEntity;
             // game.spawnMinionIntervalTimer -= dt;
             // Debug.Log("game.spawnMinionIntervalTimer: " + game.spawnMinionIntervalTimer);
