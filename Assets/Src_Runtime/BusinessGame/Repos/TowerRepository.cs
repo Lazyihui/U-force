@@ -14,6 +14,7 @@ namespace UF {
         public TowerRepository() {
             all = new Dictionary<IDSignature, TowerEntity>();
             temArray = new TowerEntity[100];
+            tempTower = null;
         }
 
         public void Add(TowerEntity entity) {
@@ -37,6 +38,7 @@ namespace UF {
             return all.TryGetValue(idSig, out entity);
         }
 
+        public TowerEntity tempTower;
         public int GetRandom(out TowerEntity result) {
             if (all.Count == 0) {
                 result = null;

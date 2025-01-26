@@ -15,8 +15,6 @@ namespace UF {
             GameEntity game = ctx.gameEntity;
             game.state = GameState.Login;
            
-
-
         }
 
 

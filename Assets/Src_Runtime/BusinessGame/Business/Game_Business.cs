@@ -52,6 +52,8 @@ namespace UF {
         }
 
         static void PreTick(GameContext ctx, float dt) {
+            // 生成怪物 不需要循环
+            TowerDomain.TrySpawnMinion(ctx, dt);
 
         }
 

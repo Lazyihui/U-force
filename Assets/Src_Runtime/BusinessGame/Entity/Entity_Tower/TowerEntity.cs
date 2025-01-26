@@ -23,6 +23,10 @@ namespace UF {
             transform.position = pos;
         }
 
+        public Vector2 GetPos() {
+            return transform.position;
+        }
+
         public bool AllowSpawn(float dt) {
             intervalTimer -= dt;
             if (intervalTimer <= 0) {
