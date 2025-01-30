@@ -63,7 +63,7 @@ namespace UF {
             GameObject prefab = assetsCore.Entity_GetRole();
             GameObject go = GameObject.Instantiate(prefab);
             RoleEntity role = go.GetComponent<RoleEntity>();
-
+            Debug.Assert(role != null, "role != null");
 
             var mod = RoleMod_Create(typeID, templateCore, role.bodyRoot);
 

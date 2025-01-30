@@ -22,7 +22,7 @@ namespace UF {
         public static RoleEntity SpawnBySpawner(GameContext ctx, RoleSpawnerTM spawnerTM) {
             RoleEntity role = GameFactory.Role_CreateBySpawner(ctx.assetsCore, ctx.templateCore, ctx.idService, spawnerTM);
             ctx.roleRepository.Add(role);
-            return null;
+            return role;
         }
 
         #endregion

@@ -21,13 +21,16 @@ namespace UF {
             }
 
             // Role
-            // for (int i = 0; i < tm.roleSpawns.Length; i += 1) {
-            //     RoleSpawnerTM spawnerTM = tm.roleSpawns[i];
-            //     RoleEntity role = RoleDomain.SpawnBySpawner(ctx, spawnerTM);
-            // }
-            
-            RoleEntity role = RoleDomain.Spawn(ctx, 100);
-            game.OwnerIDsig = role.idSig;
+            for (int i = 0; i < tm.roleSpawns.Length; i += 1) {
+                RoleSpawnerTM spawnerTM = tm.roleSpawns[i];
+                RoleEntity role = RoleDomain.SpawnBySpawner(ctx, spawnerTM);
+                if (role.roleType == RoleType.Player) {
+                    game.OwnerIDsig = role.idSig;
+                }
+            }
+
+            // RoleEntity role = RoleDomain.Spawn(ctx, 100);
+            // game.OwnerIDsig = role.idSig;
             // Tower
             for (int i = 0; i < tm.towerSpawns.Length; i += 1) {
                 TowerSpawnerTM spawnerTM = tm.towerSpawns[i];
