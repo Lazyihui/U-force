@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace UF {
 
@@ -10,6 +11,10 @@ namespace UF {
 
         public float interval;
         public float intervalTimer;
+
+
+        // -sprite
+        public Sprite sprite;
 
     }
 }

@@ -6,7 +6,7 @@ namespace UF {
     [Serializable]
 
     public class StageTM {
-        public int stage;
+        public int stageID;
 
         public RoleSpawnerTM[] roleSpawns;
         public TowerSpawnTM[] towerSpawns;
