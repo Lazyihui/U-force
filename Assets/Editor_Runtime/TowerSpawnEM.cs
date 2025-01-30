@@ -7,7 +7,7 @@ namespace UF {
     [ExecuteInEditMode]
     public class TowerSpawnEM : MonoBehaviour {
 
-        public TowerSpawnTM spawnTM;
+        public TowerSpawnerTM spawnTM;
 
         public void Update() {
             var so = spawnTM.so;

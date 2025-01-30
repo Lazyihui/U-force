@@ -23,6 +23,7 @@ namespace UF {
         [SerializeField] public Transform bodyRoot;
         public Vector2 Centerpos => this.transform.position;
         public void TF_SetPos(Vector2 value) => this.transform.position = value;
+        public void TF_SetRot(Vector3 value) => this.transform.eulerAngles = value;
         Vector2 face;
 
         // user input

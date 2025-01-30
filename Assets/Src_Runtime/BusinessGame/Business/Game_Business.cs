@@ -10,19 +10,29 @@ namespace UF {
 
         public static void Enter(GameContext ctx) {
 
-            GameEntity game = ctx.gameEntity;
-
+            var game = ctx.gameEntity;
             game.state = GameState.Game;
 
+            int stageID = game.stageCurID;
+            bool has = ctx.templateCore.Stage_TryGet(stageID, out StageTM tm);
+            if (!has) {
+                Debug.LogError("StageID not found");
+                return;
+            }
+
+            // Role
+            // for (int i = 0; i < tm.roleSpawns.Length; i += 1) {
+            //     RoleSpawnerTM spawnerTM = tm.roleSpawns[i];
+            //     RoleEntity role = RoleDomain.SpawnBySpawner(ctx, spawnerTM);
+            // }
+            
             RoleEntity role = RoleDomain.Spawn(ctx, 100);
             game.OwnerIDsig = role.idSig;
-
-            TowerDomain.Spawn(ctx, 100, new Vector2(16, 9));
-            TowerDomain.Spawn(ctx, 100, new Vector2(16, 6.5f));
-            TowerDomain.Spawn(ctx, 100, new Vector2(16, 4));
-            TowerDomain.Spawn(ctx, 100, new Vector2(16, 1.5f));
-            TowerDomain.Spawn(ctx, 100, new Vector2(16, -1));
-            TowerDomain.Spawn(ctx, 100, new Vector2(16, -3.5f));
+            // Tower
+            for (int i = 0; i < tm.towerSpawns.Length; i += 1) {
+                TowerSpawnerTM spawnerTM = tm.towerSpawns[i];
+                TowerDomain.SpawnBySpawner(ctx, spawnerTM);
+            }
 
         }
 
@@ -61,7 +71,7 @@ namespace UF {
 
             #region Role
             RoleEntity owner = ctx.Get_Owner();
-
+            Debug.Assert(owner != null, "owner != null");
             RoleDomain.Input_Record(ctx, owner, dt);
 
             var fsm = owner.FSMComponent;

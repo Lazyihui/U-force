@@ -8,6 +8,7 @@ namespace UF {
 
         public float restFixTime;
         public GameState state;
+        public int stageCurID;
 
         public IDSignature OwnerIDsig;
 
@@ -18,6 +19,8 @@ namespace UF {
 
             spawnMinionInterval = 2;
             spawnMinionIntervalTimer = 0;
+
+            stageCurID = 0;
 
         }
 

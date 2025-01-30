@@ -11,6 +11,8 @@ namespace UF {
         GameContext ctx;
         [SerializeField] Canvas screenCanvas;
 
+        public int stageCurID;
+
         bool isInit = false;
 
         bool isTearDown = false;
@@ -20,6 +22,8 @@ namespace UF {
             ctx = new GameContext();
             ctx.Inject(screenCanvas);
 
+            var game = ctx.gameEntity;
+            game.stageCurID = stageCurID;
             // ---  Binding  ---
             Binding();
 
@@ -66,7 +70,7 @@ namespace UF {
             //GamePause
             UIEvent.OnContinueHandle += () => {
                 ctx.appUI.Panel_GamePause_Close();
-                
+
                 //不知道可不可以这么写
                 var game = ctx.gameEntity;
                 game.state = GameState.Game;

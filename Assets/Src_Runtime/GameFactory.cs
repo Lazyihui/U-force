@@ -6,8 +6,8 @@ namespace UF {
 
     public static class GameFactory {
 
-        public static RoleEntity Role_CreateBySpawner(AssetsCore assetsCore, TemplateCore templateCore,
-         IDService idService, Vector3 pos, int typeID) {
+        public static RoleEntity Role_Create(AssetsCore assetsCore, TemplateCore templateCore,
+         IDService idService, int typeID) {
 
             bool has = templateCore.Role_TryGet(typeID, out var tm);
             if (!has) {
@@ -51,7 +51,55 @@ namespace UF {
             return role;
         }
 
+        public static RoleEntity Role_CreateBySpawner(AssetsCore assetsCore, TemplateCore templateCore, IDService idService, RoleSpawnerTM spawnerTM) {
 
+            int typeID = spawnerTM.so.tm.typeID;
+
+            bool has = templateCore.Role_TryGet(typeID, out var tm);
+            if (!has) {
+                Debug.LogError("Role_Create: tm is null" + typeID);
+                return null;
+            }
+            GameObject prefab = assetsCore.Entity_GetRole();
+            GameObject go = GameObject.Instantiate(prefab);
+            RoleEntity role = go.GetComponent<RoleEntity>();
+
+
+            var mod = RoleMod_Create(typeID, templateCore, role.bodyRoot);
+
+            role.idSig = new IDSignature(EntityType.Role, idService.PickRoleID());
+            role.roleType = tm.roleType;
+            role.MoveType = tm.moveType;
+
+            role.Ctor();
+            role.Inject(mod);
+            // TODO:
+            role.Set_RbConstraints();
+
+            // -move
+            var moveCom = role.MoveComponent;
+            moveCom.SetMoveSpeed(tm.moveSpeed);
+            moveCom.SetJumpForce(tm.jumpForce);
+
+            // - Spawn
+            role.TF_SetPos(spawnerTM.position);
+            role.TF_SetRot(spawnerTM.rotation);
+
+            // - Skillor
+            var skillorCom = role.skillorSlotComponent;
+            var skillorTMArray = tm.skillorSoArray;
+
+            if (skillorTMArray != null) {
+                for (int i = 0; i < skillorTMArray.Length; i += 1) {
+                    var skillSo = skillorTMArray[i];
+                    var skillor = Skillor_Create(assetsCore, templateCore, idService, skillSo.tm.typeID);
+                    skillorCom.Add(skillor);
+                }
+            }
+
+
+            return role;
+        }
         public static BulletEntity Bullet_Create(AssetsCore assetsCore, TemplateCore templateCore,
          IDService idService, int typeID, Vector3 pos, Vector3 dir) {
             bool has = templateCore.Bullet_TryGet(typeID, out var tm);
@@ -149,6 +197,31 @@ namespace UF {
             tower.typeID = typeID;
 
             tower.TF_SetPos(pos);
+            tower.Ctor();
+
+            return tower;
+        }
+
+        public static TowerEntity Tower_CreateBySpawner(AssetsCore assetsCore, TemplateCore templateCore, IDService idService, TowerSpawnerTM spawnerTM) {
+            int typeID = spawnerTM.so.tm.typeID;
+
+            bool has = templateCore.Tower_TryGet(typeID, out var tm);
+            if (!has) {
+                Debug.LogError("Tower_Create: tm is null" + typeID);
+                return null;
+            }
+
+            GameObject prefab = assetsCore.Entity_GetTower();
+            GameObject go = GameObject.Instantiate(prefab);
+            TowerEntity tower = go.GetComponent<TowerEntity>();
+
+
+            tower.idSig = new IDSignature(EntityType.Tower, idService.PickTowerID());
+            tower.typeID = typeID;
+
+            tower.TF_SetPos(spawnerTM.position);
+            tower.TF_SetRot(spawnerTM.rotation);
+
             tower.Ctor();
 
             return tower;

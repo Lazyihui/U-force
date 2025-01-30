@@ -16,6 +16,13 @@ namespace UF {
             return entity;
         }
 
+
+        public static TowerEntity SpawnBySpawner(GameContext ctx, TowerSpawnerTM spawnerTM) {
+            TowerEntity entity = GameFactory.Tower_CreateBySpawner(ctx.assetsCore, ctx.templateCore, ctx.idService, spawnerTM);
+            ctx.towerRepository.Add(entity);
+            return entity;
+        }
+
         public static void TrySpawnMinion(GameContext ctx, float dt) {
             // TODO:问j 有没有更好的写法
 

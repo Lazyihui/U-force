@@ -298,6 +298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenCanvas: {fileID: 1048736742}
+  stageCurID: 1
 --- !u!1 &1048736739
 GameObject:
   m_ObjectHideFlags: 0

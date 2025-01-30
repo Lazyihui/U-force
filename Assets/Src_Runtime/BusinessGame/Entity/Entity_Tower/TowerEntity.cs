@@ -23,6 +23,10 @@ namespace UF {
             transform.position = pos;
         }
 
+        public void TF_SetRot(Vector3 rot) {
+            transform.eulerAngles = rot;
+        }
+
         public Vector2 GetPos() {
             return transform.position;
         }

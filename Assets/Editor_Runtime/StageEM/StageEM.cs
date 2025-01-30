@@ -50,7 +50,7 @@ namespace UF {
         public void SaveTower() {
             TowerSpawnEM[] towersEM = GetComponentsInChildren<TowerSpawnEM>();
             Debug.Log("towerEM.Length = " + towersEM.Length);
-            TowerSpawnTM[] towersTM = new TowerSpawnTM[towersEM.Length];
+            TowerSpawnerTM[] towersTM = new TowerSpawnerTM[towersEM.Length];
 
             for (int i = 0; i < towersEM.Length; i++) {
                 TowerSpawnEM em = towersEM[i];

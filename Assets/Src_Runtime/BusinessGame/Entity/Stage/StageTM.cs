@@ -9,7 +9,7 @@ namespace UF {
         public int stageID;
 
         public RoleSpawnerTM[] roleSpawns;
-        public TowerSpawnTM[] towerSpawns;
+        public TowerSpawnerTM[] towerSpawns;
 
     }
 }

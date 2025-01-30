@@ -8,7 +8,7 @@ namespace UF {
         #region LifeCycle
 
         public static RoleEntity Spawn(GameContext ctx, int typeID) {
-            RoleEntity role = GameFactory.Role_CreateBySpawner(ctx.assetsCore, ctx.templateCore, ctx.idService, Vector3.zero, typeID);
+            RoleEntity role = GameFactory.Role_Create(ctx.assetsCore, ctx.templateCore, ctx.idService, typeID);
             ctx.roleRepository.Add(role);
             return role;
         }
@@ -20,8 +20,8 @@ namespace UF {
         }
 
         public static RoleEntity SpawnBySpawner(GameContext ctx, RoleSpawnerTM spawnerTM) {
-
-            Debug.Log("RoleDomain.SpawnBySpawner");
+            RoleEntity role = GameFactory.Role_CreateBySpawner(ctx.assetsCore, ctx.templateCore, ctx.idService, spawnerTM);
+            ctx.roleRepository.Add(role);
             return null;
         }
 
@@ -87,6 +87,9 @@ namespace UF {
         #region Input   
 
         public static void Input_Record(GameContext ctx, RoleEntity role, float dt) {
+            Debug.Assert(role != null, "RoleDomain.Input_Record role == null");
+            Debug.Assert(ctx != null, "RoleDomain.Input_Record ctx == null");
+            Debug.Assert(role.InputComponent != null, "RoleDomain.Input_Record role.InputComponent == null");
             var inputCom = role.InputComponent;
             var inputModule = ctx.inputModule;
 
