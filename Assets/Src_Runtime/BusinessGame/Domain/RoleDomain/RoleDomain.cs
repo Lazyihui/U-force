@@ -94,7 +94,10 @@ namespace UF {
             var inputModule = ctx.inputModule;
 
             inputCom.Jump_Set(inputModule.IsJump);
-            inputCom.RecoredCastKey(inputModule.InputKey);
+            if (inputModule.InputCastKey != InputKeyFlag.None) {
+                Debug.LogWarning("inputModule.InputKey:" + inputModule.InputCastKey);
+            }
+            inputCom.RecoredCastKey(inputModule.InputCastKey);
         }
 
         #endregion
@@ -109,6 +112,8 @@ namespace UF {
                 bool succ = Skillor_Cast(ctx, role, skill, dt);
                 if (succ) {
                     Debug.Log("Skillor_Input_FlushKeys succ");
+                } else {
+                    Debug.Log("Skillor_Input_FlushKeys fail");
                 }
             }
         }

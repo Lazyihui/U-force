@@ -9,8 +9,8 @@ namespace UF {
         InputControls_Player player1;
         public InputControls_Player Player1 => player1;
 
-        InputKeyFlag inputKey;
-        public InputKeyFlag InputKey => inputKey;
+        InputKeyFlag inputCastKey;
+        public InputKeyFlag InputCastKey => inputCastKey;
 
         bool isJump;
         public bool IsJump => isJump;
@@ -28,28 +28,29 @@ namespace UF {
             var world = player1.World;
 
             // -Input
-            inputKey = InputKeyFlag.None;
             {
                 bool isJumpDown = world.Jump.WasPressedThisFrame();
                 isJump = isJumpDown;
             }
 
-            // -Attack
-            inputKey = InputKeyFlag.None;
-            {
-                bool isAttackDown = world.Attack.WasPressedThisFrame();
-
-                if (isAttackDown) {
-                    inputKey |= InputKeyFlag.Attack;
-                }
-            }
-
             // -Pause
-            inputKey = InputKeyFlag.None;
             {
                 bool isPauseDown = world.Pause.WasPressedThisFrame();
                 //TODO: Pause
             }
+
+            // 技能
+            // -Attack
+            inputCastKey = InputKeyFlag.None;
+            {
+                bool isAttackDown = world.Attack.WasPressedThisFrame();
+
+                if (isAttackDown) {
+                    inputCastKey |= InputKeyFlag.Attack;
+                    Debug.Log("inputkey:" + inputCastKey);
+                }
+            }
+
         }
 
 

@@ -152,12 +152,12 @@ namespace UF {
             InputKeyFlag inputKeys = inputcom.CastKeys;
 
             SkillModel result = null;
-
             int len = skillor.TakeSkillsByFlushInput(out SkillModel[] skills, inputKeys);
             for (int i = 0; i < len; i++) {
                 var skill = skills[i];
                 if (skill != null) {
                     result = skill;
+                    Debug.Log("Skill_GetByInput");
                     break;
                 }
             }
