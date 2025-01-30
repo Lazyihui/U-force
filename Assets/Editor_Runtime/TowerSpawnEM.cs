@@ -9,14 +9,14 @@ namespace UF {
 
         public TowerSpawnTM spawnTM;
 
-        public void Upate() {
+        public void Update() {
             var so = spawnTM.so;
             if (so == null) {
                 return;
             }
 
             var tm = so.tm;
-            string n = "towerSpawn_" + tm.typeName;
+            string n = "tower_" + tm.typeName;
             if (gameObject.name != n) {
                 gameObject.name = n;
             }
@@ -39,7 +39,6 @@ namespace UF {
         [ContextMenu("Save")]
 
         public void Save() {
-            Debug.Log("Save_TowerSpawnEM");
             spawnTM.position = transform.position;
             spawnTM.rotation = transform.rotation.eulerAngles;
         }

@@ -61,6 +61,17 @@ namespace UF {
                 }
                 ctx.towerPtr = handle;
             }
+            {
+                AssetLabelReference labelReference = new AssetLabelReference();
+                labelReference.labelString = "So_Stage";
+                var handle = Addressables.LoadAssetsAsync<StageSo>(labelReference, null);
+                var all = await handle.Task;
+                foreach (var so in all) {
+                    var tm = so.tm;
+                    ctx.Stage_Add(tm);
+                }
+                ctx.stagePtr = handle;
+            }
 
         }
         // 找种类的Role
@@ -80,6 +91,10 @@ namespace UF {
             return ctx.towers.TryGetValue(typeID, out tower);
         }
 
+        public bool Stage_TryGet(int stageID, out StageTM stage) {
+            return ctx.stages.TryGetValue(stageID, out stage);
+        }
+
         public void UnLoadAll() {
             if (ctx.rolePtr.IsValid()) {
                 Addressables.Release(ctx.rolePtr);
@@ -92,6 +107,9 @@ namespace UF {
             }
             if (ctx.towerPtr.IsValid()) {
                 Addressables.Release(ctx.towerPtr);
+            }
+            if (ctx.stagePtr.IsValid()) {
+                Addressables.Release(ctx.stagePtr);
             }
         }
 

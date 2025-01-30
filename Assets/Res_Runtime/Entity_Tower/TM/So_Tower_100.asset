@@ -15,3 +15,6 @@ MonoBehaviour:
   tm:
     typeName: tower
     typeID: 100
+    interval: 0
+    intervalTimer: 0
+    sprite: {fileID: 21300000, guid: 132f673f132cff04c8528168745d9366, type: 3}

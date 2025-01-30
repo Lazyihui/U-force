@@ -20,11 +20,15 @@ namespace UF.TemplateInternal {
         public Dictionary<int, TowerTM> towers;
         public AsyncOperationHandle towerPtr;
 
+        public Dictionary<int, StageTM> stages;
+        public AsyncOperationHandle stagePtr;
+
         public TemplateContext() {
             roles = new Dictionary<int, RoleTM>();
             bullets = new Dictionary<int, BulletTM>();
             skills = new Dictionary<int, SkillorTM>();
             towers = new Dictionary<int, TowerTM>();
+            stages = new Dictionary<int, StageTM>();
         }
 
 
@@ -43,5 +47,10 @@ namespace UF.TemplateInternal {
         public void Tower_Add(TowerTM tower) {
             towers.Add(tower.typeID, tower);
         }
+
+        public void Stage_Add(StageTM stage) {
+            stages.Add(stage.stageID, stage);
+        }
+
     }
 }

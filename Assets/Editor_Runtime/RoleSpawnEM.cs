@@ -10,7 +10,8 @@ namespace UF {
     public class RoleSpawnerEM : MonoBehaviour {
         public RoleSpawnerTM spawnTM;
 
-        void Upate() {
+        void Update() {
+
 
             var so = spawnTM.so;
             if (so == null) {
@@ -18,7 +19,7 @@ namespace UF {
             }
 
             var tm = so.tm;
-            string n = "roleSpawn_" + tm.typeName;
+            string n = "role_" + tm.typeName;
             if(gameObject.name != n) {
                 gameObject.name = n;
             }

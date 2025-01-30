@@ -11,6 +11,7 @@ namespace UF {
 
         [SerializeField] GameObject mapEntity;
 
+        [ContextMenu("save")]
         public void Save() {
 
             string n = "stage_" + stageID;
@@ -25,6 +26,7 @@ namespace UF {
 
             // 引用所有的TM
             SaveRole();
+            SaveTower();
         }
 
 
