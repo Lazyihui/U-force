@@ -19,10 +19,10 @@ namespace UF {
 
         // -life
         public int hp;
+        public int hurt;
 
-        // -hit
-        public int hitTimes;
-        public int hitMaxTimes;
+        public int hitTimes;//击中次数 可以集中几下
+        public int hitMaxTimes;//最大击中次数
 
         // -Frames
         public List<BulletFrameMod> frames;

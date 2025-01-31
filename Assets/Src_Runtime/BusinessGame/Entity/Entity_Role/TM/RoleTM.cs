@@ -10,6 +10,9 @@ namespace UF {
         public RoleMoveType moveType;
         public int typeID;
 
+        // -Life
+        public int hp;
+
 
         // -move
         public float moveSpeed;

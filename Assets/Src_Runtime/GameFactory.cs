@@ -18,7 +18,7 @@ namespace UF {
             GameObject go = GameObject.Instantiate(prefab);
             RoleEntity role = go.GetComponent<RoleEntity>();
             string n = "Entity_Role_" + tm.typeName;
-            if(go.name != n) {
+            if (go.name != n) {
                 go.name = n;
             }
 
@@ -37,6 +37,10 @@ namespace UF {
             var moveCom = role.MoveComponent;
             moveCom.SetMoveSpeed(tm.moveSpeed);
             moveCom.SetJumpForce(tm.jumpForce);
+
+            // -Attribute
+            role.Attr_Hp_Set(tm.hp);
+            role.Attr_HpMax_Set(tm.hp);
 
             // - Skillor
             var skillorCom = role.skillorSlotComponent;
@@ -88,6 +92,11 @@ namespace UF {
             role.TF_SetPos(spawnerTM.position);
             role.TF_SetRot(spawnerTM.rotation);
 
+            // -Attribute
+            role.Attr_Hp_Set(tm.hp);
+            role.Attr_HpMax_Set(tm.hp);
+
+
             // - Skillor
             var skillorCom = role.skillorSlotComponent;
             var skillorTMArray = tm.skillorSoArray;
@@ -136,6 +145,7 @@ namespace UF {
             bullet.typeID = typeID;
             bullet.type = tm.type;
             bullet.hp = tm.hp;
+            bullet.hurt = tm.attackHurt;
             bullet.hitMaxTimes = tm.hitTimes;
             bullet.hitTimes = tm.hitTimes;
             bullet.isBomb = tm.isBomb;
@@ -147,6 +157,7 @@ namespace UF {
 
             bullet.TF_SetPosition(pos);
             bullet.TF_SetRotation(dir);
+
 
             return bullet;
         }

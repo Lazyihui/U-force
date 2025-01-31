@@ -12,6 +12,7 @@ namespace UF {
         [Title("life")]
         public int hp;
         public int hitTimes;
+        public int attackHurt;
 
         public bool isBomb;
 

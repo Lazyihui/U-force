@@ -205,13 +205,12 @@ namespace UF {
                 if (dis < radius) {
                     Debug.Log("detectionMinionByPos");
                     // player扣血 或者失败  
-                    
+
                     // minion死掉或者扣血
                 }
             }
         }
 
-        
 
         #endregion
     }

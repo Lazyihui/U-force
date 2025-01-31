@@ -48,8 +48,8 @@ namespace UF {
                 float dis = Vector3.Distance(minion.TF_GetPos(), pos);
 
                 if (dis < 1.0f) {
-                    Debug.Log("打到敌人");
-
+                    Debug.Log("打到敌人 伤害");
+                    
 
                 }
 

@@ -49,12 +49,17 @@ namespace UF {
         // pos
         public RoleSpawnerPosComponent spawnerPosComponent;
 
+        // -attribute
+        RoleAttributeComponent attributeComponent;
+        public RoleAttributeComponent AttributeComponent => attributeComponent;
+
         public void Ctor() {
             fsmComponent = new RoleFSMConponent();
             skillorSlotComponent = new RoleSkillSlotComponent();
             inputComponent = new RoleInputComponent();
             moveComponent = new RoleMoveComponent();
             spawnerPosComponent = new RoleSpawnerPosComponent();
+            attributeComponent = new RoleAttributeComponent();
 
             moveComponent.Inject(rb);
         }
@@ -131,6 +136,18 @@ namespace UF {
         public Vector2 GetVelocity() {
             return rb.velocity;
         }
+
+        #region Attribute
+
+        public void Attr_Hp_Set(int value) {
+            attributeComponent.SetHp(value);
+        }
+
+        public void Attr_HpMax_Set(int value) {
+            attributeComponent.SetHpMax(value);
+        }
+
+        #endregion
 
         public SkillFrameModel Skillor_CurrentFrame() {
 
