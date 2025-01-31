@@ -179,7 +179,6 @@ namespace UF {
                 var skill = skills[i];
                 if (skill != null) {
                     result = skill;
-                    Debug.Log("Skill_GetByInput");
                     break;
                 }
             }

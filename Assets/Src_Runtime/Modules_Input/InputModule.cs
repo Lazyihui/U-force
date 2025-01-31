@@ -47,7 +47,6 @@ namespace UF {
 
                 if (isAttackDown) {
                     inputCastKey |= InputKeyFlag.Attack;
-                    Debug.Log("inputkey:" + inputCastKey);
                 }
             }
 

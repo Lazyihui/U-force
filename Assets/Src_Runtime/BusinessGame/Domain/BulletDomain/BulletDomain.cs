@@ -18,6 +18,12 @@ namespace UF {
             var BulletEntity = BulletDomain.Spawn(ctx, spawnerTM.bulletSo.tm.typeID, spawnerTM.spawnPos.position, spawnerTM.spawnDir.position);
             return BulletEntity;
         }
+
+        public static void UnSpawn(GameContext ctx, BulletEntity bullet) {
+            ctx.bulletRepository.Remove(bullet);
+            bullet.TearDown();
+        }
+
         #endregion
 
         #region FSM
@@ -48,12 +54,13 @@ namespace UF {
                 float dis = Vector3.Distance(minion.TF_GetPos(), pos);
 
                 if (dis < 1.0f) {
-                    Debug.Log("打到敌人 伤害");
-                    
+                    RoleDomain.HpReduce(ctx, minion, bullet.damage);
+                    bullet.hitTimes -= 1;
 
+                    if (bullet.hitTimes <= 0) {
+                        UnSpawn(ctx, bullet);
+                    }
                 }
-
-
             }
         }
 

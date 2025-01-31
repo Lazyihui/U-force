@@ -19,7 +19,7 @@ namespace UF {
 
         // -life
         public int hp;
-        public int hurt;
+        public int damage;
 
         public int hitTimes;//击中次数 可以集中几下
         public int hitMaxTimes;//最大击中次数
@@ -53,6 +53,10 @@ namespace UF {
             isDead |= frameIndex >= frames.Count;
             */
             return isDead;
+        }
+
+        public void TearDown() {
+            GameObject.Destroy(gameObject);
         }
 
         #region  Locomotion

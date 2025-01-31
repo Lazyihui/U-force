@@ -44,7 +44,6 @@ namespace UF {
 
         public bool isFitInputKey(InputKeyFlag InputKey) {
             if (InputKey == castKeys) {
-                Debug.Log("isFitInputKey");
                 return true;
             }
             return false;

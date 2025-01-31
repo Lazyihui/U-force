@@ -145,7 +145,7 @@ namespace UF {
             bullet.typeID = typeID;
             bullet.type = tm.type;
             bullet.hp = tm.hp;
-            bullet.hurt = tm.attackHurt;
+            bullet.damage = tm.attackDamage;
             bullet.hitMaxTimes = tm.hitTimes;
             bullet.hitTimes = tm.hitTimes;
             bullet.isBomb = tm.isBomb;

@@ -77,7 +77,6 @@ namespace UF {
                 var spawnTM = model.bulletSpawnerTM;
                 spawnTM.spawnPos.position = role.GetMuzzlePos();
                 BulletDomain.SpawnByRole_Spawner(ctx, role, spawnTM);
-                Debug.LogWarning("RoleDomain.SpawnBullet");
             }
 
             if (model.hasBulletTearDown) {
@@ -99,9 +98,6 @@ namespace UF {
             var inputModule = ctx.inputModule;
 
             inputCom.Jump_Set(inputModule.IsJump);
-            if (inputModule.InputCastKey != InputKeyFlag.None) {
-                Debug.LogWarning("inputModule.InputKey:" + inputModule.InputCastKey);
-            }
             inputCom.RecoredCastKey(inputModule.InputCastKey);
         }
 
@@ -115,11 +111,6 @@ namespace UF {
             SkillModel skill = role.Skill_GetByInput();
             if (skill != null) {
                 bool succ = Skillor_Cast(ctx, role, skill, dt);
-                if (succ) {
-                    Debug.Log("Skillor_Input_FlushKeys succ");
-                } else {
-                    Debug.Log("Skillor_Input_FlushKeys fail");
-                }
             }
         }
 
@@ -208,6 +199,17 @@ namespace UF {
 
                     // minion死掉或者扣血
                 }
+            }
+        }
+
+        public static void HpReduce(GameContext ctx, RoleEntity role, int damage) {
+            var attCom = role.AttributeComponent;
+            int finalHp = attCom.hp - damage;
+            role.Attr_Hp_Set(finalHp);
+
+            if (attCom.hp <= 0) {
+                Debug.Log("要改死亡,死亡要改成掉到地上在死亡 会对同为敌人的minion造成伤害");
+                UnSpawn(ctx, role);
             }
         }
 
