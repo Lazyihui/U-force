@@ -28,9 +28,35 @@ namespace UF {
         }
         #endregion
 
+        #region  Loco 行为
         public static void Loco_Shaped(GameContext ctx, BulletEntity bullet) {
             bullet.Loco_Shaped();
         }
+        #endregion
 
+        #region detection
+
+        public static void detectionMinionByPos(GameContext ctx, BulletEntity bullet, Vector3 pos) {
+
+            int len = ctx.roleRepository.TakeAll(out RoleEntity[] minions);
+            for (int i = 0; i < len; i += 1) {
+                RoleEntity minion = minions[i];
+                if (minion.roleType == RoleType.Player) {
+                    continue;
+                }
+
+                float dis = Vector3.Distance(minion.TF_GetPos(), pos);
+
+                if (dis < 1.0f) {
+                    Debug.Log("打到敌人");
+
+
+                }
+
+
+            }
+        }
+
+        #endregion
     }
 }

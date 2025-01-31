@@ -24,6 +24,7 @@ namespace UF {
         public Vector2 Centerpos => this.transform.position;
         public void TF_SetPos(Vector2 value) => this.transform.position = value;
         public void TF_SetRot(Vector3 value) => this.transform.eulerAngles = value;
+        public Vector3 TF_GetPos() => this.transform.position;
         Vector2 face;
 
         // user input
@@ -56,6 +57,10 @@ namespace UF {
             spawnerPosComponent = new RoleSpawnerPosComponent();
 
             moveComponent.Inject(rb);
+        }
+
+        public void TearDown() {
+            GameObject.Destroy(gameObject);
         }
 
         public void Set_RbConstraints() {

@@ -42,6 +42,7 @@ namespace UF {
 
         public BulletMod mod;
         public Vector2 centerPos => this.transform.position;
+        public Vector3 TF_GetPos() => this.transform.position;
 
 
         public bool IsDead() {
@@ -58,7 +59,7 @@ namespace UF {
 
         public void Loco_Shaped() {
             // 向右移动
-            rb.velocity = new Vector2(1, 0)*moveSpeed;
+            rb.velocity = new Vector2(1, 0) * moveSpeed;
         }
 
         #endregion

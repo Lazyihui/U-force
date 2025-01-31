@@ -74,8 +74,10 @@ namespace UF {
 
             #region Role
             RoleEntity owner = ctx.Get_Owner();
-            Debug.Assert(owner != null, "owner != null");
+
+            // Player的逻辑
             RoleDomain.Input_Record(ctx, owner, dt);
+            RoleDomain.detectionMinionByPos(ctx, owner, owner.TF_GetPos());
 
             var fsm = owner.FSMComponent;
             var state = fsm.Status;
@@ -108,6 +110,7 @@ namespace UF {
             for (int i = 0; i < bulletLen; i += 1) {
                 BulletEntity bullet = bullets[i];
                 BulletDomain.FSM_All_Execute(ctx, bullet, dt);
+                BulletDomain.detectionMinionByPos(ctx, bullet, bullet.TF_GetPos());
             }
 
             #endregion

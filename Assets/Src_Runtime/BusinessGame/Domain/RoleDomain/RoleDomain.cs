@@ -25,6 +25,11 @@ namespace UF {
             return role;
         }
 
+        public static void UnSpawn(GameContext ctx, RoleEntity role) {
+            ctx.roleRepository.Remove(role);
+            role.TearDown();
+        }
+
         #endregion
 
         #region Act 行为
@@ -175,6 +180,38 @@ namespace UF {
 
             return true;
         }
+
+        #endregion
+
+        #region Player physics
+
+        public static void detectionMinionByPos(GameContext ctx, RoleEntity role, Vector2 pos) {
+            // 检测周围的minion 碰到扣血
+
+            int len = ctx.roleRepository.TakeAll(out RoleEntity[] minions);
+
+            for (int i = 0; i < len; i++) {
+
+                var minion = minions[i];
+                if (minion == role) {
+                    continue;
+                }
+
+                float dis = Vector2.Distance(minion.TF_GetPos(), pos);
+
+                // TODO:
+                float radius = 1.0f;
+
+                if (dis < radius) {
+                    Debug.Log("detectionMinionByPos");
+                    // player扣血 或者失败  
+                    
+                    // minion死掉或者扣血
+                }
+            }
+        }
+
+        
 
         #endregion
     }
