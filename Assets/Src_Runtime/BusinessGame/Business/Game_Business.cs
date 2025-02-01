@@ -37,6 +37,7 @@ namespace UF {
                 TowerDomain.SpawnBySpawner(ctx, spawnerTM);
             }
 
+
         }
 
 
@@ -93,7 +94,6 @@ namespace UF {
             if (state == RoleFSMStatus.Normal) {
                 RoleDomain.FSM_Normal_Execute(ctx, owner, dt);
             } else if (state == RoleFSMStatus.Casting) {
-                Debug.Log("Casting_Execute");
                 RoleDomain.FSM_Casting_Execute(ctx, owner, dt);
             } else if (state == RoleFSMStatus.Dead) {
 

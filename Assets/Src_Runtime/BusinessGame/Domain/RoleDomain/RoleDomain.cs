@@ -189,13 +189,13 @@ namespace UF {
                 }
 
                 float dis = Vector2.Distance(minion.TF_GetPos(), pos);
-
                 // TODO:
-                float radius = 1.0f;
+                float radius = 1.5f;
 
                 if (dis < radius) {
                     Debug.Log("detectionMinionByPos");
                     // player扣血 或者失败  
+                    HpReduce(ctx, role, 1);
 
                     // minion死掉或者扣血
                 }
@@ -209,7 +209,15 @@ namespace UF {
 
             if (attCom.hp <= 0) {
                 Debug.Log("要改死亡,死亡要改成掉到地上在死亡 会对同为敌人的minion造成伤害");
-                UnSpawn(ctx, role);
+                role.SetRoleState(RoleState.Fall);
+
+                // 解除y的限制
+                role.Set_RbConstraints(RigidbodyConstraints2D.FreezeRotation);
+
+                // 解除移动速度
+
+
+                // UnSpawn(ctx, role);
             }
         }
 

@@ -98,8 +98,6 @@ namespace UF {
                     // var nextFrame = frames[actionIndex];
                     // RoleDomain.Skillor_Act_BeforeActing(ctx, role, stateModel, nextFrame, dt);// 重置
                     FSM_Casting_Exit(ctx, role, dt);
-                    Debug.Log("FSM_Casting_Exit");
-
                 }
             }
         }

@@ -17,6 +17,11 @@ namespace UF {
             if (dt <= 0) {
                 return;
             }
+
+            if (role.state == RoleState.Fall) {
+                return;
+            }
+
             var moveCom = role.MoveComponent;
 
             RoleMoveType moveType = role.MoveType;

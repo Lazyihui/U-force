@@ -56,6 +56,10 @@ public class RoleMoveComponent {
         rb.bodyType = RigidbodyType2D.Static;
     }
 
+    public void Fall() {
+        
+    }
+
     public void Move_Reset() {
         rb.bodyType = RigidbodyType2D.Dynamic;
 

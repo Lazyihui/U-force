@@ -8,6 +8,7 @@ namespace UF {
         public string typeName;
         public RoleType roleType;
         public RoleMoveType moveType;
+        public RoleState roleState;
         public int typeID;
 
         // -Life

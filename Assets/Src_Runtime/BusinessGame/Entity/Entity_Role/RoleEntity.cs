@@ -10,6 +10,9 @@ namespace UF {
         public RoleType roleType;
         public bool isOwner => roleType == RoleType.Player;
 
+        public RoleState state;
+        public void SetRoleState(RoleState value) => state = value;
+
         public RoleMoveType MoveType;
 
         public int typeID;
@@ -77,6 +80,13 @@ namespace UF {
             }
         }
 
+        public void Set_RbConstraints(RigidbodyConstraints2D constraints) {
+            // TODO:player的不一样
+            rb.constraints = RigidbodyConstraints2D.None;
+            Debug.Log("Set_RbConstraints");
+            // rb.constraints = constraints;
+        }
+
         public void Inject(RoleMod mod) {
             this.mod = mod;
         }
@@ -95,8 +105,8 @@ namespace UF {
             moveComponent.Move_Player(moveSpeed);
         }
 
-        public void Move_Ghost(float xAxis) {
-            moveComponent.Move_Ghost(xAxis);
+        public void Move_Ghost(float moveSpeed) {
+            moveComponent.Move_Ghost(moveSpeed);
         }
 
         public void Move_Stop() {
@@ -105,6 +115,10 @@ namespace UF {
 
         public void Move_Reset() {
             moveComponent.Move_Reset();
+        }
+
+        public void Fall() {
+
         }
 
         public void Jump() {
