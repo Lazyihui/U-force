@@ -72,19 +72,19 @@ namespace UF {
         }
 
         public void Set_RbConstraints() {
-            // TODO:先写在这里
             if (roleType == RoleType.Player) {
+                moveComponent.Set_PlayerRbConstraints();
             }
             if (roleType == RoleType.Minion) {
-                rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+                if (state == RoleState.Fall)
+                {
+                    moveComponent.Set_FallRbConstraints();
+                }
+                else
+                {
+                    moveComponent.Set_MinionRbConstraints();
+                }
             }
-        }
-
-        public void Set_RbConstraints(RigidbodyConstraints2D constraints) {
-            // TODO:player的不一样
-            rb.constraints = RigidbodyConstraints2D.None;
-            Debug.Log("Set_RbConstraints");
-            // rb.constraints = constraints;
         }
 
         public void Inject(RoleMod mod) {
@@ -118,7 +118,7 @@ namespace UF {
         }
 
         public void Fall() {
-
+            moveComponent.Fall();
         }
 
         public void Jump() {

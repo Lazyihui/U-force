@@ -210,9 +210,10 @@ namespace UF {
             if (attCom.hp <= 0) {
                 Debug.Log("要改死亡,死亡要改成掉到地上在死亡 会对同为敌人的minion造成伤害");
                 role.SetRoleState(RoleState.Fall);
+                role.Fall();
 
                 // 解除y的限制
-                role.Set_RbConstraints(RigidbodyConstraints2D.FreezeRotation);
+                role.Set_RbConstraints();
 
                 // 解除移动速度
 

@@ -29,6 +29,18 @@ public class RoleMoveComponent {
         isGround = false;
     }
 
+    public void Set_PlayerRbConstraints() {
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+    }
+
+    public void Set_MinionRbConstraints() {
+        rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+    }
+
+    public void Set_FallRbConstraints() {
+        rb.constraints = RigidbodyConstraints2D.None;
+    }
+
     public void Inject(Rigidbody2D rb) {
         this.rb = rb;
     }
@@ -57,7 +69,8 @@ public class RoleMoveComponent {
     }
 
     public void Fall() {
-        
+        rb.gravityScale = 1;
+        rb.velocity = Vector2.zero;
     }
 
     public void Move_Reset() {
