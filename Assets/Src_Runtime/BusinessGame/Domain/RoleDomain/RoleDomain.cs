@@ -245,6 +245,11 @@ namespace UF {
 
         // 书否是死亡状态 
         public static void IsDeadState(GameContext ctx, RoleEntity role) {
+
+            if (role.GetPos().x < -19) {
+                role.SetRoleState(RoleState.Dead);
+            }
+
             if (role.state != RoleState.Dead) {
                 return;
             }
