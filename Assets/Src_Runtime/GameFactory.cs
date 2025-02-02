@@ -27,6 +27,8 @@ namespace UF {
             role.idSig = new IDSignature(EntityType.Role, idService.PickRoleID());
             role.roleType = tm.roleType;
             role.MoveType = tm.moveType;
+            role.SetRoleState(tm.roleState);
+
 
             role.Ctor();
             role.Inject(mod);
@@ -77,7 +79,7 @@ namespace UF {
             role.idSig = new IDSignature(EntityType.Role, idService.PickRoleID());
             role.roleType = tm.roleType;
             role.MoveType = tm.moveType;
-            role.state = tm.roleState;
+            role.SetRoleState(tm.roleState);
 
             role.Ctor();
             role.Inject(mod);

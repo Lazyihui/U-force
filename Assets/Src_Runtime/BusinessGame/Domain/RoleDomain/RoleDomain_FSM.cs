@@ -16,6 +16,8 @@ namespace UF {
         }
 
         public static void FSM_All_Execute(GameContext ctx, RoleEntity role, float dt) {
+            var game = ctx.gameEntity;
+
             // 任何状态都运行的逻辑
             Loco_Execute(ctx, role, dt);
 
@@ -29,6 +31,13 @@ namespace UF {
                 }
             }
 
+            // 和地面的检测
+            RoleDomain.FallingtodeathCheck(ctx, role);
+            RoleDomain.IsDeadState(ctx, role);
+
+            
+
+
         }
 
         public static void FSM_All_Pause(GameContext ctx, RoleEntity role) {
@@ -40,7 +49,6 @@ namespace UF {
             // 完成
             var fsm = role.FSMComponent;
             fsm.Casting_Enter(skillor);
-            Debug.Log("FSM_Casting_Enter");
         }
 
         static void FSM_Normal_Enter(GameContext ctx, RoleEntity role, float dt) {
@@ -93,7 +101,6 @@ namespace UF {
 
             if (isNextFrame) {
                 actionIndex += 1;
-                Debug.Log("actionIndex:" + actionIndex);
                 if (actionIndex >= frames.Length) {
                     // var nextFrame = frames[actionIndex];
                     // RoleDomain.Skillor_Act_BeforeActing(ctx, role, stateModel, nextFrame, dt);// 重置

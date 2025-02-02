@@ -6,19 +6,20 @@ namespace UF {
 
         public static void Loco_Execute(GameContext ctx, RoleEntity role, float dt) {
             var moveCom = role.MoveComponent;
+            GroundCheck(ctx, role);
 
             Loco_MoveReset(ctx, role);
             Loco_Jump(ctx, role, moveCom.jumpForce);
-            GroundCheck(ctx, role);
             Loco_Move(ctx, role, dt);
         }
         #region Move: Move
-        public static void Loco_Move(GameContext ctx, RoleEntity role, float dt) {
+        static void Loco_Move(GameContext ctx, RoleEntity role, float dt) {
             if (dt <= 0) {
                 return;
             }
 
-            if (role.state == RoleState.Fall) {
+            if (role.state != RoleState.Move) {
+                Debug.Log("role.state  " + role.state);
                 return;
             }
 
@@ -55,6 +56,10 @@ namespace UF {
         #endregion
 
         public static void GroundCheck(GameContext ctx, RoleEntity role) {
+            if (role.roleType != RoleType.Player) {
+                return;
+            }
+
             bool isColliderGround = false;
             if (role.GetVelocity().y > 0) {
                 return;

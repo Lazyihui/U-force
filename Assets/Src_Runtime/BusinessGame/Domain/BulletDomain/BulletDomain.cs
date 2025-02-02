@@ -54,7 +54,7 @@ namespace UF {
                 float dis = Vector3.Distance(minion.TF_GetPos(), pos);
 
                 if (dis < 1.0f) {
-                    RoleDomain.HpReduce(ctx, minion, bullet.damage);
+                    RoleDomain.HpReduce_MinionFall(ctx, minion, bullet.damage);
                     bullet.hitTimes -= 1;
 
                     if (bullet.hitTimes <= 0) {

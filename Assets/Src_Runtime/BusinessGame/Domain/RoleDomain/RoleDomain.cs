@@ -176,7 +176,7 @@ namespace UF {
 
         #region Player physics
 
-        public static void detectionMinionByPos(GameContext ctx, RoleEntity role, Vector2 pos) {
+        public static void DetectionMinionByPos(GameContext ctx, RoleEntity role, Vector2 pos) {
             // 检测周围的minion 碰到扣血
 
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] minions);
@@ -189,39 +189,74 @@ namespace UF {
                 }
 
                 float dis = Vector2.Distance(minion.TF_GetPos(), pos);
-                // TODO:
-                float radius = 1.5f;
+                // TODO:可能要改成用 collider   
+                float radius = 2f;
 
                 if (dis < radius) {
                     Debug.Log("detectionMinionByPos");
                     // player扣血 或者失败  
-                    HpReduce(ctx, role, 1);
+                    HpReduce_Role(ctx, role, 1);
 
+                    HpReduce_Role(ctx, minion, 1);
                     // minion死掉或者扣血
                 }
             }
         }
 
-        public static void HpReduce(GameContext ctx, RoleEntity role, int damage) {
+        public static void HpReduce_MinionFall(GameContext ctx, RoleEntity role, int damage) {
             var attCom = role.AttributeComponent;
             int finalHp = attCom.hp - damage;
             role.Attr_Hp_Set(finalHp);
 
             if (attCom.hp <= 0) {
-                Debug.Log("要改死亡,死亡要改成掉到地上在死亡 会对同为敌人的minion造成伤害");
                 role.SetRoleState(RoleState.Fall);
                 role.Fall();
-
-                // 解除y的限制
                 role.Set_RbConstraints();
-
-                // 解除移动速度
-
-
-                // UnSpawn(ctx, role);
             }
         }
 
+
+        public static void HpReduce_Role(GameContext ctx, RoleEntity role, int damage) {
+            var attCom = role.AttributeComponent;
+            int finalHp = attCom.hp - damage;
+            role.Attr_Hp_Set(finalHp);
+
+            if (attCom.hp <= 0) {
+                role.SetRoleState(RoleState.Dead);
+            }
+        }
+        // 下落过程的检测 检测到地面状态变为死亡
+        public static void FallingtodeathCheck(GameContext ctx, RoleEntity role) {
+            if (role.state != RoleState.Fall) {
+                return;
+            }
+
+            // 和地面的交叉检测
+            RaycastHit2D[] hits = Physics2D.RaycastAll(role.GetPos(), Vector2.down, 1.1f);
+            Debug.DrawRay(role.GetPos(), Vector2.down * 0.6f, Color.gray, 0.1f);
+
+            for (int i = 0; i < hits.Length; i++) {
+                RaycastHit2D hit = hits[i];
+                if (hit.collider.gameObject.CompareTag("Ground")) {
+                    role.SetRoleState(RoleState.Dead);
+                }
+            }
+        }
+
+        // 书否是死亡状态 
+        public static void IsDeadState(GameContext ctx, RoleEntity role) {
+            if (role.state != RoleState.Dead) {
+                return;
+            }
+            UnSpawn(ctx, role);
+        }
+
+        public static bool isPlyerDead(GameContext ctx, RoleEntity role) {
+            if (role.state == RoleState.Dead) {
+                return true;
+            }
+            return false;
+        }
 
         #endregion
     }

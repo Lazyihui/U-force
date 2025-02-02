@@ -76,12 +76,9 @@ namespace UF {
                 moveComponent.Set_PlayerRbConstraints();
             }
             if (roleType == RoleType.Minion) {
-                if (state == RoleState.Fall)
-                {
+                if (state == RoleState.Fall) {
                     moveComponent.Set_FallRbConstraints();
-                }
-                else
-                {
+                } else {
                     moveComponent.Set_MinionRbConstraints();
                 }
             }

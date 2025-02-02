@@ -66,6 +66,18 @@ namespace UF {
         }
 
         static void PreTick(GameContext ctx, float dt) {
+            var game = ctx.gameEntity;
+
+            RoleEntity owner = ctx.Get_Owner();
+
+            // 游戏结束
+            bool isGameOver = RoleDomain.isPlyerDead(ctx, owner);
+
+            if (isGameOver) {
+                game.state = GameState.GameOver;
+                Debug.Log("GameOver");
+            }
+
             // 生成怪物 不需要循环
             TowerDomain.TrySpawnMinion(ctx, dt);
 
@@ -78,7 +90,7 @@ namespace UF {
 
             // Player的逻辑
             RoleDomain.Input_Record(ctx, owner, dt);
-            RoleDomain.detectionMinionByPos(ctx, owner, owner.TF_GetPos());
+            RoleDomain.DetectionMinionByPos(ctx, owner, owner.TF_GetPos());
 
             var fsm = owner.FSMComponent;
             var state = fsm.Status;
