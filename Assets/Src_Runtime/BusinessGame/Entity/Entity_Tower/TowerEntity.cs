@@ -11,12 +11,17 @@ namespace UF {
 
         public int typeID;
 
+        // 生成怪物的间隔
         public float interval;
         public float intervalTimer;
 
+        public float maintain;
+        public float maintainTimer;
+
+        public float cd;
+        public float cdMax;
+
         public void Ctor() {
-            interval = 2;
-            intervalTimer = 0;
         }
 
         public void TF_SetPos(Vector2 pos) {
@@ -31,13 +36,5 @@ namespace UF {
             return transform.position;
         }
 
-        public bool AllowSpawn(float dt) {
-            intervalTimer -= dt;
-            if (intervalTimer <= 0) {
-                intervalTimer = interval;
-                return true;
-            }
-            return false;
-        }
     }
 }

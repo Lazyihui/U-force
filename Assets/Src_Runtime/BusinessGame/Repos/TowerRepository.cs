@@ -53,6 +53,10 @@ namespace UF {
             return tempTower;
         }
 
+        public TowerEntity Get(int index) {
+            return temArray[index];
+        }
+
         public void Clear() {
             all.Clear();
         }
