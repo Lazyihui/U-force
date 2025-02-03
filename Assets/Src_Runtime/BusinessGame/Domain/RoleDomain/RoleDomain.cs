@@ -7,7 +7,7 @@ namespace UF {
 
         #region LifeCycle
 
-        public static RoleEntity Spawn(GameContext ctx, int typeID) {
+        static RoleEntity Spawn(GameContext ctx, int typeID) {
             RoleEntity role = GameFactory.Role_Create(ctx.assetsCore, ctx.templateCore, ctx.idService, typeID);
             ctx.roleRepository.Add(role);
             return role;

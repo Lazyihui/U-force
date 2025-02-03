@@ -24,30 +24,42 @@ namespace UF {
         }
 
         public static void TrySpawnMinion(GameContext ctx, float dt) {
+
+
             // TODO:问j 有没有更好的写法
 
             TowerEntity tower = ctx.towerRepository.GetRandom();
+            // tower = ctx.towerRepository.Get(2);
+
             if (tower == null) {
+                Debug.Log("TrySpawnMinion tower == null");
                 return;
             }
+
+
+            tower.cd -= dt;
+            if (tower.cd >= 0) {
+                return;
+            }
+
             tower.intervalTimer -= dt;
-            if (tower.intervalTimer <= 0) {
+            if (tower.intervalTimer < 0) {
                 ctx.towerRepository.tempTower = null;
+                Debug.Log("生成怪物");
+
+                // TODO:从Tower里面TM获取怪物的类型
                 RoleDomain.SpawnByPos(ctx, tower.GetPos(), 200);
                 tower.intervalTimer = tower.interval;
             }
 
-            // // 后面改记录Tower可以生成什么种类的怪物
-            // var game = ctx.gameEntity;
-            // game.spawnMinionIntervalTimer -= dt;
-            // Debug.Log("game.spawnMinionIntervalTimer: " + game.spawnMinionIntervalTimer);
-            // if (game.spawnMinionIntervalTimer <= 0) {
-            //     ctx.towerRepository.GetRandom(out TowerEntity tower);
-            //     RoleDomain.SpawnByPos(ctx, tower.GetPos(), 200);
-            //     game.spawnMinionIntervalTimer = game.spawnMinionInterval;
-            // }
 
+            tower.maintainTimer -= dt;
+            if (tower.maintainTimer < 0) {
+                tower.maintainTimer = tower.maintain;
+                tower.cd = tower.cdMax;
+            }
 
+            // 后面改记录Tower可以生成什么种类的怪物
         }
     }
 }

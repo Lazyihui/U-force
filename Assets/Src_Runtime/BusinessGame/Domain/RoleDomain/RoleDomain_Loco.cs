@@ -19,7 +19,6 @@ namespace UF {
             }
 
             if (role.state != RoleState.Move) {
-                Debug.Log("role.state  " + role.state);
                 return;
             }
 

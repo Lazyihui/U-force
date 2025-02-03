@@ -10,8 +10,9 @@ namespace UF {
         public int typeID;
 
         public float interval;
-        public float intervalTimer;
-
+        public float maintain;
+        public float cdMax;
+        public float cd;
 
         // -sprite
         public Sprite sprite;

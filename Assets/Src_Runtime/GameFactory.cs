@@ -216,6 +216,16 @@ namespace UF {
             tower.TF_SetPos(pos);
             tower.Ctor();
 
+            tower.interval = tm.interval;
+            tower.intervalTimer = tm.interval;
+
+            tower.maintain = tm.maintain;
+            tower.maintainTimer = tm.maintain;
+
+            tower.cd = tm.cd;
+            tower.cdMax = tm.cdMax;
+
+
             return tower;
         }
 
@@ -240,6 +250,16 @@ namespace UF {
             tower.TF_SetRot(spawnerTM.rotation);
 
             tower.Ctor();
+
+
+            tower.interval = tm.interval;
+            tower.intervalTimer = tm.interval;
+
+            tower.maintain = tm.maintain;
+            tower.maintainTimer = tm.maintain;
+
+            tower.cd = tm.cd;
+            tower.cdMax = tm.cdMax;
 
             return tower;
         }
