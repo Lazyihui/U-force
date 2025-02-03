@@ -99,6 +99,16 @@ public class RoleMoveComponent {
         }
     }
 
+    public void Jump_Stop() {
+        Vector2 oldVelo = rb.velocity;
+
+        if (oldVelo.y >= 0) {
+            oldVelo.y = -oldVelo.y;
+        }
+
+        rb.velocity = oldVelo;
+    }
+
     public void EnterGround() {
         allowMoveTimes = 1;
         allowJumpTimes = 1;

@@ -122,6 +122,10 @@ namespace UF {
             moveComponent.Jump();
         }
 
+        public void Jump_Stop() {
+            moveComponent.Jump_Stop();
+        }
+
         public bool IsGround() {
             return moveComponent.IsGround;
         }

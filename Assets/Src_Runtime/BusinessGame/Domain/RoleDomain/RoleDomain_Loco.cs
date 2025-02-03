@@ -23,6 +23,13 @@ namespace UF {
                 return;
             }
 
+            // 超出屏幕
+            if (role.transform.position.y >= 11.25)
+            {
+                role.Jump_Stop();
+                return;
+            }
+
             var moveCom = role.MoveComponent;
 
             RoleMoveType moveType = role.MoveType;
