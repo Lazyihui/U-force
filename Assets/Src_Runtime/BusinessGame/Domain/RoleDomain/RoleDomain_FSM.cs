@@ -35,7 +35,7 @@ namespace UF {
             RoleDomain.FallingtodeathCheck(ctx, role);
             RoleDomain.IsDeadState(ctx, role);
 
-            
+
 
 
         }
@@ -59,8 +59,14 @@ namespace UF {
         static void FSM_Casting_Exit(GameContext ctx, RoleEntity role, float dt) {
             var fsm = role.FSMComponent;
             var inputCom = role.InputComponent;
+            var input = ctx.inputModule;
+
             FSM_Normal_Enter(ctx, role, dt);//施法状态结束 进入正常状态
             inputCom.ClearCastKeys();
+
+            // TODO:
+            input.isUpdateProcess = true;
+
         }
 
 

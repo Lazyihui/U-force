@@ -45,8 +45,6 @@ namespace UF {
         void Binding() {
             var UIEvent = ctx.appUI.eventCenter;
 
-            #region Handle
-            //Login
             UIEvent.OnLoginStartHandle += () => {
                 ctx.appUI.Panel_Login_Close();
                 Game_Business.Enter(ctx);
@@ -90,6 +88,10 @@ namespace UF {
             };
 
             UIEvent.OnAttackHandle += () => {
+                var input = ctx.inputModule;
+                input.isUpdateProcess = false;
+                input.Set_InputCastKey(InputKeyFlag.Attack);
+
                 Debug.Log("Attack");
             };
 
@@ -112,7 +114,6 @@ namespace UF {
             UIEvent.OnWeap4Handle += () => {
                 Debug.Log("Weap4");
             };
-            #endregion
         }
 
         void Update() {
@@ -123,7 +124,9 @@ namespace UF {
             float dt = Time.deltaTime;
 
             var input = ctx.inputModule;
-            input.Process(dt);
+            if (input.isUpdateProcess) {
+                input.Process(dt);
+            }
 
             var game = ctx.gameEntity;
             if (game.state == GameState.Login) {

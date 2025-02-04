@@ -15,9 +15,13 @@ namespace UF {
         bool isJump;
         public bool IsJump => isJump;
 
+        public bool isUpdateProcess;
+
         public InputModule() {
             player1 = new InputControls_Player();
             player1.Enable();
+
+            isUpdateProcess = true;
         }
 
         public void ReSetJump() {
@@ -50,6 +54,10 @@ namespace UF {
                 }
             }
 
+        }
+
+        public void Set_InputCastKey(InputKeyFlag flag) {
+            inputCastKey |= flag;
         }
 
 

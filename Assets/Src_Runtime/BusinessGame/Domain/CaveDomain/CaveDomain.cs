@@ -39,7 +39,6 @@ namespace UF {
             game.cdMinion -= dt;
 
             if (game.cdMinion >= 0) {
-                Debug.Log("TrySpawnMinion game.cdMinion:" + game.cdMinion);
                 return;
             }
 
@@ -48,7 +47,6 @@ namespace UF {
                 ctx.towerRepository.tempTower = null;
 
                 game.spawnMinionTimer -= 1;
-                Debug.Log("TrySpawnMinion game.spawnMinionTimer:" + game.spawnMinionTimer);
 
                 // TODO:从Tower里面TM获取怪物的类型
                 RoleDomain.SpawnByPos(ctx, tower.GetPos(), 200);
@@ -58,7 +56,6 @@ namespace UF {
 
             if (game.spawnMinionTimer <= 0) {
                 game.spawnMinionTimer = game.spawnMinion;
-                Debug.Log("TrySpawnMinion game.spawnMinionTimer:" + game.spawnMinionTimer);
                 game.cdMinion = game.cdMinionMax;
                 game.cdMinion = game.cdMinionMax;
             }
