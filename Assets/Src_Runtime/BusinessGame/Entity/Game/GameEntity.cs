@@ -12,6 +12,10 @@ namespace UF {
 
         public IDSignature OwnerIDsig;
 
+
+        #region 生成小怪的波次数据
+
+        // TODO: 之后可能要改用行的。cs文件里面的数据，不要放在这里
         public int spawnMinionTimer;
         public int spawnMinion;
 
@@ -20,6 +24,7 @@ namespace UF {
 
         public float spawnMinionInterval;
         public float spawnMinionIntervalTimer;
+        #endregion
 
         public GameEntity() {
 

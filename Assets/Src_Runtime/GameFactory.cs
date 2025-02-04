@@ -250,15 +250,7 @@ namespace UF {
         }
 
         static void TMToCaveEntity(CaveEntity entity, CaveTM tm) {
-            entity.interval = tm.interval;
-            entity.intervalTimer = tm.interval;
-
-            entity.spawnCount = tm.spawnCount;
-            entity.spawnMaxCount = tm.spawnCount;
-
-            entity.cd = tm.cd;
-            entity.cdMax = tm.cdMax;
-        }
+        }   
 
         #endregion
 

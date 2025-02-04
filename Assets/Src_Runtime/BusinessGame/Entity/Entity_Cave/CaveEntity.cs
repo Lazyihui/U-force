@@ -11,16 +11,6 @@ namespace UF {
 
         public int typeID;
 
-        // 生成怪物的间隔
-        public float interval;
-        public float intervalTimer;
-
-        public int spawnCount;
-        public int spawnMaxCount;
-
-        public float cd;
-        public float cdMax;
-
         public void Ctor() {
         }
 
