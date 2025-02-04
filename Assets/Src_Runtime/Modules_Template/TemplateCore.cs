@@ -53,7 +53,7 @@ namespace UF {
             {
                 AssetLabelReference labelReference = new AssetLabelReference();
                 labelReference.labelString = "So_Tower";
-                var handle = Addressables.LoadAssetsAsync<TowerSo>(labelReference, null);
+                var handle = Addressables.LoadAssetsAsync<CaveSo>(labelReference, null);
                 var all = await handle.Task;
                 foreach (var so in all) {
                     var tm = so.tm;
@@ -87,7 +87,7 @@ namespace UF {
             return ctx.skills.TryGetValue(typeID, out skill);
         }
 
-        public bool Tower_TryGet(int typeID, out TowerTM tower) {
+        public bool Tower_TryGet(int typeID, out CaveTM tower) {
             return ctx.towers.TryGetValue(typeID, out tower);
         }
 

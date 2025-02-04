@@ -33,8 +33,8 @@ namespace UF {
             // game.OwnerIDsig = role.idSig;
             // Tower
             for (int i = 0; i < tm.towerSpawns.Length; i += 1) {
-                TowerSpawnerTM spawnerTM = tm.towerSpawns[i];
-                TowerDomain.SpawnBySpawner(ctx, spawnerTM);
+                CaveSpawnerTM spawnerTM = tm.towerSpawns[i];
+                CaveDomain.SpawnBySpawner(ctx, spawnerTM);
             }
 
 
@@ -79,7 +79,7 @@ namespace UF {
             }
 
             // 生成怪物 不需要循环
-            TowerDomain.TrySpawnMinion(ctx, dt);
+            CaveDomain.TrySpawnMinion(ctx, dt);
 
         }
 
@@ -128,11 +128,11 @@ namespace UF {
             #endregion
 
             #region tower
-            int towerLen = ctx.towerRepository.TakeAll(out TowerEntity[] towers);
+            int towerLen = ctx.towerRepository.TakeAll(out CaveEntity[] towers);
 
             for (int i = 0; i < towerLen; i += 1) {
-                TowerEntity tower = towers[i];
-                TowerDomain.Tower_Execute(ctx, tower, dt);
+                CaveEntity tower = towers[i];
+                CaveDomain.Tower_Execute(ctx, tower, dt);
             }
             #endregion
 

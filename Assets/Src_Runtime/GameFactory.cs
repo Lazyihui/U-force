@@ -198,7 +198,7 @@ namespace UF {
             return model;
         }
 
-        public static TowerEntity Tower_Create(AssetsCore assetsCore, TemplateCore templateCore, IDService idService, int typeID, Vector2 pos) {
+        public static CaveEntity Tower_Create(AssetsCore assetsCore, TemplateCore templateCore, IDService idService, int typeID, Vector2 pos) {
             bool has = templateCore.Tower_TryGet(typeID, out var tm);
             if (!has) {
                 Debug.LogError("Tower_Create: tm is null" + typeID);
@@ -207,7 +207,7 @@ namespace UF {
 
             GameObject prefab = assetsCore.Entity_GetTower();
             GameObject go = GameObject.Instantiate(prefab);
-            TowerEntity tower = go.GetComponent<TowerEntity>();
+            CaveEntity tower = go.GetComponent<CaveEntity>();
 
 
             tower.idSig = new IDSignature(EntityType.Tower, idService.PickTowerID());
@@ -229,7 +229,7 @@ namespace UF {
             return tower;
         }
 
-        public static TowerEntity Tower_CreateBySpawner(AssetsCore assetsCore, TemplateCore templateCore, IDService idService, TowerSpawnerTM spawnerTM) {
+        public static CaveEntity Tower_CreateBySpawner(AssetsCore assetsCore, TemplateCore templateCore, IDService idService, CaveSpawnerTM spawnerTM) {
             int typeID = spawnerTM.so.tm.typeID;
 
             bool has = templateCore.Tower_TryGet(typeID, out var tm);
@@ -240,7 +240,7 @@ namespace UF {
 
             GameObject prefab = assetsCore.Entity_GetTower();
             GameObject go = GameObject.Instantiate(prefab);
-            TowerEntity tower = go.GetComponent<TowerEntity>();
+            CaveEntity tower = go.GetComponent<CaveEntity>();
 
 
             tower.idSig = new IDSignature(EntityType.Tower, idService.PickTowerID());

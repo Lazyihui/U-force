@@ -4,21 +4,21 @@ using UnityEngine;
 
 
 namespace UF {
-    public static class TowerDomain {
+    public static class CaveDomain {
 
-        public static void Tower_Execute(GameContext ctx, TowerEntity tower, float dt) {
+        public static void Tower_Execute(GameContext ctx, CaveEntity tower, float dt) {
         }
 
-        public static TowerEntity Spawn(GameContext ctx, int typeID, Vector2 pos) {
-            TowerEntity entity = GameFactory.Tower_Create(ctx.assetsCore, ctx.templateCore, ctx.idService, typeID, pos);
+        public static CaveEntity Spawn(GameContext ctx, int typeID, Vector2 pos) {
+            CaveEntity entity = GameFactory.Tower_Create(ctx.assetsCore, ctx.templateCore, ctx.idService, typeID, pos);
 
             ctx.towerRepository.Add(entity);
             return entity;
         }
 
 
-        public static TowerEntity SpawnBySpawner(GameContext ctx, TowerSpawnerTM spawnerTM) {
-            TowerEntity entity = GameFactory.Tower_CreateBySpawner(ctx.assetsCore, ctx.templateCore, ctx.idService, spawnerTM);
+        public static CaveEntity SpawnBySpawner(GameContext ctx, CaveSpawnerTM spawnerTM) {
+            CaveEntity entity = GameFactory.Tower_CreateBySpawner(ctx.assetsCore, ctx.templateCore, ctx.idService, spawnerTM);
             ctx.towerRepository.Add(entity);
             return entity;
         }
@@ -28,7 +28,7 @@ namespace UF {
 
             // TODO:问j 有没有更好的写法
 
-            TowerEntity tower = ctx.towerRepository.GetRandom();
+            CaveEntity tower = ctx.towerRepository.GetRandom();
             // tower = ctx.towerRepository.Get(2);
 
             if (tower == null) {

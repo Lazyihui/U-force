@@ -5,41 +5,41 @@ using UnityEngine;
 
 namespace UF {
 
-    public class TowerRepository {
+    public class CaveRepository {
 
-        Dictionary<IDSignature, TowerEntity> all;
+        Dictionary<IDSignature, CaveEntity> all;
 
-        TowerEntity[] temArray;
+        CaveEntity[] temArray;
 
-        public TowerRepository() {
-            all = new Dictionary<IDSignature, TowerEntity>();
-            temArray = new TowerEntity[100];
+        public CaveRepository() {
+            all = new Dictionary<IDSignature, CaveEntity>();
+            temArray = new CaveEntity[100];
             tempTower = null;
         }
 
-        public void Add(TowerEntity entity) {
+        public void Add(CaveEntity entity) {
             all.Add(entity.idSig, entity);
         }
 
-        public void Remove(TowerEntity entity) {
+        public void Remove(CaveEntity entity) {
             all.Remove(entity.idSig);
         }
 
-        public int TakeAll(out TowerEntity[] array) {
+        public int TakeAll(out CaveEntity[] array) {
             if (all.Count > temArray.Length) {
-                temArray = new TowerEntity[all.Count * 2];
+                temArray = new CaveEntity[all.Count * 2];
             }
             all.Values.CopyTo(temArray, 0);
             array = temArray;
             return all.Count;
         }
 
-        public bool TryGet(IDSignature idSig, out TowerEntity entity) {
+        public bool TryGet(IDSignature idSig, out CaveEntity entity) {
             return all.TryGetValue(idSig, out entity);
         }
 
-        public TowerEntity tempTower;
-        public TowerEntity GetRandom() {
+        public CaveEntity tempTower;
+        public CaveEntity GetRandom() {
             if (all.Count == 0) {
                 return null;
             }
@@ -53,7 +53,7 @@ namespace UF {
             return tempTower;
         }
 
-        public TowerEntity Get(int index) {
+        public CaveEntity Get(int index) {
             return temArray[index];
         }
 

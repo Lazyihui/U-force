@@ -17,7 +17,7 @@ namespace UF.TemplateInternal {
         public Dictionary<int, SkillorTM> skills;
         public AsyncOperationHandle skillPtr;
 
-        public Dictionary<int, TowerTM> towers;
+        public Dictionary<int, CaveTM> towers;
         public AsyncOperationHandle towerPtr;
 
         public Dictionary<int, StageTM> stages;
@@ -27,7 +27,7 @@ namespace UF.TemplateInternal {
             roles = new Dictionary<int, RoleTM>();
             bullets = new Dictionary<int, BulletTM>();
             skills = new Dictionary<int, SkillorTM>();
-            towers = new Dictionary<int, TowerTM>();
+            towers = new Dictionary<int, CaveTM>();
             stages = new Dictionary<int, StageTM>();
         }
 
@@ -44,7 +44,7 @@ namespace UF.TemplateInternal {
             skills.Add(skill.typeID, skill);
         }
 
-        public void Tower_Add(TowerTM tower) {
+        public void Tower_Add(CaveTM tower) {
             towers.Add(tower.typeID, tower);
         }
 

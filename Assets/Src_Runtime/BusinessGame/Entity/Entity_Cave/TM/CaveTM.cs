@@ -4,7 +4,7 @@ using UnityEngine;
 namespace UF {
 
     [Serializable]
-    public class TowerTM {
+    public class CaveTM {
 
         public string typeName;
         public int typeID;
