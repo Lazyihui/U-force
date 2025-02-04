@@ -18,7 +18,7 @@ MonoBehaviour:
     moveType: 0
     roleState: 1
     typeID: 100
-    hp: 10
+    hp: 1000
     moveSpeed: 15
     jumpForce: 5
     skillorSoArray:

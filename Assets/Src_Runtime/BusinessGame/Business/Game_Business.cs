@@ -136,7 +136,6 @@ namespace UF {
             }
             #endregion
 
-
         }
 
         static void LastTick(GameContext ctx, float dt) {

@@ -216,15 +216,7 @@ namespace UF {
             tower.TF_SetPos(pos);
             tower.Ctor();
 
-            tower.interval = tm.interval;
-            tower.intervalTimer = tm.interval;
-
-            tower.maintain = tm.maintain;
-            tower.maintainTimer = tm.maintain;
-
-            tower.cd = tm.cd;
-            tower.cdMax = tm.cdMax;
-
+            TMToCaveEntity(tower, tm);
 
             return tower;
         }
@@ -252,16 +244,20 @@ namespace UF {
             tower.Ctor();
 
 
-            tower.interval = tm.interval;
-            tower.intervalTimer = tm.interval;
-
-            tower.maintain = tm.maintain;
-            tower.maintainTimer = tm.maintain;
-
-            tower.cd = tm.cd;
-            tower.cdMax = tm.cdMax;
+            TMToCaveEntity(tower, tm);
 
             return tower;
+        }
+
+        static void TMToCaveEntity(CaveEntity entity, CaveTM tm) {
+            entity.interval = tm.interval;
+            entity.intervalTimer = tm.interval;
+
+            entity.spawnCount = tm.spawnCount;
+            entity.spawnMaxCount = tm.spawnCount;
+
+            entity.cd = tm.cd;
+            entity.cdMax = tm.cdMax;
         }
 
         #endregion

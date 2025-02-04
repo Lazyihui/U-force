@@ -12,15 +12,27 @@ namespace UF {
 
         public IDSignature OwnerIDsig;
 
+        public int spawnMinionTimer;
+        public int spawnMinion;
+
+        public float cdMinion;
+        public float cdMinionMax;
+
         public float spawnMinionInterval;
         public float spawnMinionIntervalTimer;
 
         public GameEntity() {
 
-            spawnMinionInterval = 2;
-            spawnMinionIntervalTimer = 0;
-
             stageCurID = 0;
+
+            spawnMinionTimer = 4;
+            spawnMinion = 4;
+
+            cdMinion = 0;
+            cdMinionMax = 4;
+
+            spawnMinionInterval = 2;
+            spawnMinionIntervalTimer = 2;
 
         }
 

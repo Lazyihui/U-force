@@ -15,8 +15,8 @@ namespace UF {
         public float interval;
         public float intervalTimer;
 
-        public float maintain;
-        public float maintainTimer;
+        public int spawnCount;
+        public int spawnMaxCount;
 
         public float cd;
         public float cdMax;

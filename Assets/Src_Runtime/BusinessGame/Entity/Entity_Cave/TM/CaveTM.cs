@@ -10,7 +10,7 @@ namespace UF {
         public int typeID;
 
         public float interval;
-        public float maintain;
+        public int spawnCount;
         public float cdMax;
         public float cd;
 

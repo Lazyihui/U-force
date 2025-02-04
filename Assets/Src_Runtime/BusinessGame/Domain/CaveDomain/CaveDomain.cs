@@ -25,38 +25,42 @@ namespace UF {
 
         public static void TrySpawnMinion(GameContext ctx, float dt) {
 
-
             // TODO:问j 有没有更好的写法
 
+            var game = ctx.gameEntity;
+
             CaveEntity tower = ctx.towerRepository.GetRandom();
-            // tower = ctx.towerRepository.Get(2);
 
             if (tower == null) {
                 Debug.Log("TrySpawnMinion tower == null");
                 return;
             }
 
+            game.cdMinion -= dt;
 
-            tower.cd -= dt;
-            if (tower.cd >= 0) {
+            if (game.cdMinion >= 0) {
+                Debug.Log("TrySpawnMinion game.cdMinion:" + game.cdMinion);
                 return;
             }
 
-            tower.intervalTimer -= dt;
-            if (tower.intervalTimer < 0) {
+            game.spawnMinionIntervalTimer -= dt;
+            if (game.spawnMinionIntervalTimer < 0) {
                 ctx.towerRepository.tempTower = null;
-                Debug.Log("生成怪物");
+
+                game.spawnMinionTimer -= 1;
+                Debug.Log("TrySpawnMinion game.spawnMinionTimer:" + game.spawnMinionTimer);
 
                 // TODO:从Tower里面TM获取怪物的类型
                 RoleDomain.SpawnByPos(ctx, tower.GetPos(), 200);
-                tower.intervalTimer = tower.interval;
+                game.spawnMinionIntervalTimer = game.spawnMinionInterval;
             }
 
 
-            tower.maintainTimer -= dt;
-            if (tower.maintainTimer < 0) {
-                tower.maintainTimer = tower.maintain;
-                tower.cd = tower.cdMax;
+            if (game.spawnMinionTimer <= 0) {
+                game.spawnMinionTimer = game.spawnMinion;
+                Debug.Log("TrySpawnMinion game.spawnMinionTimer:" + game.spawnMinionTimer);
+                game.cdMinion = game.cdMinionMax;
+                game.cdMinion = game.cdMinionMax;
             }
 
             // 后面改记录Tower可以生成什么种类的怪物
