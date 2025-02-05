@@ -16,7 +16,6 @@ namespace UF {
             ctx.appUI.Panel_GameDefend_Button_Open();
             ctx.appUI.HUD_Progressbar_Open(game.maxWaves);
 
-
             // Game
             int stageID = game.stageCurID;
             bool has = ctx.templateCore.Stage_TryGet(stageID, out StageTM tm);
@@ -72,6 +71,7 @@ namespace UF {
 
         static void PreTick(GameContext ctx, float dt) {
             var game = ctx.gameEntity;
+            var ui = ctx.appUI;
 
             RoleEntity owner = ctx.Get_Owner();
 
@@ -85,6 +85,10 @@ namespace UF {
 
             // 生成怪物 不需要循环
             CaveDomain.TrySpawnMinion(ctx, dt);
+
+            // 波次精度条逻辑
+            ui.HUD_Progressbar_Update(game.wavesProgress);
+
 
         }
 

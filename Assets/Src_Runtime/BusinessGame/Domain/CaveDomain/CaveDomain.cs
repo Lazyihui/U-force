@@ -28,7 +28,6 @@ namespace UF {
             // TODO:问j 有没有更好的写法
 
             var game = ctx.gameEntity;
-
             CaveEntity tower = ctx.towerRepository.GetRandom();
 
             if (tower == null) {
@@ -47,7 +46,6 @@ namespace UF {
                 return;
             }
 
-
             game.spawnMinionIntervalTimer -= dt;
             if (game.spawnMinionIntervalTimer < 0) {
                 ctx.towerRepository.tempTower = null;
@@ -59,8 +57,6 @@ namespace UF {
                 game.spawnMinionIntervalTimer = game.spawnMinionInterval;
             }
 
-
-
             if (game.spawnMinionTimer <= 0) {
                 game.curWaves += 1;
 
@@ -68,9 +64,6 @@ namespace UF {
                 game.cdMinion = game.cdMinionMax;
                 game.cdMinion = game.cdMinionMax;
             }
-
-
-
 
         }
     }
