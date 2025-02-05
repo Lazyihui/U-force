@@ -16,18 +16,20 @@ namespace UF {
         #region 生成小怪的波次数据
         // 必需改掉
         // TODO: 之后可能要改用行的。cs文件里面的数据，不要放在这里
-        public int spawnMinionTimer;
-        public int spawnMinion;
-        public int maxWaves;
-        public int curWaves;
+        public int spawnMinionTimer; //一波里的小波次
+        public int spawnMinion; //小波次的预设数量
+        public int maxWaves; //最大波次
+        public int curWaves; //当前波次
 
-        public float cdMinion;
-        public float cdMinionMax;
+        public float cdMinion; //波次间cd
+        public float cdMinionMax; //预设波次间cd
 
         public float spawnMinionInterval;//生成小怪的间隔
-        public float spawnMinionIntervalTimer;
+        public float spawnMinionIntervalTimer; //生成小怪计时器
 
-        public float wavesProgress;
+        public float progress; //每小波次进度条占比
+
+        public float wavesProgress; //进度条数值
 
         #endregion
 
@@ -45,6 +47,8 @@ namespace UF {
 
             spawnMinionInterval = 2;
             spawnMinionIntervalTimer = 2;
+
+            progress = 0.0625f;
 
             wavesProgress = 0;
         }
