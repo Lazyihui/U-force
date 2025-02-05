@@ -181,6 +181,7 @@ namespace UF {
             hud.Show();
 
             HUD_Progressbar_SetWaves(waves);
+            HUD_Progressbar_SetText();
         }
 
         void HUD_Progressbar_SetWaves(int waves) {
@@ -189,6 +190,14 @@ namespace UF {
                 return;
             }
             hud.Set_Waves(waves);
+        }
+
+        void HUD_Progressbar_SetText(){
+            HUD_Progressbar hud = ctx.hud_Progressbar;
+            if (hud == null) {
+                return;
+            }
+            hud.Set_Text();
         }
 
         public void HUD_Progressbar_Update(float progress) {
