@@ -9,16 +9,15 @@ namespace UF {
     public static class Game_Business {
 
         public static void Enter(GameContext ctx) {
-
-
-            // UI
-            ctx.appUI.Panel_GameDefend_Button_Open();
-            ctx.appUI.HUD_Progressbar_Open();
-
-            // Game
             var game = ctx.gameEntity;
             game.state = GameState.Game;
 
+            // UI
+            ctx.appUI.Panel_GameDefend_Button_Open();
+            ctx.appUI.HUD_Progressbar_Open(game.maxWaves);
+
+
+            // Game
             int stageID = game.stageCurID;
             bool has = ctx.templateCore.Stage_TryGet(stageID, out StageTM tm);
             if (!has) {

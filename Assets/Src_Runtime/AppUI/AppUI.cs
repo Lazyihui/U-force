@@ -114,7 +114,9 @@ namespace UF {
 
         public void Panel_GameDefend_Button_Close() {
             Panel_GameDefend_Button panel = ctx.panel_GameDefend_Button;
-            if (panel == null) { return; }
+            if (panel == null) {
+                return;
+            }
 
             panel.TearDown();
             ctx.panel_GameDefend_Button = null;
@@ -155,15 +157,16 @@ namespace UF {
 
         public void Panel_GamePause_Close() {
             Panel_GamePause panel = ctx.panel_GamePause;
-            if (panel == null) { return; }
-
+            if (panel == null) {
+                return;
+            }
             panel.TearDown();
             ctx.panel_GamePause = null;
         }
         #endregion
 
         #region HUD
-        public void HUD_Progressbar_Open() {
+        public void HUD_Progressbar_Open(int waves) {
             HUD_Progressbar hud = ctx.hud_Progressbar;
 
             if (hud == null) {
@@ -176,12 +179,23 @@ namespace UF {
 
             ctx.hud_Progressbar = hud;
             hud.Show();
+
+            HUD_Progressbar_SetWaves(waves);
+        }
+
+        void HUD_Progressbar_SetWaves(int waves) {
+            HUD_Progressbar hud = ctx.hud_Progressbar;
+            if (hud == null) {
+                return;
+            }
+            hud.Set_Waves(waves);
         }
 
         public void HUD_Progressbar_Close() {
             HUD_Progressbar hud = ctx.hud_Progressbar;
-            if (hud == null) { return; }
-
+            if (hud == null) {
+                return;
+            }
             hud.TearDown();
             ctx.hud_Progressbar = null;
         }

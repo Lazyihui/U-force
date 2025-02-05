@@ -193,7 +193,6 @@ namespace UF {
                 float radius = 2f;
 
                 if (dis < radius) {
-                    Debug.Log("detectionMinionByPos");
                     // player扣血 或者失败  
                     HpReduce_Role(ctx, role, 1);
 

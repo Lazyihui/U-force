@@ -12,7 +12,10 @@ namespace UF {
         public int waves;
 
         public void Ctor() {
-            waves = 4;
+        }
+
+        public void Set_Waves(int waves) {
+            this.waves = waves;
         }
 
         public void Show() {

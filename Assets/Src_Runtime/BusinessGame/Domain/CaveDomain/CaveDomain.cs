@@ -42,6 +42,12 @@ namespace UF {
                 return;
             }
 
+            if (game.curWaves >= game.maxWaves) {
+                Debug.Log("停止生怪 游戏结束");
+                return;
+            }
+
+
             game.spawnMinionIntervalTimer -= dt;
             if (game.spawnMinionIntervalTimer < 0) {
                 ctx.towerRepository.tempTower = null;
@@ -54,13 +60,18 @@ namespace UF {
             }
 
 
+
             if (game.spawnMinionTimer <= 0) {
+                game.curWaves += 1;
+
                 game.spawnMinionTimer = game.spawnMinion;
                 game.cdMinion = game.cdMinionMax;
                 game.cdMinion = game.cdMinionMax;
             }
 
-            // 后面改记录Tower可以生成什么种类的怪物
+
+
+
         }
     }
 }
