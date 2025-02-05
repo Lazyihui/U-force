@@ -12,6 +12,8 @@ namespace UF {
             var game = ctx.gameEntity;
             game.state = GameState.Game;
 
+            StuffDoamin.Spawn(ctx, 100);
+
             // UI
             ctx.appUI.Panel_GameDefend_Button_Open();
             ctx.appUI.HUD_Progressbar_Open(game.maxWaves);
