@@ -10,6 +10,8 @@ namespace UF {
         Skillor,
         Tower,
 
+        Stuff,
+
     }
 
 }

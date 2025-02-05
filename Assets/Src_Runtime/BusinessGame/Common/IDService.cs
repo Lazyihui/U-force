@@ -5,11 +5,14 @@ namespace UF {
         public int SkillID;
 
         public int TowerID;
+
+        public int StuffID;
         public IDService() {
             roleID = 1;
             BulletID = 1;
             SkillID = 1;
             TowerID = 1;
+            StuffID = 1;
         }
 
         public int PickRoleID() {
@@ -23,6 +26,9 @@ namespace UF {
         }
         public int PickTowerID() {
             return ++TowerID;
+        }
+        public int PickStuffID() {
+            return ++StuffID;
         }
     }
 }

@@ -22,7 +22,7 @@ namespace UF {
                 go.name = n;
             }
 
-            var mod = RoleMod_Create(typeID, templateCore, role.bodyRoot);
+            var mod = RoleMod_Create(tm, role.bodyRoot);
 
             role.idSig = new IDSignature(EntityType.Role, idService.PickRoleID());
             role.roleType = tm.roleType;
@@ -74,7 +74,7 @@ namespace UF {
             RoleEntity role = go.GetComponent<RoleEntity>();
             Debug.Assert(role != null, "role != null");
 
-            var mod = RoleMod_Create(typeID, templateCore, role.bodyRoot);
+            var mod = RoleMod_Create(tm, role.bodyRoot);
 
             role.idSig = new IDSignature(EntityType.Role, idService.PickRoleID());
             role.roleType = tm.roleType;
@@ -141,7 +141,7 @@ namespace UF {
             bullet.frameIndex = 0;
 
             //  - mod
-            var mod = BulletMod_Creat(typeID, templateCore, bullet.bodyRoot);
+            var mod = BulletMod_Creat(tm, bullet.bodyRoot);
 
             bullet.transform.position = new Vector3(-4, 0, 0);
             bullet.idSig = new IDSignature(EntityType.Bullet, idService.PickBulletID());
@@ -164,6 +164,35 @@ namespace UF {
 
             return bullet;
         }
+
+        #region Stuff
+        public static StuffEntity Stuff_Create(AssetsCore assetsCore, TemplateCore templateCore, IDService iDService, int typeID) {
+            bool has = templateCore.Stuff_TryGet(typeID, out var tm);
+            if (!has) {
+                Debug.LogError("Stuff_Create: tm is null" + typeID);
+                return null;
+            }
+            GameObject prefab = assetsCore.Entity_GetStuff();
+            Debug.Assert(prefab != null, "prefab != null");
+            GameObject go = GameObject.Instantiate(prefab);
+            StuffEntity stuff = go.GetComponent<StuffEntity>();
+
+            // - mod
+            var mod = StuffMod_Create(tm, stuff.bodyRoot);
+
+            stuff.idSig = new IDSignature(EntityType.Stuff, iDService.PickStuffID());
+            stuff.typeID = typeID;
+            stuff.typeName = tm.typeName;
+            stuff.cd = tm.cd;
+            stuff.cdMax = tm.cdMax;
+            stuff.damage = tm.damage;
+            stuff.isHaveContinueDamege = tm.isHaveContinueDamege;
+            stuff.continueDamege = tm.continueDamege;
+            stuff.damageRange = tm.damageRange;
+            stuff.Ctor();
+            return stuff;
+        }
+        #endregion
 
         #region Skillor
 
@@ -250,31 +279,26 @@ namespace UF {
         }
 
         static void TMToCaveEntity(CaveEntity entity, CaveTM tm) {
-        }   
+        }
 
         #endregion
 
         #region Mod
 
-        static BulletMod BulletMod_Creat(int typeID, TemplateCore templateCore, Transform bodyRoot) {
-            bool has = templateCore.Bullet_TryGet(typeID, out var tm);
-            if (!has) {
-                Debug.LogError("Bullet_Create: tm is null" + typeID);
-                return null;
-            }
+        static BulletMod BulletMod_Creat(BulletTM tm, Transform bodyRoot) {
             var mod = GameObject.Instantiate(tm.modPrefab, bodyRoot).GetComponent<BulletMod>();
             mod.Ctor();
             return mod;
         }
 
-        static RoleMod RoleMod_Create(int typeID, TemplateCore templateCore, Transform bodyRoot) {
-
-            bool has = templateCore.Role_TryGet(typeID, out var tm);
-            if (!has) {
-                Debug.LogError("Role_Create: tm is null" + typeID);
-                return null;
-            }
+        static RoleMod RoleMod_Create(RoleTM tm, Transform bodyRoot) {
             var mod = GameObject.Instantiate(tm.modPrefab, bodyRoot).GetComponent<RoleMod>();
+            mod.Ctor();
+            return mod;
+        }
+
+        static StuffMod StuffMod_Create(StuffTM tm, Transform bodyRoot) {
+            var mod = GameObject.Instantiate(tm.modPrefab, bodyRoot).GetComponent<StuffMod>();
             mod.Ctor();
             return mod;
         }

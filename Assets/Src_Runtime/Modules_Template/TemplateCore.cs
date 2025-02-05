@@ -72,6 +72,17 @@ namespace UF {
                 }
                 ctx.stagePtr = handle;
             }
+            {
+                AssetLabelReference labelReference = new AssetLabelReference();
+                labelReference.labelString = "So_Stuff";
+                var handle = Addressables.LoadAssetsAsync<StuffSo>(labelReference, null);
+                var all = await handle.Task;
+                foreach (var so in all) {
+                    var tm = so.tm;
+                    ctx.Stuff_Add(tm);
+                }
+                ctx.stuffPtr = handle;
+            }
 
         }
         // 找种类的Role
@@ -95,6 +106,12 @@ namespace UF {
             return ctx.stages.TryGetValue(stageID, out stage);
         }
 
+        public bool Stuff_TryGet(int typeID, out StuffTM stuff) {
+            return ctx.stuffs.TryGetValue(typeID, out stuff);
+        }
+
+
+        #region UnLoad
         public void UnLoadAll() {
             if (ctx.rolePtr.IsValid()) {
                 Addressables.Release(ctx.rolePtr);
@@ -111,9 +128,11 @@ namespace UF {
             if (ctx.stagePtr.IsValid()) {
                 Addressables.Release(ctx.stagePtr);
             }
+            if (ctx.stuffPtr.IsValid()) {
+                Addressables.Release(ctx.stuffPtr);
+            }
         }
-
-
+        #endregion
 
     }
 }
