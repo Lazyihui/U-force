@@ -48,8 +48,7 @@ namespace UF {
             UIEvent.OnLoginStartHandle += () => {
                 ctx.appUI.Panel_Login_Close();
                 Game_Business.Enter(ctx);
-                ctx.appUI.Panel_GameDefend_Basic_Open();
-                ctx.appUI.Panel_GameDefend_Button_Open();
+
             };
 
             UIEvent.OnTrainingHandle += () => {

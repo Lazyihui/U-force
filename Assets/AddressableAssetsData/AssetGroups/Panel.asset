@@ -23,12 +23,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Panel
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bfe90929a2c4d9347907940f085bcf06
-    m_Address: Panel_GameDefend_Basic
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Panel
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c8f1ccd6bec31b24d9688bdb261074f8
     m_Address: Panel_GameDefend_Button
     m_ReadOnly: 0

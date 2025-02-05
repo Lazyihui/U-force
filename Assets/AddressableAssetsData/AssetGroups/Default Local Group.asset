@@ -16,7 +16,13 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 2d2b89a9dc968d14286ba76ffed229d2
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: b69aff2c7fec04f4aa64d3b51e967cff
+    m_Address: HUD_Progressbar
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Panel
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 4b47acea7a70a444998ddd6e6fd8b9bf, type: 2}
   m_SchemaSet:

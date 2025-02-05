@@ -18,7 +18,7 @@ namespace UF {
             ctx.Inject(screenCanvas, assetsCore);
         }
 
-        // Panel_Login
+        #region Login
         public void Panel_Login_Open() {
             Panel_Login panel = ctx.panel_Login;
 
@@ -61,6 +61,10 @@ namespace UF {
             panel.TearDown();
             ctx.panel_Login = null;
         }
+
+        #endregion
+
+        #region GameDefend
 
         // Panel_GameDefend
         public void Panel_GameDefend_Button_Open() {
@@ -116,41 +120,14 @@ namespace UF {
             ctx.panel_GameDefend_Button = null;
         }
 
-        public void Panel_GameDefend_Basic_Open()
-        {
-            Panel_GameDefend_Basic panel = ctx.panel_GameDefend_Basic;
+        #endregion
 
-            if (panel == null)
-            {
-                GameObject prefab = ctx.assetsCore.Panel_GetGameDefend_Basic();
-
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
-                panel = go.GetComponent<Panel_GameDefend_Basic>();
-
-                panel.Ctor();
-            }
-
-            ctx.panel_GameDefend_Basic = panel;
-
-            panel.Show();
-        }
-
-        public void Panel_GameDefend_Basic_Close()
-        {
-            Panel_GameDefend_Basic panel = ctx.panel_GameDefend_Basic;
-            if (panel == null) { return; }
-            
-            panel.TearDown();
-            ctx.panel_GameDefend_Basic = null;
-        }
-
+        #region GamePause
         // Panel_GamePause
-        public void Panel_GamePause_Open()
-        {
+        public void Panel_GamePause_Open() {
             Panel_GamePause panel = ctx.panel_GamePause;
 
-            if (panel == null)
-            {
+            if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetGamePause();
 
                 GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
@@ -176,13 +153,38 @@ namespace UF {
             panel.Show();
         }
 
-        public void Panel_GamePause_Close()
-        {
+        public void Panel_GamePause_Close() {
             Panel_GamePause panel = ctx.panel_GamePause;
             if (panel == null) { return; }
-            
+
             panel.TearDown();
             ctx.panel_GamePause = null;
         }
+        #endregion
+
+        #region HUD
+        public void HUD_Progressbar_Open() {
+            HUD_Progressbar hud = ctx.hud_Progressbar;
+
+            if (hud == null) {
+                GameObject prefab = ctx.assetsCore.HUD_GetProgressbar();
+
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                hud = go.GetComponent<HUD_Progressbar>();
+                hud.Ctor();
+            }
+
+            ctx.hud_Progressbar = hud;
+            hud.Show();
+        }
+
+        public void HUD_Progressbar_Close() {
+            HUD_Progressbar hud = ctx.hud_Progressbar;
+            if (hud == null) { return; }
+
+            hud.TearDown();
+            ctx.hud_Progressbar = null;
+        }
+        #endregion
     }
 }

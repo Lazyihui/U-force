@@ -10,6 +10,12 @@ namespace UF {
 
         public static void Enter(GameContext ctx) {
 
+
+            // UI
+            ctx.appUI.Panel_GameDefend_Button_Open();
+            ctx.appUI.HUD_Progressbar_Open();
+
+            // Game
             var game = ctx.gameEntity;
             game.state = GameState.Game;
 
