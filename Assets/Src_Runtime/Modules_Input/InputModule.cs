@@ -17,6 +17,8 @@ namespace UF {
 
         public bool isUpdateProcess;
 
+        public bool isPressStuff1;
+
         public InputModule() {
             player1 = new InputControls_Player();
             player1.Enable();
@@ -28,7 +30,13 @@ namespace UF {
             isJump = false;
         }
 
+        void UnButtonPress() {
+            isPressStuff1 = false;
+        }
+
         public void Process(float dt) {
+            UnButtonPress();
+
             var world = player1.World;
 
             // -Input
@@ -48,7 +56,6 @@ namespace UF {
             inputCastKey = InputKeyFlag.None;
             {
                 bool isAttackDown = world.Attack.WasPressedThisFrame();
-
                 if (isAttackDown) {
                     inputCastKey |= InputKeyFlag.Attack;
                 }

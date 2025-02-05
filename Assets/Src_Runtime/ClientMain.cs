@@ -44,6 +44,9 @@ namespace UF {
 
         void Binding() {
             var UIEvent = ctx.appUI.eventCenter;
+            var input = ctx.inputModule;
+            var game = ctx.gameEntity;
+
 
             UIEvent.OnLoginStartHandle += () => {
                 ctx.appUI.Panel_Login_Close();
@@ -69,7 +72,6 @@ namespace UF {
                 ctx.appUI.Panel_GamePause_Close();
 
                 //不知道可不可以这么写
-                var game = ctx.gameEntity;
                 game.state = GameState.Game;
                 Debug.Log("Continue");
             };
@@ -87,7 +89,6 @@ namespace UF {
             };
 
             UIEvent.OnAttackHandle += () => {
-                var input = ctx.inputModule;
                 input.isUpdateProcess = false;
                 input.Set_InputCastKey(InputKeyFlag.Attack);
 
@@ -99,6 +100,7 @@ namespace UF {
             };
 
             UIEvent.OnWeap1Handle += () => {
+                input.isPressStuff1 = true;
                 Debug.Log("Weap1");
             };
 
