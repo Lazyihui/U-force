@@ -72,12 +72,17 @@ namespace UF {
             }
 
             RaycastHit2D[] hits = Physics2D.RaycastAll(role.GetPos(), Vector2.down, 1.1f);
-            Debug.DrawRay(role.GetPos(), Vector2.down * 0.6f, Color.red, 0.1f);
+            Debug.DrawRay(role.GetPos(), Vector2.down * 1.1f, Color.red, 0.1f);
 
             for (int i = 0; i < hits.Length; i++) {
                 RaycastHit2D hit = hits[i];
+                if (hit.collider.gameObject != null) {
+                    Debug.LogWarning("Collider:" + hit.collider.gameObject.tag);
+                }
+
                 if (hit.collider.gameObject.CompareTag("Ground")) {
                     isColliderGround = true;
+                    Debug.LogWarning("ColliderGround");
                     break;
                 }
             }
