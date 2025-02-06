@@ -192,7 +192,7 @@ namespace UF {
             hud.Set_Waves(waves);
         }
 
-        void HUD_Progressbar_SetText(){
+        void HUD_Progressbar_SetText() {
             HUD_Progressbar hud = ctx.hud_Progressbar;
             if (hud == null) {
                 return;

@@ -8,10 +8,10 @@ namespace UF {
 
         public float restFixTime;
         public GameState state;
+
         public int stageCurID;
-
         public IDSignature OwnerIDsig;
-
+        public IDSignature CurrentMapIDsig;
 
         #region 生成小怪的波次数据
         // 必需改掉
@@ -36,6 +36,9 @@ namespace UF {
         public GameEntity() {
 
             stageCurID = 0;
+
+
+
 
             spawnMinionTimer = 4;
             spawnMinion = 4;

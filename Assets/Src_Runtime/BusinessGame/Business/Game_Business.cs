@@ -23,6 +23,9 @@ namespace UF {
                 Debug.LogError("StageID not found");
                 return;
             }
+            
+            // Map
+            MapDomain.Spawn(ctx, tm.mapPrefab);
 
             // Role
             for (int i = 0; i < tm.roleSpawns.Length; i += 1) {

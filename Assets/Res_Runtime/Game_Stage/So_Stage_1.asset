@@ -37,3 +37,4 @@ MonoBehaviour:
     - so: {fileID: 11400000, guid: d8699dbf713c3fa4fba559e682df9a00, type: 2}
       position: {x: 16, y: -4, z: 0}
       rotation: {x: -0, y: 0, z: 0}
+    mapPrefab: {fileID: 7148232891296692236, guid: 6201a9e867efedd4aae17542687e08cb, type: 3}

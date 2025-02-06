@@ -11,5 +11,8 @@ namespace UF {
         public RoleSpawnerTM[] roleSpawns;
         public CaveSpawnerTM[] towerSpawns;
 
+        // map 
+        public GameObject mapPrefab;
+
     }
 }

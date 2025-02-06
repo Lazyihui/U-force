@@ -165,6 +165,15 @@ namespace UF {
             return bullet;
         }
 
+        public static MapEntity Map_Create(AssetsCore assetsCore, IDService idService, GameObject mapPrefab) {
+            GameObject go = GameObject.Instantiate(mapPrefab);
+            MapEntity map = go.GetComponent<MapEntity>();
+            map.idSig = new IDSignature(EntityType.Map, idService.PickMapID());
+            map.Ctor();
+            return map;
+
+        }
+
         #region Stuff
         public static StuffEntity Stuff_Create(AssetsCore assetsCore, TemplateCore templateCore, IDService iDService, int typeID) {
             bool has = templateCore.Stuff_TryGet(typeID, out var tm);
