@@ -1,0 +1,23 @@
+using System;
+using UnityEngine;
+
+namespace UF
+{
+    public class MapEntity : MonoBehaviour
+    {
+        public int typeID;
+        public IDSignature idSig;
+
+        public MapType type; // 地图类型
+
+        public void Ctor()
+        {
+
+        }
+
+        public void TearDown()
+        {
+            GameObject.Destroy(gameObject);
+        }
+    }
+}
