@@ -23,8 +23,7 @@ namespace UF {
             }
 
             // 超出屏幕
-            if (role.transform.position.y >= 11.25)
-            {
+            if (role.transform.position.y >= 11.25) {
                 role.Jump_Stop();
                 return;
             }
@@ -77,12 +76,10 @@ namespace UF {
             for (int i = 0; i < hits.Length; i++) {
                 RaycastHit2D hit = hits[i];
                 if (hit.collider.gameObject != null) {
-                    Debug.LogWarning("Collider:" + hit.collider.gameObject.tag);
                 }
 
                 if (hit.collider.gameObject.CompareTag("Ground")) {
                     isColliderGround = true;
-                    Debug.LogWarning("ColliderGround");
                     break;
                 }
             }
