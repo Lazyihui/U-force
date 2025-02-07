@@ -165,6 +165,44 @@ namespace UF {
         }
         #endregion
 
+        #region GameOver
+        public void Panel_GameOver_Open(bool isWin, int hurt, int shoot, int hitNumber, float hitRate)
+        {
+            Panel_GameOver panel = ctx.panel_GameOver;
+
+            if (panel == null)
+            {
+                GameObject prefab = ctx.assetsCore.Panel_GetGameOver();
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                panel = go.GetComponent<Panel_GameOver>();
+                panel.Ctor();
+
+                panel.OnGameOverButtonClick += () => {
+                    eventCenter.OnGameOver();
+                };
+            }
+            ctx.panel_GameOver = panel;
+
+            panel.Show();
+
+            panel.SetTitle(isWin);
+            panel.SetHurt(hurt);
+            panel.SetShoot(shoot);
+            panel.SetHitNumber(hitNumber);
+            panel.SetHitRate(hitRate);
+        }
+
+        public void Panel_GameOver_Close()
+        {
+            Panel_GameOver panel = ctx.panel_GameOver;
+            if (panel == null) {
+                return;
+            }
+            panel.TearDown();
+            ctx.panel_GameOver = null;
+        }
+        #endregion
+
         #region HUD
         public void HUD_Progressbar_Open(int waves) {
             HUD_Progressbar hud = ctx.hud_Progressbar;

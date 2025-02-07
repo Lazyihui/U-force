@@ -101,6 +101,11 @@ namespace UF {
             return panel;
         }
 
+        public GameObject Panel_GetGameOver() {
+            panels.TryGetValue("Panel_GameOver", out GameObject panel);
+            return panel;
+        }
+
         // HUD
         public GameObject HUD_GetProgressbar() {
             panels.TryGetValue("HUD_Progressbar", out GameObject hud);

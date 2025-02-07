@@ -13,6 +13,7 @@ namespace UF {
         public Panel_Login panel_Login;
         public Panel_GamePause panel_GamePause;
         public Panel_GameDefend_Button panel_GameDefend_Button;
+        public Panel_GameOver panel_GameOver;
 
         // HUD
         public HUD_Progressbar hud_Progressbar;

@@ -73,5 +73,17 @@ namespace UF {
             }
 
         }
+
+        public static bool isGameWin(GameContext ctx)
+        {
+            var game = ctx.gameEntity;
+            int len = ctx.roleRepository.TakeAll(out var roles);
+
+            if (game.curWaves >= game.maxWaves && len == 1)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -23,7 +23,7 @@ namespace UF {
                 Debug.LogError("StageID not found");
                 return;
             }
-            
+
             // Map
             MapDomain.Spawn(ctx, tm.mapPrefab);
 
@@ -79,11 +79,28 @@ namespace UF {
             RoleEntity owner = ctx.Get_Owner();
 
             // 游戏结束
-            bool isGameOver = RoleDomain.isPlyerDead(ctx, owner);
+            // TODO: 数值部分
+            bool isGameFail = RoleDomain.isPlyerDead(ctx, owner);
+            bool isGameWin = CaveDomain.isGameWin(ctx);
 
-            if (isGameOver) {
+            bool isWin;
+            int hurt = 0;
+            int shoot = 0;
+            int hitNumber = 0;
+            float hitRate = 0;
+
+            if (isGameFail) {
                 game.state = GameState.GameOver;
+                isWin = false;
+
+                ctx.appUI.Panel_GameOver_Open(isWin, hurt, shoot, hitNumber, hitRate);
                 Debug.Log("GameOver");
+            }
+            else if (isGameWin) {
+                game.state = GameState.GameOver;
+                isWin = true;
+
+                ctx.appUI.Panel_GameOver_Open(isWin, hurt, shoot, hitNumber, hitRate);
             }
 
             // 生成怪物 不需要循环

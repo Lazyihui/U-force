@@ -122,6 +122,10 @@ namespace UF {
                 input.Set_InputCastKey(InputKeyFlag.Weap4);
                 Debug.Log("Weap4");
             };
+
+            UIEvent.OnGameOverHandle += () => {
+                Debug.Log("GameOver Continue");
+            };
         }
 
         void Update() {

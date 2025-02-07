@@ -256,6 +256,8 @@ namespace UF {
         }
 
         public static bool isPlyerDead(GameContext ctx, RoleEntity role) {
+            Debug.Assert(role == null, "role == null");
+
             if (role.state == RoleState.Dead) {
                 return true;
             }

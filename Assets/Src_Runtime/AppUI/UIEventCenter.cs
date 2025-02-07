@@ -98,5 +98,13 @@ namespace UF {
                 OnIllustratedHandle();
             }
         }
+
+        // GameOver
+        public Action OnGameOverHandle;
+        public void OnGameOver() {
+            if (OnGameOverHandle != null) {
+                OnGameOverHandle();
+            }
+        }
     }
 }
