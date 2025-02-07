@@ -35,6 +35,42 @@ MonoBehaviour:
     m_SerializedLabels:
     - Entity
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6037af1524df2a0469e65295d87f5a8c
+    m_Address: So_Skillor_100_Attack
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e65466553c95d464da1189d758904a8a
+    m_Address: "So_Skillor_200_\u7F50\u5934"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ee1c028d0e410245802a04acd98a83f
+    m_Address: "So_Skillor_400_\u9E21"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec25f1894dd14f14cbd7b712e1774852
+    m_Address: "So_Bullet_300\u8702\u871C"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Bullet
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8fa8df0f443f694aa9bda115442c447
+    m_Address: "So_Bullet_200\u7F50\u5934"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Bullet
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f9c32337f9e4db4380f705d440dc9ed
+    m_Address: "So_Bullet_400\u9E21"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Bullet
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 4b47acea7a70a444998ddd6e6fd8b9bf, type: 2}
   m_SchemaSet:

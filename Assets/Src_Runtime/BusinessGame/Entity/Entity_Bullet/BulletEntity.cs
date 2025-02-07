@@ -22,7 +22,13 @@ namespace UF {
         public int damage;
 
         public int hitTimes;//击中次数 可以集中几下
-        public int hitMaxTimes;//最大击中次数
+        public int hitMaxTimes;//最大击中次数 是否有穿透(可以打几个敌人)
+
+        public bool isHaveContinueDamege;//是否有持续伤害
+        public float continueDamege;//持续伤害
+
+        public bool isHaveDamageRange;//是否有伤害范围
+        public float damageRange;//伤害范围
 
         // -Frames
         public List<BulletFrameMod> frames;

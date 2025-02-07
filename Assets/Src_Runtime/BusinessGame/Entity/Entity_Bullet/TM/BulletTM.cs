@@ -16,6 +16,13 @@ namespace UF {
 
         public bool isBomb;
 
+        public bool isHaveContinueDamege;
+        public float continueDamege;
+
+        public bool isHaveDamageRange;
+        public float damageRange;
+        
+
         [Title("Locomotion")]
         public float moveSpeed;
 

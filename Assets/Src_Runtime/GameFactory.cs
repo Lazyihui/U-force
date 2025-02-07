@@ -115,6 +115,8 @@ namespace UF {
 
             return role;
         }
+
+        #region Bullet
         public static BulletEntity Bullet_Create(AssetsCore assetsCore, TemplateCore templateCore,
          IDService idService, int typeID, Vector3 pos, Vector3 dir) {
             bool has = templateCore.Bullet_TryGet(typeID, out var tm);
@@ -153,6 +155,10 @@ namespace UF {
             bullet.hitTimes = tm.hitTimes;
             bullet.isBomb = tm.isBomb;
             bullet.moveSpeed = tm.moveSpeed;
+            bullet.isHaveContinueDamege = tm.isHaveContinueDamege;
+            bullet.continueDamege = tm.continueDamege;
+            bullet.isHaveDamageRange = tm.isHaveDamageRange;
+            bullet.damageRange = tm.damageRange;
 
 
             bullet.Inject(mod);
@@ -164,6 +170,8 @@ namespace UF {
 
             return bullet;
         }
+
+        #endregion
 
         public static MapEntity Map_Create(AssetsCore assetsCore, IDService idService, GameObject mapPrefab) {
             GameObject go = GameObject.Instantiate(mapPrefab);

@@ -61,6 +61,34 @@ namespace UF {
                 }
             }
 
+            {
+                bool isWeap1Down = world.Weap1.WasPressedThisFrame();
+                if (isWeap1Down) {
+                    inputCastKey |= InputKeyFlag.Weap1;
+                }
+            }
+
+            {
+                bool isWeap2Down = world.Weap2.WasPressedThisFrame();
+                if (isWeap2Down) {
+                    inputCastKey |= InputKeyFlag.Weap2;
+                }
+            }
+
+            {
+                bool isWeap3Down = world.Weap3.WasPressedThisFrame();
+                if (isWeap3Down) {
+                    inputCastKey |= InputKeyFlag.Weap3;
+                }
+            }
+
+            {
+                bool isWeap4Down = world.Weap4.WasPressedThisFrame();
+                if (isWeap4Down) {
+                    inputCastKey |= InputKeyFlag.Weap4;
+                }
+            }
+
         }
 
         public void Set_InputCastKey(InputKeyFlag flag) {

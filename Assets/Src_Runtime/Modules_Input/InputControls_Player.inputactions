@@ -24,9 +24,36 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Skill_100",
+                    "name": "Weap1",
                     "type": "Value",
                     "id": "1c538e83-1f34-42e5-9d00-ed45f4d942ba",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Weap2",
+                    "type": "Value",
+                    "id": "edea0073-2855-4d87-a1f4-fd93f9bf17fb",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Weap3",
+                    "type": "Value",
+                    "id": "6edf874c-53f7-4c93-8937-7a5b28c226e6",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Weap4",
+                    "type": "Value",
+                    "id": "b9cce32b-5eaf-4838-bf0f-14b3611c6279",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
@@ -68,11 +95,11 @@
                 {
                     "name": "",
                     "id": "51a2f944-4ef2-483a-80cf-2c64c9154fb6",
-                    "path": "",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Skill_100",
+                    "action": "Weap1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -84,6 +111,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "98871403-6ed4-499a-8d0b-a839cff27095",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Weap2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "83a0c33d-df93-4325-a9c5-5bacdc1dbec0",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Weap3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "03af4239-ed66-4672-a88a-968209795684",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Weap4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

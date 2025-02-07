@@ -46,9 +46,36 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Skill_100"",
+                    ""name"": ""Weap1"",
                     ""type"": ""Value"",
                     ""id"": ""1c538e83-1f34-42e5-9d00-ed45f4d942ba"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Weap2"",
+                    ""type"": ""Value"",
+                    ""id"": ""edea0073-2855-4d87-a1f4-fd93f9bf17fb"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Weap3"",
+                    ""type"": ""Value"",
+                    ""id"": ""6edf874c-53f7-4c93-8937-7a5b28c226e6"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Weap4"",
+                    ""type"": ""Value"",
+                    ""id"": ""b9cce32b-5eaf-4838-bf0f-14b3611c6279"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -90,11 +117,11 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""51a2f944-4ef2-483a-80cf-2c64c9154fb6"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Skill_100"",
+                    ""action"": ""Weap1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -108,6 +135,39 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98871403-6ed4-499a-8d0b-a839cff27095"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Weap2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83a0c33d-df93-4325-a9c5-5bacdc1dbec0"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Weap3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""03af4239-ed66-4672-a88a-968209795684"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Weap4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -118,7 +178,10 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
         m_World = asset.FindActionMap("World", throwIfNotFound: true);
         m_World_Jump = m_World.FindAction("Jump", throwIfNotFound: true);
         m_World_Attack = m_World.FindAction("Attack", throwIfNotFound: true);
-        m_World_Skill_100 = m_World.FindAction("Skill_100", throwIfNotFound: true);
+        m_World_Weap1 = m_World.FindAction("Weap1", throwIfNotFound: true);
+        m_World_Weap2 = m_World.FindAction("Weap2", throwIfNotFound: true);
+        m_World_Weap3 = m_World.FindAction("Weap3", throwIfNotFound: true);
+        m_World_Weap4 = m_World.FindAction("Weap4", throwIfNotFound: true);
         m_World_Pause = m_World.FindAction("Pause", throwIfNotFound: true);
     }
 
@@ -183,7 +246,10 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
     private List<IWorldActions> m_WorldActionsCallbackInterfaces = new List<IWorldActions>();
     private readonly InputAction m_World_Jump;
     private readonly InputAction m_World_Attack;
-    private readonly InputAction m_World_Skill_100;
+    private readonly InputAction m_World_Weap1;
+    private readonly InputAction m_World_Weap2;
+    private readonly InputAction m_World_Weap3;
+    private readonly InputAction m_World_Weap4;
     private readonly InputAction m_World_Pause;
     public struct WorldActions
     {
@@ -191,7 +257,10 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
         public WorldActions(@InputControls_Player wrapper) { m_Wrapper = wrapper; }
         public InputAction @Jump => m_Wrapper.m_World_Jump;
         public InputAction @Attack => m_Wrapper.m_World_Attack;
-        public InputAction @Skill_100 => m_Wrapper.m_World_Skill_100;
+        public InputAction @Weap1 => m_Wrapper.m_World_Weap1;
+        public InputAction @Weap2 => m_Wrapper.m_World_Weap2;
+        public InputAction @Weap3 => m_Wrapper.m_World_Weap3;
+        public InputAction @Weap4 => m_Wrapper.m_World_Weap4;
         public InputAction @Pause => m_Wrapper.m_World_Pause;
         public InputActionMap Get() { return m_Wrapper.m_World; }
         public void Enable() { Get().Enable(); }
@@ -208,9 +277,18 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
-            @Skill_100.started += instance.OnSkill_100;
-            @Skill_100.performed += instance.OnSkill_100;
-            @Skill_100.canceled += instance.OnSkill_100;
+            @Weap1.started += instance.OnWeap1;
+            @Weap1.performed += instance.OnWeap1;
+            @Weap1.canceled += instance.OnWeap1;
+            @Weap2.started += instance.OnWeap2;
+            @Weap2.performed += instance.OnWeap2;
+            @Weap2.canceled += instance.OnWeap2;
+            @Weap3.started += instance.OnWeap3;
+            @Weap3.performed += instance.OnWeap3;
+            @Weap3.canceled += instance.OnWeap3;
+            @Weap4.started += instance.OnWeap4;
+            @Weap4.performed += instance.OnWeap4;
+            @Weap4.canceled += instance.OnWeap4;
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
@@ -224,9 +302,18 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
-            @Skill_100.started -= instance.OnSkill_100;
-            @Skill_100.performed -= instance.OnSkill_100;
-            @Skill_100.canceled -= instance.OnSkill_100;
+            @Weap1.started -= instance.OnWeap1;
+            @Weap1.performed -= instance.OnWeap1;
+            @Weap1.canceled -= instance.OnWeap1;
+            @Weap2.started -= instance.OnWeap2;
+            @Weap2.performed -= instance.OnWeap2;
+            @Weap2.canceled -= instance.OnWeap2;
+            @Weap3.started -= instance.OnWeap3;
+            @Weap3.performed -= instance.OnWeap3;
+            @Weap3.canceled -= instance.OnWeap3;
+            @Weap4.started -= instance.OnWeap4;
+            @Weap4.performed -= instance.OnWeap4;
+            @Weap4.canceled -= instance.OnWeap4;
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
@@ -251,7 +338,10 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
     {
         void OnJump(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
-        void OnSkill_100(InputAction.CallbackContext context);
+        void OnWeap1(InputAction.CallbackContext context);
+        void OnWeap2(InputAction.CallbackContext context);
+        void OnWeap3(InputAction.CallbackContext context);
+        void OnWeap4(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
     }
 }

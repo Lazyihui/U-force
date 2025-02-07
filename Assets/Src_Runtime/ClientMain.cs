@@ -100,19 +100,26 @@ namespace UF {
             };
 
             UIEvent.OnWeap1Handle += () => {
-                input.isPressStuff1 = true;
+                input.isUpdateProcess = false;
+                input.Set_InputCastKey(InputKeyFlag.Weap1);
                 Debug.Log("Weap1");
             };
 
             UIEvent.OnWeap2Handle += () => {
+                input.isUpdateProcess = false;
+                input.Set_InputCastKey(InputKeyFlag.Weap2);
                 Debug.Log("Weap2");
             };
 
             UIEvent.OnWeap3Handle += () => {
+                input.isUpdateProcess = false;
+                input.Set_InputCastKey(InputKeyFlag.Weap3);
                 Debug.Log("Weap3");
             };
 
             UIEvent.OnWeap4Handle += () => {
+                input.isUpdateProcess = false;
+                input.Set_InputCastKey(InputKeyFlag.Weap4);
                 Debug.Log("Weap4");
             };
         }
