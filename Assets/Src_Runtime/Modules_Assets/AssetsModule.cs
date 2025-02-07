@@ -9,9 +9,8 @@ using UnityEngine.AddressableAssets;
 namespace UF {
 
 
-    public class AssetsCore {
+    public class AssetsModule : MonoBehaviour {
         public Dictionary<string, GameObject> entities;
-
 
         public AsyncOperationHandle entitiesHandle;
 
@@ -19,7 +18,7 @@ namespace UF {
 
         public AsyncOperationHandle panelsHandle;
 
-        public AssetsCore() {
+        public void Ctor() {
             entities = new Dictionary<string, GameObject>();
             panels = new Dictionary<string, GameObject>();
         }

@@ -5,14 +5,15 @@ using UnityEngine;
 namespace UF {
 
     public class GameContext {
+
         public GameEntity gameEntity;
 
         // ---  Common  ---
         public IDService idService;
 
         // ---  Core  ---
-        public AssetsCore assetsCore;
-        public TemplateCore templateCore;
+        public AssetsModule assetsModule;
+        public TemplateMoudle templateCore;
         public AppUI appUI;
 
         public InputModule inputModule;
@@ -25,14 +26,8 @@ namespace UF {
         public MapRepository mapRepository;
 
         public GameContext() {
-            gameEntity = new GameEntity();
             idService = new IDService();
 
-            assetsCore = new AssetsCore();
-            templateCore = new TemplateCore();
-            appUI = new AppUI();
-
-            inputModule = new InputModule();
 
             roleRepository = new RoleRepository();
             bulletRepository = new BulletRepository();
@@ -41,8 +36,13 @@ namespace UF {
             mapRepository = new MapRepository();
         }
 
-        public void Inject(Canvas ScreenCanvas) {
-            appUI.Inject(ScreenCanvas, assetsCore);
+        public void Inject(GameEntity gameEntity,Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule) {
+            this.assetsModule = assetsCore;
+            this.templateCore = templateCore;
+            this.appUI = appUI;
+            this.inputModule = inputModule;
+
+            this.gameEntity = gameEntity;
         }
 
         public RoleEntity Get_Owner() {

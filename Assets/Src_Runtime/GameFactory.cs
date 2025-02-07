@@ -6,7 +6,7 @@ namespace UF {
 
     public static class GameFactory {
 
-        public static RoleEntity Role_Create(AssetsCore assetsCore, TemplateCore templateCore,
+        public static RoleEntity Role_Create(AssetsModule assetsCore, TemplateMoudle templateCore,
          IDService idService, int typeID) {
 
             bool has = templateCore.Role_TryGet(typeID, out var tm);
@@ -60,7 +60,7 @@ namespace UF {
             return role;
         }
 
-        public static RoleEntity Role_CreateBySpawner(AssetsCore assetsCore, TemplateCore templateCore, IDService idService, RoleSpawnerTM spawnerTM) {
+        public static RoleEntity Role_CreateBySpawner(AssetsModule assetsCore, TemplateMoudle templateCore, IDService idService, RoleSpawnerTM spawnerTM) {
 
             int typeID = spawnerTM.so.tm.typeID;
 
@@ -117,7 +117,7 @@ namespace UF {
         }
 
         #region Bullet
-        public static BulletEntity Bullet_Create(AssetsCore assetsCore, TemplateCore templateCore,
+        public static BulletEntity Bullet_Create(AssetsModule assetsCore, TemplateMoudle templateCore,
          IDService idService, int typeID, Vector3 pos, Vector3 dir) {
             bool has = templateCore.Bullet_TryGet(typeID, out var tm);
             if (!has) {
@@ -173,7 +173,7 @@ namespace UF {
 
         #endregion
 
-        public static MapEntity Map_Create(AssetsCore assetsCore, IDService idService, GameObject mapPrefab) {
+        public static MapEntity Map_Create(AssetsModule assetsCore, IDService idService, GameObject mapPrefab) {
             GameObject go = GameObject.Instantiate(mapPrefab);
             MapEntity map = go.GetComponent<MapEntity>();
             map.idSig = new IDSignature(EntityType.Map, idService.PickMapID());
@@ -183,7 +183,7 @@ namespace UF {
         }
 
         #region Stuff
-        public static StuffEntity Stuff_Create(AssetsCore assetsCore, TemplateCore templateCore, IDService iDService, int typeID) {
+        public static StuffEntity Stuff_Create(AssetsModule assetsCore, TemplateMoudle templateCore, IDService iDService, int typeID) {
             bool has = templateCore.Stuff_TryGet(typeID, out var tm);
             if (!has) {
                 Debug.LogError("Stuff_Create: tm is null" + typeID);
@@ -213,7 +213,7 @@ namespace UF {
 
         #region Skillor
 
-        public static SkillModel Skillor_Create(AssetsCore assetsCore, TemplateCore templateCore, IDService idService, int typeID) {
+        public static SkillModel Skillor_Create(AssetsModule assetsCore, TemplateMoudle templateCore, IDService idService, int typeID) {
 
             bool has = templateCore.Skillor_TryGet(typeID, out var tm);
             if (!has) {
@@ -244,7 +244,7 @@ namespace UF {
             return model;
         }
 
-        public static CaveEntity Tower_Create(AssetsCore assetsCore, TemplateCore templateCore, IDService idService, int typeID, Vector2 pos) {
+        public static CaveEntity Tower_Create(AssetsModule assetsCore, TemplateMoudle templateCore, IDService idService, int typeID, Vector2 pos) {
             bool has = templateCore.Tower_TryGet(typeID, out var tm);
             if (!has) {
                 Debug.LogError("Tower_Create: tm is null" + typeID);
@@ -267,7 +267,7 @@ namespace UF {
             return tower;
         }
 
-        public static CaveEntity Tower_CreateBySpawner(AssetsCore assetsCore, TemplateCore templateCore, IDService idService, CaveSpawnerTM spawnerTM) {
+        public static CaveEntity Tower_CreateBySpawner(AssetsModule assetsCore, TemplateMoudle templateCore, IDService idService, CaveSpawnerTM spawnerTM) {
             int typeID = spawnerTM.so.tm.typeID;
 
             bool has = templateCore.Tower_TryGet(typeID, out var tm);

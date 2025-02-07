@@ -10,48 +10,85 @@ namespace UF {
 
         GameContext ctx;
         [SerializeField] Canvas screenCanvas;
-
-        public int stageCurID;
-
         bool isInit = false;
-
         bool isTearDown = false;
-        void Awake() {
 
-            // ---  GameContext  ---
-            ctx = new GameContext();
-            ctx.Inject(screenCanvas);
+        public GameEntity gameEntity;
 
-            var game = ctx.gameEntity;
-            game.stageCurID = stageCurID;
+        // system
+        public static GameSystem gameSystem;
+        public static LoginSystem loginSystem;
+
+        // ==== Cores ====
+        public static AppUI appUI;
+
+        // ==== Modules ====
+        public static AssetsModule assetsModule;
+        public static TemplateMoudle templateCore;
+        public static InputModule inputModule;
+
+
+        void Start() {
+
+            gameEntity = new GameEntity();
+            // ---  UI
+            appUI = GetComponentInChildren<AppUI>();
+            appUI.Ctor();
+
+            // ---  GameSystem  ---
+            gameSystem = GetComponentInChildren<GameSystem>();
+            gameSystem.Ctor();
+
+            loginSystem = GetComponentInChildren<LoginSystem>();
+            loginSystem.Ctor();
+
+            // ---  Modules  ---
+            assetsModule = GetComponentInChildren<AssetsModule>();
+            assetsModule.Ctor();
+
+            templateCore = GetComponentInChildren<TemplateMoudle>();
+            templateCore.Ctor();
+
+            inputModule = GetComponentInChildren<InputModule>();
+            inputModule.Ctor();
+
+
+
+            // Inject
+            gameSystem.Inject(gameEntity, screenCanvas, assetsModule, templateCore, appUI, inputModule);
+            loginSystem.Inject(gameEntity, appUI);
+            Debug.Assert(loginSystem.Events != null, "loginSystem is null");
+
+            appUI.Inject(screenCanvas, assetsModule);
+
             // ---  Binding  ---
-            Binding();
+            Binding_Login();
 
             Action action = async () => {
 
-                await ctx.assetsCore.LoadAll();
-                await ctx.templateCore.LoadAll();
+                await assetsModule.LoadAll();
+                await templateCore.LoadAll();
 
                 isInit = true;
 
                 // ---  Enter  ---
-                Login_Business.Enter(ctx);
+                loginSystem.Enter();
             };
 
             action.Invoke();
 
         }
 
-        void Binding() {
-            var UIEvent = ctx.appUI.eventCenter;
-            var input = ctx.inputModule;
-            var game = ctx.gameEntity;
+        void Binding_Login() {
 
+            var UIEvent = appUI.eventCenter;
+
+            var input = inputModule;
+            var game = gameEntity;
 
             UIEvent.OnLoginStartHandle += () => {
-                ctx.appUI.Panel_Login_Close();
-                Game_Business.Enter(ctx);
-
+                appUI.Panel_Login_Close();
+                gameSystem.Enter();
             };
 
             UIEvent.OnTrainingHandle += () => {
@@ -67,7 +104,7 @@ namespace UF {
                 Debug.Log("Game Quit");
             };
 
-            //GamePause
+            // GamePause
             UIEvent.OnContinueHandle += () => {
                 ctx.appUI.Panel_GamePause_Close();
 
@@ -135,19 +172,21 @@ namespace UF {
 
             float dt = Time.deltaTime;
 
-            var input = ctx.inputModule;
+            var input = inputModule;
             if (input.isUpdateProcess) {
                 input.Process(dt);
             }
 
-            var game = ctx.gameEntity;
-            if (game.state == GameState.Login) {
-                Login_Business.Tick(ctx, dt);
-            } else if (game.state == GameState.Game) {
-                Game_Business.Tick(ctx, dt);
-            } else if (game.state == GameState.GamePause) {
-                Pause_Business.Tick(ctx, dt);
-            }
+            gameSystem.Tick(dt);
+
+            // var game = ctx.gameEntity;
+            // if (game.state == GameState.Login) {
+            //     Login_Business.Tick(ctx, dt);
+            // } else if (game.state == GameState.Game) {
+            //     gameSystem.Tick(ctx, dt);
+            // } else if (game.state == GameState.GamePause) {
+            //     Pause_Business.Tick(ctx, dt);
+            // }
 
 
         }
@@ -166,8 +205,8 @@ namespace UF {
             }
             isTearDown = true;
 
-            ctx.assetsCore.UnLoadAll();
-            ctx.templateCore.UnLoadAll();
+            assetsModule.UnLoadAll();
+            templateCore.UnLoadAll();
         }
 
 

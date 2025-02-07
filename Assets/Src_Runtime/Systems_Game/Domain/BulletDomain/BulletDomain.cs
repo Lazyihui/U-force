@@ -6,7 +6,7 @@ namespace UF {
 
         #region Lifecycle
         public static BulletEntity Spawn(GameContext ctx, int typeID, Vector3 pos, Vector3 dir) {
-            BulletEntity entity = GameFactory.Bullet_Create(ctx.assetsCore, ctx.templateCore, ctx.idService, typeID, pos, dir);
+            BulletEntity entity = GameFactory.Bullet_Create(ctx.assetsModule, ctx.templateCore, ctx.idService, typeID, pos, dir);
 
             ctx.bulletRepository.Add(entity);
             return null;

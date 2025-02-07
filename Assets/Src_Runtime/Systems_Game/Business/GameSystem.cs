@@ -6,9 +6,21 @@ using UnityEngine;
 
 namespace UF {
 
-    public static class Game_Business {
+    public class GameSystem : MonoBehaviour {
+        public SystemType SystemType => SystemType.Game;
 
-        public static void Enter(GameContext ctx) {
+        static GameContext ctx;
+
+        public void Ctor() {
+            ctx = new GameContext();
+        }
+
+        public void Inject(GameEntity gameEntity, Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule) {
+            ctx.Inject(gameEntity, ScreenCanvas, assetsCore, templateCore, appUI, inputModule);
+        }
+
+        public void Enter() {
+
             var game = ctx.gameEntity;
             game.state = GameState.Game;
 
@@ -47,8 +59,15 @@ namespace UF {
         }
 
 
-        public static void Tick(GameContext ctx, float dt) {
-            PreTick(ctx, dt);
+        public void Tick(float dt) {
+            var game = ctx.gameEntity;
+
+            if (game.state != GameState.Game) {
+                return;
+            }
+
+
+            PreTick(dt);
 
             ref float restFixTime = ref ctx.gameEntity.restFixTime;
 
@@ -58,25 +77,25 @@ namespace UF {
 
             if (restFixTime <= FIX_INTERVAL) {
 
-                LogicTick(ctx, restFixTime);
+                LogicTick(restFixTime);
 
                 restFixTime = 0;
             } else {
                 while (restFixTime >= FIX_INTERVAL) {
-                    LogicTick(ctx, FIX_INTERVAL);
+                    LogicTick(FIX_INTERVAL);
                     restFixTime -= FIX_INTERVAL;
                 }
             }
 
-            LastTick(ctx, dt);
+            LastTick(dt);
         }
 
-        static void PreTick(GameContext ctx, float dt) {
+        void PreTick(float dt) {
             var game = ctx.gameEntity;
             var ui = ctx.appUI;
 
             RoleEntity owner = ctx.Get_Owner();
-            
+
             // 游戏结束
             // TODO: 数值部分
             bool isGameFail = RoleDomain.isPlyerDead(ctx, owner);
@@ -109,7 +128,7 @@ namespace UF {
 
         }
 
-        static void LogicTick(GameContext ctx, float dt) {
+        void LogicTick(float dt) {
 
             #region Role
             RoleEntity owner = ctx.Get_Owner();
@@ -162,7 +181,7 @@ namespace UF {
 
         }
 
-        static void LastTick(GameContext ctx, float dt) {
+        void LastTick(float dt) {
 
         }
     }

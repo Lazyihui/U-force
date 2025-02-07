@@ -38,7 +38,7 @@ namespace UF {
 
         public GameEntity() {
 
-            stageCurID = 0;
+            stageCurID = 1;
 
 
 

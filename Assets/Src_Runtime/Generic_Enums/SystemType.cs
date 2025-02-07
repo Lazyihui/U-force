@@ -1,9 +1,9 @@
-namespace NJM {
+namespace UF {
 
     public enum SystemType {
         None,
         Login,
-        game,
+        Game,
     }
 
 }

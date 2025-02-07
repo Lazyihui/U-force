@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace UF {
-    public class InputModule {
+    public class InputModule : MonoBehaviour {
 
         InputControls_Player player1;
         public InputControls_Player Player1 => player1;
@@ -19,7 +19,7 @@ namespace UF {
 
         public bool isPressStuff1;
 
-        public InputModule() {
+        public void Ctor() {
             player1 = new InputControls_Player();
             player1.Enable();
 

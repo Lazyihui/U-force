@@ -7,7 +7,7 @@ namespace UF {
 
         public Canvas screenCanvas;
         public UIEventCenter eventCenter;
-        public AssetsCore assetsCore;
+        public AssetsModule assetsCore;
 
         // panel
         public Panel_Login panel_Login;
@@ -22,7 +22,7 @@ namespace UF {
 
         }
 
-        public void Inject(Canvas screenCanvas, AssetsCore assetsCore) {
+        public void Inject(Canvas screenCanvas, AssetsModule assetsCore) {
             this.screenCanvas = screenCanvas;
             this.assetsCore = assetsCore;
         }

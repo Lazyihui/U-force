@@ -10,7 +10,7 @@ namespace UF {
         }
 
         public static CaveEntity Spawn(GameContext ctx, int typeID, Vector2 pos) {
-            CaveEntity entity = GameFactory.Tower_Create(ctx.assetsCore, ctx.templateCore, ctx.idService, typeID, pos);
+            CaveEntity entity = GameFactory.Tower_Create(ctx.assetsModule, ctx.templateCore, ctx.idService, typeID, pos);
 
             ctx.towerRepository.Add(entity);
             return entity;
@@ -18,7 +18,7 @@ namespace UF {
 
 
         public static CaveEntity SpawnBySpawner(GameContext ctx, CaveSpawnerTM spawnerTM) {
-            CaveEntity entity = GameFactory.Tower_CreateBySpawner(ctx.assetsCore, ctx.templateCore, ctx.idService, spawnerTM);
+            CaveEntity entity = GameFactory.Tower_CreateBySpawner(ctx.assetsModule, ctx.templateCore, ctx.idService, spawnerTM);
             ctx.towerRepository.Add(entity);
             return entity;
         }

@@ -8,7 +8,7 @@ namespace UF {
         #region LifeCycle
 
         static RoleEntity Spawn(GameContext ctx, int typeID) {
-            RoleEntity role = GameFactory.Role_Create(ctx.assetsCore, ctx.templateCore, ctx.idService, typeID);
+            RoleEntity role = GameFactory.Role_Create(ctx.assetsModule, ctx.templateCore, ctx.idService, typeID);
             ctx.roleRepository.Add(role);
             return role;
         }
@@ -20,7 +20,7 @@ namespace UF {
         }
 
         public static RoleEntity SpawnBySpawner(GameContext ctx, RoleSpawnerTM spawnerTM) {
-            RoleEntity role = GameFactory.Role_CreateBySpawner(ctx.assetsCore, ctx.templateCore, ctx.idService, spawnerTM);
+            RoleEntity role = GameFactory.Role_CreateBySpawner(ctx.assetsModule, ctx.templateCore, ctx.idService, spawnerTM);
             ctx.roleRepository.Add(role);
             return role;
         }

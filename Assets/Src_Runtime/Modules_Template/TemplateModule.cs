@@ -7,11 +7,11 @@ using UF.TemplateInternal;
 
 
 namespace UF {
-    public class TemplateCore {
+    public class TemplateMoudle : MonoBehaviour {
 
         public TemplateContext ctx;
 
-        public TemplateCore() {
+        public void Ctor() {
             ctx = new TemplateContext();
         }
 

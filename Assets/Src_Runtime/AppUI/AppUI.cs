@@ -4,17 +4,17 @@ using UnityEngine;
 
 
 namespace UF {
-    public class AppUI {
+    public class AppUI : MonoBehaviour {
 
         public UIContext ctx;
         public UIEventCenter eventCenter;
 
-        public AppUI() {
+        public void Ctor() {
             ctx = new UIContext();
             eventCenter = new UIEventCenter();
         }
 
-        public void Inject(Canvas screenCanvas, AssetsCore assetsCore) {
+        public void Inject(Canvas screenCanvas, AssetsModule assetsCore) {
             ctx.Inject(screenCanvas, assetsCore);
         }
 
@@ -166,12 +166,10 @@ namespace UF {
         #endregion
 
         #region GameOver
-        public void Panel_GameOver_Open(bool isWin, int hurt, int shoot, int hitNumber, float hitRate)
-        {
+        public void Panel_GameOver_Open(bool isWin, int hurt, int shoot, int hitNumber, float hitRate) {
             Panel_GameOver panel = ctx.panel_GameOver;
 
-            if (panel == null)
-            {
+            if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetGameOver();
                 GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
                 panel = go.GetComponent<Panel_GameOver>();
@@ -192,8 +190,7 @@ namespace UF {
             panel.SetHitRate(hitRate);
         }
 
-        public void Panel_GameOver_Close()
-        {
+        public void Panel_GameOver_Close() {
             Panel_GameOver panel = ctx.panel_GameOver;
             if (panel == null) {
                 return;
