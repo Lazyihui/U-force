@@ -17,23 +17,11 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 2d2b89a9dc968d14286ba76ffed229d2
   m_SerializeEntries:
-  - m_GUID: b69aff2c7fec04f4aa64d3b51e967cff
-    m_Address: HUD_Progressbar
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Panel
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ce581359125e29d4ba87fb9a68548e8f
     m_Address: So_Stuff_100
     m_ReadOnly: 0
     m_SerializedLabels:
     - So_Stuff
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5dc6c293e28dfc94ea3d0e7af89bdef2
-    m_Address: Entity_Stuff
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Entity
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6037af1524df2a0469e65295d87f5a8c
     m_Address: So_Skillor_100_Attack

@@ -110,5 +110,10 @@ namespace UF {
             panels.TryGetValue("HUD_Progressbar", out GameObject hud);
             return hud;
         }
+
+        public GameObject HUD_GetCD() {
+            panels.TryGetValue("HUD_CD", out GameObject hud);
+            return hud;
+        }
     }
 }

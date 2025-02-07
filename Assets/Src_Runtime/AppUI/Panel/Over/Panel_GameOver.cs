@@ -25,34 +25,19 @@ public class Panel_GameOver : MonoBehaviour
         });
     }
 
-    public void SetTitle(bool isWin)
+    public void Init(bool isWin, int hurt, int shoot, int hitNumber, float hitRate)
     {
+        Text_Hurt.text = "<b>Hurt</b>    " + hurt.ToString();
+        Text_Shoot.text = "<b>Shoot</b>    " + shoot.ToString();
+        Text_HitNumber.text = "<b>HitNumber</b>    " + hitNumber.ToString();
+        Text_HitRate.text = "<b>HitRate</b>    " + hitRate.ToString("F2") + "%";
+
         if (isWin)
         {
             Text_Title.text = "Win";
             return;
         }
         Text_Title.text = "Fail";
-    }
-
-    public void SetHurt(int hurt)
-    {
-        Text_Hurt.text = "<b>Hurt</b>    " + hurt.ToString();
-    }
-
-    public void SetShoot(int shoot)
-    {
-        Text_Shoot.text = "<b>Shoot</b>    " + shoot.ToString();
-    }
-
-    public void SetHitNumber(int hitNumber)
-    {
-        Text_HitNumber.text = "<b>HitNumber</b>    " + hitNumber.ToString();
-    }
-
-    public void SetHitRate(float hitRate)
-    {
-        Text_HitRate.text = "<b>HitRate</b>    " + hitRate.ToString("F2") + "%";
     }
 
     public void Show()

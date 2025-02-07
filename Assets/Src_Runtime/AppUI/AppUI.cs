@@ -183,11 +183,7 @@ namespace UF {
 
             panel.Show();
 
-            panel.SetTitle(isWin);
-            panel.SetHurt(hurt);
-            panel.SetShoot(shoot);
-            panel.SetHitNumber(hitNumber);
-            panel.SetHitRate(hitRate);
+            panel.Init(isWin, hurt, shoot, hitNumber, hitRate);
         }
 
         public void Panel_GameOver_Close() {
@@ -200,7 +196,7 @@ namespace UF {
         }
         #endregion
 
-        #region HUD
+        #region HUD_Progressbar
         public void HUD_Progressbar_Open(int waves) {
             HUD_Progressbar hud = ctx.hud_Progressbar;
 
@@ -250,6 +246,95 @@ namespace UF {
             }
             hud.TearDown();
             ctx.hud_Progressbar = null;
+        }
+        #endregion
+
+        #region HUD_CD
+        public void HUD_CD_Open()
+        {
+            HUD_CD hud = ctx.hud_CD;
+
+            if (hud == null)
+            {
+                GameObject prefab = ctx.assetsCore.HUD_GetCD();
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                hud = go.GetComponent<HUD_CD>();
+                hud.Ctor();
+            }
+
+            ctx.hud_CD = hud;
+            hud.Show();
+        }
+
+        public void HUD_CD_Close()
+        {
+            HUD_CD hud = ctx.hud_CD;
+            if (hud == null)
+            {
+                return;
+            }
+            hud.TearDown();
+            ctx.hud_CD = null;
+        }
+
+        public void HUD_CD_SetAttack(float cd, float maxCD)
+        {
+            HUD_CD hud = ctx.hud_CD;
+            if (hud == null)
+            {
+                return;
+            }
+            hud.Set_CD_Attack(cd, maxCD);
+        }
+
+        public void HUD_CD_SetTech(float cd, float maxCD)
+        {
+            HUD_CD hud = ctx.hud_CD;
+            if (hud == null)
+            {
+                return;
+            }
+            hud.Set_CD_Tech(cd, maxCD);
+        }
+
+        public void HUD_CD_SetWeap1(float cd, float maxCD)
+        {
+            HUD_CD hud = ctx.hud_CD;
+            if (hud == null)
+            {
+                return;
+            }
+            hud.Set_CD_Weap1(cd, maxCD);
+        }
+
+        public void HUD_CD_SetWeap2(float cd, float maxCD)
+        {
+            HUD_CD hud = ctx.hud_CD;
+            if (hud == null)
+            {
+                return;
+            }
+            hud.Set_CD_Weap2(cd, maxCD);
+        }
+
+        public void HUD_CD_SetWeap3(float cd, float maxCD)
+        {
+            HUD_CD hud = ctx.hud_CD;
+            if (hud == null)
+            {
+                return;
+            }
+            hud.Set_CD_Weap3(cd, maxCD);
+        }
+
+        public void HUD_CD_SetWeap4(float cd, float maxCD)
+        {
+            HUD_CD hud = ctx.hud_CD;
+            if (hud == null)
+            {
+                return;
+            }
+            hud.Set_CD_Weap4(cd, maxCD);
         }
         #endregion
     }

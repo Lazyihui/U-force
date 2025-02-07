@@ -27,6 +27,7 @@ namespace UF {
             // UI
             ctx.appUI.Panel_GameDefend_Button_Open();
             ctx.appUI.HUD_Progressbar_Open(game.maxWaves);
+            ctx.appUI.HUD_CD_Open();
 
             // Game
             int stageID = game.stageCurID;
