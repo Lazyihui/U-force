@@ -15,8 +15,8 @@ namespace UF {
             ctx = new GameContext();
         }
 
-        public void Inject(GameEntity gameEntity, Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule) {
-            ctx.Inject(gameEntity, ScreenCanvas, assetsCore, templateCore, appUI, inputModule);
+        public void Inject(GameEntity gameEntity, Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository) {
+            ctx.Inject(gameEntity, ScreenCanvas, assetsCore, templateCore, appUI, inputModule, roleRepository);
         }
 
         public void Enter() {

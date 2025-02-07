@@ -2,49 +2,64 @@ using System;
 using UnityEngine;
 
 namespace UF {
-    public static class Pause_Business {
-        public static void Enter(GameContext ctx) {
+    public class PauseSystem : MonoBehaviour {
+
+        PauseSystemContext ctx;
+
+        public void Ctor() {
+            ctx = new PauseSystemContext();
+        }
+
+        public void Inject(GameEntity gameEntity, AppUI appUI, RoleRepository roleRepository) {
+            ctx.Inject(gameEntity, appUI, roleRepository);
+        }
+
+
+        public void Enter() {
             GameEntity game = ctx.gameEntity;
 
             game.state = GameState.GamePause;
 
+            // TODO: 业务逻辑
+
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
             for (int i = 0; i < len; i += 1) {
                 RoleEntity role = roles[i];
-                RoleDomain.FSM_All_Pause(ctx, role);
+                role.Move_Stop();
             }
+
         }
 
 
-        public static void Tick(GameContext ctx, float dt) {
-            PreTick(ctx, dt);
+        public void Tick(float dt) {
+            PreTick(dt);
 
             ref float restFixTime = ref ctx.gameEntity.restFixTime;
 
             restFixTime += dt;
             const float FIX_INTERVAL = 0.020f;
             if (restFixTime <= FIX_INTERVAL) {
-                LogicTick(ctx, restFixTime);
+                LogicTick(restFixTime);
                 restFixTime = 0;
             } else {
                 while (restFixTime >= FIX_INTERVAL) {
-                    LogicTick(ctx, FIX_INTERVAL);
+                    LogicTick(FIX_INTERVAL);
                     restFixTime -= FIX_INTERVAL;
                 }
             }
 
-            LastTick(ctx, dt);
+            LastTick(dt);
         }
 
-        static void PreTick(GameContext ctx, float dt) {
-
-        }
-
-        static void LogicTick(GameContext ctx, float dt) {
+        void PreTick(float dt) {
 
         }
 
-        static void LastTick(GameContext ctx, float dt) {
+        void LogicTick(float dt) {
+
+        }
+
+        void LastTick(float dt) {
 
         }
     }

@@ -8,7 +8,6 @@ namespace UF {
 
     public class ClientMain : MonoBehaviour {
 
-        GameContext ctx;
         [SerializeField] Canvas screenCanvas;
         bool isInit = false;
         bool isTearDown = false;
@@ -18,6 +17,7 @@ namespace UF {
         // system
         public static GameSystem gameSystem;
         public static LoginSystem loginSystem;
+        public static PauseSystem PauseSystem;
 
         // ==== Cores ====
         public static AppUI appUI;
@@ -26,6 +26,9 @@ namespace UF {
         public static AssetsModule assetsModule;
         public static TemplateMoudle templateCore;
         public static InputModule inputModule;
+
+        // repos
+        public RoleRepository roleRepository;
 
 
         void Start() {
@@ -42,6 +45,9 @@ namespace UF {
             loginSystem = GetComponentInChildren<LoginSystem>();
             loginSystem.Ctor();
 
+            PauseSystem = GetComponentInChildren<PauseSystem>();
+            PauseSystem.Ctor();
+
             // ---  Modules  ---
             assetsModule = GetComponentInChildren<AssetsModule>();
             assetsModule.Ctor();
@@ -52,12 +58,16 @@ namespace UF {
             inputModule = GetComponentInChildren<InputModule>();
             inputModule.Ctor();
 
+            // repos
+            roleRepository = new RoleRepository();
+
+
 
 
             // Inject
-            gameSystem.Inject(gameEntity, screenCanvas, assetsModule, templateCore, appUI, inputModule);
+            gameSystem.Inject(gameEntity, screenCanvas, assetsModule, templateCore, appUI, inputModule, roleRepository);
             loginSystem.Inject(gameEntity, appUI);
-            Debug.Assert(loginSystem.Events != null, "loginSystem is null");
+            PauseSystem.Inject(gameEntity, appUI, roleRepository);
 
             appUI.Inject(screenCanvas, assetsModule);
 
@@ -106,7 +116,7 @@ namespace UF {
 
             // GamePause
             UIEvent.OnContinueHandle += () => {
-                ctx.appUI.Panel_GamePause_Close();
+                appUI.Panel_GamePause_Close();
 
                 //不知道可不可以这么写
                 game.state = GameState.Game;
@@ -119,8 +129,8 @@ namespace UF {
 
             //GameDefend
             UIEvent.OnGamePauseHandle += () => {
-                ctx.appUI.Panel_GamePause_Open();
-                Pause_Business.Enter(ctx);
+                appUI.Panel_GamePause_Open();
+                PauseSystem.Enter();
                 //TODO
                 Debug.Log("Game Pause");
             };
@@ -178,12 +188,10 @@ namespace UF {
             }
 
             gameSystem.Tick(dt);
+            loginSystem.Tick(dt);
 
-            // var game = ctx.gameEntity;
             // if (game.state == GameState.Login) {
-            //     Login_Business.Tick(ctx, dt);
             // } else if (game.state == GameState.Game) {
-            //     gameSystem.Tick(ctx, dt);
             // } else if (game.state == GameState.GamePause) {
             //     Pause_Business.Tick(ctx, dt);
             // }

@@ -35,6 +35,13 @@ namespace UF {
 
 
         public void Tick(float dt) {
+            var game = ctx.gameEntity;
+
+            if (game.state != GameState.Login) {
+                return;
+            }
+
+
             PreTick(dt);
 
             ref float restFixTime = ref ctx.gameEntity.restFixTime;

@@ -29,20 +29,22 @@ namespace UF {
             idService = new IDService();
 
 
-            roleRepository = new RoleRepository();
             bulletRepository = new BulletRepository();
             towerRepository = new CaveRepository();
             stuffRepository = new StuffRepository();
             mapRepository = new MapRepository();
         }
 
-        public void Inject(GameEntity gameEntity,Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule) {
+        public void Inject(GameEntity gameEntity, Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository) {
             this.assetsModule = assetsCore;
             this.templateCore = templateCore;
             this.appUI = appUI;
             this.inputModule = inputModule;
 
             this.gameEntity = gameEntity;
+
+            // ---  Repos  ---
+            this.roleRepository = roleRepository;
         }
 
         public RoleEntity Get_Owner() {
