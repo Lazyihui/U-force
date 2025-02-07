@@ -17,7 +17,6 @@ namespace UF {
 
         // HUD
         public HUD_Progressbar hud_Progressbar;
-        public HUD_CD hud_CD;
 
         public UIContext() {
 

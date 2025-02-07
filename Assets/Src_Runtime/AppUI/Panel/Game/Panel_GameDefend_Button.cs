@@ -74,6 +74,43 @@ namespace UF {
             });
         }
 
+        public void Set_CD(SkillModel skill, float cd, float maxCD)
+        {
+            Button btn;
+            Image img;
+
+            switch (skill.castKeys)
+            {
+                case InputKeyFlag.Attack:
+                    btn = btn_Attack;
+                    break;
+                case InputKeyFlag.Tech:
+                    btn = btn_Tech;
+                    break;
+                case InputKeyFlag.Weap1:
+                    btn = btn_Weap1;
+                    break;
+                case InputKeyFlag.Weap2:
+                    btn = btn_Weap2;
+                    break;
+                case InputKeyFlag.Weap3:
+                    btn = btn_Weap3;
+                    break;
+                case InputKeyFlag.Weap4:
+                    btn = btn_Weap4;
+                    break;
+                default:
+                    btn = null;
+                    break;
+            }
+
+            if (btn != null)
+            {
+                img = btn.gameObject.GetComponent<Image>();
+                img.fillAmount = Mathf.Clamp((maxCD - cd) / maxCD, 0f, 1f);
+            }
+        }
+
         public void Show() {
             gameObject.SetActive(true);
         }

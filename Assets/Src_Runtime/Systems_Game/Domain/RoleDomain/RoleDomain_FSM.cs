@@ -29,6 +29,8 @@ namespace UF {
                 if (skill.cd < 0) {
                     skill.cd = 0;
                 }
+
+                ctx.appUI.Panel_GameDefend_Update(skill, skill.cd, skill.cdMax);
             }
 
             // 和地面的检测
