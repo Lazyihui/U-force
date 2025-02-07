@@ -44,7 +44,6 @@ namespace UF {
                 CaveDomain.SpawnBySpawner(ctx, spawnerTM);
             }
 
-
         }
 
 
@@ -77,7 +76,7 @@ namespace UF {
             var ui = ctx.appUI;
 
             RoleEntity owner = ctx.Get_Owner();
-
+            
             // 游戏结束
             // TODO: 数值部分
             bool isGameFail = RoleDomain.isPlyerDead(ctx, owner);
@@ -95,8 +94,7 @@ namespace UF {
 
                 ctx.appUI.Panel_GameOver_Open(isWin, hurt, shoot, hitNumber, hitRate);
                 Debug.Log("GameOver");
-            }
-            else if (isGameWin) {
+            } else if (isGameWin) {
                 game.state = GameState.GameOver;
                 isWin = true;
 
@@ -106,7 +104,6 @@ namespace UF {
             // 生成怪物 不需要循环
             CaveDomain.TrySpawnMinion(ctx, dt);
 
-            // 波次精度条逻辑
             ui.HUD_Progressbar_Update(game.wavesProgress);
 
 
@@ -140,8 +137,6 @@ namespace UF {
 
             }
             // 所有状态都要执行
-
-
 
             #endregion
 

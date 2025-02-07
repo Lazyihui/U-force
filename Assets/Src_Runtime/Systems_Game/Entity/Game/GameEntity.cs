@@ -6,6 +6,9 @@ namespace UF {
 
     public class GameEntity {
 
+        public bool isOwnerDying;//是Player否死亡
+        public bool isRunning;//游戏game是否在运行
+
         public float restFixTime;
         public GameState state;
 
@@ -30,7 +33,7 @@ namespace UF {
         public float progress; //每小波次进度条占比
 
         public float wavesProgress; //进度条数值
-
+        
         #endregion
 
         public GameEntity() {
@@ -56,5 +59,12 @@ namespace UF {
             wavesProgress = 0;
         }
 
+        public void Run() {
+            isRunning = true;
+        }
+
+        public void Stop() {
+            isRunning = false;
+        }
     }
 }
