@@ -6,10 +6,10 @@ using UnityEngine;
 namespace UF {
     public static class CaveDomain {
 
-        public static void Tower_Execute(GameContext ctx, CaveEntity tower, float dt) {
+        public static void Tower_Execute(GameSystemContext ctx, CaveEntity tower, float dt) {
         }
 
-        public static CaveEntity Spawn(GameContext ctx, int typeID, Vector2 pos) {
+        public static CaveEntity Spawn(GameSystemContext ctx, int typeID, Vector2 pos) {
             CaveEntity entity = GameFactory.Tower_Create(ctx.assetsModule, ctx.templateCore, ctx.idService, typeID, pos);
 
             ctx.towerRepository.Add(entity);
@@ -17,13 +17,13 @@ namespace UF {
         }
 
 
-        public static CaveEntity SpawnBySpawner(GameContext ctx, CaveSpawnerTM spawnerTM) {
+        public static CaveEntity SpawnBySpawner(GameSystemContext ctx, CaveSpawnerTM spawnerTM) {
             CaveEntity entity = GameFactory.Tower_CreateBySpawner(ctx.assetsModule, ctx.templateCore, ctx.idService, spawnerTM);
             ctx.towerRepository.Add(entity);
             return entity;
         }
 
-        public static void TrySpawnMinion(GameContext ctx, float dt) {
+        public static void TrySpawnMinion(GameSystemContext ctx, float dt) {
 
 
             var game = ctx.gameEntity;
@@ -74,7 +74,7 @@ namespace UF {
 
         }
 
-        public static bool isGameWin(GameContext ctx)
+        public static bool isGameWin(GameSystemContext ctx)
         {
             var game = ctx.gameEntity;
             int len = ctx.roleRepository.TakeAll(out var roles);

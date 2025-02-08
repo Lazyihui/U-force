@@ -62,8 +62,6 @@ namespace UF {
             roleRepository = new RoleRepository();
 
 
-
-
             // Inject
             gameSystem.Inject(gameEntity, screenCanvas, assetsModule, templateCore, appUI, inputModule, roleRepository);
             loginSystem.Inject(gameEntity, appUI);
@@ -72,7 +70,10 @@ namespace UF {
             appUI.Inject(screenCanvas, assetsModule);
 
             // ---  Binding  ---
-            Binding_Login();
+            // Binding_Login();
+            Login_Binding();
+            Game_Binding();
+            Pause_Binding();
 
             Action action = async () => {
 
@@ -89,91 +90,104 @@ namespace UF {
 
         }
 
-        void Binding_Login() {
+        void Login_Binding() {
+            loginSystem.Login_Binding();
 
-            var UIEvent = appUI.eventCenter;
+            var loginEvent = loginSystem.Events;
 
-            var input = inputModule;
-            var game = gameEntity;
-
-            UIEvent.OnLoginStartHandle += () => {
+            loginEvent.OnLoginStartHandle += () => {
                 appUI.Panel_Login_Close();
                 gameSystem.Enter();
             };
 
-            UIEvent.OnTrainingHandle += () => {
+            loginEvent.OnTrainingHandle += () => {
                 Debug.Log("Training");
             };
 
-            UIEvent.OnSettingHandle += () => {
+            loginEvent.OnSettingHandle += () => {
                 Debug.Log("Setting");
             };
 
-            UIEvent.OnQuitHandle += () => {
+            loginEvent.OnQuitHandle += () => {
                 Application.Quit();
                 Debug.Log("Game Quit");
             };
+        }
 
-            // GamePause
-            UIEvent.OnContinueHandle += () => {
-                appUI.Panel_GamePause_Close();
+        void Game_Binding() {
+            gameSystem.Game_Binding();
 
-                //不知道可不可以这么写
-                game.state = GameState.Game;
-                Debug.Log("Continue");
-            };
+            var gameEvent = gameSystem.events;
 
-            UIEvent.OnIllustratedHandle += () => {
-                Debug.Log("Illustrated");
-            };
-
-            //GameDefend
-            UIEvent.OnGamePauseHandle += () => {
+            gameEvent.OnGamePauseHandle += () => {
                 appUI.Panel_GamePause_Open();
                 PauseSystem.Enter();
-                //TODO
-                Debug.Log("Game Pause");
             };
 
-            UIEvent.OnAttackHandle += () => {
-                input.isUpdateProcess = false;
-                input.Set_InputCastKey(InputKeyFlag.Attack);
-
+            gameEvent.OnAttackHandle += () => {
+                inputModule.isUpdateProcess = false;
+                inputModule.Set_InputCastKey(InputKeyFlag.Attack);
                 Debug.Log("Attack");
             };
 
-            UIEvent.OnTechHandle += () => {
+            gameEvent.OnTechHandle += () => {
                 Debug.Log("Tech");
             };
 
-            UIEvent.OnWeap1Handle += () => {
-                input.isUpdateProcess = false;
-                input.Set_InputCastKey(InputKeyFlag.Weap1);
+            gameEvent.OnWeap1Handle += () => {
+                inputModule.isUpdateProcess = false;
+                inputModule.Set_InputCastKey(InputKeyFlag.Weap1);
                 Debug.Log("Weap1");
             };
 
-            UIEvent.OnWeap2Handle += () => {
-                input.isUpdateProcess = false;
-                input.Set_InputCastKey(InputKeyFlag.Weap2);
+            gameEvent.OnWeap2Handle += () => {
+                inputModule.isUpdateProcess = false;
+                inputModule.Set_InputCastKey(InputKeyFlag.Weap2);
                 Debug.Log("Weap2");
             };
 
-            UIEvent.OnWeap3Handle += () => {
-                input.isUpdateProcess = false;
-                input.Set_InputCastKey(InputKeyFlag.Weap3);
+            gameEvent.OnWeap3Handle += () => {
+                inputModule.isUpdateProcess = false;
+                inputModule.Set_InputCastKey(InputKeyFlag.Weap3);
                 Debug.Log("Weap3");
             };
 
-            UIEvent.OnWeap4Handle += () => {
-                input.isUpdateProcess = false;
-                input.Set_InputCastKey(InputKeyFlag.Weap4);
+            gameEvent.OnWeap4Handle += () => {
+                inputModule.isUpdateProcess = false;
+                inputModule.Set_InputCastKey(InputKeyFlag.Weap4);
                 Debug.Log("Weap4");
             };
+        }
 
-            UIEvent.OnGameOverHandle += () => {
+        void Pause_Binding() {
+
+            PauseSystem.Pause_Binding();
+
+            var pauseEvent = PauseSystem.events;
+
+            pauseEvent.OnPauseContinueHandle += () => {
+                appUI.Panel_GamePause_Close();
+                gameSystem.Enter();
+            };
+
+            pauseEvent.OnPauseIllustratedHandle += () => {
+                Debug.Log("Illustrated");
+            };
+
+            pauseEvent.OnPauseExitGameHandle += () => {
                 Debug.Log("GameOver Continue");
             };
+
         }
+
+        // void Binding_Login() {
+
+        //     UIEvent.OnGameOverHandle += () => {
+        //         Debug.Log("GameOver Continue");
+        //     };
+        // }
+
+
 
         void Update() {
             if (!isInit) {

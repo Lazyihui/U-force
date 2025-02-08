@@ -6,8 +6,11 @@ namespace UF {
 
         PauseSystemContext ctx;
 
+        public PauseSystemEvents events;
+
         public void Ctor() {
             ctx = new PauseSystemContext();
+            events = new PauseSystemEvents();
         }
 
         public void Inject(GameEntity gameEntity, AppUI appUI, RoleRepository roleRepository) {
@@ -60,6 +63,27 @@ namespace UF {
         }
 
         void LastTick(float dt) {
+
+        }
+
+
+        public void Pause_Binding() {
+            var ui = ctx.appUI;
+            UIEventCenter eventCenter = ui.eventCenter;
+
+            var events = this.events;
+
+            eventCenter.OnContinueHandle += () => {
+                events.OnContinue();
+            };
+
+            eventCenter.OnIllustratedHandle += () => {
+                events.OnIllustrated();
+            };
+
+            eventCenter.OnPauseExitGameHandle += () => {
+                events.OnExitGame();
+            };
 
         }
     }

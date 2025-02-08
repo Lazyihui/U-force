@@ -74,13 +74,11 @@ namespace UF {
             });
         }
 
-        public void Set_CD(SkillModel skill, float cd, float maxCD)
-        {
+        public void Set_CD(SkillModel skill, float cd, float maxCD) {
             Button btn;
             Image img;
 
-            switch (skill.castKeys)
-            {
+            switch (skill.castKeys) {
                 case InputKeyFlag.Attack:
                     btn = btn_Attack;
                     break;
@@ -104,8 +102,7 @@ namespace UF {
                     break;
             }
 
-            if (btn != null)
-            {
+            if (btn != null) {
                 img = btn.gameObject.GetComponent<Image>();
                 img.fillAmount = Mathf.Clamp((maxCD - cd) / maxCD, 0f, 1f);
             }

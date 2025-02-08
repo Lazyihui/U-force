@@ -5,7 +5,7 @@ using UnityEngine;
 namespace UF {
     public class UIEventCenter {
 
-        //Login
+        #region Login
         public Action OnLoginStartHandle;
         public void OnLoginStart() {
             if (OnLoginStartHandle != null) {
@@ -26,6 +26,7 @@ namespace UF {
                 OnSettingHandle();
             }
         }
+        #endregion
 
         public Action OnQuitHandle;
         public void OnQuit() {
@@ -34,7 +35,7 @@ namespace UF {
             }
         }
 
-        //Game_Defend
+        #region Game
         public Action OnGamePauseHandle;
         public void OnGamePause() {
             if (OnGamePauseHandle != null) {
@@ -84,7 +85,10 @@ namespace UF {
             }
         }
 
-        // GamePause
+        #endregion
+
+
+        #region Pause
         public Action OnContinueHandle;
         public void OnContinue() {
             if (OnContinueHandle != null) {
@@ -99,12 +103,23 @@ namespace UF {
             }
         }
 
-        // GameOver
+        public Action OnPauseExitGameHandle;
+
+        public void OnPauseExitGame() {
+            if (OnPauseExitGameHandle != null) {
+                OnPauseExitGameHandle();
+            }
+        }
+
+        #endregion
+
+        #region GameOver
         public Action OnGameOverHandle;
         public void OnGameOver() {
             if (OnGameOverHandle != null) {
                 OnGameOverHandle();
             }
         }
+        #endregion
     }
 }

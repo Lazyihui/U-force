@@ -4,7 +4,7 @@ using UnityEngine;
 namespace UF {
     public static partial class RoleDomain {
 
-        public static void Loco_Execute(GameContext ctx, RoleEntity role, float dt) {
+        public static void Loco_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
             var moveCom = role.MoveComponent;
             GroundCheck(ctx, role);
 
@@ -13,7 +13,7 @@ namespace UF {
             Loco_Move(ctx, role, dt);
         }
         #region Move: Move
-        static void Loco_Move(GameContext ctx, RoleEntity role, float dt) {
+        static void Loco_Move(GameSystemContext ctx, RoleEntity role, float dt) {
             if (dt <= 0) {
                 return;
             }
@@ -42,15 +42,15 @@ namespace UF {
             }
         }
 
-        public static void Loco_MoveStop(GameContext ctx, RoleEntity role) {
+        public static void Loco_MoveStop(GameSystemContext ctx, RoleEntity role) {
             role.Move_Stop();
         }
 
-        public static void Loco_MoveReset(GameContext ctx, RoleEntity role) {
+        public static void Loco_MoveReset(GameSystemContext ctx, RoleEntity role) {
             role.Move_Reset();
         }
 
-        public static void Loco_Jump(GameContext ctx, RoleEntity role, float jumpForce) {
+        public static void Loco_Jump(GameSystemContext ctx, RoleEntity role, float jumpForce) {
             var inputCom = role.InputComponent;
             if (!inputCom.Jump_Get()) {
                 return;
@@ -60,7 +60,7 @@ namespace UF {
 
         #endregion
 
-        public static void GroundCheck(GameContext ctx, RoleEntity role) {
+        public static void GroundCheck(GameSystemContext ctx, RoleEntity role) {
             if (role.roleType != RoleType.Player) {
                 return;
             }

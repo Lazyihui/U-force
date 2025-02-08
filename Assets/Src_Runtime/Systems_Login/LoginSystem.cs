@@ -76,5 +76,34 @@ namespace UF {
         void LastTick(float dt) {
 
         }
+
+        public void Login_Binding() {
+            var appUI = ctx.appUI;
+            UIEventCenter eventCenter = appUI.eventCenter;
+
+            var events = this.events;
+
+            // 开始游戏
+            eventCenter.OnLoginStartHandle += () => {
+                events.OnLoginStart();
+            };
+
+            // 训练
+            eventCenter.OnTrainingHandle += () => {
+                events.OnTraining();
+            };
+
+            // 设置
+            eventCenter.OnSettingHandle += () => {
+                events.OnSetting();
+            };
+
+            // 退出
+            eventCenter.OnQuitHandle += () => {
+                events.OnQuit();
+            };
+
+
+        }
     }
 }

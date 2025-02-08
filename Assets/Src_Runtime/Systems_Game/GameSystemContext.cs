@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UF {
 
-    public class GameContext {
+    public class GameSystemContext {
 
         public GameEntity gameEntity;
 
@@ -25,7 +25,7 @@ namespace UF {
         public StuffRepository stuffRepository;
         public MapRepository mapRepository;
 
-        public GameContext() {
+        public GameSystemContext() {
             idService = new IDService();
 
 

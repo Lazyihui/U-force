@@ -121,23 +121,20 @@ namespace UF {
             panel.TearDown();
             ctx.panel_GameDefend_Button = null;
         }
-
-        public void Panel_GameDefend_SetCD(SkillModel skill, float cd, float maxCD)
-        {
-            Panel_GameDefend_Button panel = ctx.panel_GameDefend_Button;
-            if (panel == null) {
-                return;
-            }
-            panel.Set_CD(skill, cd, maxCD);
-        }
-
-        public void Panel_GameDefend_Update(SkillModel skill, float cd, float maxCD)
-        {
+        public void Panel_GameDefend_Update(SkillModel skill, float cd, float maxCD) {
             Panel_GameDefend_Button panel = ctx.panel_GameDefend_Button;
             if (panel == null) {
                 return;
             }
             Panel_GameDefend_SetCD(skill, cd, maxCD);
+        }
+
+        void Panel_GameDefend_SetCD(SkillModel skill, float cd, float maxCD) {
+            Panel_GameDefend_Button panel = ctx.panel_GameDefend_Button;
+            if (panel == null) {
+                return;
+            }
+            panel.Set_CD(skill, cd, maxCD);
         }
 
         #endregion
@@ -164,7 +161,7 @@ namespace UF {
                 };
 
                 panel.OnQuitClickHandle += () => {
-                    eventCenter.OnQuit();
+                    eventCenter.OnPauseExitGame();
                 };
             }
 

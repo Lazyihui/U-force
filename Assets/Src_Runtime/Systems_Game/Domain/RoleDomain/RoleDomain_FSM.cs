@@ -5,17 +5,17 @@ using UnityEngine;
 
 namespace UF {
     public static partial class RoleDomain {
-        public static void FSM_Normal_Execute(GameContext ctx, RoleEntity role, float dt) {
+        public static void FSM_Normal_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
             // Skill Cast
             Skillor_Input_FlushKeys(ctx, role, dt);
         }
 
-        public static void FSM_Casting_Execute(GameContext ctx, RoleEntity role, float dt) {
+        public static void FSM_Casting_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
             var fsm = role.FSMComponent;
             FSM_Casting_Hand_Execute(ctx, role, fsm.CastingStateModel, dt);
         }
 
-        public static void FSM_All_Execute(GameContext ctx, RoleEntity role, float dt) {
+        public static void FSM_All_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
             var game = ctx.gameEntity;
 
             // 任何状态都运行的逻辑
@@ -42,23 +42,23 @@ namespace UF {
 
         }
 
-        public static void FSM_All_Pause(GameContext ctx, RoleEntity role) {
+        public static void FSM_All_Pause(GameSystemContext ctx, RoleEntity role) {
             Loco_MoveStop(ctx, role);
             //TODO: 施法过程中暂停
         }
 
-        static void FSM_Casting_Enter(GameContext ctx, RoleEntity role, SkillModel skillor, float dt) {
+        static void FSM_Casting_Enter(GameSystemContext ctx, RoleEntity role, SkillModel skillor, float dt) {
             // 完成
             var fsm = role.FSMComponent;
             fsm.Casting_Enter(skillor);
         }
 
-        static void FSM_Normal_Enter(GameContext ctx, RoleEntity role, float dt) {
+        static void FSM_Normal_Enter(GameSystemContext ctx, RoleEntity role, float dt) {
             var fsm = role.FSMComponent;
             fsm.Normal_Enter();
         }
 
-        static void FSM_Casting_Exit(GameContext ctx, RoleEntity role, float dt) {
+        static void FSM_Casting_Exit(GameSystemContext ctx, RoleEntity role, float dt) {
             var fsm = role.FSMComponent;
             var inputCom = role.InputComponent;
             var input = ctx.inputModule;
@@ -74,7 +74,7 @@ namespace UF {
 
         #region Execute(tick)
         // Tick Execute循环的意思
-        public static void FSM_Casting_Hand_Execute(GameContext ctx, RoleEntity role, RoleCastingStateModel stateModel, float dt) {
+        public static void FSM_Casting_Hand_Execute(GameSystemContext ctx, RoleEntity role, RoleCastingStateModel stateModel, float dt) {
             var skillor = stateModel.skillor;
 
             if (skillor == null) {

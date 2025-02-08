@@ -9,10 +9,13 @@ namespace UF {
     public class GameSystem : MonoBehaviour {
         public SystemType SystemType => SystemType.Game;
 
-        static GameContext ctx;
+        static GameSystemContext ctx;
+
+        public GameSystemEvents events;
 
         public void Ctor() {
-            ctx = new GameContext();
+            ctx = new GameSystemContext();
+            events = new GameSystemEvents();
         }
 
         public void Inject(GameEntity gameEntity, Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository) {
@@ -182,6 +185,44 @@ namespace UF {
         }
 
         void LastTick(float dt) {
+
+        }
+
+        public void Game_Binding() {
+            var ui = ctx.appUI;
+            UIEventCenter eventCenter = ui.eventCenter;
+
+            var events = this.events;
+
+            // 暂停
+            eventCenter.OnGamePauseHandle += () => {
+                events.OnGamePause();
+            };
+
+            // 攻击
+            eventCenter.OnAttackHandle += () => {
+                events.OnAttack();
+            };
+
+            eventCenter.OnTechHandle += () => {
+                events.OnTech();
+            };
+
+            eventCenter.OnWeap1Handle += () => {
+                events.OnWeap1();
+            };
+
+            eventCenter.OnWeap2Handle += () => {
+                events.OnWeap2();
+            };
+
+            eventCenter.OnWeap3Handle += () => {
+                events.OnWeap3();
+            };
+
+            eventCenter.OnWeap4Handle += () => {
+                events.OnWeap4();
+            };
 
         }
     }
