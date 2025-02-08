@@ -18,14 +18,23 @@ namespace UF {
             events = new GameSystemEvents();
         }
 
-        public void Inject(GameEntity gameEntity, Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository) {
-            ctx.Inject(gameEntity, ScreenCanvas, assetsCore, templateCore, appUI, inputModule, roleRepository);
+        public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository) {
+            ctx.Inject(ScreenCanvas, assetsCore, templateCore, appUI, inputModule, roleRepository);
+        }
+
+        public void Exit() {
+            ctx.isRunning = false;
+        }
+
+        public void Continue() {
+            ctx.isRunning = true;
         }
 
         public void Enter() {
 
+            ctx.isRunning = true;
+
             var game = ctx.gameEntity;
-            game.state = GameState.Game;
 
             // UI
             ctx.appUI.Panel_GameDefend_Button_Open();
@@ -63,12 +72,11 @@ namespace UF {
 
 
         public void Tick(float dt) {
-            var game = ctx.gameEntity;
 
-            if (game.state != GameState.Game) {
+            if (!ctx.isRunning) {
                 return;
             }
-
+            var game = ctx.gameEntity;
 
             PreTick(dt);
 
@@ -98,6 +106,9 @@ namespace UF {
             var ui = ctx.appUI;
 
             RoleEntity owner = ctx.Get_Owner();
+            if (owner == null) {
+                return;
+            }
 
             // 游戏结束
             // TODO: 数值部分
@@ -113,7 +124,6 @@ namespace UF {
             if (isGameFail) {
                 game.state = GameState.GameOver;
                 isWin = false;
-
                 ctx.appUI.Panel_GameOver_Open(isWin, hurt, shoot, hitNumber, hitRate);
                 Debug.Log("GameOver");
             } else if (isGameWin) {
@@ -126,15 +136,17 @@ namespace UF {
             // 生成怪物 不需要循环
             CaveDomain.TrySpawnMinion(ctx, dt);
 
-            ui.HUD_Progressbar_Update(game.wavesProgress);
-
-
+            // UI
+            ui.HUD_Progressbar_Update(game.wavesProgress);//更新进度条
         }
 
         void LogicTick(float dt) {
 
             #region Role
             RoleEntity owner = ctx.Get_Owner();
+            if (owner == null) {
+                return;
+            }
 
             // Player的逻辑
             RoleDomain.Input_Record(ctx, owner, dt);

@@ -4,15 +4,17 @@ using UnityEngine;
 namespace UF {
 
     public class LoginSystemContext {
-
-        public GameEntity gameEntity;
-
+        public bool isRunning;
+        public float restFixTime;
         public AppUI appUI;
 
+        public LoginSystemContext() {
+            isRunning = false;
+        }
 
-        public void Inject(GameEntity gameEntity, AppUI appUI) {
+
+        public void Inject( AppUI appUI) {
             this.appUI = appUI;
-            this.gameEntity = gameEntity;
         }
 
 

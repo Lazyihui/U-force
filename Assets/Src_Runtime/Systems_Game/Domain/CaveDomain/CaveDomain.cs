@@ -30,14 +30,12 @@ namespace UF {
             CaveEntity tower = ctx.towerRepository.GetRandom();
 
             if (tower == null) {
-                Debug.Log("TrySpawnMinion tower == null");
                 return;
             }
 
             game.cdMinion -= dt;
 
             if (game.curWaves >= game.maxWaves) {
-                Debug.Log("停止生怪 游戏结束");
                 game.wavesProgress = 1;
                 return;
             }

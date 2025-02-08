@@ -4,6 +4,8 @@ using UnityEngine;
 namespace UF {
     public class PauseSystem : MonoBehaviour {
 
+        public SystemType systemType = SystemType.Pause;
+
         PauseSystemContext ctx;
 
         public PauseSystemEvents events;
@@ -13,31 +15,33 @@ namespace UF {
             events = new PauseSystemEvents();
         }
 
-        public void Inject(GameEntity gameEntity, AppUI appUI, RoleRepository roleRepository) {
-            ctx.Inject(gameEntity, appUI, roleRepository);
+        public void Inject(AppUI appUI, RoleRepository roleRepository) {
+            ctx.Inject(appUI, roleRepository);
         }
 
-
         public void Enter() {
-            GameEntity game = ctx.gameEntity;
-
-            game.state = GameState.GamePause;
-
-            // TODO: 业务逻辑
+            ctx.isRunning = true;
 
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
             for (int i = 0; i < len; i += 1) {
                 RoleEntity role = roles[i];
                 role.Move_Stop();
             }
+        }
 
+        public void Exit() {
+            ctx.isRunning = false;
         }
 
 
         public void Tick(float dt) {
+            if (!ctx.isRunning) {
+                return;
+            }
+
             PreTick(dt);
 
-            ref float restFixTime = ref ctx.gameEntity.restFixTime;
+            ref float restFixTime = ref ctx.restFixTime;
 
             restFixTime += dt;
             const float FIX_INTERVAL = 0.020f;

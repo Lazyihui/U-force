@@ -12,12 +12,11 @@ namespace UF {
         bool isInit = false;
         bool isTearDown = false;
 
-        public GameEntity gameEntity;
 
         // system
         public static GameSystem gameSystem;
         public static LoginSystem loginSystem;
-        public static PauseSystem PauseSystem;
+        public static PauseSystem pauseSystem;
 
         // ==== Cores ====
         public static AppUI appUI;
@@ -33,7 +32,6 @@ namespace UF {
 
         void Start() {
 
-            gameEntity = new GameEntity();
             // ---  UI
             appUI = GetComponentInChildren<AppUI>();
             appUI.Ctor();
@@ -45,8 +43,8 @@ namespace UF {
             loginSystem = GetComponentInChildren<LoginSystem>();
             loginSystem.Ctor();
 
-            PauseSystem = GetComponentInChildren<PauseSystem>();
-            PauseSystem.Ctor();
+            pauseSystem = GetComponentInChildren<PauseSystem>();
+            pauseSystem.Ctor();
 
             // ---  Modules  ---
             assetsModule = GetComponentInChildren<AssetsModule>();
@@ -63,9 +61,9 @@ namespace UF {
 
 
             // Inject
-            gameSystem.Inject(gameEntity, screenCanvas, assetsModule, templateCore, appUI, inputModule, roleRepository);
-            loginSystem.Inject(gameEntity, appUI);
-            PauseSystem.Inject(gameEntity, appUI, roleRepository);
+            gameSystem.Inject(screenCanvas, assetsModule, templateCore, appUI, inputModule, roleRepository);
+            loginSystem.Inject(appUI);
+            pauseSystem.Inject(appUI, roleRepository);
 
             appUI.Inject(screenCanvas, assetsModule);
 
@@ -97,6 +95,7 @@ namespace UF {
 
             loginEvent.OnLoginStartHandle += () => {
                 appUI.Panel_Login_Close();
+                loginSystem.Exit();
                 gameSystem.Enter();
             };
 
@@ -121,7 +120,8 @@ namespace UF {
 
             gameEvent.OnGamePauseHandle += () => {
                 appUI.Panel_GamePause_Open();
-                PauseSystem.Enter();
+                gameSystem.Exit();
+                pauseSystem.Enter();
             };
 
             gameEvent.OnAttackHandle += () => {
@@ -156,13 +156,15 @@ namespace UF {
 
         void Pause_Binding() {
 
-            PauseSystem.Pause_Binding();
+            pauseSystem.Pause_Binding();
 
-            var pauseEvent = PauseSystem.events;
+            var pauseEvent = pauseSystem.events;
 
             pauseEvent.OnPauseContinueHandle += () => {
                 appUI.Panel_GamePause_Close();
-                gameSystem.Enter();
+
+                pauseSystem.Exit();
+                gameSystem.Continue();
             };
 
             pauseEvent.OnPauseIllustratedHandle += () => {
@@ -176,6 +178,7 @@ namespace UF {
         }
 
         void Binding_Login() {
+
             var UIEvent = appUI.eventCenter;
 
             UIEvent.OnGameOverHandle += () => {
@@ -199,13 +202,7 @@ namespace UF {
 
             gameSystem.Tick(dt);
             loginSystem.Tick(dt);
-
-            // if (game.state == GameState.Login) {
-            // } else if (game.state == GameState.Game) {
-            // } else if (game.state == GameState.GamePause) {
-            //     Pause_Business.Tick(ctx, dt);
-            // }
-
+            pauseSystem.Tick(dt);
 
         }
 

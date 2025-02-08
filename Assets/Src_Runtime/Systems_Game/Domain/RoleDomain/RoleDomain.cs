@@ -235,12 +235,13 @@ namespace UF {
             for (int i = 0; i < hits.Length; i++) {
                 RaycastHit2D hit = hits[i];
                 if (hit.collider.gameObject.CompareTag("Ground")) {
+                    Debug.Log("死亡动画");
                     role.SetRoleState(RoleState.Dead);
                 }
             }
         }
 
-        // 书否是死亡状态 
+        // 否是死亡状态 
         public static void IsDeadState(GameSystemContext ctx, RoleEntity role) {
 
             if (role.GetPos().x < -19) {
@@ -251,6 +252,10 @@ namespace UF {
                 return;
             }
             UnSpawn(ctx, role);
+            
+            if (role.roleType == RoleType.Player) {
+                ctx.gameEntity.state = GameState.GameOver;
+            }
         }
 
         public static bool isPlyerDead(GameSystemContext ctx, RoleEntity role) {

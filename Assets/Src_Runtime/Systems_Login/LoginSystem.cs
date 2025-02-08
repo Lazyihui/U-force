@@ -20,31 +20,28 @@ namespace UF {
             events = new LoginSystemEvents();
         }
 
-        public void Inject(GameEntity game, AppUI appUI) {
-            ctx.Inject(game, appUI);
+        public void Inject(AppUI appUI) {
+            ctx.Inject(appUI);
         }
 
         public void Enter() {
+            ctx.isRunning = true;
             // ui
             ctx.appUI.Panel_Login_Open();
-
-            GameEntity game = ctx.gameEntity;
-            game.state = GameState.Login;
-
         }
 
+        public void Exit() {
+            ctx.isRunning = false;
+        }
 
         public void Tick(float dt) {
-            var game = ctx.gameEntity;
-
-            if (game.state != GameState.Login) {
+            if (!ctx.isRunning) {
                 return;
             }
 
-
             PreTick(dt);
 
-            ref float restFixTime = ref ctx.gameEntity.restFixTime;
+            ref float restFixTime = ref ctx.restFixTime;
 
             restFixTime += dt;
 

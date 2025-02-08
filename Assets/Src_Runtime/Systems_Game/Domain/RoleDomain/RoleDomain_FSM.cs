@@ -37,9 +37,6 @@ namespace UF {
             RoleDomain.FallingtodeathCheck(ctx, role);
             RoleDomain.IsDeadState(ctx, role);
 
-
-
-
         }
 
         public static void FSM_All_Pause(GameSystemContext ctx, RoleEntity role) {

@@ -5,6 +5,7 @@ using UnityEngine;
 namespace UF {
 
     public class GameSystemContext {
+        public bool isRunning;
 
         public GameEntity gameEntity;
 
@@ -26,6 +27,10 @@ namespace UF {
         public MapRepository mapRepository;
 
         public GameSystemContext() {
+            isRunning = false;
+
+            gameEntity = new GameEntity();
+
             idService = new IDService();
 
 
@@ -35,13 +40,11 @@ namespace UF {
             mapRepository = new MapRepository();
         }
 
-        public void Inject(GameEntity gameEntity, Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository) {
+        public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository) {
             this.assetsModule = assetsCore;
             this.templateCore = templateCore;
             this.appUI = appUI;
             this.inputModule = inputModule;
-
-            this.gameEntity = gameEntity;
 
             // ---  Repos  ---
             this.roleRepository = roleRepository;
