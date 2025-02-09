@@ -33,7 +33,6 @@ namespace UF {
         public void Enter() {
 
             ctx.isRunning = true;
-
             var game = ctx.gameEntity;
 
             // UI
@@ -60,8 +59,6 @@ namespace UF {
                 }
             }
 
-            // RoleEntity role = RoleDomain.Spawn(ctx, 100);
-            // game.OwnerIDsig = role.idSig;
             // Tower
             for (int i = 0; i < tm.towerSpawns.Length; i += 1) {
                 CaveSpawnerTM spawnerTM = tm.towerSpawns[i];
@@ -76,6 +73,7 @@ namespace UF {
             if (!ctx.isRunning) {
                 return;
             }
+
             var game = ctx.gameEntity;
 
             PreTick(dt);
@@ -105,33 +103,16 @@ namespace UF {
             var game = ctx.gameEntity;
             var ui = ctx.appUI;
 
-            RoleEntity owner = ctx.Get_Owner();
-            if (owner == null) {
+            if (game.state == GameState.GameOver) {
+                StopRole_AllMove();
                 return;
             }
 
-            // 游戏结束
-            // TODO: 数值部分
-            bool isGameFail = RoleDomain.isPlyerDead(ctx, owner);
-            bool isGameWin = CaveDomain.isGameWin(ctx);
 
-            bool isWin;
-            int hurt = 0;
-            int shoot = 0;
-            int hitNumber = 0;
-            float hitRate = 0;
+            RoleEntity owner = ctx.Get_Owner();
 
-            if (isGameFail) {
-                game.state = GameState.GameOver;
-                isWin = false;
-                ctx.appUI.Panel_GameOver_Open(isWin, hurt, shoot, hitNumber, hitRate);
-                Debug.Log("GameOver");
-            } else if (isGameWin) {
-                game.state = GameState.GameOver;
-                isWin = true;
+            Game_Win(owner);
 
-                ctx.appUI.Panel_GameOver_Open(isWin, hurt, shoot, hitNumber, hitRate);
-            }
 
             // 生成怪物 不需要循环
             CaveDomain.TrySpawnMinion(ctx, dt);
@@ -142,7 +123,7 @@ namespace UF {
 
         void LogicTick(float dt) {
 
-            #region Role
+            //  Role
             RoleEntity owner = ctx.Get_Owner();
             if (owner == null) {
                 return;
@@ -172,9 +153,8 @@ namespace UF {
             }
             // 所有状态都要执行
 
-            #endregion
 
-            #region  bullet
+            //   bullet
             int bulletLen = ctx.bulletRepository.TakeAll(out BulletEntity[] bullets);
 
             for (int i = 0; i < bulletLen; i += 1) {
@@ -183,21 +163,45 @@ namespace UF {
                 BulletDomain.detectionMinionByPos(ctx, bullet, bullet.TF_GetPos());
             }
 
-            #endregion
 
-            #region tower
+            //  tower
             int towerLen = ctx.towerRepository.TakeAll(out CaveEntity[] towers);
 
             for (int i = 0; i < towerLen; i += 1) {
                 CaveEntity tower = towers[i];
                 CaveDomain.Tower_Execute(ctx, tower, dt);
             }
-            #endregion
 
         }
 
         void LastTick(float dt) {
 
+        }
+
+        #region Role
+        void StopRole_AllMove() {
+            int len = ctx.roleRepository.TakeAll(out RoleEntity[] minions);
+            for (int i = 0; i < len; i += 1) {
+                RoleEntity minion = minions[i];
+                minion.Move_Stop();
+            }
+        }
+
+        #endregion
+
+        // 游戏结算
+        void Game_Win(RoleEntity owner) {
+            var game = ctx.gameEntity;
+            // 游戏结束
+            bool isGameWin = GameDomain.isGameWin(ctx);
+            if (isGameWin) {
+                // 没找到这里StopRole_AllMove();要多运行一遍
+                StopRole_AllMove();
+                ctx.appUI.Panel_GameOver_Open(true, game.hurt, game.shoot, game.hitNumber, game.hitRate);
+                Debug.Log("GameWin");
+                game.state = GameState.GameOver;
+
+            }
         }
 
         public void Game_Binding() {
@@ -235,7 +239,6 @@ namespace UF {
             eventCenter.OnWeap4Handle += () => {
                 events.OnWeap4();
             };
-
         }
     }
 }

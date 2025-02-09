@@ -197,7 +197,6 @@ namespace UF {
             ctx.panel_GameOver = panel;
 
             panel.Show();
-
             panel.Init(isWin, hurt, shoot, hitNumber, hitRate);
         }
 

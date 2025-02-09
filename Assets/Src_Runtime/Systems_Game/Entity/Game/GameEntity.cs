@@ -33,15 +33,21 @@ namespace UF {
         public float progress; //每小波次进度条占比
 
         public float wavesProgress; //进度条数值
-        
+
+        #endregion
+
+        #region 结算页面
+
+        public int hurt;
+        public int shoot;
+        public int hitNumber;
+        public float hitRate;
+
         #endregion
 
         public GameEntity() {
 
             stageCurID = 1;
-
-
-
 
             spawnMinionTimer = 4;
             spawnMinion = 4;
@@ -57,6 +63,11 @@ namespace UF {
             progress = 0.0625f;
 
             wavesProgress = 0;
+
+            hurt = 0;
+            shoot = 0;
+            hitNumber = 0;
+            hitRate = 0;
         }
 
         public void Run() {

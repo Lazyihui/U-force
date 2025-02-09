@@ -243,6 +243,7 @@ namespace UF {
 
         // 否是死亡状态 
         public static void IsDeadState(GameSystemContext ctx, RoleEntity role) {
+            var game = ctx.gameEntity;
 
             if (role.GetPos().x < -19) {
                 role.SetRoleState(RoleState.Dead);
@@ -252,18 +253,12 @@ namespace UF {
                 return;
             }
             UnSpawn(ctx, role);
-            
+
             if (role.roleType == RoleType.Player) {
+                // TODO写这里其实不太好
                 ctx.gameEntity.state = GameState.GameOver;
+                ctx.appUI.Panel_GameOver_Open(false, game.hurt, game.shoot, game.hitNumber, game.hitRate);
             }
-        }
-
-        public static bool isPlyerDead(GameSystemContext ctx, RoleEntity role) {
-
-            if (role.state == RoleState.Dead) {
-                return true;
-            }
-            return false;
         }
 
         #endregion
