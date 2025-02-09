@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db67aba527d62c24bac11d0316252a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oneStegeGroup: {fileID: 4677210355784005155}
+  oneStegeGroup: {fileID: 6555337487269229999}
   txt_chapter: {fileID: 2190979912850032091}
   oneStagePrefab: {fileID: -117483213291945163, guid: 4c02b478e325b9140847ed319e3de068, type: 3}
   btn_c1: {fileID: 5467759841405736898}
@@ -112,7 +112,11 @@ MonoBehaviour:
   btn_c3: {fileID: 7822496261052174050}
   btn_c4: {fileID: 6435628726503581869}
   btn_c5: {fileID: 5502923181118646236}
-  btn_c6: {fileID: 0}
+  spr_chapterSelected: {fileID: 21300000, guid: 7287be7bd14321e469e6828907c79a68, type: 3}
+  spr_chapterNotSelected: {fileID: 21300000, guid: d5abad237d70f804fbe3ae72e57b1522, type: 3}
+  spr_kb: {fileID: 21300000, guid: 10a48c4242f398a4aaef38dc91f22dca, type: 3}
+  spr_js: {fileID: 21300000, guid: 541c3d537cfbd3f4c9fd3f60c8d9cb28, type: 3}
+  img_keyPrompt: {fileID: 292572765279166492}
 --- !u!1 &771240299287987881
 GameObject:
   m_ObjectHideFlags: 0

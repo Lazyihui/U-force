@@ -96,8 +96,12 @@ namespace UF {
             loginEvent.OnLoginStartHandle += () => {
                 appUI.Panel_Login_Close();
                 appUI.Panel_StageSelection_Open(1, 1);
-                // loginSystem.Exit();
-                // gameSystem.Enter();
+                appUI.Panel_StageSelectionOneStage_Add(1, true);
+                appUI.Panel_StageSelectionOneStage_Add(2, true);
+                appUI.Panel_StageSelectionOneStage_Add(3, true);
+
+                appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, 2, 4);
+
             };
 
             loginEvent.OnTrainingHandle += () => {

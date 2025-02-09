@@ -14,6 +14,8 @@ namespace UF {
 
         Map,
 
+        OneStage,
+
     }
 
 }

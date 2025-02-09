@@ -284,7 +284,32 @@ namespace UF {
             ctx.panel_StageSelection = panel;
             panel.Show();
             // Panel_StageSelection_SetChapter(chapter, maxChapter);
+        }
 
+        public void Panel_StageSelectionOneStage_Add(int stageID, bool isPassed) {
+            Panel_StageSelection panel = ctx.panel_StageSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.Add(stageID, isPassed);
+        }
+
+        public void Panel_StageSelection_Select(InputDeviceType deviceType, int chapter, int maxChapter) {
+            Panel_StageSelection panel = ctx.panel_StageSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.SelectChapter(deviceType, chapter, maxChapter);
+            panel.Clear();
+        }
+
+        public void Panel_StageSelection_Close() {
+            Panel_StageSelection panel = ctx.panel_StageSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.TearDown();
+            ctx.panel_StageSelection = null;
         }
 
         #endregion
