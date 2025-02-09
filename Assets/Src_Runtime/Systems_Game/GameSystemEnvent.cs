@@ -4,13 +4,17 @@ using UnityEngine;
 namespace UF {
 
     public class GameSystemEvents {
+
+        #region  GamePause
         public Action OnGamePauseHandle;
         public void OnGamePause() {
             if (OnGamePauseHandle != null) {
                 OnGamePauseHandle();
             }
         }
+        #endregion
 
+        #region  GameDefend_Buttin
         public Action OnAttackHandle;
         public void OnAttack() {
             if (OnAttackHandle != null) {
@@ -52,6 +56,13 @@ namespace UF {
                 OnWeap4Handle();
             }
         }
+        #endregion
 
+        public Action OnGameOverHandle;
+        public void OnGameOver() {
+            if (OnGameOverHandle != null) {
+                OnGameOverHandle();
+            }
+        }
     }
 }

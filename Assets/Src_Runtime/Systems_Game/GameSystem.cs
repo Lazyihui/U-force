@@ -196,7 +196,8 @@ namespace UF {
             bool isGameWin = GameDomain.isGameWin(ctx);
             if (isGameWin) {
                 // 没找到这里StopRole_AllMove();要多运行一遍
-                StopRole_AllMove();
+                owner.Jump_Stop();
+                owner.Move_Stop();
                 ctx.appUI.Panel_GameOver_Open(true, game.hurt, game.shoot, game.hitNumber, game.hitRate);
                 Debug.Log("GameWin");
                 game.state = GameState.GameOver;
@@ -238,6 +239,10 @@ namespace UF {
 
             eventCenter.OnWeap4Handle += () => {
                 events.OnWeap4();
+            };
+
+            eventCenter.OnGameOverHandle += () => {
+                events.OnGameOver();
             };
         }
     }

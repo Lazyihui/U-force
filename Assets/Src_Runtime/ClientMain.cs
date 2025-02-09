@@ -152,6 +152,10 @@ namespace UF {
                 inputModule.isUpdateProcess = false;
                 inputModule.Set_InputCastKey(InputKeyFlag.Weap4);
             };
+
+            gameEvent.OnGameOverHandle += () => {
+                Debug.Log("GameOver Continue");
+            };
         }
 
         void Pause_Binding() {
