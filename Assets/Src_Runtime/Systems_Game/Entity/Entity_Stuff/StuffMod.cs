@@ -8,6 +8,7 @@ namespace UF {
         [SerializeField] SpriteRenderer sr;
 
         [SerializeField] CircleCollider2D coll_circle;
+        
 
 
         public void Ctor() {

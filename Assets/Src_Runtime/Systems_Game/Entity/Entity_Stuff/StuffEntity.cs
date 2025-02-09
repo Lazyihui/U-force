@@ -31,6 +31,10 @@ namespace UF {
 
         }
 
+        public void TearDown() {
+            gameObject.SetActive(false);
+        }
+
         public void Reuse() {
             gameObject.SetActive(true);
         }

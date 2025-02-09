@@ -77,6 +77,7 @@ namespace UF {
                 labelReference.labelString = "So_Stuff";
                 var handle = Addressables.LoadAssetsAsync<StuffSo>(labelReference, null);
                 var all = await handle.Task;
+
                 foreach (var so in all) {
                     var tm = so.tm;
                     ctx.Stuff_Add(tm);
