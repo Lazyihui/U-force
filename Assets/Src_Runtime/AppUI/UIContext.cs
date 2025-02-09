@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UF.UIApplication;
+
 
 namespace UF {
     public class UIContext {
@@ -14,7 +16,8 @@ namespace UF {
         public Panel_GamePause panel_GamePause;
         public Panel_GameDefend_Button panel_GameDefend_Button;
         public Panel_GameOver panel_GameOver;
-
+        public Panel_StageSelection panel_StageSelection;
+        
         // HUD
         public HUD_Progressbar hud_Progressbar;
 

@@ -121,5 +121,16 @@ namespace UF {
             }
         }
         #endregion
+
+        #region StageSelection
+
+        public Action<int> OnStageSelectionHandle;
+        public void OnStageSelection(int a) {
+            if (OnStageSelectionHandle != null) {
+                OnStageSelectionHandle(a);
+            }
+        }
+
+        #endregion
     }
 }

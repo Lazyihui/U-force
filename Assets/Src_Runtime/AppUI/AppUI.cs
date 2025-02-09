@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UF.UIApplication;
 
 
 namespace UF {
@@ -261,6 +262,31 @@ namespace UF {
             hud.TearDown();
             ctx.hud_Progressbar = null;
         }
+        #endregion
+
+        #region StageSelection
+
+        public void Panel_StageSelection_Open(int chapter, int maxChapter) {
+            Panel_StageSelection panel = ctx.panel_StageSelection;
+
+            if (panel == null) {
+                GameObject prefab = ctx.assetsCore.Panel_GetStageSelection();
+
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                panel = go.GetComponent<Panel_StageSelection>();
+                panel.Ctor();
+
+                panel.OnChapterClickHandle += (int c) => {
+                    eventCenter.OnStageSelection(c);
+                };
+            }
+
+            ctx.panel_StageSelection = panel;
+            panel.Show();
+            // Panel_StageSelection_SetChapter(chapter, maxChapter);
+
+        }
+
         #endregion
 
     }

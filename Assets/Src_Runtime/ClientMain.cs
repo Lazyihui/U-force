@@ -95,8 +95,9 @@ namespace UF {
 
             loginEvent.OnLoginStartHandle += () => {
                 appUI.Panel_Login_Close();
-                loginSystem.Exit();
-                gameSystem.Enter();
+                appUI.Panel_StageSelection_Open(1, 1);
+                // loginSystem.Exit();
+                // gameSystem.Enter();
             };
 
             loginEvent.OnTrainingHandle += () => {
