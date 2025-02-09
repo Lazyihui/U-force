@@ -3,46 +3,45 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Panel_GamePause : MonoBehaviour
-{
-    [SerializeField] Button btn_Continue;
-    public Action OnContinueClickHandle;
+namespace UF {
 
-    // 图鉴
-    [SerializeField] Button btn_Illustrated;
-    public Action OnIllustratedClickHandle;
+    public class Panel_GamePause : MonoBehaviour {
+        [SerializeField] Button btn_Continue;
+        public Action OnContinueClickHandle;
 
-    [SerializeField] Button btn_Quit;
-    public Action OnQuitClickHandle;
+        // 图鉴
+        [SerializeField] Button btn_Illustrated;
+        public Action OnIllustratedClickHandle;
 
-    public void Ctor()
-    {
-        btn_Continue.onClick.AddListener(() => {
-            if (OnContinueClickHandle != null) {
-                OnContinueClickHandle.Invoke();
-            }
-        });
+        [SerializeField] Button btn_Quit;
+        public Action OnQuitClickHandle;
 
-        btn_Illustrated.onClick.AddListener(() => {
-            if (OnIllustratedClickHandle != null) {
-                OnIllustratedClickHandle.Invoke();
-            }
-        });
+        public void Ctor() {
+            btn_Continue.onClick.AddListener(() => {
+                if (OnContinueClickHandle != null) {
+                    OnContinueClickHandle.Invoke();
+                }
+            });
 
-        btn_Quit.onClick.AddListener(() => {
-            if (OnQuitClickHandle != null) {
-                OnQuitClickHandle.Invoke();
-            }
-        });
-    }
+            btn_Illustrated.onClick.AddListener(() => {
+                if (OnIllustratedClickHandle != null) {
+                    OnIllustratedClickHandle.Invoke();
+                }
+            });
 
-    public void Show()
-    {
-        gameObject.SetActive(true);
-    }
+            btn_Quit.onClick.AddListener(() => {
+                if (OnQuitClickHandle != null) {
+                    OnQuitClickHandle.Invoke();
+                }
+            });
+        }
 
-    public void TearDown()
-    {
-        Destroy(gameObject);
+        public void Show() {
+            gameObject.SetActive(true);
+        }
+
+        public void TearDown() {
+            Destroy(gameObject);
+        }
     }
 }
