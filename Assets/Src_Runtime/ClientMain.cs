@@ -116,6 +116,15 @@ namespace UF {
                 Application.Quit();
                 Debug.Log("Game Quit");
             };
+
+            // StageSelection
+            loginEvent.OnStageClickHandle += (stageID) => {
+                appUI.Panel_StageSelection_Close();
+                loginSystem.Exit();
+                gameSystem.Enter(stageID);
+                Debug.Log("StageClick " + stageID);
+                // 进入游戏
+            };
         }
 
         void Game_Binding() {

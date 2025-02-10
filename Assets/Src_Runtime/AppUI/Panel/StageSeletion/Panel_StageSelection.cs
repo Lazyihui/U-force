@@ -34,10 +34,14 @@ namespace UF.UIApplication {
         int chapter;
         Dictionary<int, Button> chapterBtns;
 
+
+
         public Action<int> OnChapterClickHandle;
         public Action<int> OnStageClickHandle;
 
         public void Ctor() {
+            Debug.Assert(btn_c1 != null,"btn_c1");
+            Debug.Log(OnChapterClickHandle != null);
             btn_c1.onClick.AddListener(() => OnChapterClickHandle.Invoke(1));
             // btn_c1.onClick.AddListener(() => {
             //     if (OnChapterClickHandle != null) {
@@ -122,7 +126,7 @@ namespace UF.UIApplication {
             for (int i = 1; i < oneStegeGroup.childCount; i += 1) {
                 Destroy(oneStegeGroup.GetChild(i).gameObject);
             }
-            stage.Clear();  
+            stage.Clear();
         }
 
         public void TearDown() {

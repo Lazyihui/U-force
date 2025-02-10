@@ -101,6 +101,11 @@ namespace UF {
             };
 
 
+            eventCenter.OnStageSelectionHandle += (id) => {
+                events.OnStageClick(id);
+            };
+
+
         }
     }
 }

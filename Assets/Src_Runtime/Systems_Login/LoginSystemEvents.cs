@@ -32,5 +32,16 @@ namespace UF {
                 OnQuitHandle();
             }
         }
+
+        #region  StageSelection
+
+        public Action<int> OnStageClickHandle;
+        public void OnStageClick(int id) {
+            if (OnStageClickHandle != null) {
+                OnStageClickHandle(id);
+            }
+        }
+
+        #endregion
     }
 }

@@ -30,7 +30,7 @@ namespace UF {
             ctx.isRunning = true;
         }
 
-        public void Enter() {
+        public void Enter(int stageID) {
 
             ctx.isRunning = true;
             var game = ctx.gameEntity;
@@ -40,7 +40,8 @@ namespace UF {
             ctx.appUI.HUD_Progressbar_Open(game.maxWaves);
 
             // Game
-            int stageID = game.stageCurID;
+            // int stageID = game.stageCurID;
+            
             bool has = ctx.templateCore.Stage_TryGet(stageID, out StageTM tm);
             if (!has) {
                 Debug.LogError("StageID not found");

@@ -276,9 +276,11 @@ namespace UF {
                 panel = go.GetComponent<Panel_StageSelection>();
                 panel.Ctor();
 
-                panel.OnChapterClickHandle += (int c) => {
-                    eventCenter.OnStageSelection(c);
+                panel.OnStageClickHandle = (stageID) => {
+                    eventCenter.OnStageClick(stageID);
                 };
+
+
             }
 
             ctx.panel_StageSelection = panel;
