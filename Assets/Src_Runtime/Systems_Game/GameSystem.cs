@@ -123,7 +123,8 @@ namespace UF {
         }
 
         void LogicTick(float dt) {
-
+            var game = ctx.gameEntity;
+            
             //  Role
             RoleEntity owner = ctx.Get_Owner();
             if (owner == null) {
@@ -136,6 +137,11 @@ namespace UF {
 
             var fsm = owner.FSMComponent;
             var state = fsm.Status;
+
+            if (game.state == GameState.GameOver)
+            {
+                return;
+            }
 
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
             for (int i = 0; i < len; i += 1) {
@@ -199,6 +205,7 @@ namespace UF {
                 // 没找到这里StopRole_AllMove();要多运行一遍
                 owner.Jump_Stop();
                 owner.Move_Stop();
+                Exit();
                 ctx.appUI.Panel_GameOver_Open(true, game.hurt, game.shoot, game.hitNumber, game.hitRate);
                 Debug.Log("GameWin");
                 game.state = GameState.GameOver;
