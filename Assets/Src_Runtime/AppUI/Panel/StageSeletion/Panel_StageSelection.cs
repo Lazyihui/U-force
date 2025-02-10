@@ -35,19 +35,13 @@ namespace UF.UIApplication {
         Dictionary<int, Button> chapterBtns;
 
 
-
-        public Action<int> OnChapterClickHandle;
+        public Action<int> OnChapterClickHandle;//章节
         public Action<int> OnStageClickHandle;
+        public Action OnCloseHandle;//关闭
+
 
         public void Ctor() {
-            Debug.Assert(btn_c1 != null,"btn_c1");
-            Debug.Log(OnChapterClickHandle != null);
             btn_c1.onClick.AddListener(() => OnChapterClickHandle.Invoke(1));
-            // btn_c1.onClick.AddListener(() => {
-            //     if (OnChapterClickHandle != null) {
-            //         OnChapterClickHandle.Invoke(1);
-            //     }
-            // });
             btn_c2.onClick.AddListener(() => OnChapterClickHandle.Invoke(2));
             btn_c3.onClick.AddListener(() => OnChapterClickHandle.Invoke(3));
             btn_c4.onClick.AddListener(() => OnChapterClickHandle.Invoke(4));
@@ -63,6 +57,18 @@ namespace UF.UIApplication {
 
             stage = new List<Panel_StageSelection_OneStage>();
         }
+
+        public void Tick() {
+            if (Input.GetKeyDown(KeyCode.Tab)) {
+                OnChapterClickHandle.Invoke(chapter + 1);
+                Debug.Log("Tab" + chapter);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                OnCloseHandle.Invoke();
+            }
+        }
+
 
         public void Add(int stageID, bool isPassed) {
             var oneStage = Instantiate(oneStagePrefab, oneStegeGroup);

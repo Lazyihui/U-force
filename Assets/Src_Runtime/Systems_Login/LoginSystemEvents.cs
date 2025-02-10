@@ -42,6 +42,13 @@ namespace UF {
             }
         }
 
+        public Action<int> OnChapterClickHandle;
+        public void OnChapterClick(int id) {
+            if (OnChapterClickHandle != null) {
+                OnChapterClickHandle(id);
+            }
+        }
+
         #endregion
     }
 }

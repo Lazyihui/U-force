@@ -280,12 +280,27 @@ namespace UF {
                     eventCenter.OnStageClick(stageID);
                 };
 
+                panel.OnChapterClickHandle = (chapterID) => {
+                    eventCenter.OnChapterClick(chapterID);
+                };
+
+                panel.OnCloseHandle = () => {
+                    Panel_StageSelection_Close();
+                };
 
             }
 
             ctx.panel_StageSelection = panel;
             panel.Show();
             // Panel_StageSelection_SetChapter(chapter, maxChapter);
+        }
+
+        public void Panel_StageSelection_Tick() {
+            Panel_StageSelection panel = ctx.panel_StageSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.Tick();
         }
 
         public void Panel_StageSelectionOneStage_Add(int stageID, bool isPassed) {

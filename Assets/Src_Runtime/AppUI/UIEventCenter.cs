@@ -124,18 +124,18 @@ namespace UF {
 
         #region StageSelection
 
-        public Action<int> OnStageSelectionHandle;
+        public Action<int> OnStageClickHandle;
         public void OnStageClick(int a) {
-            if (OnStageSelectionHandle != null) {
-                OnStageSelectionHandle(a);
+            if (OnStageClickHandle != null) {
+                OnStageClickHandle(a);
             }
         }
 
-        public Action<int> OnChapterSelectionHandle;
+        public Action<int> OnChapterClickHandle;
 
-        public void OnChapterSelection(int a) {
-            if (OnChapterSelectionHandle != null) {
-                OnChapterSelectionHandle(a);
+        public void OnChapterClick(int a) {
+            if (OnChapterClickHandle != null) {
+                OnChapterClickHandle(a);
             }
         }
 

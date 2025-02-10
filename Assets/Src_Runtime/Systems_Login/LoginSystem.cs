@@ -63,6 +63,10 @@ namespace UF {
         }
 
         void PreTick(float dt) {
+            // panel
+
+            var ui = ctx.appUI;
+            ui.Panel_StageSelection_Tick();
 
         }
 
@@ -101,10 +105,13 @@ namespace UF {
             };
 
 
-            eventCenter.OnStageSelectionHandle += (id) => {
-                events.OnStageClick(id);
+            eventCenter.OnStageClickHandle += (stageID) => {
+                events.OnStageClick(stageID);
             };
 
+            eventCenter.OnChapterClickHandle += (ChapterID) => {
+                events.OnChapterClick(ChapterID);
+            };
 
         }
     }
