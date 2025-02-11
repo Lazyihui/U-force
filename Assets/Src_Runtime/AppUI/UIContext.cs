@@ -16,6 +16,7 @@ namespace UF {
         public Panel_GameDefend_Button panel_GameDefend_Button;
         public Panel_GameOver panel_GameOver;
         public Panel_StageSelection panel_StageSelection;
+        public Panel_CardSelection panel_CardSelection;
 
         // HUD
         public HUD_Progressbar hud_Progressbar;

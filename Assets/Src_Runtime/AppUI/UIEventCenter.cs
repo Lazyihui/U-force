@@ -140,5 +140,40 @@ namespace UF {
         }
 
         #endregion
+
+        #region CardSelection
+
+        public Action OnSelectHeroClickHandle;
+
+        public void OnSelectHeroClick() {
+            if (OnSelectHeroClickHandle != null) {
+                OnSelectHeroClickHandle();
+            }
+        }
+
+        public Action OnSelectAgrClickHandle;//选择农业
+
+        public void OnSelectAgrClick() {
+            if (OnSelectAgrClickHandle != null) {
+                OnSelectAgrClickHandle();
+            }
+        }
+
+        public Action OnSelectIndClickHandle;//选择工业
+
+        public void OnSelectIndClick() {
+            if (OnSelectIndClickHandle != null) {
+                OnSelectIndClickHandle();
+            }
+        }
+
+        public Action OnSelectSciClickHandle;//选择科技
+
+        public void OnSelectSciClick() {
+            if (OnSelectSciClickHandle != null) {
+                OnSelectSciClickHandle();
+            }
+        }
+        #endregion
     }
 }

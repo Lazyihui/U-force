@@ -345,5 +345,51 @@ namespace UF {
 
         #endregion
 
+        #region  CardSelection
+
+        public void Panel_CardSelection_Open(int stageID, int ChapterID) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+
+            if (panel == null) {
+                GameObject prefab = ctx.assetsCore.Panel_GetCardSelection();
+
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                panel = go.GetComponent<Panel_CardSelection>();
+                panel.Ctor();
+
+                panel.OnSelectHeroClickHandle = () => {
+                    eventCenter.OnSelectHeroClick();
+                };
+
+                panel.OnSelectAgrClickHandle = () => {
+                    eventCenter.OnSelectAgrClick();
+                };
+
+                panel.OnSelectIndClickHandle = () => {
+                    eventCenter.OnSelectIndClick();
+                };
+
+                panel.OnSelectSciClickHandle = () => {
+                    eventCenter.OnSelectSciClick();
+                };
+
+            }
+
+            panel.Set_Text(stageID, ChapterID);
+            panel.Show();
+            ctx.panel_CardSelection = panel;
+        }
+
+        public void Panel_CardSelection_Close() {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.TearDown();
+            ctx.panel_CardSelection = null;
+        }
+
+        #endregion
+
     }
 }
