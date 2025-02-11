@@ -89,6 +89,21 @@ namespace UF {
                 events.OnExitGame();
             };
 
+            eventCenter.OnCloseWarningClickHandle += () => {
+                events.OnContinueWarning();
+            };
+
+            eventCenter.OnContinueWarningClickHandle += () => {
+                events.OnContinueWarning();
+            };
+
+            eventCenter.OnResetWarningClickHandle += () => {
+                events.OnResetWarning();
+            };
+
+            eventCenter.OnQuitWarningClickHandle += () => {
+                events.OnQuitWarning();
+            };
         }
     }
 }

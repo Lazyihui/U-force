@@ -119,7 +119,9 @@ namespace UF {
             CaveDomain.TrySpawnMinion(ctx, dt);
 
             // UI
-            ui.HUD_Progressbar_Update(game.wavesProgress);//更新进度条
+            int hp = owner.Attr_Hp_Get();
+            int maxHp = owner.Attr_HpMax_Get();
+            ui.HUD_Progressbar_Update(game.wavesProgress, hp, maxHp);//更新进度条
         }
 
         void LogicTick(float dt) {

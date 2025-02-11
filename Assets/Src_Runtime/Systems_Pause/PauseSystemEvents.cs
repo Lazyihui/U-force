@@ -26,5 +26,42 @@ namespace UF {
             }
         }
 
+        #region BackSelection
+        public Action OnCloseWarningHandle;
+        public void OnCloseWarning()
+        {
+            if (OnCloseWarningHandle != null)
+            {
+                OnCloseWarningHandle();
+            }
+        }
+
+        public Action OnContinueWarningHandle;
+        public void OnContinueWarning()
+        {
+            if (OnContinueWarningHandle != null)
+            {
+                OnContinueWarningHandle();
+            }
+        }
+
+        public Action OnResetWarningHandle;
+        public void OnResetWarning()
+        {
+            if (OnResetWarningHandle != null)
+            {
+                OnResetWarningHandle();
+            }
+        }
+
+        public Action OnQuitWarningHandle;
+        public void OnQuitWarning()
+        {
+            if (OnQuitWarningHandle != null)
+            {
+                OnQuitWarningHandle();
+            }
+        }
+        #endregion
     }
 }

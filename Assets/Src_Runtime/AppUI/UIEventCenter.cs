@@ -175,5 +175,43 @@ namespace UF {
             }
         }
         #endregion
+
+        #region BackSelection
+        public Action OnCloseWarningClickHandle;
+        public void OnCloseWarningClick()
+        {
+            if (OnCloseWarningClickHandle != null)
+            {
+                OnCloseWarningClickHandle();
+            }
+        }
+
+        public Action OnContinueWarningClickHandle;
+        public void OnContinueWarningClick()
+        {
+            if (OnContinueWarningClickHandle != null)
+            {
+                OnContinueWarningClickHandle();
+            }
+        }
+
+        public Action OnResetWarningClickHandle;
+        public void OnResetWarningClick()
+        {
+            if (OnResetWarningClickHandle != null)
+            {
+                OnResetWarningClickHandle();
+            }
+        }
+
+        public Action OnQuitWarningClickHandle;
+        public void OnQuitWarningClick()
+        {
+            if (OnQuitWarningClickHandle != null)
+            {
+                OnQuitWarningClickHandle();
+            }
+        }
+        #endregion
     }
 }

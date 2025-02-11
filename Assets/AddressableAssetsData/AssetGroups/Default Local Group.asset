@@ -59,18 +59,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - So_Bullet
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 848d0246cabcd5849a080ff378b8cb41
-    m_Address: Panel_StageSelection
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Panel
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1dd89f6dc0fc9454daaeeca20b819b84
-    m_Address: Panel_CardSelection
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Panel
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 4b47acea7a70a444998ddd6e6fd8b9bf, type: 2}
   m_SchemaSet:

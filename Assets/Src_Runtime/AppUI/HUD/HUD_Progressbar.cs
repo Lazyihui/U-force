@@ -8,6 +8,8 @@ namespace UF {
         // waves波次
 
         [SerializeField] Slider slider_Waves;
+        
+        [SerializeField] TextMeshProUGUI Text_Achievement;
 
         public int waves;
         public GameObject text; // 先直接在Inspector里拖过来, 单一个text感觉没必要寻址
@@ -44,6 +46,12 @@ namespace UF {
                 TextMeshProUGUI waveText = prefab.GetComponent<TextMeshProUGUI>();
                 waveText.text = i.ToString();
             }
+        }
+
+        // 设置防守成就(基地血量)
+        public void Set_AchiText(int hp, int maxHp)
+        {
+            Text_Achievement.text = "Achievement: " + hp + " / " + maxHp;
         }
 
         public void Show() {

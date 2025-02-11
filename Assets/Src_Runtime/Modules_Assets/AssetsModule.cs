@@ -113,6 +113,11 @@ namespace UF {
             panels.TryGetValue("Panel_CardSelection", out GameObject panel);
             return panel;
         }
+
+        public GameObject Panel_GetBackSelection() {
+            panels.TryGetValue("Panel_BackSelection", out GameObject panel);
+            return panel;
+        }
         // HUD
         public GameObject HUD_GetProgressbar() {
             panels.TryGetValue("HUD_Progressbar", out GameObject hud);

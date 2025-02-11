@@ -96,20 +96,23 @@ namespace UF {
             loginEvent.OnLoginStartHandle += () => {
                 appUI.Panel_Login_Close();
 
-                appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, 1, 5);
+                // appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, 1, 5);
 
-                appUI.Panel_StageSelection_Open(1, 1);
+                // appUI.Panel_StageSelection_Open(1, 1);
 
-                appUI.Panel_StageSelectionOneStage_Add(1, true);
-                appUI.Panel_StageSelectionOneStage_Add(2, true);
-                appUI.Panel_StageSelectionOneStage_Add(3, true);
-                appUI.Panel_StageSelectionOneStage_Add(4, false);
-                appUI.Panel_StageSelectionOneStage_Add(5, false);
-                appUI.Panel_StageSelectionOneStage_Add(6, false);
-                appUI.Panel_StageSelectionOneStage_Add(7, false);
-                appUI.Panel_StageSelectionOneStage_Add(8, false);
-                appUI.Panel_StageSelectionOneStage_Add(9, false);
-                appUI.Panel_StageSelectionOneStage_Add(10, false);
+                // appUI.Panel_StageSelectionOneStage_Add(1, true);
+                // appUI.Panel_StageSelectionOneStage_Add(2, true);
+                // appUI.Panel_StageSelectionOneStage_Add(3, true);
+                // appUI.Panel_StageSelectionOneStage_Add(4, false);
+                // appUI.Panel_StageSelectionOneStage_Add(5, false);
+                // appUI.Panel_StageSelectionOneStage_Add(6, false);
+                // appUI.Panel_StageSelectionOneStage_Add(7, false);
+                // appUI.Panel_StageSelectionOneStage_Add(8, false);
+                // appUI.Panel_StageSelectionOneStage_Add(9, false);
+                // appUI.Panel_StageSelectionOneStage_Add(10, false);
+
+                loginSystem.Exit();
+                gameSystem.Enter(1);
 
             };
 
@@ -210,7 +213,30 @@ namespace UF {
             };
 
             pauseEvent.OnPauseExitGameHandle += () => {
-                Debug.Log("GameOver Continue");
+                appUI.Panel_BackSelection_Open();
+                appUI.Panel_GamePause_Close();
+            };
+
+            pauseEvent.OnCloseWarningHandle += () => {
+                appUI.Panel_BackSelection_Close();
+
+                pauseSystem.Exit();
+                gameSystem.Continue();
+            };
+
+            pauseEvent.OnContinueWarningHandle += () => {
+                appUI.Panel_BackSelection_Close();
+
+                pauseSystem.Exit();
+                gameSystem.Continue();
+            };
+
+            pauseEvent.OnResetWarningHandle += () => {
+                Debug.Log("重新开始此关");
+            };
+
+            pauseEvent.OnQuitWarningHandle += () => {
+                Debug.Log("进入备战(选卡片)页面");
             };
 
         }

@@ -162,6 +162,17 @@ namespace UF {
             attributeComponent.SetHpMax(value);
         }
 
+        // 不清楚怎么调用, 先写个函数
+        public int Attr_Hp_Get()
+        {
+            return attributeComponent.hp;
+        }
+
+        public int Attr_HpMax_Get()
+        {
+            return attributeComponent.hpMax;
+        }
+
         #endregion
 
         public SkillFrameModel Skillor_CurrentFrame() {

@@ -260,12 +260,22 @@ namespace UF {
             hud.Set_Text();
         }
 
-        public void HUD_Progressbar_Update(float progress) {
+        void HUD_Progressbar_SetAchiText(int hp, int maxHp)
+        {
+            HUD_Progressbar hud = ctx.hud_Progressbar;
+            if (hud == null) {
+                return;
+            }
+            hud.Set_AchiText(hp, maxHp);
+        }
+
+        public void HUD_Progressbar_Update(float progress, int hp, int maxHp) {
             HUD_Progressbar hud = ctx.hud_Progressbar;
             if (hud == null) {
                 return;
             }
             hud.Set_Progress(progress);
+            hud.Set_AchiText(hp, maxHp);
         }
 
         public void HUD_Progressbar_Close() {
@@ -389,6 +399,50 @@ namespace UF {
             ctx.panel_CardSelection = null;
         }
 
+        #endregion
+
+        #region BackSelection
+        public void Panel_BackSelection_Open()
+        {
+            Panel_BackSelection panel = ctx.panel_BackSelection;
+
+            if (panel == null)
+            {
+                GameObject prefab = ctx.assetsCore.Panel_GetBackSelection();
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                panel = go.GetComponent<Panel_BackSelection>();
+                panel.Ctor();
+
+                panel.OnCloseWarningClickHandle = () => {
+                    eventCenter.OnCloseWarningClickHandle();
+                };
+
+                panel.OnContinueWarningClickHandle = () => {
+                    eventCenter.OnContinueWarningClickHandle();
+                };
+
+                panel.OnResetWarningClickHandle = () => {
+                    eventCenter.OnResetWarningClickHandle();
+                };
+
+                panel.OnQuitWarningClickHandle = () => {
+                    eventCenter.OnQuitWarningClickHandle();
+                };
+            }
+
+            ctx.panel_BackSelection = panel;
+            panel.Show();
+        }
+
+        public void Panel_BackSelection_Close()
+        {
+            Panel_BackSelection panel = ctx.panel_BackSelection;
+            if (panel == null)
+            {
+                return;
+            }
+            panel.TearDown();
+        }
         #endregion
 
     }
