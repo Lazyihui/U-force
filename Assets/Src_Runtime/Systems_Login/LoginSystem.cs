@@ -20,8 +20,8 @@ namespace UF {
             events = new LoginSystemEvents();
         }
 
-        public void Inject(AppUI appUI) {
-            ctx.Inject(appUI);
+        public void Inject(AppUI appUI, InputModule input) {
+            ctx.Inject(appUI,input);
         }
 
         public void Enter() {
@@ -64,9 +64,10 @@ namespace UF {
 
         void PreTick(float dt) {
             // panel
+            var input = ctx.inputModule;
 
             var ui = ctx.appUI;
-            ui.Panel_StageSelection_Tick();
+            ui.Tick(dt, input);
 
         }
 

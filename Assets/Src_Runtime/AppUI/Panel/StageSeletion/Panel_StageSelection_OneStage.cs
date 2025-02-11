@@ -23,12 +23,11 @@ namespace UF.UIApplication {
             });
         }
 
-
-
         public void Init(int stageID, bool isPassed) {
 
             id = stageID;
             string str = stageID.ToString();
+            txt_stage.text = str;//关卡名
 
             if (isPassed) {
                 img_pass.gameObject.SetActive(false);

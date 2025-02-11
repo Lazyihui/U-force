@@ -28,7 +28,7 @@ namespace UF.UIApplication {
         // 图片
         [SerializeField] Sprite spr_kb;
         [SerializeField] Sprite spr_js;
-        [SerializeField] Image img_keyPrompt;
+        [SerializeField] Image img_keyPrompt;//键盘提示图片
 
         // 
         int chapter;
@@ -58,13 +58,13 @@ namespace UF.UIApplication {
             stage = new List<Panel_StageSelection_OneStage>();
         }
 
-        public void Tick() {
-            if (Input.GetKeyDown(KeyCode.Tab)) {
+        public void Tick(bool isTabDown, bool isEscDown) {
+
+            if (isTabDown) {
                 OnChapterClickHandle.Invoke(chapter + 1);
-                Debug.Log("Tab" + chapter);
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (isEscDown) {
                 OnCloseHandle.Invoke();
             }
         }
@@ -74,7 +74,8 @@ namespace UF.UIApplication {
             var oneStage = Instantiate(oneStagePrefab, oneStegeGroup);
             oneStage.Ctor();
             oneStage.OnStageClickHandle = OnStageClick;
-            oneStage.Init(stageID, isPassed);
+            int stageid = stageID + chapter * 10;
+            oneStage.Init(stageid, isPassed);
             stage.Add(oneStage);
 
             if (stage.Count == 1) {
@@ -99,7 +100,7 @@ namespace UF.UIApplication {
                 img_keyPrompt.gameObject.SetActive(true);
             }
 
-            // 换章按钮
+            // 换章按钮 显示
             foreach (KeyValuePair<int, Button> pair in chapterBtns) {
                 pair.Value.gameObject.SetActive(pair.Key <= maxChapter);
             }
@@ -123,8 +124,10 @@ namespace UF.UIApplication {
             }
 
             img_keyPrompt.SetNativeSize();//设置图片的原始大小
+        }
 
-
+        public void SetNativeSize() {
+            img_keyPrompt.SetNativeSize();
         }
 
         public void Clear() {

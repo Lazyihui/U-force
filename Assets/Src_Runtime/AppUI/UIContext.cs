@@ -8,7 +8,6 @@ namespace UF {
     public class UIContext {
 
         public Canvas screenCanvas;
-        public UIEventCenter eventCenter;
         public AssetsModule assetsCore;
 
         // panel
@@ -17,12 +16,17 @@ namespace UF {
         public Panel_GameDefend_Button panel_GameDefend_Button;
         public Panel_GameOver panel_GameOver;
         public Panel_StageSelection panel_StageSelection;
-        
+
         // HUD
         public HUD_Progressbar hud_Progressbar;
 
-        public UIContext() {
+        // input
+        public bool isTabDown;
+        public bool isEscDown;
 
+
+        public UIContext() {
+            isTabDown = false;
         }
 
         public void Inject(Canvas screenCanvas, AssetsModule assetsCore) {

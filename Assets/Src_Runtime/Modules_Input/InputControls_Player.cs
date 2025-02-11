@@ -82,9 +82,18 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Pause"",
+                    ""name"": ""Esc"",
                     ""type"": ""Value"",
                     ""id"": ""e1e1d689-ece1-44e0-8131-3497795469e4"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Tab"",
+                    ""type"": ""Value"",
+                    ""id"": ""f52643fe-ed8d-49c7-bed3-591bcc597ccd"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -132,7 +141,7 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Pause"",
+                    ""action"": ""Esc"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -168,6 +177,17 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
                     ""action"": ""Weap4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1bd7f8d6-57c6-414f-9e1b-126cbc1434cf"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -182,7 +202,8 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
         m_World_Weap2 = m_World.FindAction("Weap2", throwIfNotFound: true);
         m_World_Weap3 = m_World.FindAction("Weap3", throwIfNotFound: true);
         m_World_Weap4 = m_World.FindAction("Weap4", throwIfNotFound: true);
-        m_World_Pause = m_World.FindAction("Pause", throwIfNotFound: true);
+        m_World_Esc = m_World.FindAction("Esc", throwIfNotFound: true);
+        m_World_Tab = m_World.FindAction("Tab", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -250,7 +271,8 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
     private readonly InputAction m_World_Weap2;
     private readonly InputAction m_World_Weap3;
     private readonly InputAction m_World_Weap4;
-    private readonly InputAction m_World_Pause;
+    private readonly InputAction m_World_Esc;
+    private readonly InputAction m_World_Tab;
     public struct WorldActions
     {
         private @InputControls_Player m_Wrapper;
@@ -261,7 +283,8 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
         public InputAction @Weap2 => m_Wrapper.m_World_Weap2;
         public InputAction @Weap3 => m_Wrapper.m_World_Weap3;
         public InputAction @Weap4 => m_Wrapper.m_World_Weap4;
-        public InputAction @Pause => m_Wrapper.m_World_Pause;
+        public InputAction @Esc => m_Wrapper.m_World_Esc;
+        public InputAction @Tab => m_Wrapper.m_World_Tab;
         public InputActionMap Get() { return m_Wrapper.m_World; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -289,9 +312,12 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
             @Weap4.started += instance.OnWeap4;
             @Weap4.performed += instance.OnWeap4;
             @Weap4.canceled += instance.OnWeap4;
-            @Pause.started += instance.OnPause;
-            @Pause.performed += instance.OnPause;
-            @Pause.canceled += instance.OnPause;
+            @Esc.started += instance.OnEsc;
+            @Esc.performed += instance.OnEsc;
+            @Esc.canceled += instance.OnEsc;
+            @Tab.started += instance.OnTab;
+            @Tab.performed += instance.OnTab;
+            @Tab.canceled += instance.OnTab;
         }
 
         private void UnregisterCallbacks(IWorldActions instance)
@@ -314,9 +340,12 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
             @Weap4.started -= instance.OnWeap4;
             @Weap4.performed -= instance.OnWeap4;
             @Weap4.canceled -= instance.OnWeap4;
-            @Pause.started -= instance.OnPause;
-            @Pause.performed -= instance.OnPause;
-            @Pause.canceled -= instance.OnPause;
+            @Esc.started -= instance.OnEsc;
+            @Esc.performed -= instance.OnEsc;
+            @Esc.canceled -= instance.OnEsc;
+            @Tab.started -= instance.OnTab;
+            @Tab.performed -= instance.OnTab;
+            @Tab.canceled -= instance.OnTab;
         }
 
         public void RemoveCallbacks(IWorldActions instance)
@@ -342,6 +371,7 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
         void OnWeap2(InputAction.CallbackContext context);
         void OnWeap3(InputAction.CallbackContext context);
         void OnWeap4(InputAction.CallbackContext context);
-        void OnPause(InputAction.CallbackContext context);
+        void OnEsc(InputAction.CallbackContext context);
+        void OnTab(InputAction.CallbackContext context);
     }
 }

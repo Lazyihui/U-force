@@ -62,7 +62,7 @@ namespace UF {
 
             // Inject
             gameSystem.Inject(screenCanvas, assetsModule, templateCore, appUI, inputModule, roleRepository);
-            loginSystem.Inject(appUI);
+            loginSystem.Inject(appUI, inputModule);
             pauseSystem.Inject(appUI, roleRepository);
 
             appUI.Inject(screenCanvas, assetsModule);
@@ -95,13 +95,21 @@ namespace UF {
 
             loginEvent.OnLoginStartHandle += () => {
                 appUI.Panel_Login_Close();
+
+                appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, 1, 5);
+
                 appUI.Panel_StageSelection_Open(1, 1);
+
                 appUI.Panel_StageSelectionOneStage_Add(1, true);
                 appUI.Panel_StageSelectionOneStage_Add(2, true);
                 appUI.Panel_StageSelectionOneStage_Add(3, true);
-
-                appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, 2, 5);
-
+                appUI.Panel_StageSelectionOneStage_Add(4, false);
+                appUI.Panel_StageSelectionOneStage_Add(5, false);
+                appUI.Panel_StageSelectionOneStage_Add(6, false);
+                appUI.Panel_StageSelectionOneStage_Add(7, false);
+                appUI.Panel_StageSelectionOneStage_Add(8, false);
+                appUI.Panel_StageSelectionOneStage_Add(9, false);
+                appUI.Panel_StageSelectionOneStage_Add(10, false);
 
             };
 
@@ -128,7 +136,6 @@ namespace UF {
             };
 
             loginEvent.OnChapterClickHandle += (chapter) => {
-                Debug.Log("ChapterClick " + chapter);
                 var maxChapter = 5;
                 if (chapter > maxChapter) {
                     chapter = 1;

@@ -60,9 +60,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Pause",
+                    "name": "Esc",
                     "type": "Value",
                     "id": "e1e1d689-ece1-44e0-8131-3497795469e4",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Tab",
+                    "type": "Value",
+                    "id": "f52643fe-ed8d-49c7-bed3-591bcc597ccd",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
@@ -110,7 +119,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pause",
+                    "action": "Esc",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -144,6 +153,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Weap4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1bd7f8d6-57c6-414f-9e1b-126cbc1434cf",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tab",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

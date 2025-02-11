@@ -19,6 +19,12 @@ namespace UF {
 
         public bool isPressStuff1;
 
+        bool isTabDown;
+        public bool IsTabDown => isTabDown;
+
+        bool isEscDown;
+        public bool IsEscDown => isEscDown;
+
         public void Ctor() {
             player1 = new InputControls_Player();
             player1.Enable();
@@ -45,10 +51,16 @@ namespace UF {
                 isJump = isJumpDown;
             }
 
-            // -Pause
+            // -Pause Exc
             {
-                bool isPauseDown = world.Pause.WasPressedThisFrame();
-                //TODO: Pause
+                bool isEscDown = world.Esc.WasPressedThisFrame();
+                this.isEscDown = isEscDown;
+            }
+
+            // -Tab
+            {
+                bool isTabDown = world.Tab.WasPressedThisFrame();
+                this.isTabDown = isTabDown;
             }
 
             // 技能
@@ -82,12 +94,15 @@ namespace UF {
                 }
             }
 
+            // 4
             {
                 bool isWeap4Down = world.Weap4.WasPressedThisFrame();
                 if (isWeap4Down) {
                     inputCastKey |= InputKeyFlag.Weap4;
                 }
             }
+
+
 
         }
 

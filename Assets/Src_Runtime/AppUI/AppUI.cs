@@ -10,6 +10,7 @@ namespace UF {
         public UIContext ctx;
         public UIEventCenter eventCenter;
 
+
         public void Ctor() {
             ctx = new UIContext();
             eventCenter = new UIEventCenter();
@@ -17,6 +18,19 @@ namespace UF {
 
         public void Inject(Canvas screenCanvas, AssetsModule assetsCore) {
             ctx.Inject(screenCanvas, assetsCore);
+        }
+
+        public void Set_InputDown(bool isTabDown, bool isEscDown) {
+            ctx.isTabDown = isTabDown;
+            ctx.isEscDown = isEscDown;
+        }
+
+        public void Tick(float dt, InputModule inputModule) {
+            // input
+            Set_InputDown(inputModule.IsTabDown, inputModule.IsEscDown);
+
+            Panel_StageSelection_Tick(ctx.isTabDown, ctx.isEscDown);
+
         }
 
         #region Login
@@ -292,15 +306,15 @@ namespace UF {
 
             ctx.panel_StageSelection = panel;
             panel.Show();
-            // Panel_StageSelection_SetChapter(chapter, maxChapter);
+            panel.SetNativeSize();
         }
 
-        public void Panel_StageSelection_Tick() {
+        public void Panel_StageSelection_Tick(bool isTabDown, bool isEscDown) {
             Panel_StageSelection panel = ctx.panel_StageSelection;
             if (panel == null) {
                 return;
             }
-            panel.Tick();
+            panel.Tick(isTabDown, isEscDown);
         }
 
         public void Panel_StageSelectionOneStage_Add(int stageID, bool isPassed) {
