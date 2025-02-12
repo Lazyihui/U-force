@@ -28,7 +28,7 @@ namespace UF {
 
         #region FSM
         public static void FSM_All_Execute(GameSystemContext ctx, BulletEntity bullet, float dt) {
-            if (bullet.type == BulletType.Shaped) {
+            if (bullet.type == BulletMoveType.Shaped) {
                 Loco_Shaped(ctx, bullet);
             }
         }
