@@ -211,8 +211,10 @@ namespace UF {
         }
         #endregion
 
-        #region Skillor
+        #region Model
 
+
+        // skill
         public static SkillModel Skillor_Create(AssetsModule assetsCore, TemplateMoudle templateCore, IDService idService, int typeID) {
 
             bool has = templateCore.Skillor_TryGet(typeID, out var tm);
@@ -243,6 +245,26 @@ namespace UF {
 
             return model;
         }
+
+        // Card
+        public static CardModel Card_Create(AssetsModule assetsCore, TemplateMoudle templateCore, IDService idService, int typeID) {
+            bool has = templateCore.Card_TryGet(typeID, out var tm);
+            if (!has) {
+                Debug.LogError("Card_Create: tm is null" + typeID);
+                return null;
+            }
+
+            CardModel model = new CardModel();
+
+            model.typeID = typeID;
+
+            model.roleTMs = tm.roleTMs;
+            model.bulletTMs = tm.bulletTMs;
+
+            return model;
+        }
+
+        #endregion
 
         public static CaveEntity Tower_Create(AssetsModule assetsCore, TemplateMoudle templateCore, IDService idService, int typeID, Vector2 pos) {
             bool has = templateCore.Tower_TryGet(typeID, out var tm);
@@ -298,7 +320,6 @@ namespace UF {
         static void TMToCaveEntity(CaveEntity entity, CaveTM tm) {
         }
 
-        #endregion
 
         #region Mod
 

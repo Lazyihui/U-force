@@ -26,6 +26,9 @@ namespace UF.TemplateInternal {
         public Dictionary<int, StuffTM> stuffs;
         public AsyncOperationHandle stuffPtr;
 
+        public Dictionary<int, CardTM> cards;
+        public AsyncOperationHandle cardPtr;
+
 
         public TemplateContext() {
             roles = new Dictionary<int, RoleTM>();
@@ -34,6 +37,7 @@ namespace UF.TemplateInternal {
             towers = new Dictionary<int, CaveTM>();
             stages = new Dictionary<int, StageTM>();
             stuffs = new Dictionary<int, StuffTM>();
+            cards = new Dictionary<int, CardTM>();
         }
 
 
@@ -59,6 +63,10 @@ namespace UF.TemplateInternal {
 
         public void Stuff_Add(StuffTM stuff) {
             stuffs.Add(stuff.typeID, stuff);
+        }
+
+        public void Card_Add(CardTM card) {
+            cards.Add(card.typeID, card);
         }
 
     }

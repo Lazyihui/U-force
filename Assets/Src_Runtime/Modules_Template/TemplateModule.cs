@@ -84,6 +84,19 @@ namespace UF {
                 }
                 ctx.stuffPtr = handle;
             }
+            
+            {
+                AssetLabelReference labelReference = new AssetLabelReference();
+                labelReference.labelString = "So_Card";
+                var handle = Addressables.LoadAssetsAsync<CardSo>(labelReference, null);
+                var all = await handle.Task;
+
+                foreach (var so in all) {
+                    var tm = so.tm;
+                    ctx.Card_Add(tm);
+                }
+                ctx.cardPtr = handle;
+            }
 
         }
         // 找种类的Role
@@ -97,6 +110,10 @@ namespace UF {
 
         public bool Skillor_TryGet(int typeID, out SkillorTM skill) {
             return ctx.skills.TryGetValue(typeID, out skill);
+        }
+
+        public bool Card_TryGet(int typeID, out CardTM card) {
+            return ctx.cards.TryGetValue(typeID, out card);
         }
 
         public bool Tower_TryGet(int typeID, out CaveTM tower) {
