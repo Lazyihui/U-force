@@ -139,6 +139,11 @@ namespace UF {
                 appUI.Panel_CardSelection_Add(2, null);
                 appUI.Panel_CardSelection_Add(3, null);
                 appUI.Panel_CardSelection_Add(4, null);
+
+                appUI.Panel_WatchTower_Open();
+                appUI.Panel_WatchTower_Add(1, null);
+                appUI.Panel_WatchTower_Add(2, null);
+                appUI.Panel_WatchTower_Add(3, null);
                 // loginSystem.Exit();
                 // gameSystem.Enter(stageID);
                 Debug.Log("StageClick " + stageID);
@@ -174,6 +179,7 @@ namespace UF {
             loginEvent.OnSelectEnterClickHandle += () => {
                 Debug.Log("SelectEnter");
                 appUI.Panel_CardSelection_Close();
+                appUI.Panel_WatchTower_Close();
                 loginSystem.Exit();
                 gameSystem.Enter(1);
             };
@@ -181,6 +187,7 @@ namespace UF {
             loginEvent.OnSelectBackClickHandle += () => {
                 Debug.Log("SelectBack");
                 appUI.Panel_CardSelection_Close();
+                appUI.Panel_WatchTower_Close();
                 appUI.Panel_StageSelection_Open(1, 1);
 
                 appUI.Panel_StageSelectionOneStage_Add(1, true);
@@ -190,6 +197,26 @@ namespace UF {
             loginEvent.OnSelectionCardClickHandle += (id) => {
                 Debug.Log("SelectionCardClick " + id);
             };
+
+            {
+                bool isClicked = false;
+
+                loginEvent.OnViewClickHandle += () => {
+                    Debug.Log("ViewClick");
+                    appUI.Panel_WatchTower_SetCursor(); // 如果不点击瞭望塔头像, 会一直变化光标, 之后看看怎么改
+                    isClicked = true;
+                };
+
+                loginEvent.OnSelectionWatchCardClickHandle += (typeID) => { // typeID 应该是传进来的
+                    if (isClicked)
+                    {
+                        Debug.Log("SelectionWatchCardClick " + typeID);
+                        appUI.Panel_WatchTower_ClearCursor();
+
+                        // TODO: 弹出详情页面
+                    }
+                };
+            }
         }
 
         void Game_Binding() {

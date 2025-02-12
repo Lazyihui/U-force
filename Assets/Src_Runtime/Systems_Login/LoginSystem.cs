@@ -144,6 +144,14 @@ namespace UF {
                 events.OnSelectionCardClick(cardID);
             };
             
+            // 瞭望塔
+            eventCenter.OnViewClickHandle += () => {
+                events.OnViewClick();
+            };
+
+            eventCenter.OnSelectionWatchCardClickHandle += (typeID) => {
+                events.OnSelectionWatchCardClick(typeID);
+            };
         }
     }
 }
