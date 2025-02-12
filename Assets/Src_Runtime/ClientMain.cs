@@ -96,23 +96,23 @@ namespace UF {
             loginEvent.OnLoginStartHandle += () => {
                 appUI.Panel_Login_Close();
 
-                // appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, 1, 5);
+                appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, 1, 5);
 
-                // appUI.Panel_StageSelection_Open(1, 1);
+                appUI.Panel_StageSelection_Open(1, 1);
 
-                // appUI.Panel_StageSelectionOneStage_Add(1, true);
-                // appUI.Panel_StageSelectionOneStage_Add(2, true);
-                // appUI.Panel_StageSelectionOneStage_Add(3, true);
-                // appUI.Panel_StageSelectionOneStage_Add(4, false);
-                // appUI.Panel_StageSelectionOneStage_Add(5, false);
-                // appUI.Panel_StageSelectionOneStage_Add(6, false);
-                // appUI.Panel_StageSelectionOneStage_Add(7, false);
-                // appUI.Panel_StageSelectionOneStage_Add(8, false);
-                // appUI.Panel_StageSelectionOneStage_Add(9, false);
-                // appUI.Panel_StageSelectionOneStage_Add(10, false);
+                appUI.Panel_StageSelectionOneStage_Add(1, true);
+                appUI.Panel_StageSelectionOneStage_Add(2, true);
+                appUI.Panel_StageSelectionOneStage_Add(3, true);
+                appUI.Panel_StageSelectionOneStage_Add(4, false);
+                appUI.Panel_StageSelectionOneStage_Add(5, false);
+                appUI.Panel_StageSelectionOneStage_Add(6, false);
+                appUI.Panel_StageSelectionOneStage_Add(7, false);
+                appUI.Panel_StageSelectionOneStage_Add(8, false);
+                appUI.Panel_StageSelectionOneStage_Add(9, false);
+                appUI.Panel_StageSelectionOneStage_Add(10, false);
 
-                loginSystem.Exit();
-                gameSystem.Enter(1);
+                // loginSystem.Exit();
+                // gameSystem.Enter(1);
 
             };
 
@@ -134,6 +134,11 @@ namespace UF {
                 appUI.Panel_StageSelection_Close();
 
                 appUI.Panel_CardSelection_Open(stageID, 1);
+
+                appUI.Panel_CardSelection_Add(1, null);
+                appUI.Panel_CardSelection_Add(2, null);
+                appUI.Panel_CardSelection_Add(3, null);
+                appUI.Panel_CardSelection_Add(4, null);
                 // loginSystem.Exit();
                 // gameSystem.Enter(stageID);
                 Debug.Log("StageClick " + stageID);
@@ -147,6 +152,43 @@ namespace UF {
                 }
 
                 appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, chapter, maxChapter);
+            };
+
+            // CardSelection
+            loginEvent.OnSelectHeroClickHandle += () => {
+                Debug.Log("SelectHero");
+            };
+
+            loginEvent.OnSelectAgrClickHandle += () => {
+                Debug.Log("SelectAgr");
+            };
+
+            loginEvent.OnSelectIndClickHandle += () => {
+                Debug.Log("SelectInd");
+            };
+
+            loginEvent.OnSelectSciClickHandle += () => {
+                Debug.Log("SelectSci");
+            };
+
+            loginEvent.OnSelectEnterClickHandle += () => {
+                Debug.Log("SelectEnter");
+                appUI.Panel_CardSelection_Close();
+                loginSystem.Exit();
+                gameSystem.Enter(1);
+            };
+
+            loginEvent.OnSelectBackClickHandle += () => {
+                Debug.Log("SelectBack");
+                appUI.Panel_CardSelection_Close();
+                appUI.Panel_StageSelection_Open(1, 1);
+
+                appUI.Panel_StageSelectionOneStage_Add(1, true);
+                appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, 1, 5);
+            };
+
+            loginEvent.OnSelectionCardClickHandle += (id) => {
+                Debug.Log("SelectionCardClick " + id);
             };
         }
 
@@ -240,16 +282,6 @@ namespace UF {
             };
 
         }
-
-        void Binding_Login() {
-
-            var UIEvent = appUI.eventCenter;
-
-            UIEvent.OnGameOverHandle += () => {
-                Debug.Log("GameOver Continue");
-            };
-        }
-
 
 
         void Update() {

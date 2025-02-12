@@ -21,7 +21,7 @@ namespace UF {
         }
 
         public void Inject(AppUI appUI, InputModule input) {
-            ctx.Inject(appUI,input);
+            ctx.Inject(appUI, input);
         }
 
         public void Enter() {
@@ -114,6 +114,36 @@ namespace UF {
                 events.OnChapterClick(ChapterID);
             };
 
+            // CardSelection
+            eventCenter.OnSelectHeroClickHandle += () => {
+                events.OnSelectHeroClick();
+            };
+
+            eventCenter.OnSelectAgrClickHandle += () => {
+                events.OnSelectAgrClick();
+            };
+
+            eventCenter.OnSelectIndClickHandle += () => {
+                events.OnSelectIndClick();
+            };
+
+            eventCenter.OnSelectSciClickHandle += () => {
+                events.OnSelectSciClick();
+            };
+
+
+            eventCenter.OnSelectEnterClickHandle += () => {
+                events.OnSelectEnterClick();
+            };//选择进入
+
+            eventCenter.OnSelectBackClickHandle += () => {
+                events.OnSelectBackClick();
+            };//选择返回
+
+            eventCenter.OnSelectionCardClickHandle += (cardID) => {
+                events.OnSelectionCardClick(cardID);
+            };
+            
         }
     }
 }

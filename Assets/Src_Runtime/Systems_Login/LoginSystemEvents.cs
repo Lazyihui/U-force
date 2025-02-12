@@ -50,5 +50,63 @@ namespace UF {
         }
 
         #endregion
+
+        #region CardSelection
+        public Action OnSelectHeroClickHandle;
+
+        public void OnSelectHeroClick() {
+            if (OnSelectHeroClickHandle != null) {
+                OnSelectHeroClickHandle();
+            }
+        }
+
+        public Action OnSelectAgrClickHandle;//选择农业
+
+        public void OnSelectAgrClick() {
+            if (OnSelectAgrClickHandle != null) {
+                OnSelectAgrClickHandle();
+            }
+        }
+
+        public Action OnSelectIndClickHandle;//选择工业
+
+        public void OnSelectIndClick() {
+            if (OnSelectIndClickHandle != null) {
+                OnSelectIndClickHandle();
+            }
+        }
+
+        public Action OnSelectSciClickHandle;//选择科技
+
+        public void OnSelectSciClick() {
+            if (OnSelectSciClickHandle != null) {
+                OnSelectSciClickHandle();
+            }
+        }
+
+        public Action OnSelectEnterClickHandle;//选择进入
+
+        public void OnSelectEnterClick() {
+            if (OnSelectEnterClickHandle != null) {
+                OnSelectEnterClickHandle();
+            }
+        }
+
+        public Action OnSelectBackClickHandle;//选择返回
+
+        public void OnSelectBackClick() {
+            if (OnSelectBackClickHandle != null) {
+                OnSelectBackClickHandle();
+            }
+        }
+        
+        public Action<int> OnSelectionCardClickHandle;//选择卡片
+
+        public void OnSelectionCardClick(int a) {
+            if (OnSelectionCardClickHandle != null) {
+                OnSelectionCardClickHandle(a);
+            }
+        }
+        #endregion
     }
 }

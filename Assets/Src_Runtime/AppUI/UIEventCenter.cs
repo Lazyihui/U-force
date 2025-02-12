@@ -174,41 +174,58 @@ namespace UF {
                 OnSelectSciClickHandle();
             }
         }
+
+        public Action OnSelectEnterClickHandle;//选择进入
+
+        public void OnSelectEnterClick() {
+            if (OnSelectEnterClickHandle != null) {
+                OnSelectEnterClickHandle();
+            }
+        }
+
+        public Action OnSelectBackClickHandle;//选择返回
+
+        public void OnSelectBackClick() {
+            if (OnSelectBackClickHandle != null) {
+                OnSelectBackClickHandle();
+            }
+        }
+
+        public Action<int> OnSelectionCardClickHandle;//选择卡片
+
+        public void OnSelectionCardClick(int a) {
+            if (OnSelectionCardClickHandle != null) {
+                OnSelectionCardClickHandle(a);
+            }
+        }
+
         #endregion
 
         #region BackSelection
         public Action OnCloseWarningClickHandle;
-        public void OnCloseWarningClick()
-        {
-            if (OnCloseWarningClickHandle != null)
-            {
+        public void OnCloseWarningClick() {
+            if (OnCloseWarningClickHandle != null) {
                 OnCloseWarningClickHandle();
             }
         }
 
         public Action OnContinueWarningClickHandle;
-        public void OnContinueWarningClick()
-        {
-            if (OnContinueWarningClickHandle != null)
-            {
+        public void OnContinueWarningClick() {
+            if (OnContinueWarningClickHandle != null) {
                 OnContinueWarningClickHandle();
             }
         }
 
         public Action OnResetWarningClickHandle;
-        public void OnResetWarningClick()
-        {
-            if (OnResetWarningClickHandle != null)
-            {
+        public void OnResetWarningClick() {
+            if (OnResetWarningClickHandle != null) {
                 OnResetWarningClickHandle();
             }
         }
 
         public Action OnQuitWarningClickHandle;
-        public void OnQuitWarningClick()
-        {
-            if (OnQuitWarningClickHandle != null)
-            {
+        public void OnQuitWarningClick() {
+            if (OnQuitWarningClickHandle != null) {
                 OnQuitWarningClickHandle();
             }
         }

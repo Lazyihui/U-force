@@ -260,8 +260,7 @@ namespace UF {
             hud.Set_Text();
         }
 
-        void HUD_Progressbar_SetAchiText(int hp, int maxHp)
-        {
+        void HUD_Progressbar_SetAchiText(int hp, int maxHp) {
             HUD_Progressbar hud = ctx.hud_Progressbar;
             if (hud == null) {
                 return;
@@ -383,11 +382,32 @@ namespace UF {
                     eventCenter.OnSelectSciClick();
                 };
 
+                panel.OnSelectEnterClickHandle = () => {
+                    eventCenter.OnSelectEnterClick();
+                };
+
+                panel.OnSelectBackClickHandle = () => {
+                    eventCenter.OnSelectBackClick();
+                };
+
+                // Card Click
+                panel.OnSelectionCardClickHandle = (id) => {
+                    eventCenter.OnSelectionCardClick(id);
+                };
+
             }
 
             panel.Set_Text(stageID, ChapterID);
             panel.Show();
             ctx.panel_CardSelection = panel;
+        }
+
+        public void Panel_CardSelection_Add(int id, Sprite sprite) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.Add(id, sprite);
         }
 
         public void Panel_CardSelection_Close() {
@@ -402,12 +422,10 @@ namespace UF {
         #endregion
 
         #region BackSelection
-        public void Panel_BackSelection_Open()
-        {
+        public void Panel_BackSelection_Open() {
             Panel_BackSelection panel = ctx.panel_BackSelection;
 
-            if (panel == null)
-            {
+            if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetBackSelection();
                 GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
                 panel = go.GetComponent<Panel_BackSelection>();
@@ -434,11 +452,9 @@ namespace UF {
             panel.Show();
         }
 
-        public void Panel_BackSelection_Close()
-        {
+        public void Panel_BackSelection_Close() {
             Panel_BackSelection panel = ctx.panel_BackSelection;
-            if (panel == null)
-            {
+            if (panel == null) {
                 return;
             }
             panel.TearDown();
