@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace UF
 {
-    public class Panel_Watchtower : MonoBehaviour
+    public class Panel_WatchTower : MonoBehaviour
     {
         [SerializeField] Panel_OneCardWatch oneCardPrefab;
         List<Panel_OneCardWatch> cards;

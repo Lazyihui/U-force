@@ -18,7 +18,8 @@ namespace UF {
         public Panel_StageSelection panel_StageSelection;
         public Panel_CardSelection panel_CardSelection;
         public Panel_BackSelection panel_BackSelection;
-        public Panel_Watchtower panel_Watchtower;
+        public Panel_WatchTower panel_Watchtower;
+        public Panel_WatchDetail panel_WatchDetail;
 
         // HUD
         public HUD_Progressbar hud_Progressbar;

@@ -66,6 +66,9 @@ namespace UF {
                 CaveDomain.SpawnBySpawner(ctx, spawnerTM);
             }
 
+            // 先在enter重置光标, 避免查看光标带到游戏界面来
+            ctx.appUI.Panel_WatchTower_ClearCursor();
+
         }
 
 

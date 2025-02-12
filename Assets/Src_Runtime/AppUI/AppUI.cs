@@ -464,13 +464,13 @@ namespace UF {
         #region WatchTower
         public void Panel_WatchTower_Open()
         {
-            Panel_Watchtower panel = ctx.panel_Watchtower;
+            Panel_WatchTower panel = ctx.panel_Watchtower;
 
             if (panel == null)
             {
                 GameObject prefab = ctx.assetsCore.Panel_GetWatchTower();
                 GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
-                panel = go.GetComponent<Panel_Watchtower>();
+                panel = go.GetComponent<Panel_WatchTower>();
                 panel.Ctor();
 
                 panel.OnViewClickHandle = () => {
@@ -487,7 +487,7 @@ namespace UF {
 
         public void Panel_WatchTower_Add(int id, Sprite sprite)
         {
-            Panel_Watchtower panel = ctx.panel_Watchtower;
+            Panel_WatchTower panel = ctx.panel_Watchtower;
             
             if (panel == null) { return; }
 
@@ -496,7 +496,7 @@ namespace UF {
 
         public void Panel_WatchTower_Close()
         {
-            Panel_Watchtower panel = ctx.panel_Watchtower;
+            Panel_WatchTower panel = ctx.panel_Watchtower;
 
             if (panel == null) { return; }
 
@@ -505,7 +505,7 @@ namespace UF {
 
         public void Panel_WatchTower_SetCursor()
         {
-            Panel_Watchtower panel = ctx.panel_Watchtower;
+            Panel_WatchTower panel = ctx.panel_Watchtower;
 
             if (panel == null) { return; }
 
@@ -514,11 +514,43 @@ namespace UF {
 
         public void Panel_WatchTower_ClearCursor()
         {
-            Panel_Watchtower panel = ctx.panel_Watchtower;
+            Panel_WatchTower panel = ctx.panel_Watchtower;
 
             if (panel == null) { return; }
 
             panel.Clear_Cursor();
+        }
+        #endregion
+
+        #region WatchDetail
+        // 从敌人tm里读, 待改
+        public void Panel_WatchDetail_Open(Sprite sprite, string name, string feature, int hp, string skill, string restraint)
+        {
+            Panel_WatchDetail panel = ctx.panel_WatchDetail;
+
+            if (panel == null)
+            {
+                GameObject prefab = ctx.assetsCore.Panel_GetWatchDetail();
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                panel = go.GetComponent<Panel_WatchDetail>();
+                panel.Ctor();
+
+                panel.OnCloseClickHandle = () => {
+                    eventCenter.OnDetailClose();
+                };
+            }
+            ctx.panel_WatchDetail = panel;
+            panel.Show();
+            panel.Init(sprite, name, feature, hp, skill, restraint);
+        }
+
+        public void Panel_WatchDetail_Close()
+        {
+            Panel_WatchDetail panel = ctx.panel_WatchDetail;
+
+            if (panel == null) { return; }
+
+            panel.TearDown();
         }
         #endregion
 

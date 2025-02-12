@@ -212,11 +212,17 @@ namespace UF {
                     {
                         Debug.Log("SelectionWatchCardClick " + typeID);
                         appUI.Panel_WatchTower_ClearCursor();
+                        isClicked = false;
 
-                        // TODO: 弹出详情页面
+                        // TODO: 传值
+                        appUI.Panel_WatchDetail_Open(null, null, null, 0, null, null);
                     }
                 };
             }
+
+            loginEvent.OnDetailCloseClickHandle += () => {
+                appUI.Panel_WatchDetail_Close();
+            };
         }
 
         void Game_Binding() {

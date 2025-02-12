@@ -246,5 +246,14 @@ namespace UF {
             }
         }
         #endregion
+
+        #region WatchDetail
+        public Action OnDetailCloseHandle;
+        public void OnDetailClose() {
+            if (OnDetailCloseHandle != null) {
+                OnDetailCloseHandle();
+            }
+        }
+        #endregion
     }
 }

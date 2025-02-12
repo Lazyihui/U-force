@@ -123,6 +123,11 @@ namespace UF {
             panels.TryGetValue("Panel_WatchTower", out GameObject panel);
             return panel;
         }
+
+        public GameObject Panel_GetWatchDetail() {
+            panels.TryGetValue("Panel_WatchDetail", out GameObject panel);
+            return panel;
+        }
         
         // HUD
         public GameObject HUD_GetProgressbar() {

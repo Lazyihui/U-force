@@ -152,6 +152,10 @@ namespace UF {
             eventCenter.OnSelectionWatchCardClickHandle += (typeID) => {
                 events.OnSelectionWatchCardClick(typeID);
             };
+
+            eventCenter.OnDetailCloseHandle += () => {
+                events.OnDetailCloseClick();
+            };
         }
     }
 }

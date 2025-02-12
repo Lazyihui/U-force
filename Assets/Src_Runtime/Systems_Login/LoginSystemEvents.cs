@@ -123,6 +123,13 @@ namespace UF {
                 OnSelectionWatchCardClickHandle(typeID);
             }
         }
+
+        public Action OnDetailCloseClickHandle;
+        public void OnDetailCloseClick() {
+            if (OnDetailCloseClickHandle != null) {
+                OnDetailCloseClickHandle();
+            }
+        }
         #endregion
     }
 }
