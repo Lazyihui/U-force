@@ -247,7 +247,7 @@ namespace UF {
         }
 
         // Card
-        public static CardModel Card_Create(AssetsModule assetsCore, TemplateMoudle templateCore, IDService idService, int typeID) {
+        public static CardModel Card_Create(AssetsModule assetsCore, TemplateMoudle templateCore, int typeID) {
             bool has = templateCore.Card_TryGet(typeID, out var tm);
             if (!has) {
                 Debug.LogError("Card_Create: tm is null" + typeID);
@@ -258,8 +258,33 @@ namespace UF {
 
             model.typeID = typeID;
 
-            model.roleTMs = tm.roleTMs;
-            model.bulletTMs = tm.bulletTMs;
+            // var skillorTMArray = tm.skillorSoArray;
+
+            // if (skillorTMArray != null) {
+            //     for (int i = 0; i < skillorTMArray.Length; i += 1) {
+            //         var skillSo = skillorTMArray[i];
+            //         var skillor = Skillor_Create(assetsCore, templateCore, idService, skillSo.tm.typeID);
+            //         skillorCom.Add(skillor);
+            //     }
+            // }
+
+            var roleSoArr = tm.roleSoArray;
+            if (roleSoArr != null) {
+                for (int i = 0; i < roleSoArr.Count; i += 1) {
+                    var roleSo = roleSoArr[i];
+                    model.roleTMs.Add(roleSo.tm);
+                    Debug.Log("roleSo.tm.typeID" + roleSo.tm.typeID);
+                }
+            }
+
+            var bulletSoArr = tm.bulletSoArray;
+            if (bulletSoArr != null) {
+                for (int i = 0; i < bulletSoArr.Count; i += 1) {
+                    var bulletSo = bulletSoArr[i];
+                    model.bulletTMs.Add(bulletSo.tm);
+                    Debug.Log("bulletSo.tm.typeID" + bulletSoArr.Count);
+                }
+            }
 
             return model;
         }

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2184839ec8517724cab1a6f5e3c3e2fc, type: 3}
+  m_Name: So_Card_1
+  m_EditorClassIdentifier: 
+  tm:
+    typeID: 1
+    roleSoArray:
+    - {fileID: 11400000, guid: 772c31f3954c55f48b735dc0c0226a7e, type: 2}
+    - {fileID: 11400000, guid: 9d04dd169b2febc41a88d55ba222c7bb, type: 2}
+    bulletSoArray:
+    - {fileID: 11400000, guid: 669613ee5e0852b4c8d81f6ff150c760, type: 2}
+    - {fileID: 11400000, guid: f8fa8df0f443f694aa9bda115442c447, type: 2}
+    - {fileID: 11400000, guid: ec25f1894dd14f14cbd7b712e1774852, type: 2}
+    - {fileID: 11400000, guid: f8fa8df0f443f694aa9bda115442c447, type: 2}

@@ -9,8 +9,8 @@ namespace UF {
     public class CardTM {
         public int typeID;
 
-        public List<RoleTM> roleTMs;
+        public List<RoleSo> roleSoArray;
 
-        public List<BulletTM> bulletTMs;
+        public List<BulletSo> bulletSoArray;
     }
 }

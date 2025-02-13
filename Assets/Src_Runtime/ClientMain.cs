@@ -132,13 +132,14 @@ namespace UF {
             // StageSelection
             loginEvent.OnStageClickHandle += (stageID) => {
                 appUI.Panel_StageSelection_Close();
+                CardModel card = GameFactory.Card_Create(assetsModule, templateCore, 1);
 
                 appUI.Panel_CardSelection_Open(stageID, 1);
 
-                appUI.Panel_CardSelection_Add(1, null);
-                appUI.Panel_CardSelection_Add(2, null);
-                appUI.Panel_CardSelection_Add(3, null);
-                appUI.Panel_CardSelection_Add(4, null);
+                for (int i = 0; i < card.roleTMs.Count; i += 1) {
+                    RoleTM roleTM = card.roleTMs[i];
+                    appUI.Panel_CardSelection_Add(roleTM.typeID, roleTM.sprite);
+                }
 
                 appUI.Panel_WatchTower_Open();
                 appUI.Panel_WatchTower_Add(1, null);
@@ -200,7 +201,6 @@ namespace UF {
 
             {
                 bool isClicked = false;
-
                 loginEvent.OnViewClickHandle += () => {
                     Debug.Log("ViewClick");
                     appUI.Panel_WatchTower_SetCursor(); // 如果不点击瞭望塔头像, 会一直变化光标, 之后看看怎么改
@@ -208,8 +208,7 @@ namespace UF {
                 };
 
                 loginEvent.OnSelectionWatchCardClickHandle += (typeID) => { // typeID 应该是传进来的
-                    if (isClicked)
-                    {
+                    if (isClicked) {
                         Debug.Log("SelectionWatchCardClick " + typeID);
                         appUI.Panel_WatchTower_ClearCursor();
                         isClicked = false;

@@ -15,7 +15,6 @@ MonoBehaviour:
   tm:
     typeID: 400
     typeName: "Bullet400\u9E21"
-    type: 1
     hp: 0
     hitTimes: 1
     attackDamage: 1
@@ -24,5 +23,7 @@ MonoBehaviour:
     continueDamege: 1
     isHaveDamageRange: 1
     damageRange: 7
+    type: 1
     moveSpeed: 10
     modPrefab: {fileID: 5768115701826971337, guid: 5334c9b24ac6d8d4395cd611dac91d68, type: 3}
+    sprite: {fileID: 21300000, guid: 96dc3305ee1553445b912942c8c2a315, type: 3}

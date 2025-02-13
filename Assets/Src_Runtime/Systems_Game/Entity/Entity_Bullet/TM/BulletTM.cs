@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using TriInspector;
 
 namespace UF {
@@ -20,14 +21,14 @@ namespace UF {
 
         public bool isHaveDamageRange;
         public float damageRange;
-        
+
 
         [Title("Locomotion")]
         public BulletMoveType type;
         public float moveSpeed;
 
         public BulletMod modPrefab;
-
+        public Sprite sprite;
 
     }
 }
