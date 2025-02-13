@@ -21,6 +21,11 @@ namespace UF.UIApplication {
         Panel_CardSelectionDetails cardDetails;
         public Action OnConfirmClickHandle; //确认选择
 
+        // SelectedCard 选择的卡片
+        [SerializeField] Panel_CardSelected cardSelectedPrefab;
+        public Action<int> OnCardSelectedClickHandle;
+
+
         public Action OnSelectBackClickHandle;
         [SerializeField] Button btn_back;//返回
         public Action OnSelectEnterClickHandle;
@@ -68,7 +73,7 @@ namespace UF.UIApplication {
             }
         }
 
-        public void Add(int id, Sprite sprite) {
+        public void AddCard(int id, Sprite sprite) {
 
             // 实例化卡片
             Panel_OneCardSelection oneCard = Instantiate(oneCardPrefab, cardGroup);
@@ -77,6 +82,15 @@ namespace UF.UIApplication {
             oneCard.OnCardClickHandle += OnCardClick;//点击卡片 绑定事件
 
             cards.Add(oneCard);
+
+        }
+
+        public void AddCardSelected(int slotMax) {
+            // 选择的卡片
+            Panel_CardSelected selectedCard = Instantiate(cardSelectedPrefab, transform);
+            selectedCard.Ctor();
+            selectedCard.Add(slotMax);
+            selectedCard.OnCardClickSelectedHandle += OnCardSelectedClick;//点击卡片 绑定事件
         }
 
         public void Clear() {
@@ -123,6 +137,10 @@ namespace UF.UIApplication {
 
         void OnConfirmClick() {
             OnConfirmClickHandle.Invoke();
+        }
+
+        void OnCardSelectedClick(int typeID) {
+            OnCardSelectedClickHandle.Invoke(typeID);
         }
 
     }

@@ -411,12 +411,20 @@ namespace UF {
             ctx.panel_CardSelection = panel;
         }
 
-        public void Panel_CardSelection_Add(int id, Sprite sprite) {
+        public void Panel_CardSelection_AddCard(int id, Sprite sprite) {
             Panel_CardSelection panel = ctx.panel_CardSelection;
             if (panel == null) {
                 return;
             }
-            panel.Add(id, sprite);
+            panel.AddCard(id, sprite);
+        }
+
+        public void Panel_CardSelection_AddCardSelected(int slotMax) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.AddCardSelected(slotMax);
         }
 
         public void Panel_OneCardSelection_Clear() {

@@ -123,7 +123,6 @@ namespace UF {
 
             // StageSelection
             loginEvent.OnStageClickHandle += (stageID) => {
-
                 // TODO：放到UIDomain里
                 appUI.Panel_StageSelection_Close();
 
@@ -138,13 +137,11 @@ namespace UF {
                 if (chapter > maxChapter) {
                     chapter = 1;
                 }
-
                 appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, chapter, maxChapter);
             };
 
             // CardSelection
             loginEvent.OnSelectHeroClickHandle += () => {
-                Debug.Log("SelectHero");
                 appUI.Panel_SetCardType(CardType.Hero);
                 UIDomain.Panel_OneCardSelection_Update(appUI);
             };
@@ -152,19 +149,16 @@ namespace UF {
             loginEvent.OnSelectAgrClickHandle += () => {
                 appUI.Panel_SetCardType(CardType.Agriculture);
                 UIDomain.Panel_OneCardSelection_Update(appUI);
-                Debug.Log("SelectAgr");
             };
 
             loginEvent.OnSelectIndClickHandle += () => {
                 appUI.Panel_SetCardType(CardType.Industry);
                 UIDomain.Panel_OneCardSelection_Update(appUI);
-                Debug.Log("SelectInd");
             };
 
             loginEvent.OnSelectSciClickHandle += () => {
                 appUI.Panel_SetCardType(CardType.Science);
                 UIDomain.Panel_OneCardSelection_Update(appUI);
-                Debug.Log("SelectSci");
             };
 
             loginEvent.OnSelectEnterClickHandle += () => {
@@ -194,6 +188,8 @@ namespace UF {
 
             loginEvent.OnConfirmClickHandle += () => {
                 Debug.Log("Confirm");
+                UIDomain.Panel_SelectedCardAddToSlot(appUI);
+
             };
 
             {
