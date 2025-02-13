@@ -118,6 +118,17 @@ namespace UF {
             panels.TryGetValue("Panel_BackSelection", out GameObject panel);
             return panel;
         }
+
+        public GameObject Panel_GetWatchTower() {
+            panels.TryGetValue("Panel_WatchTower", out GameObject panel);
+            return panel;
+        }
+
+        public GameObject Panel_GetWatchDetail() {
+            panels.TryGetValue("Panel_WatchDetail", out GameObject panel);
+            return panel;
+        }
+        
         // HUD
         public GameObject HUD_GetProgressbar() {
             panels.TryGetValue("HUD_Progressbar", out GameObject hud);

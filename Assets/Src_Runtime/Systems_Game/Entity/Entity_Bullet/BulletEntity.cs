@@ -11,7 +11,7 @@ namespace UF {
         public int typeID;
         public IDSignature idSig;//自身唯一标识
         public IDSignature belongIDSig;//属于谁的 玩家 还是 敌人
-        public BulletType type;
+        public BulletMoveType type;
 
         [SerializeField] public Transform bodyRoot; // 子弹生成的根节点        
 

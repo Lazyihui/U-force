@@ -108,5 +108,28 @@ namespace UF {
             }
         }
         #endregion
+
+        #region WatchTower
+        public Action OnViewClickHandle;
+        public void OnViewClick() {
+            if (OnViewClickHandle != null) {
+                OnViewClickHandle();
+            }
+        }
+
+        public Action<int> OnSelectionWatchCardClickHandle;
+        public void OnSelectionWatchCardClick(int typeID) {
+            if (OnSelectionWatchCardClickHandle != null) {
+                OnSelectionWatchCardClickHandle(typeID);
+            }
+        }
+
+        public Action OnDetailCloseClickHandle;
+        public void OnDetailCloseClick() {
+            if (OnDetailCloseClickHandle != null) {
+                OnDetailCloseClickHandle();
+            }
+        }
+        #endregion
     }
 }

@@ -7,7 +7,6 @@ namespace UF {
     public class BulletTM {
         public int typeID;
         public string typeName;
-        public BulletType type;
 
         [Title("life")]
         public int hp;
@@ -24,6 +23,7 @@ namespace UF {
         
 
         [Title("Locomotion")]
+        public BulletMoveType type;
         public float moveSpeed;
 
         public BulletMod modPrefab;
