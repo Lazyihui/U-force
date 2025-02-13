@@ -15,6 +15,7 @@ namespace UF {
             CardModel card = appUI.Get_CardModel();
 
             appUI.Panel_CardSelection_Open(stageID, chapterID);// 打开卡牌选择界面
+            appUI.Panel_CardSelection_AddCardSelected(4);// 放卡片的地方
 
             // 第一个
             RoleTM roleTM0 = card.roleTMs[0];
@@ -22,7 +23,7 @@ namespace UF {
 
             for (int i = 0; i < card.roleTMs.Count; i += 1) {
                 RoleTM roleTM = card.roleTMs[i];
-                appUI.Panel_CardSelection_Add(roleTM.typeID, roleTM.sprite);
+                appUI.Panel_CardSelection_AddCard(roleTM.typeID, roleTM.sprite);
             }
             appUI.Panel_SetCardType(CardType.Hero);
 
@@ -65,29 +66,43 @@ namespace UF {
             var cardModel = appUI.Get_CardModel();
 
             if (cardType == CardType.Hero) {
+
                 for (int i = 0; i < cardModel.roleTMs.Count; i += 1) {
                     RoleTM roleTM = cardModel.roleTMs[i];
-                    appUI.Panel_CardSelection_Add(roleTM.typeID, roleTM.sprite);
+                    appUI.Panel_CardSelection_AddCard(roleTM.typeID, roleTM.sprite);
                 }
             } else if (cardType == CardType.Agriculture) {
                 for (int i = 0; i < cardModel.bulletAgrTMs.Count; i += 1) {
                     BulletTM bulletTM = cardModel.bulletAgrTMs[i];
-                    appUI.Panel_CardSelection_Add(bulletTM.typeID, bulletTM.sprite);
+                    appUI.Panel_CardSelection_AddCard(bulletTM.typeID, bulletTM.sprite);
                 }
             } else if (cardType == CardType.Industry) {
                 for (int i = 0; i < cardModel.bulletIndTMs.Count; i += 1) {
                     BulletTM bulletTM = cardModel.bulletIndTMs[i];
-                    appUI.Panel_CardSelection_Add(bulletTM.typeID, bulletTM.sprite);
+                    appUI.Panel_CardSelection_AddCard(bulletTM.typeID, bulletTM.sprite);
                 }
             } else if (cardType == CardType.Science) {
                 for (int i = 0; i < cardModel.bulletSciTMs.Count; i += 1) {
                     BulletTM bulletTM = cardModel.bulletSciTMs[i];
-                    appUI.Panel_CardSelection_Add(bulletTM.typeID, bulletTM.sprite);
+                    appUI.Panel_CardSelection_AddCard(bulletTM.typeID, bulletTM.sprite);
                 }
             }
 
+        }
 
-            // 添加卡片
+        public static void Panel_SelectedCardAddToSlot(AppUI appUI) {
+
+            var cardType = appUI.Panel_GetCardType();
+
+            if (cardType == CardType.Hero) {
+
+            } else if (cardType == CardType.Agriculture) {
+
+            } else if (cardType == CardType.Industry) {
+
+            } else if (cardType == CardType.Science) {
+
+            }
         }
 
     }
