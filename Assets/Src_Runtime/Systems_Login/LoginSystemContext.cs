@@ -14,7 +14,7 @@ namespace UF {
 
         public LoginSystemContext() {
             isRunning = false;
-            
+
             cardModel = new CardModel();
         }
 
@@ -22,6 +22,9 @@ namespace UF {
         public void Inject(AppUI appUI, InputModule input) {
             this.appUI = appUI;
             this.inputModule = input;
+        }
+        public CardModel Get_CardModel() {
+            return cardModel;
         }
 
 

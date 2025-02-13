@@ -12,6 +12,7 @@ namespace UF {
         bool isInit = false;
         bool isTearDown = false;
 
+        public CardModel cardModel;
 
         // system
         public static GameSystem gameSystem;
@@ -101,15 +102,6 @@ namespace UF {
                 appUI.Panel_StageSelection_Open(1, 1);
 
                 appUI.Panel_StageSelectionOneStage_Add(1, true);
-                appUI.Panel_StageSelectionOneStage_Add(2, true);
-                appUI.Panel_StageSelectionOneStage_Add(3, true);
-                appUI.Panel_StageSelectionOneStage_Add(4, false);
-                appUI.Panel_StageSelectionOneStage_Add(5, false);
-                appUI.Panel_StageSelectionOneStage_Add(6, false);
-                appUI.Panel_StageSelectionOneStage_Add(7, false);
-                appUI.Panel_StageSelectionOneStage_Add(8, false);
-                appUI.Panel_StageSelectionOneStage_Add(9, false);
-                appUI.Panel_StageSelectionOneStage_Add(10, false);
 
                 // loginSystem.Exit();
                 // gameSystem.Enter(1);
@@ -136,7 +128,7 @@ namespace UF {
                 appUI.Panel_StageSelection_Close();
 
                 int chapterID = 1;
-                UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateCore, stageID, chapterID);
+                UIDomain.Panel_CardSelection_Open(loginSystem.Ctx, appUI, assetsModule, templateCore, stageID, chapterID);
 
                 Debug.Log("StageClick " + stageID);
             };

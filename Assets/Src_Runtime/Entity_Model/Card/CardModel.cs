@@ -7,11 +7,15 @@ namespace UF {
     public class CardModel {
         public int typeID;
         public List<RoleTM> roleTMs;
-        public List<BulletTM> bulletTMs;
+        public List<BulletTM> bulletAgrTMs;
+        public List<BulletTM> bulletIndTMs;
+        public List<BulletTM> bulletSciTMs;
 
         public CardModel() {
             roleTMs = new List<RoleTM>();
-            bulletTMs = new List<BulletTM>();
+            bulletAgrTMs = new List<BulletTM>();
+            bulletIndTMs = new List<BulletTM>();
+            bulletSciTMs = new List<BulletTM>();
         }
 
         public void AddRoleTM(RoleTM roleTM) {
@@ -19,8 +23,18 @@ namespace UF {
         }
 
         public void AddBulletTM(BulletTM bulletTM) {
-            bulletTMs.Add(bulletTM);
+            bulletAgrTMs.Add(bulletTM);
         }
+
+        public void AddBulletIndTM(BulletTM bulletTM) {
+            bulletIndTMs.Add(bulletTM);
+        }
+
+        public void AddBulletSciTM(BulletTM bulletTM) {
+            bulletSciTMs.Add(bulletTM);
+
+        }
+
 
     }
 }

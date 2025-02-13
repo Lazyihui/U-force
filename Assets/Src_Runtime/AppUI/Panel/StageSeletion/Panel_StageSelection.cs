@@ -86,7 +86,6 @@ namespace UF.UIApplication {
 
         void Select(GameObject go) {
             // TODO:根本不懂
-            Debug.Log("Select");
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(go);
         }

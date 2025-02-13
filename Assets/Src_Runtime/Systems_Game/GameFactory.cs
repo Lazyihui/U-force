@@ -273,18 +273,36 @@ namespace UF {
                 for (int i = 0; i < roleSoArr.Count; i += 1) {
                     var roleSo = roleSoArr[i];
                     model.roleTMs.Add(roleSo.tm);
-                    Debug.Log("roleSo.tm.typeID" + roleSo.tm.typeID);
                 }
             }
 
-            var bulletSoArr = tm.bulletSoArray;
-            if (bulletSoArr != null) {
-                for (int i = 0; i < bulletSoArr.Count; i += 1) {
-                    var bulletSo = bulletSoArr[i];
-                    model.bulletTMs.Add(bulletSo.tm);
-                    Debug.Log("bulletSo.tm.typeID" + bulletSoArr.Count);
+            var bulletAgrSoArr = tm.bulletAgrSoArray;
+            if (bulletAgrSoArr != null) {
+                for (int i = 0; i < bulletAgrSoArr.Count; i += 1) {
+                    var bulletSo = bulletAgrSoArr[i];
+                    model.bulletAgrTMs.Add(bulletSo.tm);
+                    Debug.Log("bulletSo.tm.typeID" + bulletAgrSoArr.Count);
                 }
             }
+
+            var bulletIndSoArr = tm.bulletIndSoArray;
+            if (bulletIndSoArr != null) {
+                for (int i = 0; i < bulletIndSoArr.Count; i += 1) {
+                    var bulletSo = bulletIndSoArr[i];
+                    model.bulletIndTMs.Add(bulletSo.tm);
+                    Debug.Log("bulletSo.tm.typeID" + bulletIndSoArr.Count);
+                }
+            }
+
+            var bulletSciSoArr = tm.bulletSciSoArray;
+            if (bulletSciSoArr != null) {
+                for (int i = 0; i < bulletSciSoArr.Count; i += 1) {
+                    var bulletSo = bulletSciSoArr[i];
+                    model.bulletSciTMs.Add(bulletSo.tm);
+                    Debug.Log("bulletSo.tm.typeID" + bulletSciSoArr.Count);
+                }
+            }
+
 
             return model;
         }

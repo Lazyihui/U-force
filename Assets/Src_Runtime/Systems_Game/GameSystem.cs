@@ -9,7 +9,7 @@ namespace UF {
     public class GameSystem : MonoBehaviour {
         public SystemType SystemType => SystemType.Game;
 
-        static GameSystemContext ctx;
+        public static GameSystemContext ctx;
 
         public GameSystemEvents events;
 
@@ -41,7 +41,7 @@ namespace UF {
 
             // Game
             // int stageID = game.stageCurID;
-            
+
             bool has = ctx.templateCore.Stage_TryGet(stageID, out StageTM tm);
             if (!has) {
                 Debug.LogError("StageID not found");
@@ -129,7 +129,7 @@ namespace UF {
 
         void LogicTick(float dt) {
             var game = ctx.gameEntity;
-            
+
             //  Role
             RoleEntity owner = ctx.Get_Owner();
             if (owner == null) {
@@ -143,8 +143,7 @@ namespace UF {
             var fsm = owner.FSMComponent;
             var state = fsm.Status;
 
-            if (game.state == GameState.GameOver)
-            {
+            if (game.state == GameState.GameOver) {
                 return;
             }
 

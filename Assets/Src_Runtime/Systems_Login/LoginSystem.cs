@@ -11,6 +11,7 @@ namespace UF {
         public SystemType SystemType => SystemType.Login;
 
         LoginSystemContext ctx;
+        public LoginSystemContext Ctx => ctx;
 
         LoginSystemEvents events;
         public LoginSystemEvents Events => events;
@@ -78,6 +79,7 @@ namespace UF {
         void LastTick(float dt) {
 
         }
+
 
         public void Login_Binding() {
             var appUI = ctx.appUI;
