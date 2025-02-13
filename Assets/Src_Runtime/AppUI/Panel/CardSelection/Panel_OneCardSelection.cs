@@ -8,9 +8,9 @@ namespace UF {
     public class Panel_OneCardSelection : MonoBehaviour {
 
         [SerializeField] Image img_bg;
-        int id;
         [SerializeField] Button btn_Card;
 
+        int id;
         public Action<int> OnCardClickHandle;
 
 
@@ -26,7 +26,6 @@ namespace UF {
             this.id = id;
             img_bg.sprite = sprite;
         }
-
 
     }
 }

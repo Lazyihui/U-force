@@ -9,12 +9,17 @@ namespace UF.UIApplication {
 
     public class Panel_CardSelection : MonoBehaviour {
 
+        // OnCard
         [SerializeField] Panel_OneCardSelection oneCardPrefab;
         List<Panel_OneCardSelection> cards;
         [SerializeField] Transform cardGroup;
+        // 点击的卡片
+        public Action<int> OnSelectionCardClickHandle;
 
-        public Action OnConfirmClickHandle;
-        [SerializeField] Button btn_confirm;//确认选择
+        // CardDetails  
+        [SerializeField] Panel_CardSelectionDetails cardDetailsPrefab;
+        Panel_CardSelectionDetails cardDetails;
+        public Action OnConfirmClickHandle; //确认选择
 
         public Action OnSelectBackClickHandle;
         [SerializeField] Button btn_back;//返回
@@ -35,14 +40,12 @@ namespace UF.UIApplication {
         [SerializeField] TextMeshProUGUI txt_ChapterName;
         [SerializeField] TextMeshProUGUI txt_StageName;
 
-        // 点击的卡片
-        public Action<int> OnSelectionCardClickHandle;
+        CardType cardType;
 
         public void Ctor() {
             cards = new List<Panel_OneCardSelection>();
 
             btn_back.onClick.AddListener(() => OnSelectBackClickHandle.Invoke());
-            btn_confirm.onClick.AddListener(() => OnConfirmClickHandle.Invoke());
             btn_EnterGame.onClick.AddListener(() => OnSelectEnterClickHandle.Invoke());
             btn_SelectHero.onClick.AddListener(() => OnSelectHeroClickHandle.Invoke());
             btn_SelectAgr.onClick.AddListener(() => OnSelectAgrClickHandle.Invoke());
@@ -66,6 +69,8 @@ namespace UF.UIApplication {
         }
 
         public void Add(int id, Sprite sprite) {
+
+            // 实例化卡片
             Panel_OneCardSelection oneCard = Instantiate(oneCardPrefab, cardGroup);
             oneCard.Ctor();
             oneCard.Init(id, sprite);
@@ -73,6 +78,32 @@ namespace UF.UIApplication {
 
             cards.Add(oneCard);
         }
+
+        public void Clear() {
+            foreach (var card in cards) {
+                Destroy(card.gameObject);
+            }
+            cards.Clear();
+        }
+
+        public void Set_CardType(CardType type) {
+            cardType = type;
+        }
+
+        public CardType Get_CardType() {
+            return cardType;
+        }
+
+        public void UpdateCardDetail(Sprite sprite, string content) {
+
+            if (cardDetails == null) {
+                cardDetails = Instantiate(cardDetailsPrefab, transform);
+                cardDetails.OnConfirmClickHandle += OnConfirmClick;
+                cardDetails.Ctor();
+            }
+            cardDetails.Set_Detail(sprite, content);
+        }
+
 
         public void Init() {
 
@@ -88,6 +119,10 @@ namespace UF.UIApplication {
 
         void OnCardClick(int stageID) {
             OnSelectionCardClickHandle.Invoke(stageID);
+        }
+
+        void OnConfirmClick() {
+            OnConfirmClickHandle.Invoke();
         }
 
     }

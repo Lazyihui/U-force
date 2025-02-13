@@ -99,12 +99,20 @@ namespace UF {
                 OnSelectBackClickHandle();
             }
         }
-        
+
         public Action<int> OnSelectionCardClickHandle;//选择卡片
 
         public void OnSelectionCardClick(int a) {
             if (OnSelectionCardClickHandle != null) {
                 OnSelectionCardClickHandle(a);
+            }
+        }
+
+        public Action OnConfirmClickHandle;//确认选择
+
+        public void OnConfirmClick() {
+            if (OnConfirmClickHandle != null) {
+                OnConfirmClickHandle();
             }
         }
         #endregion

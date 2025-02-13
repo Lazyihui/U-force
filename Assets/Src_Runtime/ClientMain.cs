@@ -131,24 +131,14 @@ namespace UF {
 
             // StageSelection
             loginEvent.OnStageClickHandle += (stageID) => {
+
+                // TODO：放到UIDomain里
                 appUI.Panel_StageSelection_Close();
-                CardModel card = GameFactory.Card_Create(assetsModule, templateCore, 1);
 
-                appUI.Panel_CardSelection_Open(stageID, 1);
+                int chapterID = 1;
+                UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateCore, stageID, chapterID);
 
-                for (int i = 0; i < card.roleTMs.Count; i += 1) {
-                    RoleTM roleTM = card.roleTMs[i];
-                    appUI.Panel_CardSelection_Add(roleTM.typeID, roleTM.sprite);
-                }
-
-                appUI.Panel_WatchTower_Open();
-                appUI.Panel_WatchTower_Add(1, null);
-                appUI.Panel_WatchTower_Add(2, null);
-                appUI.Panel_WatchTower_Add(3, null);
-                // loginSystem.Exit();
-                // gameSystem.Enter(stageID);
                 Debug.Log("StageClick " + stageID);
-                // 进入游戏
             };
 
             loginEvent.OnChapterClickHandle += (chapter) => {
@@ -195,8 +185,15 @@ namespace UF {
                 appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, 1, 5);
             };
 
-            loginEvent.OnSelectionCardClickHandle += (id) => {
-                Debug.Log("SelectionCardClick " + id);
+            loginEvent.OnSelectionCardClickHandle += (typeID) => {
+                Debug.Log("SelectionCardClick " + typeID);
+
+                UIDomain.Update_CardSelectionDetails(typeID, templateCore, appUI);
+
+            };
+
+            loginEvent.OnConfirmClickHandle += () => {
+                Debug.Log("Confirm");
             };
 
             {

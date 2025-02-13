@@ -25,6 +25,7 @@ namespace UF {
 
         // -sprite
         public Sprite sprite;
+        public String content;
 
     }
 }

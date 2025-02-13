@@ -395,6 +395,11 @@ namespace UF {
                     eventCenter.OnSelectionCardClick(id);
                 };
 
+                // Card Confirm
+                panel.OnConfirmClickHandle = () => {
+                    eventCenter.OnConfirmClick();
+                };
+
             }
 
             panel.Set_Text(stageID, ChapterID);
@@ -408,6 +413,29 @@ namespace UF {
                 return;
             }
             panel.Add(id, sprite);
+        }
+        public void Panel_SetCardType(CardType type) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.Set_CardType(type);
+        }
+
+        public CardType Panel_GetCardType() {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return CardType.None;
+            }
+            return panel.Get_CardType();
+        }
+
+        public void Panel_CardDetails_Update(Sprite sprite, string content) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.UpdateCardDetail(sprite, content);
         }
 
         public void Panel_CardSelection_Close() {

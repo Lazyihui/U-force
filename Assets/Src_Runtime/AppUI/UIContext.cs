@@ -17,6 +17,7 @@ namespace UF {
         public Panel_GameOver panel_GameOver;
         public Panel_StageSelection panel_StageSelection;
         public Panel_CardSelection panel_CardSelection;
+
         public Panel_BackSelection panel_BackSelection;
         public Panel_WatchTower panel_Watchtower;
         public Panel_WatchDetail panel_WatchDetail;

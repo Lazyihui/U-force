@@ -114,6 +114,11 @@ namespace UF {
             return panel;
         }
 
+        public GameObject Panel_GetCardDetails() {
+            panels.TryGetValue("Panel_CardDetails", out GameObject panel);
+            return panel;
+        }
+
         public GameObject Panel_GetBackSelection() {
             panels.TryGetValue("Panel_BackSelection", out GameObject panel);
             return panel;
@@ -128,7 +133,7 @@ namespace UF {
             panels.TryGetValue("Panel_WatchDetail", out GameObject panel);
             return panel;
         }
-        
+
         // HUD
         public GameObject HUD_GetProgressbar() {
             panels.TryGetValue("HUD_Progressbar", out GameObject hud);

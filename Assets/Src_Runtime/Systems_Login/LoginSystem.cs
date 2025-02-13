@@ -143,7 +143,11 @@ namespace UF {
             eventCenter.OnSelectionCardClickHandle += (cardID) => {
                 events.OnSelectionCardClick(cardID);
             };
-            
+
+            eventCenter.OnConfirmClickHandle += () => {
+                events.OnConfirmClick();//确认选择
+            };
+
             // 瞭望塔
             eventCenter.OnViewClickHandle += () => {
                 events.OnViewClick();

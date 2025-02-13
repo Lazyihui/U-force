@@ -199,6 +199,14 @@ namespace UF {
             }
         }
 
+        public Action OnConfirmClickHandle;//确认选择
+
+        public void OnConfirmClick() {
+            if (OnConfirmClickHandle != null) {
+                OnConfirmClickHandle();
+            }
+        }
+
         #endregion
 
         #region BackSelection
