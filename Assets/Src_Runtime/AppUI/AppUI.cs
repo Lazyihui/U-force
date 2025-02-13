@@ -9,6 +9,8 @@ namespace UF {
 
         public UIContext ctx;
         public UIEventCenter eventCenter;
+        public CardModel cardModel;
+
 
 
         public void Ctor() {
@@ -19,7 +21,9 @@ namespace UF {
         public void Inject(Canvas screenCanvas, AssetsModule assetsCore) {
             ctx.Inject(screenCanvas, assetsCore);
         }
-
+        public CardModel Get_CardModel() {
+            return cardModel;
+        }
         public void Set_InputDown(bool isTabDown, bool isEscDown) {
             ctx.isTabDown = isTabDown;
             ctx.isEscDown = isEscDown;
@@ -414,6 +418,15 @@ namespace UF {
             }
             panel.Add(id, sprite);
         }
+
+        public void Panel_OneCardSelection_Clear() {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.Clear();
+        }
+
         public void Panel_SetCardType(CardType type) {
             Panel_CardSelection panel = ctx.panel_CardSelection;
             if (panel == null) {

@@ -7,13 +7,12 @@ namespace UF {
 
     public static class UIDomain {
 
-        public static void Panel_CardSelection_Open(LoginSystemContext ctx, AppUI appUI, AssetsModule assetsModule, TemplateMoudle templateModule, int stageID, int chapterID) {
+        public static void Panel_CardSelection_Open(AppUI appUI, AssetsModule assetsModule, TemplateMoudle templateModule, int stageID, int chapterID) {
 
-            // TODO：放到UIDomain里
             appUI.Panel_StageSelection_Close();
 
-            ctx.cardModel = GameFactory.Card_Create(assetsModule, templateModule, 1);
-            CardModel card = ctx.Get_CardModel();
+            appUI.cardModel = GameFactory.Card_Create(assetsModule, templateModule, 1);
+            CardModel card = appUI.Get_CardModel();
 
             appUI.Panel_CardSelection_Open(stageID, chapterID);// 打开卡牌选择界面
 
@@ -55,7 +54,40 @@ namespace UF {
                 appUI.Panel_CardDetails_Update(bulletTM.sprite, bulletTM.content);
 
             }
+        }
 
+
+        public static void Panel_OneCardSelection_Update(AppUI appUI) {
+            //先清空卡片选择界面 
+            appUI.Panel_OneCardSelection_Clear();
+
+            CardType cardType = appUI.Panel_GetCardType();
+            var cardModel = appUI.Get_CardModel();
+
+            if (cardType == CardType.Hero) {
+                for (int i = 0; i < cardModel.roleTMs.Count; i += 1) {
+                    RoleTM roleTM = cardModel.roleTMs[i];
+                    appUI.Panel_CardSelection_Add(roleTM.typeID, roleTM.sprite);
+                }
+            } else if (cardType == CardType.Agriculture) {
+                for (int i = 0; i < cardModel.bulletAgrTMs.Count; i += 1) {
+                    BulletTM bulletTM = cardModel.bulletAgrTMs[i];
+                    appUI.Panel_CardSelection_Add(bulletTM.typeID, bulletTM.sprite);
+                }
+            } else if (cardType == CardType.Industry) {
+                for (int i = 0; i < cardModel.bulletIndTMs.Count; i += 1) {
+                    BulletTM bulletTM = cardModel.bulletIndTMs[i];
+                    appUI.Panel_CardSelection_Add(bulletTM.typeID, bulletTM.sprite);
+                }
+            } else if (cardType == CardType.Science) {
+                for (int i = 0; i < cardModel.bulletSciTMs.Count; i += 1) {
+                    BulletTM bulletTM = cardModel.bulletSciTMs[i];
+                    appUI.Panel_CardSelection_Add(bulletTM.typeID, bulletTM.sprite);
+                }
+            }
+
+
+            // 添加卡片
         }
 
     }

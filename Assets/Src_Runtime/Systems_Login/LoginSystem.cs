@@ -11,7 +11,6 @@ namespace UF {
         public SystemType SystemType => SystemType.Login;
 
         LoginSystemContext ctx;
-        public LoginSystemContext Ctx => ctx;
 
         LoginSystemEvents events;
         public LoginSystemEvents Events => events;

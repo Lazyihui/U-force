@@ -27,3 +27,4 @@ MonoBehaviour:
     moveSpeed: 10
     modPrefab: {fileID: 1331546846896445911, guid: b7ef98a59fab268458648fced8239c47, type: 3}
     sprite: {fileID: 21300000, guid: 6b1dc84bb4f439241a8d92abb85e5908, type: 3}
+    content: 12312535

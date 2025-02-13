@@ -128,7 +128,7 @@ namespace UF {
                 appUI.Panel_StageSelection_Close();
 
                 int chapterID = 1;
-                UIDomain.Panel_CardSelection_Open(loginSystem.Ctx, appUI, assetsModule, templateCore, stageID, chapterID);
+                UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateCore, stageID, chapterID);
 
                 Debug.Log("StageClick " + stageID);
             };
@@ -145,17 +145,25 @@ namespace UF {
             // CardSelection
             loginEvent.OnSelectHeroClickHandle += () => {
                 Debug.Log("SelectHero");
+                appUI.Panel_SetCardType(CardType.Hero);
+                UIDomain.Panel_OneCardSelection_Update(appUI);
             };
 
             loginEvent.OnSelectAgrClickHandle += () => {
+                appUI.Panel_SetCardType(CardType.Agriculture);
+                UIDomain.Panel_OneCardSelection_Update(appUI);
                 Debug.Log("SelectAgr");
             };
 
             loginEvent.OnSelectIndClickHandle += () => {
+                appUI.Panel_SetCardType(CardType.Industry);
+                UIDomain.Panel_OneCardSelection_Update(appUI);
                 Debug.Log("SelectInd");
             };
 
             loginEvent.OnSelectSciClickHandle += () => {
+                appUI.Panel_SetCardType(CardType.Science);
+                UIDomain.Panel_OneCardSelection_Update(appUI);
                 Debug.Log("SelectSci");
             };
 

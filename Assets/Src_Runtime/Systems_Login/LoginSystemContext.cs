@@ -10,12 +10,10 @@ namespace UF {
         public InputModule inputModule;
 
         // model
-        public CardModel cardModel;
 
         public LoginSystemContext() {
             isRunning = false;
 
-            cardModel = new CardModel();
         }
 
 
@@ -23,9 +21,7 @@ namespace UF {
             this.appUI = appUI;
             this.inputModule = input;
         }
-        public CardModel Get_CardModel() {
-            return cardModel;
-        }
+       
 
 
     }
