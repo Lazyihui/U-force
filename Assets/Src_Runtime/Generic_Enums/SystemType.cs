@@ -5,6 +5,7 @@ namespace UF {
         Login,
         Game,
         Pause,
+        Train,
     }
 
 }

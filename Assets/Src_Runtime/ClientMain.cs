@@ -18,6 +18,7 @@ namespace UF {
         public static GameSystem gameSystem;
         public static LoginSystem loginSystem;
         public static PauseSystem pauseSystem;
+        public static TrainSystem trainSystem;
 
         // ==== Cores ====
         public static AppUI appUI;
@@ -47,6 +48,9 @@ namespace UF {
             pauseSystem = GetComponentInChildren<PauseSystem>();
             pauseSystem.Ctor();
 
+            trainSystem = GetComponentInChildren<TrainSystem>();
+            trainSystem.Ctor();
+
             // ---  Modules  ---
             assetsModule = GetComponentInChildren<AssetsModule>();
             assetsModule.Ctor();
@@ -65,6 +69,7 @@ namespace UF {
             gameSystem.Inject(screenCanvas, assetsModule, templateCore, appUI, inputModule, roleRepository);
             loginSystem.Inject(appUI, inputModule);
             pauseSystem.Inject(appUI, roleRepository);
+            trainSystem.Inject(appUI);
 
             appUI.Inject(screenCanvas, assetsModule);
 
@@ -73,6 +78,7 @@ namespace UF {
             Login_Binding();
             Game_Binding();
             Pause_Binding();
+            Train_Binding();
 
             Action action = async () => {
 
@@ -109,7 +115,10 @@ namespace UF {
             };
 
             loginEvent.OnTrainingHandle += () => {
-                Debug.Log("Training");
+                appUI.Panel_Login_Close();
+
+                appUI.Panel_Training_Select_Open(null, null, null, null, null, null, null, null);
+                appUI.Panel_Training_Select_Add(1, null, "1");
             };
 
             loginEvent.OnSettingHandle += () => {
@@ -310,6 +319,25 @@ namespace UF {
                 Debug.Log("进入备战(选卡片)页面");
             };
 
+        }
+
+        void Train_Binding()
+        {
+            trainSystem.Train_Binding();
+
+            var trainEvent = trainSystem.Events;
+
+            trainEvent.OnPlayer1ReadyClickHandle += () => {
+                Debug.Log("Player1Ready");
+            };
+
+            trainEvent.OnPlayer2ReadyClickHandle += () => {
+                Debug.Log("Player2Ready");
+            };
+
+            trainEvent.OnSelectionTrainCardClickHandle += (typeID) => {
+                Debug.Log("SelectionTrainCardClick " + typeID);
+            };
         }
 
 
