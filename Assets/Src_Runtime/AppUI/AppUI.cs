@@ -10,12 +10,12 @@ namespace UF {
         public UIContext ctx;
         public UIEventCenter eventCenter;
         public CardModel cardModel;
-
-
-
+        public SelectedInFormation selectedInFormation;
+        
         public void Ctor() {
             ctx = new UIContext();
             eventCenter = new UIEventCenter();
+            selectedInFormation = new SelectedInFormation();
         }
 
         public void Inject(Canvas screenCanvas, AssetsModule assetsCore) {
@@ -596,9 +596,7 @@ namespace UF {
 
         public void Panel_WatchTower_ClearCursor() {
             Panel_WatchTower panel = ctx.panel_Watchtower;
-
             if (panel == null) { return; }
-
             panel.Clear_Cursor();
         }
         #endregion

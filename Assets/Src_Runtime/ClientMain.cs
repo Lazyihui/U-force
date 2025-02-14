@@ -174,6 +174,7 @@ namespace UF {
 
             loginEvent.OnSelectEnterClickHandle += () => {
                 Debug.Log("SelectEnter");
+
                 appUI.Panel_CardSelection_Close();
                 appUI.Panel_WatchTower_Close();
                 loginSystem.Exit();
