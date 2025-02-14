@@ -47,7 +47,6 @@ namespace UF {
             for (int i = 0; i < eles.Count; i += 1) {
                 var ele = eles[i];
                 if (ele.GetID() == typeID) {
-                    Debug.LogWarning("Remove" + typeID);
                     ele.Init(-1, null);
                     break;
                 }

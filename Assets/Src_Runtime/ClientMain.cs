@@ -141,7 +141,6 @@ namespace UF {
                 int chapterID = 1;
                 UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule, stageID, chapterID);
 
-                Debug.Log("StageClick " + stageID);
             };
 
             loginEvent.OnChapterClickHandle += (chapter) => {

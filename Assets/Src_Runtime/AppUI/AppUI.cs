@@ -429,7 +429,7 @@ namespace UF {
             if (panel == null) {
                 return;
             }
-            panel.AddCardSelected(slotMax);
+            panel.InitCardSelected(slotMax);
         }
 
         public void Panel_CardSelection_RemoveCardSelected(int typeID) {
@@ -465,7 +465,6 @@ namespace UF {
             panel.CardSelected_SetProp(typeID, sprite);
         }
         // 
-
         public void Panel_OneCardSelection_Clear() {
             Panel_CardSelection panel = ctx.panel_CardSelection;
             if (panel == null) {
