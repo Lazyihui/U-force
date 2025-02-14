@@ -19,7 +19,7 @@ namespace UF {
 
             // 第一个
             RoleTM roleTM0 = card.roleTMs[0];
-            appUI.Panel_CardDetails_Update(roleTM0.sprite, roleTM0.content);
+            appUI.Panel_CardDetails_Update(roleTM0.sprite, roleTM0.content, roleTM0.typeID);
 
             for (int i = 0; i < card.roleTMs.Count; i += 1) {
                 RoleTM roleTM = card.roleTMs[i];
@@ -29,8 +29,7 @@ namespace UF {
 
 
             appUI.Panel_WatchTower_Open();
-            for (int i = 0; i < card.roleEnemyTMs.Count; i += 1)
-            {
+            for (int i = 0; i < card.roleEnemyTMs.Count; i += 1) {
                 RoleTM roleTM = card.roleEnemyTMs[i];
                 appUI.Panel_WatchTower_Add(roleTM.typeID, roleTM.sprite);
             }
@@ -41,20 +40,20 @@ namespace UF {
             CardType cardType = appUI.Panel_GetCardType();
             if (cardType == CardType.Hero) {
                 templateMoudle.Role_TryGet(typeID, out RoleTM roleTM);
-                appUI.Panel_CardDetails_Update(roleTM.sprite, roleTM.content);
+                appUI.Panel_CardDetails_Update(roleTM.sprite, roleTM.content, roleTM.typeID);
 
             } else if (cardType == CardType.Agriculture) {
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
-                appUI.Panel_CardDetails_Update(bulletTM.sprite, bulletTM.content);
+                appUI.Panel_CardDetails_Update(bulletTM.sprite, bulletTM.content, bulletTM.typeID);
 
             } else if (cardType == CardType.Industry) {
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
-                appUI.Panel_CardDetails_Update(bulletTM.sprite, bulletTM.content);
+                appUI.Panel_CardDetails_Update(bulletTM.sprite, bulletTM.content, bulletTM.typeID);
 
 
             } else if (cardType == CardType.Science) {
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
-                appUI.Panel_CardDetails_Update(bulletTM.sprite, bulletTM.content);
+                appUI.Panel_CardDetails_Update(bulletTM.sprite, bulletTM.content, bulletTM.typeID);
 
             }
         }
@@ -92,28 +91,34 @@ namespace UF {
 
         }
 
-        public static void Panel_SelectedCardAddToSlot(AppUI appUI) {
+        public static void Panel_SelectedCardAddToSlot(AppUI appUI, TemplateMoudle templateMoudle, int typeID) {
 
             var cardType = appUI.Panel_GetCardType();
 
             if (cardType == CardType.Hero) {
+                templateMoudle.Role_TryGet(typeID, out RoleTM roleTM);
+                appUI.Panel_CardSelection_SetHero(roleTM.sprite);
 
             } else if (cardType == CardType.Agriculture) {
+                templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
+                appUI.Panel_CardSelection_SetScience(bulletTM.sprite);
 
             } else if (cardType == CardType.Industry) {
+                templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
+                appUI.Panel_CardSelection_SetScience(bulletTM.sprite);
 
             } else if (cardType == CardType.Science) {
+                templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
+                appUI.Panel_CardSelection_SetScience(bulletTM.sprite);
 
             }
         }
 
-        public static void Panel_WatchTower_GetDetail(int typeID, TemplateMoudle templateMoudle, AppUI appUI)
-        {
+        public static void Panel_WatchTower_GetDetail(int typeID, TemplateMoudle templateMoudle, AppUI appUI) {
             templateMoudle.Role_TryGet(typeID, out RoleTM roleTM);
 
             string skill = "";
-            for (int i = 0; i < roleTM.skillorSoArray.Length; i += 1)
-            {
+            for (int i = 0; i < roleTM.skillorSoArray.Length; i += 1) {
                 skill += roleTM.skillorSoArray[i].tm.typeName + "\n";
             }
             appUI.Panel_WatchDetail_Open(roleTM.sprite, roleTM.typeName, roleTM.content, roleTM.hp, skill, roleTM.restraint);

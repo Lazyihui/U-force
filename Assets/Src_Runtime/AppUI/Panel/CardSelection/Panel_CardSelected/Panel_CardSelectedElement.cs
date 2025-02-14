@@ -13,12 +13,16 @@ namespace UF {
         public Action<int> OnCardClickHandle;
         int typeID;
 
-        public void Ctor(){
+        public void Ctor() {
             btn_Card.onClick.AddListener(() => {
                 if (OnCardClickHandle != null) {
                     OnCardClickHandle.Invoke(typeID);
                 }
             });
+        }
+
+        public int GetID() {
+            return typeID;
         }
 
         public void Init(int typeID, Sprite sprite) {

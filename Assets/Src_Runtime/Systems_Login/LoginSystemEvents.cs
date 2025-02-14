@@ -108,11 +108,11 @@ namespace UF {
             }
         }
 
-        public Action OnConfirmClickHandle;//确认选择
+        public Action<int> OnConfirmClickHandle;//确认选择
 
-        public void OnConfirmClick() {
+        public void OnConfirmClick(int a) {
             if (OnConfirmClickHandle != null) {
-                OnConfirmClickHandle();
+                OnConfirmClickHandle(a);
             }
         }
         #endregion

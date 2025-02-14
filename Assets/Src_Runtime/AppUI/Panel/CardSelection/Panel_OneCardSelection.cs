@@ -13,7 +13,9 @@ namespace UF {
         int id;
         public Action<int> OnCardClickHandle;
 
-
+        public int GetID() {
+            return id;
+        }
         public void Ctor() {
             btn_Card.onClick.AddListener(() => {
                 if (OnCardClickHandle != null) {

@@ -11,16 +11,19 @@ namespace UF {
         [SerializeField] Image img_Card;
         [SerializeField] TextMeshProUGUI txt_Content;
 
-        public Action OnConfirmClickHandle;
+        public Action<int> OnConfirmClickHandle;
         [SerializeField] Button btn_confirm;//确认选择
 
+        public int typeID;
+
         public void Ctor() {
-            btn_confirm.onClick.AddListener(() => OnConfirmClickHandle.Invoke());
+            btn_confirm.onClick.AddListener(() => OnConfirmClickHandle.Invoke(typeID));
         }
 
-        public void Set_Detail(Sprite sprite, string content) {
+        public void Set_Detail(Sprite sprite, string content, int typeID) {
             img_Card.sprite = sprite;
             txt_Content.text = content;
+            this.typeID = typeID;
         }
 
     }

@@ -400,8 +400,8 @@ namespace UF {
                 };
 
                 // Card Confirm
-                panel.OnConfirmClickHandle = () => {
-                    eventCenter.OnConfirmClick();
+                panel.OnConfirmClickHandle = (typeID) => {
+                    eventCenter.OnConfirmClick(typeID);
                 };
 
             }
@@ -419,6 +419,7 @@ namespace UF {
             panel.AddCard(id, sprite);
         }
 
+        // CardSelected
         public void Panel_CardSelection_AddCardSelected(int slotMax) {
             Panel_CardSelection panel = ctx.panel_CardSelection;
             if (panel == null) {
@@ -426,6 +427,31 @@ namespace UF {
             }
             panel.AddCardSelected(slotMax);
         }
+
+        public void Panel_CardSelection_SetHero(Sprite sprite) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.CardSelected_SetHero(sprite);
+        }
+
+        public void Panel_CardSelection_SetScience(Sprite sprite) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.CardSelected_SetScience(sprite);
+        }
+
+        public void Panel_CardSelection_SetProp(int typeID, Sprite sprite) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.CardSelected_SetProp(typeID, sprite);
+        }
+        // 
 
         public void Panel_OneCardSelection_Clear() {
             Panel_CardSelection panel = ctx.panel_CardSelection;
@@ -451,12 +477,12 @@ namespace UF {
             return panel.Get_CardType();
         }
 
-        public void Panel_CardDetails_Update(Sprite sprite, string content) {
+        public void Panel_CardDetails_Update(Sprite sprite, string content, int typeID) {
             Panel_CardSelection panel = ctx.panel_CardSelection;
             if (panel == null) {
                 return;
             }
-            panel.UpdateCardDetail(sprite, content);
+            panel.UpdateCardDetail(sprite, content, typeID);
         }
 
         public void Panel_CardSelection_Close() {
@@ -595,12 +621,10 @@ namespace UF {
         #endregion
 
         #region Training
-        public void Panel_Training_Select_Open()
-        {
+        public void Panel_Training_Select_Open() {
             Panel_Training_Select panel = ctx.panel_Training_Select;
 
-            if (panel == null)
-            {
+            if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetTraining_Select();
                 GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
                 panel = go.GetComponent<Panel_Training_Select>();
@@ -622,8 +646,7 @@ namespace UF {
             panel.Show();
         }
 
-        public void Panel_Training_Select_Add(int id, Sprite sprite, string name)
-        {
+        public void Panel_Training_Select_Add(int id, Sprite sprite, string name) {
             Panel_Training_Select panel = ctx.panel_Training_Select;
 
             if (panel == null) { return; }
@@ -631,8 +654,7 @@ namespace UF {
             panel.Add(id, sprite, name);
         }
 
-        public void Panel_Training_Select_Close()
-        {
+        public void Panel_Training_Select_Close() {
             Panel_Training_Select panel = ctx.panel_Training_Select;
 
             if (panel == null) { return; }

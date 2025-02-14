@@ -24,7 +24,7 @@ namespace UF {
             for (int i = 0; i < slotMax; i += 1) {
                 Panel_CardSelectedElement ele = Instantiate(elePrefab, cardGroup);
                 ele.Ctor();
-                ele.Init(i, null);
+                ele.Init(-1, null);
                 ele.OnCardClickHandle = OnCardSelectedClick;
                 eles.Add(ele);
             }
@@ -36,6 +36,16 @@ namespace UF {
 
         public void Set_science(Sprite sprite) {
             img_science.sprite = sprite;
+        }
+
+        public void Set_prop(int typeID, Sprite sprite) {
+            for (int i = 0; i < eles.Count; i += 1) {
+                var ele = eles[i];
+                if (ele.GetID() == -1) {
+                    ele.Init(typeID, sprite);
+                    break;
+                }
+            }
         }
 
         void OnCardSelectedClick(int typeID) {

@@ -25,7 +25,7 @@ namespace UF {
 
         // ==== Modules ====
         public static AssetsModule assetsModule;
-        public static TemplateMoudle templateCore;
+        public static TemplateMoudle templateModule;
         public static InputModule inputModule;
 
         // repos
@@ -55,8 +55,8 @@ namespace UF {
             assetsModule = GetComponentInChildren<AssetsModule>();
             assetsModule.Ctor();
 
-            templateCore = GetComponentInChildren<TemplateMoudle>();
-            templateCore.Ctor();
+            templateModule = GetComponentInChildren<TemplateMoudle>();
+            templateModule.Ctor();
 
             inputModule = GetComponentInChildren<InputModule>();
             inputModule.Ctor();
@@ -66,7 +66,7 @@ namespace UF {
 
 
             // Inject
-            gameSystem.Inject(screenCanvas, assetsModule, templateCore, appUI, inputModule, roleRepository);
+            gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository);
             loginSystem.Inject(appUI, inputModule);
             pauseSystem.Inject(appUI, roleRepository);
             trainSystem.Inject(appUI);
@@ -83,7 +83,7 @@ namespace UF {
             Action action = async () => {
 
                 await assetsModule.LoadAll();
-                await templateCore.LoadAll();
+                await templateModule.LoadAll();
 
                 isInit = true;
 
@@ -139,7 +139,7 @@ namespace UF {
                 appUI.Panel_StageSelection_Close();
 
                 int chapterID = 1;
-                UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateCore, stageID, chapterID);
+                UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule, stageID, chapterID);
 
                 Debug.Log("StageClick " + stageID);
             };
@@ -194,13 +194,13 @@ namespace UF {
             loginEvent.OnSelectionCardClickHandle += (typeID) => {
                 Debug.Log("SelectionCardClick " + typeID);
 
-                UIDomain.Update_CardSelectionDetails(typeID, templateCore, appUI);
+                UIDomain.Update_CardSelectionDetails(typeID, templateModule, appUI);
 
             };
 
-            loginEvent.OnConfirmClickHandle += () => {
+            loginEvent.OnConfirmClickHandle += (typeID) => {
                 Debug.Log("Confirm");
-                UIDomain.Panel_SelectedCardAddToSlot(appUI);
+                UIDomain.Panel_SelectedCardAddToSlot(appUI, templateModule, typeID);
 
             };
 
@@ -218,7 +218,7 @@ namespace UF {
                         appUI.Panel_WatchTower_ClearCursor();
                         isClicked = false;
 
-                        UIDomain.Panel_WatchTower_GetDetail(typeID, templateCore, appUI);
+                        UIDomain.Panel_WatchTower_GetDetail(typeID, templateModule, appUI);
                     }
                 };
             }
@@ -319,8 +319,7 @@ namespace UF {
 
         }
 
-        void Train_Binding()
-        {
+        void Train_Binding() {
             trainSystem.Train_Binding();
 
             var trainEvent = trainSystem.Events;
@@ -372,7 +371,7 @@ namespace UF {
             isTearDown = true;
 
             assetsModule.UnLoadAll();
-            templateCore.UnLoadAll();
+            templateModule.UnLoadAll();
         }
 
 

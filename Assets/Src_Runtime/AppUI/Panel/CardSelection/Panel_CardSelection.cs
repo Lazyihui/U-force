@@ -10,19 +10,19 @@ namespace UF.UIApplication {
     public class Panel_CardSelection : MonoBehaviour {
 
         // OnCard
+        [SerializeField] Transform cardGroup;
         [SerializeField] Panel_OneCardSelection oneCardPrefab;
         List<Panel_OneCardSelection> cards;
-        [SerializeField] Transform cardGroup;
-        // 点击的卡片
-        public Action<int> OnSelectionCardClickHandle;
+        public Action<int> OnSelectionCardClickHandle;// 点击的卡片
 
         // CardDetails  
         [SerializeField] Panel_CardSelectionDetails cardDetailsPrefab;
         Panel_CardSelectionDetails cardDetails;
-        public Action OnConfirmClickHandle; //确认选择
+        public Action<int> OnConfirmClickHandle; //确认选择
 
         // SelectedCard 选择的卡片
         [SerializeField] Panel_CardSelected cardSelectedPrefab;
+        Panel_CardSelected cardSelected;
         public Action<int> OnCardSelectedClickHandle;
 
 
@@ -73,6 +73,7 @@ namespace UF.UIApplication {
             }
         }
 
+        #region Card
         public void AddCard(int id, Sprite sprite) {
 
             // 实例化卡片
@@ -80,17 +81,18 @@ namespace UF.UIApplication {
             oneCard.Ctor();
             oneCard.Init(id, sprite);
             oneCard.OnCardClickHandle += OnCardClick;//点击卡片 绑定事件
-
             cards.Add(oneCard);
-
         }
 
-        public void AddCardSelected(int slotMax) {
-            // 选择的卡片
-            Panel_CardSelected selectedCard = Instantiate(cardSelectedPrefab, transform);
-            selectedCard.Ctor();
-            selectedCard.Add(slotMax);
-            selectedCard.OnCardClickSelectedHandle += OnCardSelectedClick;//点击卡片 绑定事件
+        public void RemoveCard(int id) {
+            for (int i = 0; i < cards.Count; i++) {
+                if (cards[i].GetID() == id) {
+                    Destroy(cards[i].gameObject);
+                    cards.RemoveAt(i);
+                    Debug.Log("RemoveCard");
+                    break;
+                }
+            }
         }
 
         public void Clear() {
@@ -100,6 +102,31 @@ namespace UF.UIApplication {
             cards.Clear();
         }
 
+        #endregion
+
+        #region CardSelected
+        public void AddCardSelected(int slotMax) {
+            // 选择的卡片
+            Panel_CardSelected selectedCard = Instantiate(cardSelectedPrefab, transform);
+            selectedCard.Ctor();
+            selectedCard.Add(slotMax);
+            selectedCard.OnCardClickSelectedHandle += OnCardSelectedClick;//点击卡片 绑定事件
+            cardSelected = selectedCard;//存下来
+        }
+
+        public void CardSelected_SetHero(Sprite sprite) {
+            cardSelected.Set_hero(sprite);
+        }
+
+        public void CardSelected_SetScience(Sprite sprite) {
+            cardSelected.Set_science(sprite);
+        }
+
+        public void CardSelected_SetProp(int typeID, Sprite sprite) {
+            cardSelected.Set_prop(typeID, sprite);
+        }
+
+        #endregion
         public void Set_CardType(CardType type) {
             cardType = type;
         }
@@ -108,14 +135,14 @@ namespace UF.UIApplication {
             return cardType;
         }
 
-        public void UpdateCardDetail(Sprite sprite, string content) {
+        public void UpdateCardDetail(Sprite sprite, string content, int typeID) {
 
             if (cardDetails == null) {
                 cardDetails = Instantiate(cardDetailsPrefab, transform);
                 cardDetails.OnConfirmClickHandle += OnConfirmClick;
                 cardDetails.Ctor();
             }
-            cardDetails.Set_Detail(sprite, content);
+            cardDetails.Set_Detail(sprite, content, typeID);
         }
 
 
@@ -135,8 +162,8 @@ namespace UF.UIApplication {
             OnSelectionCardClickHandle.Invoke(stageID);
         }
 
-        void OnConfirmClick() {
-            OnConfirmClickHandle.Invoke();
+        void OnConfirmClick(int typeID) {
+            OnConfirmClickHandle.Invoke(typeID);
         }
 
         void OnCardSelectedClick(int typeID) {

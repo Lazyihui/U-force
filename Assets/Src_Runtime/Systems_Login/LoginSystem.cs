@@ -145,8 +145,8 @@ namespace UF {
                 events.OnSelectionCardClick(cardID);
             };
 
-            eventCenter.OnConfirmClickHandle += () => {
-                events.OnConfirmClick();//确认选择
+            eventCenter.OnConfirmClickHandle += (typeID) => {
+                events.OnConfirmClick(typeID);//确认选择
             };
 
             // 瞭望塔
