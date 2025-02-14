@@ -281,7 +281,6 @@ namespace UF {
                 for (int i = 0; i < bulletAgrSoArr.Count; i += 1) {
                     var bulletSo = bulletAgrSoArr[i];
                     model.bulletAgrTMs.Add(bulletSo.tm);
-                    Debug.Log("bulletSo.tm.typeID" + bulletAgrSoArr.Count);
                 }
             }
 
@@ -290,7 +289,6 @@ namespace UF {
                 for (int i = 0; i < bulletIndSoArr.Count; i += 1) {
                     var bulletSo = bulletIndSoArr[i];
                     model.bulletIndTMs.Add(bulletSo.tm);
-                    Debug.Log("bulletSo.tm.typeID" + bulletIndSoArr.Count);
                 }
             }
 
@@ -299,7 +297,6 @@ namespace UF {
                 for (int i = 0; i < bulletSciSoArr.Count; i += 1) {
                     var bulletSo = bulletSciSoArr[i];
                     model.bulletSciTMs.Add(bulletSo.tm);
-                    Debug.Log("bulletSo.tm.typeID" + bulletSciSoArr.Count);
                 }
             }
 

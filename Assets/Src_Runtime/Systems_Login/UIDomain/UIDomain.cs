@@ -101,11 +101,11 @@ namespace UF {
 
             } else if (cardType == CardType.Agriculture) {
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
-                appUI.Panel_CardSelection_SetScience(bulletTM.sprite);
+                appUI.Panel_CardSelection_SetProp(typeID, bulletTM.sprite);
 
             } else if (cardType == CardType.Industry) {
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
-                appUI.Panel_CardSelection_SetScience(bulletTM.sprite);
+                appUI.Panel_CardSelection_SetProp(typeID, bulletTM.sprite);
 
             } else if (cardType == CardType.Science) {
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);

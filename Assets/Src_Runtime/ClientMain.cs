@@ -204,6 +204,10 @@ namespace UF {
 
             };
 
+            loginEvent.OnCardSelectedClickHandle += (typeID) => {
+                appUI.Panel_CardSelection_RemoveCardSelected(typeID);
+            };
+
             {
                 bool isClicked = false;
                 loginEvent.OnViewClickHandle += () => {

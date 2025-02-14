@@ -21,8 +21,13 @@ namespace UF {
             });
         }
 
+
         public int GetID() {
             return typeID;
+        }
+
+        public Sprite GetSprite() {
+            return img_Sprite.sprite;
         }
 
         public void Init(int typeID, Sprite sprite) {

@@ -404,6 +404,10 @@ namespace UF {
                     eventCenter.OnConfirmClick(typeID);
                 };
 
+                panel.OnCardSelectedClickHandle = (typeID) => {
+                    eventCenter.OnCardSelectedClick(typeID);
+                };
+
             }
 
             panel.Set_Text(stageID, ChapterID);
@@ -427,6 +431,15 @@ namespace UF {
             }
             panel.AddCardSelected(slotMax);
         }
+
+        public void Panel_CardSelection_RemoveCardSelected(int typeID) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.RemoveCardSelected(typeID);
+        }
+
 
         public void Panel_CardSelection_SetHero(Sprite sprite) {
             Panel_CardSelection panel = ctx.panel_CardSelection;

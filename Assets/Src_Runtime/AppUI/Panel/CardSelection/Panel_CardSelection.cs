@@ -109,9 +109,19 @@ namespace UF.UIApplication {
             // 选择的卡片
             Panel_CardSelected selectedCard = Instantiate(cardSelectedPrefab, transform);
             selectedCard.Ctor();
-            selectedCard.Add(slotMax);
+            selectedCard.Init(slotMax);
             selectedCard.OnCardClickSelectedHandle += OnCardSelectedClick;//点击卡片 绑定事件
             cardSelected = selectedCard;//存下来
+        }
+
+        public void RemoveCardSelected(int typeID) {
+            // 移除
+            cardSelected.Remove(typeID);
+
+            // 重新排序
+            cardSelected.ForEach((ele) => {
+                cardSelected.Add(ele.GetID(), ele.GetSprite());
+            });
         }
 
         public void CardSelected_SetHero(Sprite sprite) {

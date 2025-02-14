@@ -20,13 +20,47 @@ namespace UF {
 
         }
 
-        public void Add(int slotMax) {
+        public void Init(int slotMax) {
             for (int i = 0; i < slotMax; i += 1) {
                 Panel_CardSelectedElement ele = Instantiate(elePrefab, cardGroup);
                 ele.Ctor();
                 ele.Init(-1, null);
                 ele.OnCardClickHandle = OnCardSelectedClick;
                 eles.Add(ele);
+            }
+        }
+
+        public void Add(int typeID, Sprite sprite) {
+            // 逻辑: 找到非-1的空格子, 设置内容
+            for (int i = 0; i < eles.Count; i += 1) {
+                var ele = eles[i];
+                if (ele.GetID() == -1) {
+                    Debug.Log("Add" + typeID);
+                    ele.Init(typeID, sprite);
+                    break;
+                }
+            }
+        }
+
+        public void Remove(int typeID) {
+            // 移除
+            for (int i = 0; i < eles.Count; i += 1) {
+                var ele = eles[i];
+                if (ele.GetID() == typeID) {
+                    Debug.LogWarning("Remove" + typeID);
+                    ele.Init(-1, null);
+                    break;
+                }
+            }
+        }
+
+        // 遍历物品
+        public void ForEach(Action<Panel_CardSelectedElement> callback) {
+            for (int i = 0; i < eles.Count; i += 1) {
+                Panel_CardSelectedElement item = eles[i];
+                if (item != null) {
+                    callback.Invoke(item);
+                }
             }
         }
 

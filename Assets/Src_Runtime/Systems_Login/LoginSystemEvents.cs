@@ -115,6 +115,15 @@ namespace UF {
                 OnConfirmClickHandle(a);
             }
         }
+
+
+        public Action<int> OnCardSelectedClickHandle;// 点击的卡片
+        public void OnCardSelectedClick(int a) {
+            if (OnCardSelectedClickHandle != null) {
+                OnCardSelectedClickHandle(a);
+            }
+        }
+
         #endregion
 
         #region WatchTower
