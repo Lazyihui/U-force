@@ -29,9 +29,11 @@ namespace UF {
 
 
             appUI.Panel_WatchTower_Open();
-            appUI.Panel_WatchTower_Add(1, null);
-            appUI.Panel_WatchTower_Add(2, null);
-            appUI.Panel_WatchTower_Add(3, null);
+            for (int i = 0; i < card.roleEnemyTMs.Count; i += 1)
+            {
+                RoleTM roleTM = card.roleEnemyTMs[i];
+                appUI.Panel_WatchTower_Add(roleTM.typeID, roleTM.sprite);
+            }
         }
 
         public static void Update_CardSelectionDetails(int typeID, TemplateMoudle templateMoudle, AppUI appUI) {
@@ -103,6 +105,18 @@ namespace UF {
             } else if (cardType == CardType.Science) {
 
             }
+        }
+
+        public static void Panel_WatchTower_GetDetail(int typeID, TemplateMoudle templateMoudle, AppUI appUI)
+        {
+            templateMoudle.Role_TryGet(typeID, out RoleTM roleTM);
+
+            string skill = "";
+            for (int i = 0; i < roleTM.skillorSoArray.Length; i += 1)
+            {
+                skill += roleTM.skillorSoArray[i].tm.typeName + "\n";
+            }
+            appUI.Panel_WatchDetail_Open(roleTM.sprite, roleTM.typeName, roleTM.content, roleTM.hp, skill, roleTM.restraint);
         }
 
     }

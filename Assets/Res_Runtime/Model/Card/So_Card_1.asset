@@ -32,3 +32,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: f8fa8df0f443f694aa9bda115442c447, type: 2}
     - {fileID: 11400000, guid: 1f9c32337f9e4db4380f705d440dc9ed, type: 2}
     - {fileID: 11400000, guid: 1f9c32337f9e4db4380f705d440dc9ed, type: 2}
+    roleEnemySoArray:
+    - {fileID: 11400000, guid: 772c31f3954c55f48b735dc0c0226a7e, type: 2}
+    - {fileID: 11400000, guid: 9d04dd169b2febc41a88d55ba222c7bb, type: 2}

@@ -27,5 +27,9 @@ namespace UF {
         public Sprite sprite;
         public String content;
 
+        // -detail 详情
+        public string feature; // 特征
+        public string skill; // 技能
+        public string restraint; // 相克武器
     }
 }

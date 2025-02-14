@@ -595,7 +595,7 @@ namespace UF {
         #endregion
 
         #region Training
-        public void Panel_Training_Select_Open(string P1Des, string P1WS, string P1D, string P1AS, string P2Des, string P2WS, string P2D, string P2AS)
+        public void Panel_Training_Select_Open()
         {
             Panel_Training_Select panel = ctx.panel_Training_Select;
 
@@ -620,7 +620,6 @@ namespace UF {
             }
             ctx.panel_Training_Select = panel;
             panel.Show();
-            panel.Init(P1Des, P1WS, P1D, P1AS, P2Des, P2WS, P2D, P2AS);
         }
 
         public void Panel_Training_Select_Add(int id, Sprite sprite, string name)

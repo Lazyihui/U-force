@@ -11,11 +11,15 @@ namespace UF {
         public List<BulletTM> bulletIndTMs;
         public List<BulletTM> bulletSciTMs;
 
+        public List<RoleTM> roleEnemyTMs;
+
         public CardModel() {
             roleTMs = new List<RoleTM>();
             bulletAgrTMs = new List<BulletTM>();
             bulletIndTMs = new List<BulletTM>();
             bulletSciTMs = new List<BulletTM>();
+
+            roleEnemyTMs = new List<RoleTM>();
         }
 
         public void AddRoleTM(RoleTM roleTM) {
@@ -35,6 +39,8 @@ namespace UF {
 
         }
 
-
+        public void AddRoleEnemyTM(RoleTM roleTM) {
+            roleEnemyTMs.Add(roleTM);
+        }
     }
 }

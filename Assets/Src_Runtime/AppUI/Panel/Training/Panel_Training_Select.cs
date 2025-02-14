@@ -41,13 +41,6 @@ namespace UF
             btn_Ready_Player2.onClick.AddListener(() => OnPlayer2ReadyClickHandle.Invoke());
         }
 
-        // TODO: 改
-        public void Init(string P1Des, string P1WS, string P1D, string P1AS, string P2Des, string P2WS, string P2D, string P2AS)
-        {
-            SetPlayer1Text(P1Des, P1WS, P1D, P1AS);
-            SetPlayer2Text(P2Des, P2WS, P2D, P2AS);
-        }
-
         public void Show()
         {
             gameObject.SetActive(true);
@@ -58,20 +51,22 @@ namespace UF
             Destroy(gameObject);
         }
 
-        void SetPlayer1Text(string description, string weaponSpeed, string damage, string attackSpeed)
+        public void SetPlayer1(string description, string weaponSpeed, string damage, string attackSpeed, Sprite sprite)
         {
             text_Description_Player1.text = "Description\n" + description;
             text_WeaponSpeed_Player1.text = "WeaponSpeed " + weaponSpeed;
             text_Damage_Player1.text = "Damage " + damage;
             text_AttackSpeed_Player1.text = "AttackSpeed " + attackSpeed;
+            img_Player1.sprite = sprite;
         }
 
-        void SetPlayer2Text(string description, string weaponSpeed, string damage, string attackSpeed)
+        public void SetPlayer2(string description, string weaponSpeed, string damage, string attackSpeed, Sprite sprite)
         {
             text_Description_Player2.text = "Description\n" + description;
             text_WeaponSpeed_Player2.text = "WeaponSpeed " + weaponSpeed;
             text_Damage_Player2.text = "Damage " + damage;
             text_AttackSpeed_Player2.text = "AttackSpeed " + attackSpeed;
+            img_Player2.sprite = sprite;
         }
 
         public void Add(int id, Sprite sprite, string name)

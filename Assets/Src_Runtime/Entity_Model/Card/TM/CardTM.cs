@@ -13,5 +13,6 @@ namespace UF {
         public List<BulletSo> bulletIndSoArray;
         public List<BulletSo> bulletSciSoArray;
 
+        public List<RoleSo> roleEnemySoArray; // 小怪和boss, 用于瞭望塔
     }
 }

@@ -117,8 +117,11 @@ namespace UF {
             loginEvent.OnTrainingHandle += () => {
                 appUI.Panel_Login_Close();
 
-                appUI.Panel_Training_Select_Open(null, null, null, null, null, null, null, null);
+                appUI.Panel_Training_Select_Open();
                 appUI.Panel_Training_Select_Add(1, null, "1");
+
+                loginSystem.Exit();
+                trainSystem.Enter();
             };
 
             loginEvent.OnSettingHandle += () => {
@@ -215,8 +218,7 @@ namespace UF {
                         appUI.Panel_WatchTower_ClearCursor();
                         isClicked = false;
 
-                        // TODO: 传值
-                        appUI.Panel_WatchDetail_Open(null, null, null, 0, null, null);
+                        UIDomain.Panel_WatchTower_GetDetail(typeID, templateCore, appUI);
                     }
                 };
             }
