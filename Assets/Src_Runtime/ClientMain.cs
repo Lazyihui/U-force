@@ -108,6 +108,8 @@ namespace UF {
                 appUI.Panel_StageSelection_Open(1, 1);
 
                 appUI.Panel_StageSelectionOneStage_Add(1, true);
+                appUI.Panel_StageSelectionOneStage_Add(2, false);
+                appUI.Panel_StageSelectionOneStage_Add(3, true);
 
                 // loginSystem.Exit();
                 // gameSystem.Enter(1);
@@ -137,7 +139,8 @@ namespace UF {
             loginEvent.OnStageClickHandle += (stageID) => {
                 // TODO：放到UIDomain里
                 appUI.Panel_StageSelection_Close();
-
+                Debug.Log("StageClick " + stageID);
+                appUI.selectedInFormation.stageID = stageID;
                 int chapterID = 1;
                 UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule, stageID, chapterID);
 
@@ -173,12 +176,17 @@ namespace UF {
             };
 
             loginEvent.OnSelectEnterClickHandle += () => {
-                Debug.Log("SelectEnter");
 
+                // 放到UIDomain里
+                Debug.Log("SelectEnter");
+                appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
+                int stageID = appUI.selectedInFormation.stageID;
+                int roleTypeID = appUI.selectedInFormation.roleSelectedTypeID;
+                // UI
                 appUI.Panel_CardSelection_Close();
                 appUI.Panel_WatchTower_Close();
                 loginSystem.Exit();
-                gameSystem.Enter(1);
+                gameSystem.Enter(stageID, roleTypeID);
             };
 
             loginEvent.OnSelectBackClickHandle += () => {

@@ -11,7 +11,7 @@ namespace UF {
         public UIEventCenter eventCenter;
         public CardModel cardModel;
         public SelectedInFormation selectedInFormation;
-        
+
         public void Ctor() {
             ctx = new UIContext();
             eventCenter = new UIEventCenter();
@@ -438,6 +438,15 @@ namespace UF {
                 return;
             }
             panel.RemoveCardSelected(typeID);
+        }
+
+        public void Panel_CardSelected_TakeAll(out List<int> typeIDs) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                typeIDs = new List<int>();
+                return;
+            }
+            panel.TakeAll(out typeIDs);
         }
 
 

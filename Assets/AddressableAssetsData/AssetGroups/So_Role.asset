@@ -29,6 +29,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - So_Role
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 475c8e789f014494b8e09ca386d98675
+    m_Address: So_Role_110_Player1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Role
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 28216538e0d7d1c40af159f8b49c1c56
+    m_Address: So_Role_120_Player2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Role
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 4b47acea7a70a444998ddd6e6fd8b9bf, type: 2}
   m_SchemaSet:

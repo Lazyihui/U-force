@@ -12,12 +12,23 @@ namespace UF {
         [SerializeField] Image img_science;
         [SerializeField] Panel_CardSelectedElement elePrefab;
         List<Panel_CardSelectedElement> eles;
-
         public Action<int> OnCardClickSelectedHandle;
 
         public void Ctor() {
             eles = new List<Panel_CardSelectedElement>();
 
+        }
+
+        // 遍历物品
+        public void TakeAll(out List<int> typeIDs) {
+            typeIDs = new List<int>();
+            for (int i = 0; i < eles.Count; i += 1) {
+                Panel_CardSelectedElement item = eles[i];
+                if (item != null) {
+                    typeIDs.Add(item.GetID());
+                    Debug.Log("TakeAll" + item.GetID());
+                }
+            }
         }
 
         public void Init(int slotMax) {

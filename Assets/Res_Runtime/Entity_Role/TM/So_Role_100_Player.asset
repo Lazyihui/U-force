@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: So_Role_100_Player
   m_EditorClassIdentifier: 
   tm:
-    typeName: Player
+    typeName: Player100
     roleType: 0
     moveType: 0
     roleState: 1
@@ -29,3 +29,6 @@ MonoBehaviour:
     modPrefab: {fileID: 4094805614534310518, guid: c9eea0833c744504aa107299ad0f64b6, type: 3}
     sprite: {fileID: 21300000, guid: c0ca71d20da4c9e4e936ccf61b6fc8ca, type: 3}
     content: ggggggggggggggg
+    feature: 
+    skill: 
+    restraint: 

@@ -67,7 +67,6 @@ namespace UF {
             var cardModel = appUI.Get_CardModel();
 
             if (cardType == CardType.Hero) {
-
                 for (int i = 0; i < cardModel.roleTMs.Count; i += 1) {
                     RoleTM roleTM = cardModel.roleTMs[i];
                     appUI.Panel_CardSelection_AddCard(roleTM.typeID, roleTM.sprite);
@@ -96,18 +95,25 @@ namespace UF {
             var cardType = appUI.Panel_GetCardType();
 
             if (cardType == CardType.Hero) {
+                appUI.selectedInFormation.roleSelectedTypeID = typeID;
+
                 templateMoudle.Role_TryGet(typeID, out RoleTM roleTM);
                 appUI.Panel_CardSelection_SetHero(roleTM.sprite);
 
             } else if (cardType == CardType.Agriculture) {
+
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
                 appUI.Panel_CardSelection_SetProp(typeID, bulletTM.sprite);
 
             } else if (cardType == CardType.Industry) {
+
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
                 appUI.Panel_CardSelection_SetProp(typeID, bulletTM.sprite);
 
             } else if (cardType == CardType.Science) {
+                appUI.selectedInFormation.scienceTypeID = typeID;
+
+
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
                 appUI.Panel_CardSelection_SetScience(bulletTM.sprite);
 

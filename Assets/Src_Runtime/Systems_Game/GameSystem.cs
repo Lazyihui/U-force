@@ -30,7 +30,7 @@ namespace UF {
             ctx.isRunning = true;
         }
 
-        public void Enter(int stageID) {
+        public void Enter(int stageID, int selectedRoleTypeID) {
 
             ctx.isRunning = true;
             var game = ctx.gameEntity;
@@ -38,6 +38,8 @@ namespace UF {
             // UI
             ctx.appUI.Panel_GameDefend_Button_Open();
             ctx.appUI.HUD_Progressbar_Open(game.maxWaves);
+            // 先在enter重置光标, 避免查看光标带到游戏界面来
+            ctx.appUI.Panel_WatchTower_ClearCursor();
 
             // Game
             // int stageID = game.stageCurID;
@@ -52,22 +54,22 @@ namespace UF {
             MapDomain.Spawn(ctx, tm.mapPrefab);
 
             // Role
-            for (int i = 0; i < tm.roleSpawns.Length; i += 1) {
-                RoleSpawnerTM spawnerTM = tm.roleSpawns[i];
-                RoleEntity role = RoleDomain.SpawnBySpawner(ctx, spawnerTM);
-                if (role.roleType == RoleType.Player) {
-                    game.OwnerIDsig = role.idSig;
-                }
-            }
+            RoleEntity owner = RoleDomain.SpawnByPos(ctx, new Vector2(-15, 0), selectedRoleTypeID);
+            game.OwnerIDsig = owner.idSig;
+
+            // for (int i = 0; i < tm.roleSpawns.Length; i += 1) {
+            //     RoleSpawnerTM spawnerTM = tm.roleSpawns[i];
+            //     RoleEntity role = RoleDomain.SpawnBySpawner(ctx, spawnerTM);
+            //     if (role.roleType == RoleType.Player) {
+            //         game.OwnerIDsig = role.idSig;
+            //     }
+            // }
 
             // Tower
             for (int i = 0; i < tm.towerSpawns.Length; i += 1) {
                 CaveSpawnerTM spawnerTM = tm.towerSpawns[i];
                 CaveDomain.SpawnBySpawner(ctx, spawnerTM);
             }
-
-            // 先在enter重置光标, 避免查看光标带到游戏界面来
-            ctx.appUI.Panel_WatchTower_ClearCursor();
 
         }
 

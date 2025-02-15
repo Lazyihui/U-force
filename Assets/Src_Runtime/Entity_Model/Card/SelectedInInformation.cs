@@ -8,10 +8,15 @@ namespace UF {
 
         public int stageID;
         public int chapterID;
-        public int roleSelectedID;
+        public int roleSelectedTypeID;
+        public int scienceTypeID;
+        public int[] propTypeID;
 
         public SelectedInFormation() {
-
+            stageID = 0;
+            chapterID = 0;
+            roleSelectedTypeID = 0;
+            scienceTypeID = 0;
         }
     }
 }

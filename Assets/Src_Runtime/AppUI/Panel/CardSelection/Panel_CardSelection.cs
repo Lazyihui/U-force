@@ -126,6 +126,10 @@ namespace UF.UIApplication {
             });
         }
 
+        public void TakeAll(out List<int> typeIDs) {
+            cardSelected.TakeAll(out typeIDs);
+        }
+
         public void CardSelected_SetHero(Sprite sprite) {
             cardSelected.Set_hero(sprite);
         }
