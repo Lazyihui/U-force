@@ -16,7 +16,7 @@ MonoBehaviour:
     typeID: 200
     typeName: "\u7F50\u5934"
     castKeys: 4
-    cd: 5
+    cd: 1
     restUseTimes: 1000
     maxUseTimes: 1000
     actionTMs:
