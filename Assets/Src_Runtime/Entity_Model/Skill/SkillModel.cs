@@ -9,7 +9,6 @@ namespace UF {
         public int typeID;
         public string name;
 
-
         public InputKeyFlag castKeys;
 
         public SkillFrameModel[] frames;
@@ -28,6 +27,23 @@ namespace UF {
         public SkillModel() {
             typeID = 1;
             frameIndex = 0;
+        }
+
+        public void Set_InputCastKeyWeap(int skillIndex) {
+            int index = skillIndex + 1;
+            if (index == 1) {
+                castKeys = InputKeyFlag.Weap1;
+            } else if (index == 2) {
+                castKeys = InputKeyFlag.Weap2;
+            } else if (index == 3) {
+                castKeys = InputKeyFlag.Weap3;
+            } else if (index == 4) {
+                castKeys = InputKeyFlag.Weap4;
+            }
+        }
+
+        public void Set_InputCastKey(InputKeyFlag key) {
+            castKeys = key;
         }
 
         public void Ctor() {

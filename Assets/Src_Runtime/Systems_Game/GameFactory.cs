@@ -6,8 +6,8 @@ namespace UF {
 
     public static class GameFactory {
 
-        public static RoleEntity Role_Create(AssetsModule assetsCore, TemplateMoudle templateCore,
-         IDService idService, int typeID) {
+        public static RoleEntity Role_CreateByTypeSkillType(AssetsModule assetsCore, TemplateMoudle templateCore,
+         IDService idService, int typeID, int[] skillorTypeIDArray) {
 
             bool has = templateCore.Role_TryGet(typeID, out var tm);
             if (!has) {
@@ -46,11 +46,11 @@ namespace UF {
 
             // - Skillor
             var skillorCom = role.skillorSlotComponent;
-            var skillorTMArray = tm.skillorSoArray;
+            var skillorSoArray = tm.skillorSoArray;
 
-            if (skillorTMArray != null) {
-                for (int i = 0; i < skillorTMArray.Length; i += 1) {
-                    var skillSo = skillorTMArray[i];
+            if (skillorSoArray != null) {
+                for (int i = 0; i < skillorSoArray.Length; i += 1) {
+                    var skillSo = skillorSoArray[i];
                     var skillor = Skillor_Create(assetsCore, templateCore, idService, skillSo.tm.typeID);
                     skillorCom.Add(skillor);
                 }
@@ -59,7 +59,55 @@ namespace UF {
 
             return role;
         }
+        public static RoleEntity Role_Create(AssetsModule assetsCore, TemplateMoudle templateCore, IDService idService, int typeID) {
 
+            bool has = templateCore.Role_TryGet(typeID, out var tm);
+            if (!has) {
+                Debug.LogError("Role_Create: tm is null" + typeID);
+                return null;
+            }
+            GameObject prefab = assetsCore.Entity_GetRole();
+            GameObject go = GameObject.Instantiate(prefab);
+            RoleEntity role = go.GetComponent<RoleEntity>();
+            Debug.Assert(role != null, "role != null");
+
+            var mod = RoleMod_Create(tm, role.bodyRoot);
+
+            role.idSig = new IDSignature(EntityType.Role, idService.PickRoleID());
+            role.roleType = tm.roleType;
+            role.MoveType = tm.moveType;
+            role.SetRoleState(tm.roleState);
+
+            role.Ctor();
+            role.Inject(mod);
+            // TODO:
+            role.Set_RbConstraints();
+
+            // -move
+            var moveCom = role.MoveComponent;
+            moveCom.SetMoveSpeed(tm.moveSpeed);
+            moveCom.SetJumpForce(tm.jumpForce);
+
+            // -Attribute
+            role.Attr_Hp_Set(tm.hp);
+            role.Attr_HpMax_Set(tm.hp);
+
+
+            // - Skillor
+            var skillorCom = role.skillorSlotComponent;
+            var skillorSoArray = tm.skillorSoArray;
+
+            if (skillorSoArray != null) {
+                for (int i = 0; i < skillorSoArray.Length; i += 1) {
+                    var skillSo = skillorSoArray[i];
+                    var skillor = Skillor_Create(assetsCore, templateCore, idService, skillSo.tm.typeID);
+                    skillorCom.Add(skillor);
+                }
+            }
+
+
+            return role;
+        }
         public static RoleEntity Role_CreateBySpawner(AssetsModule assetsCore, TemplateMoudle templateCore, IDService idService, RoleSpawnerTM spawnerTM) {
 
             int typeID = spawnerTM.so.tm.typeID;
@@ -301,10 +349,8 @@ namespace UF {
             }
 
             var roleEnemySoArr = tm.roleEnemySoArray;
-            if (roleEnemySoArr != null)
-            {
-                for (int i = 0; i < roleEnemySoArr.Count; i += 1)
-                {
+            if (roleEnemySoArr != null) {
+                for (int i = 0; i < roleEnemySoArr.Count; i += 1) {
                     var roleSo = roleEnemySoArr[i];
                     model.roleEnemyTMs.Add(roleSo.tm);
                     Debug.Log("roleSo.tm.typeID" + roleEnemySoArr.Count);

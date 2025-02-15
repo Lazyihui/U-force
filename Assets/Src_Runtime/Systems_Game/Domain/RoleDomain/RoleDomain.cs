@@ -19,6 +19,13 @@ namespace UF {
             return entity;
         }
 
+        public static RoleEntity SpawnBySkillorType(GameSystemContext ctx, Vector2 pos, int typeID, int[] skillorTypeIDArray) {
+            RoleEntity role = GameFactory.Role_CreateByTypeSkillType(ctx.assetsModule, ctx.templateCore, ctx.idService, typeID, skillorTypeIDArray);
+            role.TF_SetPos(pos);
+            ctx.roleRepository.Add(role);
+            return role;
+        }
+
         public static RoleEntity SpawnBySpawner(GameSystemContext ctx, RoleSpawnerTM spawnerTM) {
             RoleEntity role = GameFactory.Role_CreateBySpawner(ctx.assetsModule, ctx.templateCore, ctx.idService, spawnerTM);
             ctx.roleRepository.Add(role);

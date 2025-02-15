@@ -30,7 +30,7 @@ namespace UF {
             ctx.isRunning = true;
         }
 
-        public void Enter(int stageID, int selectedRoleTypeID) {
+        public void Enter(int stageID, int selectedRoleTypeID, int[] skillorTypeIDArray, int sciType) {
 
             ctx.isRunning = true;
             var game = ctx.gameEntity;
@@ -54,16 +54,32 @@ namespace UF {
             MapDomain.Spawn(ctx, tm.mapPrefab);
 
             // Role
-            RoleEntity owner = RoleDomain.SpawnByPos(ctx, new Vector2(-15, 0), selectedRoleTypeID);
-            game.OwnerIDsig = owner.idSig;
+            RoleEntity role = null;
+            for (int i = 0; i < tm.roleSpawns.Length; i += 1) {
+                RoleSpawnerTM spawnerTM = tm.roleSpawns[i];
+                role = RoleDomain.SpawnBySpawner(ctx, spawnerTM);
+                if (role.roleType == RoleType.Player) {
+                    game.OwnerIDsig = role.idSig;
+                }
+            }
+            var skillorCom = role.skillorSlotComponent;
 
-            // for (int i = 0; i < tm.roleSpawns.Length; i += 1) {
-            //     RoleSpawnerTM spawnerTM = tm.roleSpawns[i];
-            //     RoleEntity role = RoleDomain.SpawnBySpawner(ctx, spawnerTM);
-            //     if (role.roleType == RoleType.Player) {
-            //         game.OwnerIDsig = role.idSig;
-            //     }
-            // }
+            // 大招
+            SkillModel skillorSci = GameFactory.Skillor_Create(ctx.assetsModule, ctx.templateCore, ctx.idService, sciType);
+            skillorSci.Set_InputCastKey(InputKeyFlag.Tech);
+            skillorCom.Add(skillorSci);
+
+            // 道具
+            if (skillorTypeIDArray != null) {
+                for (int i = 0; i < skillorTypeIDArray.Length; i += 1) {
+                    var skilltypeID = skillorTypeIDArray[i];
+                    SkillModel skillor = GameFactory.Skillor_Create(ctx.assetsModule, ctx.templateCore, ctx.idService, skilltypeID);
+                    skillor.Set_InputCastKeyWeap(i);
+                    Debug.Log("skillorTypeIDArray[i]" + skillorTypeIDArray[i]);
+                    skillorCom.Add(skillor);
+                }
+            }
+
 
             // Tower
             for (int i = 0; i < tm.towerSpawns.Length; i += 1) {

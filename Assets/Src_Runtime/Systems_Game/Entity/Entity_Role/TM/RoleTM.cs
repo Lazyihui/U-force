@@ -14,7 +14,6 @@ namespace UF {
         // -Life
         public int hp;
 
-
         // -move
         public float moveSpeed;
         public float jumpForce;

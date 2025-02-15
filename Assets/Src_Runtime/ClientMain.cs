@@ -182,11 +182,13 @@ namespace UF {
                 appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
                 int stageID = appUI.selectedInFormation.stageID;
                 int roleTypeID = appUI.selectedInFormation.roleSelectedTypeID;
+                int sciType = appUI.selectedInFormation.scienceTypeID;
                 // UI
                 appUI.Panel_CardSelection_Close();
                 appUI.Panel_WatchTower_Close();
                 loginSystem.Exit();
-                gameSystem.Enter(stageID, roleTypeID);
+
+                gameSystem.Enter(stageID, roleTypeID, typeIDs.ToArray(), sciType);
             };
 
             loginEvent.OnSelectBackClickHandle += () => {
@@ -257,7 +259,8 @@ namespace UF {
             };
 
             gameEvent.OnTechHandle += () => {
-                Debug.Log("Tech");
+                inputModule.isUpdateProcess = false;
+                inputModule.Set_InputCastKey(InputKeyFlag.Tech);
             };
 
             gameEvent.OnWeap1Handle += () => {
