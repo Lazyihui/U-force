@@ -16,13 +16,13 @@ namespace UF.UIApplication {
         [SerializeField] TextMeshProUGUI txt_stage;
         [SerializeField] Button btn_stage;
 
-        int id;
+        public int stageID;
         public Action<int> OnStageClickHandle;
 
         public void Ctor() {
             btn_stage.onClick.AddListener(() => {
                 if (OnStageClickHandle != null) {
-                    OnStageClickHandle.Invoke(id);
+                    OnStageClickHandle.Invoke(stageID);
                 }
             });
         }
@@ -44,7 +44,7 @@ namespace UF.UIApplication {
 
         public void Init(int stageID, bool isPassed, int getStarCount) {
 
-            id = stageID;
+            this.stageID = stageID;
             string str = stageID.ToString();
             txt_stage.text = str;//关卡名
 

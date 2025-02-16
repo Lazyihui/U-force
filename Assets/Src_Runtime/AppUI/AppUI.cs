@@ -330,12 +330,21 @@ namespace UF {
             panel.Tick(isTabDown, isEscDown);
         }
 
-        public void Panel_StageSelectionOneStage_Add(int stageID, bool isPassed) {
+        public void Panel_StageSelectionOneStage_Add(int stageID, bool isPassed, int getStarCount) {
             Panel_StageSelection panel = ctx.panel_StageSelection;
             if (panel == null) {
                 return;
             }
-            panel.Add(stageID, isPassed);
+            panel.Add(stageID, isPassed, getStarCount);
+        }
+
+        // 当前关卡的星星
+        public void Panel_StageSelection_SetGetStar(int stageID, int starCount) {
+            Panel_StageSelection panel = ctx.panel_StageSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.Set_GetStar(stageID, starCount);
         }
 
         public void Panel_StageSelection_Select(InputDeviceType deviceType, int chapter, int maxChapter) {

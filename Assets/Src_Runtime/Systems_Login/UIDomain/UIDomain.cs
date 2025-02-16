@@ -130,5 +130,16 @@ namespace UF {
             appUI.Panel_WatchDetail_Open(roleTM.sprite, roleTM.typeName, roleTM.content, roleTM.hp, skill, roleTM.restraint);
         }
 
+        public static void Panel_StageSelectionEnter(AppUI appUI, int stageID, int chapterID) {
+            appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, 1, 5);
+
+            appUI.Panel_StageSelection_Open(1, 1);
+
+            appUI.Panel_StageSelectionOneStage_Add(1, false, 0);
+            appUI.Panel_StageSelectionOneStage_Add(2, false, 0);
+            appUI.Panel_StageSelectionOneStage_Add(3, false, 0);
+
+        }
+
     }
 }

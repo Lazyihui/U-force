@@ -70,12 +70,12 @@ namespace UF.UIApplication {
         }
 
 
-        public void Add(int stageID, bool isPassed) {
+        public void Add(int stageID, bool isPassed, int stageCount) {
             var oneStage = Instantiate(oneStagePrefab, oneStegeGroup);
             oneStage.Ctor();
             oneStage.OnStageClickHandle = OnStageClick;
             int stageid = stageID + chapter * 10;
-            oneStage.Init(stageid, isPassed, 2);
+            oneStage.Init(stageid, isPassed, stageCount);
             stage.Add(oneStage);
 
             if (stage.Count == 1) {
@@ -84,13 +84,13 @@ namespace UF.UIApplication {
 
         }
 
-        // public void Set_GetStar(int stageID, int starCount) {
-        //     foreach (Panel_StageSelection_OneStage oneStage in stage) {
-        //         if (oneStage.id == stageID) {
-        //             oneStage.Set_GetStar(starCount);
-        //         }
-        //     }
-        // }
+        public void Set_GetStar(int stageID, int starCount) {
+            foreach (Panel_StageSelection_OneStage oneStage in stage) {
+                if (oneStage.stageID == stageID) {
+                    oneStage.Set_GetStar(starCount);
+                }
+            }
+        }
 
         void Select(GameObject go) {
             // TODO:根本不懂

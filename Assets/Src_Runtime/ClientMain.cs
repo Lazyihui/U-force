@@ -103,16 +103,8 @@ namespace UF {
             loginEvent.OnLoginStartHandle += () => {
                 appUI.Panel_Login_Close();
 
-                appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, 1, 5);
+                UIDomain.Panel_StageSelectionEnter(appUI, 1, 1);
 
-                appUI.Panel_StageSelection_Open(1, 1);
-
-                appUI.Panel_StageSelectionOneStage_Add(1, true);
-                appUI.Panel_StageSelectionOneStage_Add(2, false);
-                appUI.Panel_StageSelectionOneStage_Add(3, true);
-
-                // loginSystem.Exit();
-                // gameSystem.Enter(1);
 
             };
 
@@ -195,10 +187,7 @@ namespace UF {
                 Debug.Log("SelectBack");
                 appUI.Panel_CardSelection_Close();
                 appUI.Panel_WatchTower_Close();
-                appUI.Panel_StageSelection_Open(1, 1);
-
-                appUI.Panel_StageSelectionOneStage_Add(1, true);
-                appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, 1, 5);
+                UIDomain.Panel_StageSelectionEnter(appUI, 1, 1);
             };
 
             loginEvent.OnSelectionCardClickHandle += (typeID) => {
