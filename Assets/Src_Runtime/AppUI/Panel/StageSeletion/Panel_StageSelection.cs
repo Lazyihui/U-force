@@ -75,7 +75,7 @@ namespace UF.UIApplication {
             oneStage.Ctor();
             oneStage.OnStageClickHandle = OnStageClick;
             int stageid = stageID + chapter * 10;
-            oneStage.Init(stageid, isPassed);
+            oneStage.Init(stageid, isPassed, 2);
             stage.Add(oneStage);
 
             if (stage.Count == 1) {
@@ -83,6 +83,14 @@ namespace UF.UIApplication {
             }
 
         }
+
+        // public void Set_GetStar(int stageID, int starCount) {
+        //     foreach (Panel_StageSelection_OneStage oneStage in stage) {
+        //         if (oneStage.id == stageID) {
+        //             oneStage.Set_GetStar(starCount);
+        //         }
+        //     }
+        // }
 
         void Select(GameObject go) {
             // TODO:根本不懂
