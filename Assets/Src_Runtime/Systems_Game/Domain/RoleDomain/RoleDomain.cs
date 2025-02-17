@@ -264,7 +264,7 @@ namespace UF {
             if (role.roleType == RoleType.Player) {
                 // TODO写这里其实不太好
                 ctx.gameEntity.state = GameState.GameOver;
-                ctx.appUI.Panel_GameOver_Open(false, game.hurt, game.shoot, game.hitNumber, game.hitRate);
+                ctx.appUI.Panel_GameOver_Open(false, game.ownerGetHurt, game.ownerShootCount, game.hitNumber, game.hitRate);
             }
         }
 

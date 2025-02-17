@@ -38,10 +38,14 @@ namespace UF {
 
         #region 结算页面
 
-        public int hurt;
-        public int shoot;
+        public int ownerGetHurt;
+        public int ownerShootCount;
         public int hitNumber;
         public float hitRate;
+
+        public int getStarAllCount;
+        public int curStageGetStarCount;
+
 
         #endregion
 
@@ -64,8 +68,8 @@ namespace UF {
 
             wavesProgress = 0;
 
-            hurt = 0;
-            shoot = 0;
+            ownerGetHurt = 0;
+            ownerShootCount = 0;
             hitNumber = 0;
             hitRate = 0;
         }

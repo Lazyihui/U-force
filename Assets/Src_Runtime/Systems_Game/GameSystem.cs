@@ -51,7 +51,8 @@ namespace UF {
             }
 
             // Map
-            MapDomain.Spawn(ctx, tm.mapPrefab);
+            MapEntity map = MapDomain.Spawn(ctx.assetsModule, ctx.idService, tm.mapPrefab);
+            ctx.gameEntity.CurrentMapIDsig = map.idSig;
 
             // Role
             RoleEntity role = null;
@@ -228,7 +229,7 @@ namespace UF {
                 owner.Jump_Stop();
                 owner.Move_Stop();
                 Exit();
-                ctx.appUI.Panel_GameOver_Open(true, game.hurt, game.shoot, game.hitNumber, game.hitRate);
+                ctx.appUI.Panel_GameOver_Open(true, game.ownerGetHurt, game.ownerShootCount, game.hitNumber, game.hitRate);
                 Debug.Log("GameWin");
                 game.state = GameState.GameOver;
 
