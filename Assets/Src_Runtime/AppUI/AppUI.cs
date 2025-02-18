@@ -689,6 +689,30 @@ namespace UF {
 
             panel.TearDown();
         }
+
+        public void Panel_Training_Select_SetPlayer(bool isPlayer1Ready, string description, string weaponSpeed, string damage, string attackSpeed, Sprite sprite) {
+            Panel_Training_Select panel = ctx.panel_Training_Select;
+
+            if (panel == null) { return; }
+
+            if (!isPlayer1Ready)
+            {
+                panel.SetPlayer1(description, weaponSpeed, damage, attackSpeed, sprite);
+            }
+            else
+            {
+                panel.SetPlayer2(description, weaponSpeed, damage, attackSpeed, sprite);
+            }
+        }
+
+        public void Panel_Training_Select_SetButton()
+        {
+            Panel_Training_Select panel = ctx.panel_Training_Select;
+
+            if (panel == null) { return; }
+
+            panel.SetButton();
+        }
         #endregion
 
     }

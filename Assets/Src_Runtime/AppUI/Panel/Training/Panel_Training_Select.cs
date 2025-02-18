@@ -33,12 +33,23 @@ namespace UF
 
         public Action<int> OnSelectionTrainCardClickHandle;
 
+        ColorBlock colorWhite;
+        ColorBlock colorGray;
+
         public void Ctor()
         {
             cards = new List<Panel_OneCardTrain>();
 
             btn_Ready_Player1.onClick.AddListener(() => OnPlayer1ReadyClickHandle.Invoke());
             btn_Ready_Player2.onClick.AddListener(() => OnPlayer2ReadyClickHandle.Invoke());
+
+            colorWhite = btn_Ready_Player1.colors;
+            colorGray = btn_Ready_Player1.colors;
+            colorWhite.disabledColor = new Color(1f, 1f, 1f);
+            colorGray.disabledColor = new Color(0.5f, 0.5f, 0.5f);
+            
+            btn_Ready_Player2.colors = colorGray;
+            btn_Ready_Player2.interactable = false;
         }
 
         public void Show()
@@ -82,6 +93,15 @@ namespace UF
         void OnCardClick(int typeID)
         {
             OnSelectionTrainCardClickHandle.Invoke(typeID);
+        }
+
+        public void SetButton()
+        {
+            btn_Ready_Player1.interactable = false;
+            btn_Ready_Player1.colors = colorGray;
+
+            btn_Ready_Player2.interactable = true;
+            btn_Ready_Player2.colors = colorWhite;
         }
     }
 }

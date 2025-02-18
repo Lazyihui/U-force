@@ -165,6 +165,18 @@ namespace UF {
             eventCenter.OnDetailCloseHandle += () => {
                 events.OnDetailCloseClick();
             };
+
+            eventCenter.OnPlayer1ReadyClickHandle += () => {
+                events.OnPlayer1ReadyClick();
+            };
+
+            eventCenter.OnPlayer2ReadyClickHandle += () => {
+                events.OnPlayer2ReadyClick();
+            };
+
+            eventCenter.OnSelectionTrainCardClickHandle += (int typeID) => {
+                events.OnSelectionTrainCardClick(typeID);
+            };
         }
     }
 }

@@ -225,6 +225,43 @@ namespace UF {
             loginEvent.OnDetailCloseClickHandle += () => {
                 appUI.Panel_WatchDetail_Close();
             };
+
+            // Train
+            {
+                bool isPlayer1Ready = false;
+                bool hasPlayer = false;
+
+                loginEvent.OnPlayer1ReadyClickHandle += () => {
+                    if (hasPlayer)
+                    {
+                        Debug.Log("Player1Ready");
+                        appUI.Panel_Training_Select_SetButton();
+                        
+                        isPlayer1Ready = true;
+                        hasPlayer = false;
+                    }
+                };
+
+                loginEvent.OnPlayer2ReadyClickHandle += () => {
+                    if (hasPlayer && isPlayer1Ready)
+                    {
+                        loginSystem.Exit();
+                        trainSystem.Enter();
+                        Debug.Log("Player2Ready");
+                    }
+                };
+
+                loginEvent.OnSelectionTrainCardClickHandle += (typeID) => {
+                    Debug.Log("SelectionTrainCardClick " + typeID);
+                    // 这样写感觉model没什么意义
+                    templateModule.Role_TryGet(typeID, out RoleTM roleTM);
+
+                    // TODO: 武器速度 伤害 攻击速度
+                    appUI.Panel_Training_Select_SetPlayer(isPlayer1Ready, roleTM.feature, "0", "0", "0", roleTM.sprite);
+
+                    hasPlayer = true;
+                };
+            }
         }
 
         void Game_Binding() {
@@ -323,20 +360,6 @@ namespace UF {
             trainSystem.Train_Binding();
 
             var trainEvent = trainSystem.Events;
-
-            trainEvent.OnPlayer1ReadyClickHandle += () => {
-                Debug.Log("Player1Ready");
-            };
-
-            trainEvent.OnPlayer2ReadyClickHandle += () => {
-                loginSystem.Exit();
-                trainSystem.Enter();
-                Debug.Log("Player2Ready");
-            };
-
-            trainEvent.OnSelectionTrainCardClickHandle += (typeID) => {
-                Debug.Log("SelectionTrainCardClick " + typeID);
-            };
         }
 
 

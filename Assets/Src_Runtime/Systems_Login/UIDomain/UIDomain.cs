@@ -141,6 +141,7 @@ namespace UF {
 
         }
 
+        #region Train
         public static void Panel_Training_Select_Open(AppUI appUI, AssetsModule assetsModule, TemplateMoudle templateModule)
         {
             appUI.Panel_Training_Select_Open();
@@ -154,5 +155,11 @@ namespace UF {
                 appUI.Panel_Training_Select_Add(card.typeID, card.sprite, card.typeName);
             }
         }
+
+        // public static void Panel_Training_SelectedCardAdd(AppUI appUI, TemplateMoudle templateModule, int typeID)
+        // {
+        //     var model = templateModule.TrainCard_TryGet(1, out TrainCardTM tm);
+        // }
+        #endregion
     }
 }

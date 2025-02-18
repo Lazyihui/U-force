@@ -83,17 +83,18 @@ namespace UF
 
             var events = this.events;
 
-            eventCenter.OnPlayer1ReadyClickHandle += () => {
-                events.OnPlayer1ReadyClick();
-            };
+            // 移到 LoginSystem 里了
+            // eventCenter.OnPlayer1ReadyClickHandle += () => {
+            //     events.OnPlayer1ReadyClick();
+            // };
 
-            eventCenter.OnPlayer2ReadyClickHandle += () => {
-                events.OnPlayer2ReadyClick();
-            };
+            // eventCenter.OnPlayer2ReadyClickHandle += () => {
+            //     events.OnPlayer2ReadyClick();
+            // };
 
-            eventCenter.OnSelectionTrainCardClickHandle += (int typeID) => {
-                events.OnSelectionTrainCardClick(typeID);
-            };
+            // eventCenter.OnSelectionTrainCardClickHandle += (int typeID) => {
+            //     events.OnSelectionTrainCardClick(typeID);
+            // };
         }
     }
 }
