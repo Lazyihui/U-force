@@ -111,11 +111,7 @@ namespace UF {
             loginEvent.OnTrainingHandle += () => {
                 appUI.Panel_Login_Close();
 
-                appUI.Panel_Training_Select_Open();
-                appUI.Panel_Training_Select_Add(1, null, "1");
-
-                loginSystem.Exit();
-                trainSystem.Enter();
+                UIDomain.Panel_Training_Select_Open(appUI, assetsModule, templateModule);
             };
 
             loginEvent.OnSettingHandle += () => {
@@ -333,6 +329,8 @@ namespace UF {
             };
 
             trainEvent.OnPlayer2ReadyClickHandle += () => {
+                loginSystem.Exit();
+                trainSystem.Enter();
                 Debug.Log("Player2Ready");
             };
 

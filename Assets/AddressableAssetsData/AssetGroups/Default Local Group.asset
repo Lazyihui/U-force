@@ -29,6 +29,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - So_Card
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d90cafa4d07b1c14ab5932270379d981
+    m_Address: So_TrainCard_1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_TrainCard
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 4b47acea7a70a444998ddd6e6fd8b9bf, type: 2}
   m_SchemaSet:

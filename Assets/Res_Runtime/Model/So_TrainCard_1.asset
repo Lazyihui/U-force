@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc94cec12fc9b0469a0ea9578704c97, type: 3}
+  m_Name: So_TrainCard_1
+  m_EditorClassIdentifier: 
+  tm:
+    typeID: 1
+    roleSoArray:
+    - {fileID: 11400000, guid: 772c31f3954c55f48b735dc0c0226a7e, type: 2}
+    - {fileID: 11400000, guid: 475c8e789f014494b8e09ca386d98675, type: 2}
+    - {fileID: 11400000, guid: 28216538e0d7d1c40af159f8b49c1c56, type: 2}
+    - {fileID: 11400000, guid: 9d04dd169b2febc41a88d55ba222c7bb, type: 2}

@@ -141,5 +141,18 @@ namespace UF {
 
         }
 
+        public static void Panel_Training_Select_Open(AppUI appUI, AssetsModule assetsModule, TemplateMoudle templateModule)
+        {
+            appUI.Panel_Training_Select_Open();
+
+            TrainCardModel model = GameFactory.TrainCard_Create(assetsModule, templateModule, 1);
+            var cards = model.roleTMs;
+
+            for (int i = 0; i < cards.Count; i += 1)
+            {
+                var card = cards[i];
+                appUI.Panel_Training_Select_Add(card.typeID, card.sprite, card.typeName);
+            }
+        }
     }
 }

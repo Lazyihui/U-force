@@ -98,6 +98,19 @@ namespace UF {
                 ctx.cardPtr = handle;
             }
 
+            {
+                AssetLabelReference labelReference = new AssetLabelReference();
+                labelReference.labelString = "So_TrainCard";
+                var handle = Addressables.LoadAssetsAsync<TrainCardSo>(labelReference, null);
+                var all = await handle.Task;
+
+                foreach (var so in all) {
+                    var tm = so.tm;
+                    ctx.TrainCard_Add(tm);
+                }
+                ctx.trainCardPtr = handle;
+            }
+
         }
         // 找种类的Role
         public bool Role_TryGet(int typeID, out RoleTM role) {
@@ -128,6 +141,10 @@ namespace UF {
             return ctx.stuffs.TryGetValue(typeID, out stuff);
         }
 
+        public bool TrainCard_TryGet(int typeID, out TrainCardTM trainCard) {
+            return ctx.trainCards.TryGetValue(typeID, out trainCard);
+        }
+
 
         #region UnLoad
         public void UnLoadAll() {
@@ -148,6 +165,9 @@ namespace UF {
             }
             if (ctx.stuffPtr.IsValid()) {
                 Addressables.Release(ctx.stuffPtr);
+            }
+            if (ctx.trainCardPtr.IsValid()) {
+                Addressables.Release(ctx.trainCardPtr);
             }
         }
         #endregion
