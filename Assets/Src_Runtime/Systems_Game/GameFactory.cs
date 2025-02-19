@@ -224,7 +224,7 @@ namespace UF {
         public static MapEntity Map_Create(AssetsModule assetsCore, IDService idService, GameObject mapPrefab) {
             GameObject go = GameObject.Instantiate(mapPrefab);
             MapEntity map = go.GetComponent<MapEntity>();
-            map.idSig = new IDSignature(EntityType.Map, idService.PickMapID());
+            map.mapID = idService.PickMapID();
             map.Ctor();
             return map;
 
@@ -360,11 +360,9 @@ namespace UF {
             return model;
         }
 
-        public static TrainCardModel TrainCard_Create(AssetsModule assetsCore, TemplateMoudle templateCore, int typeID)
-        {
+        public static TrainCardModel TrainCard_Create(AssetsModule assetsCore, TemplateMoudle templateCore, int typeID) {
             bool has = templateCore.TrainCard_TryGet(typeID, out var tm);
-            if (!has)
-            {
+            if (!has) {
                 Debug.LogError("TrainCard_Create: tm is null" + typeID);
                 return null;
             }
@@ -373,10 +371,8 @@ namespace UF {
             model.typeID = typeID;
 
             var roleSoArr = tm.roleSoArray;
-            if (roleSoArr != null)
-            {
-                for (int i = 0; i < roleSoArr.Count; i += 1)
-                {
+            if (roleSoArr != null) {
+                for (int i = 0; i < roleSoArr.Count; i += 1) {
                     var roleSo = roleSoArr[i];
                     model.AddRoleTM(roleSo.tm);
                 }

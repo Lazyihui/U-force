@@ -5,8 +5,7 @@ namespace UF
 {
     public class MapEntity : MonoBehaviour
     {
-        public int typeID;
-        public IDSignature idSig;
+        public int mapID;
 
         public MapType type; // 地图类型
 

@@ -25,7 +25,6 @@ namespace UF {
         public BulletRepository bulletRepository;
         public CaveRepository towerRepository;
         public StuffRepository stuffRepository;
-        public MapRepository mapRepository;
 
         public GameSystemContext() {
             isRunning = false;
@@ -38,7 +37,6 @@ namespace UF {
             bulletRepository = new BulletRepository();
             towerRepository = new CaveRepository();
             stuffRepository = new StuffRepository();
-            mapRepository = new MapRepository();
         }
 
         public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository) {

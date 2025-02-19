@@ -52,7 +52,7 @@ namespace UF {
 
             // Map
             MapEntity map = MapDomain.Spawn(ctx.assetsModule, ctx.idService, tm.mapPrefab);
-            ctx.gameEntity.CurrentMapIDsig = map.idSig;
+            ctx.gameEntity.playerSaveData.SetStageCurID(stageID);
 
             // Role
             RoleEntity role = null;

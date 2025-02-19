@@ -1,0 +1,64 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+
+namespace UF {
+
+    public class PlayerEntity {
+
+        // public int slotID;
+        // 关卡信息
+
+        HashSet<int> stage_Passed;//通关的关卡
+        Dictionary<int, int> stage_PassedStar;//通关关卡的星级
+
+        HashSet<int> stage_reached;//到达的关卡
+        public int stageCurID;//当前关卡
+        public int chapterCurID;//当前章节
+
+
+        public PlayerEntity() {
+            stage_Passed = new HashSet<int>();
+            stage_PassedStar = new Dictionary<int, int>();
+            stage_reached = new HashSet<int>();
+        }
+
+        public void SetStagePassed(int stageID) {
+            stage_Passed.Add(stageID);
+        }
+
+        public void SetStagePassedStar(int stageID, int star) {
+            stage_PassedStar[stageID] = star;
+        }
+        
+        public void SetStageReached(int stageID) {
+            stage_reached.Add(stageID);
+        }
+
+        public void SetStageCurID(int stageID) {
+            stageCurID = stageID;
+        }
+
+        public void SetChapterCurID(int chapterID) {
+            chapterCurID = chapterID;
+        }
+
+        public bool IsStagePassed(int stageID) {
+            return stage_Passed.Contains(stageID);
+        }
+
+        public bool IsStageReached(int stageID) {
+            return stage_reached.Contains(stageID);
+        }
+
+        public int GetStageCurID() {
+            return stageCurID;
+        }
+
+        public int GetChapterCurID() {
+            return chapterCurID;
+        }
+
+    }
+}

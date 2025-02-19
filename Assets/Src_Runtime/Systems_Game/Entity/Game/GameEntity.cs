@@ -8,13 +8,20 @@ namespace UF {
 
         public bool isOwnerDying;//是Player否死亡
         public bool isRunning;//游戏game是否在运行
-
         public float restFixTime;
         public GameState state;
-
         public int stageCurID;
         public IDSignature OwnerIDsig;
         public IDSignature CurrentMapIDsig;
+
+        public PlayerEntity playerSaveData;
+
+
+
+
+
+
+
 
         #region 生成小怪的波次数据
         // 必需改掉
@@ -50,6 +57,8 @@ namespace UF {
         #endregion
 
         public GameEntity() {
+
+            playerSaveData = new PlayerEntity();
 
             stageCurID = 1;
 
