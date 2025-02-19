@@ -134,10 +134,10 @@ namespace UF {
             loginEvent.OnChapterClickHandle += (chapter) => {
                 var maxChapter = appUI.playerSaveData.GetUnLockChapterID();
                 if (chapter > maxChapter) {
+
                     chapter = 1;
                 }
-
-                appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, chapter, maxChapter);
+                UIDomain.Panel_StageSelection_ChangeChapter(appUI, chapter, maxChapter);
             };
 
             // CardSelection

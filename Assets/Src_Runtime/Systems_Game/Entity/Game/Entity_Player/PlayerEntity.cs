@@ -15,14 +15,17 @@ namespace UF {
 
         HashSet<int> stage_reached;//到达的关卡
         public int stageCurID;//当前关卡
+        public int unLockStageCount;//解锁的关卡 
         public int chapterCurID;//当前章节
-
         public int unLockChapterID;//解锁的章节
+
 
         public PlayerEntity() {
             stageCurID = 0;
-            chapterCurID = 1;
-            unLockChapterID = 2;
+            chapterCurID = 1;//当前章节
+            unLockChapterID = 2;//解锁的章节
+            unLockStageCount = 10;//最大就是10
+
 
             stage_Passed = new HashSet<int>();
             stage_PassedStar = new Dictionary<int, int>();
@@ -32,6 +35,7 @@ namespace UF {
         public void Reset() {
             stageCurID = 0;
             chapterCurID = 0;
+            unLockChapterID = 0;
 
             stage_Passed.Clear();
             stage_PassedStar.Clear();
@@ -70,6 +74,10 @@ namespace UF {
 
         public int GetStageCurID() {
             return stageCurID;
+        }
+
+        public int GetUnLockStageCount() {
+            return unLockStageCount;
         }
 
         public int GetChapterCurID() {

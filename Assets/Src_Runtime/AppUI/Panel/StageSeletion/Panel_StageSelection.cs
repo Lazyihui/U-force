@@ -74,8 +74,7 @@ namespace UF.UIApplication {
             var oneStage = Instantiate(oneStagePrefab, oneStegeGroup);
             oneStage.Ctor();
             oneStage.OnStageClickHandle = OnStageClick;
-            int stageid = stageID + chapter * 10;
-            oneStage.Init(stageid, isPassed, stageCount);
+            oneStage.Init(stageID, isPassed, stageCount);
             stage.Add(oneStage);
 
             if (stage.Count == 1) {
@@ -139,7 +138,7 @@ namespace UF.UIApplication {
 
         public void Clear() {
             // 保留第一个 刚刚开始选择关卡的时候
-            for (int i = 1; i < oneStegeGroup.childCount; i += 1) {
+            for (int i = 0; i < oneStegeGroup.childCount; i += 1) {
                 Destroy(oneStegeGroup.GetChild(i).gameObject);
             }
             stage.Clear();

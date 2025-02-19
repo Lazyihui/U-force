@@ -135,15 +135,42 @@ namespace UF {
 
             int curChapterID = appUI.playerSaveData.GetChapterCurID();
             int unLockChapterID = appUI.playerSaveData.GetUnLockChapterID();
-
+            int unLockStageCount = appUI.playerSaveData.GetUnLockStageCount();
 
             appUI.Panel_StageSelection_Open(curChapterID, unLockChapterID);
-
             appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, curChapterID, unLockChapterID);
-            appUI.Panel_StageSelectionOneStage_Add(1, false, 0);
-            appUI.Panel_StageSelectionOneStage_Add(2, false, 0);
-            appUI.Panel_StageSelectionOneStage_Add(3, false, 0);
 
+
+            for (int i = 0; i < unLockStageCount; i += 1) {
+                int stageID = i + 1;
+                int multiple = curChapterID - 1;
+                int stageid = stageID + multiple * 10;
+
+                Debug.Log("stageid:" + stageid);
+
+                int starCount = appUI.playerSaveData.GetStagePassedStar(stageid * curChapterID);
+                bool isPrassed = appUI.playerSaveData.IsStagePassed(stageid * curChapterID);
+                appUI.Panel_StageSelectionOneStage_Add(stageid, isPrassed, starCount);
+            }
+
+        }
+
+        public static void Panel_StageSelection_ChangeChapter(AppUI appUI, int chapter, int maxChapter) {
+            appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, chapter, maxChapter);
+
+            int unLockChapterID = appUI.playerSaveData.GetUnLockChapterID();
+            int unLockStageCount = appUI.playerSaveData.GetUnLockStageCount();
+
+            for (int i = 0; i < unLockStageCount; i += 1) {
+                int stageID = i + 1;
+                int multiple = chapter - 1;
+                int stageid = stageID + multiple * 10;
+
+                int starCount = appUI.playerSaveData.GetStagePassedStar(stageid * chapter);
+                Debug.Log(stageid);
+                bool isPrassed = appUI.playerSaveData.IsStagePassed(stageid * chapter);
+                appUI.Panel_StageSelectionOneStage_Add(stageid, isPrassed, starCount);
+            }
         }
 
         #region Train
