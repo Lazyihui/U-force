@@ -279,7 +279,7 @@ namespace UF {
                 ctx.gameEntity.state = GameState.GameOver;
                 var playerData = game.playerSaveData;
                 
-                ctx.appUI.Panel_GameOver_Open(false, playerData.GetRoleGetHurt(), playerData.shootAllTimes, playerData.hitTimes, playerData.GetRoleHitRate());
+                ctx.appUI.Panel_GameOver_Open(false, playerData.GetRoleGetHurt(), playerData.shootAllTimes, playerData.hitTimes, playerData.GetRoleHitRate(), playerData.GetStarCount());
             }
         }
 

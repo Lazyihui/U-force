@@ -229,7 +229,7 @@ namespace UF {
                 var playerData = ctx.gameEntity.playerSaveData;
                 int starCount = playerData.GetStarCount();
                 Debug.Log("得到的星星数量" + starCount);
-                ctx.appUI.Panel_GameOver_Open(true, playerData.GetRoleGetHurt(), playerData.shootAllTimes, playerData.hitTimes, playerData.GetRoleHitRate());
+                ctx.appUI.Panel_GameOver_Open(true, playerData.GetRoleGetHurt(), playerData.shootAllTimes, playerData.hitTimes, playerData.GetRoleHitRate(), playerData.GetStarCount());
                 Debug.Log("GameWin");
                 game.state = GameState.GameOver;
 

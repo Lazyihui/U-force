@@ -205,7 +205,7 @@ namespace UF {
         #endregion
 
         #region GameOver
-        public void Panel_GameOver_Open(bool isWin, int hurt, int shoot, int hitNumber, float hitRate) {
+        public void Panel_GameOver_Open(bool isWin, int hurt, int shoot, int hitNumber, float hitRate, int starCount) {
             Panel_GameOver panel = ctx.panel_GameOver;
 
             if (panel == null) {
@@ -221,7 +221,7 @@ namespace UF {
             ctx.panel_GameOver = panel;
 
             panel.Show();
-            panel.Init(isWin, hurt, shoot, hitNumber, hitRate);
+            panel.Init(isWin, hurt, shoot, hitNumber, hitRate, starCount);
         }
 
         public void Panel_GameOver_Close() {
