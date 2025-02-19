@@ -9,7 +9,6 @@ namespace UF {
 
         // public int slotID;
         // 关卡信息
-
         HashSet<int> stage_Passed;//通关的关卡
         Dictionary<int, int> stage_PassedStar;//通关关卡的星级
 
@@ -19,6 +18,23 @@ namespace UF {
         public int chapterCurID;//当前章节
         public int unLockChapterID;//解锁的章节
 
+        // 结算信息
+        public int ownerGetHurt;
+        public void SetOwnerGetHurt(int value) => ownerGetHurt = value;
+        public int GetRoleGetHurt() => ownerGetHurt;
+        public int ownerShootCount;
+        public void SetOwnerShootCount(int value) => ownerShootCount = value;
+        public int hitTimes;//射中次数
+        public void SetHitTimes(int value) => hitTimes = value;
+        public int shootAllTimes;//射击所有次数
+        public void SetHitNumberMax(int value) => shootAllTimes = value;
+
+        public float GetRoleHitRate() {
+            if (shootAllTimes == 0) {
+                return 0;
+            }
+            return (float)hitTimes / shootAllTimes;
+        }
 
         public PlayerEntity() {
             stageCurID = 0;

@@ -84,6 +84,8 @@ namespace UF {
                 var spawnTM = model.bulletSpawnerTM;
                 spawnTM.spawnPos.position = role.GetMuzzlePos();
                 BulletDomain.SpawnByRole_Spawner(ctx, role, spawnTM);
+                // 记录一共发射了多少次
+                ctx.gameEntity.playerSaveData.shootAllTimes += 1;
             }
 
             if (model.hasBulletTearDown) {
@@ -221,6 +223,15 @@ namespace UF {
 
 
         public static void HpReduce_Role(GameSystemContext ctx, RoleEntity role, int damage) {
+            var playerData = ctx.gameEntity.playerSaveData;
+            if (role.roleType == RoleType.Player) {
+                // 受到的伤害
+                playerData.SetOwnerGetHurt(playerData.GetRoleGetHurt() + damage);
+            } else {
+                // 命中次数
+                playerData.SetHitTimes(playerData.hitTimes + 1);
+            }
+
             var attCom = role.AttributeComponent;
             int finalHp = attCom.hp - damage;
             role.Attr_Hp_Set(finalHp);
@@ -242,6 +253,7 @@ namespace UF {
             for (int i = 0; i < hits.Length; i++) {
                 RaycastHit2D hit = hits[i];
                 if (hit.collider.gameObject.CompareTag("Ground")) {
+
                     Debug.Log("死亡动画");
                     role.SetRoleState(RoleState.Dead);
                 }
@@ -259,14 +271,14 @@ namespace UF {
             if (role.state != RoleState.Dead) {
                 return;
             }
+
             UnSpawn(ctx, role);
 
             if (role.roleType == RoleType.Player) {
                 // TODO:L写这里其实不太好
                 ctx.gameEntity.state = GameState.GameOver;
-                var attrCom = role.AttributeComponent;
-
-                ctx.appUI.Panel_GameOver_Open(false, attrCom.GetRoleGetHurt(), attrCom.shootAllTimes, attrCom.hitTimes, attrCom.GetRoleHitRate());
+                var playerData = game.playerSaveData;
+                ctx.appUI.Panel_GameOver_Open(false, playerData.GetRoleGetHurt(), playerData.shootAllTimes, playerData.hitTimes, playerData.GetRoleHitRate());
             }
         }
 

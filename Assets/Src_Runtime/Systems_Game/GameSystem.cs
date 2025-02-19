@@ -90,7 +90,6 @@ namespace UF {
 
         }
 
-
         public void Tick(float dt) {
 
             if (!ctx.isRunning) {
@@ -228,8 +227,8 @@ namespace UF {
                 owner.Jump_Stop();
                 owner.Move_Stop();
                 Exit();
-                var attributeCom = owner.AttributeComponent;
-                ctx.appUI.Panel_GameOver_Open(true, attributeCom.GetRoleGetHurt(), attributeCom.shootAllTimes, attributeCom.hitTimes, attributeCom.GetRoleHitRate());
+                var playerData = ctx.gameEntity.playerSaveData;
+                ctx.appUI.Panel_GameOver_Open(true, playerData.GetRoleGetHurt(), playerData.shootAllTimes, playerData.hitTimes, playerData.GetRoleHitRate());
                 Debug.Log("GameWin");
                 game.state = GameState.GameOver;
 
