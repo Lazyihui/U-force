@@ -609,6 +609,7 @@ namespace UF {
             panel.TearDown();
         }
 
+        // 设置光标
         public void Panel_WatchTower_SetCursor() {
             Panel_WatchTower panel = ctx.panel_Watchtower;
 
@@ -617,6 +618,7 @@ namespace UF {
             panel.Set_Cursor();
         }
 
+        // 恢复默认光标
         public void Panel_WatchTower_ClearCursor() {
             Panel_WatchTower panel = ctx.panel_Watchtower;
             if (panel == null) { return; }

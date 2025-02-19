@@ -155,35 +155,36 @@ namespace UF {
             };
 
             // 瞭望塔
-            eventCenter.OnViewClickHandle += () => {
+            eventCenter.OnViewClickHandle += () => { // 查看敌人详情
                 events.OnViewClick();
             };
 
-            eventCenter.OnSelectionWatchCardClickHandle += (typeID) => {
+            eventCenter.OnSelectionWatchCardClickHandle += (typeID) => { // 选择敌人卡片(查看的第二部)
                 events.OnSelectionWatchCardClick(typeID);
             };
 
-            eventCenter.OnDetailCloseHandle += () => {
+            eventCenter.OnDetailCloseHandle += () => { // 关闭敌人详情
                 events.OnDetailCloseClick();
             };
 
-            eventCenter.OnPlayer1ReadyClickHandle += () => {
+            // 训练营
+            eventCenter.OnPlayer1ReadyClickHandle += () => { // 玩家1准备
                 events.OnPlayer1ReadyClick();
             };
 
-            eventCenter.OnPlayer2ReadyClickHandle += () => {
+            eventCenter.OnPlayer2ReadyClickHandle += () => { // 玩家2准备
                 events.OnPlayer2ReadyClick();
             };
 
-            eventCenter.OnTrainTipClickHandle += () => {
+            eventCenter.OnTrainTipClickHandle += () => { // 训练营按键提示
                 events.OnTrainTipClick();
             };
 
-            eventCenter.OnSelectionTrainCardClickHandle += (int typeID) => {
+            eventCenter.OnSelectionTrainCardClickHandle += (int typeID) => { // 选择卡片(玩家)
                 events.OnSelectionTrainCardClick(typeID);
             };
 
-            eventCenter.OnTrainTipCloseClickHandle += () => {
+            eventCenter.OnTrainTipCloseClickHandle += () => { // 关闭训练营按键提示Panel
                 events.OnTrainTipCloseClick();
             };
         }

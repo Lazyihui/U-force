@@ -70,7 +70,7 @@ namespace UF {
             gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, playerSaveData);
             loginSystem.Inject(appUI, inputModule);
             pauseSystem.Inject(appUI, roleRepository);
-            trainSystem.Inject(appUI);
+            trainSystem.Inject(appUI, templateModule, assetsModule);
 
             appUI.Inject(screenCanvas, assetsModule, playerSaveData);
 
@@ -96,6 +96,7 @@ namespace UF {
 
         }
 
+        #region Binding_Login
         void Login_Binding() {
             loginSystem.Login_Binding();
 
@@ -241,9 +242,9 @@ namespace UF {
 
                 loginEvent.OnPlayer2ReadyClickHandle += () => {
                     if (hasPlayer && isPlayer1Ready) {
+                        appUI.Panel_Training_Select_Close();
                         loginSystem.Exit();
                         trainSystem.Enter();
-                        Debug.Log("Player2Ready");
                     }
                 };
 
@@ -267,7 +268,9 @@ namespace UF {
                 };
             }
         }
+        #endregion
 
+        #region Binding_Game
         void Game_Binding() {
             gameSystem.Game_Binding();
 
@@ -313,7 +316,9 @@ namespace UF {
                 Debug.Log("GameOver Continue");
             };
         }
+        #endregion
 
+        #region Binding_Pause
         void Pause_Binding() {
 
             pauseSystem.Pause_Binding();
@@ -359,12 +364,15 @@ namespace UF {
             };
 
         }
+        #endregion
 
+        #region Binding_Train
         void Train_Binding() {
             trainSystem.Train_Binding();
 
             var trainEvent = trainSystem.Events;
         }
+        #endregion
 
 
         void Update() {

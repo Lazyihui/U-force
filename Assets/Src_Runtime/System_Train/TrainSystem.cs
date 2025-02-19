@@ -18,14 +18,30 @@ namespace UF
             events = new TrainSystemEvents();
         }
 
-        public void Inject(AppUI appUI)
+        public void Inject(AppUI appUI, TemplateMoudle templateMoudle, AssetsModule assetsModule)
         {
-            ctx.Inject(appUI);
+            ctx.Inject(appUI, templateMoudle, assetsModule);
         }
 
         public void Enter()
         {
             ctx.isRunning = true;
+
+            // UI
+
+            // Game, stageID暂存为51
+            int stageID = 51;
+            bool has = ctx.templateMoudle.Stage_TryGet(stageID, out StageTM tm);
+            if (!has)
+            {
+                Debug.LogError("StageID not found");
+                return;
+            }
+
+            // Map
+            MapEntity map = MapDomain.Spawn(ctx.assetsModule, ctx.idService, tm.mapPrefab);
+
+            // Role
         }
 
         public void Exit()
@@ -33,8 +49,10 @@ namespace UF
             ctx.isRunning = false;
         }
 
-        public void Tick(float dt) {
-            if (!ctx.isRunning) {
+        public void Tick(float dt)
+        {
+            if (!ctx.isRunning)
+            {
                 return;
             }
 
@@ -46,13 +64,17 @@ namespace UF
 
             const float FIX_INTERVAL = 0.020f;
 
-            if (restFixTime <= FIX_INTERVAL) {
+            if (restFixTime <= FIX_INTERVAL)
+            {
 
                 LogicTick(restFixTime);
 
                 restFixTime = 0;
-            } else {
-                while (restFixTime >= FIX_INTERVAL) {
+            }
+            else
+            {
+                while (restFixTime >= FIX_INTERVAL)
+                {
                     LogicTick(FIX_INTERVAL);
                     restFixTime -= FIX_INTERVAL;
                 }
@@ -63,7 +85,7 @@ namespace UF
 
         void PreTick(float dt)
         {
-            
+
         }
 
         void LogicTick(float dt)
@@ -77,7 +99,8 @@ namespace UF
         }
 
 
-        public void Train_Binding() {
+        public void Train_Binding()
+        {
             var appUI = ctx.appUI;
             UIEventCenter eventCenter = appUI.eventCenter;
 
