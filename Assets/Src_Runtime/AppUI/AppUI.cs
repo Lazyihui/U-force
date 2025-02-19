@@ -666,6 +666,10 @@ namespace UF {
                     eventCenter.OnPlayer2ReadyClick();
                 };
 
+                panel.OnTipClickHandle = () => {
+                    eventCenter.OnTrainTipClick();
+                };
+
                 panel.OnSelectionTrainCardClickHandle = (typeID) => {
                     eventCenter.OnSelectionTrainCardClick(typeID);
                 };
@@ -712,6 +716,33 @@ namespace UF {
             if (panel == null) { return; }
 
             panel.SetButton();
+        }
+
+        public void Panel_Training_Tip_Open()
+        {
+            Panel_Training_Tip panel = ctx.panel_Training_Tip;
+
+            if (panel == null) {
+                GameObject prefab = ctx.assetsCore.Panel_GetTraining_Tip();
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                panel = go.GetComponent<Panel_Training_Tip>();
+                panel.Ctor();
+
+                panel.OnCloseClickHandle = () => {
+                    eventCenter.OnTrainTipCloseClick();
+                };
+            }
+            ctx.panel_Training_Tip = panel;
+            panel.Show();
+        }
+
+        public void Panel_Training_Tip_Close()
+        {
+            Panel_Training_Tip panel = ctx.panel_Training_Tip;
+
+            if (panel == null) { return; }
+
+            panel.TearDown();
         }
         #endregion
 

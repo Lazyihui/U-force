@@ -174,8 +174,16 @@ namespace UF {
                 events.OnPlayer2ReadyClick();
             };
 
+            eventCenter.OnTrainTipClickHandle += () => {
+                events.OnTrainTipClick();
+            };
+
             eventCenter.OnSelectionTrainCardClickHandle += (int typeID) => {
                 events.OnSelectionTrainCardClick(typeID);
+            };
+
+            eventCenter.OnTrainTipCloseClickHandle += () => {
+                events.OnTrainTipCloseClick();
             };
         }
     }

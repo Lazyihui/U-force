@@ -31,6 +31,9 @@ namespace UF
         [SerializeField] Button btn_Ready_Player2;
         public Action OnPlayer2ReadyClickHandle;
 
+        [SerializeField] Button btn_Tip;
+        public Action OnTipClickHandle;
+
         public Action<int> OnSelectionTrainCardClickHandle;
 
         ColorBlock colorWhite;
@@ -42,6 +45,7 @@ namespace UF
 
             btn_Ready_Player1.onClick.AddListener(() => OnPlayer1ReadyClickHandle.Invoke());
             btn_Ready_Player2.onClick.AddListener(() => OnPlayer2ReadyClickHandle.Invoke());
+            btn_Tip.onClick.AddListener(() => OnTipClickHandle.Invoke());
 
             colorWhite = btn_Ready_Player1.colors;
             colorGray = btn_Ready_Player1.colors;

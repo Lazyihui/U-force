@@ -251,6 +251,10 @@ namespace UF {
                     }
                 };
 
+                loginEvent.OnTrainTipClickHandle += () => {
+                    appUI.Panel_Training_Tip_Open();
+                };
+
                 loginEvent.OnSelectionTrainCardClickHandle += (typeID) => {
                     Debug.Log("SelectionTrainCardClick " + typeID);
                     // 这样写感觉model没什么意义
@@ -260,6 +264,10 @@ namespace UF {
                     appUI.Panel_Training_Select_SetPlayer(isPlayer1Ready, roleTM.feature, "0", "0", "0", roleTM.sprite);
 
                     hasPlayer = true;
+                };
+
+                loginEvent.OnTrainTipCloseClickHandle += () => {
+                    appUI.Panel_Training_Tip_Close();
                 };
             }
         }

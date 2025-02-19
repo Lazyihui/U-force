@@ -286,10 +286,24 @@ namespace UF {
             }
         }
 
+        public Action OnTrainTipClickHandle;
+        public void OnTrainTipClick() {
+            if (OnTrainTipClickHandle != null) {
+                OnTrainTipClickHandle();
+            }
+        }
+
         public Action<int> OnSelectionTrainCardClickHandle;
         public void OnSelectionTrainCardClick(int a) {
             if (OnSelectionTrainCardClickHandle != null) {
                 OnSelectionTrainCardClickHandle(a);
+            }
+        }
+
+        public Action OnTrainTipCloseClickHandle;
+        public void OnTrainTipCloseClick() {
+            if (OnTrainTipCloseClickHandle != null) {
+                OnTrainTipCloseClickHandle();
             }
         }
         #endregion

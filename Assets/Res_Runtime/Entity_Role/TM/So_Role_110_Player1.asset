@@ -26,6 +26,6 @@ MonoBehaviour:
     modPrefab: {fileID: 5506719469353998905, guid: 262d19c874910244c86314f2b06b1661, type: 3}
     sprite: {fileID: 21300000, guid: 6494c22efa5c01040aa30bcfb2845526, type: 3}
     content: ggggggggggggggg
-    feature: 
+    feature: 110
     skill: 
     restraint: 
