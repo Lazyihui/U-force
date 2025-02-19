@@ -262,9 +262,11 @@ namespace UF {
             UnSpawn(ctx, role);
 
             if (role.roleType == RoleType.Player) {
-                // TODO写这里其实不太好
+                // TODO:L写这里其实不太好
                 ctx.gameEntity.state = GameState.GameOver;
-                ctx.appUI.Panel_GameOver_Open(false, game.ownerGetHurt, game.ownerShootCount, game.hitNumber, game.hitRate);
+                var attrCom = role.AttributeComponent;
+
+                ctx.appUI.Panel_GameOver_Open(false, attrCom.GetRoleGetHurt(), attrCom.shootAllTimes, attrCom.hitTimes, attrCom.GetRoleHitRate());
             }
         }
 

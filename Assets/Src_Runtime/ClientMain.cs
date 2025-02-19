@@ -383,6 +383,10 @@ namespace UF {
             loginSystem.Tick(dt);
             pauseSystem.Tick(dt);
 
+            // 测试用的要改
+            if (Input.GetKeyDown(KeyCode.F)) {
+                appUI.playerSaveData.SetUnLockChapterID(5);
+            }
         }
 
         void OnDestroy() {

@@ -145,11 +145,9 @@ namespace UF {
                 int stageID = i + 1;
                 int multiple = curChapterID - 1;
                 int stageid = stageID + multiple * 10;
-
-                Debug.Log("stageid:" + stageid);
-
                 int starCount = appUI.playerSaveData.GetStagePassedStar(stageid * curChapterID);
                 bool isPrassed = appUI.playerSaveData.IsStagePassed(stageid * curChapterID);
+
                 appUI.Panel_StageSelectionOneStage_Add(stageid, isPrassed, starCount);
             }
 
@@ -167,11 +165,20 @@ namespace UF {
                 int stageid = stageID + multiple * 10;
 
                 int starCount = appUI.playerSaveData.GetStagePassedStar(stageid * chapter);
-                Debug.Log(stageid);
                 bool isPrassed = appUI.playerSaveData.IsStagePassed(stageid * chapter);
+
                 appUI.Panel_StageSelectionOneStage_Add(stageid, isPrassed, starCount);
             }
         }
+
+        #region  Role
+        public static void HUD_Progressbar_Update(AppUI ui, RoleAttributeComponent attrCom, float gameWaves) {
+            int hp = attrCom.GetHp();
+            int maxHp = attrCom.GetHpMax();
+            ui.HUD_Progressbar_Update(gameWaves, hp, maxHp);//更新进度条
+        }
+
+        #endregion
 
         #region Train
         public static void Panel_Training_Select_Open(AppUI appUI, AssetsModule assetsModule, TemplateMoudle templateModule) {

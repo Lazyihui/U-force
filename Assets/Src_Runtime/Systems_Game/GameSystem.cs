@@ -141,9 +141,8 @@ namespace UF {
             CaveDomain.TrySpawnMinion(ctx, dt);
 
             // UI
-            int hp = owner.Attr_Hp_Get();
-            int maxHp = owner.Attr_HpMax_Get();
-            ui.HUD_Progressbar_Update(game.wavesProgress, hp, maxHp);//更新进度条
+            var attrCom = owner.AttributeComponent;
+            UIDomain.HUD_Progressbar_Update(ctx.appUI, attrCom, game.wavesProgress);
         }
 
         void LogicTick(float dt) {
@@ -229,7 +228,8 @@ namespace UF {
                 owner.Jump_Stop();
                 owner.Move_Stop();
                 Exit();
-                ctx.appUI.Panel_GameOver_Open(true, game.ownerGetHurt, game.ownerShootCount, game.hitNumber, game.hitRate);
+                var attributeCom = owner.AttributeComponent;
+                ctx.appUI.Panel_GameOver_Open(true, attributeCom.GetRoleGetHurt(), attributeCom.shootAllTimes, attributeCom.hitTimes, attributeCom.GetRoleHitRate());
                 Debug.Log("GameWin");
                 game.state = GameState.GameOver;
 

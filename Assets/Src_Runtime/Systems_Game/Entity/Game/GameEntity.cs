@@ -17,12 +17,6 @@ namespace UF {
         public PlayerEntity playerSaveData;
 
 
-
-
-
-
-
-
         #region 生成小怪的波次数据
         // 必需改掉
         // TODO: 之后可能要改用行的。cs文件里面的数据，不要放在这里
@@ -38,26 +32,11 @@ namespace UF {
         public float spawnMinionIntervalTimer; //生成小怪计时器
 
         public float progress; //每小波次进度条占比
-
         public float wavesProgress; //进度条数值
 
         #endregion
 
-        #region 结算页面
-
-        public int ownerGetHurt;
-        public int ownerShootCount;
-        public int hitNumber;
-        public float hitRate;
-
-        public int getStarAllCount;
-        public int curStageGetStarCount;
-
-
-        #endregion
-
         public GameEntity() {
-
 
             stageCurID = 1;
 
@@ -75,11 +54,6 @@ namespace UF {
             progress = 0.0625f;
 
             wavesProgress = 0;
-
-            ownerGetHurt = 0;
-            ownerShootCount = 0;
-            hitNumber = 0;
-            hitRate = 0;
         }
 
 

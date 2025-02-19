@@ -64,6 +64,10 @@ namespace UF {
             chapterCurID = chapterID;
         }
 
+        public void SetUnLockChapterID(int chapterID) {
+            unLockChapterID = chapterID;
+        }
+
         public bool IsStagePassed(int stageID) {
             return stage_Passed.Contains(stageID);
         }
