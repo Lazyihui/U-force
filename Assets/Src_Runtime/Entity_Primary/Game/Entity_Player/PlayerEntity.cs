@@ -22,8 +22,6 @@ namespace UF {
         public int ownerGetHurt;
         public void SetOwnerGetHurt(int value) => ownerGetHurt = value;
         public int GetRoleGetHurt() => ownerGetHurt;
-        public int ownerShootCount;
-        public void SetOwnerShootCount(int value) => ownerShootCount = value;
         public int hitTimes;//射中次数
         public void SetHitTimes(int value) => hitTimes = value;
         public int shootAllTimes;//射击所有次数
@@ -34,6 +32,19 @@ namespace UF {
                 return 0;
             }
             return (float)hitTimes / shootAllTimes;
+        }
+
+        public int GetStarCount() {
+            int starCount = 1;
+            if (ownerGetHurt == 0) {
+                starCount++;
+            }
+
+            if (GetRoleHitRate() >= 0.7f) {
+                starCount++;
+            }
+
+            return starCount;
         }
 
         public PlayerEntity() {

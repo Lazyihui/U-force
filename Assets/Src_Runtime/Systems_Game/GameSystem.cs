@@ -76,7 +76,6 @@ namespace UF {
                     var skilltypeID = skillorTypeIDArray[i];
                     SkillModel skillor = GameFactory.Skillor_Create(ctx.assetsModule, ctx.templateCore, ctx.idService, skilltypeID);
                     skillor.Set_InputCastKeyWeap(i);
-                    Debug.Log("skillorTypeIDArray[i]" + skillorTypeIDArray[i]);
                     skillorCom.Add(skillor);
                 }
             }
@@ -228,6 +227,8 @@ namespace UF {
                 owner.Move_Stop();
                 Exit();
                 var playerData = ctx.gameEntity.playerSaveData;
+                int starCount = playerData.GetStarCount();
+                Debug.Log("得到的星星数量" + starCount);
                 ctx.appUI.Panel_GameOver_Open(true, playerData.GetRoleGetHurt(), playerData.shootAllTimes, playerData.hitTimes, playerData.GetRoleHitRate());
                 Debug.Log("GameWin");
                 game.state = GameState.GameOver;
