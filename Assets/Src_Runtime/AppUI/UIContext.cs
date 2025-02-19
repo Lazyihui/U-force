@@ -21,6 +21,7 @@ namespace UF {
         public Panel_WatchTower panel_Watchtower;
         public Panel_WatchDetail panel_WatchDetail;
         public Panel_Training_Select panel_Training_Select;
+        public Panel_Training_Tip panel_Training_Tip;
 
         // HUD
         public HUD_Progressbar hud_Progressbar;
