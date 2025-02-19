@@ -39,7 +39,7 @@ namespace UF {
             stuffRepository = new StuffRepository();
         }
 
-        public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository) {
+        public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository, PlayerEntity playerSaveData) {
             this.assetsModule = assetsCore;
             this.templateCore = templateCore;
             this.appUI = appUI;
@@ -47,6 +47,7 @@ namespace UF {
 
             // ---  Repos  ---
             this.roleRepository = roleRepository;
+            gameEntity.Inject(playerSaveData);
         }
 
         public RoleEntity Get_Owner() {
@@ -54,7 +55,7 @@ namespace UF {
             return role;
         }
 
-        
+
     }
 
 }

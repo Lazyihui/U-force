@@ -7,6 +7,9 @@ using UF.UIApplication;
 namespace UF {
     public class UIContext {
 
+        public CardModel cardModel;
+
+
         public Canvas screenCanvas;
         public AssetsModule assetsCore;
 

@@ -11,7 +11,8 @@ namespace UF {
 
             appUI.Panel_StageSelection_Close();
 
-            appUI.cardModel = GameFactory.Card_Create(assetsModule, templateModule, 1);
+            CardModel spawnCard = GameFactory.Card_Create(assetsModule, templateModule, 1);
+            appUI.Set_CardModel(spawnCard);
             CardModel card = appUI.Get_CardModel();
 
             appUI.Panel_CardSelection_Open(stageID, chapterID);// 打开卡牌选择界面
@@ -130,11 +131,15 @@ namespace UF {
             appUI.Panel_WatchDetail_Open(roleTM.sprite, roleTM.typeName, roleTM.content, roleTM.hp, skill, roleTM.restraint);
         }
 
-        public static void Panel_StageSelectionEnter(AppUI appUI, int stageID, int chapterID) {
-            appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, 1, 5);
+        public static void Panel_StageSelectionEnter(AppUI appUI) {
 
-            appUI.Panel_StageSelection_Open(1, 1);
+            int curChapterID = appUI.playerSaveData.GetChapterCurID();
+            int unLockChapterID = appUI.playerSaveData.GetUnLockChapterID();
 
+
+            appUI.Panel_StageSelection_Open(curChapterID, unLockChapterID);
+
+            appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, curChapterID, unLockChapterID);
             appUI.Panel_StageSelectionOneStage_Add(1, false, 0);
             appUI.Panel_StageSelectionOneStage_Add(2, false, 0);
             appUI.Panel_StageSelectionOneStage_Add(3, false, 0);
@@ -142,15 +147,13 @@ namespace UF {
         }
 
         #region Train
-        public static void Panel_Training_Select_Open(AppUI appUI, AssetsModule assetsModule, TemplateMoudle templateModule)
-        {
+        public static void Panel_Training_Select_Open(AppUI appUI, AssetsModule assetsModule, TemplateMoudle templateModule) {
             appUI.Panel_Training_Select_Open();
 
             TrainCardModel model = GameFactory.TrainCard_Create(assetsModule, templateModule, 1);
             var cards = model.roleTMs;
 
-            for (int i = 0; i < cards.Count; i += 1)
-            {
+            for (int i = 0; i < cards.Count; i += 1) {
                 var card = cards[i];
                 appUI.Panel_Training_Select_Add(card.typeID, card.sprite, card.typeName);
             }

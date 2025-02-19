@@ -9,8 +9,9 @@ namespace UF {
 
         public UIContext ctx;
         public UIEventCenter eventCenter;
-        public CardModel cardModel;
         public SelectedInFormation selectedInFormation;
+
+        public PlayerEntity playerSaveData;
 
         public void Ctor() {
             ctx = new UIContext();
@@ -18,12 +19,18 @@ namespace UF {
             selectedInFormation = new SelectedInFormation();
         }
 
-        public void Inject(Canvas screenCanvas, AssetsModule assetsCore) {
+        public void Inject(Canvas screenCanvas, AssetsModule assetsCore, PlayerEntity playerSaveData) {
             ctx.Inject(screenCanvas, assetsCore);
+            this.playerSaveData = playerSaveData;
         }
         public CardModel Get_CardModel() {
-            return cardModel;
+            return ctx.cardModel;
         }
+
+        public void Set_CardModel(CardModel cardModel) {
+            ctx.cardModel = cardModel;
+        }
+
         public void Set_InputDown(bool isTabDown, bool isEscDown) {
             ctx.isTabDown = isTabDown;
             ctx.isEscDown = isEscDown;
@@ -32,9 +39,7 @@ namespace UF {
         public void Tick(float dt, InputModule inputModule) {
             // input
             Set_InputDown(inputModule.IsTabDown, inputModule.IsEscDown);
-
             Panel_StageSelection_Tick(ctx.isTabDown, ctx.isEscDown);
-
         }
 
         #region Login
@@ -699,18 +704,14 @@ namespace UF {
 
             if (panel == null) { return; }
 
-            if (!isPlayer1Ready)
-            {
+            if (!isPlayer1Ready) {
                 panel.SetPlayer1(description, weaponSpeed, damage, attackSpeed, sprite);
-            }
-            else
-            {
+            } else {
                 panel.SetPlayer2(description, weaponSpeed, damage, attackSpeed, sprite);
             }
         }
 
-        public void Panel_Training_Select_SetButton()
-        {
+        public void Panel_Training_Select_SetButton() {
             Panel_Training_Select panel = ctx.panel_Training_Select;
 
             if (panel == null) { return; }
@@ -718,8 +719,7 @@ namespace UF {
             panel.SetButton();
         }
 
-        public void Panel_Training_Tip_Open()
-        {
+        public void Panel_Training_Tip_Open() {
             Panel_Training_Tip panel = ctx.panel_Training_Tip;
 
             if (panel == null) {
@@ -736,8 +736,7 @@ namespace UF {
             panel.Show();
         }
 
-        public void Panel_Training_Tip_Close()
-        {
+        public void Panel_Training_Tip_Close() {
             Panel_Training_Tip panel = ctx.panel_Training_Tip;
 
             if (panel == null) { return; }

@@ -12,7 +12,7 @@ namespace UF {
         bool isInit = false;
         bool isTearDown = false;
 
-        public CardModel cardModel;
+        public PlayerEntity playerSaveData;
 
         // system
         public static GameSystem gameSystem;
@@ -63,15 +63,16 @@ namespace UF {
 
             // repos
             roleRepository = new RoleRepository();
+            playerSaveData = new PlayerEntity();
 
 
             // Inject
-            gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository);
+            gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, playerSaveData);
             loginSystem.Inject(appUI, inputModule);
             pauseSystem.Inject(appUI, roleRepository);
             trainSystem.Inject(appUI);
 
-            appUI.Inject(screenCanvas, assetsModule);
+            appUI.Inject(screenCanvas, assetsModule, playerSaveData);
 
             // ---  Binding  ---
             // Binding_Login();
@@ -102,15 +103,11 @@ namespace UF {
 
             loginEvent.OnLoginStartHandle += () => {
                 appUI.Panel_Login_Close();
-
-                UIDomain.Panel_StageSelectionEnter(appUI, 1, 1);
-
-
+                UIDomain.Panel_StageSelectionEnter(appUI);
             };
 
             loginEvent.OnTrainingHandle += () => {
                 appUI.Panel_Login_Close();
-
                 UIDomain.Panel_Training_Select_Open(appUI, assetsModule, templateModule);
             };
 
@@ -135,10 +132,11 @@ namespace UF {
             };
 
             loginEvent.OnChapterClickHandle += (chapter) => {
-                var maxChapter = 5;
+                var maxChapter = appUI.playerSaveData.GetUnLockChapterID();
                 if (chapter > maxChapter) {
                     chapter = 1;
                 }
+
                 appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, chapter, maxChapter);
             };
 
@@ -183,7 +181,7 @@ namespace UF {
                 Debug.Log("SelectBack");
                 appUI.Panel_CardSelection_Close();
                 appUI.Panel_WatchTower_Close();
-                UIDomain.Panel_StageSelectionEnter(appUI, 1, 1);
+                UIDomain.Panel_StageSelectionEnter(appUI);
             };
 
             loginEvent.OnSelectionCardClickHandle += (typeID) => {
@@ -232,19 +230,17 @@ namespace UF {
                 bool hasPlayer = false;
 
                 loginEvent.OnPlayer1ReadyClickHandle += () => {
-                    if (hasPlayer)
-                    {
+                    if (hasPlayer) {
                         Debug.Log("Player1Ready");
                         appUI.Panel_Training_Select_SetButton();
-                        
+
                         isPlayer1Ready = true;
                         hasPlayer = false;
                     }
                 };
 
                 loginEvent.OnPlayer2ReadyClickHandle += () => {
-                    if (hasPlayer && isPlayer1Ready)
-                    {
+                    if (hasPlayer && isPlayer1Ready) {
                         loginSystem.Exit();
                         trainSystem.Enter();
                         Debug.Log("Player2Ready");

@@ -58,7 +58,6 @@ namespace UF {
 
         public GameEntity() {
 
-            playerSaveData = new PlayerEntity();
 
             stageCurID = 1;
 
@@ -81,6 +80,11 @@ namespace UF {
             ownerShootCount = 0;
             hitNumber = 0;
             hitRate = 0;
+        }
+
+
+        public void Inject(PlayerEntity playerSaveData) {
+            this.playerSaveData = playerSaveData;
         }
 
         public void Run() {
