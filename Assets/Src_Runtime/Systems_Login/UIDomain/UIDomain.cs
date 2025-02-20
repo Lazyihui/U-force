@@ -108,6 +108,7 @@ namespace UF {
             var cardType = appUI.Panel_GetCardType();
 
             if (cardType == CardType.Hero) {
+                appUI.Panel_OneCardSelection_UnLock(appUI.selectedInFormation.roleSelectedTypeID);
                 appUI.selectedInFormation.roleSelectedTypeID = typeID;
 
                 templateMoudle.Role_TryGet(typeID, out RoleTM roleTM);
@@ -124,6 +125,7 @@ namespace UF {
                 appUI.Panel_CardSelection_SetProp(typeID, bulletTM.sprite);
 
             } else if (cardType == CardType.Science) {
+                appUI.Panel_OneCardSelection_UnLock(appUI.selectedInFormation.scienceTypeID);
                 appUI.selectedInFormation.scienceTypeID = typeID;
 
 
