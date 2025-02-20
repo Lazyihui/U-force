@@ -59,7 +59,6 @@ namespace UF {
             }
         }
 
-
         public static void Panel_OneCardSelection_Update(AppUI appUI) {
             //先清空卡片选择界面 
             appUI.Panel_OneCardSelection_Clear();

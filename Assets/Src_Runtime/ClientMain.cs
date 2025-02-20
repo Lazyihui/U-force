@@ -35,7 +35,6 @@ namespace UF {
         bool isNoticeOpen = false;
         float noticeTimer = 1;
 
-
         void Start() {
 
             // ---  UI
@@ -117,7 +116,7 @@ namespace UF {
             };
 
             loginEvent.OnSettingHandle += () => {
-                Debug.Log("Setting");
+                Debug.Log("设置");
             };
 
             loginEvent.OnQuitHandle += () => {
@@ -130,8 +129,10 @@ namespace UF {
                 // TODO：放到UIDomain里
                 appUI.Panel_StageSelection_Close();
                 Debug.Log("StageClick " + stageID);
-                appUI.selectedInFormation.stageID = stageID;
+                appUI.playerSaveData.SetStageCurID(stageID);
+
                 int chapterID = 1;
+                appUI.playerSaveData.SetChapterCurID(chapterID);
                 UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule, stageID, chapterID);
 
             };
@@ -139,9 +140,9 @@ namespace UF {
             loginEvent.OnChapterClickHandle += (chapter) => {
                 var maxChapter = appUI.playerSaveData.GetUnLockChapterID();
                 if (chapter > maxChapter) {
-
                     chapter = 1;
                 }
+                appUI.playerSaveData.SetChapterCurID(chapter);
                 UIDomain.Panel_StageSelection_ChangeChapter(appUI, chapter, maxChapter);
             };
 
@@ -170,7 +171,7 @@ namespace UF {
                 Debug.Log("开始游戏");
                 // 放到UIDomain里
                 appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
-                int stageID = appUI.selectedInFormation.stageID;
+                int stageID = appUI.playerSaveData.GetStageCurID();
                 int roleTypeID = appUI.selectedInFormation.roleSelectedTypeID;
                 int sciType = appUI.selectedInFormation.scienceTypeID;
                 if (typeIDs.Count < 4 || stageID == -1 || roleTypeID == -1 || sciType == -1) {
@@ -323,8 +324,21 @@ namespace UF {
                 inputModule.Set_InputCastKey(InputKeyFlag.Weap4);
             };
 
-            gameEvent.OnGameOverHandle += (isWin) => {
-                Debug.Log("GameOver Continue" + isWin);
+            gameEvent.OnGameContinueOverHandle += (isWin) => {
+                Debug.Log("游戏结束 继续游戏" + isWin);
+
+                if (!isWin) {
+                    // TODO: 传入参数
+                    int stageID = appUI.playerSaveData.GetStageCurID();
+                    int chapterID = appUI.playerSaveData.GetChapterCurID();
+                    UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule, stageID, stageID);
+                }
+
+                if (isWin) {
+                    UIDomain.Panel_StageSelectionEnter(appUI);
+                    // TODO: 要写关卡解锁
+
+                }
             };
         }
         #endregion

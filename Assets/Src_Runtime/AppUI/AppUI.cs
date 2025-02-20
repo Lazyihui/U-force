@@ -10,7 +10,6 @@ namespace UF {
         public UIContext ctx;
         public UIEventCenter eventCenter;
         public SelectedInFormation selectedInFormation;
-
         public PlayerEntity playerSaveData;
 
         public void Ctor() {
