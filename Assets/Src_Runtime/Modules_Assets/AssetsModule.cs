@@ -119,6 +119,11 @@ namespace UF {
             return panel;
         }
 
+        public GameObject Panel_GetNotice() {
+            panels.TryGetValue("Panel_Notice", out GameObject panel);
+            return panel;
+        }
+
         public GameObject Panel_GetBackSelection() {
             panels.TryGetValue("Panel_BackSelection", out GameObject panel);
             return panel;
@@ -153,6 +158,7 @@ namespace UF {
             panels.TryGetValue("Panel_Training_Pause", out GameObject panel);
             return panel;
         }
+
 
         // HUD
         public GameObject HUD_GetProgressbar() {

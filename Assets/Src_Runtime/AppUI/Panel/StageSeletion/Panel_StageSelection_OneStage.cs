@@ -16,6 +16,10 @@ namespace UF.UIApplication {
         [SerializeField] TextMeshProUGUI txt_stage;
         [SerializeField] Button btn_stage;
 
+        [SerializeField] Image img_Bg;
+        [SerializeField] Sprite bg_Unlock;
+        [SerializeField] Sprite bg_Lock;
+
         public int stageID;
         public Action<int> OnStageClickHandle;
 
@@ -31,13 +35,20 @@ namespace UF.UIApplication {
             for (int i = 0; i < starCount; i++) {
                 // 添加亮星星
                 GameObject star = Instantiate(stageLightStar, starGroup);
-                // star.transform.SetParent(starGroup, false);
             }
             int darkStarCount = 3 - starCount;
             for (int i = 0; i < darkStarCount; i++) {
                 // 添加暗星星
                 GameObject star = Instantiate(stageDarkStar, starGroup);
-                // star.transform.SetParent(starGroup, false);
+            }
+        }
+
+        // 关卡是否锁定
+        public void Set_IsLock(bool isLock) {
+            if (isLock) {
+                img_Bg.sprite = bg_Lock;
+            } else {
+                img_Bg.sprite = bg_Unlock;
             }
         }
 
@@ -52,11 +63,14 @@ namespace UF.UIApplication {
                 stageLock.gameObject.SetActive(false);
                 stageGoup.gameObject.SetActive(true);
                 Set_GetStar(getStarCount);
+                Set_IsLock(isPassed);
 
             } else {
                 stageLock.gameObject.SetActive(true);
                 stageGoup.gameObject.SetActive(false);
+                Set_IsLock(isPassed);
             }
         }
+
     }
 }

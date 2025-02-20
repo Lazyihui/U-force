@@ -67,23 +67,21 @@ namespace UF.UIApplication {
                 // TODO:还没定暂时这样写
                 txt_ChapterName.text = "防守战";
             } else if (chapterID == 2) {
-                txt_ChapterName.text = "Industry";
+                txt_ChapterName.text = "进攻战";
             } else if (chapterID == 3) {
-                txt_ChapterName.text = "Science";
+                txt_ChapterName.text = "消除战";
             }
         }
 
         #region Card
         public void AddCard(int id, Sprite sprite) {
-
             // 实例化卡片
             Panel_OneCardSelection oneCard = Instantiate(oneCardPrefab, cardGroup);
             oneCard.Ctor();
             oneCard.Init(id, sprite);
-            oneCard.OnCardClickHandle += OnCardClick;//点击卡片 绑定事件
+            oneCard.OnCardClickHandle += OnCardClick;//点击卡片 绑定事件    
             cards.Add(oneCard);
         }
-
         public void RemoveCard(int id) {
             for (int i = 0; i < cards.Count; i++) {
                 if (cards[i].GetID() == id) {
@@ -100,6 +98,24 @@ namespace UF.UIApplication {
                 Destroy(card.gameObject);
             }
             cards.Clear();
+        }
+
+        // 锁定卡片
+        public void LockCard(int id) {
+            foreach (var card in cards) {
+                if (card.GetID() == id) {
+                    card.OneCard_Lock();
+                }
+            }
+        }
+
+        // 解锁卡片
+        public void UnLockCard(int id) {
+            foreach (var card in cards) {
+                if (card.GetID() == id) {
+                    card.OneCard_UnLock();
+                }
+            }
         }
 
         #endregion

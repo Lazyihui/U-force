@@ -140,7 +140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <b>Shoot</b>    0
+  m_text: "<b>\u5C04\u51FB\u6B21\u6570</b>    0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7806ed74e730464aa112f87f4c0a0fe, type: 2}
   m_sharedMaterial: {fileID: 5045075449152384242, guid: a7806ed74e730464aa112f87f4c0a0fe, type: 2}
@@ -408,7 +408,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <b>Hurt</b>    0
+  m_text: "<b>\u53D7\u4F24\u5BB3</b>    0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7806ed74e730464aa112f87f4c0a0fe, type: 2}
   m_sharedMaterial: {fileID: 5045075449152384242, guid: a7806ed74e730464aa112f87f4c0a0fe, type: 2}
@@ -617,7 +617,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <b>HitNumber</b>    0
+  m_text: "<b>\u547D\u4E2D\u6B21\u6570</b>    0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7806ed74e730464aa112f87f4c0a0fe, type: 2}
   m_sharedMaterial: {fileID: 5045075449152384242, guid: a7806ed74e730464aa112f87f4c0a0fe, type: 2}
@@ -1351,7 +1351,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <b>HitRate</b>    0
+  m_text: "<b>\u547D\u4E2D\u7387</b>    0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a7806ed74e730464aa112f87f4c0a0fe, type: 2}
   m_sharedMaterial: {fileID: 5045075449152384242, guid: a7806ed74e730464aa112f87f4c0a0fe, type: 2}

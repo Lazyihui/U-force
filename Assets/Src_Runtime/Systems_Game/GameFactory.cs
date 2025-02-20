@@ -353,7 +353,6 @@ namespace UF {
                 for (int i = 0; i < roleEnemySoArr.Count; i += 1) {
                     var roleSo = roleEnemySoArr[i];
                     model.roleEnemyTMs.Add(roleSo.tm);
-                    Debug.Log("roleSo.tm.typeID" + roleEnemySoArr.Count);
                 }
             }
 
@@ -448,6 +447,7 @@ namespace UF {
 
         static RoleMod RoleMod_Create(RoleTM tm, Transform bodyRoot) {
             var mod = GameObject.Instantiate(tm.modPrefab, bodyRoot).GetComponent<RoleMod>();
+            mod.transform.position = new Vector3(0, 0, 0);
             mod.Ctor();
             return mod;
         }

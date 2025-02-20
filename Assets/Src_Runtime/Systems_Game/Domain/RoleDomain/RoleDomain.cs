@@ -214,6 +214,10 @@ namespace UF {
             int finalHp = attCom.hp - damage;
             role.Attr_Hp_Set(finalHp);
 
+            var playerData = ctx.gameEntity.playerSaveData;
+            playerData.SetHitTimes(playerData.hitTimes + 1);
+            Debug.Log("命中次数" + playerData.hitTimes);
+
             if (attCom.hp <= 0) {
                 role.SetRoleState(RoleState.Fall);
                 role.Fall();
@@ -227,10 +231,8 @@ namespace UF {
             if (role.roleType == RoleType.Player) {
                 // 受到的伤害
                 playerData.SetOwnerGetHurt(playerData.GetRoleGetHurt() + damage);
-            } else {
-                // 命中次数
-                playerData.SetHitTimes(playerData.hitTimes + 1);
             }
+            Debug.Log("受到伤害" + role.roleType);
 
             var attCom = role.AttributeComponent;
             int finalHp = attCom.hp - damage;
@@ -254,8 +256,12 @@ namespace UF {
                 RaycastHit2D hit = hits[i];
                 if (hit.collider.gameObject.CompareTag("Ground")) {
 
+                    // // 命中次数
+                    // playerData.SetHitTimes(playerData.hitTimes + 1);
+                    // Debug.Log("命中次数" + playerData.hitTimes);
                     Debug.Log("死亡动画");
                     role.SetRoleState(RoleState.Dead);
+
                 }
             }
         }
@@ -272,14 +278,14 @@ namespace UF {
                 return;
             }
 
+
             UnSpawn(ctx, role);
 
             if (role.roleType == RoleType.Player) {
                 // TODO:L写这里其实不太好
                 ctx.gameEntity.state = GameState.GameOver;
                 var playerData = game.playerSaveData;
-                
-                ctx.appUI.Panel_GameOver_Open(false, playerData.GetRoleGetHurt(), playerData.shootAllTimes, playerData.hitTimes, playerData.GetRoleHitRate(), playerData.GetStarCount());
+                ctx.appUI.Panel_GameOver_Open(false, playerData.GetRoleGetHurt(), playerData.shootAllTimes, playerData.hitTimes, playerData.GetRoleHitRate(), 0);
             }
         }
 

@@ -10,7 +10,6 @@ namespace UF {
         public UIContext ctx;
         public UIEventCenter eventCenter;
         public SelectedInFormation selectedInFormation;
-
         public PlayerEntity playerSaveData;
 
         public void Ctor() {
@@ -205,7 +204,7 @@ namespace UF {
         #endregion
 
         #region GameOver
-        public void Panel_GameOver_Open(bool isWin, int hurt, int shoot, int hitNumber, float hitRate, int starCount) {
+        public void Panel_GameOver_Open(bool isWin, int hurt, int shoot, int hitedTimes, float hitRate, int starCount) {
             Panel_GameOver panel = ctx.panel_GameOver;
 
             if (panel == null) {
@@ -214,14 +213,14 @@ namespace UF {
                 panel = go.GetComponent<Panel_GameOver>();
                 panel.Ctor();
 
-                panel.OnGameOverButtonClick += () => {
-                    eventCenter.OnGameOver();
+                panel.OnGameOverButtonClick += (isWin) => {
+                    eventCenter.OnGameOver(isWin);
                 };
             }
             ctx.panel_GameOver = panel;
 
             panel.Show();
-            panel.Init(isWin, hurt, shoot, hitNumber, hitRate, starCount);
+            panel.Init(isWin, hurt, shoot, hitedTimes, hitRate, starCount);
         }
 
         public void Panel_GameOver_Close() {
@@ -496,6 +495,22 @@ namespace UF {
             panel.Clear();
         }
 
+        public void Panel_OneCardSelection_Lock(int id) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.LockCard(id);
+        }
+
+        public void Panel_OneCardSelection_UnLock(int id) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.UnLockCard(id);
+        }
+
         public void Panel_SetCardType(CardType type) {
             Panel_CardSelection panel = ctx.panel_CardSelection;
             if (panel == null) {
@@ -527,6 +542,32 @@ namespace UF {
             }
             panel.TearDown();
             ctx.panel_CardSelection = null;
+        }
+
+        #endregion
+
+        #region Notice
+        public bool Panel_Notice_Open() {
+            Panel_Notice panel = ctx.panel_Notice;
+
+            if (panel == null) {
+                GameObject prefab = ctx.assetsCore.Panel_GetNotice();
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                panel = go.GetComponent<Panel_Notice>();
+                panel.Ctor();
+            }
+            ctx.panel_Notice = panel;
+            panel.Show();
+            return true;
+        }
+
+        public void Panel_Notice_Close() {
+            Panel_Notice panel = ctx.panel_Notice;
+            if (panel == null) {
+                return;
+            }
+            panel.TearDown();
+            ctx.panel_Notice = null;
         }
 
         #endregion
@@ -710,8 +751,7 @@ namespace UF {
             panel.SetPlayer(typeID, sprite, description, weaponSpeed, damage, attackSpeed);
         }
 
-        public void Panel_Training_Select_AddPlayer()
-        {
+        public void Panel_Training_Select_AddPlayer() {
             Panel_Training_Select panel = ctx.panel_Training_Select;
 
             if (panel == null) { return; }
@@ -729,7 +769,7 @@ namespace UF {
 
         public void Panel_Training_Select_TakeAll(out List<int> typeIDs) {
             Panel_Training_Select panel = ctx.panel_Training_Select;
-            if (panel == null){
+            if (panel == null) {
                 typeIDs = new List<int>();
                 return;
             }
@@ -760,9 +800,8 @@ namespace UF {
 
             panel.TearDown();
         }
-        
-        public void Panel_Training_Button_Show()
-        {
+
+        public void Panel_Training_Button_Show() {
             Panel_Training_Button panel = ctx.panel_Training_Button;
 
             if (panel == null) {
@@ -783,8 +822,7 @@ namespace UF {
             panel.Show();
         }
 
-        public void Panel_Training_Button_Close()
-        {
+        public void Panel_Training_Button_Close() {
             Panel_Training_Button panel = ctx.panel_Training_Button;
 
             if (panel == null) { return; }
@@ -792,8 +830,7 @@ namespace UF {
             panel.TearDown();
         }
 
-        public void Panel_Training_Pause_Show()
-        {
+        public void Panel_Training_Pause_Show() {
             Panel_Training_Pause panel = ctx.panel_Training_Pause;
 
             if (panel == null) {
@@ -822,8 +859,7 @@ namespace UF {
             panel.Show();
         }
 
-        public void Panel_Training_Pause_Close()
-        {
+        public void Panel_Training_Pause_Close() {
             Panel_Training_Pause panel = ctx.panel_Training_Pause;
 
             if (panel == null) { return; }

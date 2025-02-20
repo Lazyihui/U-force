@@ -15,17 +15,19 @@ namespace UF {
 
         // 文字写的是Continue, 但和Pause的会有冲突，所以命名GameOver
         [SerializeField] Button Btn_GameOver;
-        public Action OnGameOverButtonClick;
+        public Action<bool> OnGameOverButtonClick;
 
         [SerializeField] GameObject star1;
         [SerializeField] GameObject star2;
         [SerializeField] GameObject star3;
-        Dictionary<int, GameObject> starDict = new Dictionary<int, GameObject>();
+        Dictionary<int, GameObject> starDict;
+
+        bool isWin;
 
         public void Ctor() {
             Btn_GameOver.onClick.AddListener(() => {
                 if (OnGameOverButtonClick != null) {
-                    OnGameOverButtonClick.Invoke();
+                    OnGameOverButtonClick.Invoke(isWin);
                 }
             });
 
@@ -38,29 +40,27 @@ namespace UF {
         }
 
         public void Init(bool isWin, int hurt, int shoot, int hitNumber, float hitRate, int starCount) {
-            Text_Hurt.text = "<b>Hurt</b>    " + hurt.ToString();
-            Text_Shoot.text = "<b>Shoot</b>    " + shoot.ToString();
-            Text_HitNumber.text = "<b>HitNumber</b>    " + hitNumber.ToString();
-            Text_HitRate.text = "<b>HitRate</b>    " + hitRate.ToString("F2") + "%";
+            Text_Hurt.text = "<b>受伤害</b>    " + hurt.ToString();
+            Text_Shoot.text = "<b>射击次数</b>    " + shoot.ToString();
+            Text_HitNumber.text = "<b>命中次数</b>    " + hitNumber.ToString();
+            Text_HitRate.text = "<b>命中率</b>    " + hitRate.ToString("F2") + "%";
 
             if (isWin) {
-                Text_Title.text = "Win";
+                Text_Title.text = "胜利";
 
-                if (starCount > 3)
-                {
-                    Debug.Log("starCount大于3");
+                if (starCount > 3) {
+                    Debug.LogWarning("starCount大于3");
                     return;
                 }
 
-                for (int i = 1; i <= starCount; i++)
-                {
+                for (int i = 1; i <= starCount; i++) {
                     GameObject star = starDict[i];
                     star.SetActive(true);
                 }
 
                 return;
             }
-            Text_Title.text = "Fail";
+            Text_Title.text = "失败";
         }
 
         public void Show() {

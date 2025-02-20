@@ -39,7 +39,7 @@ namespace UF {
         }
         #endregion
 
-        #region detection
+        #region detection检测
 
         public static void detectionMinionByPos(GameSystemContext ctx, BulletEntity bullet, Vector3 pos) {
 

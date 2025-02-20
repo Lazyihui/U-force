@@ -59,7 +59,6 @@ namespace UF {
             }
         }
 
-
         public static void Panel_OneCardSelection_Update(AppUI appUI) {
             //先清空卡片选择界面 
             appUI.Panel_OneCardSelection_Clear();
@@ -71,21 +70,34 @@ namespace UF {
                 for (int i = 0; i < cardModel.roleTMs.Count; i += 1) {
                     RoleTM roleTM = cardModel.roleTMs[i];
                     appUI.Panel_CardSelection_AddCard(roleTM.typeID, roleTM.sprite);
+
+                    // 更新右边详情页
+                    RoleTM roleTM0 = cardModel.roleTMs[0];
+                    appUI.Panel_CardDetails_Update(roleTM0.sprite, roleTM0.content, roleTM0.typeID);
                 }
             } else if (cardType == CardType.Agriculture) {
                 for (int i = 0; i < cardModel.bulletAgrTMs.Count; i += 1) {
                     BulletTM bulletTM = cardModel.bulletAgrTMs[i];
                     appUI.Panel_CardSelection_AddCard(bulletTM.typeID, bulletTM.sprite);
+
+                    BulletTM bulletTM0 = cardModel.bulletAgrTMs[0];
+                    appUI.Panel_CardDetails_Update(bulletTM0.sprite, bulletTM0.content, bulletTM0.typeID);
                 }
             } else if (cardType == CardType.Industry) {
                 for (int i = 0; i < cardModel.bulletIndTMs.Count; i += 1) {
                     BulletTM bulletTM = cardModel.bulletIndTMs[i];
                     appUI.Panel_CardSelection_AddCard(bulletTM.typeID, bulletTM.sprite);
+
+                    BulletTM bulletTM0 = cardModel.bulletIndTMs[0];
+                    appUI.Panel_CardDetails_Update(bulletTM0.sprite, bulletTM0.content, bulletTM0.typeID);
                 }
             } else if (cardType == CardType.Science) {
                 for (int i = 0; i < cardModel.bulletSciTMs.Count; i += 1) {
                     BulletTM bulletTM = cardModel.bulletSciTMs[i];
                     appUI.Panel_CardSelection_AddCard(bulletTM.typeID, bulletTM.sprite);
+
+                    BulletTM bulletTM0 = cardModel.bulletSciTMs[0];
+                    appUI.Panel_CardDetails_Update(bulletTM0.sprite, bulletTM0.content, bulletTM0.typeID);
                 }
             }
 
@@ -96,6 +108,7 @@ namespace UF {
             var cardType = appUI.Panel_GetCardType();
 
             if (cardType == CardType.Hero) {
+                appUI.Panel_OneCardSelection_UnLock(appUI.selectedInFormation.roleSelectedTypeID);
                 appUI.selectedInFormation.roleSelectedTypeID = typeID;
 
                 templateMoudle.Role_TryGet(typeID, out RoleTM roleTM);
@@ -112,6 +125,7 @@ namespace UF {
                 appUI.Panel_CardSelection_SetProp(typeID, bulletTM.sprite);
 
             } else if (cardType == CardType.Science) {
+                appUI.Panel_OneCardSelection_UnLock(appUI.selectedInFormation.scienceTypeID);
                 appUI.selectedInFormation.scienceTypeID = typeID;
 
 
@@ -170,6 +184,7 @@ namespace UF {
                 appUI.Panel_StageSelectionOneStage_Add(stageid, isPrassed, starCount);
             }
         }
+
 
         #region  Role
         public static void HUD_Progressbar_Update(AppUI ui, RoleAttributeComponent attrCom, float gameWaves) {

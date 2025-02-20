@@ -84,11 +84,11 @@ namespace UF {
             }
         }
 
-        public Action OnSelectEnterClickHandle;//选择进入
+        public Action OnSelectEnterGameClickHandle;//选择进入
 
         public void OnSelectEnterClick() {
-            if (OnSelectEnterClickHandle != null) {
-                OnSelectEnterClickHandle();
+            if (OnSelectEnterGameClickHandle != null) {
+                OnSelectEnterGameClickHandle();
             }
         }
 
