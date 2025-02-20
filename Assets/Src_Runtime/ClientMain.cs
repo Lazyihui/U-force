@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UF.System_Train;
 
 namespace UF {
 
@@ -70,7 +70,7 @@ namespace UF {
             gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, playerSaveData);
             loginSystem.Inject(appUI, inputModule);
             pauseSystem.Inject(appUI, roleRepository);
-            trainSystem.Inject(appUI, templateModule, assetsModule);
+            trainSystem.Inject(appUI, templateModule, assetsModule, roleRepository);
 
             appUI.Inject(screenCanvas, assetsModule, playerSaveData);
 
@@ -244,8 +244,10 @@ namespace UF {
                         appUI.Panel_Training_Select_Close();
                         appUI.Panel_Training_Select_AddPlayer();
 
+                        appUI.Panel_Training_Select_TakeAll(out List<int> typeIDs);
+
                         loginSystem.Exit();
-                        trainSystem.Enter();
+                        trainSystem.Enter(typeIDs);
                     }
                 };
 
@@ -372,6 +374,24 @@ namespace UF {
             trainSystem.Train_Binding();
 
             var trainEvent = trainSystem.Events;
+
+            trainEvent.OnTrainPauseClickHandle += () => {
+                appUI.Panel_Training_Pause_Show();
+                pauseSystem.Enter();
+            };
+
+            trainEvent.OnTrainContinueClickHandle += () => {
+                appUI.Panel_Training_Pause_Close();
+                pauseSystem.Exit();
+            };
+
+            trainEvent.OnTrainIllustratedClickHandle += () => {
+                Debug.Log("Train Illustrated");
+            };
+
+            trainEvent.OnTrainQuitClickHandle += () => {
+                Debug.Log("Train Quit");
+            };
         }
         #endregion
 
@@ -391,6 +411,7 @@ namespace UF {
             gameSystem.Tick(dt);
             loginSystem.Tick(dt);
             pauseSystem.Tick(dt);
+            trainSystem.Tick(dt);
 
             // 测试用的要改
             if (Input.GetKeyDown(KeyCode.F)) {

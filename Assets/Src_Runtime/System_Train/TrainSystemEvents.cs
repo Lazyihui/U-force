@@ -5,31 +5,32 @@ namespace UF
 {
     public class TrainSystemEvents
     {
-        // public Action OnPlayer1ReadyClickHandle;
-        // public void OnPlayer1ReadyClick()
-        // {
-        //     if (OnPlayer1ReadyClickHandle!= null)
-        //     {
-        //         OnPlayer1ReadyClickHandle();
-        //     }
-        // }
+        public Action OnTrainPauseClickHandle; // 暂停
+        public void OnTrainPauseClick() {
+            if (OnTrainPauseClickHandle != null) {
+                OnTrainPauseClickHandle();
+            }
+        }
 
-        // public Action OnPlayer2ReadyClickHandle;
-        // public void OnPlayer2ReadyClick()
-        // {
-        //     if (OnPlayer2ReadyClickHandle!= null)
-        //     {
-        //         OnPlayer2ReadyClickHandle();
-        //     }
-        // }
+        public Action OnTrainContinueClickHandle; // 继续
+        public void OnTrainContinueClick() {
+            if (OnTrainContinueClickHandle != null) {
+                OnTrainContinueClickHandle();
+            }
+        }
 
-        // public Action<int> OnSelectionTrainCardClickHandle;
-        // public void OnSelectionTrainCardClick(int typeID)
-        // {
-        //     if (OnSelectionTrainCardClickHandle!= null)
-        //     {
-        //         OnSelectionTrainCardClickHandle(typeID);
-        //     }
-        // }
+        public Action OnTrainIllustratedClickHandle; // 图鉴
+        public void OnTrainIllustratedClick() {
+            if (OnTrainIllustratedClickHandle != null) {
+                OnTrainIllustratedClickHandle();
+            }
+        }
+
+        public Action OnTrainQuitClickHandle; // 退出
+        public void OnTrainQuitClick() {
+            if (OnTrainQuitClickHandle != null) {
+                OnTrainQuitClickHandle();
+            }
+        }
     }
 }

@@ -98,5 +98,10 @@ namespace UF
         {
             cardSelected.AddPlayer();
         }
+
+        public void TakeAll(out List<int> typeIDs)
+        {
+            cardSelected.TakeAll(out typeIDs);
+        }
     }
 }

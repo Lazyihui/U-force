@@ -1,7 +1,8 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace UF
+namespace UF.System_Train
 {
     public class TrainSystem : MonoBehaviour
     {
@@ -18,16 +19,17 @@ namespace UF
             events = new TrainSystemEvents();
         }
 
-        public void Inject(AppUI appUI, TemplateMoudle templateMoudle, AssetsModule assetsModule)
+        public void Inject(AppUI appUI, TemplateMoudle templateMoudle, AssetsModule assetsModule, RoleRepository roleRepository)
         {
-            ctx.Inject(appUI, templateMoudle, assetsModule);
+            ctx.Inject(appUI, templateMoudle, assetsModule, roleRepository);
         }
 
-        public void Enter()
+        public void Enter(List<int> typeIDs)
         {
             ctx.isRunning = true;
 
             // UI
+            ctx.appUI.Panel_Training_Button_Show();
 
             // Game, stageID暂存为51
             int stageID = 51;
@@ -42,6 +44,16 @@ namespace UF
             MapEntity map = MapDomain.Spawn(ctx.assetsModule, ctx.idService, tm.mapPrefab);
 
             // Role
+            if (typeIDs.Count < 2)
+            {
+                Debug.LogError("没有获取到两个role");
+                return;
+            }
+
+            Vector2 pos1 = new Vector2(-15, 0);
+            Vector2 pos2 = new Vector2(15, 0);
+            RoleDomain.SpawnByPos(ctx, pos1, typeIDs[0]);
+            RoleDomain.SpawnByPos(ctx, pos2, typeIDs[1]);
         }
 
         public void Exit()
@@ -90,7 +102,14 @@ namespace UF
 
         void LogicTick(float dt)
         {
-
+            // 所有角色逻辑
+            ctx.roleRepository.TakeAll(out RoleEntity[] roles);
+            //不知道为什么, 用length一直是3, 会有bug
+            for (int i = 0; i < 2; i++)
+            {
+                RoleEntity role = roles[i];
+                RoleDomain.Loco_Execute(role, dt);
+            }
         }
 
         void LastTick(float dt)
@@ -106,18 +125,21 @@ namespace UF
 
             var events = this.events;
 
-            // 移到 LoginSystem 里了
-            // eventCenter.OnPlayer1ReadyClickHandle += () => {
-            //     events.OnPlayer1ReadyClick();
-            // };
+            eventCenter.OnTrainPauseClickHandle += () => {
+                events.OnTrainPauseClick();
+            };
 
-            // eventCenter.OnPlayer2ReadyClickHandle += () => {
-            //     events.OnPlayer2ReadyClick();
-            // };
+            eventCenter.OnTrainContinueClickHandle += () => {
+                events.OnTrainContinueClick();
+            };
 
-            // eventCenter.OnSelectionTrainCardClickHandle += (int typeID) => {
-            //     events.OnSelectionTrainCardClick(typeID);
-            // };
+            eventCenter.OnTrainIllustratedClickHandle += () => {
+                events.OnTrainIllustratedClick();
+            };
+
+            eventCenter.OnTrainQuitClickHandle += () => {
+                events.OnTrainQuitClick();
+            };
         }
     }
 }

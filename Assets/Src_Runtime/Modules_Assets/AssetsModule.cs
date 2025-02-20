@@ -144,6 +144,16 @@ namespace UF {
             return panel;
         }
 
+        public GameObject Panel_GetTraining_Button() {
+            panels.TryGetValue("Panel_Training_Button", out GameObject panel);
+            return panel;
+        }
+
+        public GameObject Panel_GetTraining_Pause() {
+            panels.TryGetValue("Panel_Training_Pause", out GameObject panel);
+            return panel;
+        }
+
         // HUD
         public GameObject HUD_GetProgressbar() {
             panels.TryGetValue("HUD_Progressbar", out GameObject hud);

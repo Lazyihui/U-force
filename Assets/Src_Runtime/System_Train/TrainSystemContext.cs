@@ -14,17 +14,21 @@ namespace UF
         public TemplateMoudle templateMoudle;
         public AssetsModule assetsModule;
 
+        public RoleRepository roleRepository;
+
         public TrainSystemContext()
         {
             isRunning = false;
             idService = new IDService();
         }
 
-        public void Inject(AppUI appUI, TemplateMoudle templateMoudle, AssetsModule assetsModule)
+        public void Inject(AppUI appUI, TemplateMoudle templateMoudle, AssetsModule assetsModule, RoleRepository roleRepository)
         {
             this.appUI = appUI;
             this.templateMoudle = templateMoudle;
             this.assetsModule = assetsModule;
+
+            this.roleRepository = roleRepository;
         }
     }
 }

@@ -727,6 +727,15 @@ namespace UF {
             panel.SetButton();
         }
 
+        public void Panel_Training_Select_TakeAll(out List<int> typeIDs) {
+            Panel_Training_Select panel = ctx.panel_Training_Select;
+            if (panel == null){
+                typeIDs = new List<int>();
+                return;
+            }
+            panel.TakeAll(out typeIDs);
+        }
+
         public void Panel_Training_Tip_Open() {
             Panel_Training_Tip panel = ctx.panel_Training_Tip;
 
@@ -746,6 +755,76 @@ namespace UF {
 
         public void Panel_Training_Tip_Close() {
             Panel_Training_Tip panel = ctx.panel_Training_Tip;
+
+            if (panel == null) { return; }
+
+            panel.TearDown();
+        }
+        
+        public void Panel_Training_Button_Show()
+        {
+            Panel_Training_Button panel = ctx.panel_Training_Button;
+
+            if (panel == null) {
+                GameObject prefab = ctx.assetsCore.Panel_GetTraining_Button();
+
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                panel = go.GetComponent<Panel_Training_Button>();
+
+                panel.Ctor();
+
+                panel.OnPauseClickHandle += () => {
+                    eventCenter.OnTrainPauseClick();
+                };
+            }
+
+            ctx.panel_Training_Button = panel;
+
+            panel.Show();
+        }
+
+        public void Panel_Training_Button_Close()
+        {
+            Panel_Training_Button panel = ctx.panel_Training_Button;
+
+            if (panel == null) { return; }
+
+            panel.TearDown();
+        }
+
+        public void Panel_Training_Pause_Show()
+        {
+            Panel_Training_Pause panel = ctx.panel_Training_Pause;
+
+            if (panel == null) {
+                GameObject prefab = ctx.assetsCore.Panel_GetTraining_Pause();
+
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                panel = go.GetComponent<Panel_Training_Pause>();
+
+                panel.Ctor();
+
+                panel.OnContinueClickHandle += () => {
+                    eventCenter.OnTrainContinueClick();
+                };
+
+                panel.OnIllustratedClickHandle += () => {
+                    eventCenter.OnTrainIllustratedClick();
+                };
+
+                panel.OnQuitClickHandle += () => {
+                    eventCenter.OnTrainQuitClick();
+                };
+            }
+
+            ctx.panel_Training_Pause = panel;
+
+            panel.Show();
+        }
+
+        public void Panel_Training_Pause_Close()
+        {
+            Panel_Training_Pause panel = ctx.panel_Training_Pause;
 
             if (panel == null) { return; }
 
