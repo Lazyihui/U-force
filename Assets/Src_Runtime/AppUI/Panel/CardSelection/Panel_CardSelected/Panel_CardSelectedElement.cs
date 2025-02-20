@@ -21,7 +21,6 @@ namespace UF {
             });
         }
 
-
         public int GetID() {
             return typeID;
         }

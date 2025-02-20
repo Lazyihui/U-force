@@ -495,6 +495,22 @@ namespace UF {
             panel.Clear();
         }
 
+        public void Panel_OneCardSelection_Lock(int id) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.LockCard(id);
+        }
+
+        public void Panel_OneCardSelection_UnLock(int id) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.UnLockCard(id);
+        }
+
         public void Panel_SetCardType(CardType type) {
             Panel_CardSelection panel = ctx.panel_CardSelection;
             if (panel == null) {

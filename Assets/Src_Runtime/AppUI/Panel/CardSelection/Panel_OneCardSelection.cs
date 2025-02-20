@@ -29,5 +29,15 @@ namespace UF {
             img_bg.sprite = sprite;
         }
 
+        public void OneCard_Lock() {
+            btn_Card.interactable = false;
+            img_bg.color = new Color(119f, 119f, 119f, 255);
+        }
+
+        public void OneCard_UnLock() {
+            btn_Card.interactable = true;
+            img_bg.color = new Color(255f, 255f, 255f, 255);
+        }
+
     }
 }
