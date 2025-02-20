@@ -227,22 +227,23 @@ namespace UF {
 
             // Train
             {
-                bool isPlayer1Ready = false;
                 bool hasPlayer = false;
 
                 loginEvent.OnPlayer1ReadyClickHandle += () => {
                     if (hasPlayer) {
                         Debug.Log("Player1Ready");
                         appUI.Panel_Training_Select_SetButton();
+                        appUI.Panel_Training_Select_AddPlayer();
 
-                        isPlayer1Ready = true;
                         hasPlayer = false;
                     }
                 };
 
                 loginEvent.OnPlayer2ReadyClickHandle += () => {
-                    if (hasPlayer && isPlayer1Ready) {
+                    if (hasPlayer) {
                         appUI.Panel_Training_Select_Close();
+                        appUI.Panel_Training_Select_AddPlayer();
+
                         loginSystem.Exit();
                         trainSystem.Enter();
                     }
@@ -258,7 +259,7 @@ namespace UF {
                     templateModule.Role_TryGet(typeID, out RoleTM roleTM);
 
                     // TODO: 武器速度 伤害 攻击速度
-                    appUI.Panel_Training_Select_SetPlayer(isPlayer1Ready, roleTM.feature, "0", "0", "0", roleTM.sprite);
+                    appUI.Panel_Training_Select_SetPlayer(typeID, roleTM.sprite, roleTM.feature, "0", "0", "0");
 
                     hasPlayer = true;
                 };

@@ -12,18 +12,8 @@ namespace UF
         List<Panel_OneCardTrain> cards;
         [SerializeField] Transform cardGroup;
 
-        [SerializeField] Image img_Player1;
-        [SerializeField] Image img_Player2;
-
-        [SerializeField] TextMeshProUGUI text_Description_Player1; // 介绍
-        [SerializeField] TextMeshProUGUI text_WeaponSpeed_Player1; // 武器速度
-        [SerializeField] TextMeshProUGUI text_Damage_Player1; // 伤害
-        [SerializeField] TextMeshProUGUI text_AttackSpeed_Player1; // 攻击速度
-
-        [SerializeField] TextMeshProUGUI text_Description_Player2;
-        [SerializeField] TextMeshProUGUI text_WeaponSpeed_Player2;
-        [SerializeField] TextMeshProUGUI text_Damage_Player2;
-        [SerializeField] TextMeshProUGUI text_AttackSpeed_Player2;
+        [SerializeField] Panel_Training_Selected cardSelectedPrefab;
+        Panel_Training_Selected cardSelected;
 
         [SerializeField] Button btn_Ready_Player1;
         public Action OnPlayer1ReadyClickHandle;
@@ -51,7 +41,7 @@ namespace UF
             colorGray = btn_Ready_Player1.colors;
             colorWhite.disabledColor = new Color(1f, 1f, 1f);
             colorGray.disabledColor = new Color(0.5f, 0.5f, 0.5f);
-            
+
             btn_Ready_Player2.colors = colorGray;
             btn_Ready_Player2.interactable = false;
         }
@@ -64,24 +54,6 @@ namespace UF
         public void TearDown()
         {
             Destroy(gameObject);
-        }
-
-        public void SetPlayer1(string description, string weaponSpeed, string damage, string attackSpeed, Sprite sprite)
-        {
-            text_Description_Player1.text = "Description\n" + description;
-            text_WeaponSpeed_Player1.text = "WeaponSpeed " + weaponSpeed;
-            text_Damage_Player1.text = "Damage " + damage;
-            text_AttackSpeed_Player1.text = "AttackSpeed " + attackSpeed;
-            img_Player1.sprite = sprite;
-        }
-
-        public void SetPlayer2(string description, string weaponSpeed, string damage, string attackSpeed, Sprite sprite)
-        {
-            text_Description_Player2.text = "Description\n" + description;
-            text_WeaponSpeed_Player2.text = "WeaponSpeed " + weaponSpeed;
-            text_Damage_Player2.text = "Damage " + damage;
-            text_AttackSpeed_Player2.text = "AttackSpeed " + attackSpeed;
-            img_Player2.sprite = sprite;
         }
 
         public void Add(int id, Sprite sprite, string name)
@@ -106,6 +78,25 @@ namespace UF
 
             btn_Ready_Player2.interactable = true;
             btn_Ready_Player2.colors = colorWhite;
+        }
+
+        // Selected
+        public void Init()
+        {
+            Panel_Training_Selected selectedCard = Instantiate(cardSelectedPrefab, transform);
+            selectedCard.Ctor();
+            selectedCard.Init();
+            cardSelected = selectedCard;
+        }
+
+        public void SetPlayer(int typeID, Sprite sprite, string description, string weaponSpeed, string damage, string attackSpeed)
+        {
+            cardSelected.SetPlayer(typeID, sprite, description, weaponSpeed, damage, attackSpeed);
+        }
+
+        public void AddPlayer()
+        {
+            cardSelected.AddPlayer();
         }
     }
 }

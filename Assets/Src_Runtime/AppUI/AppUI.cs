@@ -683,6 +683,7 @@ namespace UF {
             }
             ctx.panel_Training_Select = panel;
             panel.Show();
+            panel.Init();
         }
 
         public void Panel_Training_Select_Add(int id, Sprite sprite, string name) {
@@ -701,16 +702,21 @@ namespace UF {
             panel.TearDown();
         }
 
-        public void Panel_Training_Select_SetPlayer(bool isPlayer1Ready, string description, string weaponSpeed, string damage, string attackSpeed, Sprite sprite) {
+        public void Panel_Training_Select_SetPlayer(int typeID, Sprite sprite, string description, string weaponSpeed, string damage, string attackSpeed) {
             Panel_Training_Select panel = ctx.panel_Training_Select;
 
             if (panel == null) { return; }
 
-            if (!isPlayer1Ready) {
-                panel.SetPlayer1(description, weaponSpeed, damage, attackSpeed, sprite);
-            } else {
-                panel.SetPlayer2(description, weaponSpeed, damage, attackSpeed, sprite);
-            }
+            panel.SetPlayer(typeID, sprite, description, weaponSpeed, damage, attackSpeed);
+        }
+
+        public void Panel_Training_Select_AddPlayer()
+        {
+            Panel_Training_Select panel = ctx.panel_Training_Select;
+
+            if (panel == null) { return; }
+
+            panel.AddPlayer();
         }
 
         public void Panel_Training_Select_SetButton() {
