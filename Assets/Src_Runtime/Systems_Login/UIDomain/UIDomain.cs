@@ -171,6 +171,7 @@ namespace UF {
             }
         }
 
+
         #region  Role
         public static void HUD_Progressbar_Update(AppUI ui, RoleAttributeComponent attrCom, float gameWaves) {
             int hp = attrCom.GetHp();

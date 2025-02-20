@@ -531,6 +531,32 @@ namespace UF {
 
         #endregion
 
+        #region Notice
+        public bool Panel_Notice_Open() {
+            Panel_Notice panel = ctx.panel_Notice;
+
+            if (panel == null) {
+                GameObject prefab = ctx.assetsCore.Panel_GetNotice();
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                panel = go.GetComponent<Panel_Notice>();
+                panel.Ctor();
+            }
+            ctx.panel_Notice = panel;
+            panel.Show();
+            return true;
+        }
+
+        public void Panel_Notice_Close() {
+            Panel_Notice panel = ctx.panel_Notice;
+            if (panel == null) {
+                return;
+            }
+            panel.TearDown();
+            ctx.panel_Notice = null;
+        }
+
+        #endregion
+
         #region BackSelection
         public void Panel_BackSelection_Open() {
             Panel_BackSelection panel = ctx.panel_BackSelection;

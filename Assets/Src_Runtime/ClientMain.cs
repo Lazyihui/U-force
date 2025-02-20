@@ -31,6 +31,10 @@ namespace UF {
         // repos
         public RoleRepository roleRepository;
 
+        // TODO:不能写在这里 没想好好放哪里先放这里
+        bool isNoticeOpen = false;
+        float noticeTimer = 1;
+
 
         void Start() {
 
@@ -162,14 +166,18 @@ namespace UF {
                 UIDomain.Panel_OneCardSelection_Update(appUI);
             };
 
-            loginEvent.OnSelectEnterClickHandle += () => {
-
+            loginEvent.OnSelectEnterGameClickHandle += () => {
+                Debug.Log("开始游戏");
                 // 放到UIDomain里
-                Debug.Log("SelectEnter");
                 appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
                 int stageID = appUI.selectedInFormation.stageID;
                 int roleTypeID = appUI.selectedInFormation.roleSelectedTypeID;
                 int sciType = appUI.selectedInFormation.scienceTypeID;
+                if (typeIDs.Count < 4 || stageID == -1 || roleTypeID == -1 || sciType == -1) {
+                    Debug.Log("请先选择卡片");
+                    isNoticeOpen = appUI.Panel_Notice_Open();
+                    return;
+                }
                 // UI
                 appUI.Panel_CardSelection_Close();
                 appUI.Panel_WatchTower_Close();
@@ -413,9 +421,13 @@ namespace UF {
             pauseSystem.Tick(dt);
             trainSystem.Tick(dt);
 
-            // 测试用的要改
-            if (Input.GetKeyDown(KeyCode.F)) {
-                appUI.playerSaveData.SetUnLockChapterID(5);
+            if (isNoticeOpen) {
+                noticeTimer -= dt;
+                if (noticeTimer <= 0) {
+                    appUI.Panel_Notice_Close();
+                    noticeTimer = 1;
+                    isNoticeOpen = false;
+                }
             }
         }
 

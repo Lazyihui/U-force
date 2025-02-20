@@ -12,10 +12,10 @@ namespace UF {
         public int scienceTypeID;
 
         public SelectedInFormation() {
-            stageID = 0;
-            chapterID = 0;
-            roleSelectedTypeID = 0;
-            scienceTypeID = 0;
+            stageID = -1;
+            chapterID = -1;
+            roleSelectedTypeID = -1;
+            scienceTypeID = -1;
         }
     }
 }
