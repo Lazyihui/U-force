@@ -353,7 +353,6 @@ namespace UF {
                 for (int i = 0; i < roleEnemySoArr.Count; i += 1) {
                     var roleSo = roleEnemySoArr[i];
                     model.roleEnemyTMs.Add(roleSo.tm);
-                    Debug.Log("roleSo.tm.typeID" + roleEnemySoArr.Count);
                 }
             }
 

@@ -153,8 +153,10 @@ namespace UF {
             };
 
             loginEvent.OnSelectAgrClickHandle += () => {
+                Debug.Log("选择农业");
                 appUI.Panel_SetCardType(CardType.Agriculture);
                 UIDomain.Panel_OneCardSelection_Update(appUI);
+
             };
 
             loginEvent.OnSelectIndClickHandle += () => {
@@ -195,10 +197,8 @@ namespace UF {
             };
 
             loginEvent.OnSelectionCardClickHandle += (typeID) => {
-                Debug.Log("SelectionCardClick " + typeID);
-
+                Debug.Log("x选择的卡片的ID " + typeID);
                 UIDomain.Update_CardSelectionDetails(typeID, templateModule, appUI);
-
             };
 
             loginEvent.OnConfirmClickHandle += (typeID) => {
