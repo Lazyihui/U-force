@@ -228,9 +228,7 @@ namespace UF {
                 Exit();
                 var playerData = ctx.gameEntity.playerSaveData;
                 int starCount = playerData.GetStarCount();
-                Debug.Log("得到的星星数量" + starCount);
                 ctx.appUI.Panel_GameOver_Open(true, playerData.GetRoleGetHurt(), playerData.shootAllTimes, playerData.hitTimes, playerData.GetRoleHitRate(), playerData.GetStarCount());
-                Debug.Log("GameWin");
                 game.state = GameState.GameOver;
 
             }
@@ -272,8 +270,8 @@ namespace UF {
                 events.OnWeap4();
             };
 
-            eventCenter.OnGameOverHandle += () => {
-                events.OnGameOver();
+            eventCenter.OnGameOverHandle += (bool isWin) => {
+                events.OnGameOver(isWin);
             };
         }
     }

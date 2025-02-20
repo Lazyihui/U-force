@@ -448,6 +448,7 @@ namespace UF {
 
         static RoleMod RoleMod_Create(RoleTM tm, Transform bodyRoot) {
             var mod = GameObject.Instantiate(tm.modPrefab, bodyRoot).GetComponent<RoleMod>();
+            mod.transform.position = new Vector3(0, 0, 0);
             mod.Ctor();
             return mod;
         }

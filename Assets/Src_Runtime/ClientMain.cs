@@ -315,8 +315,8 @@ namespace UF {
                 inputModule.Set_InputCastKey(InputKeyFlag.Weap4);
             };
 
-            gameEvent.OnGameOverHandle += () => {
-                Debug.Log("GameOver Continue");
+            gameEvent.OnGameOverHandle += (isWin) => {
+                Debug.Log("GameOver Continue" + isWin);
             };
         }
         #endregion

@@ -114,10 +114,10 @@ namespace UF {
         #endregion
 
         #region GameOver
-        public Action OnGameOverHandle;
-        public void OnGameOver() {
+        public Action<bool> OnGameOverHandle;
+        public void OnGameOver(bool isWin) {
             if (OnGameOverHandle != null) {
-                OnGameOverHandle();
+                OnGameOverHandle(isWin);
             }
         }
         #endregion
