@@ -23,6 +23,15 @@ namespace UF {
             return entity;
         }
 
+        public static void Clear(GameSystemContext ctx) {
+            int len = ctx.towerRepository.TakeAll(out CaveEntity[] towers);
+            for (int i = 0; i < len; i += 1) {
+                CaveEntity tower = towers[i];
+                tower.TearDown();
+            }
+            ctx.towerRepository.Clear();
+        }
+
         public static void TrySpawnMinion(GameSystemContext ctx, float dt) {
 
 
@@ -72,6 +81,6 @@ namespace UF {
 
         }
 
-      
+
     }
 }

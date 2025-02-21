@@ -9,5 +9,11 @@ namespace UF {
             return map;
         }
 
+        public static void UnSpawn(MapEntity map) {
+            map.TearDown();
+        }
+        public static void Clear(MapEntity map) {
+            UnSpawn(map);
+        }
     }
 }

@@ -325,19 +325,37 @@ namespace UF {
                 inputModule.Set_InputCastKey(InputKeyFlag.Weap4);
             };
 
-            gameEvent.OnGameContinueOverHandle += (isWin) => {
+            gameEvent.OnGameContinueOverHandle += (bool isWin) => {
                 Debug.Log("游戏结束 继续游戏" + isWin);
 
                 if (!isWin) {
+                    gameSystem.Exit();
+                    // 1.清空游戏内容
+                    gameSystem.ClearGame();
+                    // 2.关闭所有Ui
+                    appUI.Panel_GameOver_Close();
+                    appUI.Panel_GamePause_Close();
+                    appUI.Panel_GameDefend_Button_Close();
+                    appUI.HUD_Progressbar_Close();
+
                     // TODO: 传入参数
                     int stageID = appUI.playerSaveData.GetStageCurID();
                     int chapterID = appUI.playerSaveData.GetChapterCurID();
+                    Debug.Log("重新开始此关");
                     UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule, stageID, stageID);
                 }
 
                 if (isWin) {
+                    gameSystem.Exit();
+                    // 1.清空游戏内容
+                    gameSystem.ClearGame();
+                    // 2.关闭所有Ui
+                    appUI.Panel_GameOver_Close();
+                    appUI.Panel_GamePause_Close();
+                    appUI.Panel_GameDefend_Button_Close();
+                    appUI.HUD_Progressbar_Close();
+                    // 3.打开选择关卡界面
                     UIDomain.Panel_StageSelectionEnter(appUI);
-                    // TODO: 要写关卡解锁
 
                 }
             };

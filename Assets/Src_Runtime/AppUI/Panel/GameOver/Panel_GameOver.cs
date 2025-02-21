@@ -40,6 +40,7 @@ namespace UF {
         }
 
         public void Init(bool isWin, int hurt, int shoot, int hitNumber, float hitRate, int starCount) {
+            this.isWin = isWin;
             Text_Hurt.text = "<b>受伤害</b>    " + hurt.ToString();
             Text_Shoot.text = "<b>射击次数</b>    " + shoot.ToString();
             Text_HitNumber.text = "<b>命中次数</b>    " + hitNumber.ToString();

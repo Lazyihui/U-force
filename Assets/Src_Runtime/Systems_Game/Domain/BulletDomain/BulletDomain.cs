@@ -23,6 +23,15 @@ namespace UF {
             bullet.TearDown();
         }
 
+        public static void Clear(GameSystemContext ctx) {
+            int len = ctx.bulletRepository.TakeAll(out BulletEntity[] bullets);
+            for (int i = 0; i < len; i += 1) {
+                BulletEntity bullet = bullets[i];
+                bullet.TearDown();
+            }
+            ctx.bulletRepository.Clear();
+        }
+
         #endregion
 
         #region FSM

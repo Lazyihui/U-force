@@ -146,6 +146,7 @@ namespace UF {
         }
 
         public static void Panel_StageSelectionEnter(AppUI appUI) {
+            Debug.Log("Panel_StageSelectionEnter+选择关卡界面");
 
             int curChapterID = appUI.playerSaveData.GetChapterCurID();
             int unLockChapterID = appUI.playerSaveData.GetUnLockChapterID();

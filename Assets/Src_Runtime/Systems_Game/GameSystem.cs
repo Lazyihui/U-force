@@ -30,6 +30,16 @@ namespace UF {
             ctx.isRunning = true;
         }
 
+        // 清除游戏信息
+        public void ClearGame() {
+            BulletDomain.Clear(ctx);
+            RoleDomain.Clear(ctx);
+            CaveDomain.Clear(ctx);
+            MapDomain.Clear(ctx.gameEntity.playerSaveData.mapEntity);
+            StuffDoamin.Clear(ctx);
+            ctx.gameEntity.Clear();
+        }
+
         public void Enter(int stageID, int selectedRoleTypeID, int[] skillorTypeIDArray, int sciType) {
 
             ctx.isRunning = true;
@@ -53,6 +63,7 @@ namespace UF {
             // Map
             MapEntity map = MapDomain.Spawn(ctx.assetsModule, ctx.idService, tm.mapPrefab);
             ctx.gameEntity.playerSaveData.SetStageCurID(stageID);
+            ctx.gameEntity.playerSaveData.mapEntity = map;
 
             // Role
             RoleEntity role = null;
@@ -204,6 +215,7 @@ namespace UF {
         void LastTick(float dt) {
 
         }
+
 
         #region Role
         void StopRole_AllMove() {

@@ -5,8 +5,6 @@ namespace UF {
 
         None,
 
-        Login,
-
         Game,
         GamePause,
 

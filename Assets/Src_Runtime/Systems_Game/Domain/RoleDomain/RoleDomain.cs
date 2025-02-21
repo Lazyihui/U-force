@@ -37,6 +37,15 @@ namespace UF {
             role.TearDown();
         }
 
+        public static void Clear(GameSystemContext ctx) {
+            int len = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
+            for (int i = 0; i < len; i += 1) {
+                RoleEntity role = roles[i];
+                role.TearDown();
+            }
+            ctx.roleRepository.Clear();
+        }
+
         #endregion
 
         #region Act 行为

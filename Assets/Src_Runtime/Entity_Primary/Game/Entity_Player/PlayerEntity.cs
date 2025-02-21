@@ -14,6 +14,7 @@ namespace UF {
 
         HashSet<int> stage_reached;//到达的关卡
         public int stageCurID;//当前关卡
+        public MapEntity mapEntity;
         public int unLockStageCount;//解锁的关卡 
         public int chapterCurID;//当前章节
         public int unLockChapterID;//解锁的章节

@@ -14,6 +14,10 @@ namespace UF {
         public void Ctor() {
         }
 
+        public void TearDown() {
+            Destroy(gameObject);
+        }
+        
         public void TF_SetPos(Vector2 pos) {
             transform.position = pos;
         }

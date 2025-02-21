@@ -12,8 +12,6 @@ namespace UF {
         public GameState state;
         public int stageCurID;
         public IDSignature OwnerIDsig;
-        public IDSignature CurrentMapIDsig;
-
         public PlayerEntity playerSaveData;
 
 
@@ -56,6 +54,14 @@ namespace UF {
             wavesProgress = 0;
         }
 
+        public void Clear() {
+            isOwnerDying = false;
+            isRunning = false;
+            restFixTime = 0;
+            state = GameState.None;
+            stageCurID = 0;
+        }
+
 
         public void Inject(PlayerEntity playerSaveData) {
             this.playerSaveData = playerSaveData;
@@ -68,5 +74,6 @@ namespace UF {
         public void Stop() {
             isRunning = false;
         }
+
     }
 }

@@ -8,7 +8,6 @@ namespace UF {
         public bool isRunning;
 
         public GameEntity gameEntity;
-        public CardModel cardModel;
 
         // ---  Common  ---
         public IDService idService;
@@ -54,7 +53,6 @@ namespace UF {
             roleRepository.TryGet(gameEntity.OwnerIDsig, out RoleEntity role);
             return role;
         }
-
 
     }
 
