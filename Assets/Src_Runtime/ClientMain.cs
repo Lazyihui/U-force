@@ -178,7 +178,7 @@ namespace UF {
                 int sciType = appUI.selectedInFormation.scienceTypeID;
                 if (typeIDs.Count < 4 || stageID == -1 || roleTypeID == -1 || sciType == -1) {
                     Debug.Log("请先选择卡片");
-                    isNoticeOpen = appUI.Panel_Notice_Open();
+                    isNoticeOpen = appUI.Panel_Notice_Open("请选择完卡片才可以进入游戏");
                     return;
                 }
                 // UI
@@ -202,9 +202,10 @@ namespace UF {
             };
 
             loginEvent.OnConfirmClickHandle += (typeID) => {
-                Debug.Log("确认选择的卡片");
+                Debug.Log("确认选择的卡片"+ typeID);
                 UIDomain.Panel_SelectedCardAddToSlot(appUI, templateModule, typeID);
                 appUI.Panel_OneCardSelection_Lock(typeID);
+                appUI.Panel_CardDetailsBtn_Lock(typeID);
             };
 
             loginEvent.OnCardSelectedClickHandle += (typeID) => {

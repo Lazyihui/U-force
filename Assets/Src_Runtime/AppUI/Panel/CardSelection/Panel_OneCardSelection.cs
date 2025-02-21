@@ -10,22 +10,22 @@ namespace UF {
         [SerializeField] Image img_bg;
         [SerializeField] Button btn_Card;
 
-        int id;
+        int typeID;
         public Action<int> OnCardClickHandle;
 
         public int GetID() {
-            return id;
+            return typeID;
         }
         public void Ctor() {
             btn_Card.onClick.AddListener(() => {
                 if (OnCardClickHandle != null) {
-                    OnCardClickHandle.Invoke(id);
+                    OnCardClickHandle.Invoke(typeID);
                 }
             });
         }
 
         public void Init(int id, Sprite sprite) {
-            this.id = id;
+            this.typeID = id;
             img_bg.sprite = sprite;
         }
 

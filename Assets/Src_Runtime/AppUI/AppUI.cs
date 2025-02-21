@@ -535,6 +535,22 @@ namespace UF {
             panel.UpdateCardDetail(sprite, content, typeID);
         }
 
+        public void Panel_CardDetailsBtn_Lock(int typeID) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.CardDetailsBtn_Lock(typeID);
+        }
+
+        public void Panel_CardDetailsBtn_UnLock(int typeID) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.CardDetailsBtn_UnLock(typeID);
+        }
+
         public void Panel_CardSelection_Close() {
             Panel_CardSelection panel = ctx.panel_CardSelection;
             if (panel == null) {
@@ -547,7 +563,7 @@ namespace UF {
         #endregion
 
         #region Notice
-        public bool Panel_Notice_Open() {
+        public bool Panel_Notice_Open(string content) {
             Panel_Notice panel = ctx.panel_Notice;
 
             if (panel == null) {
@@ -556,6 +572,7 @@ namespace UF {
                 panel = go.GetComponent<Panel_Notice>();
                 panel.Ctor();
             }
+            panel.Inti(content);
             ctx.panel_Notice = panel;
             panel.Show();
             return true;

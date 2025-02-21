@@ -17,7 +17,9 @@ namespace UF.UIApplication {
 
         // CardDetails  
         [SerializeField] Panel_CardSelectionDetails cardDetailsPrefab;
+        
         Panel_CardSelectionDetails cardDetails;
+
         public Action<int> OnConfirmClickHandle; //确认选择
 
         // SelectedCard 选择的卡片
@@ -175,6 +177,16 @@ namespace UF.UIApplication {
                 cardDetails.Ctor();
             }
             cardDetails.Set_Detail(sprite, content, typeID);
+        }
+
+        // 锁定卡片确认键
+        public void CardDetailsBtn_Lock(int typeID) {
+            cardDetails.CardDetailsBtn_Lock();
+        }
+
+        // 解锁卡片确认键
+        public void CardDetailsBtn_UnLock(int typeID) {
+            cardDetails.CardDetailsBtn_UnLock();
         }
 
 

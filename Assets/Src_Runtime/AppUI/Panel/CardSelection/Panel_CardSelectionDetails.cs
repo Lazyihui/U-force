@@ -26,5 +26,13 @@ namespace UF {
             this.typeID = typeID;
         }
 
+        public void CardDetailsBtn_Lock() {
+            btn_confirm.interactable = false;
+        }
+
+        public void CardDetailsBtn_UnLock() {
+            btn_confirm.interactable = true;
+        }
+        
     }
 }
