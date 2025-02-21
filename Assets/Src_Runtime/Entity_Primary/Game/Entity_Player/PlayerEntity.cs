@@ -45,7 +45,12 @@ namespace UF {
                 starCount++;
             }
 
+            // 保存星级
+            Set_stage_PassedStar(stageCurID, starCount);
             return starCount;
+        }
+        public void Set_stage_PassedStar(int stageID, int star) {
+            stage_PassedStar[stageID] = star;
         }
 
         public PlayerEntity() {
@@ -70,8 +75,6 @@ namespace UF {
             stage_reached.Clear();
         }
 
-
-
         public void SetStagePassed(int stageID) {
             stage_Passed.Add(stageID);
         }
@@ -86,15 +89,15 @@ namespace UF {
 
         public void SetStageCurID(int stageID) {
             stageCurID = stageID;
-        }
+        }//设置当前关卡
 
         public void SetChapterCurID(int chapterID) {
             chapterCurID = chapterID;
-        }
+        }//设置当前章节
 
         public void SetUnLockChapterID(int chapterID) {
             unLockChapterID = chapterID;
-        }
+        }//设置解锁的章节
 
         public bool IsStagePassed(int stageID) {
             return stage_Passed.Contains(stageID);
@@ -126,6 +129,8 @@ namespace UF {
             }
             return 0;
         }
+
+
 
     }
 }

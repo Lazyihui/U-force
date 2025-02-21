@@ -21,13 +21,13 @@ MonoBehaviour:
     bulletAgrSoArray:
     - {fileID: 11400000, guid: ec25f1894dd14f14cbd7b712e1774852, type: 2}
     - {fileID: 11400000, guid: f8fa8df0f443f694aa9bda115442c447, type: 2}
+    - {fileID: 11400000, guid: b442cd8e7b4604a4b9cad18072b7ce16, type: 2}
     bulletIndSoArray:
-    - {fileID: 11400000, guid: 669613ee5e0852b4c8d81f6ff150c760, type: 2}
-    - {fileID: 11400000, guid: 1f9c32337f9e4db4380f705d440dc9ed, type: 2}
+    - {fileID: 11400000, guid: d22da82422c490f46afa7d334a679ea8, type: 2}
+    - {fileID: 11400000, guid: ec4b06dd7e7c3ba4583ddba504eab72f, type: 2}
     bulletSciSoArray:
-    - {fileID: 11400000, guid: 669613ee5e0852b4c8d81f6ff150c760, type: 2}
-    - {fileID: 11400000, guid: f8fa8df0f443f694aa9bda115442c447, type: 2}
     - {fileID: 11400000, guid: 1f9c32337f9e4db4380f705d440dc9ed, type: 2}
+    - {fileID: 11400000, guid: 42f06ac77046af748acd2911bdb26b1d, type: 2}
     roleEnemySoArray:
     - {fileID: 11400000, guid: 772c31f3954c55f48b735dc0c0226a7e, type: 2}
     - {fileID: 11400000, guid: 9d04dd169b2febc41a88d55ba222c7bb, type: 2}

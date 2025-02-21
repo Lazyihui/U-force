@@ -360,6 +360,12 @@ namespace UF {
                     appUI.Panel_GameDefend_Button_Close();
                     appUI.HUD_Progressbar_Close();
                     // 3.打开选择关卡界面
+
+                    // 记录关卡和得到的星星
+                    int stageID = appUI.playerSaveData.GetStageCurID();
+                    appUI.playerSaveData.SetStagePassed(stageID);
+
+                    // appUI.playerSaveData.SetStageStar(stageID, 3);
                     UIDomain.Panel_StageSelectionEnter(appUI);
 
                 }

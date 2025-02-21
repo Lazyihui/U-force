@@ -10,7 +10,6 @@ namespace UF {
         public bool isRunning;//游戏game是否在运行
         public float restFixTime;
         public GameState state;
-        public int stageCurID;
         public IDSignature OwnerIDsig;
         public PlayerEntity playerSaveData;
 
@@ -36,8 +35,6 @@ namespace UF {
 
         public GameEntity() {
 
-            stageCurID = 1;
-
             spawnMinionTimer = 4;
             spawnMinion = 4;
             maxWaves = 4;
@@ -59,7 +56,6 @@ namespace UF {
             isRunning = false;
             restFixTime = 0;
             state = GameState.None;
-            stageCurID = 0;
         }
 
 

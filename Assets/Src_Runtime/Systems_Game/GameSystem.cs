@@ -240,7 +240,7 @@ namespace UF {
                 Exit();
                 var playerData = ctx.gameEntity.playerSaveData;
                 int starCount = playerData.GetStarCount();
-                ctx.appUI.Panel_GameOver_Open(true, playerData.GetRoleGetHurt(), playerData.shootAllTimes, playerData.hitTimes, playerData.GetRoleHitRate(), playerData.GetStarCount());
+                ctx.appUI.Panel_GameOver_Open(true, playerData.GetRoleGetHurt(), playerData.shootAllTimes, playerData.hitTimes, playerData.GetRoleHitRate(), starCount);
                 game.state = GameState.GameOver;
 
             }
