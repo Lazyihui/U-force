@@ -36,15 +36,25 @@ namespace UF {
 
         // 清除游戏信息
         public void ClearGame() {
+            var appUI = ctx.appUI;
+
             BulletDomain.Clear(ctx);
             RoleDomain.Clear(ctx);
             CaveDomain.Clear(ctx);
             MapDomain.Clear(ctx.gameEntity.playerSaveData.mapEntity);
             StuffDoamin.Clear(ctx);
             ctx.gameEntity.Clear();
+
+            // 2.关闭所有Ui
+            appUI.Panel_GameOver_Close();
+            appUI.Panel_GamePause_Close();
+            appUI.Panel_GameDefend_Button_Close();
+            appUI.HUD_Progressbar_Close();
         }
 
         public void Enter(int stageID, int selectedRoleTypeID, int[] skillorTypeIDArray, int sciType) {
+
+            
 
             ctx.isRunning = true;
             var game = ctx.gameEntity;
@@ -240,13 +250,14 @@ namespace UF {
         // 游戏结算
         void Game_Win(RoleEntity owner) {
             var game = ctx.gameEntity;
+            var appUI = ctx.appUI;
             // 游戏结束
             bool isGameWin = GameDomain.isGameWin(ctx);
 
             if (Input.GetKeyDown(KeyCode.B)) {
                 isGameWin = true;
             }
-            
+
             if (isGameWin) {
                 // 没找到这里StopRole_AllMove();要多运行一遍
                 owner.Jump_Stop();
@@ -256,6 +267,10 @@ namespace UF {
                 int starCount = playerData.GetStarCount();
                 ctx.appUI.Panel_GameOver_Open(true, playerData.GetRoleGetHurt(), playerData.shootAllTimes, playerData.hitTimes, playerData.GetRoleHitRate(), starCount);
                 game.state = GameState.GameOver;
+
+                // 保存数据 得到的星级 和 通关的关卡
+                int stageID = appUI.playerSaveData.GetStageCurID();
+                appUI.playerSaveData.SetStagePassed(stageID);
 
             }
         }

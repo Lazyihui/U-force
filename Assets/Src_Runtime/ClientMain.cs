@@ -126,14 +126,10 @@ namespace UF {
 
             // StageSelection
             loginEvent.OnStageClickHandle += (stageID) => {
-                // TODO：放到UIDomain里
-                appUI.Panel_StageSelection_Close();
                 Debug.Log("StageClick " + stageID);
+                appUI.Panel_StageSelection_Close();
                 appUI.playerSaveData.SetStageCurID(stageID);
-
-                int chapterID = 1;
-                appUI.playerSaveData.SetChapterCurID(chapterID);
-                UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule, stageID, chapterID);
+                UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule);
 
             };
 
@@ -170,7 +166,6 @@ namespace UF {
             };
 
             loginEvent.OnSelectEnterGameClickHandle += () => {
-                Debug.Log("开始游戏+++++");
                 // 放到UIDomain里
                 appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
                 int stageID = appUI.playerSaveData.GetStageCurID();
@@ -181,11 +176,11 @@ namespace UF {
                     isNoticeOpen = appUI.Panel_Notice_Open("请选择完卡片才可以进入游戏");
                     return;
                 }
-                // UI
+
+                appUI.Reset();
                 appUI.Panel_CardSelection_Close();
                 appUI.Panel_WatchTower_Close();
                 loginSystem.Exit();
-
                 gameSystem.Enter(stageID, roleTypeID, typeIDs.ToArray(), sciType);
             };
 
@@ -199,14 +194,12 @@ namespace UF {
             loginEvent.OnSelectionCardClickHandle += (typeID) => {
                 Debug.Log("选择的卡片的ID " + typeID);
                 UIDomain.Update_CardSelectionDetails(typeID, templateModule, appUI);
-
                 appUI.Panel_CardDetailsBtn_UnLock();
             };
 
             loginEvent.OnConfirmClickHandle += (typeID) => {
                 Debug.Log("确认选择  的卡片" + typeID);
                 UIDomain.Panel_SelectedCardAddToSlot(appUI, templateModule, typeID);
-
                 appUI.Panel_OneCardSelection_Lock(typeID);
                 appUI.Panel_CardDetailsBtn_Lock();
             };
@@ -331,48 +324,21 @@ namespace UF {
             };
 
             gameEvent.OnGameContinueOverHandle += (bool isWin) => {
-                Debug.Log("游戏结束 继续游戏" + isWin);
 
                 if (!isWin) {
-                    playerSaveData = gameSystem.Get_Player();//好像不需要 后期可删
-                    gameSystem.Exit();
-
-                    // 1.清空游戏内容
-                    gameSystem.ClearGame();
-                    // 2.关闭所有Ui
-                    appUI.Panel_GameOver_Close();
-                    appUI.Panel_GamePause_Close();
-                    appUI.Panel_GameDefend_Button_Close();
-                    appUI.HUD_Progressbar_Close();
-
-                    // TODO: 传入参数
-                    int stageID = appUI.playerSaveData.GetStageCurID();
-                    int chapterID = appUI.playerSaveData.GetChapterCurID();
                     Debug.Log("重新开始此关");
-                    UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule, stageID, stageID);
+                    gameSystem.ClearGame();
+                    gameSystem.Exit();
                     loginSystem.Enter();
+                    UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule);
                 }
 
                 if (isWin) {
-                    playerSaveData = gameSystem.Get_Player();//好像不需要 后期可删
-                    gameSystem.Exit();
-
-                    // 1.清空游戏内容
+                    Debug.Log("进入下一关 进入备战(选卡片)页面");
                     gameSystem.ClearGame();
-                    // 2.关闭所有Ui
-                    appUI.Panel_GameOver_Close();
-                    appUI.Panel_GamePause_Close();
-                    appUI.Panel_GameDefend_Button_Close();
-                    appUI.HUD_Progressbar_Close();
-                    // 3.打开选择关卡界面
-
-                    // 记录关卡和得到的星星
-                    int stageID = appUI.playerSaveData.GetStageCurID();
-                    appUI.playerSaveData.SetStagePassed(stageID);
-
+                    gameSystem.Exit();
                     loginSystem.Enter();
                     UIDomain.Panel_StageSelectionEnter(appUI);
-
                 }
             };
         }

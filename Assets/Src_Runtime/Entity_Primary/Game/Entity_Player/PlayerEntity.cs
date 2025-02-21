@@ -71,7 +71,7 @@ namespace UF {
 
         public void Reset() {
             stageCurID = 0;
-            chapterCurID = 0;
+            chapterCurID = 1;
             unLockChapterID = 0;
 
             stage_Passed.Clear();

@@ -11,5 +11,11 @@ namespace UF {
             roleSelectedTypeID = -1;
             scienceTypeID = -1;
         }
+
+        public void Reset() {
+            roleSelectedTypeID = -1;
+            scienceTypeID = -1;
+        }
+        
     }
 }

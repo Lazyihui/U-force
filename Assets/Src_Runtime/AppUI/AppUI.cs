@@ -18,6 +18,10 @@ namespace UF {
             selectedInFormation = new SelectedInFormation();
         }
 
+        public void Reset() {
+            selectedInFormation.Reset();
+        }
+
         public void Inject(Canvas screenCanvas, AssetsModule assetsCore, PlayerEntity playerSaveData) {
             ctx.Inject(screenCanvas, assetsCore);
             this.playerSaveData = playerSaveData;

@@ -7,7 +7,9 @@ namespace UF {
 
     public static class UIDomain {
 
-        public static void Panel_CardSelection_Open(AppUI appUI, AssetsModule assetsModule, TemplateMoudle templateModule, int stageID, int chapterID) {
+        public static void Panel_CardSelection_Open(AppUI appUI, AssetsModule assetsModule, TemplateMoudle templateModule) {
+            int stageID = appUI.playerSaveData.GetStageCurID();
+            int chapterID = appUI.playerSaveData.GetChapterCurID();
 
             appUI.Panel_StageSelection_Close();
 
