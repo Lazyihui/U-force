@@ -22,6 +22,10 @@ namespace UF {
             ctx.Inject(ScreenCanvas, assetsCore, templateCore, appUI, inputModule, roleRepository, playerSaveData);
         }
 
+        public PlayerEntity Get_Player() {
+            return ctx.Get_Player();
+        }
+
         public void Exit() {
             ctx.isRunning = false;
         }
@@ -96,7 +100,6 @@ namespace UF {
                     skillorCom.Add(skillor);
                 }
             }
-
 
             // Tower
             for (int i = 0; i < tm.towerSpawns.Length; i += 1) {
@@ -239,6 +242,11 @@ namespace UF {
             var game = ctx.gameEntity;
             // 游戏结束
             bool isGameWin = GameDomain.isGameWin(ctx);
+
+            if (Input.GetKeyDown(KeyCode.B)) {
+                isGameWin = true;
+            }
+            
             if (isGameWin) {
                 // 没找到这里StopRole_AllMove();要多运行一遍
                 owner.Jump_Stop();

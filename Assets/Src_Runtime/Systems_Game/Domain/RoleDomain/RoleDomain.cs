@@ -104,8 +104,8 @@ namespace UF {
 
 
         }
-
         #endregion
+
         #region Input   
 
         public static void Input_Record(GameSystemContext ctx, RoleEntity role, float dt) {
@@ -121,7 +121,6 @@ namespace UF {
 
         #endregion
 
-
         #region Skill Cast
 
         public static void Skillor_Input_FlushKeys(GameSystemContext ctx, RoleEntity role, float dt) {
@@ -131,7 +130,6 @@ namespace UF {
                 bool succ = Skillor_Cast(ctx, role, skill, dt);
             }
         }
-
 
         public static bool Skillor_Cast(GameSystemContext ctx, RoleEntity role, SkillModel skill, float dt) {
 
@@ -194,7 +192,6 @@ namespace UF {
 
         public static void DetectionMinionByPos(GameSystemContext ctx, RoleEntity role, Vector2 pos) {
             // 检测周围的minion 碰到扣血
-
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] minions);
 
             for (int i = 0; i < len; i++) {
@@ -225,7 +222,6 @@ namespace UF {
 
             var playerData = ctx.gameEntity.playerSaveData;
             playerData.SetHitTimes(playerData.hitTimes + 1);
-            Debug.Log("命中次数" + playerData.hitTimes);
 
             if (attCom.hp <= 0) {
                 role.SetRoleState(RoleState.Fall);
@@ -241,8 +237,6 @@ namespace UF {
                 // 受到的伤害
                 playerData.SetOwnerGetHurt(playerData.GetRoleGetHurt() + damage);
             }
-            Debug.Log("受到伤害" + role.roleType);
-
             var attCom = role.AttributeComponent;
             int finalHp = attCom.hp - damage;
             role.Attr_Hp_Set(finalHp);
@@ -264,10 +258,6 @@ namespace UF {
             for (int i = 0; i < hits.Length; i++) {
                 RaycastHit2D hit = hits[i];
                 if (hit.collider.gameObject.CompareTag("Ground")) {
-
-                    // // 命中次数
-                    // playerData.SetHitTimes(playerData.hitTimes + 1);
-                    // Debug.Log("命中次数" + playerData.hitTimes);
                     Debug.Log("死亡动画");
                     role.SetRoleState(RoleState.Dead);
 
@@ -286,7 +276,6 @@ namespace UF {
             if (role.state != RoleState.Dead) {
                 return;
             }
-
 
             UnSpawn(ctx, role);
 

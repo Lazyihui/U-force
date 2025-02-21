@@ -14,10 +14,14 @@ namespace UF {
 
         HashSet<int> stage_reached;//到达的关卡
         public int stageCurID;//当前关卡
+        public int GetStageCurID() => stageCurID;
         public MapEntity mapEntity;
         public int unLockStageCount;//解锁的关卡 
+        public int GetUnLockStageCount() => unLockStageCount;
         public int chapterCurID;//当前章节
+        public int GetChapterCurID() => chapterCurID;
         public int unLockChapterID;//解锁的章节
+        public int GetUnLockChapterID() => unLockChapterID;
 
         // 结算信息
         public int ownerGetHurt;
@@ -107,30 +111,12 @@ namespace UF {
             return stage_reached.Contains(stageID);
         }
 
-        public int GetStageCurID() {
-            return stageCurID;
-        }
-
-        public int GetUnLockStageCount() {
-            return unLockStageCount;
-        }
-
-        public int GetChapterCurID() {
-            return chapterCurID;
-        }
-
-        public int GetUnLockChapterID() {
-            return unLockChapterID;
-        }
-
         public int GetStagePassedStar(int stageID) {
             if (stage_PassedStar.TryGetValue(stageID, out int star)) {
                 return star;
             }
             return 0;
         }
-
-
 
     }
 }

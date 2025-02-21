@@ -24,10 +24,14 @@ namespace UF {
             ctx.Inject(appUI, input);
         }
 
-        public void Enter() {
+        public void EnterPanel_Login() {
             ctx.isRunning = true;
             // ui
             ctx.appUI.Panel_Login_Open();
+        }
+
+        public void Enter(){
+            ctx.isRunning = true;
         }
 
         public void Exit() {
@@ -69,7 +73,7 @@ namespace UF {
             var ui = ctx.appUI;
             ui.Tick(dt, input);
 
-           
+
         }
 
         void LogicTick(float dt) {

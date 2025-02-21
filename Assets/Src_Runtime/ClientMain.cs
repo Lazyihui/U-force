@@ -92,7 +92,7 @@ namespace UF {
                 isInit = true;
 
                 // ---  Enter  ---
-                loginSystem.Enter();
+                loginSystem.EnterPanel_Login();
             };
 
             action.Invoke();
@@ -170,7 +170,7 @@ namespace UF {
             };
 
             loginEvent.OnSelectEnterGameClickHandle += () => {
-                Debug.Log("开始游戏");
+                Debug.Log("开始游戏+++++");
                 // 放到UIDomain里
                 appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
                 int stageID = appUI.playerSaveData.GetStageCurID();
@@ -334,7 +334,9 @@ namespace UF {
                 Debug.Log("游戏结束 继续游戏" + isWin);
 
                 if (!isWin) {
+                    playerSaveData = gameSystem.Get_Player();//好像不需要 后期可删
                     gameSystem.Exit();
+
                     // 1.清空游戏内容
                     gameSystem.ClearGame();
                     // 2.关闭所有Ui
@@ -348,10 +350,13 @@ namespace UF {
                     int chapterID = appUI.playerSaveData.GetChapterCurID();
                     Debug.Log("重新开始此关");
                     UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule, stageID, stageID);
+                    loginSystem.Enter();
                 }
 
                 if (isWin) {
+                    playerSaveData = gameSystem.Get_Player();//好像不需要 后期可删
                     gameSystem.Exit();
+
                     // 1.清空游戏内容
                     gameSystem.ClearGame();
                     // 2.关闭所有Ui
@@ -365,7 +370,7 @@ namespace UF {
                     int stageID = appUI.playerSaveData.GetStageCurID();
                     appUI.playerSaveData.SetStagePassed(stageID);
 
-                    // appUI.playerSaveData.SetStageStar(stageID, 3);
+                    loginSystem.Enter();
                     UIDomain.Panel_StageSelectionEnter(appUI);
 
                 }
