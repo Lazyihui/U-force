@@ -199,16 +199,20 @@ namespace UF {
             loginEvent.OnSelectionCardClickHandle += (typeID) => {
                 Debug.Log("选择的卡片的ID " + typeID);
                 UIDomain.Update_CardSelectionDetails(typeID, templateModule, appUI);
+
+                appUI.Panel_CardDetailsBtn_UnLock();
             };
 
             loginEvent.OnConfirmClickHandle += (typeID) => {
-                Debug.Log("确认选择的卡片"+ typeID);
+                Debug.Log("确认选择  的卡片" + typeID);
                 UIDomain.Panel_SelectedCardAddToSlot(appUI, templateModule, typeID);
+
                 appUI.Panel_OneCardSelection_Lock(typeID);
-                appUI.Panel_CardDetailsBtn_Lock(typeID);
+                appUI.Panel_CardDetailsBtn_Lock();
             };
 
             loginEvent.OnCardSelectedClickHandle += (typeID) => {
+
                 appUI.Panel_CardSelection_RemoveCardSelected(typeID);
                 appUI.Panel_OneCardSelection_UnLock(typeID);
             };

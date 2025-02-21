@@ -535,20 +535,20 @@ namespace UF {
             panel.UpdateCardDetail(sprite, content, typeID);
         }
 
-        public void Panel_CardDetailsBtn_Lock(int typeID) {
+        public void Panel_CardDetailsBtn_Lock() {
             Panel_CardSelection panel = ctx.panel_CardSelection;
             if (panel == null) {
                 return;
             }
-            panel.CardDetailsBtn_Lock(typeID);
+            panel.CardDetailsBtn_Lock();
         }
 
-        public void Panel_CardDetailsBtn_UnLock(int typeID) {
+        public void Panel_CardDetailsBtn_UnLock() {
             Panel_CardSelection panel = ctx.panel_CardSelection;
             if (panel == null) {
                 return;
             }
-            panel.CardDetailsBtn_UnLock(typeID);
+            panel.CardDetailsBtn_UnLock();
         }
 
         public void Panel_CardSelection_Close() {

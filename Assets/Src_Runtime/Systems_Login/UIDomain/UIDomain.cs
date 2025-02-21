@@ -36,6 +36,7 @@ namespace UF {
             }
         }
 
+        // 卡片更新
         public static void Update_CardSelectionDetails(int typeID, TemplateMoudle templateMoudle, AppUI appUI) {
 
             CardType cardType = appUI.Panel_GetCardType();
@@ -60,9 +61,11 @@ namespace UF {
         }
 
         public static void Panel_OneCardSelection_Update(AppUI appUI) {
-            //先清空卡片选择界面 
+            //1.先清空卡片选择界面 
             appUI.Panel_OneCardSelection_Clear();
+            var selectedInFormation = appUI.selectedInFormation;
 
+            // 3.展示卡片
             CardType cardType = appUI.Panel_GetCardType();
             var cardModel = appUI.Get_CardModel();
 
@@ -74,6 +77,8 @@ namespace UF {
                     // 更新右边详情页
                     RoleTM roleTM0 = cardModel.roleTMs[0];
                     appUI.Panel_CardDetails_Update(roleTM0.sprite, roleTM0.content, roleTM0.typeID);
+
+
                 }
             } else if (cardType == CardType.Agriculture) {
                 for (int i = 0; i < cardModel.bulletAgrTMs.Count; i += 1) {
@@ -100,6 +105,27 @@ namespace UF {
                     appUI.Panel_CardDetails_Update(bulletTM0.sprite, bulletTM0.content, bulletTM0.typeID);
                 }
             }
+
+            // 3.看那些卡片被选择了
+
+            if (selectedInFormation.roleSelectedTypeID != -1) {
+                appUI.Panel_OneCardSelection_Lock(selectedInFormation.roleSelectedTypeID);
+                appUI.Panel_CardDetailsBtn_Lock();
+            }
+
+            if (selectedInFormation.scienceTypeID != -1) {
+                appUI.Panel_OneCardSelection_Lock(selectedInFormation.scienceTypeID);
+                appUI.Panel_CardDetailsBtn_Lock();
+            }
+
+            appUI.Panel_CardSelected_TakeAll(out List<int> selectedList);
+            for (int i = 0; i < selectedList.Count; i += 1) {
+                int typeID = selectedList[i];
+                appUI.Panel_OneCardSelection_Lock(typeID);
+                appUI.Panel_CardDetailsBtn_Lock();
+            }
+
+
 
         }
 
