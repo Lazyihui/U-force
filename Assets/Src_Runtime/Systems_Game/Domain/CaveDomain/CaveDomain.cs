@@ -60,7 +60,7 @@ namespace UF {
                 game.spawnMinionTimer -= 1;
 
                 // TODO:从Tower里面TM获取怪物的类型
-                RoleDomain.SpawnByPos(ctx, tower.GetPos(), 200);
+                RoleDomain.SpawnByPos(ctx,200, tower.GetPos());
 
                 game.spawnMinionIntervalTimer = game.spawnMinionInterval;
             } else {

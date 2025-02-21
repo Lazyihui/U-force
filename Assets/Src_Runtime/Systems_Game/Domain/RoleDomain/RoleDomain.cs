@@ -7,14 +7,14 @@ namespace UF {
 
         #region LifeCycle
 
-        static RoleEntity Spawn(GameSystemContext ctx, int typeID) {
+        public static RoleEntity SpawnByTypeID(GameSystemContext ctx, int typeID) {
             RoleEntity role = GameFactory.Role_Create(ctx.assetsModule, ctx.templateCore, ctx.idService, typeID);
             ctx.roleRepository.Add(role);
             return role;
         }
 
-        public static RoleEntity SpawnByPos(GameSystemContext ctx, Vector2 pos, int typeID) {
-            RoleEntity entity = Spawn(ctx, typeID);
+        public static RoleEntity SpawnByPos(GameSystemContext ctx, int typeID, Vector2 pos) {
+            RoleEntity entity = SpawnByTypeID(ctx, typeID);
             entity.TF_SetPos(pos);
             return entity;
         }

@@ -14,10 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tm:
     stageID: 1
-    roleSpawns:
-    - so: {fileID: 11400000, guid: 772c31f3954c55f48b735dc0c0226a7e, type: 2}
-      position: {x: -15, y: 0, z: 0}
-      rotation: {x: -0, y: 0, z: 0}
+    roleSpawns: []
     towerSpawns:
     - so: {fileID: 11400000, guid: d8699dbf713c3fa4fba559e682df9a00, type: 2}
       position: {x: 16, y: 6, z: 0}

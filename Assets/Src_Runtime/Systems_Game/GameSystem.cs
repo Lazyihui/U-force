@@ -66,15 +66,21 @@ namespace UF {
             ctx.gameEntity.playerSaveData.mapEntity = map;
 
             // Role
-            RoleEntity role = null;
-            for (int i = 0; i < tm.roleSpawns.Length; i += 1) {
-                RoleSpawnerTM spawnerTM = tm.roleSpawns[i];
-                role = RoleDomain.SpawnBySpawner(ctx, spawnerTM);
-                if (role.roleType == RoleType.Player) {
-                    game.OwnerIDsig = role.idSig;
+            RoleEntity owner = null;
+            if (selectedRoleTypeID == -1) {
+                for (int i = 0; i < tm.roleSpawns.Length; i += 1) {
+                    RoleSpawnerTM spawnerTM = tm.roleSpawns[i];
+                    owner = RoleDomain.SpawnBySpawner(ctx, spawnerTM);
+                    if (owner.roleType == RoleType.Player) {
+                        game.OwnerIDsig = owner.idSig;
+                    }
                 }
             }
-            var skillorCom = role.skillorSlotComponent;
+
+            owner = RoleDomain.SpawnByPos(ctx, selectedRoleTypeID, new Vector3(-15, 0, 0));
+            game.OwnerIDsig = owner.idSig;
+
+            var skillorCom = owner.skillorSlotComponent;
 
             // 大招
             SkillModel skillorSci = GameFactory.Skillor_Create(ctx.assetsModule, ctx.templateCore, ctx.idService, sciType);
