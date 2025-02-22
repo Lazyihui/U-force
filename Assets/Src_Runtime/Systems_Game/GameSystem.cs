@@ -60,7 +60,6 @@ namespace UF {
             // UI
             ctx.appUI.Panel_GameDefend_Button_Open();
             ctx.appUI.HUD_Progressbar_Open(game.maxWaves);
-            // 先在enter重置光标, 避免查看光标带到游戏界面来
             ctx.appUI.Panel_WatchTower_ClearCursor();
 
             bool has = ctx.templateCore.Stage_TryGet(stageID, out StageTM tm);
@@ -71,7 +70,7 @@ namespace UF {
 
             //game  
             game.InitFromTM(tm.gameTM);
-            
+
             // Map
             MapEntity map = MapDomain.Spawn(ctx.assetsModule, ctx.idService, tm.mapPrefab);
             ctx.gameEntity.playerSaveData.SetStageCurID(stageID);
@@ -268,7 +267,7 @@ namespace UF {
 
                 // 保存数据 得到的星级 和 通关的关卡
                 int stageID = appUI.playerSaveData.GetStageCurID();
-                appUI.playerSaveData.SetStagePassed(stageID);
+                appUI.playerSaveData.AddStagePassed(stageID);
 
             }
         }

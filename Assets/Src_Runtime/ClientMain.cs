@@ -170,6 +170,7 @@ namespace UF {
                 int roleTypeID = appUI.selectedInFormation.roleSelectedTypeID;
                 int sciType = appUI.selectedInFormation.scienceTypeID;
                 int slotMax = appUI.playerSaveData.GetSlotMax();
+                
 
                 if (typeIDs.Count < slotMax || stageID == -1 || roleTypeID == -1 || sciType == -1) {
                     Debug.Log("长度"+typeIDs.Count + " 最大长度" + slotMax);

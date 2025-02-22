@@ -14,13 +14,17 @@ namespace UF {
 
             appUI.Panel_StageSelection_Close();
 
-            CardModel spawnCard = GameFactory.Card_Create(assetsModule, templateModule, 1);
+            //  用stageID创建卡片
+            CardModel spawnCard = GameFactory.Card_Create(assetsModule, templateModule, stageID);
             appUI.Set_CardModel(spawnCard);
             CardModel card = appUI.Get_CardModel();
 
-            appUI.Panel_CardSelection_Open(stageID, chapterID);// 打开卡牌选择界面
+            for (int i = 0; i < card.roleEnemyTMs.Count; i += 1) {
+                RoleTM roleTM = card.roleEnemyTMs[i];
+                appUI.playerSaveData.AddEnemyTypeID(roleTM.typeID);
+            }
 
-            // TODO:最大的卡槽数量
+            appUI.Panel_CardSelection_Open(stageID, chapterID);// 打开卡牌选择界面
             appUI.Panel_CardSelection_AddCardSelected(slotMax);// 放卡片的地方
 
             // 第一个

@@ -7,11 +7,12 @@ namespace UF {
 
     public class PlayerEntity {
 
-        // public int slotID;
+        // 可以生成怪物的TypeID
+        public HashSet<int> EnemyTypeIDs;
+
         // 关卡信息
         HashSet<int> stage_Passed;//通关的关卡
         Dictionary<int, int> stage_PassedStar;//通关关卡的星级
-
         HashSet<int> stage_reached;//到达的关卡
         public int stageCurID;//当前关卡
         public int GetStageCurID() => stageCurID;
@@ -69,6 +70,7 @@ namespace UF {
             slotMax = 3;//卡槽最大数量
             isSlotFull = false;//卡槽是否满了
 
+            EnemyTypeIDs = new HashSet<int>();
             stage_Passed = new HashSet<int>();
             stage_PassedStar = new Dictionary<int, int>();
             stage_reached = new HashSet<int>();
@@ -85,15 +87,30 @@ namespace UF {
             stage_reached.Clear();
         }
 
-        public void SetStagePassed(int stageID) {
+        public void AddEnemyTypeID(int typeID) {
+            EnemyTypeIDs.Add(typeID);
+        }
+
+        public void ClearEnemyTypeID() {
+            EnemyTypeIDs.Clear();
+        }
+
+        public int GetRandomEnemyTypeID() {
+            int index = UnityEngine.Random.Range(0, EnemyTypeIDs.Count);
+            
+            Debug.Log(new List<int>(EnemyTypeIDs)[index]);
+            return new List<int>(EnemyTypeIDs)[index];
+        }
+
+        public void AddStagePassed(int stageID) {
             stage_Passed.Add(stageID);
         }
 
-        public void SetStagePassedStar(int stageID, int star) {
+        public void AddStagePassedStar(int stageID, int star) {
             stage_PassedStar[stageID] = star;
         }
 
-        public void SetStageReached(int stageID) {
+        public void AddStageReached(int stageID) {
             stage_reached.Add(stageID);
         }
 
