@@ -155,8 +155,9 @@ namespace UF.UIApplication {
             cardSelected.Set_science(sprite);
         }
 
-        public void CardSelected_SetProp(int typeID, Sprite sprite) {
-            cardSelected.Set_prop(typeID, sprite);
+        public bool CardSelected_SetProp(int typeID, Sprite sprite) {
+            bool isFull = cardSelected.Set_Addprop(typeID, sprite);
+            return isFull;
         }
 
         #endregion

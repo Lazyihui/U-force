@@ -217,7 +217,6 @@ GameObject:
   - component: {fileID: 7465792697113361488}
   - component: {fileID: 6274239363558635194}
   - component: {fileID: 5591955758053747965}
-  - component: {fileID: 3257460962745219782}
   m_Layer: 5
   m_Name: SelectedCard
   m_TagString: Untagged
@@ -242,7 +241,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -462.5, y: -408.68}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 820, y: 158}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &7465792697113361488
 CanvasRenderer:
@@ -308,17 +307,3 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &3257460962745219782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2614503295095156065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 2

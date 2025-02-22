@@ -23,6 +23,10 @@ namespace UF {
         public int unLockChapterID;//解锁的章节
         public int GetUnLockChapterID() => unLockChapterID;
 
+        public int slotMax;//卡槽最大数量 也是按钮数量
+        public int GetSlotMax() => slotMax;
+        public bool isSlotFull;//卡槽是否满了
+
         // 结算信息
         public int ownerGetHurt;
         public void SetOwnerGetHurt(int value) => ownerGetHurt = value;
@@ -62,7 +66,8 @@ namespace UF {
             chapterCurID = 1;//当前章节
             unLockChapterID = 2;//解锁的章节
             unLockStageCount = 10;//最大就是10
-
+            slotMax = 3;//卡槽最大数量
+            isSlotFull = false;//卡槽是否满了
 
             stage_Passed = new HashSet<int>();
             stage_PassedStar = new Dictionary<int, int>();
@@ -73,6 +78,7 @@ namespace UF {
             stageCurID = 0;
             chapterCurID = 1;
             unLockChapterID = 0;
+            isSlotFull = false;
 
             stage_Passed.Clear();
             stage_PassedStar.Clear();
