@@ -157,6 +157,8 @@ namespace UF {
                 appUI.Panel_CardDetailsBtn_Lock();
             }
 
+
+            // 更改卡片图片和卡片类型id
             if (cardType == CardType.Hero) {
                 appUI.Panel_OneCardSelection_UnLock(appUI.selectedInFormation.roleSelectedTypeID);
                 appUI.selectedInFormation.roleSelectedTypeID = typeID;
@@ -167,10 +169,12 @@ namespace UF {
             } else if (cardType == CardType.Agriculture) {
 
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
+                appUI.Panel_CardSelection_SetProp(typeID, bulletTM.sprite);
 
             } else if (cardType == CardType.Industry) {
 
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
+                appUI.Panel_CardSelection_SetProp(typeID, bulletTM.sprite);
 
             } else if (cardType == CardType.Science) {
                 appUI.Panel_OneCardSelection_UnLock(appUI.selectedInFormation.scienceTypeID);
