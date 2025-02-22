@@ -21,7 +21,7 @@ namespace UF {
             appUI.Panel_CardSelection_Open(stageID, chapterID);// 打开卡牌选择界面
 
             // TODO:最大的卡槽数量
-            appUI.Panel_CardSelection_AddCardSelected(1);// 放卡片的地方
+            appUI.Panel_CardSelection_AddCardSelected(slotMax);// 放卡片的地方
 
             // 第一个
             RoleTM roleTM0 = card.roleTMs[0];
@@ -69,8 +69,9 @@ namespace UF {
 
             } else if (cardType == CardType.Science) {
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
-                appUI.Panel_CardDetails_Update(bulletTM.sprite, bulletTM.content, bulletTM.typeID);
 
+                Debug.Assert(bulletTM != null, "bulletTM != null");
+                appUI.Panel_CardDetails_Update(bulletTM.sprite, bulletTM.content, bulletTM.typeID);
             }
         }
 
@@ -144,11 +145,12 @@ namespace UF {
         }
 
         public static void Panel_SelectedCardAddToSlot(AppUI appUI, TemplateMoudle templateMoudle, int typeID) {
-
             var cardType = appUI.Panel_GetCardType();
 
+            // 1.第一步检测卡槽是否满了
             bool isSlotFull = appUI.playerSaveData.isSlotFull;
             Debug.Log("isSlotFull" + isSlotFull);
+            appUI.Panel_CardSelected_TakeAll(out List<int> selectedList);
 
             // 如果卡槽满了
             if (isSlotFull) {
@@ -165,12 +167,10 @@ namespace UF {
             } else if (cardType == CardType.Agriculture) {
 
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
-                appUI.playerSaveData.isSlotFull = appUI.Panel_CardSelection_SetProp(typeID, bulletTM.sprite);
 
             } else if (cardType == CardType.Industry) {
 
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
-                appUI.playerSaveData.isSlotFull = appUI.Panel_CardSelection_SetProp(typeID, bulletTM.sprite);
 
             } else if (cardType == CardType.Science) {
                 appUI.Panel_OneCardSelection_UnLock(appUI.selectedInFormation.scienceTypeID);
