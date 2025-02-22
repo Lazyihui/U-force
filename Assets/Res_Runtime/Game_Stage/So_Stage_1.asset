@@ -35,3 +35,17 @@ MonoBehaviour:
       position: {x: 16, y: -4, z: 0}
       rotation: {x: -0, y: 0, z: 0}
     mapPrefab: {fileID: 8604457340494701413, guid: 2cd8d121bf2722342812ef2db8be21bc, type: 3}
+    gameTM:
+      isDefendwar: 1
+      spawnMinionTimer: 4
+      spawnMinion: 4
+      maxWaves: 4
+      curWaves: 0
+      cdMinion: 0
+      cdMinionMax: 4
+      spawnMinionInterval: 2
+      spawnMinionIntervalTimer: 2
+      progress: 0.0625
+      wavesProgress: 0
+      isOffensiveWar: 0
+      isEliminateWar: 0

@@ -54,8 +54,6 @@ namespace UF {
 
         public void Enter(int stageID, int selectedRoleTypeID, int[] skillorTypeIDArray, int sciType) {
 
-            
-
             ctx.isRunning = true;
             var game = ctx.gameEntity;
 
@@ -65,15 +63,15 @@ namespace UF {
             // 先在enter重置光标, 避免查看光标带到游戏界面来
             ctx.appUI.Panel_WatchTower_ClearCursor();
 
-            // Game
-            // int stageID = game.stageCurID;
-
             bool has = ctx.templateCore.Stage_TryGet(stageID, out StageTM tm);
             if (!has) {
                 Debug.LogError("StageID not found");
                 return;
             }
 
+            //game  
+            game.InitFromTM(tm.gameTM);
+            
             // Map
             MapEntity map = MapDomain.Spawn(ctx.assetsModule, ctx.idService, tm.mapPrefab);
             ctx.gameEntity.playerSaveData.SetStageCurID(stageID);

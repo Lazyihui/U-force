@@ -15,7 +15,6 @@ namespace UF {
 
 
         #region 生成小怪的波次数据
-        // 必需改掉
         // TODO: 之后可能要改用行的。cs文件里面的数据，不要放在这里
         public int spawnMinionTimer; //一波里的小波次
         public int spawnMinion; //小波次的预设数量
@@ -34,21 +33,19 @@ namespace UF {
         #endregion
 
         public GameEntity() {
+        }
 
-            spawnMinionTimer = 4;
-            spawnMinion = 4;
-            maxWaves = 4;
-            curWaves = 0;
-
-            cdMinion = 0;
-            cdMinionMax = 4;
-
-            spawnMinionInterval = 2;
-            spawnMinionIntervalTimer = 2;
-
-            progress = 0.0625f;
-
-            wavesProgress = 0;
+        public void InitFromTM(GameTM tm) {
+            spawnMinionTimer = tm.spawnMinionTimer;
+            spawnMinion = tm.spawnMinion;
+            maxWaves = tm.maxWaves;
+            curWaves = tm.curWaves;
+            cdMinion = tm.cdMinion;
+            cdMinionMax = tm.cdMinionMax;
+            spawnMinionInterval = tm.spawnMinionInterval;
+            spawnMinionIntervalTimer = tm.spawnMinionIntervalTimer;
+            progress = tm.progress;
+            wavesProgress = tm.wavesProgress;
         }
 
         public void Clear() {

@@ -14,5 +14,8 @@ namespace UF {
         // map 
         public GameObject mapPrefab;
 
+        // 数据
+        public GameTM gameTM;
+
     }
 }
