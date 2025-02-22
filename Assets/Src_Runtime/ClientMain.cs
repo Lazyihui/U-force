@@ -169,7 +169,10 @@ namespace UF {
                 int stageID = appUI.playerSaveData.GetStageCurID();
                 int roleTypeID = appUI.selectedInFormation.roleSelectedTypeID;
                 int sciType = appUI.selectedInFormation.scienceTypeID;
-                if (typeIDs.Count < 4 || stageID == -1 || roleTypeID == -1 || sciType == -1) {
+                int slotMax = appUI.playerSaveData.GetSlotMax();
+
+                if (typeIDs.Count < slotMax || stageID == -1 || roleTypeID == -1 || sciType == -1) {
+                    Debug.Log("长度"+typeIDs.Count + " 最大长度" + slotMax);
                     Debug.Log("请先选择卡片");
                     isNoticeOpen = appUI.Panel_Notice_Open("请选择完卡片才可以进入游戏");
                     return;

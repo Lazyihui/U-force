@@ -31,7 +31,7 @@ namespace UF {
 
         public void OneCard_Lock() {
             btn_Card.interactable = false;
-            img_bg.color = new Color(255,0,0,255);
+            img_bg.color = new Color(255, 0, 0, 255);
         }
 
         public void OneCard_UnLock() {
