@@ -10,6 +10,7 @@ namespace UF {
         public static void Panel_CardSelection_Open(AppUI appUI, AssetsModule assetsModule, TemplateMoudle templateModule) {
             int stageID = appUI.playerSaveData.GetStageCurID();
             int chapterID = appUI.playerSaveData.GetChapterCurID();
+            int slotMax = appUI.playerSaveData.GetSlotMax();
 
             appUI.Panel_StageSelection_Close();
 
@@ -18,7 +19,9 @@ namespace UF {
             CardModel card = appUI.Get_CardModel();
 
             appUI.Panel_CardSelection_Open(stageID, chapterID);// 打开卡牌选择界面
-            appUI.Panel_CardSelection_AddCardSelected(4);// 放卡片的地方
+
+            // TODO:最大的卡槽数量
+            appUI.Panel_CardSelection_AddCardSelected(1);// 放卡片的地方
 
             // 第一个
             RoleTM roleTM0 = card.roleTMs[0];
@@ -40,6 +43,15 @@ namespace UF {
 
         // 卡片更新
         public static void Update_CardSelectionDetails(int typeID, TemplateMoudle templateMoudle, AppUI appUI) {
+
+            bool isSlotFull = appUI.playerSaveData.isSlotFull;
+            Debug.Log("isSlotFull" + isSlotFull);
+
+            // 如果卡槽满了
+            if (isSlotFull) {
+                appUI.Panel_CardDetailsBtn_Lock();
+                appUI.Panel_Notice_Open("卡槽已满 请开始游戏");
+            }
 
             CardType cardType = appUI.Panel_GetCardType();
             if (cardType == CardType.Hero) {
@@ -135,6 +147,14 @@ namespace UF {
 
             var cardType = appUI.Panel_GetCardType();
 
+            bool isSlotFull = appUI.playerSaveData.isSlotFull;
+            Debug.Log("isSlotFull" + isSlotFull);
+
+            // 如果卡槽满了
+            if (isSlotFull) {
+                appUI.Panel_CardDetailsBtn_Lock();
+            }
+
             if (cardType == CardType.Hero) {
                 appUI.Panel_OneCardSelection_UnLock(appUI.selectedInFormation.roleSelectedTypeID);
                 appUI.selectedInFormation.roleSelectedTypeID = typeID;
@@ -145,22 +165,22 @@ namespace UF {
             } else if (cardType == CardType.Agriculture) {
 
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
-                appUI.Panel_CardSelection_SetProp(typeID, bulletTM.sprite);
+                appUI.playerSaveData.isSlotFull = appUI.Panel_CardSelection_SetProp(typeID, bulletTM.sprite);
 
             } else if (cardType == CardType.Industry) {
 
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
-                appUI.Panel_CardSelection_SetProp(typeID, bulletTM.sprite);
+                appUI.playerSaveData.isSlotFull = appUI.Panel_CardSelection_SetProp(typeID, bulletTM.sprite);
 
             } else if (cardType == CardType.Science) {
                 appUI.Panel_OneCardSelection_UnLock(appUI.selectedInFormation.scienceTypeID);
                 appUI.selectedInFormation.scienceTypeID = typeID;
 
-
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
                 appUI.Panel_CardSelection_SetScience(bulletTM.sprite);
-
             }
+
+
         }
 
         public static void Panel_WatchTower_GetDetail(int typeID, TemplateMoudle templateMoudle, AppUI appUI) {
@@ -174,7 +194,6 @@ namespace UF {
         }
 
         public static void Panel_StageSelectionEnter(AppUI appUI) {
-            Debug.Log("Panel_StageSelectionEnter+选择关卡界面");
 
             int curChapterID = appUI.playerSaveData.GetChapterCurID();
             int unLockChapterID = appUI.playerSaveData.GetUnLockChapterID();

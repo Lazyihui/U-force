@@ -5,18 +5,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace UF {
+    // 选择的卡槽
     public class Panel_CardSelected : MonoBehaviour {
         [SerializeField] Transform cardGroup;
-
         [SerializeField] Image img_hero;
         [SerializeField] Image img_science;
+
         [SerializeField] Panel_CardSelectedElement elePrefab;
         List<Panel_CardSelectedElement> eles;
         public Action<int> OnCardClickSelectedHandle;
 
         public void Ctor() {
             eles = new List<Panel_CardSelectedElement>();
-
         }
 
         // 遍历物品
@@ -26,7 +26,6 @@ namespace UF {
                 Panel_CardSelectedElement item = eles[i];
                 if (item != null) {
                     typeIDs.Add(item.GetID());
-                    Debug.Log("TakeAll" + item.GetID());
                 }
             }
         }
@@ -40,17 +39,17 @@ namespace UF {
                 eles.Add(ele);
             }
         }
-
-        public void Add(int typeID, Sprite sprite) {
-            // 逻辑: 找到非-1的空格子, 设置内容
+        public bool Set_Addprop(int typeID, Sprite sprite) {
             for (int i = 0; i < eles.Count; i += 1) {
+                Debug.Log(eles[i].GetID());
+
                 var ele = eles[i];
                 if (ele.GetID() == -1) {
-                    Debug.Log("Add" + typeID);
                     ele.Init(typeID, sprite);
-                    break;
+                    return false;
                 }
             }
+            return true;
         }
 
         public void Remove(int typeID) {
@@ -82,15 +81,6 @@ namespace UF {
             img_science.sprite = sprite;
         }
 
-        public void Set_prop(int typeID, Sprite sprite) {
-            for (int i = 0; i < eles.Count; i += 1) {
-                var ele = eles[i];
-                if (ele.GetID() == -1) {
-                    ele.Init(typeID, sprite);
-                    break;
-                }
-            }
-        }
 
         void OnCardSelectedClick(int typeID) {
             if (OnCardClickSelectedHandle != null) {

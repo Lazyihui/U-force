@@ -484,12 +484,12 @@ namespace UF {
             panel.CardSelected_SetScience(sprite);
         }
 
-        public void Panel_CardSelection_SetProp(int typeID, Sprite sprite) {
+        public bool Panel_CardSelection_SetProp(int typeID, Sprite sprite) {
             Panel_CardSelection panel = ctx.panel_CardSelection;
             if (panel == null) {
-                return;
+                return false;
             }
-            panel.CardSelected_SetProp(typeID, sprite);
+            return panel.CardSelected_SetProp(typeID, sprite);
         }
         // 
         public void Panel_OneCardSelection_Clear() {

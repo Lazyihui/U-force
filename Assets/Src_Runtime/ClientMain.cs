@@ -126,7 +126,6 @@ namespace UF {
 
             // StageSelection
             loginEvent.OnStageClickHandle += (stageID) => {
-                Debug.Log("StageClick " + stageID);
                 appUI.Panel_StageSelection_Close();
                 appUI.playerSaveData.SetStageCurID(stageID);
                 UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule);
@@ -149,7 +148,6 @@ namespace UF {
             };
 
             loginEvent.OnSelectAgrClickHandle += () => {
-                Debug.Log("选择农业");
                 appUI.Panel_SetCardType(CardType.Agriculture);
                 UIDomain.Panel_OneCardSelection_Update(appUI);
 
@@ -267,7 +265,6 @@ namespace UF {
                     Debug.Log("SelectionTrainCardClick " + typeID);
                     // 这样写感觉model没什么意义
                     templateModule.Role_TryGet(typeID, out RoleTM roleTM);
-
                     // TODO: 武器速度 伤害 攻击速度
                     appUI.Panel_Training_Select_SetPlayer(typeID, roleTM.sprite, roleTM.feature, "0", "0", "0");
 

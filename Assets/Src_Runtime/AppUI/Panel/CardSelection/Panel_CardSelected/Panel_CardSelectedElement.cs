@@ -11,7 +11,7 @@ namespace UF {
 
         [SerializeField] Button btn_Card;
         public Action<int> OnCardClickHandle;
-        int typeID;
+        public int typeID;
 
         public void Ctor() {
             btn_Card.onClick.AddListener(() => {
