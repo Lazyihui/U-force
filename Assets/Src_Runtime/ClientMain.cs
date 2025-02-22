@@ -399,12 +399,12 @@ namespace UF {
             var trainEvent = trainSystem.Events;
 
             trainEvent.OnTrainPauseClickHandle += () => {
-                appUI.Panel_Training_Pause_Show();
+                trainSystem.EnterPause();
                 pauseSystem.Enter();
             };
 
             trainEvent.OnTrainContinueClickHandle += () => {
-                appUI.Panel_Training_Pause_Close();
+                trainSystem.ExitPause();
                 pauseSystem.Exit();
             };
 

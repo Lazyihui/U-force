@@ -102,6 +102,9 @@ namespace UF.System_Train
 
         void LogicTick(float dt)
         {
+            var train = ctx.trainEntity;
+            if (train.state == TrainState.Pause) { return; }
+            
             // 所有角色逻辑
             ctx.roleRepository.TakeAll(out RoleEntity[] roles);
             //不知道为什么, 用length一直是3, 会有bug
@@ -116,7 +119,6 @@ namespace UF.System_Train
         {
 
         }
-
 
         public void Train_Binding()
         {
@@ -140,6 +142,23 @@ namespace UF.System_Train
             eventCenter.OnTrainQuitClickHandle += () => {
                 events.OnTrainQuitClick();
             };
+        }
+
+        // 绝对不是这样写, 这是一种最傻瓜的办法
+        public void EnterPause()
+        {
+            var train = ctx.trainEntity;
+            train.state = TrainState.Pause;
+
+            ctx.appUI.Panel_Training_Pause_Show();
+        }
+
+        public void ExitPause()
+        {
+            var train = ctx.trainEntity;
+            train.state = TrainState.None;
+
+            ctx.appUI.Panel_Training_Pause_Close();
         }
     }
 }

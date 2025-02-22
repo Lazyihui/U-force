@@ -1,4 +1,5 @@
 using System;
+using UF.System_Train;
 using UnityEngine;
 
 namespace UF
@@ -16,10 +17,14 @@ namespace UF
 
         public RoleRepository roleRepository;
 
+        public TrainEntity trainEntity;
+
         public TrainSystemContext()
         {
             isRunning = false;
             idService = new IDService();
+
+            trainEntity = new TrainEntity();
         }
 
         public void Inject(AppUI appUI, TemplateMoudle templateMoudle, AssetsModule assetsModule, RoleRepository roleRepository)
