@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 850ebdffc723e064a8e1cd3b17be0280, type: 3}
+  m_Name: "So_Bullet_1300\u91D1\u67AA\u9C7C"
+  m_EditorClassIdentifier: 
+  tm:
+    typeID: 1300
+    typeName: "Bullet1300\u91D1\u67AA\u9C7C"
+    hp: 0
+    hitTimes: 1
+    attackDamage: 5
+    isBomb: 0
+    isHaveContinueDamege: 0
+    continueDamege: 0
+    isHaveDamageRange: 1
+    damageRange: 1
+    type: 1
+    moveSpeed: 10
+    modPrefab: {fileID: 431577423833956408, guid: 304062ff352923a439b12f55489ad13b, type: 3}
+    sprite: {fileID: 21300000, guid: 9bbb503ab17f97a418eb8761e63e3c52, type: 3}
+    content: "\u91D1\u67AA\u9C7C"

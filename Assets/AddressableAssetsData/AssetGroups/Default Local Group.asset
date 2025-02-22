@@ -35,54 +35,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - So_TrainCard
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b442cd8e7b4604a4b9cad18072b7ce16
-    m_Address: "So_Bullet_400\u9E21 2"
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - So_Bullet
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 42f06ac77046af748acd2911bdb26b1d
-    m_Address: "So_Bullet_500\u9E21 1"
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - So_Bullet
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ec4b06dd7e7c3ba4583ddba504eab72f
-    m_Address: "So_Bullet_600\u9E21 2"
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - So_Bullet
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d22da82422c490f46afa7d334a679ea8
-    m_Address: "So_Bullet_700\u9E21 1"
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - So_Bullet
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 962f1f5ccf9cdbf49be7fdfce62afa21
-    m_Address: "So_Skillor_500_\u9E21 1"
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - So_Skill
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d02bb9dde144432408016d91f33d57ba
-    m_Address: "So_Skillor_600_\u9E21 2"
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - So_Skill
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c7454813961d9a442906c39f62fcb2ff
-    m_Address: "So_Skillor_700_\u9E21 3"
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - So_Skill
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 43e4d400036dd8545ac5f257cc5945bd
-    m_Address: "So_Skillor_800_\u9E21 4"
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - So_Skill
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 4b47acea7a70a444998ddd6e6fd8b9bf, type: 2}
   m_SchemaSet:

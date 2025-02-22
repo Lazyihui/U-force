@@ -23,20 +23,74 @@ MonoBehaviour:
     m_SerializedLabels:
     - So_Bullet
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ec25f1894dd14f14cbd7b712e1774852
-    m_Address: "So_Bullet_300\u8702\u871C"
+  - m_GUID: 42f06ac77046af748acd2911bdb26b1d
+    m_Address: "So_Bullet_1300\u91D1\u67AA\u9C7C"
     m_ReadOnly: 0
     m_SerializedLabels:
     - So_Bullet
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f8fa8df0f443f694aa9bda115442c447
-    m_Address: "So_Bullet_200\u7F50\u5934"
+  - m_GUID: ec4b06dd7e7c3ba4583ddba504eab72f
+    m_Address: "So_Bullet_1400\u80E1\u6912\u7C89"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Bullet
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d22da82422c490f46afa7d334a679ea8
+    m_Address: "So_Bullet_1500\u5976\u916A"
     m_ReadOnly: 0
     m_SerializedLabels:
     - So_Bullet
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1f9c32337f9e4db4380f705d440dc9ed
-    m_Address: "So_Bullet_400\u9E21"
+    m_Address: "So_Bullet_1600\u9762\u7C89"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Bullet
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b442cd8e7b4604a4b9cad18072b7ce16
+    m_Address: "So_Bullet_1200\u9E21"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Bullet
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec25f1894dd14f14cbd7b712e1774852
+    m_Address: "So_Bullet_1100\u8702\u871C"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Bullet
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8fa8df0f443f694aa9bda115442c447
+    m_Address: "So_Bullet_1000\u7F50\u5934"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Bullet
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 616ede907c0618b43b84e91bf51a06df
+    m_Address: "So_Bullet_1700\u65A7\u5934"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Bullet
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ccad191109302174caf4e6099cd17a07
+    m_Address: "So_Bullet_1800\u9524\u5B50"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Bullet
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 770b6fe25edad1747869a9e124259040
+    m_Address: "So_Bullet_1900\u9C7C\u9556"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Bullet
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2c96a299017c4b649935ed088e2a5578
+    m_Address: "So_Bullet_2000\u9570\u5200"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Bullet
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: adbf7912529e92547a25790d37f3ab38
+    m_Address: "So_Bullet_2100\u78C1\u94C1"
     m_ReadOnly: 0
     m_SerializedLabels:
     - So_Bullet

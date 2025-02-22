@@ -25,6 +25,24 @@ namespace UF {
         bool isEscDown;
         public bool IsEscDown => isEscDown;
 
+        bool isPlayer1Jump;
+        public bool IsPlayer1Jump => isPlayer1Jump;
+
+        bool isPlayer1Attack;
+        public bool IsPlayer1Attack => isPlayer1Attack;
+
+        bool isPlayer1Defense;
+        public bool IsPlayer1Defense => isPlayer1Defense;
+
+        bool isPlayer2Jump;
+        public bool IsPlayer2Jump => isPlayer2Jump;
+
+        bool isPlayer2Attack;
+        public bool IsPlayer2Attack => isPlayer2Attack;
+
+        bool isPlayer2Defense;
+        public bool IsPlayer2Defense => isPlayer2Defense;
+
         public void Ctor() {
             player1 = new InputControls_Player();
             player1.Enable();
@@ -43,6 +61,7 @@ namespace UF {
         public void Process(float dt) {
             UnButtonPress();
 
+            #region World
             var world = player1.World;
 
             // -Input
@@ -101,9 +120,35 @@ namespace UF {
                     inputCastKey |= InputKeyFlag.Weap4;
                 }
             }
+            #endregion
 
+            #region Train
+            var train = player1.Train;
 
+            // Player1
+            {
+                bool isPlayer1JumpDown = train.Player1Jump.WasPressedThisFrame();
+                isPlayer1Jump = isPlayer1JumpDown;
 
+                bool isPlayer1AttackDown = train.Player1Attack.WasPressedThisFrame();
+                isPlayer1Attack = isPlayer1AttackDown;
+
+                bool isPlayer1DefenseDown = train.Player1Defense.WasPressedThisFrame();
+                isPlayer1Defense = isPlayer1DefenseDown;
+            }
+
+            // Player2
+            {
+                bool isPlayer2JumpDown = train.Player2Jump.WasPressedThisFrame();
+                isPlayer2Jump = isPlayer2JumpDown;
+
+                bool isPlayer2AttackDown = train.Player2Attack.WasPressedThisFrame();
+                isPlayer2Attack = isPlayer2AttackDown;
+
+                bool isPlayer2DefenseDown = train.Player2Defense.WasPressedThisFrame();
+                isPlayer2Defense = isPlayer2DefenseDown;
+            }
+            #endregion
         }
 
         public void Set_InputCastKey(InputKeyFlag flag) {

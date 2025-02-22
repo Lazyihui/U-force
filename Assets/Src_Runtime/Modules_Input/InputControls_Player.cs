@@ -190,6 +190,134 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Train"",
+            ""id"": ""ee120292-f0f1-46f8-8963-2aa13cbc0992"",
+            ""actions"": [
+                {
+                    ""name"": ""Player1Jump"",
+                    ""type"": ""Value"",
+                    ""id"": ""fb7245ca-44d8-41b3-b5f8-a6a0328e6a0f"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Player1Attack"",
+                    ""type"": ""Value"",
+                    ""id"": ""ba5b1e07-68b1-4083-bd4f-4fb7e1044b5b"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Player1Defense"",
+                    ""type"": ""Value"",
+                    ""id"": ""313b74bb-bf6f-4284-bf9b-0a2d8ee9a980"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Player2Jump"",
+                    ""type"": ""Value"",
+                    ""id"": ""d04a341c-8220-4658-be43-5817feb5b1e1"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Player2Attack"",
+                    ""type"": ""Value"",
+                    ""id"": ""faf6c04c-a6db-478c-af24-21379e2ffc01"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Player2Defense"",
+                    ""type"": ""Value"",
+                    ""id"": ""18fc182f-13ae-453f-9798-820e93d39882"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""59f15c27-d9a4-4d75-bf73-5b448c35f282"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Player1Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0af1b7e-21e2-4d12-bc9d-3b39c2e2cbba"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Player1Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0a8defab-0d14-4f45-94bd-11d07eef70ae"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Player1Defense"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""71c3275f-feaa-43bc-97b8-f83cb384a546"",
+                    ""path"": ""<Keyboard>/rightShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Player2Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f2be1505-9efc-498b-b43b-a8898429c739"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Player2Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ddd08667-99c8-4e33-8a15-b5972d593712"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Player2Defense"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -204,6 +332,14 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
         m_World_Weap4 = m_World.FindAction("Weap4", throwIfNotFound: true);
         m_World_Esc = m_World.FindAction("Esc", throwIfNotFound: true);
         m_World_Tab = m_World.FindAction("Tab", throwIfNotFound: true);
+        // Train
+        m_Train = asset.FindActionMap("Train", throwIfNotFound: true);
+        m_Train_Player1Jump = m_Train.FindAction("Player1Jump", throwIfNotFound: true);
+        m_Train_Player1Attack = m_Train.FindAction("Player1Attack", throwIfNotFound: true);
+        m_Train_Player1Defense = m_Train.FindAction("Player1Defense", throwIfNotFound: true);
+        m_Train_Player2Jump = m_Train.FindAction("Player2Jump", throwIfNotFound: true);
+        m_Train_Player2Attack = m_Train.FindAction("Player2Attack", throwIfNotFound: true);
+        m_Train_Player2Defense = m_Train.FindAction("Player2Defense", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -363,6 +499,92 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
         }
     }
     public WorldActions @World => new WorldActions(this);
+
+    // Train
+    private readonly InputActionMap m_Train;
+    private List<ITrainActions> m_TrainActionsCallbackInterfaces = new List<ITrainActions>();
+    private readonly InputAction m_Train_Player1Jump;
+    private readonly InputAction m_Train_Player1Attack;
+    private readonly InputAction m_Train_Player1Defense;
+    private readonly InputAction m_Train_Player2Jump;
+    private readonly InputAction m_Train_Player2Attack;
+    private readonly InputAction m_Train_Player2Defense;
+    public struct TrainActions
+    {
+        private @InputControls_Player m_Wrapper;
+        public TrainActions(@InputControls_Player wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Player1Jump => m_Wrapper.m_Train_Player1Jump;
+        public InputAction @Player1Attack => m_Wrapper.m_Train_Player1Attack;
+        public InputAction @Player1Defense => m_Wrapper.m_Train_Player1Defense;
+        public InputAction @Player2Jump => m_Wrapper.m_Train_Player2Jump;
+        public InputAction @Player2Attack => m_Wrapper.m_Train_Player2Attack;
+        public InputAction @Player2Defense => m_Wrapper.m_Train_Player2Defense;
+        public InputActionMap Get() { return m_Wrapper.m_Train; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(TrainActions set) { return set.Get(); }
+        public void AddCallbacks(ITrainActions instance)
+        {
+            if (instance == null || m_Wrapper.m_TrainActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_TrainActionsCallbackInterfaces.Add(instance);
+            @Player1Jump.started += instance.OnPlayer1Jump;
+            @Player1Jump.performed += instance.OnPlayer1Jump;
+            @Player1Jump.canceled += instance.OnPlayer1Jump;
+            @Player1Attack.started += instance.OnPlayer1Attack;
+            @Player1Attack.performed += instance.OnPlayer1Attack;
+            @Player1Attack.canceled += instance.OnPlayer1Attack;
+            @Player1Defense.started += instance.OnPlayer1Defense;
+            @Player1Defense.performed += instance.OnPlayer1Defense;
+            @Player1Defense.canceled += instance.OnPlayer1Defense;
+            @Player2Jump.started += instance.OnPlayer2Jump;
+            @Player2Jump.performed += instance.OnPlayer2Jump;
+            @Player2Jump.canceled += instance.OnPlayer2Jump;
+            @Player2Attack.started += instance.OnPlayer2Attack;
+            @Player2Attack.performed += instance.OnPlayer2Attack;
+            @Player2Attack.canceled += instance.OnPlayer2Attack;
+            @Player2Defense.started += instance.OnPlayer2Defense;
+            @Player2Defense.performed += instance.OnPlayer2Defense;
+            @Player2Defense.canceled += instance.OnPlayer2Defense;
+        }
+
+        private void UnregisterCallbacks(ITrainActions instance)
+        {
+            @Player1Jump.started -= instance.OnPlayer1Jump;
+            @Player1Jump.performed -= instance.OnPlayer1Jump;
+            @Player1Jump.canceled -= instance.OnPlayer1Jump;
+            @Player1Attack.started -= instance.OnPlayer1Attack;
+            @Player1Attack.performed -= instance.OnPlayer1Attack;
+            @Player1Attack.canceled -= instance.OnPlayer1Attack;
+            @Player1Defense.started -= instance.OnPlayer1Defense;
+            @Player1Defense.performed -= instance.OnPlayer1Defense;
+            @Player1Defense.canceled -= instance.OnPlayer1Defense;
+            @Player2Jump.started -= instance.OnPlayer2Jump;
+            @Player2Jump.performed -= instance.OnPlayer2Jump;
+            @Player2Jump.canceled -= instance.OnPlayer2Jump;
+            @Player2Attack.started -= instance.OnPlayer2Attack;
+            @Player2Attack.performed -= instance.OnPlayer2Attack;
+            @Player2Attack.canceled -= instance.OnPlayer2Attack;
+            @Player2Defense.started -= instance.OnPlayer2Defense;
+            @Player2Defense.performed -= instance.OnPlayer2Defense;
+            @Player2Defense.canceled -= instance.OnPlayer2Defense;
+        }
+
+        public void RemoveCallbacks(ITrainActions instance)
+        {
+            if (m_Wrapper.m_TrainActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ITrainActions instance)
+        {
+            foreach (var item in m_Wrapper.m_TrainActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_TrainActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public TrainActions @Train => new TrainActions(this);
     public interface IWorldActions
     {
         void OnJump(InputAction.CallbackContext context);
@@ -373,5 +595,14 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
         void OnWeap4(InputAction.CallbackContext context);
         void OnEsc(InputAction.CallbackContext context);
         void OnTab(InputAction.CallbackContext context);
+    }
+    public interface ITrainActions
+    {
+        void OnPlayer1Jump(InputAction.CallbackContext context);
+        void OnPlayer1Attack(InputAction.CallbackContext context);
+        void OnPlayer1Defense(InputAction.CallbackContext context);
+        void OnPlayer2Jump(InputAction.CallbackContext context);
+        void OnPlayer2Attack(InputAction.CallbackContext context);
+        void OnPlayer2Defense(InputAction.CallbackContext context);
     }
 }

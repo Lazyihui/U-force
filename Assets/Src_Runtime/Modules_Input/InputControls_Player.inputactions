@@ -168,6 +168,134 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Train",
+            "id": "ee120292-f0f1-46f8-8963-2aa13cbc0992",
+            "actions": [
+                {
+                    "name": "Player1Jump",
+                    "type": "Value",
+                    "id": "fb7245ca-44d8-41b3-b5f8-a6a0328e6a0f",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Player1Attack",
+                    "type": "Value",
+                    "id": "ba5b1e07-68b1-4083-bd4f-4fb7e1044b5b",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Player1Defense",
+                    "type": "Value",
+                    "id": "313b74bb-bf6f-4284-bf9b-0a2d8ee9a980",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Player2Jump",
+                    "type": "Value",
+                    "id": "d04a341c-8220-4658-be43-5817feb5b1e1",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Player2Attack",
+                    "type": "Value",
+                    "id": "faf6c04c-a6db-478c-af24-21379e2ffc01",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Player2Defense",
+                    "type": "Value",
+                    "id": "18fc182f-13ae-453f-9798-820e93d39882",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "59f15c27-d9a4-4d75-bf73-5b448c35f282",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Player1Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d0af1b7e-21e2-4d12-bc9d-3b39c2e2cbba",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Player1Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0a8defab-0d14-4f45-94bd-11d07eef70ae",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Player1Defense",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "71c3275f-feaa-43bc-97b8-f83cb384a546",
+                    "path": "<Keyboard>/rightShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Player2Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f2be1505-9efc-498b-b43b-a8898429c739",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Player2Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ddd08667-99c8-4e33-8a15-b5972d593712",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Player2Defense",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

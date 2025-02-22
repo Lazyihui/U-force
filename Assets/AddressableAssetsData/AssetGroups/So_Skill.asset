@@ -17,8 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 67f53ca936924784ea407ced38d8bfce
   m_SerializeEntries:
-  - m_GUID: 3c66c4bdc888ec44da2ea3067517bbac
-    m_Address: So_Skillor_1
+  - m_GUID: 43e4d400036dd8545ac5f257cc5945bd
+    m_Address: "So_Skillor_1600_\u9762\u7C89"
     m_ReadOnly: 0
     m_SerializedLabels:
     - So_Skill
@@ -29,14 +29,92 @@ MonoBehaviour:
     m_SerializedLabels:
     - So_Skill
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e65466553c95d464da1189d758904a8a
-    m_Address: "So_Skillor_200_\u7F50\u5934"
+  - m_GUID: d02bb9dde144432408016d91f33d57ba
+    m_Address: "So_Skillor_1400_\u80E1\u6912\u7C89"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 962f1f5ccf9cdbf49be7fdfce62afa21
+    m_Address: "So_Skillor_1300_\u91D1\u67AA\u9C7C"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c7454813961d9a442906c39f62fcb2ff
+    m_Address: "So_Skillor_1500_\u5976\u916A"
     m_ReadOnly: 0
     m_SerializedLabels:
     - So_Skill
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6ee1c028d0e410245802a04acd98a83f
-    m_Address: "So_Skillor_400_\u9E21"
+    m_Address: "So_Skillor_1200_\u9E21"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3c66c4bdc888ec44da2ea3067517bbac
+    m_Address: "So_Skillor_1100_\u8702\u871C"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e65466553c95d464da1189d758904a8a
+    m_Address: "So_Skillor_1000_\u7F50\u5934"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f9cb127ab7b1204f8250f2b395aa386
+    m_Address: "So_Skillor_1700_\u65A7\u5934"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 49f77535757438a41bf32b5c574b8cee
+    m_Address: "So_Skillor_1800_\u9524\u5B50"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c2d86317ae521a4583f519ba8de8016
+    m_Address: "So_Skillor_1900_\u9C7C\u9556"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d6fbde1646dd4f14db20bb84ad336122
+    m_Address: "So_Skillor_2000_\u9570\u5200"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 659d91848900adf49b59ae4f49611f70
+    m_Address: "So_Skillor_2100_\u78C1\u94C1"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4dab70ad51758094ab1aabc4ce22730f
+    m_Address: "So_Skillor_3000_\u8DDF\u8E2A"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf08ea79f86d66c4f8df891adf27bc55
+    m_Address: "So_Skillor_3100_\u8F70\u70B8"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 71a242abb2b33414aba78b90640fbc15
+    m_Address: "So_Skillor_3200_\u5730\u9762\u5C04\u51FB"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5ddb1bb9561c5ee43873c3773e577499
+    m_Address: "So_Skillor_3300_\u5730\u9762\u55B7\u5C04"
     m_ReadOnly: 0
     m_SerializedLabels:
     - So_Skill
