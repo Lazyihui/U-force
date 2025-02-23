@@ -25,6 +25,7 @@ namespace UF {
         bool isEscDown;
         public bool IsEscDown => isEscDown;
 
+        // Train
         bool isPlayer1Jump;
         public bool IsPlayer1Jump => isPlayer1Jump;
 
@@ -42,6 +43,10 @@ namespace UF {
 
         bool isPlayer2Defense;
         public bool IsPlayer2Defense => isPlayer2Defense;
+
+        // Attack
+        Vector2 moveDir;
+        public Vector2 MoveDir => moveDir;
 
         public void Ctor() {
             player1 = new InputControls_Player();
@@ -147,6 +152,24 @@ namespace UF {
 
                 bool isPlayer2DefenseDown = train.Player2Defense.WasPressedThisFrame();
                 isPlayer2Defense = isPlayer2DefenseDown;
+            }
+            #endregion
+
+            #region Attack
+            var attack = player1.Attack;
+            {
+                moveDir.x = attack.MoveRight.ReadValue<float>() - attack.MoveLeft.ReadValue<float>();
+                moveDir.y = attack.MoveUp.ReadValue<float>() - attack.MoveDown.ReadValue<float>();
+
+                if (attack.MoveLeft.WasPerformedThisFrame()) {
+                    inputCastKey = InputKeyFlag.MoveLeft;
+                } else if (attack.MoveRight.WasPerformedThisFrame()) {
+                    inputCastKey = InputKeyFlag.MoveRight;
+                } else if (attack.MoveUp.WasPerformedThisFrame()) {
+                    inputCastKey = InputKeyFlag.MoveUp;
+                } else if (attack.MoveDown.WasPerformedThisFrame()) {
+                    inputCastKey = InputKeyFlag.MoveDown;
+                }
             }
             #endregion
         }

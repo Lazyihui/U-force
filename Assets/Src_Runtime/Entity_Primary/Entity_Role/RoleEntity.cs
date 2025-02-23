@@ -106,6 +106,10 @@ namespace UF {
             moveComponent.Move_Ghost(moveSpeed);
         }
 
+        public void Move_Attack(Vector2 dir, float moveSpeed) {
+            moveComponent.Move_Attack(dir, moveSpeed);
+        }
+
         public void Move_Stop() {
             moveComponent.Move_Stop();
         }

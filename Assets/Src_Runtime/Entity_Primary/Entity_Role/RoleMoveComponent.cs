@@ -62,6 +62,15 @@ public class RoleMoveComponent {
         oldVelo.y = 0;
         rb.velocity = oldVelo;
     }
+    
+    public void Move_Attack(Vector2 dir, float moveSpeed) { // 进攻战 玩家移动
+        Vector2 oldVelo = rb.velocity;
+        oldVelo = dir * moveSpeed;
+        rb.velocity = oldVelo;
+
+        rb.gravityScale = 0;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
 
     public void Move_Stop() {
         pauseVelo = rb.velocity;

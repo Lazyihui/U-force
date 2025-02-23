@@ -117,6 +117,8 @@ namespace UF {
 
             inputCom.Jump_Set(inputModule.IsJump);
             inputCom.RecoredCastKey(inputModule.InputCastKey);
+
+            inputCom.MoveDir_Set(inputModule.MoveDir);
         }
 
         #endregion
