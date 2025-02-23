@@ -39,8 +39,8 @@ namespace UF {
 
         }
 
-        public static void FSM_All_Pause(GameSystemContext ctx, RoleEntity role) {
-            Loco_MoveStop(ctx, role);
+        public static void FSM_All_Pause(RoleEntity role) {
+            Loco_MoveStop(role);
             //TODO: 施法过程中暂停
         }
 

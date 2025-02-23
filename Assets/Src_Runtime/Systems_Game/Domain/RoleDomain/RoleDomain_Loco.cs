@@ -8,11 +8,11 @@ namespace UF {
             var moveCom = role.MoveComponent;
             GroundCheck(ctx, role);
 
-            Loco_MoveReset(ctx, role);
-            Loco_Jump(ctx, role, moveCom.jumpForce);
+            Loco_MoveReset(role);
+            Loco_Jump(role, moveCom.jumpForce);
             Loco_Move(ctx, role, dt);
         }
-        #region Move: Move
+        #region Move: 防守战
         static void Loco_Move(GameSystemContext ctx, RoleEntity role, float dt) {
             if (dt <= 0) {
                 return;
@@ -22,39 +22,48 @@ namespace UF {
                 return;
             }
 
-            // 超出屏幕
+            // TODO:改成近基地死掉
             if (role.transform.position.y >= 11.25) {
                 role.Jump_Stop();
                 return;
             }
 
-            var moveCom = role.MoveComponent;
+            var attrCom = role.AttributeComponent;
 
             RoleMoveType moveType = role.MoveType;
 
             if (moveType == RoleMoveType.Player) {
                 if (role.IsGround() && role.AllowPlayerMove()) {
-                    role.Move_Player(moveCom.moveSpeed);
+                    role.Move_Player(attrCom.moveSpeed);
                 }
             } else if (moveType == RoleMoveType.Ghost) {
-                role.Move_Ghost(moveCom.moveSpeed);
+                role.Move_Ghost(attrCom.moveSpeed);
             }
         }
 
-        public static void Loco_MoveStop(GameSystemContext ctx, RoleEntity role) {
+        public static void Loco_MoveStop(RoleEntity role) {
             role.Move_Stop();
         }
 
-        public static void Loco_MoveReset(GameSystemContext ctx, RoleEntity role) {
+        public static void Loco_MoveReset(RoleEntity role) {
             role.Move_Reset();
         }
 
-        public static void Loco_Jump(GameSystemContext ctx, RoleEntity role, float jumpForce) {
+        public static void Loco_Jump(RoleEntity role, float jumpForce) {
             var inputCom = role.InputComponent;
             if (!inputCom.Jump_Get()) {
                 return;
             }
             role.Jump();
+        }
+        #endregion
+
+        #region Mvoe:进攻战
+
+        public static void Loco_MoveAttack(RoleEntity role) {
+            var inputCom = role.InputComponent;
+            var attrCom = role.AttributeComponent;
+            role.Move_Attack(inputCom.MoveDir, attrCom.GetMoveSpeed());
         }
 
         #endregion

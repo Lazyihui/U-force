@@ -37,12 +37,14 @@ namespace UF {
 
             // -move
             var moveCom = role.MoveComponent;
-            moveCom.SetMoveSpeed(tm.moveSpeed);
             moveCom.SetJumpForce(tm.jumpForce);
 
             // -Attribute
-            role.Attr_Hp_Set(tm.hp);
-            role.Attr_HpMax_Set(tm.hp);
+             var attrCom = role.AttributeComponent;
+            attrCom.SetHp(tm.hp);
+            attrCom.SetHpMax(tm.hp);
+            attrCom.SetMoveSpeed(tm.moveSpeed);
+
 
             // - Skillor
             var skillorCom = role.skillorSlotComponent;
@@ -85,12 +87,13 @@ namespace UF {
 
             // -move
             var moveCom = role.MoveComponent;
-            moveCom.SetMoveSpeed(tm.moveSpeed);
             moveCom.SetJumpForce(tm.jumpForce);
 
             // -Attribute
-            role.Attr_Hp_Set(tm.hp);
-            role.Attr_HpMax_Set(tm.hp);
+            var attrCom = role.AttributeComponent;
+            attrCom.SetHp(tm.hp);
+            attrCom.SetHpMax(tm.hp);
+            attrCom.SetMoveSpeed(tm.moveSpeed);
 
 
             // - Skillor
@@ -136,7 +139,6 @@ namespace UF {
 
             // -move
             var moveCom = role.MoveComponent;
-            moveCom.SetMoveSpeed(tm.moveSpeed);
             moveCom.SetJumpForce(tm.jumpForce);
 
             // - Spawn
@@ -144,9 +146,10 @@ namespace UF {
             role.TF_SetRot(spawnerTM.rotation);
 
             // -Attribute
-            role.Attr_Hp_Set(tm.hp);
-            role.Attr_HpMax_Set(tm.hp);
-
+            var attrCom = role.AttributeComponent;
+            attrCom.SetHp(tm.hp);
+            attrCom.SetHpMax(tm.hp);
+            attrCom.SetMoveSpeed(tm.moveSpeed);
 
             // - Skillor
             var skillorCom = role.skillorSlotComponent;

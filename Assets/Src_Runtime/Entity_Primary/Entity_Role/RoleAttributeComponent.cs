@@ -11,5 +11,9 @@ namespace UF {
         public void SetHpMax(int value) => hpMax = value;
         public int GetHpMax() => hpMax;
 
+        public float moveSpeed;
+        public void SetMoveSpeed(float value) => moveSpeed = value;
+        public float GetMoveSpeed() => moveSpeed;
+
     }
 }

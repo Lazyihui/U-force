@@ -26,7 +26,6 @@ namespace UF {
 
         public int slotMax;//卡槽最大数量 也是按钮数量
         public int GetSlotMax() => slotMax;
-        public bool isSlotFull;//卡槽是否满了
 
         // 结算信息
         public int ownerGetHurt;
@@ -68,7 +67,6 @@ namespace UF {
             unLockChapterID = 2;//解锁的章节
             unLockStageCount = 10;//最大就是10
             slotMax = 3;//卡槽最大数量
-            isSlotFull = false;//卡槽是否满了
 
             EnemyTypeIDs = new HashSet<int>();
             stage_Passed = new HashSet<int>();
@@ -80,7 +78,6 @@ namespace UF {
             stageCurID = 0;
             chapterCurID = 1;
             unLockChapterID = 0;
-            isSlotFull = false;
 
             stage_Passed.Clear();
             stage_PassedStar.Clear();
