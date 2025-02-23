@@ -10,22 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1d72292fc95d6e41aba9cebe752d514, type: 3}
-  m_Name: So_Role_100_Player
+  m_Name: "So_Role_140_\u8DDF\u8E2A\u56DE\u529B\u6807"
   m_EditorClassIdentifier: 
   tm:
-    typeName: Player100
+    typeName: Player140
     roleType: 0
     moveType: 0
     roleState: 1
-    typeID: 100
-    hp: 3
+    typeID: 140
+    hp: 100
     moveSpeed: 15
     jumpForce: 5
-    skillorSoArray:
-    - {fileID: 11400000, guid: 6037af1524df2a0469e65295d87f5a8c, type: 2}
-    modPrefab: {fileID: 4094805614534310518, guid: c9eea0833c744504aa107299ad0f64b6, type: 3}
-    sprite: {fileID: 21300000, guid: c0ca71d20da4c9e4e936ccf61b6fc8ca, type: 3}
-    content: ggggggggggggggg
-    feature: 100
+    skillorSoArray: []
+    modPrefab: {fileID: 5506719469353998905, guid: 9bbf59cb10403974e87fffd2e390975e, type: 3}
+    sprite: {fileID: 2074218510, guid: c0ca71d20da4c9e4e936ccf61b6fc8ca, type: 3}
+    content: "\u8DDF\u8E2A\u56DE\u529B\u6807"
+    feature: "\u8DDF\u8E2A\u56DE\u529B\u6807"
     skill: 
     restraint: 

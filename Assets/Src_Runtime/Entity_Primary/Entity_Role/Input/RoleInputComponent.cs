@@ -14,6 +14,11 @@ namespace UF {
         public void Jump_Set(bool value) => isJump = value;
         public bool Jump_Get() => isJump;
 
+        // 进攻战移动
+        Vector2 moveDir;
+        public Vector2 MoveDir => moveDir;
+        public void MoveDir_Set(Vector2 value) => moveDir = value;
+
 
         // -input
         InputKeyFlag castKeys;

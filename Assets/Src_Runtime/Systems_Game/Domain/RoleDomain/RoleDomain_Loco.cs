@@ -38,7 +38,6 @@ namespace UF {
                 }
             } else if (moveType == RoleMoveType.Ghost) {
                 role.Move_Ghost(moveCom.moveSpeed);
-
             }
         }
 

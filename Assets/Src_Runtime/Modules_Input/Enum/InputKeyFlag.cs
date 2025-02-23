@@ -13,5 +13,11 @@ namespace UF {
         Weap3 = 1 << 4,
         Weap4 = 1 << 5,
         Tech = 1 << 6, // 大招逻辑写在技能里吗? 不在之后再改
+        
+        // 进攻战
+        MoveLeft = 1 << 7,
+        MoveRight = 1 << 8,
+        MoveUp = 1 << 9,
+        MoveDown = 1 << 10,
     }
 }

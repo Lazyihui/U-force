@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d72292fc95d6e41aba9cebe752d514, type: 3}
+  m_Name: "So_Role_130_\u6C14\u529F"
+  m_EditorClassIdentifier: 
+  tm:
+    typeName: Player130
+    roleType: 0
+    moveType: 0
+    roleState: 1
+    typeID: 130
+    hp: 100
+    moveSpeed: 15
+    jumpForce: 5
+    skillorSoArray: []
+    modPrefab: {fileID: 5506719469353998905, guid: 814b20cd5d97bec4992d6ee7cf24812f, type: 3}
+    sprite: {fileID: -1421781264, guid: c0ca71d20da4c9e4e936ccf61b6fc8ca, type: 3}
+    content: "\u6C14\u529F"
+    feature: "\u6C14\u529F"
+    skill: 
+    restraint: 
