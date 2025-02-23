@@ -35,5 +35,4 @@ MonoBehaviour:
     bulletSciSoArray:
     - {fileID: 11400000, guid: ed460d7d5c7d2e74c814c4a6b706fd43, type: 2}
     roleEnemySoArray:
-    - {fileID: 11400000, guid: 772c31f3954c55f48b735dc0c0226a7e, type: 2}
     - {fileID: 11400000, guid: 9d04dd169b2febc41a88d55ba222c7bb, type: 2}

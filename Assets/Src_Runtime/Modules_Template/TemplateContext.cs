@@ -71,6 +71,7 @@ namespace UF.TemplateInternal {
 
         public void Card_Add(CardTM card) {
             cards.Add(card.typeID, card);
+            
         }
 
         public void TrainCard_Add(TrainCardTM trainCard) {
