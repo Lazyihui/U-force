@@ -66,7 +66,6 @@ namespace UF {
         public void Process(float dt) {
             UnButtonPress();
 
-            #region World
             var world = player1.World;
 
             // -Input
@@ -125,53 +124,36 @@ namespace UF {
                     inputCastKey |= InputKeyFlag.Weap4;
                 }
             }
-            #endregion
 
-            #region Train
-            var train = player1.Train;
-
-            // Player1
+            // 训练营Player1
             {
-                bool isPlayer1JumpDown = train.Player1Jump.WasPressedThisFrame();
+                bool isPlayer1JumpDown = world.Player1Jump.WasPressedThisFrame();
                 isPlayer1Jump = isPlayer1JumpDown;
 
-                bool isPlayer1AttackDown = train.Player1Attack.WasPressedThisFrame();
+                bool isPlayer1AttackDown = world.Player1Attack.WasPressedThisFrame();
                 isPlayer1Attack = isPlayer1AttackDown;
 
-                bool isPlayer1DefenseDown = train.Player1Defense.WasPressedThisFrame();
+                bool isPlayer1DefenseDown = world.Player1Defense.WasPressedThisFrame();
                 isPlayer1Defense = isPlayer1DefenseDown;
             }
 
-            // Player2
+            // 训练营Player2
             {
-                bool isPlayer2JumpDown = train.Player2Jump.WasPressedThisFrame();
+                bool isPlayer2JumpDown = world.Player2Jump.WasPressedThisFrame();
                 isPlayer2Jump = isPlayer2JumpDown;
 
-                bool isPlayer2AttackDown = train.Player2Attack.WasPressedThisFrame();
+                bool isPlayer2AttackDown = world.Player2Attack.WasPressedThisFrame();
                 isPlayer2Attack = isPlayer2AttackDown;
 
-                bool isPlayer2DefenseDown = train.Player2Defense.WasPressedThisFrame();
+                bool isPlayer2DefenseDown = world.Player2Defense.WasPressedThisFrame();
                 isPlayer2Defense = isPlayer2DefenseDown;
             }
-            #endregion
 
-            #region Attack
-            var attack = player1.Attack;
+            // 进攻战Move
             {
-                moveDir.x = attack.MoveRight.ReadValue<float>() - attack.MoveLeft.ReadValue<float>();
-                moveDir.y = attack.MoveUp.ReadValue<float>() - attack.MoveDown.ReadValue<float>();
-
-                if (attack.MoveLeft.WasPerformedThisFrame()) {
-                    inputCastKey = InputKeyFlag.MoveLeft;
-                } else if (attack.MoveRight.WasPerformedThisFrame()) {
-                    inputCastKey = InputKeyFlag.MoveRight;
-                } else if (attack.MoveUp.WasPerformedThisFrame()) {
-                    inputCastKey = InputKeyFlag.MoveUp;
-                } else if (attack.MoveDown.WasPerformedThisFrame()) {
-                    inputCastKey = InputKeyFlag.MoveDown;
-                }
+                moveDir.x = world.MoveRight.ReadValue<float>() - world.MoveLeft.ReadValue<float>();
+                moveDir.y = world.MoveUp.ReadValue<float>() - world.MoveDown.ReadValue<float>();
             }
-            #endregion
         }
 
         public void Set_InputCastKey(InputKeyFlag flag) {
