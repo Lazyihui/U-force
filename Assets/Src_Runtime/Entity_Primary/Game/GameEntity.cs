@@ -31,6 +31,9 @@ namespace UF {
         public float wavesProgress; //进度条数值
 
         #endregion
+        public bool isDefendWar;
+        public bool isOffensiveWar;
+        public bool isEliminateWar;
 
         public GameEntity() {
         }
@@ -46,6 +49,10 @@ namespace UF {
             spawnMinionIntervalTimer = tm.spawnMinionIntervalTimer;
             progress = tm.progress;
             wavesProgress = tm.wavesProgress;
+
+            isDefendWar = tm.isDefendWar;
+            isOffensiveWar = tm.isOffensiveWar;
+            isEliminateWar = tm.isEliminateWar;
         }
 
         public void Clear() {
