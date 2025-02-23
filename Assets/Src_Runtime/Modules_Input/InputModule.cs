@@ -9,7 +9,7 @@ namespace UF {
         InputControls_Player player1;
         public InputControls_Player Player1 => player1;
 
-        InputKeyFlag inputCastKey;//施法键
+        InputKeyFlag inputCastKey;
         public InputKeyFlag InputCastKey => inputCastKey;
 
         bool isJump;
@@ -24,10 +24,6 @@ namespace UF {
 
         bool isEscDown;
         public bool IsEscDown => isEscDown;
-
-        // Attack
-        Vector2 moveDir;//移动方向
-        public Vector2 MoveDir => moveDir;
 
         // Train
         bool isPlayer1Jump;
@@ -48,6 +44,9 @@ namespace UF {
         bool isPlayer2Defense;
         public bool IsPlayer2Defense => isPlayer2Defense;
 
+        // Attack
+        Vector2 moveDir;
+        public Vector2 MoveDir => moveDir;
 
         public void Ctor() {
             player1 = new InputControls_Player();
@@ -126,38 +125,35 @@ namespace UF {
                 }
             }
 
-            moveDir.x = world.MoveRight.ReadValue<float>() - world.MoveLeft.ReadValue<float>();
-            moveDir.y = world.MoveUp.ReadValue<float>() - world.MoveDown.ReadValue<float>();
-
-            #region Train
-            var train = player1.Train;
-
-            // Player1
+            // 训练营Player1
             {
-                bool isPlayer1JumpDown = train.Player1Jump.WasPressedThisFrame();
+                bool isPlayer1JumpDown = world.Player1Jump.WasPressedThisFrame();
                 isPlayer1Jump = isPlayer1JumpDown;
 
-                bool isPlayer1AttackDown = train.Player1Attack.WasPressedThisFrame();
+                bool isPlayer1AttackDown = world.Player1Attack.WasPressedThisFrame();
                 isPlayer1Attack = isPlayer1AttackDown;
 
-                bool isPlayer1DefenseDown = train.Player1Defense.WasPressedThisFrame();
+                bool isPlayer1DefenseDown = world.Player1Defense.WasPressedThisFrame();
                 isPlayer1Defense = isPlayer1DefenseDown;
             }
 
-            // Player2
+            // 训练营Player2
             {
-                bool isPlayer2JumpDown = train.Player2Jump.WasPressedThisFrame();
+                bool isPlayer2JumpDown = world.Player2Jump.WasPressedThisFrame();
                 isPlayer2Jump = isPlayer2JumpDown;
 
-                bool isPlayer2AttackDown = train.Player2Attack.WasPressedThisFrame();
+                bool isPlayer2AttackDown = world.Player2Attack.WasPressedThisFrame();
                 isPlayer2Attack = isPlayer2AttackDown;
 
-                bool isPlayer2DefenseDown = train.Player2Defense.WasPressedThisFrame();
+                bool isPlayer2DefenseDown = world.Player2Defense.WasPressedThisFrame();
                 isPlayer2Defense = isPlayer2DefenseDown;
             }
-            #endregion
 
-
+            // 进攻战Move
+            {
+                moveDir.x = world.MoveRight.ReadValue<float>() - world.MoveLeft.ReadValue<float>();
+                moveDir.y = world.MoveUp.ReadValue<float>() - world.MoveDown.ReadValue<float>();
+            }
         }
 
         public void Set_InputCastKey(InputKeyFlag flag) {
