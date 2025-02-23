@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3523027716141857867
+--- !u!1001 &7753816083215350928
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,20 +10,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3843750945366943217, guid: 3c834e1ed8341944493636e32f51514c, type: 3}
       propertyPath: m_Name
-      value: Role_Mod_110_Payer1
+      value: "Role_Mod_210_\u8089\u76FE"
       objectReference: {fileID: 0}
     - target: {fileID: 4404888757694596268, guid: 3c834e1ed8341944493636e32f51514c, type: 3}
       propertyPath: m_Size.x
-      value: 0.75
+      value: 0.109375
       objectReference: {fileID: 0}
     - target: {fileID: 4404888757694596268, guid: 3c834e1ed8341944493636e32f51514c, type: 3}
       propertyPath: m_Size.y
-      value: 0.75
+      value: 0.125
       objectReference: {fileID: 0}
     - target: {fileID: 4404888757694596268, guid: 3c834e1ed8341944493636e32f51514c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6494c22efa5c01040aa30bcfb2845526, type: 3}
+      objectReference: {fileID: 1849133505, guid: 4c8cd296c3e3d6748b2cc2725360a963, type: 3}
     - target: {fileID: 4404888757694596268, guid: 3c834e1ed8341944493636e32f51514c, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1

@@ -17,26 +17,56 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: bf6ae541d4140c1448bb030343656368
   m_SerializeEntries:
-  - m_GUID: 772c31f3954c55f48b735dc0c0226a7e
-    m_Address: So_Role_100
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - So_Role
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9d04dd169b2febc41a88d55ba222c7bb
-    m_Address: So_Role_200_Minion
+    m_Address: "So_Role_200_\u666E\u901A"
     m_ReadOnly: 0
     m_SerializedLabels:
     - So_Role
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 475c8e789f014494b8e09ca386d98675
-    m_Address: So_Role_110_Player1
+  - m_GUID: 772c31f3954c55f48b735dc0c0226a7e
+    m_Address: "So_Role_100_\u67AA\u5C04\u51FB"
     m_ReadOnly: 0
     m_SerializedLabels:
     - So_Role
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 28216538e0d7d1c40af159f8b49c1c56
-    m_Address: So_Role_120_Player2
+    m_Address: "So_Role_120_\u6807\u67AA"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Role
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 475c8e789f014494b8e09ca386d98675
+    m_Address: "So_Role_110_\u5F13\u7BAD"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Role
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb81763d7af005540b55f654478f979e
+    m_Address: "So_Role_130_\u6C14\u529F"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Role
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 759f06692edc0da4fa1d58c84edd15b5
+    m_Address: "So_Role_140_\u8DDF\u8E2A\u56DE\u529B\u6807"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Role
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9391e59375eca984b9ba5a4e34b2580b
+    m_Address: "So_Role_210_\u8089\u76FE"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Role
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c8302dbf62cfcf4085cf714c5324766
+    m_Address: "So_Role_220_\u901F\u5EA6\u602A"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Role
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 23dc881e38489ec4fbd99028dc078639
+    m_Address: "So_Role_230_\u8EB2\u907F"
     m_ReadOnly: 0
     m_SerializedLabels:
     - So_Role

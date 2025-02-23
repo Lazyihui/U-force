@@ -146,10 +146,73 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: WhiteRole_1
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 0
+        width: 70
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbb6bebc731a2d449ad786c3f9f8b146
+      internalID: 1849133505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WhiteRole_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 70
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d7db4af70e719a47b5550fe95374787
+      internalID: 1353156543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WhiteRole_3
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 70
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ea66ebefe254c848b3480fd9b7dbb4d
+      internalID: -1513019476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 19480bdd9e64a344b90c02df5d1d1847
     internalID: 0
     vertices: []
     indices: 
@@ -158,6 +221,9 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       WhiteRole_0: -2973340319329001583
+      WhiteRole_1: 1849133505
+      WhiteRole_2: 1353156543
+      WhiteRole_3: -1513019476
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

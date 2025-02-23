@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1d72292fc95d6e41aba9cebe752d514, type: 3}
-  m_Name: So_Role_120_Player2
+  m_Name: "So_Role_120_\u6807\u67AA"
   m_EditorClassIdentifier: 
   tm:
     typeName: Player120
@@ -22,9 +22,9 @@ MonoBehaviour:
     moveSpeed: 15
     jumpForce: 5
     skillorSoArray: []
-    modPrefab: {fileID: 4094805614534310518, guid: c9eea0833c744504aa107299ad0f64b6, type: 3}
-    sprite: {fileID: 21300000, guid: c0ca71d20da4c9e4e936ccf61b6fc8ca, type: 3}
-    content: ggggggggggggggg
-    feature: 120
+    modPrefab: {fileID: 5506719469353998905, guid: 19697eb29f88d9f43989b09dfa1c944f, type: 3}
+    sprite: {fileID: -492597407, guid: c0ca71d20da4c9e4e936ccf61b6fc8ca, type: 3}
+    content: "\u6807\u67AA"
+    feature: "\u6807\u67AA"
     skill: 
     restraint: 

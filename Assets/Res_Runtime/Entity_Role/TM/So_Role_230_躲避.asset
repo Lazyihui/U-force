@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1d72292fc95d6e41aba9cebe752d514, type: 3}
-  m_Name: So_Role_200_Minion
+  m_Name: "So_Role_230_\u8EB2\u907F"
   m_EditorClassIdentifier: 
   tm:
-    typeName: Minion_200
+    typeName: Minion230
     roleType: 1
     moveType: 1
     roleState: 1
-    typeID: 200
+    typeID: 230
     hp: 1
     moveSpeed: 5
     jumpForce: 5
     skillorSoArray: []
-    modPrefab: {fileID: 1663118547299982050, guid: 5a620a83dc403ac4088d098d5ecf911b, type: 3}
-    sprite: {fileID: -2973340319329001583, guid: 4c8cd296c3e3d6748b2cc2725360a963, type: 3}
-    content: dsssssssssssssssss
-    feature: 200
+    modPrefab: {fileID: 1663118547299982050, guid: 5f95a9fdce6cbf04d9fe31299d2c84c9, type: 3}
+    sprite: {fileID: -1513019476, guid: 4c8cd296c3e3d6748b2cc2725360a963, type: 3}
+    content: "\u8EB2\u907F"
+    feature: "\u8EB2\u907F"
     skill: 
     restraint: 

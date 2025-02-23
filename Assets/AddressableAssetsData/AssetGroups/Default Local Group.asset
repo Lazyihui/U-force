@@ -35,12 +35,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - So_TrainCard
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ed460d7d5c7d2e74c814c4a6b706fd43
-    m_Address: "So_Bullet_3000\u8DDF\u8E2A"
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - So_Bullet
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 4b47acea7a70a444998ddd6e6fd8b9bf, type: 2}
   m_SchemaSet:
