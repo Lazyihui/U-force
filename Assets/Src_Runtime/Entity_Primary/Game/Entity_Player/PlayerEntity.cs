@@ -8,7 +8,7 @@ namespace UF {
     public class PlayerEntity {
 
         // 可以生成怪物的TypeID
-        public HashSet<int> EnemyTypeIDs;
+        public List<int> EnemyTypeIDs;
 
         // 关卡信息
         HashSet<int> stage_Passed;//通关的关卡
@@ -68,7 +68,7 @@ namespace UF {
             unLockStageCount = 10;//最大就是10
             slotMax = 3;//卡槽最大数量
 
-            EnemyTypeIDs = new HashSet<int>();
+            EnemyTypeIDs = new List<int>();
             stage_Passed = new HashSet<int>();
             stage_PassedStar = new Dictionary<int, int>();
             stage_reached = new HashSet<int>();
@@ -94,9 +94,7 @@ namespace UF {
 
         public int GetRandomEnemyTypeID() {
             int index = UnityEngine.Random.Range(0, EnemyTypeIDs.Count);
-            
-            Debug.Log(new List<int>(EnemyTypeIDs)[index]);
-            return new List<int>(EnemyTypeIDs)[index];
+            return EnemyTypeIDs[index];
         }
 
         public void AddStagePassed(int stageID) {
