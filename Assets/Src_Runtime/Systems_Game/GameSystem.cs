@@ -57,11 +57,6 @@ namespace UF {
             ctx.isRunning = true;
             var game = ctx.gameEntity;
 
-            // UI
-            ctx.appUI.Panel_GameDefend_Button_Open();
-            ctx.appUI.HUD_Progressbar_Open(game.maxWaves);
-            ctx.appUI.Panel_WatchTower_ClearCursor();
-
             bool has = ctx.templateCore.Stage_TryGet(stageID, out StageTM tm);
             if (!has) {
                 Debug.LogError("StageID not found");
@@ -70,6 +65,11 @@ namespace UF {
 
             //game  
             game.InitFromTM(tm.gameTM);
+
+            // UI
+            ctx.appUI.Panel_GameDefend_Button_Open();
+            ctx.appUI.HUD_Progressbar_Open(game.maxWaves);
+            ctx.appUI.Panel_WatchTower_ClearCursor();
 
             // Map
             MapEntity map = MapDomain.Spawn(ctx.assetsModule, ctx.idService, tm.mapPrefab);
