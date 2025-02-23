@@ -9,7 +9,7 @@ namespace UF {
         InputControls_Player player1;
         public InputControls_Player Player1 => player1;
 
-        InputKeyFlag inputCastKey;
+        InputKeyFlag inputCastKey;//施法键
         public InputKeyFlag InputCastKey => inputCastKey;
 
         bool isJump;
@@ -24,6 +24,10 @@ namespace UF {
 
         bool isEscDown;
         public bool IsEscDown => isEscDown;
+
+        // Attack
+        Vector2 moveDir;//移动方向
+        public Vector2 MoveDir => moveDir;
 
         // Train
         bool isPlayer1Jump;
@@ -44,9 +48,6 @@ namespace UF {
         bool isPlayer2Defense;
         public bool IsPlayer2Defense => isPlayer2Defense;
 
-        // Attack
-        Vector2 moveDir;
-        public Vector2 MoveDir => moveDir;
 
         public void Ctor() {
             player1 = new InputControls_Player();
@@ -66,7 +67,6 @@ namespace UF {
         public void Process(float dt) {
             UnButtonPress();
 
-            #region World
             var world = player1.World;
 
             // -Input
@@ -125,7 +125,9 @@ namespace UF {
                     inputCastKey |= InputKeyFlag.Weap4;
                 }
             }
-            #endregion
+
+            moveDir.x = world.MoveRight.ReadValue<float>() - world.MoveLeft.ReadValue<float>();
+            moveDir.y = world.MoveUp.ReadValue<float>() - world.MoveDown.ReadValue<float>();
 
             #region Train
             var train = player1.Train;
@@ -155,23 +157,7 @@ namespace UF {
             }
             #endregion
 
-            #region Attack
-            var attack = player1.Attack;
-            {
-                moveDir.x = attack.MoveRight.ReadValue<float>() - attack.MoveLeft.ReadValue<float>();
-                moveDir.y = attack.MoveUp.ReadValue<float>() - attack.MoveDown.ReadValue<float>();
 
-                if (attack.MoveLeft.WasPerformedThisFrame()) {
-                    inputCastKey = InputKeyFlag.MoveLeft;
-                } else if (attack.MoveRight.WasPerformedThisFrame()) {
-                    inputCastKey = InputKeyFlag.MoveRight;
-                } else if (attack.MoveUp.WasPerformedThisFrame()) {
-                    inputCastKey = InputKeyFlag.MoveUp;
-                } else if (attack.MoveDown.WasPerformedThisFrame()) {
-                    inputCastKey = InputKeyFlag.MoveDown;
-                }
-            }
-            #endregion
         }
 
         public void Set_InputCastKey(InputKeyFlag flag) {

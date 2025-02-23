@@ -14,10 +14,6 @@ public class RoleMoveComponent {
     int allowMoveTimes;
     int allowJumpTimes;
 
-    // -move
-    public float moveSpeed;//用于调用
-    public void SetMoveSpeed(float value) => moveSpeed = value;//用于赋值 只有一个地方赋值
-
     public float jumpForce;
     public void SetJumpForce(float value) => jumpForce = value;
 
@@ -62,7 +58,7 @@ public class RoleMoveComponent {
         oldVelo.y = 0;
         rb.velocity = oldVelo;
     }
-    
+
     public void Move_Attack(Vector2 dir, float moveSpeed) { // 进攻战 玩家移动
         Vector2 oldVelo = rb.velocity;
         oldVelo = dir * moveSpeed;

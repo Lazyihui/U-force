@@ -19,7 +19,6 @@ namespace UF {
         public Vector2 MoveDir => moveDir;
         public void MoveDir_Set(Vector2 value) => moveDir = value;
 
-
         // -input
         InputKeyFlag castKeys;
         public InputKeyFlag CastKeys => castKeys;
@@ -45,8 +44,5 @@ namespace UF {
         public void Release() {
             Clear();
         }
-
-
-
     }
 }
