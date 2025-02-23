@@ -14,5 +14,7 @@ namespace UF {
         public List<BulletSo> bulletSciSoArray;
 
         public List<RoleSo> roleEnemySoArray; // 小怪和boss, 用于瞭望塔
+
+        public bool isTrain;
     }
 }

@@ -324,6 +324,8 @@ namespace UF {
                 }
             }
 
+            if (tm.isTrain == true) { return model; }
+
             var bulletAgrSoArr = tm.bulletAgrSoArray;
             if (bulletAgrSoArr != null) {
                 for (int i = 0; i < bulletAgrSoArr.Count; i += 1) {
@@ -358,28 +360,6 @@ namespace UF {
 
             return model;
         }
-
-        public static TrainCardModel TrainCard_Create(AssetsModule assetsCore, TemplateMoudle templateCore, int typeID) {
-            bool has = templateCore.TrainCard_TryGet(typeID, out var tm);
-            if (!has) {
-                Debug.LogError("TrainCard_Create: tm is null" + typeID);
-                return null;
-            }
-
-            TrainCardModel model = new TrainCardModel();
-            model.typeID = typeID;
-
-            var roleSoArr = tm.roleSoArray;
-            if (roleSoArr != null) {
-                for (int i = 0; i < roleSoArr.Count; i += 1) {
-                    var roleSo = roleSoArr[i];
-                    model.AddRoleTM(roleSo.tm);
-                }
-            }
-
-            return model;
-        }
-
         #endregion
 
         public static CaveEntity Tower_Create(AssetsModule assetsCore, TemplateMoudle templateCore, IDService idService, int typeID, Vector2 pos) {

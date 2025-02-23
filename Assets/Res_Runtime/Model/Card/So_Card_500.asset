@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2184839ec8517724cab1a6f5e3c3e2fc, type: 3}
+  m_Name: So_Card_500
+  m_EditorClassIdentifier: 
+  tm:
+    typeID: 500
+    roleSoArray:
+    - {fileID: 11400000, guid: 772c31f3954c55f48b735dc0c0226a7e, type: 2}
+    - {fileID: 11400000, guid: 475c8e789f014494b8e09ca386d98675, type: 2}
+    - {fileID: 11400000, guid: 28216538e0d7d1c40af159f8b49c1c56, type: 2}
+    - {fileID: 11400000, guid: bb81763d7af005540b55f654478f979e, type: 2}
+    - {fileID: 11400000, guid: 759f06692edc0da4fa1d58c84edd15b5, type: 2}
+    bulletAgrSoArray: []
+    bulletIndSoArray: []
+    bulletSciSoArray: []
+    roleEnemySoArray: []
+    isTrain: 1

@@ -10,22 +10,15 @@ namespace UF {
         public static void Panel_CardSelection_Open(AppUI appUI, AssetsModule assetsModule, TemplateMoudle templateModule) {
             int stageID = appUI.playerSaveData.GetStageCurID();
             int chapterID = appUI.playerSaveData.GetChapterCurID();
-            int slotMax = appUI.playerSaveData.GetSlotMax();
 
             appUI.Panel_StageSelection_Close();
 
-            //  用stageID创建卡片
-            CardModel spawnCard = GameFactory.Card_Create(assetsModule, templateModule, stageID);
+            CardModel spawnCard = GameFactory.Card_Create(assetsModule, templateModule, 1);
             appUI.Set_CardModel(spawnCard);
             CardModel card = appUI.Get_CardModel();
 
-            for (int i = 0; i < card.roleEnemyTMs.Count; i += 1) {
-                RoleTM roleTM = card.roleEnemyTMs[i];
-                appUI.playerSaveData.AddEnemyTypeID(roleTM.typeID);
-            }
-
             appUI.Panel_CardSelection_Open(stageID, chapterID);// 打开卡牌选择界面
-            appUI.Panel_CardSelection_AddCardSelected(slotMax);// 放卡片的地方
+            appUI.Panel_CardSelection_AddCardSelected(4);// 放卡片的地方
 
             // 第一个
             RoleTM roleTM0 = card.roleTMs[0];
@@ -48,15 +41,6 @@ namespace UF {
         // 卡片更新
         public static void Update_CardSelectionDetails(int typeID, TemplateMoudle templateMoudle, AppUI appUI) {
 
-            bool isSlotFull = appUI.playerSaveData.isSlotFull;
-            Debug.Log("isSlotFull" + isSlotFull);
-
-            // 如果卡槽满了
-            if (isSlotFull) {
-                appUI.Panel_CardDetailsBtn_Lock();
-                appUI.Panel_Notice_Open("卡槽已满 请开始游戏");
-            }
-
             CardType cardType = appUI.Panel_GetCardType();
             if (cardType == CardType.Hero) {
                 templateMoudle.Role_TryGet(typeID, out RoleTM roleTM);
@@ -73,9 +57,8 @@ namespace UF {
 
             } else if (cardType == CardType.Science) {
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
-
-                Debug.Assert(bulletTM != null, "bulletTM != null");
                 appUI.Panel_CardDetails_Update(bulletTM.sprite, bulletTM.content, bulletTM.typeID);
+
             }
         }
 
@@ -149,20 +132,9 @@ namespace UF {
         }
 
         public static void Panel_SelectedCardAddToSlot(AppUI appUI, TemplateMoudle templateMoudle, int typeID) {
+
             var cardType = appUI.Panel_GetCardType();
 
-            // 1.第一步检测卡槽是否满了
-            bool isSlotFull = appUI.playerSaveData.isSlotFull;
-            Debug.Log("isSlotFull" + isSlotFull);
-            appUI.Panel_CardSelected_TakeAll(out List<int> selectedList);
-
-            // 如果卡槽满了
-            if (isSlotFull) {
-                appUI.Panel_CardDetailsBtn_Lock();
-            }
-
-
-            // 更改卡片图片和卡片类型id
             if (cardType == CardType.Hero) {
                 appUI.Panel_OneCardSelection_UnLock(appUI.selectedInFormation.roleSelectedTypeID);
                 appUI.selectedInFormation.roleSelectedTypeID = typeID;
@@ -184,11 +156,11 @@ namespace UF {
                 appUI.Panel_OneCardSelection_UnLock(appUI.selectedInFormation.scienceTypeID);
                 appUI.selectedInFormation.scienceTypeID = typeID;
 
+
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
                 appUI.Panel_CardSelection_SetScience(bulletTM.sprite);
+
             }
-
-
         }
 
         public static void Panel_WatchTower_GetDetail(int typeID, TemplateMoudle templateMoudle, AppUI appUI) {
@@ -202,6 +174,7 @@ namespace UF {
         }
 
         public static void Panel_StageSelectionEnter(AppUI appUI) {
+            Debug.Log("Panel_StageSelectionEnter+选择关卡界面");
 
             int curChapterID = appUI.playerSaveData.GetChapterCurID();
             int unLockChapterID = appUI.playerSaveData.GetUnLockChapterID();
@@ -255,7 +228,7 @@ namespace UF {
         public static void Panel_Training_Select_Open(AppUI appUI, AssetsModule assetsModule, TemplateMoudle templateModule) {
             appUI.Panel_Training_Select_Open();
 
-            TrainCardModel model = GameFactory.TrainCard_Create(assetsModule, templateModule, 1);
+            CardModel model = GameFactory.Card_Create(assetsModule, templateModule, 500);
             var cards = model.roleTMs;
 
             for (int i = 0; i < cards.Count; i += 1) {
