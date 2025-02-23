@@ -18,6 +18,7 @@ namespace UF {
 
         public void Ctor() {
             btn_confirm.onClick.AddListener(() => OnConfirmClickHandle.Invoke(typeID));
+            btn_confirm.interactable = false;
         }
 
         public void Set_Detail(Sprite sprite, string content, int typeID) {
@@ -33,6 +34,6 @@ namespace UF {
         public void CardDetailsBtn_UnLock() {
             btn_confirm.interactable = true;
         }
-        
+
     }
 }

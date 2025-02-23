@@ -48,15 +48,6 @@ namespace UF {
         // 卡片更新
         public static void Update_CardSelectionDetails(int typeID, TemplateMoudle templateMoudle, AppUI appUI) {
 
-            bool isSlotFull = appUI.playerSaveData.isSlotFull;
-            Debug.Log("isSlotFull" + isSlotFull);
-
-            // 如果卡槽满了
-            if (isSlotFull) {
-                appUI.Panel_CardDetailsBtn_Lock();
-                appUI.Panel_Notice_Open("卡槽已满 请开始游戏");
-            }
-
             CardType cardType = appUI.Panel_GetCardType();
             if (cardType == CardType.Hero) {
                 templateMoudle.Role_TryGet(typeID, out RoleTM roleTM);
@@ -150,17 +141,6 @@ namespace UF {
 
         public static void Panel_SelectedCardAddToSlot(AppUI appUI, TemplateMoudle templateMoudle, int typeID) {
             var cardType = appUI.Panel_GetCardType();
-
-            // 1.第一步检测卡槽是否满了
-            bool isSlotFull = appUI.playerSaveData.isSlotFull;
-            Debug.Log("isSlotFull" + isSlotFull);
-            appUI.Panel_CardSelected_TakeAll(out List<int> selectedList);
-
-            // 如果卡槽满了
-            if (isSlotFull) {
-                appUI.Panel_CardDetailsBtn_Lock();
-            }
-
 
             // 更改卡片图片和卡片类型id
             if (cardType == CardType.Hero) {
