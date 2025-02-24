@@ -67,7 +67,8 @@ namespace UF {
             game.InitFromTM(tm.gameTM);
 
             // UI
-            ctx.appUI.Panel_GameDefend_Button_Open();
+            var player = ctx.gameEntity.playerSaveData;
+            ctx.appUI.Panel_GameDefend_Button_Open(player.GetSlotMax());
             ctx.appUI.HUD_Progressbar_Open(game.maxWaves);
             ctx.appUI.Panel_WatchTower_ClearCursor();
 

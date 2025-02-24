@@ -94,7 +94,7 @@ namespace UF {
         #region GameDefend
 
         // Panel_GameDefend
-        public void Panel_GameDefend_Button_Open() {
+        public void Panel_GameDefend_Button_Open(int slotMax) {
             Panel_GameDefend_Button panel = ctx.panel_GameDefend_Button;
 
             if (panel == null) {
@@ -103,7 +103,7 @@ namespace UF {
                 GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
                 panel = go.GetComponent<Panel_GameDefend_Button>();
 
-                panel.Ctor();
+                panel.Ctor(slotMax);
 
                 //Handle
                 panel.OnPauseClickHandle += () => {
