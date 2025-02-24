@@ -19,9 +19,9 @@ namespace UF.System_Train
             events = new TrainSystemEvents();
         }
 
-        public void Inject(AppUI appUI, TemplateMoudle templateMoudle, AssetsModule assetsModule, RoleRepository roleRepository)
+        public void Inject(AppUI appUI, TemplateMoudle templateMoudle, AssetsModule assetsModule, InputModule inputModule, RoleRepository roleRepository)
         {
-            ctx.Inject(appUI, templateMoudle, assetsModule, roleRepository);
+            ctx.Inject(appUI, templateMoudle, assetsModule, inputModule, roleRepository);
         }
 
         public void Enter(List<int> typeIDs)
@@ -31,8 +31,7 @@ namespace UF.System_Train
             // UI
             ctx.appUI.Panel_Training_Button_Show();
 
-            // Game, stageID暂存为51
-            int stageID = 51;
+            int stageID = 500;
             bool has = ctx.templateMoudle.Stage_TryGet(stageID, out StageTM tm);
             if (!has)
             {
@@ -52,8 +51,10 @@ namespace UF.System_Train
 
             Vector2 pos1 = new Vector2(-15, 0);
             Vector2 pos2 = new Vector2(15, 0);
-            RoleDomain.SpawnByPos(ctx, pos1, typeIDs[0]);
-            RoleDomain.SpawnByPos(ctx, pos2, typeIDs[1]);
+            RoleEntity player1 = RoleDomain.SpawnByPos(ctx, pos1, typeIDs[0]);
+            RoleEntity player2 = RoleDomain.SpawnByPos(ctx, pos2, typeIDs[1]);
+            player1.t_roleType = T_RoleType.Player1;
+            player2.t_roleType = T_RoleType.Player2;
         }
 
         public void Exit()
@@ -112,6 +113,8 @@ namespace UF.System_Train
             {
                 RoleEntity role = roles[i];
                 RoleDomain.Loco_Execute(role, dt);
+
+                RoleDomain.Input_Record(ctx, role, dt);
             }
         }
 

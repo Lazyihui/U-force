@@ -30,7 +30,7 @@ namespace UF {
 
             var attrCom = role.AttributeComponent;
 
-            RoleMoveType moveType = role.MoveType;
+            RoleMoveType moveType = role.moveType;
 
             if (moveType == RoleMoveType.Player) {
                 if (role.IsGround() && role.AllowPlayerMove()) {

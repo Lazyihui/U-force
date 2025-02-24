@@ -73,7 +73,7 @@ namespace UF {
             gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, playerSaveData);
             loginSystem.Inject(appUI, inputModule);
             pauseSystem.Inject(appUI, roleRepository);
-            trainSystem.Inject(appUI, templateModule, assetsModule, roleRepository);
+            trainSystem.Inject(appUI, templateModule, assetsModule, inputModule, roleRepository);
 
             appUI.Inject(screenCanvas, assetsModule, playerSaveData);
 
