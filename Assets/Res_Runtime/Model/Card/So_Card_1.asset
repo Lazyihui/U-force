@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tm:
     typeID: 1
+    slotMax: 1
     roleSoArray:
     - {fileID: 11400000, guid: 772c31f3954c55f48b735dc0c0226a7e, type: 2}
     bulletAgrSoArray:
