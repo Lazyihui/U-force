@@ -13,7 +13,7 @@ namespace UF {
 
             appUI.Panel_StageSelection_Close();
 
-            CardModel spawnCard = GameFactory.Card_Create(assetsModule, templateModule, 1);
+            CardModel spawnCard = GameFactory.Card_Create(assetsModule, templateModule, stageID);
             appUI.Set_CardModel(spawnCard);
             CardModel card = appUI.Get_CardModel();
 
