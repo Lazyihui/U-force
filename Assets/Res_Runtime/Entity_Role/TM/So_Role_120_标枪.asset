@@ -21,7 +21,8 @@ MonoBehaviour:
     hp: 100
     moveSpeed: 15
     jumpForce: 5
-    skillorSoArray: []
+    skillorSoArray:
+    - {fileID: 11400000, guid: 6037af1524df2a0469e65295d87f5a8c, type: 2}
     modPrefab: {fileID: 5506719469353998905, guid: 19697eb29f88d9f43989b09dfa1c944f, type: 3}
     sprite: {fileID: -492597407, guid: c0ca71d20da4c9e4e936ccf61b6fc8ca, type: 3}
     content: "\u6807\u67AA"

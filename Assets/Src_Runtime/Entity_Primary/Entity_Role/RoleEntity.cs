@@ -13,7 +13,7 @@ namespace UF {
         public RoleState state;
         public void SetRoleState(RoleState value) => state = value;
 
-        public RoleMoveType MoveType;
+        public RoleMoveType moveType;
 
         public int typeID;
         public IDSignature belongStage;//在哪一个地图里面
@@ -55,6 +55,9 @@ namespace UF {
         // -attribute
         RoleAttributeComponent attributeComponent;
         public RoleAttributeComponent AttributeComponent => attributeComponent;
+
+        // 训练营
+        public T_RoleType t_roleType;
 
         public void Ctor() {
             fsmComponent = new RoleFSMConponent();

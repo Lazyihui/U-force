@@ -73,7 +73,7 @@ namespace UF {
             gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, playerSaveData);
             loginSystem.Inject(appUI, inputModule);
             pauseSystem.Inject(appUI, roleRepository);
-            trainSystem.Inject(appUI, templateModule, assetsModule, roleRepository);
+            trainSystem.Inject(appUI, templateModule, assetsModule, inputModule, roleRepository);
 
             appUI.Inject(screenCanvas, assetsModule, playerSaveData);
 
@@ -307,21 +307,25 @@ namespace UF {
             gameEvent.OnWeap1Handle += () => {
                 inputModule.isUpdateProcess = false;
                 inputModule.Set_InputCastKey(InputKeyFlag.Weap1);
+                Debug.Log("Weap1");
             };
 
             gameEvent.OnWeap2Handle += () => {
                 inputModule.isUpdateProcess = false;
                 inputModule.Set_InputCastKey(InputKeyFlag.Weap2);
+                Debug.Log("Weap2");
             };
 
             gameEvent.OnWeap3Handle += () => {
                 inputModule.isUpdateProcess = false;
                 inputModule.Set_InputCastKey(InputKeyFlag.Weap3);
+                Debug.Log("Weap3");
             };
 
             gameEvent.OnWeap4Handle += () => {
                 inputModule.isUpdateProcess = false;
                 inputModule.Set_InputCastKey(InputKeyFlag.Weap4);
+                Debug.Log("Weap4");
             };
 
             gameEvent.OnGameContinueOverHandle += (bool isWin) => {

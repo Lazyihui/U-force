@@ -21,7 +21,6 @@ namespace UF {
         public Action OnWeap2ClickHandle;
         public Action OnWeap3ClickHandle;
         public Action OnWeap4ClickHandle;
-        Queue<Action> que_Act;
 
         [SerializeField] GameObject weapPrefab;
         [SerializeField] Transform skillTrans;
@@ -33,9 +32,11 @@ namespace UF {
         Button btn_Weap2;
         Button btn_Weap3;
         Button btn_Weap4;
-        Queue<Button> que_Btn;
+        Button[] weapList;
 
         public void Ctor(int slotMax) {
+            weapList = new Button[slotMax];
+
             //Pause
             btn_Pause.onClick.AddListener(() => {
                 if (OnPauseClickHandle != null) {
@@ -56,25 +57,34 @@ namespace UF {
                 }
             });
 
-            // Weap
-            que_Act = new Queue<Action>();
-            que_Act.Enqueue(OnWeap1ClickHandle);
-            que_Act.Enqueue(OnWeap2ClickHandle);
-            que_Act.Enqueue(OnWeap3ClickHandle);
-            que_Act.Enqueue(OnWeap4ClickHandle);
-
-            que_Btn = new Queue<Button>();
-            que_Btn.Enqueue(btn_Weap1);
-            que_Btn.Enqueue(btn_Weap2);
-            que_Btn.Enqueue(btn_Weap3);
-            que_Btn.Enqueue(btn_Weap4);
-
             Set_SlotMax(slotMax);
             Set_WeapButton();
+
+            for (int i = 0; i < weapList.Length; i++) {
+                int index = i + 1;
+                if (weapList[i] != null) {
+                    weapList[i].onClick.AddListener(() => {
+                        switch (index) {
+                            case 1:
+                                OnWeap1ClickHandle?.Invoke();
+                                break;
+                            case 2:
+                                OnWeap2ClickHandle?.Invoke();
+                                break;
+                            case 3:
+                                OnWeap3ClickHandle?.Invoke();
+                                break;
+                            case 4:
+                                OnWeap4ClickHandle?.Invoke();
+                                break;
+                        }
+                    });
+                }
+            }
         }
 
         public void Set_CD(SkillModel skill, float cd, float maxCD) {
-            Button btn;
+            Button btn = null;
             Image img;
 
             switch (skill.castKeys) {
@@ -85,31 +95,23 @@ namespace UF {
                     btn = btn_Tech;
                     break;
                 case InputKeyFlag.Weap1:
-                    if (btn_Weap1 != null) {
-                        btn = btn_Weap1;
-                    } else {
-                        btn = null;
+                    if (weapList.Length >= 1 && weapList[0] != null) {
+                        btn = weapList[0];
                     }
                     break;
                 case InputKeyFlag.Weap2:
-                    if (btn_Weap2 != null) {
-                        btn = btn_Weap2;
-                    } else {
-                        btn = null;
+                    if (weapList.Length >= 2 && weapList[1] != null) {
+                        btn = weapList[1];
                     }
                     break;
                 case InputKeyFlag.Weap3:
-                    if (btn_Weap3 != null) {
-                        btn = btn_Weap3;
-                    } else {
-                        btn = null;
+                    if (weapList.Length >= 3 && weapList[2] != null) {
+                        btn = weapList[2];
                     }
                     break;
                 case InputKeyFlag.Weap4:
-                    if (btn_Weap4 != null) {
-                        btn = btn_Weap4;
-                    } else {
-                        btn = null;
+                    if (weapList.Length >= 4 && weapList[3] != null) {
+                        btn = weapList[3];
                     }
                     break;
                 default:
@@ -127,17 +129,6 @@ namespace UF {
             for (int i = 1; i <= slotmax; i++) {
                 Button btn_Weap = Instantiate(weapPrefab, skillTrans).GetComponent<Button>();
                 RectTransform rectTransform = btn_Weap.GetComponent<RectTransform>();
-
-                // -AddListener
-                btn_Weap.onClick.AddListener(() => {
-                    if (que_Act.Count <= 0) {
-                        Debug.LogError("weap按键超出四个");
-                        return;
-                    }
-
-                    Action action = que_Act.Dequeue();
-                    action?.Invoke();
-                });
 
                 // -Transform
                 // 设置右下对齐
@@ -167,13 +158,7 @@ namespace UF {
                 text.text = textName;
 
                 // -绑定
-                if (que_Btn.Count <= 0) {
-                    Debug.LogError("weap按键超出四个");
-                    return;
-                }
-
-                Button btn = que_Btn.Dequeue();
-                btn = btn_Weap;
+                weapList[i - 1] = btn_Weap;
             }
         }
 

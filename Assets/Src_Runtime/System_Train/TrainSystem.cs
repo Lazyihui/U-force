@@ -2,10 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace UF.System_Train
-{
-    public class TrainSystem : MonoBehaviour
-    {
+namespace UF.System_Train {
+    public class TrainSystem : MonoBehaviour {
         public SystemType systemType => SystemType.Train;
 
         TrainSystemContext ctx;
@@ -13,29 +11,24 @@ namespace UF.System_Train
         TrainSystemEvents events;
         public TrainSystemEvents Events => events;
 
-        public void Ctor()
-        {
+        public void Ctor() {
             ctx = new TrainSystemContext();
             events = new TrainSystemEvents();
         }
 
-        public void Inject(AppUI appUI, TemplateMoudle templateMoudle, AssetsModule assetsModule, RoleRepository roleRepository)
-        {
-            ctx.Inject(appUI, templateMoudle, assetsModule, roleRepository);
+        public void Inject(AppUI appUI, TemplateMoudle templateMoudle, AssetsModule assetsModule, InputModule inputModule, RoleRepository roleRepository) {
+            ctx.Inject(appUI, templateMoudle, assetsModule, inputModule, roleRepository);
         }
 
-        public void Enter(List<int> typeIDs)
-        {
+        public void Enter(List<int> typeIDs) {
             ctx.isRunning = true;
 
             // UI
             ctx.appUI.Panel_Training_Button_Show();
 
-            // Game, stageID暂存为51
-            int stageID = 51;
+            int stageID = 500;
             bool has = ctx.templateMoudle.Stage_TryGet(stageID, out StageTM tm);
-            if (!has)
-            {
+            if (!has) {
                 Debug.LogError("StageID not found");
                 return;
             }
@@ -44,27 +37,25 @@ namespace UF.System_Train
             MapEntity map = MapDomain.Spawn(ctx.assetsModule, ctx.idService, tm.mapPrefab);
 
             // Role
-            if (typeIDs.Count < 2)
-            {
+            if (typeIDs.Count < 2) {
                 Debug.LogError("没有获取到两个role");
                 return;
             }
 
             Vector2 pos1 = new Vector2(-15, 0);
             Vector2 pos2 = new Vector2(15, 0);
-            RoleDomain.SpawnByPos(ctx, pos1, typeIDs[0]);
-            RoleDomain.SpawnByPos(ctx, pos2, typeIDs[1]);
+            RoleEntity player1 = RoleDomain.SpawnByPos(ctx, pos1, typeIDs[0]);
+            RoleEntity player2 = RoleDomain.SpawnByPos(ctx, pos2, typeIDs[1]);
+            player1.t_roleType = T_RoleType.Player1;
+            player2.t_roleType = T_RoleType.Player2;
         }
 
-        public void Exit()
-        {
+        public void Exit() {
             ctx.isRunning = false;
         }
 
-        public void Tick(float dt)
-        {
-            if (!ctx.isRunning)
-            {
+        public void Tick(float dt) {
+            if (!ctx.isRunning) {
                 return;
             }
 
@@ -76,17 +67,13 @@ namespace UF.System_Train
 
             const float FIX_INTERVAL = 0.020f;
 
-            if (restFixTime <= FIX_INTERVAL)
-            {
+            if (restFixTime <= FIX_INTERVAL) {
 
                 LogicTick(restFixTime);
 
                 restFixTime = 0;
-            }
-            else
-            {
-                while (restFixTime >= FIX_INTERVAL)
-                {
+            } else {
+                while (restFixTime >= FIX_INTERVAL) {
                     LogicTick(FIX_INTERVAL);
                     restFixTime -= FIX_INTERVAL;
                 }
@@ -95,33 +82,30 @@ namespace UF.System_Train
             LastTick(dt);
         }
 
-        void PreTick(float dt)
-        {
+        void PreTick(float dt) {
 
         }
 
-        void LogicTick(float dt)
-        {
+        void LogicTick(float dt) {
             var train = ctx.trainEntity;
             if (train.state == TrainState.Pause) { return; }
-            
+
             // 所有角色逻辑
             ctx.roleRepository.TakeAll(out RoleEntity[] roles);
             //不知道为什么, 用length一直是3, 会有bug
-            for (int i = 0; i < 2; i++)
-            {
+            for (int i = 0; i < 2; i++) {
                 RoleEntity role = roles[i];
                 RoleDomain.Loco_Execute(role, dt);
+
+                RoleDomain.Input_Record(ctx, role, dt);
             }
         }
 
-        void LastTick(float dt)
-        {
+        void LastTick(float dt) {
 
         }
 
-        public void Train_Binding()
-        {
+        public void Train_Binding() {
             var appUI = ctx.appUI;
             UIEventCenter eventCenter = appUI.eventCenter;
 
@@ -145,16 +129,14 @@ namespace UF.System_Train
         }
 
         // 绝对不是这样写, 这是一种最傻瓜的办法
-        public void EnterPause()
-        {
+        public void EnterPause() {
             var train = ctx.trainEntity;
             train.state = TrainState.Pause;
 
             ctx.appUI.Panel_Training_Pause_Show();
         }
 
-        public void ExitPause()
-        {
+        public void ExitPause() {
             var train = ctx.trainEntity;
             train.state = TrainState.None;
 

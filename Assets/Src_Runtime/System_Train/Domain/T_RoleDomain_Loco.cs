@@ -8,10 +8,11 @@ namespace UF.System_Train {
             GroundCheck(role);
 
             Loco_MoveReset(role);
-            // Loco_Jump(role, moveCom.jumpForce);
             Loco_Move(role, dt);
+            Loco_Jump(role);
         }
 
+        #region Move
         static void Loco_Move(RoleEntity role, float dt) {
             if (dt <= 0) {
                 return;
@@ -29,22 +30,31 @@ namespace UF.System_Train {
 
             var attrCom = role.AttributeComponent;
 
-            RoleMoveType moveType = role.MoveType;
+            RoleMoveType moveType = role.moveType;
 
             if (role.IsGround() && role.AllowPlayerMove()) {
                 role.Move_Player(attrCom.moveSpeed);
             }
         }
 
-        public static void Loco_MoveReset(RoleEntity role) {
+        static void Loco_MoveReset(RoleEntity role) {
             role.Move_Reset();
         }
 
-        public static void Loco_Jump(RoleEntity role, float jumpForce) {
-            role.Jump();
-        }
+        static void Loco_Jump(RoleEntity role) {
+            var inputCom = role.InputComponent;
 
-        public static void GroundCheck(RoleEntity role) {
+            if (role.t_roleType == T_RoleType.Player1) {
+                if (!inputCom.Player1Jump_Get()) { return; }
+                role.Jump();
+            } else if (role.t_roleType == T_RoleType.Player2) {
+                if (!inputCom.Player2Jump_Get()) { return; }
+                role.Jump();
+            }
+        }
+        #endregion
+        
+        static void GroundCheck(RoleEntity role) {
             bool isColliderGround = false;
             if (role.GetVelocity().y > 0) {
                 return;

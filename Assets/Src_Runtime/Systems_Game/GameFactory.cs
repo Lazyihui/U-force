@@ -26,7 +26,7 @@ namespace UF {
 
             role.idSig = new IDSignature(EntityType.Role, idService.PickRoleID());
             role.roleType = tm.roleType;
-            role.MoveType = tm.moveType;
+            role.moveType = tm.moveType;
             role.SetRoleState(tm.roleState);
 
 
@@ -77,7 +77,7 @@ namespace UF {
 
             role.idSig = new IDSignature(EntityType.Role, idService.PickRoleID());
             role.roleType = tm.roleType;
-            role.MoveType = tm.moveType;
+            role.moveType = tm.moveType;
             role.SetRoleState(tm.roleState);
 
             role.Ctor();
@@ -129,7 +129,7 @@ namespace UF {
 
             role.idSig = new IDSignature(EntityType.Role, idService.PickRoleID());
             role.roleType = tm.roleType;
-            role.MoveType = tm.moveType;
+            role.moveType = tm.moveType;
             role.SetRoleState(tm.roleState);
 
             role.Ctor();
