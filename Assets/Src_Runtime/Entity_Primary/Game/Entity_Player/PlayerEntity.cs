@@ -61,12 +61,15 @@ namespace UF {
             stage_PassedStar[stageID] = star;
         }
 
+        public void Init(int slotMax) {
+            this.slotMax = slotMax;
+        }
+
         public PlayerEntity() {
             stageCurID = 0;
             chapterCurID = 1;//当前章节
             unLockChapterID = 2;//解锁的章节
             unLockStageCount = 10;//最大就是10
-            slotMax = 3;//卡槽最大数量
 
             EnemyTypeIDs = new List<int>();
             stage_Passed = new HashSet<int>();

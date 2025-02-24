@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53636999024a9f443bd25141242a63ea, type: 3}
+  m_Name: So_Stage_6
+  m_EditorClassIdentifier: 
+  tm:
+    stageID: 6
+    roleSpawns: []
+    towerSpawns:
+    - so: {fileID: 11400000, guid: d8699dbf713c3fa4fba559e682df9a00, type: 2}
+      position: {x: 16, y: 6, z: 0}
+      rotation: {x: -0, y: 0, z: 0}
+    - so: {fileID: 11400000, guid: d8699dbf713c3fa4fba559e682df9a00, type: 2}
+      position: {x: 16, y: 4, z: 0}
+      rotation: {x: -0, y: 0, z: 0}
+    - so: {fileID: 11400000, guid: d8699dbf713c3fa4fba559e682df9a00, type: 2}
+      position: {x: 16, y: 2, z: 0}
+      rotation: {x: -0, y: 0, z: 0}
+    - so: {fileID: 11400000, guid: d8699dbf713c3fa4fba559e682df9a00, type: 2}
+      position: {x: 16, y: 0, z: 0}
+      rotation: {x: -0, y: 0, z: 0}
+    - so: {fileID: 11400000, guid: d8699dbf713c3fa4fba559e682df9a00, type: 2}
+      position: {x: 16, y: -2, z: 0}
+      rotation: {x: -0, y: 0, z: 0}
+    - so: {fileID: 11400000, guid: d8699dbf713c3fa4fba559e682df9a00, type: 2}
+      position: {x: 16, y: -4, z: 0}
+      rotation: {x: -0, y: 0, z: 0}
+    mapPrefab: {fileID: 7992499427466167066, guid: 13ee1fea3546e334ca35923b293217ba, type: 3}
+    gameTM:
+      isDefendWar: 1
+      spawnMinionTimer: 4
+      spawnMinion: 4
+      maxWaves: 4
+      curWaves: 0
+      cdMinion: 0
+      cdMinionMax: 4
+      spawnMinionInterval: 4
+      spawnMinionIntervalTimer: 4
+      progress: 0.0625
+      wavesProgress: 0
+      isOffensiveWar: 0
+      isEliminateWar: 0

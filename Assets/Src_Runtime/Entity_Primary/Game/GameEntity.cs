@@ -30,6 +30,7 @@ namespace UF {
         public float progress; //每小波次进度条占比
         public float wavesProgress; //进度条数值
 
+
         #endregion
 
         public bool isDefendWar;
@@ -54,6 +55,8 @@ namespace UF {
             isDefendWar = tm.isDefendWar;
             isOffensiveWar = tm.isOffensiveWar;
             isEliminateWar = tm.isEliminateWar;
+
+            playerSaveData.Init(tm.slotMax);
         }
 
         public void Clear() {

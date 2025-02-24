@@ -8,6 +8,8 @@ namespace UF {
     [Serializable]
     public class GameTM {
 
+        public int slotMax;//卡槽最大数量 也是按钮数量
+
         [Title("防守战")]
         public bool isDefendWar;//是否是防御战
         [ShowIf(nameof(isDefendWar))] public int spawnMinionTimer; //一波里的小波次
