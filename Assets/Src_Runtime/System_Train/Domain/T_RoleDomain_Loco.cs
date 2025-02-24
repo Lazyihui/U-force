@@ -12,6 +12,7 @@ namespace UF.System_Train {
             Loco_Jump(role);
         }
 
+        #region Move
         static void Loco_Move(RoleEntity role, float dt) {
             if (dt <= 0) {
                 return;
@@ -36,11 +37,11 @@ namespace UF.System_Train {
             }
         }
 
-        public static void Loco_MoveReset(RoleEntity role) {
+        static void Loco_MoveReset(RoleEntity role) {
             role.Move_Reset();
         }
 
-        public static void Loco_Jump(RoleEntity role) {
+        static void Loco_Jump(RoleEntity role) {
             var inputCom = role.InputComponent;
 
             if (role.t_roleType == T_RoleType.Player1) {
@@ -51,8 +52,9 @@ namespace UF.System_Train {
                 role.Jump();
             }
         }
-
-        public static void GroundCheck(RoleEntity role) {
+        #endregion
+        
+        static void GroundCheck(RoleEntity role) {
             bool isColliderGround = false;
             if (role.GetVelocity().y > 0) {
                 return;

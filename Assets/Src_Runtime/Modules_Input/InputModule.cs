@@ -44,7 +44,7 @@ namespace UF {
         bool isPlayer2Defense;
         public bool IsPlayer2Defense => isPlayer2Defense;
 
-        // Attack
+        // 进攻战
         Vector2 moveDir;
         public Vector2 MoveDir => moveDir;
 
