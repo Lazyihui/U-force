@@ -24,6 +24,8 @@ namespace UF {
                 playerSaveData.EnemyTypeIDs.Add(roleTM.typeID);
             }
 
+            playerSaveData.Init(card.slotMax);
+
             appUI.Panel_CardSelection_Open(stageID, chapterID);// 打开卡牌选择界面
             appUI.Panel_CardSelection_AddCardSelected(playerSaveData.slotMax);// 放卡片的地方
 

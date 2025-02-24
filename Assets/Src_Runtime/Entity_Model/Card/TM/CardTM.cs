@@ -8,6 +8,7 @@ namespace UF {
     [Serializable]
     public class CardTM {
         public int typeID;
+        public int slotMax;
         public List<RoleSo> roleSoArray;
         public List<BulletSo> bulletAgrSoArray;
         public List<BulletSo> bulletIndSoArray;

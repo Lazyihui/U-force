@@ -6,6 +6,7 @@ namespace UF {
 
     public class CardModel {
         public int typeID;
+        public int slotMax;
         public List<RoleTM> roleTMs;
         public List<BulletTM> bulletAgrTMs;
         public List<BulletTM> bulletIndTMs;

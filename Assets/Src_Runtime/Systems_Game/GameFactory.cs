@@ -40,7 +40,7 @@ namespace UF {
             moveCom.SetJumpForce(tm.jumpForce);
 
             // -Attribute
-             var attrCom = role.AttributeComponent;
+            var attrCom = role.AttributeComponent;
             attrCom.SetHp(tm.hp);
             attrCom.SetHpMax(tm.hp);
             attrCom.SetMoveSpeed(tm.moveSpeed);
@@ -360,6 +360,8 @@ namespace UF {
                     model.roleEnemyTMs.Add(roleSo.tm);
                 }
             }
+
+            model.slotMax = tm.slotMax;
 
             return model;
         }

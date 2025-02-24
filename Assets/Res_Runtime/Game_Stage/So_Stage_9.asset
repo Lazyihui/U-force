@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: So_Stage_9
   m_EditorClassIdentifier: 
   tm:
-    stageID: 4
+    stageID: 9
     roleSpawns: []
     towerSpawns:
     - so: {fileID: 11400000, guid: d8699dbf713c3fa4fba559e682df9a00, type: 2}
@@ -36,6 +36,7 @@ MonoBehaviour:
       rotation: {x: -0, y: 0, z: 0}
     mapPrefab: {fileID: 7992499427466167066, guid: 5612179772e1171488691670b7a21822, type: 3}
     gameTM:
+      slotMax: 0
       isDefendWar: 1
       spawnMinionTimer: 4
       spawnMinion: 4
