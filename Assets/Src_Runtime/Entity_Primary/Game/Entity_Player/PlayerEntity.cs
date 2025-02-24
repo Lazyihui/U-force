@@ -26,6 +26,7 @@ namespace UF {
 
         public int slotMax;//卡槽最大数量 也是按钮数量
         public int GetSlotMax() => slotMax;
+        public void Set_slotMax(int slotMax) => this.slotMax = slotMax;
 
         // 结算信息
         public int ownerGetHurt;
@@ -61,9 +62,6 @@ namespace UF {
             stage_PassedStar[stageID] = star;
         }
 
-        public void Init(int slotMax) {
-            this.slotMax = slotMax;
-        }
 
         public PlayerEntity() {
             stageCurID = 0;

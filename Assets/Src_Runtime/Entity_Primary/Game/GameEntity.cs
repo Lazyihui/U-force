@@ -55,8 +55,6 @@ namespace UF {
             isDefendWar = tm.isDefendWar;
             isOffensiveWar = tm.isOffensiveWar;
             isEliminateWar = tm.isEliminateWar;
-
-            playerSaveData.Init(tm.slotMax);
         }
 
         public void Clear() {

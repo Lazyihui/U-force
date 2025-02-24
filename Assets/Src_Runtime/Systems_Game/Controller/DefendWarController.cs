@@ -38,9 +38,12 @@ namespace UF {
             var skillorCom = owner.skillorSlotComponent;
 
             // 大招
-            SkillModel skillorSci = GameFactory.Skillor_Create(ctx.assetsModule, ctx.templateCore, ctx.idService, sciType);
-            skillorSci.Set_InputCastKey(InputKeyFlag.Tech);
-            skillorCom.Add(skillorSci);
+            if (sciType != -1) {
+                SkillModel skillorSci = GameFactory.Skillor_Create(ctx.assetsModule, ctx.templateCore, ctx.idService, sciType);
+                skillorSci.Set_InputCastKey(InputKeyFlag.Tech);
+                skillorCom.Add(skillorSci);
+            }
+
 
             // 道具
             if (skillorTypeIDArray != null) {

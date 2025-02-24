@@ -24,7 +24,7 @@ namespace UF {
             typeIDs = new List<int>();
             for (int i = 0; i < eles.Count; i += 1) {
                 Panel_CardSelectedElement item = eles[i];
-                if (item != null) {
+                if (item != null && item.GetID() != -1) {
                     typeIDs.Add(item.GetID());
                 }
             }

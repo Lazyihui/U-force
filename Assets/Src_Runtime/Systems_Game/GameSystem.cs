@@ -22,9 +22,6 @@ namespace UF {
             ctx.Inject(ScreenCanvas, assetsCore, templateCore, appUI, inputModule, roleRepository, playerSaveData);
         }
 
-        public PlayerEntity Get_Player() {
-            return ctx.Get_Player();
-        }
 
         public void Exit() {
             ctx.isRunning = false;
@@ -68,7 +65,8 @@ namespace UF {
                 Debug.Log("进入防守战");
                 DefendWarController.Enter(ctx, stageID, selectedRoleTypeID, skillorTypeIDArray, sciType, tm);
             } else if (game.isOffensiveWar) {
-                OffensiveWarController.Enter(ctx);
+                // 进攻战和防守战的Enter一样
+                DefendWarController.Enter(ctx, stageID, selectedRoleTypeID, skillorTypeIDArray, sciType, tm);
             } else if (game.isEliminateWar) {
                 EliminateWarController.Enter(ctx);
             }

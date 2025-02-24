@@ -24,7 +24,8 @@ namespace UF {
                 playerSaveData.EnemyTypeIDs.Add(roleTM.typeID);
             }
 
-            playerSaveData.Init(card.slotMax);
+            // 记录卡槽数
+            playerSaveData.Set_slotMax(card.slotMax);
 
             appUI.Panel_CardSelection_Open(stageID, chapterID);// 打开卡牌选择界面
             appUI.Panel_CardSelection_AddCardSelected(playerSaveData.slotMax);// 放卡片的地方
@@ -108,6 +109,7 @@ namespace UF {
                     appUI.Panel_CardDetails_Update(bulletTM0.sprite, bulletTM0.content, bulletTM0.typeID);
                 }
             } else if (cardType == CardType.Science) {
+
                 for (int i = 0; i < cardModel.bulletSciTMs.Count; i += 1) {
                     BulletTM bulletTM = cardModel.bulletSciTMs[i];
                     appUI.Panel_CardSelection_AddCard(bulletTM.typeID, bulletTM.sprite);
@@ -162,10 +164,13 @@ namespace UF {
                 appUI.Panel_CardSelection_SetProp(typeID, bulletTM.sprite);
 
             } else if (cardType == CardType.Science) {
+                // 锁定按钮
                 appUI.Panel_OneCardSelection_UnLock(appUI.selectedInFormation.scienceTypeID);
+
+                // 记录刚刚选着的TypeID
                 appUI.selectedInFormation.scienceTypeID = typeID;
 
-
+                // 改变图片的样式
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
                 appUI.Panel_CardSelection_SetScience(bulletTM.sprite);
 

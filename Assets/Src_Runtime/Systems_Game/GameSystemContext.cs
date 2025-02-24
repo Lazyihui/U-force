@@ -54,10 +54,6 @@ namespace UF {
             return role;
         }
 
-        public PlayerEntity Get_Player() {
-            return gameEntity.playerSaveData;
-        }
-
     }
 
 }
