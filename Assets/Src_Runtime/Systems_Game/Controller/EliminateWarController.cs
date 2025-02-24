@@ -7,11 +7,16 @@ namespace UF {
 
         }
 
-        public static void PreTick(GameSystemContext ctx,float dt) {
+        public static void PreTick(GameSystemContext ctx, float dt) {
 
         }
 
         public static void Tick(GameSystemContext ctx, float dt) {
+            // 人物移动柜
+            var game = ctx.gameEntity;
+            var role = ctx.Get_Owner();
+
+        
 
         }
 

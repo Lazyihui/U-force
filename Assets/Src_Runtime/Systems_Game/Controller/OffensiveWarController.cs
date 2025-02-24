@@ -3,11 +3,17 @@ using UnityEngine;
 
 namespace UF {
     public static class OffensiveWarController {
-        public static void Enter(GameSystemContext ctx) {
+        public static void Enter(GameSystemContext ctx, int stageID, int selectedRoleTypeID, int[] skillorTypeIDArray, int selectSciTypeID, StageTM tm) {
+
 
         }
 
         public static void PreTick(GameSystemContext ctx, float dt) {
+
+            RoleEntity owner = ctx.Get_Owner();
+            
+            
+
 
         }
 

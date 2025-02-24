@@ -4,7 +4,7 @@ using UnityEngine;
 namespace UF {
     public static partial class RoleDomain {
 
-        public static void Loco_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
+        public static void LocoDefend_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
             var moveCom = role.MoveComponent;
             GroundCheck(ctx, role);
 
@@ -32,7 +32,7 @@ namespace UF {
 
             RoleMoveType moveType = role.moveType;
 
-            if (moveType == RoleMoveType.Player) {
+            if (moveType == RoleMoveType.PlayerUpDown) {
                 if (role.IsGround() && role.AllowPlayerMove()) {
                     role.Move_Player(attrCom.moveSpeed);
                 }
@@ -60,7 +60,14 @@ namespace UF {
 
         #region Mvoe:进攻战
 
-        public static void Loco_MoveAttack(RoleEntity role) {
+        public static void LocoElinate_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
+            Loco_MoveOffensive(role);//角色移动
+        }
+
+        static void Loco_MoveOffensive(RoleEntity role) {
+            if (role.moveType != RoleMoveType.OffensiveUDRL) {
+                return;
+            }
             var inputCom = role.InputComponent;
             var attrCom = role.AttributeComponent;
             role.Move_Attack(inputCom.MoveDir, attrCom.GetMoveSpeed());

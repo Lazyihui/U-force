@@ -19,7 +19,7 @@ namespace UF {
             var game = ctx.gameEntity;
 
             // 任何状态都运行的逻辑
-            Loco_Execute(ctx, role, dt);
+            LocoDefend_Execute(ctx, role, dt);
 
             // skill
             int skillLen = role.skillorSlotComponent.TakeAll(out var skills);
