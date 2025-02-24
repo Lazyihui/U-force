@@ -101,6 +101,24 @@ MonoBehaviour:
     m_SerializedLabels:
     - So_Bullet
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f39f978c37b8dbb4e9068e529c9d2443
+    m_Address: "So_Bullet_3100\u8F70\u70B8"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Bullet
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2a3eaa64bbc90d4995bcc56178b40d5
+    m_Address: "So_Bullet_3200\u5730\u9762\u5C04\u51FB"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Bullet
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bccf0edbb1a31314d9776bfb2aae3df5
+    m_Address: "So_Bullet_3300\u5730\u9762\u55B7\u5C04"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Bullet
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 4b47acea7a70a444998ddd6e6fd8b9bf, type: 2}
   m_SchemaSet:
