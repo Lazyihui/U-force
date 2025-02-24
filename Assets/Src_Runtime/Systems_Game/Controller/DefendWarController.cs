@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UF {
     public static class DefendWarController {
-        public static void Enter(GameSystemContext ctx, int stageID, int selectedRoleTypeID, int[] skillorTypeIDArray, int sciType) {
+        public static void Enter(GameSystemContext ctx, int stageID, int selectedRoleTypeID, int[] skillorTypeIDArray, int sciType, StageTM tm) {
             var game = ctx.gameEntity;
             var playerData = game.playerSaveData;
 
@@ -12,14 +12,8 @@ namespace UF {
             ctx.appUI.HUD_Progressbar_Open(game.maxWaves);
             ctx.appUI.Panel_WatchTower_ClearCursor();
 
-            bool has = ctx.templateCore.Stage_TryGet(stageID, out StageTM tm);
-            if (!has) {
-                Debug.LogError("StageID not found");
-                return;
-            }
 
-            //game  
-            game.InitFromTM(tm.gameTM);
+
 
             // Map
             MapEntity map = MapDomain.Spawn(ctx.assetsModule, ctx.idService, tm.mapPrefab);
@@ -63,7 +57,7 @@ namespace UF {
                 CaveSpawnerTM spawnerTM = tm.towerSpawns[i];
                 CaveDomain.SpawnBySpawner(ctx, spawnerTM);
             }
-            
+
         }
 
         public static void PreTick(GameSystemContext ctx, float dt) {

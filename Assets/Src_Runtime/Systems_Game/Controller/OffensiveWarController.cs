@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UF {
     public static class OffensiveWarController {
-        public static void Enter() {
+        public static void Enter(GameSystemContext ctx) {
 
         }
 

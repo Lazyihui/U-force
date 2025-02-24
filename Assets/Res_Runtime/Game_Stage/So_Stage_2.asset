@@ -36,7 +36,7 @@ MonoBehaviour:
       rotation: {x: -0, y: 0, z: 0}
     mapPrefab: {fileID: 1066663221058539873, guid: 79b735d4381eb844f9c60759b05064c7, type: 3}
     gameTM:
-      isDefendwar: 1
+      isDefendWar: 1
       spawnMinionTimer: 2
       spawnMinion: 2
       maxWaves: 2
