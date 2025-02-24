@@ -17,8 +17,15 @@ namespace UF {
             appUI.Set_CardModel(spawnCard);
             CardModel card = appUI.Get_CardModel();
 
+            // 把怪物的typeID存下来
+            var playerSaveData = appUI.playerSaveData;
+            for (int i = 0; i < card.roleEnemyTMs.Count; i += 1) {
+                RoleTM roleTM = card.roleEnemyTMs[i];
+                playerSaveData.EnemyTypeIDs.Add(roleTM.typeID);
+            }
+
             appUI.Panel_CardSelection_Open(stageID, chapterID);// 打开卡牌选择界面
-            appUI.Panel_CardSelection_AddCardSelected(4);// 放卡片的地方
+            appUI.Panel_CardSelection_AddCardSelected(playerSaveData.slotMax);// 放卡片的地方
 
             // 第一个
             RoleTM roleTM0 = card.roleTMs[0];
