@@ -117,7 +117,7 @@ namespace UF {
             for (int i = 0; i < bulletLen; i += 1) {
                 BulletEntity bullet = bullets[i];
                 BulletDomain.FSM_All_Execute(ctx, bullet, dt);
-                BulletDomain.detectionMinionByPos(ctx, bullet, bullet.TF_GetPos());
+                BulletDomain.CheckUnSpawn(ctx, bullet);
             }
 
 

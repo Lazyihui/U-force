@@ -11,11 +11,13 @@ namespace UF
         public string typeName;
 
         public PropType type;
+        public PropMoveType moveType;
 
         public bool isPlayerProp;
-        
 
         [Title("Locomotion")]
         public PropMod modPrefab;
+        public float moveSpeed;
+        public int times;
     }
 }

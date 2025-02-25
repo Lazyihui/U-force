@@ -4,20 +4,26 @@ using UnityEngine;
 
 namespace UF {
     public class PropEntity : MonoBehaviour {
+        // Common
         public int typeID;
         public IDSignature idSig;
 
         public PropType type;
+        public PropMoveType moveType;
 
         [SerializeField] public Transform bodyRoot; // 根节点
 
+        // Loco
         public PropMod mod;
 
         public bool isPlayerProp;
-        [ShowIf(nameof(isPlayerProp))][SerializeField] Rigidbody2D rb;
+        [ShowIf(nameof(isPlayerProp))] Rigidbody2D rb;
+
+        public float moveSpeed;
+        public int times; // 可使用次数
 
         public void Ctor() {
-
+            rb = gameObject.GetComponent<Rigidbody2D>();
         }
 
         public void Inject(PropMod mod) {
@@ -32,6 +38,10 @@ namespace UF {
             transform.eulerAngles = rot;
         }
 
+        public Vector3 TF_GetPos() {
+            return transform.position;
+        }
+
         public void Reuse() {
             gameObject.SetActive(true);
         }
@@ -42,6 +52,10 @@ namespace UF {
 
         public void TearDown() {
             Destroy(gameObject);
+        }
+
+        public void Move_Down() {
+            rb.velocity = new Vector2(0, -1) * moveSpeed;
         }
     }
 }

@@ -12,8 +12,7 @@ namespace UF.System_Train {
 
             Loco_Jump(role);
             Loco_Attack(ctx, role);
-
-            // Debug.Log(role.InputComponent.Player1Attack_Get());
+            Loco_Defense(ctx, role);
         }
 
         #region Move
@@ -60,26 +59,35 @@ namespace UF.System_Train {
 
         // 先放在Loco里
         static void Loco_Attack(TrainSystemContext ctx, RoleEntity role) {
+            var train = ctx.trainEntity;
             var inputCom = role.InputComponent;
 
+            int skillLen = role.skillorSlotComponent.TakeAll(out var skills);
+            var skill = skills[0]; // 只获取普攻, 要求必须配第一个技能是Attack, 看看后面能不能改
+
             if (role.t_roleType == T_RoleType.Player1) {
-                if (!inputCom.Player1Attack_Get()) { return; }
+                if (!inputCom.Player1Attack_Get() || train.attackCD1 > 0) { return; }
                 BulletDomain.SpawnByRolePos(ctx, role);
+                train.attackCD1 = skill.cd;
             } else if (role.t_roleType == T_RoleType.Player2) {
-                if (!inputCom.Player2Attack_Get()) { return; }
+                if (!inputCom.Player2Attack_Get() || train.attackCD2 > 0) { return; }
                 BulletDomain.SpawnByRolePos(ctx, role);
+                train.attackCD2 = skill.cd;
             }
         }
 
-        static void Loco_Armor(TrainSystemContext ctx, RoleEntity role) { // 防御
+        static void Loco_Defense(TrainSystemContext ctx, RoleEntity role) { // 防御
+            var train = ctx.trainEntity;
             var inputCom = role.InputComponent;
 
             if (role.t_roleType == T_RoleType.Player1) {
-                if (!inputCom.Player1Defense_Get()) { return; }
+                if (!inputCom.Player1Defense_Get() || train.defenseCD1 > 0) { return; }
                 PropDomain.SpawnByRole(ctx, role);
+                train.defenseCD1 = train.defenseMax;
             } else if (role.t_roleType == T_RoleType.Player2) {
-                if (!inputCom.Player2Defense_Get()) { return; }
+                if (!inputCom.Player2Defense_Get() || train.defenseCD2 > 0) { return; }
                 PropDomain.SpawnByRole(ctx, role);
+                train.defenseCD2 = train.defenseMax;
             }
         }
 

@@ -271,7 +271,7 @@ namespace UF {
         public static void IsDeadState(GameSystemContext ctx, RoleEntity role) {
             var game = ctx.gameEntity;
 
-            if (role.GetPos().x < -19) {
+            if (role.GetPos().x < -21) {
                 role.SetRoleState(RoleState.Dead);
             }
 
