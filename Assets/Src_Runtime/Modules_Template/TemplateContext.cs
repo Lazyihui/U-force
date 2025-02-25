@@ -40,6 +40,7 @@ namespace UF.TemplateInternal {
             stages = new Dictionary<int, StageTM>();
             stuffs = new Dictionary<int, StuffTM>();
             cards = new Dictionary<int, CardTM>();
+            props = new Dictionary<int, PropTM>();
         }
 
 

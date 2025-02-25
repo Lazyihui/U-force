@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 311062881}
   - component: {fileID: 311062882}
   m_Layer: 0
-  m_Name: stage10
+  m_Name: stage_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -457,8 +457,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTM:
     so: {fileID: 11400000, guid: d8699dbf713c3fa4fba559e682df9a00, type: 2}
-    position: {x: 0, y: 0, z: 0}
-    rotation: {x: 0, y: 0, z: 0}
+    position: {x: 10, y: 0, z: 0}
+    rotation: {x: -0, y: 0, z: 0}
 --- !u!212 &498478109
 SpriteRenderer:
   m_ObjectHideFlags: 0

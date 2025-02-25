@@ -163,6 +163,7 @@ namespace UF {
             }
 
             if (isGameWin) {
+                Debug.Log("游戏胜利");
                 // 没找到这里StopRole_AllMove();要多运行一遍
                 owner.Jump_Stop();
                 owner.Move_Stop();

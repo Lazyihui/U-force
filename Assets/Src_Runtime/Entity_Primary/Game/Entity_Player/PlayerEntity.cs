@@ -95,6 +95,7 @@ namespace UF {
 
         public int GetRandomEnemyTypeID() {
             int index = UnityEngine.Random.Range(0, EnemyTypeIDs.Count);
+            Debug.Log("GetRandomEnemyTypeID:" + EnemyTypeIDs[index] +"长度"+ EnemyTypeIDs.Count);
             return EnemyTypeIDs[index];
         }
 

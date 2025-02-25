@@ -8,7 +8,7 @@ namespace UF {
         }
 
         public static void PreTick(GameSystemContext ctx, float dt) {
-            CaveDomain.TrySpawnMinion(ctx, dt);
+            CaveDomain.TrySpawnBoss(ctx, dt);
         }
 
         public static void Tick(GameSystemContext ctx, float dt) {

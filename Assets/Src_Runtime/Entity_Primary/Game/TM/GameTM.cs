@@ -10,14 +10,13 @@ namespace UF {
 
         [Title("防守战")]
         public bool isDefendWar;//是否是防御战
-        [ShowIf(nameof(isDefendWar))] public int spawnMinionTimer; //一波里的小波次
-        [ShowIf(nameof(isDefendWar))] public int spawnMinion; //小波次的预设数量
+        [ShowIf(nameof(isDefendWar))] public int spawnEnemyCount; //小波次的预设数量
         [ShowIf(nameof(isDefendWar))] public int maxWaves; //最大波次
         [ShowIf(nameof(isDefendWar))] public int curWaves; //当前波次
-        [ShowIf(nameof(isDefendWar))] public float cdMinion; //波次间cd
-        [ShowIf(nameof(isDefendWar))] public float cdMinionMax; //预设波次间cd
-        [ShowIf(nameof(isDefendWar))] public float spawnMinionInterval;//生成小怪的间隔
-        [ShowIf(nameof(isDefendWar))] public float spawnMinionIntervalTimer; //生成小怪计时器
+        [ShowIf(nameof(isDefendWar))] public float cdEnemy; //波次间cd
+        [ShowIf(nameof(isDefendWar))] public float cdEnemyMax; //预设波次间cd
+        [ShowIf(nameof(isDefendWar))] public float spawnEnemyInterval;//生成小怪的间隔
+        [ShowIf(nameof(isDefendWar))] public float spawnEnemyIntervalTimer; //生成小怪计时器
         [ShowIf(nameof(isDefendWar))] public float progress; //每小波次进度条占比
 
         [Title("进攻战")]

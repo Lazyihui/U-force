@@ -15,7 +15,10 @@ MonoBehaviour:
   tm:
     stageID: 10
     roleSpawns: []
-    towerSpawns: []
+    towerSpawns:
+    - so: {fileID: 11400000, guid: d8699dbf713c3fa4fba559e682df9a00, type: 2}
+      position: {x: 10, y: 0, z: 0}
+      rotation: {x: -0, y: 0, z: 0}
     mapPrefab: {fileID: 7992499427466167066, guid: 62a1446a399665144b7086324a8786fe, type: 3}
     gameTM:
       isDefendWar: 0
@@ -28,16 +31,14 @@ MonoBehaviour:
       spawnMinionInterval: 0
       spawnMinionIntervalTimer: 0
       progress: 0
-      wavesProgress: 0
       isOffensiveWar: 1
       spanwBossTimer: 1
       spanwBossCount: 1
-      bossMaxWaves: 0
+      bossMaxWaves: 1
       bossCurWaves: 0
       bossCdMinion: 0
       bossCd: 0
-      bossSpawnMinionInterval: 0
-      bossSpawnMinionIntervalTimer: 0
+      bossSpawnMinionInterval: 1
+      bossSpawnMinionIntervalTimer: 1
       bossProgress: 0.0625
-      bossWavesProgress: 0
       isEliminateWar: 0

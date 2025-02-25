@@ -53,10 +53,6 @@ namespace UF {
             return tempTower;
         }
 
-        public CaveEntity Get(int index) {
-            return temArray[index];
-        }
-
         public void Clear() {
             all.Clear();
         }

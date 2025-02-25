@@ -16,20 +16,19 @@ namespace UF {
 
         #region 生成小怪的波次数据
         // TODO: 之后可能要改用行的。cs文件里面的数据，不要放在这里
-        public int spawnEnemyTimer; //一波里的小波次
-        public int spawnEnemy; //小波次的预设数量
+        public int spawnEnemyTimer; //一波里的小波次 （一波里生成几个）
+        public int spawnEnemyCount; //小波次的预设数量（一波里生成几个）
         public int maxWaves; //最大波次
         public int curWaves; //当前波次
 
-        public float cdMinion; //波次间cd
-        public float cdMinionMax; //预设波次间cd
+        public float cdEnemy; //波次间cd
+        public float cdEnemyMax; //预设波次间cd
 
         public float spawnEnemyInterval;//生成小怪的间隔
         public float spawnEnemyIntervalTimer; //生成小怪计时器
 
         public float progress; //每小波次进度条占比
         public float wavesProgress; //进度条数值
-
 
         #endregion
 
@@ -47,24 +46,24 @@ namespace UF {
             isEliminateWar = tm.isEliminateWar;
 
             if (isDefendWar) {
-                spawnEnemyTimer = tm.spawnMinionTimer;
-                spawnEnemy = tm.spawnMinion;
+                spawnEnemyTimer = tm.spawnEnemyCount;
+                spawnEnemyCount = tm.spawnEnemyCount;
                 maxWaves = tm.maxWaves;
                 curWaves = tm.curWaves;
-                cdMinion = tm.cdMinion;
-                cdMinionMax = tm.cdMinionMax;
-                spawnEnemyInterval = tm.spawnMinionInterval;
-                spawnEnemyIntervalTimer = tm.spawnMinionIntervalTimer;
+                cdEnemy = tm.cdEnemy;
+                cdEnemyMax = tm.cdEnemyMax;
+                spawnEnemyInterval = tm.spawnEnemyInterval;
+                spawnEnemyIntervalTimer = tm.spawnEnemyIntervalTimer;
                 progress = tm.progress;
             }
 
             if (isOffensiveWar) {
                 spawnEnemyTimer = tm.spanwBossTimer;
-                spawnEnemy = tm.spanwBossCount;
+                spawnEnemyCount = tm.spanwBossCount;
                 maxWaves = tm.bossMaxWaves;
                 curWaves = tm.bossCurWaves;
-                cdMinion = tm.bossCdMinion;
-                cdMinionMax = tm.bossCd;
+                cdEnemy = tm.bossCdMinion;
+                cdEnemyMax = tm.bossCd;
                 spawnEnemyInterval = tm.bossSpawnMinionInterval;
                 spawnEnemyIntervalTimer = tm.bossSpawnMinionIntervalTimer;
                 progress = tm.bossProgress;

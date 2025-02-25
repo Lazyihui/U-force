@@ -34,7 +34,6 @@ namespace UF {
 
         public static void TrySpawnMinion(GameSystemContext ctx, float dt) {
 
-
             var game = ctx.gameEntity;
             CaveEntity tower = ctx.towerRepository.GetRandom();
 
@@ -42,7 +41,7 @@ namespace UF {
                 return;
             }
 
-            game.cdMinion -= dt;
+            game.cdEnemy -= dt;
 
             if (game.curWaves >= game.maxWaves) {
                 Debug.Log("游戏结束");
@@ -50,7 +49,7 @@ namespace UF {
                 return;
             }
 
-            if (game.cdMinion >= 0) {
+            if (game.cdEnemy >= 0) {
                 Debug.Log("cd中");
                 return;
             }
@@ -69,6 +68,7 @@ namespace UF {
 
                 game.spawnEnemyIntervalTimer = game.spawnEnemyInterval;
             } else {
+                Debug.Log("生成小怪间隔中" + game.spawnEnemyIntervalTimer);
                 // 进度条逻辑
                 float pro = game.progress;
                 float minionMax = game.spawnEnemyInterval;
@@ -80,9 +80,54 @@ namespace UF {
                 Debug.Log("波次结束");
                 game.curWaves += 1;
 
-                game.spawnEnemyTimer = game.spawnEnemy;
-                game.cdMinion = game.cdMinionMax;
-                game.cdMinion = game.cdMinionMax;
+                game.spawnEnemyTimer = game.spawnEnemyCount;
+                game.cdEnemy = game.cdEnemyMax;
+                game.cdEnemy = game.cdEnemyMax;
+            }
+
+        }
+
+        public static void TrySpawnBoss(GameSystemContext ctx, float dt) {
+            var game = ctx.gameEntity;
+            var playerDate = game.playerSaveData;
+
+            CaveEntity tower = null;
+            ctx.towerRepository.TakeAll(out CaveEntity[] towers);
+            if (towers.Length > 0) {
+                tower = towers[0];
+            }
+
+            int typeID = playerDate.GetRandomEnemyTypeID();
+
+            if (game.curWaves >= game.maxWaves) {
+                Debug.Log("波次");
+                return;
+            }
+
+            game.cdEnemy -= dt;
+
+            if (game.cdEnemy >= 0) {
+                return;
+            }
+
+            game.spawnEnemyIntervalTimer -= dt;
+            if (game.spawnEnemyIntervalTimer < 0) {
+                game.spawnEnemyTimer -= 1;
+                Debug.Assert(tower != null, "tower!=null");
+                RoleDomain.SpawnByPos(ctx, typeID, tower.GetPos());
+                game.spawnEnemyIntervalTimer = game.spawnEnemyInterval;
+            } else {
+                Debug.Log("生成小怪间隔中" + game.spawnEnemyIntervalTimer);
+                // 进度条逻辑
+                float pro = game.progress;
+                float minionMax = game.spawnEnemyInterval;
+                float progress = pro * dt / minionMax;
+                game.wavesProgress += progress;
+            }
+
+            if (game.spawnEnemyTimer <= 0) {
+                game.spawnEnemyTimer = game.spawnEnemyCount;
+                game.cdEnemy = game.cdEnemyMax;
             }
 
         }
