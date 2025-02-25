@@ -1,20 +1,16 @@
 using System;
 using UnityEngine;
 
-namespace UF.System_Train
-{
-    public static partial class RoleDomain
-    {
+namespace UF.System_Train {
+    public static partial class RoleDomain {
         // 感觉没必要重复写factory, 所以调了gameFactory, 按理说系统是独立的, 这里相当于using System_Game, 所以不太确定能不能行
-        static RoleEntity Spawn(TrainSystemContext ctx, int typeID)
-        {
+        static RoleEntity Spawn(TrainSystemContext ctx, int typeID) {
             RoleEntity role = GameFactory.Role_Create(ctx.assetsModule, ctx.templateMoudle, ctx.idService, typeID);
             ctx.roleRepository.Add(role);
             return role;
         }
 
-        public static RoleEntity SpawnByPos(TrainSystemContext ctx, Vector2 pos, int typeID)
-        {
+        public static RoleEntity SpawnByPos(TrainSystemContext ctx, Vector2 pos, int typeID) {
             RoleEntity entity = Spawn(ctx, typeID);
             entity.TF_SetPos(pos);
             return entity;
@@ -34,6 +30,17 @@ namespace UF.System_Train
             inputCom.Player2Jump_Set(inputModule.IsPlayer2Jump);
             inputCom.Player2Attack_Set(inputModule.IsPlayer2Attack);
             inputCom.Player2Defense_Set(inputModule.IsPlayer2Defense);
+        }
+
+        public static void HpReduce_MinionFall(TrainSystemContext ctx, RoleEntity role, int damage) {
+            var attCom = role.AttributeComponent;
+            int finalHp = attCom.hp - damage;
+            role.Attr_Hp_Set(finalHp);
+
+            if (attCom.hp <= 0) {
+                // TODO: 游戏结束
+                Debug.Log(role.name + " is dead");
+            }
         }
     }
 }

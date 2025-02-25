@@ -23,12 +23,12 @@ namespace UF.System_Train {
             return bullet;
         }
 
-        public static void UnSpawn(GameSystemContext ctx, BulletEntity bullet) {
+        public static void UnSpawn(TrainSystemContext ctx, BulletEntity bullet) {
             ctx.bulletRepository.Remove(bullet);
             bullet.TearDown();
         }
 
-        public static void Clear(GameSystemContext ctx) {
+        public static void Clear(TrainSystemContext ctx) {
             int len = ctx.bulletRepository.TakeAll(out BulletEntity[] bullets);
             for (int i = 0; i < len; i += 1) {
                 BulletEntity bullet = bullets[i];
@@ -51,6 +51,30 @@ namespace UF.System_Train {
 
         public static void Loco_ToLeft(BulletEntity bullet) {
             bullet.Loco_ToLeft();
+        }
+
+        public static void DetectionMinionByPos(TrainSystemContext ctx, BulletEntity bullet, Vector3 pos) {
+            int len = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
+            for (int i = 0; i < len; i += 1) {
+                RoleEntity role = roles[i];
+
+                bool check1 = role.t_roleType == T_RoleType.Player1 && bullet.type == BulletMoveType.Shaped;
+                bool check2 = role.t_roleType == T_RoleType.Player2 && bullet.type == BulletMoveType.ToLeft;
+                if (check1 || check2) {
+                    continue;
+                }
+
+                float dis = Vector3.Distance(role.TF_GetPos(), pos);
+
+                if (dis < 1.0f) {
+                    RoleDomain.HpReduce_MinionFall(ctx, role, bullet.damage);
+                    bullet.hitTimes -= 1;
+
+                    if (bullet.hitTimes <= 0) {
+                        UnSpawn(ctx, bullet);
+                    }
+                }
+            }
         }
     }
 }

@@ -106,6 +106,7 @@ namespace UF.System_Train {
             for (int i = 0; i < buttonLen; i++) {
                 BulletEntity bullet = bullets[i];
                 BulletDomain.FSM_All_Execute(bullet, dt);
+                BulletDomain.DetectionMinionByPos(ctx, bullet, bullet.TF_GetPos());
             }
         }
 
