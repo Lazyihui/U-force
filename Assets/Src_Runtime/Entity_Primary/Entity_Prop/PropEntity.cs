@@ -57,5 +57,9 @@ namespace UF {
         public void Move_Down() {
             rb.velocity = new Vector2(0, -1) * moveSpeed;
         }
+
+        public void Move_Stop() {
+            rb.velocity = Vector2.zero;
+        }
     }
 }

@@ -28,12 +28,9 @@ namespace UF
             idService = new IDService();
 
             trainEntity = new TrainEntity();
-
-            bulletRepository = new BulletRepository();
-            propRepository = new PropRepository();
         }
 
-        public void Inject(AppUI appUI, TemplateMoudle templateMoudle, AssetsModule assetsModule, InputModule inputModule, RoleRepository roleRepository)
+        public void Inject(AppUI appUI, TemplateMoudle templateMoudle, AssetsModule assetsModule, InputModule inputModule, RoleRepository roleRepository, BulletRepository bulletRepository, PropRepository propRepository)
         {
             this.appUI = appUI;
             this.templateMoudle = templateMoudle;
@@ -41,6 +38,8 @@ namespace UF
             this.inputModule = inputModule;
 
             this.roleRepository = roleRepository;
+            this.bulletRepository = bulletRepository;
+            this.propRepository = propRepository;
         }
     }
 }

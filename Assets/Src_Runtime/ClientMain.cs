@@ -30,6 +30,8 @@ namespace UF {
 
         // repos
         public RoleRepository roleRepository;
+        public BulletRepository bulletRepository;
+        public PropRepository propRepository;
 
         // TODO:不能写在这里 没想好好放哪里先放这里
         bool isNoticeOpen = false;
@@ -66,14 +68,17 @@ namespace UF {
 
             // repos
             roleRepository = new RoleRepository();
+            bulletRepository = new BulletRepository();
+            propRepository = new PropRepository();
+
             playerSaveData = new PlayerEntity();
 
 
             // Inject
-            gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, playerSaveData);
+            gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, bulletRepository, playerSaveData);
             loginSystem.Inject(appUI, inputModule);
-            pauseSystem.Inject(appUI, roleRepository);
-            trainSystem.Inject(appUI, templateModule, assetsModule, inputModule, roleRepository);
+            pauseSystem.Inject(appUI, roleRepository, bulletRepository, propRepository);
+            trainSystem.Inject(appUI, templateModule, assetsModule, inputModule, roleRepository, bulletRepository, propRepository);
 
             appUI.Inject(screenCanvas, assetsModule, playerSaveData);
 

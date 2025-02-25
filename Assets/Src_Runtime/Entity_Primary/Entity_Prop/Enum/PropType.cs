@@ -6,6 +6,7 @@ namespace UF
     public enum PropType
     {
         None,
-        Armor, // 防护罩
+        Armor1, // 玩家1防护罩
+        Armor2, // 玩家2防护罩
     }
 }

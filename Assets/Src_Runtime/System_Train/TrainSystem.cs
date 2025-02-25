@@ -16,8 +16,8 @@ namespace UF.System_Train {
             events = new TrainSystemEvents();
         }
 
-        public void Inject(AppUI appUI, TemplateMoudle templateMoudle, AssetsModule assetsModule, InputModule inputModule, RoleRepository roleRepository) {
-            ctx.Inject(appUI, templateMoudle, assetsModule, inputModule, roleRepository);
+        public void Inject(AppUI appUI, TemplateMoudle templateMoudle, AssetsModule assetsModule, InputModule inputModule, RoleRepository roleRepository, BulletRepository bulletRepository, PropRepository propRepository) {
+            ctx.Inject(appUI, templateMoudle, assetsModule, inputModule, roleRepository, bulletRepository, propRepository);
         }
 
         public void Enter(List<int> typeIDs) {

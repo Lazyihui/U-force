@@ -82,11 +82,13 @@ namespace UF.System_Train {
 
             if (role.t_roleType == T_RoleType.Player1) {
                 if (!inputCom.Player1Defense_Get() || train.defenseCD1 > 0) { return; }
-                PropDomain.SpawnByRole(ctx, role);
+                PropEntity prop = PropDomain.SpawnByRole(ctx, role);
+                prop.type = PropType.Armor1;
                 train.defenseCD1 = train.defenseMax;
             } else if (role.t_roleType == T_RoleType.Player2) {
                 if (!inputCom.Player2Defense_Get() || train.defenseCD2 > 0) { return; }
-                PropDomain.SpawnByRole(ctx, role);
+                PropEntity prop = PropDomain.SpawnByRole(ctx, role);
+                prop.type = PropType.Armor2;
                 train.defenseCD2 = train.defenseMax;
             }
         }
