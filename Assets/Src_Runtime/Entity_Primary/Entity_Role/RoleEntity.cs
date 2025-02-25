@@ -109,7 +109,7 @@ namespace UF {
             moveComponent.Move_Ghost(moveSpeed);
         }
 
-        public void Move_Attack(Vector2 dir, float moveSpeed) {
+        public void Move_Offensive(Vector2 dir, float moveSpeed) {
             moveComponent.Move_Attack(dir, moveSpeed);
         }
 

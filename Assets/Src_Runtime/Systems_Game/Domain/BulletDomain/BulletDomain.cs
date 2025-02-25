@@ -50,7 +50,7 @@ namespace UF {
 
         #region detection检测
 
-        public static void detectionMinionByPos(GameSystemContext ctx, BulletEntity bullet, Vector3 pos) {
+        public static void detectionEnemyByPos(GameSystemContext ctx, BulletEntity bullet, Vector3 pos) {
 
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] minions);
             for (int i = 0; i < len; i += 1) {

@@ -6,7 +6,8 @@ using UnityEngine;
 namespace UF {
     public static class CaveDomain {
 
-        public static void Tower_Execute(GameSystemContext ctx, CaveEntity tower, float dt) {
+        public static void FSM_All_Execute(GameSystemContext ctx, CaveEntity tower, float dt) {
+
         }
 
         public static CaveEntity Spawn(GameSystemContext ctx, int typeID, Vector2 pos) {
@@ -100,7 +101,6 @@ namespace UF {
             int typeID = playerDate.GetRandomEnemyTypeID();
 
             if (game.curWaves >= game.maxWaves) {
-                Debug.Log("波次");
                 return;
             }
 

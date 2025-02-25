@@ -46,6 +46,7 @@ namespace UF {
             isEliminateWar = tm.isEliminateWar;
 
             if (isDefendWar) {
+                Debug.Log("进入防守战");
                 spawnEnemyTimer = tm.spawnEnemyCount;
                 spawnEnemyCount = tm.spawnEnemyCount;
                 maxWaves = tm.maxWaves;
@@ -58,6 +59,7 @@ namespace UF {
             }
 
             if (isOffensiveWar) {
+                Debug.Log("进入进攻战");
                 spawnEnemyTimer = tm.spanwBossTimer;
                 spawnEnemyCount = tm.spanwBossCount;
                 maxWaves = tm.bossMaxWaves;

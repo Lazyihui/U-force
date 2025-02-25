@@ -36,17 +36,23 @@ MonoBehaviour:
       rotation: {x: -0, y: 0, z: 0}
     mapPrefab: {fileID: 8604457340494701413, guid: 2cd8d121bf2722342812ef2db8be21bc, type: 3}
     gameTM:
-      slotMax: 1
       isDefendWar: 1
-      spawnMinionTimer: 4
-      spawnMinion: 4
+      spawnEnemyCount: 4
       maxWaves: 4
       curWaves: 0
-      cdMinion: 0
-      cdMinionMax: 4
-      spawnMinionInterval: 2
-      spawnMinionIntervalTimer: 2
+      cdEnemy: 0
+      cdEnemyMax: 0
+      spawnEnemyInterval: 4
+      spawnEnemyIntervalTimer: 4
       progress: 0.0625
-      wavesProgress: 0
       isOffensiveWar: 0
+      spanwBossTimer: 0
+      spanwBossCount: 0
+      bossMaxWaves: 0
+      bossCurWaves: 0
+      bossCdMinion: 0
+      bossCd: 0
+      bossSpawnMinionInterval: 0
+      bossSpawnMinionIntervalTimer: 0
+      bossProgress: 0
       isEliminateWar: 0

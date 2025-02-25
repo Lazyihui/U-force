@@ -16,13 +16,10 @@ namespace UF {
 
         }
 
-
         public void Inject(AppUI appUI, InputModule input) {
             this.appUI = appUI;
             this.inputModule = input;
         }
-       
-
 
     }
 }

@@ -10,10 +10,10 @@ namespace UF {
 
             Loco_MoveReset(role);
             Loco_Jump(role, moveCom.jumpForce);
-            Loco_Move(ctx, role, dt);
+            Loco_MoveDefend(ctx, role, dt);
         }
         #region Move: 防守战
-        static void Loco_Move(GameSystemContext ctx, RoleEntity role, float dt) {
+        static void Loco_MoveDefend(GameSystemContext ctx, RoleEntity role, float dt) {
             if (dt <= 0) {
                 return;
             }
@@ -60,18 +60,22 @@ namespace UF {
 
         #region Mvoe:进攻战
 
-        public static void LocoElinate_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
-            Loco_MoveOffensive(role);//角色移动
-        }
-
         static void Loco_MoveOffensive(RoleEntity role) {
-            if (role.moveType != RoleMoveType.OffensiveUDRL) {
-                return;
-            }
+
             var inputCom = role.InputComponent;
             var attrCom = role.AttributeComponent;
-            role.Move_Attack(inputCom.MoveDir, attrCom.GetMoveSpeed());
+            if (role.moveType == RoleMoveType.OffensiveUDRL) {
+                role.Move_Offensive(inputCom.MoveDir, attrCom.GetMoveSpeed());
+            } else if (role.moveType == RoleMoveType.Ghost) {
+
+            } else if (role.moveType == RoleMoveType.PlayerUpDown) {
+
+            } else if (role.moveType == RoleMoveType.Prohibit) {
+                role.Move_Stop();
+            }
+
         }
+
 
         #endregion
 

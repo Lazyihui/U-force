@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace UF {
     public static partial class RoleDomain {
+
+        #region  防守战
         public static void FSM_Normal_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
             // Skill Cast
             Skillor_Input_FlushKeys(ctx, role, dt);
@@ -67,7 +69,30 @@ namespace UF {
             input.isUpdateProcess = true;
 
         }
+        #endregion
 
+
+        #region 进攻战
+
+        public static void FSM_AllOffensive_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
+            var game = ctx.gameEntity;
+
+            // 任何状态都运行的逻辑
+            Loco_MoveOffensive(role);
+            // skill
+            int skillLen = role.skillorSlotComponent.TakeAll(out var skills);
+            for (int i = 0; i < skillLen; i += 1) {
+                var skill = skills[i];
+                skill.cd -= dt;
+                if (skill.cd < 0) {
+                    skill.cd = 0;
+                }
+                ctx.appUI.Panel_GameDefend_Update(skill, skill.cd, skill.cdMax);
+            }
+
+        }
+
+        #endregion
 
         #region Execute(tick)
         // Tick Execute循环的意思

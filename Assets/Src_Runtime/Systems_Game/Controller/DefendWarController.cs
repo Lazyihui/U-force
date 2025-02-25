@@ -72,6 +72,9 @@ namespace UF {
             // UI
             var attrCom = owner.AttributeComponent;
             UIDomain.HUD_Progressbar_Update(ctx.appUI, attrCom, game.wavesProgress);
+            
+            // 输入记录
+            RoleDomain.Input_Record(ctx, owner, dt);
         }
 
         public static void Tick(GameSystemContext ctx, float dt) {
@@ -84,7 +87,6 @@ namespace UF {
             }
 
             // Player的逻辑
-            RoleDomain.Input_Record(ctx, owner, dt);
             RoleDomain.DetectionMinionByPos(ctx, owner, owner.TF_GetPos());
 
             var fsm = owner.FSMComponent;
@@ -117,7 +119,7 @@ namespace UF {
             for (int i = 0; i < bulletLen; i += 1) {
                 BulletEntity bullet = bullets[i];
                 BulletDomain.FSM_All_Execute(ctx, bullet, dt);
-                BulletDomain.detectionMinionByPos(ctx, bullet, bullet.TF_GetPos());
+                BulletDomain.detectionEnemyByPos(ctx, bullet, bullet.TF_GetPos());
             }
 
 
@@ -126,7 +128,7 @@ namespace UF {
 
             for (int i = 0; i < towerLen; i += 1) {
                 CaveEntity tower = towers[i];
-                CaveDomain.Tower_Execute(ctx, tower, dt);
+                CaveDomain.FSM_All_Execute(ctx, tower, dt);
             }
         }
 
