@@ -37,7 +37,7 @@ namespace UF.System_Train {
             ctx.bulletRepository.Clear();
         }
 
-        public static void FSM_All_Execute(BulletEntity bullet, float dt) {
+        public static void FSM_All_Execute(BulletEntity bullet) {
             if (bullet.type == BulletMoveType.Shaped) {
                 Loco_Shaped(bullet);
             } else if (bullet.type == BulletMoveType.ToLeft) {
@@ -53,7 +53,16 @@ namespace UF.System_Train {
             bullet.Loco_ToLeft();
         }
 
-        public static void DetectionMinionByPos(TrainSystemContext ctx, BulletEntity bullet, Vector3 pos) {
+        public static void CheckUnSpawn(TrainSystemContext ctx, BulletEntity bullet) {
+            Vector3 pos = bullet.TF_GetPos();
+            if (pos.x < -21 || pos.x > 21) {
+                UnSpawn(ctx, bullet);
+            }
+
+            DetectionMinionByPos(ctx, bullet);
+        }
+
+        static void DetectionMinionByPos(TrainSystemContext ctx, BulletEntity bullet) {
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
             for (int i = 0; i < len; i += 1) {
                 RoleEntity role = roles[i];
@@ -64,6 +73,7 @@ namespace UF.System_Train {
                     continue;
                 }
 
+                Vector3 pos = bullet.TF_GetPos();
                 float dis = Vector3.Distance(role.TF_GetPos(), pos);
 
                 if (dis < 1.0f) {

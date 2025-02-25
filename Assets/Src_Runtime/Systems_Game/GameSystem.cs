@@ -18,8 +18,8 @@ namespace UF {
             events = new GameSystemEvents();
         }
 
-        public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository, PlayerEntity playerSaveData) {
-            ctx.Inject(ScreenCanvas, assetsCore, templateCore, appUI, inputModule, roleRepository, playerSaveData);
+        public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository, BulletRepository bulletRepository, PlayerEntity playerSaveData) {
+            ctx.Inject(ScreenCanvas, assetsCore, templateCore, appUI, inputModule, roleRepository, bulletRepository, playerSaveData);
         }
 
 

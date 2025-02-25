@@ -9,14 +9,18 @@ namespace UF {
 
         // repo
         public RoleRepository roleRepository;
+        public BulletRepository bulletRepository;
+        public PropRepository propRepository;
 
         public PauseSystemContext() {
             isRunning = false;
         }
 
-        public void Inject(AppUI appUI, RoleRepository roleRepository) {
+        public void Inject(AppUI appUI, RoleRepository roleRepository, BulletRepository bulletRepository, PropRepository propRepository) {
             this.appUI = appUI;
             this.roleRepository = roleRepository;
+            this.bulletRepository = bulletRepository;
+            this.propRepository = propRepository;
         }
     }
 }

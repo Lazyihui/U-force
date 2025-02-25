@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6869090661539669368}
   m_Layer: 0
   m_Name: Entity_Prop
-  m_TagString: bullet
+  m_TagString: prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,6 +79,7 @@ MonoBehaviour:
     entityType: 0
     entityID: 0
   type: 0
+  bodyRoot: {fileID: 3582193458080849683}
   mod: {fileID: 0}
   isPlayerProp: 0
   rb: {fileID: 0}

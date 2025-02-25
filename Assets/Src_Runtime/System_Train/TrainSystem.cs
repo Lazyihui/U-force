@@ -16,8 +16,8 @@ namespace UF.System_Train {
             events = new TrainSystemEvents();
         }
 
-        public void Inject(AppUI appUI, TemplateMoudle templateMoudle, AssetsModule assetsModule, InputModule inputModule, RoleRepository roleRepository) {
-            ctx.Inject(appUI, templateMoudle, assetsModule, inputModule, roleRepository);
+        public void Inject(AppUI appUI, TemplateMoudle templateMoudle, AssetsModule assetsModule, InputModule inputModule, RoleRepository roleRepository, BulletRepository bulletRepository, PropRepository propRepository) {
+            ctx.Inject(appUI, templateMoudle, assetsModule, inputModule, roleRepository, bulletRepository, propRepository);
         }
 
         public void Enter(List<int> typeIDs) {
@@ -90,6 +90,23 @@ namespace UF.System_Train {
             var train = ctx.trainEntity;
             if (train.state == TrainState.Pause) { return; }
 
+            train.defenseCD1 -= dt;
+            if (train.defenseCD1 <= 0) {
+                train.defenseCD1 = 0;
+            }
+            train.defenseCD2 -= dt;
+            if (train.defenseCD2 <= 0) {
+                train.defenseCD2 = 0;
+            }
+            train.attackCD1 -= dt;
+            if (train.attackCD1 <= 0) {
+                train.attackCD1 = 0;
+            }
+            train.attackCD2 -= dt;
+            if (train.attackCD2 <= 0) {
+                train.attackCD2 = 0;
+            }
+
             // 所有角色逻辑
             ctx.roleRepository.TakeAll(out RoleEntity[] roles);
             //不知道为什么, 用length一直是3, 会有bug
@@ -102,11 +119,17 @@ namespace UF.System_Train {
 
             // Button
             int buttonLen = ctx.bulletRepository.TakeAll(out BulletEntity[] bullets);
-
             for (int i = 0; i < buttonLen; i++) {
                 BulletEntity bullet = bullets[i];
-                BulletDomain.FSM_All_Execute(bullet, dt);
-                BulletDomain.DetectionMinionByPos(ctx, bullet, bullet.TF_GetPos());
+                BulletDomain.FSM_All_Execute(bullet);
+                BulletDomain.CheckUnSpawn(ctx, bullet);
+            }
+
+            int propLen = ctx.propRepository.TakeAll(out PropEntity[] props);
+            for (int i = 0; i < propLen; i++) {
+                PropEntity prop = props[i];
+                PropDomain.FSM_All_Execute(prop);
+                PropDomain.CheckUnSpawn(ctx, prop);
             }
         }
 

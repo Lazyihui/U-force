@@ -281,6 +281,11 @@ namespace UF {
             prop.idSig = new IDSignature(EntityType.Prop, idService.PickPropID());
             prop.typeID = typeID;
             prop.type = tm.type;
+            prop.moveType = tm.moveType;
+
+            prop.isPlayerProp = tm.isPlayerProp;
+            prop.moveSpeed = tm.moveSpeed;
+            prop.times = tm.times;
 
             prop.Inject(mod);
             prop.Ctor();

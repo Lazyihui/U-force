@@ -33,12 +33,11 @@ namespace UF {
             idService = new IDService();
 
 
-            bulletRepository = new BulletRepository();
             towerRepository = new CaveRepository();
             stuffRepository = new StuffRepository();
         }
 
-        public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository, PlayerEntity playerSaveData) {
+        public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository, BulletRepository bulletRepository, PlayerEntity playerSaveData) {
             this.assetsModule = assetsCore;
             this.templateCore = templateCore;
             this.appUI = appUI;
@@ -46,6 +45,7 @@ namespace UF {
 
             // ---  Repos  ---
             this.roleRepository = roleRepository;
+            this.bulletRepository = bulletRepository;
             gameEntity.Inject(playerSaveData);
         }
 

@@ -15,17 +15,29 @@ namespace UF {
             events = new PauseSystemEvents();
         }
 
-        public void Inject(AppUI appUI, RoleRepository roleRepository) {
-            ctx.Inject(appUI, roleRepository);
+        public void Inject(AppUI appUI, RoleRepository roleRepository, BulletRepository bulletRepository, PropRepository propRepository) {
+            ctx.Inject(appUI, roleRepository, bulletRepository, propRepository);
         }
 
         public void Enter() {
             ctx.isRunning = true;
 
-            int len = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
-            for (int i = 0; i < len; i += 1) {
+            int roleLen = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
+            for (int i = 0; i < roleLen; i += 1) {
                 RoleEntity role = roles[i];
                 role.Move_Stop();
+            }
+
+            int bulletLen = ctx.bulletRepository.TakeAll(out BulletEntity[] bullets);
+            for (int i = 0; i < bulletLen; i += 1) {
+                BulletEntity bullet = bullets[i];
+                bullet.Move_Stop();
+            }
+
+            int propLen = ctx.propRepository.TakeAll(out PropEntity[] props);
+            for (int i = 0; i < propLen; i += 1) {
+                PropEntity prop = props[i];
+                prop.Move_Stop();
             }
         }
 

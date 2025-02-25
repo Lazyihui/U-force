@@ -76,6 +76,9 @@ namespace UF {
             rb.velocity = new Vector2(-1, 0) * moveSpeed;
         }
 
+        public void Move_Stop() {
+            rb.velocity = Vector2.zero;
+        }
         #endregion
 
         public void Ctor() {
