@@ -16,16 +16,16 @@ namespace UF {
 
         #region 生成小怪的波次数据
         // TODO: 之后可能要改用行的。cs文件里面的数据，不要放在这里
-        public int spawnMinionTimer; //一波里的小波次
-        public int spawnMinion; //小波次的预设数量
+        public int spawnEnemyTimer; //一波里的小波次
+        public int spawnEnemy; //小波次的预设数量
         public int maxWaves; //最大波次
         public int curWaves; //当前波次
 
         public float cdMinion; //波次间cd
         public float cdMinionMax; //预设波次间cd
 
-        public float spawnMinionInterval;//生成小怪的间隔
-        public float spawnMinionIntervalTimer; //生成小怪计时器
+        public float spawnEnemyInterval;//生成小怪的间隔
+        public float spawnEnemyIntervalTimer; //生成小怪计时器
 
         public float progress; //每小波次进度条占比
         public float wavesProgress; //进度条数值
@@ -38,23 +38,40 @@ namespace UF {
         public bool isEliminateWar;
 
         public GameEntity() {
+            wavesProgress = 0;
         }
 
         public void InitFromTM(GameTM tm) {
-            spawnMinionTimer = tm.spawnMinionTimer;
-            spawnMinion = tm.spawnMinion;
-            maxWaves = tm.maxWaves;
-            curWaves = tm.curWaves;
-            cdMinion = tm.cdMinion;
-            cdMinionMax = tm.cdMinionMax;
-            spawnMinionInterval = tm.spawnMinionInterval;
-            spawnMinionIntervalTimer = tm.spawnMinionIntervalTimer;
-            progress = tm.progress;
-            wavesProgress = tm.wavesProgress;
-
             isDefendWar = tm.isDefendWar;
             isOffensiveWar = tm.isOffensiveWar;
             isEliminateWar = tm.isEliminateWar;
+
+            if (isDefendWar) {
+                spawnEnemyTimer = tm.spawnMinionTimer;
+                spawnEnemy = tm.spawnMinion;
+                maxWaves = tm.maxWaves;
+                curWaves = tm.curWaves;
+                cdMinion = tm.cdMinion;
+                cdMinionMax = tm.cdMinionMax;
+                spawnEnemyInterval = tm.spawnMinionInterval;
+                spawnEnemyIntervalTimer = tm.spawnMinionIntervalTimer;
+                progress = tm.progress;
+            }
+
+            if (isOffensiveWar) {
+                spawnEnemyTimer = tm.spanwBossTimer;
+                spawnEnemy = tm.spanwBossCount;
+                maxWaves = tm.bossMaxWaves;
+                curWaves = tm.bossCurWaves;
+                cdMinion = tm.bossCdMinion;
+                cdMinionMax = tm.bossCd;
+                spawnEnemyInterval = tm.bossSpawnMinionInterval;
+                spawnEnemyIntervalTimer = tm.bossSpawnMinionIntervalTimer;
+                progress = tm.bossProgress;
+            }
+
+            if (isEliminateWar) { }
+
         }
 
         public void Clear() {

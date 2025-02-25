@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Res_Runtime/Game_Stage/So_Stage_10.asset.meta
 guid: 2c314cf7109f7024ca7634bb1964eccc
-========
-guid: 4ff3723bdc0f6b640b5e4580671ef423
->>>>>>>> 46ac523fa1a81bc11071ec798e6e7b47c156b41e:Assets/AddressableAssetsData/AssetGroups/So_Card.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000
