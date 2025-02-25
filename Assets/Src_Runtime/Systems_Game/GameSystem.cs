@@ -70,7 +70,7 @@ namespace UF {
                 RoleEntity owner = ctx.Get_Owner();
                 owner.moveType = RoleMoveType.OffensiveUDRL;
             } else if (game.isEliminateWar) {
-                EliminateWarController.Enter(ctx);
+                EliminateWarController.Enter(ctx, stageID, selectedRoleTypeID, skillorTypeIDArray, sciType, tm);
             }
 
         }
@@ -109,12 +109,19 @@ namespace UF {
         void PreTick(float dt) {
             var game = ctx.gameEntity;
             var ui = ctx.appUI;
+
+            if (!game.isEliminateWar) {
+                RoleEntity owner = ctx.Get_Owner();
+                Game_Win(owner);
+            }
+
+
             if (game.state == GameState.GameOver) {
                 StopRole_AllMove();
                 return;
             }
-            RoleEntity owner = ctx.Get_Owner();
-            Game_Win(owner);
+
+
 
             if (game.isDefendWar) {
                 DefendWarController.PreTick(ctx, dt);

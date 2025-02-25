@@ -4,7 +4,7 @@ using UnityEngine;
 namespace UF {
     public static partial class RoleDomain {
 
-        public static void LocoDefend_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
+        public static void LocoDefendAndOffensive_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
             var moveCom = role.MoveComponent;
             GroundCheck(ctx, role);
 

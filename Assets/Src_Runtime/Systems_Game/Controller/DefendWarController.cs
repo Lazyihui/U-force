@@ -12,9 +12,6 @@ namespace UF {
             ctx.appUI.HUD_Progressbar_Open(game.maxWaves);
             ctx.appUI.Panel_WatchTower_ClearCursor();
 
-
-
-
             // Map
             MapEntity map = MapDomain.Spawn(ctx.assetsModule, ctx.idService, tm.mapPrefab);
             ctx.gameEntity.playerSaveData.SetStageCurID(stageID);
@@ -23,6 +20,7 @@ namespace UF {
             // Role
             RoleEntity owner = null;
             if (selectedRoleTypeID == -1) {
+                // 没有自己选择的角色的情况
                 for (int i = 0; i < tm.roleSpawns.Length; i += 1) {
                     RoleSpawnerTM spawnerTM = tm.roleSpawns[i];
                     owner = RoleDomain.SpawnBySpawner(ctx, spawnerTM);
@@ -72,7 +70,7 @@ namespace UF {
             // UI
             var attrCom = owner.AttributeComponent;
             UIDomain.HUD_Progressbar_Update(ctx.appUI, attrCom, game.wavesProgress);
-            
+
             // 输入记录
             RoleDomain.Input_Record(ctx, owner, dt);
         }
@@ -119,7 +117,7 @@ namespace UF {
             for (int i = 0; i < bulletLen; i += 1) {
                 BulletEntity bullet = bullets[i];
                 BulletDomain.FSM_All_Execute(ctx, bullet, dt);
-                BulletDomain.detectionEnemyByPos(ctx, bullet, bullet.TF_GetPos());
+                BulletDomain.CheckUnSpawn(ctx, bullet);
             }
 
 
