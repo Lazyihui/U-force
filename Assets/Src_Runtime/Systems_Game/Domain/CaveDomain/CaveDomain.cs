@@ -117,7 +117,6 @@ namespace UF {
                 RoleDomain.SpawnByPos(ctx, typeID, tower.GetPos());
                 game.spawnEnemyIntervalTimer = game.spawnEnemyInterval;
             } else {
-                Debug.Log("生成小怪间隔中" + game.spawnEnemyIntervalTimer);
                 // 进度条逻辑
                 float pro = game.progress;
                 float minionMax = game.spawnEnemyInterval;
@@ -128,6 +127,7 @@ namespace UF {
             if (game.spawnEnemyTimer <= 0) {
                 game.spawnEnemyTimer = game.spawnEnemyCount;
                 game.cdEnemy = game.cdEnemyMax;
+                game.curWaves += 1;
             }
 
         }
