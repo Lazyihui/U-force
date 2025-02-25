@@ -41,8 +41,6 @@ namespace UF {
         }
         public bool Set_Addprop(int typeID, Sprite sprite) {
             for (int i = 0; i < eles.Count; i += 1) {
-                Debug.Log(eles[i].GetID());
-
                 var ele = eles[i];
                 if (ele.GetID() == -1) {
                     ele.Init(typeID, sprite);

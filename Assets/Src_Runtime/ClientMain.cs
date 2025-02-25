@@ -174,7 +174,7 @@ namespace UF {
 
 
                 // TODO:要改 加上roleID  和 science 的ID
-                if (typeIDs.Count < slotMax || stageID == -1 || roleTypeID == -1) {
+                if (typeIDs.Count < slotMax || stageID == -1 || roleTypeID == -1 || sciType == -1) {
                     Debug.Log("长度" + typeIDs.Count + " 最大长度" + slotMax);
                     Debug.Log("请先选择卡片");
                     isNoticeOpen = appUI.Panel_Notice_Open("请选择完卡片才可以进入游戏");
@@ -204,7 +204,9 @@ namespace UF {
             loginEvent.OnConfirmClickHandle += (typeID) => {
                 Debug.Log("确认选择  的卡片" + typeID);
                 appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
-                if (typeIDs.Count >= appUI.playerSaveData.GetSlotMax()) {
+                int roleTypeID = appUI.selectedInFormation.roleSelectedTypeID;
+                int sciType = appUI.selectedInFormation.scienceTypeID;
+                if (typeIDs.Count >= appUI.playerSaveData.GetSlotMax() && roleTypeID == -1 && sciType == -1) {
                     Debug.Log("已经选择了" + typeIDs.Count + "张卡片");
                     appUI.Panel_Notice_Open("道具已经选完了");
                     return;

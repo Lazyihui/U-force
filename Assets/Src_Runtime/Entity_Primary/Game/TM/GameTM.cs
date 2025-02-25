@@ -19,13 +19,24 @@ namespace UF {
         [ShowIf(nameof(isDefendWar))] public float spawnMinionInterval;//生成小怪的间隔
         [ShowIf(nameof(isDefendWar))] public float spawnMinionIntervalTimer; //生成小怪计时器
         [ShowIf(nameof(isDefendWar))] public float progress; //每小波次进度条占比
-        [ShowIf(nameof(isDefendWar))] public float wavesProgress; //进度条数值
 
         [Title("进攻战")]
         public bool isOffensiveWar;//是否是进攻战
+        [ShowIf(nameof(isOffensiveWar))] public int spanwBossTimer;
+        [ShowIf(nameof(isOffensiveWar))] public int spanwBossCount;
+
+        [ShowIf(nameof(isOffensiveWar))] public int bossMaxWaves;
+        [ShowIf(nameof(isOffensiveWar))] public int bossCurWaves;
+        [ShowIf(nameof(isOffensiveWar))] public float bossCdMinion;
+        [ShowIf(nameof(isOffensiveWar))] public float bossCd;
+        [ShowIf(nameof(isOffensiveWar))] public float bossSpawnMinionInterval;
+        [ShowIf(nameof(isOffensiveWar))] public float bossSpawnMinionIntervalTimer;
+        [ShowIf(nameof(isOffensiveWar))] public float bossProgress;
 
         [Title("消灭战")]
         public bool isEliminateWar;//是否是消灭战
+
+
 
     }
 }
