@@ -18,6 +18,7 @@ namespace UF
 
         public RoleRepository roleRepository;
         public BulletRepository bulletRepository;
+        public PropRepository propRepository;
 
         public TrainEntity trainEntity;
 
@@ -29,6 +30,7 @@ namespace UF
             trainEntity = new TrainEntity();
 
             bulletRepository = new BulletRepository();
+            propRepository = new PropRepository();
         }
 
         public void Inject(AppUI appUI, TemplateMoudle templateMoudle, AssetsModule assetsModule, InputModule inputModule, RoleRepository roleRepository)

@@ -13,7 +13,7 @@ namespace UF.System_Train {
             }
 
             ctx.bulletRepository.Add(entity);
-            return null;
+            return null; // 之后如果需要在其他地方调用子弹就把return改掉
         }
 
         public static BulletEntity SpawnByRolePos(TrainSystemContext ctx, RoleEntity role) {

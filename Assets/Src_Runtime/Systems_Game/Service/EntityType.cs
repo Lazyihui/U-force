@@ -15,6 +15,7 @@ namespace UF {
         Map,
 
         OneStage,
+        Prop,
 
     }
 

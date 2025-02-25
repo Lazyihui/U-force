@@ -262,6 +262,35 @@ namespace UF {
         }
         #endregion
 
+        #region Prop
+        public static PropEntity Prop_Create(AssetsModule assetsCore, TemplateMoudle templateCore, IDService idService, int typeID, Vector3 pos) {
+            bool has = templateCore.Prop_TryGet(typeID, out var tm);
+            if (!has) {
+                Debug.LogError("Prop_Create: tm is null" + typeID);
+                return null;
+            }
+
+            // - go
+            GameObject prefab = assetsCore.Entity_GetProp();
+            GameObject go = GameObject.Instantiate(prefab);
+            PropEntity prop = go.GetComponent<PropEntity>();
+
+            //  - mod
+            var mod = PropMod_Create(tm, prop.bodyRoot);
+
+            prop.idSig = new IDSignature(EntityType.Prop, idService.PickPropID());
+            prop.typeID = typeID;
+            prop.type = tm.type;
+
+            prop.Inject(mod);
+            prop.Ctor();
+
+            prop.TF_SetPosition(pos);
+
+            return prop;
+        }
+        #endregion
+
         #region Model
 
 
@@ -439,6 +468,12 @@ namespace UF {
 
         static StuffMod StuffMod_Create(StuffTM tm, Transform bodyRoot) {
             var mod = GameObject.Instantiate(tm.modPrefab, bodyRoot).GetComponent<StuffMod>();
+            mod.Ctor();
+            return mod;
+        }
+
+        static PropMod PropMod_Create(PropTM tm, Transform bodyRoot) {
+            var mod = GameObject.Instantiate(tm.modPrefab, bodyRoot).GetComponent<PropMod>();
             mod.Ctor();
             return mod;
         }

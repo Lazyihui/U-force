@@ -20,7 +20,5 @@ namespace UF {
             return ++SkillID;
         }
 
-
-
     }
 }

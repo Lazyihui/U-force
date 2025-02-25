@@ -29,6 +29,9 @@ namespace UF.TemplateInternal {
         public Dictionary<int, CardTM> cards;
         public AsyncOperationHandle cardPtr;
 
+        public Dictionary<int, PropTM> props;
+        public AsyncOperationHandle propPtr;
+
         public TemplateContext() {
             roles = new Dictionary<int, RoleTM>();
             bullets = new Dictionary<int, BulletTM>();
@@ -66,7 +69,10 @@ namespace UF.TemplateInternal {
 
         public void Card_Add(CardTM card) {
             cards.Add(card.typeID, card);
-            
+        }
+
+        public void Prop_Add(PropTM prop) {
+            props.Add(prop.typeID, prop);
         }
     }
 }

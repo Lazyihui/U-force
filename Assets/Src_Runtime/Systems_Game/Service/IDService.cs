@@ -7,6 +7,7 @@ namespace UF {
         public int TowerID;
 
         public int StuffID;
+        public int PropID;
 
         // 唯一 看看之后要不要改
         public int mapID;
@@ -17,6 +18,7 @@ namespace UF {
             TowerID = 1;
             StuffID = 1;
             mapID = 1;
+            PropID = 1;
         }
 
         public int PickRoleID() {
@@ -36,6 +38,10 @@ namespace UF {
         }
         public int PickMapID() {
             return ++mapID;
+        }
+
+        public int PickPropID() {
+            return ++PropID;
         }
     }
 }
