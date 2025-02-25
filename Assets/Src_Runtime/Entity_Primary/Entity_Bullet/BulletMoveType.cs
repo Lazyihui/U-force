@@ -3,7 +3,7 @@ namespace UF {
     public enum BulletMoveType {
         None,
         Shaped,//直线运动的子弹
-
+        ToLeft,//向左飞的子弹
     }
 
 }

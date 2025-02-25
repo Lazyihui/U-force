@@ -69,12 +69,12 @@ namespace UF.System_Train {
 
             if (restFixTime <= FIX_INTERVAL) {
 
-                LogicTick(restFixTime);
+                LogicTick(ctx, restFixTime);
 
                 restFixTime = 0;
             } else {
                 while (restFixTime >= FIX_INTERVAL) {
-                    LogicTick(FIX_INTERVAL);
+                    LogicTick(ctx, FIX_INTERVAL);
                     restFixTime -= FIX_INTERVAL;
                 }
             }
@@ -86,7 +86,7 @@ namespace UF.System_Train {
 
         }
 
-        void LogicTick(float dt) {
+        void LogicTick(TrainSystemContext ctx, float dt) {
             var train = ctx.trainEntity;
             if (train.state == TrainState.Pause) { return; }
 
@@ -95,9 +95,17 @@ namespace UF.System_Train {
             //不知道为什么, 用length一直是3, 会有bug
             for (int i = 0; i < 2; i++) {
                 RoleEntity role = roles[i];
-                RoleDomain.Loco_Execute(role, dt);
+                RoleDomain.Loco_Execute(ctx, role, dt);
 
                 RoleDomain.Input_Record(ctx, role, dt);
+            }
+
+            // Button
+            int buttonLen = ctx.bulletRepository.TakeAll(out BulletEntity[] bullets);
+
+            for (int i = 0; i < buttonLen; i++) {
+                BulletEntity bullet = bullets[i];
+                BulletDomain.FSM_All_Execute(bullet, dt);
             }
         }
 

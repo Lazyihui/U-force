@@ -3,13 +3,17 @@ using UnityEngine;
 
 namespace UF.System_Train {
     public static partial class RoleDomain {
-        public static void Loco_Execute(RoleEntity role, float dt) {
+        public static void Loco_Execute(TrainSystemContext ctx, RoleEntity role, float dt) {
             // var moveCom = role.MoveComponent;
             GroundCheck(role);
 
             Loco_MoveReset(role);
             Loco_Move(role, dt);
+
             Loco_Jump(role);
+            Loco_Attack(ctx, role);
+
+            // Debug.Log(role.InputComponent.Player1Attack_Get());
         }
 
         #region Move
@@ -53,7 +57,20 @@ namespace UF.System_Train {
             }
         }
         #endregion
-        
+
+        // 先放在Loco里
+        static void Loco_Attack(TrainSystemContext ctx, RoleEntity role) {
+            var inputCom = role.InputComponent;
+
+            if (role.t_roleType == T_RoleType.Player1) {
+                if (!inputCom.Player1Attack_Get()) { return; }
+                BulletDomain.SpawnByRolePos(ctx, role);
+            } else if (role.t_roleType == T_RoleType.Player2) {
+                if (!inputCom.Player2Attack_Get()) { return; }
+                BulletDomain.SpawnByRolePos(ctx, role);
+            }
+        }
+
         static void GroundCheck(RoleEntity role) {
             bool isColliderGround = false;
             if (role.GetVelocity().y > 0) {

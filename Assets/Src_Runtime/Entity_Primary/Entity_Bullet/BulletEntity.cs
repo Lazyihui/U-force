@@ -72,6 +72,10 @@ namespace UF {
             rb.velocity = new Vector2(1, 0) * moveSpeed;
         }
 
+        public void Loco_ToLeft() {
+            rb.velocity = new Vector2(-1, 0) * moveSpeed;
+        }
+
         #endregion
 
         public void Ctor() {
