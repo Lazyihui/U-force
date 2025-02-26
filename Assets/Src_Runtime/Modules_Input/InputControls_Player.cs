@@ -188,6 +188,15 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""K"",
+                    ""type"": ""Value"",
+                    ""id"": ""12996acc-956a-400c-89ed-3108343777c3"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -432,6 +441,17 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
                     ""action"": ""Player1Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""28e4c56b-33eb-4a18-863f-9ff1d813261d"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""K"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -458,6 +478,7 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
         m_World_Player1Defense = m_World.FindAction("Player1Defense", throwIfNotFound: true);
         m_World_Player1Attack = m_World.FindAction("Player1Attack", throwIfNotFound: true);
         m_World_Player1Jump = m_World.FindAction("Player1Jump", throwIfNotFound: true);
+        m_World_K = m_World.FindAction("K", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -537,6 +558,7 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
     private readonly InputAction m_World_Player1Defense;
     private readonly InputAction m_World_Player1Attack;
     private readonly InputAction m_World_Player1Jump;
+    private readonly InputAction m_World_K;
     public struct WorldActions
     {
         private @InputControls_Player m_Wrapper;
@@ -559,6 +581,7 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
         public InputAction @Player1Defense => m_Wrapper.m_World_Player1Defense;
         public InputAction @Player1Attack => m_Wrapper.m_World_Player1Attack;
         public InputAction @Player1Jump => m_Wrapper.m_World_Player1Jump;
+        public InputAction @K => m_Wrapper.m_World_K;
         public InputActionMap Get() { return m_Wrapper.m_World; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -622,6 +645,9 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
             @Player1Jump.started += instance.OnPlayer1Jump;
             @Player1Jump.performed += instance.OnPlayer1Jump;
             @Player1Jump.canceled += instance.OnPlayer1Jump;
+            @K.started += instance.OnK;
+            @K.performed += instance.OnK;
+            @K.canceled += instance.OnK;
         }
 
         private void UnregisterCallbacks(IWorldActions instance)
@@ -680,6 +706,9 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
             @Player1Jump.started -= instance.OnPlayer1Jump;
             @Player1Jump.performed -= instance.OnPlayer1Jump;
             @Player1Jump.canceled -= instance.OnPlayer1Jump;
+            @K.started -= instance.OnK;
+            @K.performed -= instance.OnK;
+            @K.canceled -= instance.OnK;
         }
 
         public void RemoveCallbacks(IWorldActions instance)
@@ -717,5 +746,6 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
         void OnPlayer1Defense(InputAction.CallbackContext context);
         void OnPlayer1Attack(InputAction.CallbackContext context);
         void OnPlayer1Jump(InputAction.CallbackContext context);
+        void OnK(InputAction.CallbackContext context);
     }
 }

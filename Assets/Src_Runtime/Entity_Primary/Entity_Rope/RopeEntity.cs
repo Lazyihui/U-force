@@ -21,7 +21,7 @@ namespace UF {
         public Vector2 targetPos;
 
         public void Ctor() {
-            stretchLength = 10;
+            stretchLength = 30;
             stretchSpeed = 5;
             shorteningSpeed = 5;
             originalPos = rope.transform.position;

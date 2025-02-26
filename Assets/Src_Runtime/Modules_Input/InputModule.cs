@@ -124,6 +124,13 @@ namespace UF {
                     inputCastKey |= InputKeyFlag.Weap4;
                 }
             }
+            // k
+            {
+                bool isTechDown = world.K.WasPressedThisFrame();
+                if (isTechDown) {
+                    inputCastKey |= InputKeyFlag.Tech;
+                }
+            }
 
             // 训练营Player1
             {
