@@ -125,6 +125,8 @@ namespace UF.System_Train {
                 RoleDomain.Loco_Execute(ctx, role, dt);
 
                 RoleDomain.Input_Record(ctx, role, dt);
+
+                HUD_Training_CD_Update(role);
             }
 
             // Button
@@ -207,6 +209,16 @@ namespace UF.System_Train {
             float time = train.gameTime;
 
             ctx.appUI.HUD_Training_Update(player1Hp, player1Max, player2Hp, player2Max, time);
+        }
+
+        void HUD_Training_CD_Update(RoleEntity role) {
+            var train = ctx.trainEntity;
+
+            if (role.t_roleType == T_RoleType.Player1) {
+                ctx.appUI.HUD_Training_CD_Update(role, train.attackCD1, train.attackMax1, train.defenseCD1, train.defenseMax);
+            } else if (role.t_roleType == T_RoleType.Player2) {
+                ctx.appUI.HUD_Training_CD_Update(role, train.attackCD2, train.attackMax2, train.defenseCD2, train.defenseMax);
+            }
         }
     }
 }

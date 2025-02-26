@@ -275,6 +275,8 @@ namespace UF {
                         trainSystem.Enter(typeIDs);
 
                         appUI.HUD_Training_Open();
+                        appUI.HUD_Training_CD_Open();
+                        appUI.HUD_Training_CD_Open();
                     }
                 };
 

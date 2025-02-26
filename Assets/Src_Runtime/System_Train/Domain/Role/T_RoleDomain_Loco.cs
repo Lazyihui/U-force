@@ -69,10 +69,12 @@ namespace UF.System_Train {
                 if (!inputCom.Player1Attack_Get() || train.attackCD1 > 0) { return; }
                 BulletDomain.SpawnByRolePos(ctx, role);
                 train.attackCD1 = skill.cd;
+                train.attackMax1 = skill.cd;
             } else if (role.t_roleType == T_RoleType.Player2) {
                 if (!inputCom.Player2Attack_Get() || train.attackCD2 > 0) { return; }
                 BulletDomain.SpawnByRolePos(ctx, role);
                 train.attackCD2 = skill.cd;
+                train.attackMax2 = skill.cd;
             }
         }
 

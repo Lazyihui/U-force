@@ -358,6 +358,55 @@ namespace UF {
 
             hud.SetTime(time);
         }
+
+        public void HUD_Training_CD_Open() {
+            GameObject prefab = ctx.assetsCore.HUD_GetTraining_CD();
+
+            GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+            HUD_Training_CD hud = go.GetComponent<HUD_Training_CD>();
+            hud.Ctor();
+            hud.Show();
+
+            int len = ctx.hud_Training_CD.Length;
+            for (int i = 0; i < len; i++) {
+                if (ctx.hud_Training_CD[i] == null) {
+                    ctx.hud_Training_CD[i] = hud;
+                }
+            }
+        }
+
+        public void HUD_Training_CD_Close() {
+            int len = ctx.hud_Training_CD.Length;
+            for (int i = 0; i < len; i++) {
+                if (ctx.hud_Training_CD[i] == null) {
+                    continue;
+                }
+                ctx.hud_Training_CD[i].TearDown();
+                ctx.hud_Training_CD[i] = null;
+            }
+        }
+
+        public void HUD_Training_CD_Update(RoleEntity role, float attackCD, float attackMax, float defenseCD, float defenseMax) {
+            HUD_Training_CD hud;
+            Vector3 pos = role.TF_GetPos();
+
+            if (role.t_roleType == T_RoleType.Player1) {
+                hud = ctx.hud_Training_CD[0];
+                pos.x -= 1;
+            } else if (role.t_roleType == T_RoleType.Player2) {
+                hud = ctx.hud_Training_CD[1];
+                pos.x += 1;
+            } else {
+                return;
+            }
+
+            if (hud == null) { return; }
+
+            hud.SetAttackCD(attackCD, attackMax);
+            hud.SetDefenseCD(defenseCD, defenseMax);
+
+            hud.SetPos(pos);
+        }
         #endregion
 
         #region StageSelection

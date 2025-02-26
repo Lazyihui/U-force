@@ -32,6 +32,7 @@ namespace UF {
         // HUD
         public HUD_Progressbar hud_Progressbar;
         public HUD_Training hud_Training;
+        public HUD_Training_CD[] hud_Training_CD; // 不是唯一
 
         // input
         public bool isTabDown;
@@ -40,6 +41,8 @@ namespace UF {
 
         public UIContext() {
             isTabDown = false;
+
+            hud_Training_CD = new HUD_Training_CD[2];
         }
 
         public void Inject(Canvas screenCanvas, AssetsModule assetsCore) {

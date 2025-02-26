@@ -13,6 +13,8 @@ namespace UF.System_Train
 
         public float attackCD1; // Player1攻击计时
         public float attackCD2; // Player2攻击计时
+        public float attackMax1; // Player1攻击最大cd
+        public float attackMax2; // Player2攻击最大cd
 
         public float propSpawnCD; // 道具生成计时
         public float propSpawnMax; // 道具生成最大cd
@@ -27,6 +29,8 @@ namespace UF.System_Train
             defenseMax = 1;
             attackCD1 = 0;
             attackCD2 = 0;
+            attackMax1 = 0;
+            attackMax2 = 0;
             propSpawnCD = 0;
             propSpawnMax = 15;
             gameTime = 120;
