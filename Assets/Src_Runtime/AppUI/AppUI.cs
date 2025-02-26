@@ -1004,6 +1004,8 @@ namespace UF {
         public void Panel_Training_GameOver_Open(string text, Sprite winner) {
             Panel_Training_GameOver panel = ctx.panel_Training_GameOver;
 
+            if (panel != null) { return; }
+
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetTraining_GameOver();
                 GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
@@ -1041,7 +1043,7 @@ namespace UF {
             panel.SetText(text);
         }
 
-        void Panel_Training_GameOver_SetWinner(Sprite sprite) {
+        public void Panel_Training_GameOver_SetWinner(Sprite sprite) {
             Panel_Training_GameOver panel = ctx.panel_Training_GameOver;
 
             if (panel == null) { return; }

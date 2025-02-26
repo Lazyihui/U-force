@@ -20,6 +20,13 @@ namespace UF.System_Train
         public float propSpawnMax; // 道具生成最大cd
 
         public float gameTime;
+        public float gameMax; // 游戏最大时间
+
+        public float spriteCD; // 平局时角色贴图切换计时
+        public float spriteMax; // 平局时角色贴图切换最大cd
+        public float spriteIndex; // 平局时当前贴图
+
+        public MapEntity mapEntity;
 
         public TrainEntity()
         {
@@ -33,7 +40,12 @@ namespace UF.System_Train
             attackMax2 = 0;
             propSpawnCD = 0;
             propSpawnMax = 15;
-            gameTime = 120;
+            gameTime = 0;
+            gameMax = 120;
+            spriteCD = 0;
+            spriteMax = 1;
+            spriteIndex = 1;
+            mapEntity = null;
         }
     }
 }

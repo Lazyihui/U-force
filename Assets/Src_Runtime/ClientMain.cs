@@ -437,11 +437,15 @@ namespace UF {
             };
 
             trainEvent.OnTrainOverResetClickHandle += () => {
-                Debug.Log("再来一局");
+                trainSystem.Exit();
+                loginSystem.Enter();
+                UIDomain.Panel_Training_Select_Open(appUI, assetsModule, templateModule);
             };
 
             trainEvent.OnTrainOverBackClickHandle += () => {
-                Debug.Log("返回主页面");
+                trainSystem.Exit();
+                loginSystem.Enter();
+                loginSystem.EnterPanel_Login();
             };
         }
         #endregion

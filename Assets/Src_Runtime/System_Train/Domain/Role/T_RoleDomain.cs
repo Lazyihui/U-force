@@ -16,6 +16,20 @@ namespace UF.System_Train {
             return entity;
         }
 
+        public static void UnSpawn(TrainSystemContext ctx, RoleEntity role) {
+            ctx.roleRepository.Remove(role);
+            role.TearDown();
+        }
+
+        public static void Clear(TrainSystemContext ctx) {
+            int len = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
+            for (int i = 0; i < len; i += 1) {
+                RoleEntity role = roles[i];
+                role.TearDown();
+            }
+            ctx.roleRepository.Clear();
+        }
+
         public static void Input_Record(TrainSystemContext ctx, RoleEntity role, float dt) {
             Debug.Assert(role != null, "RoleDomain.Input_Record role == null");
             Debug.Assert(ctx != null, "RoleDomain.Input_Record ctx == null");
@@ -43,9 +57,9 @@ namespace UF.System_Train {
                     role = roles[i];
 
                     if (role.AttributeComponent.hp != 0) {
-                        string text = "玩家" + (i + 1) + " 胜利";
+                        string text = "玩家" + (i + 1) + "胜利!";
                         ctx.templateMoudle.Role_TryGet(role.typeID, out var tm);
-                        
+
                         ctx.appUI.Panel_Training_GameOver_Open(text, tm.sprite);
                     }
                 }

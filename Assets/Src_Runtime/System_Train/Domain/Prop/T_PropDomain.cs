@@ -31,7 +31,7 @@ namespace UF.System_Train {
         public static PropEntity SpawnByRandom(TrainSystemContext ctx) { // 随机生成场景中的道具
             Vector3 pos = new Vector3(0, 0, 0);
             pos.x = UnityEngine.Random.Range(-3, 3);
-            pos.y = UnityEngine.Random.Range(-10.5f, 10.5f);
+            pos.y = UnityEngine.Random.Range(-5f, 8f);
 
             ctx.templateMoudle.Stage_TryGet(500, out StageTM tm);
             var props = tm.gameTM.sceneProps;
