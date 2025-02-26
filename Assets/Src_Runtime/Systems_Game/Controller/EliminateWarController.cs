@@ -32,6 +32,9 @@ namespace UF {
 
             owner = RoleDomain.SpawnByPos(ctx, selectedRoleTypeID, new Vector3(-15, 0, 0));
             game.OwnerIDsig = owner.idSig;
+
+            // Ropes绳子
+            RopeDomain.Spawn(ctx, owner.Muzzle);
         }
 
         public static void PreTick(GameSystemContext ctx, float dt) {
@@ -39,10 +42,11 @@ namespace UF {
         }
 
         public static void Tick(GameSystemContext ctx, float dt) {
-            // 人物移动
+
             var game = ctx.gameEntity;
             var role = ctx.Get_Owner();
 
+            // 人物移动
             RoleDomain.LocoDefendAndOffensive_Execute(ctx, role, dt);
         }
 

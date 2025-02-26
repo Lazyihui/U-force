@@ -16,6 +16,7 @@ namespace UF {
 
         OneStage,
         Prop,
+        Rope,
 
     }
 
