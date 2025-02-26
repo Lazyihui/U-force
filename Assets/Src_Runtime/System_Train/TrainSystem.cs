@@ -106,6 +106,10 @@ namespace UF.System_Train {
             if (train.attackCD2 <= 0) {
                 train.attackCD2 = 0;
             }
+            train.propSpawnCD -= dt;
+            if (train.propSpawnCD <= 0) {
+                train.propSpawnCD = 0;
+            }
 
             // 所有角色逻辑
             ctx.roleRepository.TakeAll(out RoleEntity[] roles);
@@ -125,11 +129,19 @@ namespace UF.System_Train {
                 BulletDomain.CheckUnSpawn(ctx, bullet);
             }
 
+            // Prop
             int propLen = ctx.propRepository.TakeAll(out PropEntity[] props);
             for (int i = 0; i < propLen; i++) {
                 PropEntity prop = props[i];
-                PropDomain.FSM_All_Execute(prop);
+                PropDomain.FSM_All_Execute(ctx, prop);
                 PropDomain.CheckUnSpawn(ctx, prop);
+            }
+
+            // 场景道具生成
+            if (train.propSpawnCD <= 0)
+            {
+                PropDomain.SpawnByRandom(ctx);
+                train.propSpawnCD = train.propSpawnMax;
             }
         }
 

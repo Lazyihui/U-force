@@ -113,8 +113,8 @@ MonoBehaviour:
   txt_stage: {fileID: 6689493559093314923}
   btn_stage: {fileID: 420004728120485959}
   img_Bg: {fileID: 7591559823028520660}
-  bg_Unlock: {fileID: 21300000, guid: 84043bce0f1693f4db9e333b828869e6, type: 3}
-  bg_Lock: {fileID: 21300000, guid: 95cc25f7dab1c7444af87cbf0566a184, type: 3}
+  bg_Unlock: {fileID: 21300000, guid: f73a7ef2c86e30b41bedd27b9c24e8af, type: 3}
+  bg_Lock: {fileID: 21300000, guid: 6c9174590026f7242a6cd7705af9e0e6, type: 3}
   stageID: 0
 --- !u!1 &2482069127509797454
 GameObject:
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8624728757701206814, guid: e1e24ffa8df5bcf4c8dd6f4ace885b2d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6c9174590026f7242a6cd7705af9e0e6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

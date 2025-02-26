@@ -356,7 +356,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Reset
+  m_text: "\u91CD\u65B0\u5F00\u59CB"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 184185b8f7cabcb4cbef71cb18394efa, type: 2}
   m_sharedMaterial: {fileID: 1798481904791335695, guid: 184185b8f7cabcb4cbef71cb18394efa, type: 2}
@@ -764,12 +764,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'If you quit, you'' ll back to selected cards(prepare for battle), and
-    current battle progress will be not saved.
-
-
-    Xiao3 Xue2 Sheng1 Ying1 Yu3,
-    Lan3 De0 Zhao3 Zhong1 Wen2 Zi4 Ti3 Le0'
+  m_text: "If you quit, you' ll back to selected cards(prepare for battle), and current
+    battle progress will be not saved.\n\n\u8FD4\u56DE\u5C06\u9000\u51FA\u5907\u6218\uFF0C\u5F53\u524D\u6218\u6597\u8FDB\u5EA6\u4E0D\u4F1A\u4FDD\u5B58"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 184185b8f7cabcb4cbef71cb18394efa, type: 2}
   m_sharedMaterial: {fileID: 1798481904791335695, guid: 184185b8f7cabcb4cbef71cb18394efa, type: 2}
@@ -1327,7 +1323,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Continue
+  m_text: "\u7EE7\u7EED\u6218\u6597"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 184185b8f7cabcb4cbef71cb18394efa, type: 2}
   m_sharedMaterial: {fileID: 1798481904791335695, guid: 184185b8f7cabcb4cbef71cb18394efa, type: 2}
@@ -1582,7 +1578,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quit
+  m_text: "\u9000\u51FA"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 184185b8f7cabcb4cbef71cb18394efa, type: 2}
   m_sharedMaterial: {fileID: 1798481904791335695, guid: 184185b8f7cabcb4cbef71cb18394efa, type: 2}

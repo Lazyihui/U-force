@@ -3,6 +3,12 @@ using UnityEngine;
 
 namespace UF.System_Train {
     public static class PropDomain {
+        public static void FSM_All_Execute(TrainSystemContext ctx, PropEntity prop) {
+            if (prop.moveType == PropMoveType.Down) {
+                Loco_MoveDown(prop);
+            }
+        }
+
         public static PropEntity Spawn(TrainSystemContext ctx, int typeID, Vector3 pos) {
             PropEntity entity = GameFactory.Prop_Create(ctx.assetsModule, ctx.templateMoudle, ctx.idService, typeID, pos);
             ctx.propRepository.Add(entity);
@@ -22,6 +28,21 @@ namespace UF.System_Train {
             return prop;
         }
 
+        public static PropEntity SpawnByRandom(TrainSystemContext ctx) { // 随机生成场景中的道具
+            Vector3 pos = new Vector3(0, 0, 0);
+            pos.x = UnityEngine.Random.Range(-3, 3);
+            pos.y = UnityEngine.Random.Range(-10.5f, 10.5f);
+
+            ctx.templateMoudle.Stage_TryGet(500, out StageTM tm);
+            var props = tm.gameTM.sceneProps;
+            int index = UnityEngine.Random.Range(0, props.Length);
+            var propSo = props[index];
+
+            var prop = Spawn(ctx, propSo.tm.typeID, pos);
+            prop.type = PropType.SceneProp;
+            return prop;
+        }
+
         public static void UnSpawn(TrainSystemContext ctx, PropEntity prop) {
             ctx.propRepository.Remove(prop);
             prop.TearDown();
@@ -34,12 +55,6 @@ namespace UF.System_Train {
                 prop.TearDown();
             }
             ctx.propRepository.Clear();
-        }
-
-        public static void FSM_All_Execute(PropEntity prop) {
-            if (prop.moveType == PropMoveType.Down) {
-                Loco_MoveDown(prop);
-            }
         }
 
         static void Loco_MoveDown(PropEntity prop) {

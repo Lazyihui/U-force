@@ -37,15 +37,22 @@ MonoBehaviour:
     mapPrefab: {fileID: 7992499427466167066, guid: e2c7cb80a53350c468282abee6d3947b, type: 3}
     gameTM:
       isDefendWar: 1
-      spawnMinionTimer: 4
-      spawnMinion: 4
+      spawnEnemyCount: 4
       maxWaves: 4
       curWaves: 0
-      cdMinion: 0
-      cdMinionMax: 4
-      spawnMinionInterval: 4
-      spawnMinionIntervalTimer: 4
+      cdEnemy: 0
+      cdEnemyMax: 1
+      spawnEnemyInterval: 2
+      spawnEnemyIntervalTimer: 0
       progress: 0.0625
-      wavesProgress: 0
       isOffensiveWar: 0
+      spanwBossTimer: 0
+      spanwBossCount: 0
+      bossMaxWaves: 0
+      bossCurWaves: 0
+      bossCdMinion: 0
+      bossCd: 0
+      bossSpawnMinionInterval: 0
+      bossSpawnMinionIntervalTimer: 0
+      bossProgress: 0
       isEliminateWar: 0

@@ -22,14 +22,13 @@ MonoBehaviour:
     mapPrefab: {fileID: 7992499427466167066, guid: 62a1446a399665144b7086324a8786fe, type: 3}
     gameTM:
       isDefendWar: 0
-      spawnMinionTimer: 0
-      spawnMinion: 0
-      maxWaves: 0
+      spawnEnemyCount: 4
+      maxWaves: 4
       curWaves: 0
-      cdMinion: 0
-      cdMinionMax: 0
-      spawnMinionInterval: 0
-      spawnMinionIntervalTimer: 0
+      cdEnemy: 0
+      cdEnemyMax: 1
+      spawnEnemyInterval: 2
+      spawnEnemyIntervalTimer: 0
       progress: 0
       isOffensiveWar: 1
       spanwBossTimer: 1

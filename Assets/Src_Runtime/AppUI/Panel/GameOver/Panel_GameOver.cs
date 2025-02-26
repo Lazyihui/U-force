@@ -44,7 +44,7 @@ namespace UF {
             Text_Hurt.text = "<b>受伤害</b>    " + hurt.ToString();
             Text_Shoot.text = "<b>射击次数</b>    " + shoot.ToString();
             Text_HitNumber.text = "<b>命中次数</b>    " + hitNumber.ToString();
-            Text_HitRate.text = "<b>命中率</b>    " + hitRate.ToString("F2") + "%";
+            Text_HitRate.text = "<b>命中率</b>    " + ( hitRate * 100 ).ToString("F2") + "%";
 
             if (isWin) {
                 Text_Title.text = "胜利";

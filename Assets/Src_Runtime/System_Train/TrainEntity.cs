@@ -7,12 +7,15 @@ namespace UF.System_Train
     {
         public TrainState state;
 
-        public float defenseCD1; // Player1防御cd
-        public float defenseCD2; // Player2防御cd
+        public float defenseCD1; // Player1防御计时
+        public float defenseCD2; // Player2防御计时
         public float defenseMax; // 防御最大cd
 
-        public float attackCD1; // Player1攻击cd
-        public float attackCD2; // Player2攻击cd
+        public float attackCD1; // Player1攻击计时
+        public float attackCD2; // Player2攻击计时
+
+        public float propSpawnCD; // 道具生成计时
+        public float propSpawnMax; // 道具生成最大cd
 
         public TrainEntity()
         {
@@ -22,6 +25,8 @@ namespace UF.System_Train
             defenseMax = 1;
             attackCD1 = 0;
             attackCD2 = 0;
+            propSpawnCD = 0;
+            propSpawnMax = 15;
         }
     }
 }

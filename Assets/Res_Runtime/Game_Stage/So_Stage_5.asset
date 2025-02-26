@@ -41,9 +41,9 @@ MonoBehaviour:
       maxWaves: 4
       curWaves: 0
       cdEnemy: 0
-      cdEnemyMax: 0
-      spawnEnemyInterval: 4
-      spawnEnemyIntervalTimer: 4
+      cdEnemyMax: 1
+      spawnEnemyInterval: 2
+      spawnEnemyIntervalTimer: 0
       progress: 0.0625
       isOffensiveWar: 0
       spanwBossTimer: 0
