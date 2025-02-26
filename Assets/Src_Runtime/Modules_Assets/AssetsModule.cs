@@ -169,6 +169,11 @@ namespace UF {
             return panel;
         }
 
+        public GameObject Panel_GetTraining_GameOver() {
+            panels.TryGetValue("Panel_Training_GameOver", out GameObject panel);
+            return panel;
+        }
+
 
         // HUD
         public GameObject HUD_GetProgressbar() {
@@ -178,6 +183,16 @@ namespace UF {
 
         public GameObject HUD_GetCD() {
             panels.TryGetValue("HUD_CD", out GameObject hud);
+            return hud;
+        }
+
+        public GameObject HUD_GetTraining() {
+            panels.TryGetValue("HUD_Training", out GameObject hud);
+            return hud;
+        }
+
+        public GameObject HUD_GetTraining_CD() {
+            panels.TryGetValue("HUD_Training_CD", out GameObject hud);
             return hud;
         }
     }

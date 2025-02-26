@@ -79,6 +79,7 @@ namespace UF {
             role.roleType = tm.roleType;
             role.moveType = tm.moveType;
             role.SetRoleState(tm.roleState);
+            role.typeID = tm.typeID;
 
             role.Ctor();
             role.Inject(mod);

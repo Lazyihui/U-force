@@ -106,6 +106,16 @@ namespace UF.System_Train {
             if (train.attackCD2 <= 0) {
                 train.attackCD2 = 0;
             }
+            train.propSpawnCD -= dt;
+            if (train.propSpawnCD <= 0) {
+                train.propSpawnCD = 0;
+            }
+            train.gameTime -= dt;
+            if (train.gameTime <= 0) {
+                Debug.Log("游戏结束");
+            }
+
+            HUD_Training_Update(dt);
 
             // 所有角色逻辑
             ctx.roleRepository.TakeAll(out RoleEntity[] roles);
@@ -115,6 +125,8 @@ namespace UF.System_Train {
                 RoleDomain.Loco_Execute(ctx, role, dt);
 
                 RoleDomain.Input_Record(ctx, role, dt);
+
+                HUD_Training_CD_Update(role);
             }
 
             // Button
@@ -125,11 +137,18 @@ namespace UF.System_Train {
                 BulletDomain.CheckUnSpawn(ctx, bullet);
             }
 
+            // Prop
             int propLen = ctx.propRepository.TakeAll(out PropEntity[] props);
             for (int i = 0; i < propLen; i++) {
                 PropEntity prop = props[i];
-                PropDomain.FSM_All_Execute(prop);
+                PropDomain.FSM_All_Execute(ctx, prop);
                 PropDomain.CheckUnSpawn(ctx, prop);
+            }
+
+            // 场景道具生成
+            if (train.propSpawnCD <= 0) {
+                PropDomain.SpawnByRandom(ctx);
+                train.propSpawnCD = train.propSpawnMax;
             }
         }
 
@@ -158,6 +177,14 @@ namespace UF.System_Train {
             eventCenter.OnTrainQuitClickHandle += () => {
                 events.OnTrainQuitClick();
             };
+
+            eventCenter.OnTrainOverResetClickHandle += () => {
+                events.OnTrainOverResetClick();
+            };
+
+            eventCenter.OnTrainOverBackClickHandle += () => {
+                events.OnTrainOverBackClick();
+            };
         }
 
         // 绝对不是这样写, 这是一种最傻瓜的办法
@@ -173,6 +200,33 @@ namespace UF.System_Train {
             train.state = TrainState.None;
 
             ctx.appUI.Panel_Training_Pause_Close();
+        }
+
+        void HUD_Training_Update(float dt) {
+            ctx.roleRepository.TakeAll(out RoleEntity[] roles);
+
+            var player1Attr = roles[0].AttributeComponent;
+            int player1Hp = player1Attr.GetHp();
+            int player1Max = player1Attr.GetHpMax();
+
+            var player2Attr = roles[1].AttributeComponent;
+            int player2Hp = player2Attr.GetHp();
+            int player2Max = player2Attr.GetHpMax();
+
+            var train = ctx.trainEntity;
+            float time = train.gameTime;
+
+            ctx.appUI.HUD_Training_Update(player1Hp, player1Max, player2Hp, player2Max, time);
+        }
+
+        void HUD_Training_CD_Update(RoleEntity role) {
+            var train = ctx.trainEntity;
+
+            if (role.t_roleType == T_RoleType.Player1) {
+                ctx.appUI.HUD_Training_CD_Update(role, train.attackCD1, train.attackMax1, train.defenseCD1, train.defenseMax);
+            } else if (role.t_roleType == T_RoleType.Player2) {
+                ctx.appUI.HUD_Training_CD_Update(role, train.attackCD2, train.attackMax2, train.defenseCD2, train.defenseMax);
+            }
         }
     }
 }

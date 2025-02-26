@@ -15,6 +15,7 @@ namespace UF {
         public GameObject text; // 先直接在Inspector里拖过来, 单一个text感觉没必要寻址
 
         public void Ctor() {
+            
         }
 
         // 设置波次

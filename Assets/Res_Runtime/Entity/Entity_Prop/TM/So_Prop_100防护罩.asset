@@ -20,3 +20,4 @@ MonoBehaviour:
     isPlayerProp: 1
     modPrefab: {fileID: 796010565688435010, guid: 9eb8ded91e58e1b44887ea6900805362, type: 3}
     moveSpeed: 3
+    times: 1

@@ -28,9 +28,13 @@ namespace UF {
         public Panel_Training_Button panel_Training_Button;
         public Panel_Training_Pause panel_Training_Pause;
         public Panel_Notice panel_Notice;
+        public Panel_Training_GameOver panel_Training_GameOver;
 
         // HUD
         public HUD_Progressbar hud_Progressbar;
+        public HUD_Training hud_Training;
+        public HUD_Training_CD hud_Training_CD1;
+        public HUD_Training_CD hud_Training_CD2;
 
         // input
         public bool isTabDown;

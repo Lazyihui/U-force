@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d41238974cd87e347a19f34dce367e1c, type: 3}
+  m_Name: "So_Prop_1000\u9677\u5BB3\u5BF9\u624B"
+  m_EditorClassIdentifier: 
+  tm:
+    typeID: 1000
+    typeName: "\u9677\u5BB3\u5BF9\u624B"
+    type: 3
+    moveType: 0
+    isPlayerProp: 0
+    modPrefab: {fileID: 796010565688435010, guid: f09a947b71bcfa84584e68930a146dd3, type: 3}
+    moveSpeed: 0
+    times: 0

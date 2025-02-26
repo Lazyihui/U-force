@@ -18,16 +18,29 @@ MonoBehaviour:
     towerSpawns: []
     mapPrefab: {fileID: 5638130302697374586, guid: 024cfa098d2ea794f826475e7b1ab8c2, type: 3}
     gameTM:
-      isDefendwar: 0
-      spawnMinionTimer: 0
-      spawnMinion: 0
+      isDefendWar: 0
+      spawnEnemyCount: 0
       maxWaves: 0
       curWaves: 0
-      cdMinion: 0
-      cdMinionMax: 0
-      spawnMinionInterval: 0
-      spawnMinionIntervalTimer: 0
+      cdEnemy: 0
+      cdEnemyMax: 0
+      spawnEnemyInterval: 0
+      spawnEnemyIntervalTimer: 0
       progress: 0
-      wavesProgress: 0
       isOffensiveWar: 0
+      spanwBossTimer: 0
+      spanwBossCount: 0
+      bossMaxWaves: 0
+      bossCurWaves: 0
+      bossCdMinion: 0
+      bossCd: 0
+      bossSpawnMinionInterval: 0
+      bossSpawnMinionIntervalTimer: 0
+      bossProgress: 0
       isEliminateWar: 0
+      isTrainingWar: 1
+      sceneProps:
+      - {fileID: 11400000, guid: 0dea20d487948fa4ebaa15dd88a8293f, type: 2}
+      - {fileID: 11400000, guid: 50cbd8b095007a54693a0b9fec4ab3c9, type: 2}
+      - {fileID: 11400000, guid: 5be03636babf29544a7b34cc3dd0869e, type: 2}
+      - {fileID: 11400000, guid: dce19218f4ff29e4aa81d38c806ae225, type: 2}

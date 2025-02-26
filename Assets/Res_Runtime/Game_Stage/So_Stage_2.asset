@@ -37,13 +37,13 @@ MonoBehaviour:
     mapPrefab: {fileID: 1066663221058539873, guid: 79b735d4381eb844f9c60759b05064c7, type: 3}
     gameTM:
       isDefendWar: 1
-      spawnEnemyCount: 2
-      maxWaves: 2
+      spawnEnemyCount: 4
+      maxWaves: 4
       curWaves: 0
       cdEnemy: 0
-      cdEnemyMax: 0
+      cdEnemyMax: 1
       spawnEnemyInterval: 2
-      spawnEnemyIntervalTimer: 2
+      spawnEnemyIntervalTimer: 0
       progress: 0.0625
       isOffensiveWar: 0
       spanwBossTimer: 0

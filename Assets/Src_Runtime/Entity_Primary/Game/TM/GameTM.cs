@@ -32,10 +32,11 @@ namespace UF {
         [ShowIf(nameof(isOffensiveWar))] public float bossSpawnMinionIntervalTimer;
         [ShowIf(nameof(isOffensiveWar))] public float bossProgress;
 
-        [Title("消灭战")]
-        public bool isEliminateWar;//是否是消灭战
+        [Title("消除战")]
+        public bool isEliminateWar;//是否是消除战
 
-
-
+        [Title("训练营")]
+        public bool isTrainingWar;//是否是训练营
+        [ShowIf(nameof(isTrainingWar))] public PropSo[] sceneProps; // 场景道具
     }
 }
