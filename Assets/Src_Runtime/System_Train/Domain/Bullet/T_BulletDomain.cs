@@ -60,6 +60,7 @@ namespace UF.System_Train {
             }
 
             DetectionMinionByPos(ctx, bullet);
+            DetectionPropByPos(ctx, bullet);
         }
 
         static void DetectionMinionByPos(TrainSystemContext ctx, BulletEntity bullet) {
@@ -78,6 +79,31 @@ namespace UF.System_Train {
 
                 if (dis < 1.0f) {
                     RoleDomain.HpReduce_MinionFall(ctx, role, bullet.damage);
+                    bullet.hitTimes -= 1;
+
+                    if (bullet.hitTimes <= 0) {
+                        UnSpawn(ctx, bullet);
+                    }
+                }
+            }
+        }
+
+        static void DetectionPropByPos(TrainSystemContext ctx, BulletEntity bullet) { // 使用道具
+            int len = ctx.propRepository.TakeAll(out PropEntity[] props);
+            for (int i = 0; i < len; i += 1) {
+                PropEntity prop = props[i];
+                Vector3 pos = bullet.TF_GetPos();
+                float dis = Vector3.Distance(prop.TF_GetPos(), pos);
+
+                if (dis < 1.0f) {
+                    if (bullet.type == BulletMoveType.Shaped) {
+                        PropDomain.UseProp1(prop);
+                    } else if (bullet.type == BulletMoveType.ToLeft) {
+                        PropDomain.UseProp2(prop);
+                    }
+
+                    PropDomain.UnSpawn(ctx, prop);
+
                     bullet.hitTimes -= 1;
 
                     if (bullet.hitTimes <= 0) {

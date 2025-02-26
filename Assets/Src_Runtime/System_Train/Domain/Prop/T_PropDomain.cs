@@ -95,5 +95,15 @@ namespace UF.System_Train {
                 }
             }
         }
+
+        public static void UseProp1(PropEntity prop)
+        {
+            prop.UseProp1();
+        }
+
+        public static void UseProp2(PropEntity prop)
+        {
+            prop.UseProp2();
+        }
     }
 }

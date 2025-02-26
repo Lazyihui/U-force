@@ -17,6 +17,8 @@ namespace UF.System_Train
         public float propSpawnCD; // 道具生成计时
         public float propSpawnMax; // 道具生成最大cd
 
+        public float gameTime;
+
         public TrainEntity()
         {
             state = TrainState.None;
@@ -27,6 +29,7 @@ namespace UF.System_Train
             attackCD2 = 0;
             propSpawnCD = 0;
             propSpawnMax = 15;
+            gameTime = 120;
         }
     }
 }

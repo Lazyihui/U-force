@@ -110,6 +110,12 @@ namespace UF.System_Train {
             if (train.propSpawnCD <= 0) {
                 train.propSpawnCD = 0;
             }
+            train.gameTime -= dt;
+            if (train.gameTime <= 0) {
+                Debug.Log("游戏结束");
+            }
+
+            HUD_Training_Update(dt);
 
             // 所有角色逻辑
             ctx.roleRepository.TakeAll(out RoleEntity[] roles);
@@ -138,8 +144,7 @@ namespace UF.System_Train {
             }
 
             // 场景道具生成
-            if (train.propSpawnCD <= 0)
-            {
+            if (train.propSpawnCD <= 0) {
                 PropDomain.SpawnByRandom(ctx);
                 train.propSpawnCD = train.propSpawnMax;
             }
@@ -185,6 +190,23 @@ namespace UF.System_Train {
             train.state = TrainState.None;
 
             ctx.appUI.Panel_Training_Pause_Close();
+        }
+
+        void HUD_Training_Update(float dt) {
+            ctx.roleRepository.TakeAll(out RoleEntity[] roles);
+
+            var player1Attr = roles[0].AttributeComponent;
+            int player1Hp = player1Attr.GetHp();
+            int player1Max = player1Attr.GetHpMax();
+
+            var player2Attr = roles[1].AttributeComponent;
+            int player2Hp = player2Attr.GetHp();
+            int player2Max = player2Attr.GetHpMax();
+
+            var train = ctx.trainEntity;
+            float time = train.gameTime;
+
+            ctx.appUI.HUD_Training_Update(player1Hp, player1Max, player2Hp, player2Max, time);
         }
     }
 }

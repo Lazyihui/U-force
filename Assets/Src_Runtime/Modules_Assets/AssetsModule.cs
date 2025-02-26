@@ -180,5 +180,10 @@ namespace UF {
             panels.TryGetValue("HUD_CD", out GameObject hud);
             return hud;
         }
+
+        public GameObject HUD_GetTraining() {
+            panels.TryGetValue("HUD_Training", out GameObject hud);
+            return hud;
+        }
     }
 }

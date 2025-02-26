@@ -300,6 +300,66 @@ namespace UF {
         }
         #endregion
 
+        #region HUD_Training
+        public void HUD_Training_Open() {
+            HUD_Training hud = ctx.hud_Training;
+
+            if (hud == null) {
+                GameObject prefab = ctx.assetsCore.HUD_GetTraining();
+
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                hud = go.GetComponent<HUD_Training>();
+                hud.Ctor();
+            }
+
+            ctx.hud_Training = hud;
+            hud.Show();
+        }
+
+        public void HUD_Training_Close() {
+            HUD_Training hud = ctx.hud_Training;
+
+            if (hud == null) { return; }
+
+            hud.TearDown();
+            ctx.hud_Training = null;
+        }
+
+        public void HUD_Training_Update(int player1Hp, int player1Max, int player2Hp, int player2Max, float time) {
+            HUD_Training hud = ctx.hud_Training;
+
+            if (hud == null) { return; }
+
+            HUD_Training_SetPlayer1Hp(player1Hp, player1Max);
+            HUD_Training_SetPlayer2Hp(player2Hp, player2Max);
+            HUD_Training_SetTime(time);
+        }
+
+        void HUD_Training_SetPlayer1Hp(int hp, int maxHp) {
+            HUD_Training hud = ctx.hud_Training;
+
+            if (hud == null) { return; }
+
+            hud.SetPlayer1Hp(hp, maxHp);
+        }
+
+        void HUD_Training_SetPlayer2Hp(int hp, int maxHp) {
+            HUD_Training hud = ctx.hud_Training;
+
+            if (hud == null) { return; }
+
+            hud.SetPlayer2Hp(hp, maxHp);
+        }
+
+        void HUD_Training_SetTime(float time) {
+            HUD_Training hud = ctx.hud_Training;
+
+            if (hud == null) { return; }
+
+            hud.SetTime(time);
+        }
+        #endregion
+
         #region StageSelection
 
         public void Panel_StageSelection_Open(int chapter, int maxChapter) {

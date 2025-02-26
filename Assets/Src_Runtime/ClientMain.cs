@@ -273,6 +273,8 @@ namespace UF {
 
                         loginSystem.Exit();
                         trainSystem.Enter(typeIDs);
+
+                        appUI.HUD_Training_Open();
                     }
                 };
 

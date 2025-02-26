@@ -31,6 +31,7 @@ namespace UF {
 
         // HUD
         public HUD_Progressbar hud_Progressbar;
+        public HUD_Training hud_Training;
 
         // input
         public bool isTabDown;
