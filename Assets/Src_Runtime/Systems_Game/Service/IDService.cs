@@ -3,11 +3,11 @@ namespace UF {
         public int roleID;
         public int BulletID;
         public int SkillID;
-
         public int TowerID;
-
         public int StuffID;
         public int PropID;
+        public int RopeID;
+
 
         // 唯一 看看之后要不要改
         public int mapID;
@@ -19,6 +19,7 @@ namespace UF {
             StuffID = 1;
             mapID = 1;
             PropID = 1;
+            RopeID = 1;
         }
 
         public int PickRoleID() {
@@ -42,6 +43,10 @@ namespace UF {
 
         public int PickPropID() {
             return ++PropID;
+        }
+
+        public int PickRopeID() {
+            return ++RopeID;
         }
     }
 }

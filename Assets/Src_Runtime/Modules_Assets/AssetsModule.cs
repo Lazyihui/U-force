@@ -89,6 +89,11 @@ namespace UF {
             return prop;
         }
 
+        public GameObject Entity_GetRope() {
+            entities.TryGetValue("Entity_Rope", out GameObject rope);
+            return rope;
+        }
+
         //  ---  Panel  ---
         public GameObject Panel_GetLogin() {
             panels.TryGetValue("Panel_Login", out GameObject panel);

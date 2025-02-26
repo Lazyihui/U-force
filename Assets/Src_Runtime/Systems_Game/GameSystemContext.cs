@@ -25,6 +25,8 @@ namespace UF {
         public CaveRepository towerRepository;
         public StuffRepository stuffRepository;
 
+        public RopeEntity ropeEntity;
+
         public GameSystemContext() {
             isRunning = false;
 

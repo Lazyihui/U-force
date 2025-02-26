@@ -18,6 +18,9 @@ namespace UF {
         public int typeID;
         public IDSignature belongStage;//在哪一个地图里面
 
+        [SerializeField] Transform muzzle;
+        public Transform Muzzle => muzzle;
+
         // - FSM
         RoleFSMConponent fsmComponent;
         public RoleFSMConponent FSMComponent => fsmComponent;

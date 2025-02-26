@@ -296,6 +296,19 @@ namespace UF {
         }
         #endregion
 
+        #region Rope
+
+        public static RopeEntity Rope_Create(AssetsModule assetsCore, IDService idService, Transform muzzle) {
+            GameObject prefab = assetsCore.Entity_GetRope();
+            GameObject go = GameObject.Instantiate(prefab, muzzle);
+            RopeEntity rope = go.GetComponent<RopeEntity>();
+            rope.idSig = new IDSignature(EntityType.Rope, idService.PickRopeID());
+            rope.Ctor();
+            return rope;
+        }
+
+        #endregion
+
         #region Model
 
 
