@@ -38,8 +38,17 @@ namespace UF.System_Train {
             role.Attr_Hp_Set(finalHp);
 
             if (attCom.hp <= 0) {
-                // TODO: 游戏结束
-                Debug.Log(role.name + " is dead");
+                int len = ctx.roleRepository.TakeAll(out var roles);
+                for (int i = 0; i < len; i++) {
+                    role = roles[i];
+
+                    if (role.AttributeComponent.hp != 0) {
+                        string text = "玩家" + (i + 1) + " 胜利";
+                        ctx.templateMoudle.Role_TryGet(role.typeID, out var tm);
+                        
+                        ctx.appUI.Panel_Training_GameOver_Open(text, tm.sprite);
+                    }
+                }
             }
         }
     }

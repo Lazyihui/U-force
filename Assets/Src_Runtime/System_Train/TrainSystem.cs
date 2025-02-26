@@ -177,6 +177,14 @@ namespace UF.System_Train {
             eventCenter.OnTrainQuitClickHandle += () => {
                 events.OnTrainQuitClick();
             };
+
+            eventCenter.OnTrainOverResetClickHandle += () => {
+                events.OnTrainOverResetClick();
+            };
+
+            eventCenter.OnTrainOverBackClickHandle += () => {
+                events.OnTrainOverBackClick();
+            };
         }
 
         // 绝对不是这样写, 这是一种最傻瓜的办法

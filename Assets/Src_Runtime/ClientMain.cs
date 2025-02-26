@@ -435,6 +435,14 @@ namespace UF {
             trainEvent.OnTrainQuitClickHandle += () => {
                 Debug.Log("Train Quit");
             };
+
+            trainEvent.OnTrainOverResetClickHandle += () => {
+                Debug.Log("再来一局");
+            };
+
+            trainEvent.OnTrainOverBackClickHandle += () => {
+                Debug.Log("返回主页面");
+            };
         }
         #endregion
 

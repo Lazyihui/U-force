@@ -335,6 +335,20 @@ namespace UF {
                 OnTrainQuitClickHandle();
             }
         }
+
+        public Action OnTrainOverResetClickHandle; // 结束页面重新开始
+        public void OnTrainOverResetClick() {
+            if (OnTrainOverResetClickHandle != null) {
+                OnTrainOverResetClickHandle();
+            }
+        }
+
+        public Action OnTrainOverBackClickHandle; // 结束页面退出
+        public void OnTrainOverBackClick() {
+            if (OnTrainOverBackClickHandle != null) {
+                OnTrainOverBackClickHandle();
+            }
+        }
         #endregion
     }
 }

@@ -360,6 +360,8 @@ namespace UF {
         }
 
         public void HUD_Training_CD_Open() {
+            if (ctx.hud_Training_CD2 != null) { return; }
+
             GameObject prefab = ctx.assetsCore.HUD_GetTraining_CD();
 
             GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
@@ -367,22 +369,21 @@ namespace UF {
             hud.Ctor();
             hud.Show();
 
-            int len = ctx.hud_Training_CD.Length;
-            for (int i = 0; i < len; i++) {
-                if (ctx.hud_Training_CD[i] == null) {
-                    ctx.hud_Training_CD[i] = hud;
-                }
+            if (ctx.hud_Training_CD1 != null) {
+                ctx.hud_Training_CD2 = hud;
+            } else {
+                ctx.hud_Training_CD1 = hud;
             }
         }
 
         public void HUD_Training_CD_Close() {
-            int len = ctx.hud_Training_CD.Length;
-            for (int i = 0; i < len; i++) {
-                if (ctx.hud_Training_CD[i] == null) {
-                    continue;
-                }
-                ctx.hud_Training_CD[i].TearDown();
-                ctx.hud_Training_CD[i] = null;
+            if (ctx.hud_Training_CD1 != null) {
+                ctx.hud_Training_CD1.TearDown();
+                ctx.hud_Training_CD1 = null;
+            }
+            if (ctx.hud_Training_CD2 != null) {
+                ctx.hud_Training_CD2.TearDown();
+                ctx.hud_Training_CD2 = null;
             }
         }
 
@@ -391,10 +392,10 @@ namespace UF {
             Vector3 pos = role.TF_GetPos();
 
             if (role.t_roleType == T_RoleType.Player1) {
-                hud = ctx.hud_Training_CD[0];
+                hud = ctx.hud_Training_CD1;
                 pos.x -= 1;
             } else if (role.t_roleType == T_RoleType.Player2) {
-                hud = ctx.hud_Training_CD[1];
+                hud = ctx.hud_Training_CD2;
                 pos.x += 1;
             } else {
                 return;
@@ -999,5 +1000,54 @@ namespace UF {
         }
         #endregion
 
+        #region TrainingOver
+        public void Panel_Training_GameOver_Open(string text, Sprite winner) {
+            Panel_Training_GameOver panel = ctx.panel_Training_GameOver;
+
+            if (panel == null) {
+                GameObject prefab = ctx.assetsCore.Panel_GetTraining_GameOver();
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                panel = go.GetComponent<Panel_Training_GameOver>();
+                panel.Ctor();
+
+                panel.OnResetClickHandle = () => {
+                    eventCenter.OnTrainOverResetClick();
+                };
+
+                panel.OnBackClickHandle = () => {
+                    eventCenter.OnTrainOverBackClick();
+                };
+            }
+            ctx.panel_Training_GameOver = panel;
+            panel.Show();
+
+            Panel_Training_GameOver_SetText(text);
+            Panel_Training_GameOver_SetWinner(winner);
+        }
+
+        public void Panel_Training_GameOver_Close() {
+            Panel_Training_GameOver panel = ctx.panel_Training_GameOver;
+
+            if (panel == null) { return; }
+
+            panel.TearDown();
+        }
+
+        void Panel_Training_GameOver_SetText(string text) {
+            Panel_Training_GameOver panel = ctx.panel_Training_GameOver;
+
+            if (panel == null) { return; }
+
+            panel.SetText(text);
+        }
+
+        void Panel_Training_GameOver_SetWinner(Sprite sprite) {
+            Panel_Training_GameOver panel = ctx.panel_Training_GameOver;
+
+            if (panel == null) { return; }
+
+            panel.SetWinner(sprite);
+        }
+        #endregion
     }
 }
