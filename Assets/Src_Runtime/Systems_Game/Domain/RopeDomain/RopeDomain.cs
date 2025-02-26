@@ -23,49 +23,36 @@ namespace UF {
             } else if (state == RopeStage.shortening) {
                 shortening(ctx, rope, dt);
             }
+
         }
 
-        static void Stretch(GameSystemContext ctx, RopeEntity rope, float dt) {
-            rope.curLength += rope.stretchSpeed * dt;
+        static void Stretch(GameSystemContext ctx, RopeEntity entity, float dt) {
+            entity.curLength += entity.stretchSpeed * dt;
 
             // 超出最大长度
-            if (rope.curLength >= rope.stretchLength) {
-                rope.curLength = rope.stretchLength;
-                rope.EnterShortening();
+            if (entity.curLength >= entity.stretchLength) {
+                entity.curLength = entity.stretchLength;
+                entity.EnterShortening();
             }
-
+            var scale = entity.rope.transform.localScale;
             // 更新绳子长度
-            var scale = rope.transform.localScale;
-            rope.transform.localScale = new Vector3(rope.curLength, 1, 1);
-            rope.transform.position = rope.originalPos + new Vector2(rope.curLength / 2, 0);
+            entity.rope.transform.localScale = new Vector3(entity.curLength, scale.y, scale.z);
 
-            // 更新绳子位置
-            var pos = rope.transform.position;
         }
 
-        static void shortening(GameSystemContext ctx, RopeEntity rope, float dt) {
+        static void shortening(GameSystemContext ctx, RopeEntity entity, float dt) {
 
-            rope.curLength -= rope.shorteningSpeed * dt;
+            entity.curLength -= entity.shorteningSpeed * dt;
 
             // 超出最小长度
-            if (rope.curLength <= 1) {
-                rope.curLength = 0;
-                rope.UnSpawn(rope);
+            if (entity.curLength <= 1) {
+                entity.curLength = 0;
+                entity.UnSpawn(entity);
             }
-
-            // 更新绳子长度
-            var scale = rope.transform.localScale;
-            rope.transform.localScale = new Vector3(rope.curLength, 1, 1);
-            rope.transform.position = rope.originalPos + new Vector2(rope.curLength / 2, 0);
-
-            // 更新绳子位置
-            var pos = rope.transform.position;
-
+            var scale = entity.rope.transform.localScale;
+            // // 更新绳子长度
+            entity.rope.transform.localScale = new Vector3(entity.curLength, scale.y, scale.z);
         }
-
-
-
-
 
     }
 }

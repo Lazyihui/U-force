@@ -8,8 +8,8 @@ namespace UF {
         public IDSignature idSig;
         public RopeStage state;
 
-        [SerializeField] GameObject rope;
-        [SerializeField] GameObject hook;
+        [SerializeField] public GameObject rope;
+        [SerializeField] public GameObject hook;
 
         public float stretchLength;
         public float stretchSpeed;
@@ -32,15 +32,13 @@ namespace UF {
         }
 
         public void EnterStretch() {
+            Debug.Log("EnterStretch");
             state = RopeStage.Stretch;
         }
 
         public void EnterShortening() {
+            Debug.Log("EnterShortening Enter");
             state = RopeStage.shortening;
-        }
-
-        public void RestoreHookScale() {
-            hook.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
         }
 
     }
