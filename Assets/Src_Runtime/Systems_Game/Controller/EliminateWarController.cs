@@ -44,10 +44,13 @@ namespace UF {
         public static void Tick(GameSystemContext ctx, float dt) {
 
             var game = ctx.gameEntity;
-            var role = ctx.Get_Owner();
+            var owner = ctx.Get_Owner();
 
             // 人物移动
-            RoleDomain.LocoDefendAndOffensive_Execute(ctx, role, dt);
+            RoleDomain.LocoDefendAndOffensive_Execute(ctx, owner, dt);
+
+            // 绳子Tick
+            RopeDomain.FSM_All_Tick(ctx, ctx.ropeEntity, owner.Muzzle, dt);
         }
 
         public static void LastTick(float dt) {
