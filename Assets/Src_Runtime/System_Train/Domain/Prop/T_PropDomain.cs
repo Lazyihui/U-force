@@ -96,14 +96,78 @@ namespace UF.System_Train {
             }
         }
 
-        public static void UseProp1(PropEntity prop)
-        {
-            prop.UseProp1();
+        public static void UseProp1(TrainSystemContext ctx, PropEntity prop) {
+            int a = prop.UseProp1();
+
+            ctx.roleRepository.TakeAll(out RoleEntity[] roles);
+            RoleEntity player1 = roles[0];
+            RoleEntity player2 = roles[1];
+
+            var train = ctx.trainEntity;
+
+            switch (a) {
+                case 1:
+                    Debug.Log("玩家2变慢");
+                    break;
+
+                case 2:
+                    Debug.Log("玩家1增加护盾");
+                    break;
+
+                case 3:
+                    var attr = player1.AttributeComponent;
+                    int hp = attr.GetHp();
+                    int hpMax = attr.GetHpMax();
+                    if (hp < hpMax) {
+                        attr.SetHp(hp + 1);
+                    }
+                    break;
+
+                case 4:
+                    train.gameTime += ctx.trainEntity.addGameTime;
+                    break;
+
+                default:
+                    Debug.Log("使用道具失败");
+                    break;
+            }
         }
 
-        public static void UseProp2(PropEntity prop)
-        {
-            prop.UseProp2();
+        public static void UseProp2(TrainSystemContext ctx, PropEntity prop) {
+            int a = prop.UseProp2();
+
+            ctx.roleRepository.TakeAll(out RoleEntity[] roles);
+            RoleEntity player1 = roles[0];
+            RoleEntity player2 = roles[1];
+
+            var train = ctx.trainEntity;
+
+            switch (a) {
+                case 1:
+                    Debug.Log("玩家1变慢");
+                    break;
+
+                case 2:
+                    Debug.Log("玩家2增加护盾");
+                    break;
+
+                case 3:
+                    var attr = player2.AttributeComponent;
+                    int hp = attr.GetHp();
+                    int hpMax = attr.GetHpMax();
+                    if (hp < hpMax) {
+                        attr.SetHp(hp + 1);
+                    }
+                    break;
+
+                case 4:
+                    train.gameTime += ctx.trainEntity.addGameTime;
+                    break;
+                    
+                default:
+                    Debug.Log("使用道具失败");
+                    break;
+            }
         }
     }
 }

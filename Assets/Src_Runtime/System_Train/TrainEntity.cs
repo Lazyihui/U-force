@@ -21,10 +21,13 @@ namespace UF.System_Train
 
         public float gameTime;
         public float gameMax; // 游戏最大时间
+        public float addGameTime; // 加时
 
         public float spriteCD; // 平局时角色贴图切换计时
         public float spriteMax; // 平局时角色贴图切换最大cd
         public float spriteIndex; // 平局时当前贴图
+
+        public float propMax; // 道具最大持续时间
 
         public MapEntity mapEntity;
 
@@ -42,9 +45,11 @@ namespace UF.System_Train
             propSpawnMax = 15;
             gameTime = 0;
             gameMax = 120;
+            addGameTime = 30;
             spriteCD = 0;
             spriteMax = 1;
             spriteIndex = 1;
+            propMax = 10;
             mapEntity = null;
         }
     }

@@ -62,33 +62,39 @@ namespace UF {
             rb.velocity = Vector2.zero;
         }
 
-        public void UseProp1() // 玩家1使用道具
+        public int UseProp1() // 玩家1使用道具
         {
-            if (type != PropType.SceneProp) { return; }
+            if (type != PropType.SceneProp) { return 0; }
 
-            if (typeID == 1000) { // 陷害对手
-                Debug.Log("玩家2变慢");
-            } else if (typeID == 1100) { // 增加护盾
-                Debug.Log("玩家1增加护盾");
-            } else if (typeID == 1200) { // 增加血量
-                Debug.Log("玩家1增加血量");
-            } else if (typeID == 1300) { // 增加时间
-                Debug.Log("增加时间");
+            switch (typeID) {
+                case 1000:
+                    return 1;
+                case 1100:
+                    return 2;
+                case 1200:
+                    return 3;
+                case 1300:
+                    return 4;
+                default:
+                    return 0;
             }
         }
 
-        public void UseProp2() // 玩家2使用道具
+        public int UseProp2() // 玩家2使用道具
         {
-            if (type != PropType.SceneProp) { return; }
+            if (type != PropType.SceneProp) { return 0; }
 
-            if (typeID == 1000) { // 陷害对手
-                Debug.Log("玩家1变慢");
-            } else if (typeID == 1100) { // 增加护盾
-                Debug.Log("玩家2增加护盾");
-            } else if (typeID == 1200) { // 增加血量
-                Debug.Log("玩家2增加血量");
-            } else if (typeID == 1300) { // 增加时间
-                Debug.Log("增加时间");
+            switch (typeID) {
+                case 1000:
+                    return 1;
+                case 1100:
+                    return 2;
+                case 1200:
+                    return 3;
+                case 1300:
+                    return 4;
+                default:
+                    return 0;
             }
         }
     }
