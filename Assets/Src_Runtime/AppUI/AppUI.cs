@@ -442,7 +442,11 @@ namespace UF {
                     Panel_StageSelection_Close();
                 };
 
-            }
+                panel.OnBackHandle = () => {
+                    eventCenter.OnBackClick();
+                };
+
+                }
 
             ctx.panel_StageSelection = panel;
             panel.Show();

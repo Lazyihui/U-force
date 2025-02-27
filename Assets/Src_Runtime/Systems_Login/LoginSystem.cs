@@ -30,7 +30,7 @@ namespace UF {
             ctx.appUI.Panel_Login_Open();
         }
 
-        public void Enter(){
+        public void Enter() {
             ctx.isRunning = true;
         }
 
@@ -120,6 +120,9 @@ namespace UF {
                 events.OnChapterClick(ChapterID);
             };
 
+            eventCenter.OnSelectBackHandle += () => {
+                events.OnSelectBack();
+            };
             // CardSelection
             eventCenter.OnSelectHeroClickHandle += () => {
                 events.OnSelectHeroClick();

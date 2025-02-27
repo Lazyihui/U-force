@@ -49,6 +49,13 @@ namespace UF {
             }
         }
 
+        public Action OnSelectBackHandle;
+        public void OnSelectBack() {
+            if (OnSelectBackHandle != null) {
+                OnSelectBackHandle();
+            }
+        }
+
         #endregion
 
         #region CardSelection
@@ -151,46 +158,36 @@ namespace UF {
 
         #region Train
         public Action OnPlayer1ReadyClickHandle;
-        public void OnPlayer1ReadyClick()
-        {
-            if (OnPlayer1ReadyClickHandle!= null)
-            {
+        public void OnPlayer1ReadyClick() {
+            if (OnPlayer1ReadyClickHandle != null) {
                 OnPlayer1ReadyClickHandle();
             }
         }
 
         public Action OnPlayer2ReadyClickHandle;
-        public void OnPlayer2ReadyClick()
-        {
-            if (OnPlayer2ReadyClickHandle!= null)
-            {
+        public void OnPlayer2ReadyClick() {
+            if (OnPlayer2ReadyClickHandle != null) {
                 OnPlayer2ReadyClickHandle();
             }
         }
 
         public Action OnTrainTipClickHandle;
-        public void OnTrainTipClick()
-        {
-            if (OnTrainTipClickHandle!= null)
-            {
+        public void OnTrainTipClick() {
+            if (OnTrainTipClickHandle != null) {
                 OnTrainTipClickHandle();
             }
         }
 
         public Action<int> OnSelectionTrainCardClickHandle;
-        public void OnSelectionTrainCardClick(int typeID)
-        {
-            if (OnSelectionTrainCardClickHandle!= null)
-            {
+        public void OnSelectionTrainCardClick(int typeID) {
+            if (OnSelectionTrainCardClickHandle != null) {
                 OnSelectionTrainCardClickHandle(typeID);
             }
         }
 
         public Action OnTrainTipCloseClickHandle;
-        public void OnTrainTipCloseClick()
-        {
-            if (OnTrainTipCloseClickHandle != null)
-            {
+        public void OnTrainTipCloseClick() {
+            if (OnTrainTipCloseClickHandle != null) {
                 OnTrainTipCloseClickHandle();
             }
         }

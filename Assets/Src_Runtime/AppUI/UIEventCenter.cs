@@ -139,6 +139,16 @@ namespace UF {
             }
         }
 
+
+
+        public Action OnSelectBackHandle;
+        public void OnBackClick() {
+            if (OnSelectBackHandle != null) {
+                OnSelectBackHandle();
+            }
+        }
+
+
         #endregion
 
         #region CardSelection

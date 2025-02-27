@@ -146,6 +146,11 @@ namespace UF {
                 UIDomain.Panel_StageSelection_ChangeChapter(appUI, chapter, maxChapter);
             };
 
+            loginEvent.OnSelectBackHandle += () => {
+                appUI.Panel_StageSelection_Close();
+                appUI.Panel_Login_Open();
+            };
+
             // CardSelection
             loginEvent.OnSelectHeroClickHandle += () => {
                 appUI.Panel_SetCardType(CardType.Hero);
