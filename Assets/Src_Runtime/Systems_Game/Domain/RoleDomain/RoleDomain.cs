@@ -109,13 +109,11 @@ namespace UF {
         #region Input   
 
         public static void Input_Record(GameSystemContext ctx, RoleEntity role, float dt) {
-            Debug.Assert(role != null, "RoleDomain.Input_Record role == null");
-            Debug.Assert(ctx != null, "RoleDomain.Input_Record ctx == null");
-            Debug.Assert(role.InputComponent != null, "RoleDomain.Input_Record role.InputComponent == null");
             var inputCom = role.InputComponent;
             var inputModule = ctx.inputModule;
 
             inputCom.Jump_Set(inputModule.IsJump);
+            inputCom.Grap_Set(inputModule.IsGrap);
             inputCom.RecoredCastKey(inputModule.InputCastKey);
 
             inputCom.MoveDir_Set(inputModule.MoveDir);
@@ -211,13 +209,35 @@ namespace UF {
                     // player扣血 或者失败  
                     HpReduce_Role(ctx, role, damage);
 
+                    // minion进基地死掉
                     HpReduce_Role(ctx, minion, damage);
-                    // minion死掉或者扣血
+                }
+            }
+        }
+        public static void DetectionEnemyAndEnemyByPos(GameSystemContext ctx, RoleEntity Enemy, Vector2 pos, int damage) {
+            // 检测周围的minion 碰到扣血
+            int len = ctx.roleRepository.TakeAll(out RoleEntity[] touchMinions);
+
+            for (int i = 0; i < len; i++) {
+
+                var Touchminion = touchMinions[i];
+                if (Touchminion == Enemy) {
+                    continue;
+                }
+
+                float dis = Vector2.Distance(Touchminion.TF_GetPos(), pos);
+                // TODO:可能要改成用 collider   
+                float radius = 2f;
+
+                if (dis < radius) {
+
+                    HpReduce_MinionFall(ctx, Touchminion, damage);
                 }
             }
         }
 
         public static void HpReduce_MinionFall(GameSystemContext ctx, RoleEntity role, int damage) {
+
             var attCom = role.AttributeComponent;
             int finalHp = attCom.hp - damage;
             role.Attr_Hp_Set(finalHp);
@@ -227,11 +247,11 @@ namespace UF {
 
             if (attCom.hp <= 0) {
                 role.SetRoleState(RoleState.Fall);
+                Debug.Log("进入掉落状态");
                 role.Fall();
                 role.Set_RbConstraints();
             }
         }
-
 
         public static void HpReduce_Role(GameSystemContext ctx, RoleEntity role, int damage) {
             var playerData = ctx.gameEntity.playerSaveData;
@@ -253,8 +273,8 @@ namespace UF {
                 return;
             }
 
-            var damage = role.AttributeComponent.GetFallDamage();
-            DetectionMinionByPos(ctx, role, role.GetPos(), damage);
+            // TODO:感觉是这里的问题
+            DetectionEnemyAndEnemyByPos(ctx, role, role.GetPos(), role.AttributeComponent.GetFallDamage());
 
             // 和地面的交叉检测
             RaycastHit2D[] hits = Physics2D.RaycastAll(role.GetPos(), Vector2.down, 1.1f);
@@ -269,6 +289,8 @@ namespace UF {
                 }
             }
         }
+
+
 
         // 否是死亡状态 
         public static void IsDeadState(GameSystemContext ctx, RoleEntity role) {

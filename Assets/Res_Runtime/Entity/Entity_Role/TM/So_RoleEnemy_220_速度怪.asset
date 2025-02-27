@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1d72292fc95d6e41aba9cebe752d514, type: 3}
-  m_Name: "So_Role_220_\u901F\u5EA6\u602A"
+  m_Name: "So_RoleEnemy_220_\u901F\u5EA6\u602A"
   m_EditorClassIdentifier: 
   tm:
     typeName: Minion220

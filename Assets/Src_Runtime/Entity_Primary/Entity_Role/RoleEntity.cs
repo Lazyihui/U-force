@@ -18,8 +18,8 @@ namespace UF {
         public int typeID;
         public IDSignature belongStage;//在哪一个地图里面
 
-        [SerializeField] Transform muzzle;
-        public Transform Muzzle => muzzle;
+        [SerializeField] Transform muzzlePos;
+        public Transform MuzzlePos => muzzlePos;
 
         // - FSM
         RoleFSMConponent fsmComponent;
@@ -40,7 +40,6 @@ namespace UF {
 
         // - Physics
         [SerializeField] Rigidbody2D rb;
-        // [SerializeField] Collider2D coll;
 
         // Movement
         RoleMoveComponent moveComponent;
@@ -147,7 +146,7 @@ namespace UF {
             moveComponent.Fall();
         }
 
-        public void Jump() {
+        public void  Jump() {
             moveComponent.Jump();
         }
 

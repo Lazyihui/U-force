@@ -56,6 +56,13 @@ namespace UF {
             return role;
         }
 
+        public bool isRopeUnExist() {
+            if (ropeEntity == null) {
+                return true;
+            }
+            return false;
+        }
+
     }
 
 }
