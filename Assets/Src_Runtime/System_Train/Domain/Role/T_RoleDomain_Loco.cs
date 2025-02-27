@@ -13,6 +13,8 @@ namespace UF.System_Train {
             Loco_Jump(role);
             Loco_Attack(ctx, role);
             Loco_Defense(ctx, role);
+
+            RecoverMoveSpeed(ctx, role);
         }
 
         #region Move
@@ -85,13 +87,23 @@ namespace UF.System_Train {
             if (role.t_roleType == T_RoleType.Player1) {
                 if (!inputCom.Player1Defense_Get() || train.defenseCD1 > 0) { return; }
                 PropEntity prop = PropDomain.SpawnByRole(ctx, role);
+
                 prop.type = PropType.Armor1;
                 train.defenseCD1 = train.defenseMax;
+
+                if (train.player1Shields > 0) {
+                    prop.times = 2;
+                }
             } else if (role.t_roleType == T_RoleType.Player2) {
                 if (!inputCom.Player2Defense_Get() || train.defenseCD2 > 0) { return; }
                 PropEntity prop = PropDomain.SpawnByRole(ctx, role);
+
                 prop.type = PropType.Armor2;
                 train.defenseCD2 = train.defenseMax;
+
+                if (train.player2Shields > 0) {
+                    prop.times = 2;
+                }
             }
         }
 
@@ -117,6 +129,19 @@ namespace UF.System_Train {
 
             if (isColliderGround) {
                 role.EnterGround();
+            }
+        }
+
+        static void RecoverMoveSpeed(TrainSystemContext ctx, RoleEntity role) {
+            var train = ctx.trainEntity;
+            ctx.templateMoudle.Role_TryGet(role.typeID, out var tm);
+
+            if (role.t_roleType == T_RoleType.Player1 && train.player2Trap <= 0) {
+                role.AttributeComponent.SetMoveSpeed(tm.moveSpeed);
+                role.MoveComponent.Set_Garvity(1);
+            } else if (role.t_roleType == T_RoleType.Player2 && train.player1Trap <= 0) {
+                role.AttributeComponent.SetMoveSpeed(tm.moveSpeed);
+                role.MoveComponent.Set_Garvity(1);
             }
         }
     }

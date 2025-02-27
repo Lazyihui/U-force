@@ -53,6 +53,7 @@ namespace UF.System_Train {
             player2.t_roleType = T_RoleType.Player2;
 
             train.gameTime = train.gameMax;
+            train.propSpawnCD = 0;
         }
 
         public void Exit() {
@@ -98,32 +99,19 @@ namespace UF.System_Train {
             if (train.state == TrainState.Pause) { return; }
 
             train.defenseCD1 -= dt;
-            if (train.defenseCD1 <= 0) {
-                train.defenseCD1 = 0;
-            }
             train.defenseCD2 -= dt;
-            if (train.defenseCD2 <= 0) {
-                train.defenseCD2 = 0;
-            }
             train.attackCD1 -= dt;
-            if (train.attackCD1 <= 0) {
-                train.attackCD1 = 0;
-            }
             train.attackCD2 -= dt;
-            if (train.attackCD2 <= 0) {
-                train.attackCD2 = 0;
-            }
             train.propSpawnCD -= dt;
-            if (train.propSpawnCD <= 0) {
-                train.propSpawnCD = 0;
-            }
+            train.player1Trap -= dt;
+            train.player2Trap -= dt;
+            train.player1Shields -= dt;
+            train.player2Shields -= dt;
+            train.spriteCD -= dt;
+
             train.gameTime -= dt;
             if (train.gameTime <= 0) {
                 GameOver();
-            }
-            train.spriteCD -= dt;
-            if (train.spriteCD <= 0) {
-                train.spriteCD = 0;
             }
 
             HUD_Training_Update(dt);
@@ -198,7 +186,7 @@ namespace UF.System_Train {
             };
         }
         #endregion
-        
+
         #region 其他
         void GameOver() {
             var train = ctx.trainEntity;
@@ -250,8 +238,7 @@ namespace UF.System_Train {
             ctx.appUI.Panel_Training_GameOver_Open(text, sprite1);
         }
 
-        public void ClearGame()
-        {
+        public void ClearGame() {
             BulletDomain.Clear(ctx);
             PropDomain.Clear(ctx);
             RoleDomain.Clear(ctx);

@@ -86,6 +86,12 @@ namespace UF.System_Train {
                 float dis = Vector3.Distance(bullet.TF_GetPos(), pos);
 
                 if (dis < 1.0f) {
+                    if (bullet.type == BulletMoveType.Shaped) {
+                        UseProp1(ctx, prop);
+                    } else if (bullet.type == BulletMoveType.ToLeft) {
+                        UseProp2(ctx, prop);
+                    }
+
                     BulletDomain.UnSpawn(ctx, bullet);
                     prop.times -= 1;
 
@@ -102,24 +108,28 @@ namespace UF.System_Train {
             ctx.roleRepository.TakeAll(out RoleEntity[] roles);
             RoleEntity player1 = roles[0];
             RoleEntity player2 = roles[1];
+            var attr1 = player1.AttributeComponent;
+            var attr2 = player2.AttributeComponent;
 
             var train = ctx.trainEntity;
 
             switch (a) {
                 case 1:
-                    Debug.Log("玩家2变慢");
+                    train.player1Trap = train.propMax;
+                    var moveSpeed = attr2.GetMoveSpeed();
+                    attr2.SetMoveSpeed(moveSpeed * 0.7f);
+                    player2.MoveComponent.Set_Garvity(0.7f);
                     break;
 
                 case 2:
-                    Debug.Log("玩家1增加护盾");
+                    train.player1Shields = train.propMax;
                     break;
 
                 case 3:
-                    var attr = player1.AttributeComponent;
-                    int hp = attr.GetHp();
-                    int hpMax = attr.GetHpMax();
+                    int hp = attr1.GetHp();
+                    int hpMax = attr1.GetHpMax();
                     if (hp < hpMax) {
-                        attr.SetHp(hp + 1);
+                        attr1.SetHp(hp + 1);
                     }
                     break;
 
@@ -128,7 +138,7 @@ namespace UF.System_Train {
                     break;
 
                 default:
-                    Debug.Log("使用道具失败");
+                    Debug.Log("使用道具失败或护盾");
                     break;
             }
         }
@@ -139,33 +149,37 @@ namespace UF.System_Train {
             ctx.roleRepository.TakeAll(out RoleEntity[] roles);
             RoleEntity player1 = roles[0];
             RoleEntity player2 = roles[1];
+            var attr1 = player1.AttributeComponent;
+            var attr2 = player2.AttributeComponent;
 
             var train = ctx.trainEntity;
 
             switch (a) {
                 case 1:
-                    Debug.Log("玩家1变慢");
+                    train.player2Trap = train.propMax;
+                    var moveSpeed = attr1.GetMoveSpeed();
+                    attr1.SetMoveSpeed(moveSpeed * 0.7f);
+                    player1.MoveComponent.Set_Garvity(0.7f);
                     break;
 
                 case 2:
-                    Debug.Log("玩家2增加护盾");
+                    train.player2Shields = train.propMax;
                     break;
 
                 case 3:
-                    var attr = player2.AttributeComponent;
-                    int hp = attr.GetHp();
-                    int hpMax = attr.GetHpMax();
+                    int hp = attr2.GetHp();
+                    int hpMax = attr2.GetHpMax();
                     if (hp < hpMax) {
-                        attr.SetHp(hp + 1);
+                        attr2.SetHp(hp + 1);
                     }
                     break;
 
                 case 4:
                     train.gameTime += ctx.trainEntity.addGameTime;
                     break;
-                    
+
                 default:
-                    Debug.Log("使用道具失败");
+                    Debug.Log("使用道具失败或护盾");
                     break;
             }
         }

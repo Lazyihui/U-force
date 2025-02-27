@@ -123,4 +123,8 @@ public class RoleMoveComponent {
     public bool AllowPlayerMove() {
         return allowMoveTimes > 0;
     }
+
+    public void Set_Garvity(float value) {
+        rb.gravityScale = value;
+    }
 }
