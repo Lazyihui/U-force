@@ -62,6 +62,12 @@ namespace UF {
         // 训练营
         public T_RoleType t_roleType;
 
+        public bool isControlledDown;
+        public bool isControlledRight;
+
+        public Vector2 downPos;
+        public Vector2 rightPos;
+
         public void Ctor() {
             fsmComponent = new RoleFSMConponent();
             skillorSlotComponent = new RoleSkillSlotComponent();
@@ -71,6 +77,9 @@ namespace UF {
             attributeComponent = new RoleAttributeComponent();
 
             moveComponent.Inject(rb);
+
+            isControlledDown = false;
+            isControlledRight = false;
         }
 
         public void TearDown() {
@@ -109,7 +118,17 @@ namespace UF {
         }
 
         public void Move_Ghost(float moveSpeed) {
-            moveComponent.Move_Ghost(moveSpeed);
+            if (isControlledRight) {
+                moveComponent.Move_Controlled_Right();
+                rightPos = TF_GetPos();
+            } else {
+                moveComponent.Move_Ghost(moveSpeed);
+
+                if (isControlledDown) {
+                    moveComponent.Move_Controlled_Down();
+                    downPos = TF_GetPos();
+                }
+            }
         }
 
         public void Move_Offensive(Vector2 dir, float moveSpeed) {

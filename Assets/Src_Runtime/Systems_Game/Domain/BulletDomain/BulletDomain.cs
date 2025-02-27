@@ -23,6 +23,12 @@ namespace UF {
             bullet.TearDown();
         }
 
+        public static void UnSpawn(GameSystemContext ctx, BulletEntity bullet, RoleEntity role) {
+            UnSpawn_Skill(ctx, bullet, role);
+            ctx.bulletRepository.Remove(bullet);
+            bullet.TearDown();
+        }
+
         public static void Clear(GameSystemContext ctx) {
             int len = ctx.bulletRepository.TakeAll(out BulletEntity[] bullets);
             for (int i = 0; i < len; i += 1) {
@@ -74,7 +80,7 @@ namespace UF {
                     bullet.hitTimes -= 1;
 
                     if (bullet.hitTimes <= 0) {
-                        UnSpawn(ctx, bullet);
+                        UnSpawn(ctx, bullet, minion);
                     }
                 }
             }
@@ -83,7 +89,78 @@ namespace UF {
         #endregion
 
         #region 技能(子弹效果)
-        
+        static void UnSpawn_Skill(GameSystemContext ctx, BulletEntity bullet, RoleEntity role) {
+            switch (bullet.skillType) {
+                case BulletSkillType.Boom:
+                    Skill_Boom(ctx, bullet);
+                    break;
+
+                case BulletSkillType.Slow:
+                    Skill_Slow(ctx, bullet, role);
+                    break;
+
+                case BulletSkillType.Stop:
+                    Skill_Stop(ctx, bullet);
+                    break;
+
+                case BulletSkillType.Down:
+                    Skill_Down(ctx, bullet, role);
+                    break;
+
+                case BulletSkillType.Appear:
+                    Skill_Appear(ctx, bullet);
+                    break;
+
+                case BulletSkillType.Back:
+                    Skill_Back(ctx, bullet, role);
+                    break;
+
+                case BulletSkillType.Elec:
+                    Skill_Elec(ctx, bullet);
+                    break;
+
+                case BulletSkillType.Converge:
+                    Skill_Converge(ctx, bullet);
+                    break;
+                    
+                default:
+                    break;
+            }
+        }
+
+        static void Skill_Boom(GameSystemContext ctx, BulletEntity bullet) {
+            Debug.Log("爆炸");
+        }
+
+        static void Skill_Slow(GameSystemContext ctx, BulletEntity bullet, RoleEntity role) {
+            var attaCom = role.AttributeComponent;
+            float moveSpeed = attaCom.GetMoveSpeed();
+            attaCom.SetMoveSpeed(moveSpeed / 2);
+        }
+
+        static void Skill_Stop(GameSystemContext ctx, BulletEntity bullet) {
+            Debug.Log("停顿 + 持续伤害");
+        }
+
+        static void Skill_Down(GameSystemContext ctx, BulletEntity bullet, RoleEntity role) {
+            role.isControlledDown = true;
+        }
+
+        static void Skill_Appear(GameSystemContext ctx, BulletEntity bullet) {
+            Debug.Log("现形");
+        }
+
+        static void Skill_Back(GameSystemContext ctx, BulletEntity bullet, RoleEntity role) {
+            role.isControlledRight = true;
+        }
+
+        static void Skill_Elec(GameSystemContext ctx, BulletEntity bullet) {
+            Debug.Log("持续伤害");
+        }
+
+        static void Skill_Converge(GameSystemContext ctx, BulletEntity bullet) {
+            Debug.Log("汇聚");
+        }
         #endregion
     }
 }

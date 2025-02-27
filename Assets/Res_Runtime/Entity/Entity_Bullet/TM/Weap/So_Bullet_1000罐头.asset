@@ -28,3 +28,4 @@ MonoBehaviour:
     modPrefab: {fileID: 3976039306336967783, guid: 61887ad1eb59040478fb3c8eec178ff3, type: 3}
     sprite: {fileID: 21300000, guid: 9b7afa97fe210a147a93161c718e2b89, type: 3}
     content: "\u7F50\u5934"
+    skillType: 1
