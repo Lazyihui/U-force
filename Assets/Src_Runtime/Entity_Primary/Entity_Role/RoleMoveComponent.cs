@@ -72,6 +72,22 @@ public class RoleMoveComponent {
         rb.bodyType = RigidbodyType2D.Static;
     }
 
+    public void Move_Controlled_Down() { // 被子弹击中向下移动
+        Vector2 dir = Vector2.down;
+
+        Vector2 oldVelo = rb.velocity;
+        oldVelo = dir * 5;
+        rb.velocity = oldVelo;
+    }
+
+    public void Move_Controlled_Right() { // 被子弹击中向右移动
+        Vector2 dir = Vector2.right;
+
+        Vector2 oldVelo = rb.velocity;
+        oldVelo = dir * 5;
+        rb.velocity = oldVelo;
+    }
+
     public void Fall() {
         rb.gravityScale = 1;
         rb.velocity = Vector2.zero;

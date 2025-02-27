@@ -9,6 +9,8 @@ namespace UF {
             // 人物移动
             var moveCom = role.MoveComponent;
             GroundCheck(ctx, role);
+            ControlledCheck(ctx, role);
+
             Loco_MoveReset(role);
             Loco_Jump(role, moveCom.jumpForce);
             Loco_MoveDefend(ctx, role, dt);
@@ -125,6 +127,17 @@ namespace UF {
 
             if (isColliderGround) {
                 role.EnterGround();
+            }
+        }
+
+        static void ControlledCheck(GameSystemContext ctx, RoleEntity role) {
+            var pos = role.GetPos();
+
+            if (pos.x >= role.rightPos.x + 3) {
+                role.isControlledRight = false;
+            }
+            if (pos.y <= role.downPos.y - 2) {
+                role.isControlledDown = false;
             }
         }
     }

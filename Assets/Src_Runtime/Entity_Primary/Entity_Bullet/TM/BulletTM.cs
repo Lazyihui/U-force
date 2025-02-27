@@ -30,6 +30,7 @@ namespace UF {
         public BulletMod modPrefab;
         public Sprite sprite;
         public string content;
-
+        
+        public BulletSkillType skillType;
     }
 }

@@ -207,6 +207,7 @@ namespace UF {
             bullet.idSig = new IDSignature(EntityType.Bullet, idService.PickBulletID());
             bullet.typeID = typeID;
             bullet.type = tm.type;
+            bullet.skillType = tm.skillType;
             bullet.hp = tm.hp;
             bullet.damage = tm.attackDamage;
             bullet.hitMaxTimes = tm.hitTimes;
