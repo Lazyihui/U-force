@@ -35,8 +35,11 @@ namespace UF {
                 entity.EnterShortening();
             }
             var scale = entity.rope.transform.localScale;
+            var scaleHook = entity.hook.transform.localScale;
+
             // 更新绳子长度
             entity.rope.transform.localScale = new Vector3(entity.curLength, scale.y, scale.z);
+            entity.hook.transform.localScale = new Vector3(1/entity.curLength, scaleHook.y, scaleHook.z);
 
         }
 
@@ -50,8 +53,11 @@ namespace UF {
                 entity.UnSpawn(entity);
             }
             var scale = entity.rope.transform.localScale;
+            var scaleHook = entity.hook.transform.localScale;
             // // 更新绳子长度
             entity.rope.transform.localScale = new Vector3(entity.curLength, scale.y, scale.z);
+            // 是钩子一直在一个大小
+            entity.hook.transform.localScale = new Vector3(1/entity.curLength, scaleHook.y, scaleHook.z);
         }
 
     }
