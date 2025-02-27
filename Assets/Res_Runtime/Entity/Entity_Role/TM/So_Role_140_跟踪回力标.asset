@@ -18,11 +18,11 @@ MonoBehaviour:
     moveType: 0
     roleState: 1
     typeID: 140
-    hp: 3
+    hp: 10
     moveSpeed: 15
     jumpForce: 5
     skillorSoArray:
-    - {fileID: 11400000, guid: 6037af1524df2a0469e65295d87f5a8c, type: 2}
+    - {fileID: 11400000, guid: caece63c628c55c4caa35d297fe266ce, type: 2}
     modPrefab: {fileID: 5506719469353998905, guid: 9bbf59cb10403974e87fffd2e390975e, type: 3}
     sprite: {fileID: 2074218510, guid: c0ca71d20da4c9e4e936ccf61b6fc8ca, type: 3}
     content: "\u8DDF\u8E2A\u56DE\u529B\u6807"

@@ -20,8 +20,7 @@ MonoBehaviour:
     bulletAgrSoArray:
     - {fileID: 11400000, guid: f8fa8df0f443f694aa9bda115442c447, type: 2}
     bulletIndSoArray: []
-    bulletSciSoArray:
-    - {fileID: 11400000, guid: b2a3eaa64bbc90d4995bcc56178b40d5, type: 2}
+    bulletSciSoArray: []
     roleEnemySoArray:
     - {fileID: 11400000, guid: 9d04dd169b2febc41a88d55ba222c7bb, type: 2}
     isTrain: 0

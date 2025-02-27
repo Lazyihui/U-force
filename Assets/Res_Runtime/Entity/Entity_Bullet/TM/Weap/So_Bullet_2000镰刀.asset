@@ -16,7 +16,7 @@ MonoBehaviour:
     typeID: 2000
     typeName: "Bullet2000\u9570\u5200"
     hp: 0
-    hitTimes: 1
+    hitTimes: 6
     attackDamage: 4
     isBomb: 0
     isHaveContinueDamege: 1

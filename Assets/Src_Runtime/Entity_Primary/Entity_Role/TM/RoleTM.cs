@@ -1,4 +1,5 @@
 using System;
+using TriInspector;
 using UnityEngine;
 
 namespace UF {
@@ -17,6 +18,7 @@ namespace UF {
         // -move
         public float moveSpeed;
         public float jumpForce;
+        public int fallDamage; // 掉落伤害
 
         // -skillor//一般这种要拖拽绑定的放下面
         public SkillorSo[] skillorSoArray;
@@ -30,5 +32,11 @@ namespace UF {
         public string feature; // 特征
         public string skill; // 技能
         public string restraint; // 相克武器
+
+        // -restraint 被克制
+        public bool isMinion;
+        [ShowIf(nameof(isMinion))] public BulletSo[] restBullet; // 被克制的子弹
+        [ShowIf(nameof(isMinion))] public BulletSo[] restKill; // 被必杀的子弹
+        [ShowIf(nameof(isMinion))] public RoleSo[] restPlayer; // 被克制的英雄
     }
 }

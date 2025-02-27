@@ -18,8 +18,11 @@ namespace UF.System_Train {
 
         public static BulletEntity SpawnByRolePos(TrainSystemContext ctx, RoleEntity role) {
             var pos = role.GetMuzzlePos();
+            role.skillorSlotComponent.TakeAll(out var skills);
+            var skill = skills[0];
+            int typeID = skill.typeID;
 
-            var bullet = Spawn(ctx, 100, pos, role);
+            var bullet = Spawn(ctx, typeID, pos, role);
             return bullet;
         }
 
@@ -78,11 +81,8 @@ namespace UF.System_Train {
 
                 if (dis < 1.0f) {
                     RoleDomain.HpReduce_MinionFall(ctx, role, bullet.damage);
-                    bullet.hitTimes -= 1;
 
-                    if (bullet.hitTimes <= 0) {
-                        UnSpawn(ctx, bullet);
-                    }
+                    UnSpawn(ctx, bullet);
                 }
             }
         }

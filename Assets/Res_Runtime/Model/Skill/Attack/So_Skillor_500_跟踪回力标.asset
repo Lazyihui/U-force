@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3dad6dc5d9069b0469746cbf1136968c, type: 3}
-  m_Name: So_Skillor_100_Attack
+  m_Name: "So_Skillor_500_\u8DDF\u8E2A\u56DE\u529B\u6807"
   m_EditorClassIdentifier: 
   tm:
-    typeID: 100
-    typeName: Attack
+    typeID: 500
+    typeName: "\u8DDF\u8E2A\u56DE\u529B\u6807"
     castKeys: 2
-    cd: 1
+    cd: 4
     restUseTimes: 1000
     maxUseTimes: 1000
     actionTMs:
@@ -44,7 +44,7 @@ MonoBehaviour:
         isRestoreSkillTimes: 0
         isSpawnBullet: 1
         bulletSpawnerTM:
-          bulletSo: {fileID: 11400000, guid: 669613ee5e0852b4c8d81f6ff150c760, type: 2}
+          bulletSo: {fileID: 11400000, guid: 687a9744a028fb948ac11bc4f2b14ce3, type: 2}
           spawnPos: {fileID: 4549695350095514862, guid: c9eea0833c744504aa107299ad0f64b6, type: 3}
           spawnDir: {fileID: 4549695350095514862, guid: c9eea0833c744504aa107299ad0f64b6, type: 3}
         hasBulletTearDown: 0

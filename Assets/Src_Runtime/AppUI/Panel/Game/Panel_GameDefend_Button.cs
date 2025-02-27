@@ -162,6 +162,10 @@ namespace UF {
             }
         }
 
+        public void Set_BtnTech_Hide() {
+            btn_Tech.gameObject.SetActive(false);
+        }
+
         public void Show() {
             gameObject.SetActive(true);
         }

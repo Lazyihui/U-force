@@ -84,6 +84,8 @@ namespace UF {
         public void Ctor() {
             frames = new List<BulletFrameMod>();
             targetComponent = new BulletTragetComponent();
+
+            moveSpeed *= 5;
         }
 
         public void Inject(BulletMod mod) {

@@ -15,8 +15,8 @@ MonoBehaviour:
   tm:
     typeID: 1700
     typeName: "Bullet1700\u65A7\u5934"
-    hp: 0
-    hitTimes: 1
+    hp: 1
+    hitTimes: 3
     attackDamage: 5
     isBomb: 0
     isHaveContinueDamege: 0

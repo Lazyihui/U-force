@@ -16,7 +16,7 @@ MonoBehaviour:
     typeID: 1200
     typeName: "Bullet1200\u9E21"
     hp: 0
-    hitTimes: 1
+    hitTimes: 2
     attackDamage: 7
     isBomb: 0
     isHaveContinueDamege: 0

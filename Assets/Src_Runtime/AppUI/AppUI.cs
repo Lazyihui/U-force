@@ -164,6 +164,14 @@ namespace UF {
             panel.Set_CD(skill, cd, maxCD);
         }
 
+        public void Panel_GameDefend_SetBtnTech_Hide() {
+            Panel_GameDefend_Button panel = ctx.panel_GameDefend_Button;
+            if (panel == null) {
+                return;
+            }
+            panel.Set_BtnTech_Hide();
+        }
+
         #endregion
 
         #region GamePause

@@ -23,12 +23,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - So_Skill
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6037af1524df2a0469e65295d87f5a8c
-    m_Address: So_Skillor_100_Attack
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - So_Skill
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d02bb9dde144432408016d91f33d57ba
     m_Address: "So_Skillor_1400_\u80E1\u6912\u7C89"
     m_ReadOnly: 0
@@ -115,6 +109,36 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5ddb1bb9561c5ee43873c3773e577499
     m_Address: "So_Skillor_3300_\u5730\u9762\u55B7\u5C04"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ac70641e002e114a9d7d03d8e309c15
+    m_Address: "So_Skillor_100_\u67AA\u5C04\u51FB"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eab990068c5fe20408212cf40be78ab0
+    m_Address: "So_Skillor_200_\u5F13\u7BAD"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 70c17c80cb07d8641845b2d801d71f35
+    m_Address: "So_Skillor_300_\u6807\u67AA"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9f6677ccc755494bb11dedcaf48cdbd
+    m_Address: "So_Skillor_400_\u6C14\u529F"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: caece63c628c55c4caa35d297fe266ce
+    m_Address: "So_Skillor_500_\u8DDF\u8E2A\u56DE\u529B\u6807"
     m_ReadOnly: 0
     m_SerializedLabels:
     - So_Skill
