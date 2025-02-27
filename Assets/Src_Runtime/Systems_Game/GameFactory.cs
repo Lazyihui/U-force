@@ -45,6 +45,7 @@ namespace UF {
             attrCom.SetHpMax(tm.hp);
             attrCom.SetMoveSpeed(tm.moveSpeed);
             attrCom.SetFallDamage(tm.fallDamage);
+            attrCom.SetBaseDamage(tm.baseDamage);
 
 
             // - Skillor
@@ -96,6 +97,8 @@ namespace UF {
             attrCom.SetHp(tm.hp);
             attrCom.SetHpMax(tm.hp);
             attrCom.SetMoveSpeed(tm.moveSpeed);
+            attrCom.SetFallDamage(tm.fallDamage);
+            attrCom.SetBaseDamage(tm.baseDamage);
 
 
             // - Skillor
@@ -152,6 +155,8 @@ namespace UF {
             attrCom.SetHp(tm.hp);
             attrCom.SetHpMax(tm.hp);
             attrCom.SetMoveSpeed(tm.moveSpeed);
+            attrCom.SetFallDamage(tm.fallDamage);
+            attrCom.SetBaseDamage(tm.baseDamage);
 
             // - Skillor
             var skillorCom = role.skillorSlotComponent;

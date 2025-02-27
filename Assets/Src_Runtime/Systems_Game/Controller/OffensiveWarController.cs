@@ -29,11 +29,11 @@ namespace UF {
                 return;
             }
 
-            // Player的逻辑
-            RoleDomain.DetectionMinionByPos(ctx, owner, owner.TF_GetPos());
-
+            // Player的逻辑 所有状态都要执行
             var fsm = owner.FSMComponent;
             var state = fsm.Status;
+            var attrCom = owner.AttributeComponent;
+            RoleDomain.DetectionMinionByPos(ctx, owner, owner.TF_GetPos(), attrCom.GetBaseDamage());
 
             if (game.state == GameState.GameOver) {
                 return;
@@ -54,7 +54,6 @@ namespace UF {
             } else if (state == RoleFSMStatus.Dead) {
 
             }
-            // 所有状态都要执行
 
             //   bullet
             int bulletLen = ctx.bulletRepository.TakeAll(out BulletEntity[] bullets);

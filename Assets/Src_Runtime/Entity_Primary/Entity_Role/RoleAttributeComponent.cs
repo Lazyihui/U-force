@@ -15,6 +15,10 @@ namespace UF {
         public void SetMoveSpeed(float value) => moveSpeed = value;
         public float GetMoveSpeed() => moveSpeed;
 
+        public int baseDamage; // 基础伤害
+        public void SetBaseDamage(int value) => baseDamage = value;
+        public int GetBaseDamage() => baseDamage;
+
         public int fallDamage; // 掉落伤害先写在这
         public void SetFallDamage(int value) => fallDamage = value;
         public int GetFallDamage() => fallDamage;

@@ -21,6 +21,7 @@ MonoBehaviour:
     hp: 15
     moveSpeed: 5
     jumpForce: 5
+    baseDamage: 1
     fallDamage: 3
     skillorSoArray: []
     modPrefab: {fileID: 1663118547299982050, guid: 312585952950e4f4a99741c7d95dc550, type: 3}

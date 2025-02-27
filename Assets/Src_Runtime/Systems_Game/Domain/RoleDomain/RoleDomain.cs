@@ -192,7 +192,7 @@ namespace UF {
 
         #region Player physics
 
-        public static void DetectionMinionByPos(GameSystemContext ctx, RoleEntity role, Vector2 pos) {
+        public static void DetectionMinionByPos(GameSystemContext ctx, RoleEntity role, Vector2 pos, int damage) {
             // 检测周围的minion 碰到扣血
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] minions);
 
@@ -209,9 +209,9 @@ namespace UF {
 
                 if (dis < radius) {
                     // player扣血 或者失败  
-                    HpReduce_Role(ctx, role, 1);
+                    HpReduce_Role(ctx, role, damage);
 
-                    HpReduce_Role(ctx, minion, 1);
+                    HpReduce_Role(ctx, minion, damage);
                     // minion死掉或者扣血
                 }
             }
@@ -247,11 +247,14 @@ namespace UF {
                 role.SetRoleState(RoleState.Dead);
             }
         }
-        // 下落过程的检测 检测到地面状态变为死亡
+        // 下落过程的检测 检测到地面状态变为死亡 和检测是否碰到敌人
         public static void FallingtodeathCheck(GameSystemContext ctx, RoleEntity role) {
             if (role.state != RoleState.Fall) {
                 return;
             }
+
+            var damage = role.AttributeComponent.GetFallDamage();
+            DetectionMinionByPos(ctx, role, role.GetPos(), damage);
 
             // 和地面的交叉检测
             RaycastHit2D[] hits = Physics2D.RaycastAll(role.GetPos(), Vector2.down, 1.1f);

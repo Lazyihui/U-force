@@ -21,6 +21,8 @@ MonoBehaviour:
     hp: 10
     moveSpeed: 15
     jumpForce: 5
+    baseDamage: 1
+    fallDamage: 0
     skillorSoArray:
     - {fileID: 11400000, guid: eab990068c5fe20408212cf40be78ab0, type: 2}
     modPrefab: {fileID: 5506719469353998905, guid: 262d19c874910244c86314f2b06b1661, type: 3}
@@ -29,3 +31,7 @@ MonoBehaviour:
     feature: "\u5F13\u7BAD"
     skill: 
     restraint: 
+    isMinion: 0
+    restBullet: []
+    restKill: []
+    restPlayer: []

@@ -18,7 +18,9 @@ namespace UF {
         // -move
         public float moveSpeed;
         public float jumpForce;
+        public int baseDamage; // 基础伤害
         public int fallDamage; // 掉落伤害
+
 
         // -skillor//一般这种要拖拽绑定的放下面
         public SkillorSo[] skillorSoArray;

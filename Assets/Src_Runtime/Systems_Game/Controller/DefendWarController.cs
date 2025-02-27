@@ -88,11 +88,13 @@ namespace UF {
             }
 
             // Player的逻辑
-            RoleDomain.DetectionMinionByPos(ctx, owner, owner.TF_GetPos());
+
 
             var fsm = owner.FSMComponent;
             var state = fsm.Status;
-
+            var attrCom = owner.AttributeComponent;
+            RoleDomain.DetectionMinionByPos(ctx, owner, owner.TF_GetPos(), attrCom.GetBaseDamage());
+            
             if (game.state == GameState.GameOver) {
                 return;
             }
