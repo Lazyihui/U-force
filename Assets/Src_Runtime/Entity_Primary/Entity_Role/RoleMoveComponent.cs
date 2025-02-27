@@ -30,7 +30,7 @@ public class RoleMoveComponent {
     }
 
     public void Set_MinionRbConstraints() {
-        rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
     }
 
     public void Set_FallRbConstraints() {
