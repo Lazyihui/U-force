@@ -37,8 +37,8 @@ namespace UF {
 
         public static void PreTick(GameSystemContext ctx, float dt) {
             var owner = ctx.Get_Owner();
-            RoleDomain.Input_Record(ctx, owner,dt);
-            
+            RoleDomain.Input_Record(ctx, owner, dt);
+
         }
 
         public static void Tick(GameSystemContext ctx, float dt) {
@@ -48,11 +48,11 @@ namespace UF {
 
             // 人物移动
             RoleDomain.LocoDefendAndOffensive_Execute(ctx, owner, dt);
-            
+
 
             // 绳子Tick
-            RopeDomain.FSM_All_Tick(ctx, ctx.ropeEntity, owner.MuzzlePos, dt);
-            
+            RopeDomain.FSM_All_Tick(ctx, owner.GetPos(), dt);
+
         }
 
         public static void LastTick(float dt) {

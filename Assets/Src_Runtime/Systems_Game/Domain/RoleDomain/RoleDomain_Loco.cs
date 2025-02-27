@@ -83,7 +83,7 @@ namespace UF {
 
         #endregion
 
-        #region 消除站
+        #region 消除战
 
         public static void Loco_Grap(GameSystemContext ctx, RoleEntity role) {
             // 抓取
@@ -91,8 +91,8 @@ namespace UF {
             var inputCom = role.InputComponent;
 
             if (canGrap && inputCom.Grap_Get()) {
-                Debug.Log("抓取");
-                ctx.ropeEntity = RopeDomain.Spawn(ctx, role.MuzzlePos);
+                Vector2 pos = role.GetPos();
+                ctx.ropeEntity = RopeDomain.Spawn(ctx, pos);
             }
 
         }
