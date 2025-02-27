@@ -39,7 +39,7 @@ namespace UF {
 
             // 更新绳子长度
             entity.rope.transform.localScale = new Vector3(entity.curLength, scale.y, scale.z);
-            entity.hook.transform.localScale = new Vector3(1/entity.curLength, scaleHook.y, scaleHook.z);
+            entity.hook.transform.localScale = new Vector3(1 / entity.curLength, scaleHook.y, scaleHook.z);
 
         }
 
@@ -57,7 +57,7 @@ namespace UF {
             // // 更新绳子长度
             entity.rope.transform.localScale = new Vector3(entity.curLength, scale.y, scale.z);
             // 是钩子一直在一个大小
-            entity.hook.transform.localScale = new Vector3(1/entity.curLength, scaleHook.y, scaleHook.z);
+            entity.hook.transform.localScale = new Vector3(1 / entity.curLength, scaleHook.y, scaleHook.z);
         }
 
     }

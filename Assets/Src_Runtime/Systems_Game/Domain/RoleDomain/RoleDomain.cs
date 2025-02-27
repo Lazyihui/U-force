@@ -109,13 +109,11 @@ namespace UF {
         #region Input   
 
         public static void Input_Record(GameSystemContext ctx, RoleEntity role, float dt) {
-            Debug.Assert(role != null, "RoleDomain.Input_Record role == null");
-            Debug.Assert(ctx != null, "RoleDomain.Input_Record ctx == null");
-            Debug.Assert(role.InputComponent != null, "RoleDomain.Input_Record role.InputComponent == null");
             var inputCom = role.InputComponent;
             var inputModule = ctx.inputModule;
 
             inputCom.Jump_Set(inputModule.IsJump);
+            inputCom.Grap_Set(inputModule.IsGrap);
             inputCom.RecoredCastKey(inputModule.InputCastKey);
 
             inputCom.MoveDir_Set(inputModule.MoveDir);
@@ -230,9 +228,9 @@ namespace UF {
                 float dis = Vector2.Distance(Touchminion.TF_GetPos(), pos);
                 // TODO:可能要改成用 collider   
                 float radius = 2f;
-                Debug.Log("dis" + dis);
+
                 if (dis < radius) {
-                    Debug.Log("碰到了");
+
                     HpReduce_MinionFall(ctx, Touchminion, damage);
                 }
             }
@@ -249,6 +247,7 @@ namespace UF {
 
             if (attCom.hp <= 0) {
                 role.SetRoleState(RoleState.Fall);
+                Debug.Log("进入掉落状态");
                 role.Fall();
                 role.Set_RbConstraints();
             }
@@ -274,6 +273,7 @@ namespace UF {
                 return;
             }
 
+            // TODO:感觉是这里的问题
             DetectionEnemyAndEnemyByPos(ctx, role, role.GetPos(), role.AttributeComponent.GetFallDamage());
 
             // 和地面的交叉检测
@@ -289,6 +289,8 @@ namespace UF {
                 }
             }
         }
+
+
 
         // 否是死亡状态 
         public static void IsDeadState(GameSystemContext ctx, RoleEntity role) {

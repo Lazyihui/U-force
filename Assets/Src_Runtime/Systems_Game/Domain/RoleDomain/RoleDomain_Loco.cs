@@ -5,12 +5,16 @@ namespace UF {
     public static partial class RoleDomain {
 
         public static void LocoDefendAndOffensive_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
+
+            // 人物移动
             var moveCom = role.MoveComponent;
             GroundCheck(ctx, role);
-
             Loco_MoveReset(role);
             Loco_Jump(role, moveCom.jumpForce);
             Loco_MoveDefend(ctx, role, dt);
+
+            // 抓取
+            Loco_Grap(ctx, role);
         }
         #region Move: 防守战
         static void Loco_MoveDefend(GameSystemContext ctx, RoleEntity role, float dt) {
@@ -56,6 +60,7 @@ namespace UF {
             }
             role.Jump();
         }
+
         #endregion
 
         #region Mvoe:进攻战
@@ -76,6 +81,21 @@ namespace UF {
 
         }
 
+        #endregion
+
+        #region 消除站
+
+        public static void Loco_Grap(GameSystemContext ctx, RoleEntity role) {
+            // 抓取
+            bool canGrap = ctx.isRopeUnExist();
+            var inputCom = role.InputComponent;
+
+            if (canGrap && inputCom.Grap_Get()) {
+                Debug.Log("抓取");
+                ctx.ropeEntity = RopeDomain.Spawn(ctx, role.MuzzlePos);
+            }
+
+        }
 
         #endregion
 

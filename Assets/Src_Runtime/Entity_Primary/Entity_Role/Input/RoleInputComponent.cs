@@ -10,9 +10,14 @@ namespace UF {
 
         // -Jump
         bool isJump;
-        public bool IsJump => isJump;
         public void Jump_Set(bool value) => isJump = value;
         public bool Jump_Get() => isJump;
+
+        // -Grap K
+        bool isGrap;
+        public void Grap_Set(bool value) => isGrap = value;
+        public bool Grap_Get() => isGrap;
+
 
         // 进攻战移动
         Vector2 moveDir;

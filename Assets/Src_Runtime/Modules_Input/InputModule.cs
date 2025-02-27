@@ -15,8 +15,10 @@ namespace UF {
         bool isJump;
         public bool IsJump => isJump;
 
-        public bool isUpdateProcess;
+        bool isGrap;
+        public bool IsGrap => isGrap;
 
+        public bool isUpdateProcess;
         public bool isPressStuff1;
 
         bool isTabDown;
@@ -84,6 +86,11 @@ namespace UF {
             {
                 bool isTabDown = world.Tab.WasPressedThisFrame();
                 this.isTabDown = isTabDown;
+            }
+            // K
+            {
+                bool isGrapDown = world.K.WasPressedThisFrame();
+                isGrap = isGrapDown;
             }
 
             // 技能
