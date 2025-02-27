@@ -5,7 +5,6 @@ using Unity.VisualScripting;
 
 public class RoleMoveComponent {
     Rigidbody2D rb;
-
     public Vector2 Velocity => rb.velocity;
 
     bool isGround;

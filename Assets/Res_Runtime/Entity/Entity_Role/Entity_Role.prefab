@@ -151,4 +151,5 @@ MonoBehaviour:
   muzzle: {fileID: 3908722696597752524}
   bodyRoot: {fileID: 8857208792887799831}
   rb: {fileID: 7245125749636645257}
+  coll: {fileID: 0}
   t_roleType: 0

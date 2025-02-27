@@ -211,13 +211,35 @@ namespace UF {
                     // player扣血 或者失败  
                     HpReduce_Role(ctx, role, damage);
 
+                    // minion进基地死掉
                     HpReduce_Role(ctx, minion, damage);
-                    // minion死掉或者扣血
+                }
+            }
+        }
+        public static void DetectionEnemyAndEnemyByPos(GameSystemContext ctx, RoleEntity Enemy, Vector2 pos, int damage) {
+            // 检测周围的minion 碰到扣血
+            int len = ctx.roleRepository.TakeAll(out RoleEntity[] touchMinions);
+
+            for (int i = 0; i < len; i++) {
+
+                var Touchminion = touchMinions[i];
+                if (Touchminion == Enemy) {
+                    continue;
+                }
+
+                float dis = Vector2.Distance(Touchminion.TF_GetPos(), pos);
+                // TODO:可能要改成用 collider   
+                float radius = 2f;
+                Debug.Log("dis" + dis);
+                if (dis < radius) {
+                    Debug.Log("碰到了");
+                    HpReduce_MinionFall(ctx, Touchminion, damage);
                 }
             }
         }
 
         public static void HpReduce_MinionFall(GameSystemContext ctx, RoleEntity role, int damage) {
+
             var attCom = role.AttributeComponent;
             int finalHp = attCom.hp - damage;
             role.Attr_Hp_Set(finalHp);
@@ -231,7 +253,6 @@ namespace UF {
                 role.Set_RbConstraints();
             }
         }
-
 
         public static void HpReduce_Role(GameSystemContext ctx, RoleEntity role, int damage) {
             var playerData = ctx.gameEntity.playerSaveData;
@@ -253,8 +274,7 @@ namespace UF {
                 return;
             }
 
-            var damage = role.AttributeComponent.GetFallDamage();
-            DetectionMinionByPos(ctx, role, role.GetPos(), damage);
+            DetectionEnemyAndEnemyByPos(ctx, role, role.GetPos(), role.AttributeComponent.GetFallDamage());
 
             // 和地面的交叉检测
             RaycastHit2D[] hits = Physics2D.RaycastAll(role.GetPos(), Vector2.down, 1.1f);

@@ -51,13 +51,11 @@ namespace UF {
             }
 
             if (game.cdEnemy >= 0) {
-                Debug.Log("cd中");
                 return;
             }
 
             game.spawnEnemyIntervalTimer -= dt;
             if (game.spawnEnemyIntervalTimer < 0) {
-                Debug.Log("生成小怪");
                 ctx.towerRepository.tempTower = null;
 
                 game.spawnEnemyTimer -= 1;

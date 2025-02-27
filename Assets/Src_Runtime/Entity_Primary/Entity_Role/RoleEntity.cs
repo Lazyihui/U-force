@@ -40,7 +40,6 @@ namespace UF {
 
         // - Physics
         [SerializeField] Rigidbody2D rb;
-        // [SerializeField] Collider2D coll;
 
         // Movement
         RoleMoveComponent moveComponent;
