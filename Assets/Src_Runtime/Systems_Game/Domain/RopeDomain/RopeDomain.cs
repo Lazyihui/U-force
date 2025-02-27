@@ -23,9 +23,6 @@ namespace UF {
                 return;
             }
 
-            var moveDir = rope.MoveDir();
-            Debug.Log(moveDir);
-
             // 设置绳子的位置 一直在role的手上
             rope.Set_Pos(origionPos);
 
@@ -60,8 +57,10 @@ namespace UF {
 
             // 旋转角度 改变rope的Rotation.z
             entity.hook.transform.localScale = new Vector3(1 / entity.curLength, scaleHook.y, scaleHook.z);
-            var rotatez = Vector2.SignedAngle(Vector2.left, entity.MoveDir());
+            var rotatez = Vector2.SignedAngle(entity.originalPos, entity.targetPos);
+            Debug.Log("" + rotatez);
             entity.transform.rotation = Quaternion.Euler(0, 0, rotatez);
+
         }
 
         static void shortening(GameSystemContext ctx, RopeEntity entity, float dt) {
@@ -84,7 +83,7 @@ namespace UF {
             entity.rope.transform.localScale = new Vector3(entity.curLength, scale.y, scale.z);
             // 是钩子一直在一个大小
             entity.hook.transform.localScale = new Vector3(1 / entity.curLength, scaleHook.y, scaleHook.z);
-            var rotatez = Vector2.SignedAngle(Vector2.left, entity.MoveDir());
+            var rotatez = Vector2.SignedAngle(entity.originalPos, entity.targetPos);
             entity.transform.rotation = Quaternion.Euler(0, 0, rotatez);
         }
 

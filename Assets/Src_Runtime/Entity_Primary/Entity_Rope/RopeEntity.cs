@@ -35,22 +35,12 @@ namespace UF {
         }
 
         public void TF_Pos(Vector2 pos) {
-            transform.position = pos;
+            transform.position = pos + new Vector2(0, 10);
         }
 
         public void Set_Pos(Vector2 pos) {
             rope.transform.position = pos;
         }
-
-        public Vector2 MoveDir() {
-
-            Vector2 moveDir = targetPos - (Vector2)hook.transform.position.normalized;
-
-            // 绝对值
-            Vector2 dir = new Vector2(Mathf.Abs(moveDir.x), Mathf.Abs(moveDir.y));
-            return -dir;
-        }
-
 
         public void EnterStretch() {
             Debug.Log("EnterStretch");
