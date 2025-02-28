@@ -102,7 +102,7 @@ namespace UF {
             };
 
             eventCenter.OnCloseWarningClickHandle += () => {
-                events.OnContinueWarning();
+                events.OnCloseWarning();
             };
 
             eventCenter.OnContinueWarningClickHandle += () => {
