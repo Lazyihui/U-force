@@ -95,8 +95,6 @@ namespace UF {
             if (canGrap && inputCom.Grap_Get()) {
                 Vector2 pos = role.GetPos();
                 ctx.ropeEntity = RopeDomain.Spawn(ctx, pos);
-                ctx.ropeEntity.Set_MoveTarget(pos);
-
             }
 
         }

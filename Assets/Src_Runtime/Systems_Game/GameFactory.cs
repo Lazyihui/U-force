@@ -310,7 +310,7 @@ namespace UF {
             GameObject prefab = assetsCore.Entity_GetRope();
             GameObject go = GameObject.Instantiate(prefab);
             RopeEntity rope = go.GetComponent<RopeEntity>();
-            rope.TF_Pos(muzzle);
+            rope.TF_SetPos(muzzle);
             rope.idSig = new IDSignature(EntityType.Rope, idService.PickRopeID());
             rope.Ctor();
             return rope;

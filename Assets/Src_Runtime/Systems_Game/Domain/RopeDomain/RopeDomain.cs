@@ -23,12 +23,9 @@ namespace UF {
                 return;
             }
 
-            // 设置绳子的位置 一直在role的手上
-            rope.Set_Pos(origionPos);
-
-
-            // rope.Set_MoveTarget(origionPos);
-
+            rope.Set_OriginalPos(origionPos);
+            rope.Set_TargetPos();
+            rope.Set_Line();
 
             var state = rope.state;
             if (state == RopeStage.Stretch) {
@@ -36,56 +33,33 @@ namespace UF {
             } else if (state == RopeStage.shortening) {
                 shortening(ctx, rope, dt);
             }
-
         }
 
 
         static void Stretch(GameSystemContext ctx, RopeEntity entity, float dt) {
-            entity.curLength += entity.stretchSpeed * dt;
+            var hookPos = entity.hook.transform.position;
 
-            // 超出最大长度
-            if (entity.curLength >= entity.stretchLength) {
-                entity.curLength = entity.stretchLength;
+            // hook移动
+            if (hookPos.x < entity.spawnPos.x + entity.maxLength) {
+                hookPos.x += entity.outMoveSpeed * dt;
+                entity.Set_HookPos(hookPos);
+            } else {
                 entity.EnterShortening();
             }
-            var scale = entity.rope.transform.localScale;
-            var scaleHook = entity.hook.transform.localScale;
-
-            // 更新绳子长度
-            entity.rope.transform.localScale = new Vector3(entity.curLength, scale.y, scale.z);
-            entity.hook.transform.localScale = new Vector3(1 / entity.curLength, scaleHook.y, scaleHook.z);
-
-            // 旋转角度 改变rope的Rotation.z
-            entity.hook.transform.localScale = new Vector3(1 / entity.curLength, scaleHook.y, scaleHook.z);
-            var rotatez = Vector2.SignedAngle(entity.originalPos, entity.targetPos);
-            Debug.Log("" + rotatez);
-            entity.transform.rotation = Quaternion.Euler(0, 0, rotatez);
-
         }
 
         static void shortening(GameSystemContext ctx, RopeEntity entity, float dt) {
+            var hookPos = entity.hook.transform.position;
 
-            entity.curLength -= entity.shorteningSpeed * dt;
+            // 移动
+            hookPos = Vector2.MoveTowards(hookPos, entity.originalPos, entity.backMoveSpeed * dt);
+            entity.Set_HookPos(hookPos);
 
-            // 超出最小长度
-            if (entity.curLength <= 1) {
-                entity.curLength = 0;
+            // 销毁
+            float dis = Vector3.Distance(hookPos, entity.originalPos);
+            if (dis <= 1) {
                 UnSpawn(ctx);
             }
-
-            if (ctx.isRopeUnExist()) {
-                return;
-            }
-
-            var scale = entity.rope.transform.localScale;
-            var scaleHook = entity.hook.transform.localScale;
-            // // 更新绳子长度
-            entity.rope.transform.localScale = new Vector3(entity.curLength, scale.y, scale.z);
-            // 是钩子一直在一个大小
-            entity.hook.transform.localScale = new Vector3(1 / entity.curLength, scaleHook.y, scaleHook.z);
-            var rotatez = Vector2.SignedAngle(entity.originalPos, entity.targetPos);
-            entity.transform.rotation = Quaternion.Euler(0, 0, rotatez);
         }
-
     }
 }
