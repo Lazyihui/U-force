@@ -7,8 +7,9 @@ namespace UF {
 
         public FrameLoopFlag loopFlag;
 
-        public float maintainSec;
-        public float maintainTimer;
+        // maintain 和 triggerInterval 是两个不同的概念(是分开用的)
+        public float maintainSec;//持续时间
+        public float maintainTimer;//倒计时
 
         public float triggerIntervalSec;//触发间隔
         public float triggerIntervalTimer;
@@ -32,7 +33,7 @@ namespace UF {
 
             // maintainSec = tm.maintainFrame * 1 / 24f;//LOGIC_FPS
             // maintainTimer = tm.maintainFrame * 1 / 24f;//LOGIC_FPS
-            // // // Debug.Log(maintainSec + maintainTimer);
+            // Debug.Log(maintainSec + maintainTimer);
             maintainSec = tm.maintainFrame;
             maintainTimer = tm.maintainFrame;
 
@@ -48,15 +49,11 @@ namespace UF {
             isDone = false;
         }
 
-        public void Tick(float dt, out bool istrigger, out bool isNextFrame) {
+        public void Tick(float dt, out bool istrigger, out bool out_isDone) {
             istrigger = false;
-            isNextFrame = false;
-
-            maintainTimer -= dt;
-            triggerIntervalTimer -= dt;
+            out_isDone = false;
 
             bool isCurFrameEnd = maintainTimer <= 0;
-
             if (!isCurFrameEnd) {
                 if (triggerIntervalTimer <= 0) {
                     triggerIntervalTimer += triggerIntervalSec;
@@ -65,27 +62,34 @@ namespace UF {
 
             } else {
                 triggerIntervalTimer = 0;
-                isNextFrame = true;
+                out_isDone = true;
                 istrigger = true;
             }
-
+            maintainTimer -= dt;
+            triggerIntervalTimer -= dt;
         }
 
         public void CheckDone() {
             if (isDone) {
                 return;
             }
+
             if (loopFlag == FrameLoopFlag.Once) {
+                Debug.Log("Once");
                 isDone = true;
             }
+
             if (loopFlag.HasFlag(FrameLoopFlag.LoopByTriggerTimesEnd)) {
                 triggerTimes += 1;
                 if (triggerTimes >= triggerTimesMax) {
+                    Debug.Log("LoopByTriggerTimesEnd");
                     isDone = true;
                     maintainTimer = 0;
                 }
             }
+
             if (loopFlag.HasFlag(FrameLoopFlag.LoopWhenTimeEnd)) {
+                Debug.Log("LoopWhenTimeEnd");
                 if (maintainTimer <= 0) {
                     isDone = true;
                 }

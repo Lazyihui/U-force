@@ -4,6 +4,8 @@ namespace UF {
         None,
         Shaped,//直线运动的子弹
         ToLeft,//向左飞的子弹
+
+        
     }
 
 }

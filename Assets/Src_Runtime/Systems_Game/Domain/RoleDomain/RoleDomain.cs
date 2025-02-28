@@ -52,6 +52,12 @@ namespace UF {
         public static void Skillor_Frame_Acting(GameSystemContext ctx, RoleEntity role, RoleCastingStateModel stateModel, SkillFrameModel frame, float dt) {
             var skillor = stateModel.skillor;
 
+            // if (frame.loopModel.isDone) {
+            //     return;
+            // }
+
+            // frame.loopModel.CheckDone();
+
             if (skillor == null) {
                 Debug.Log("Skillor_Frame_Acting skillor == null");
                 return;
@@ -109,13 +115,15 @@ namespace UF {
         #region Input   
 
         public static void Input_Record(GameSystemContext ctx, RoleEntity role, float dt) {
+            var game = ctx.gameEntity;
             var inputCom = role.InputComponent;
             var inputModule = ctx.inputModule;
 
             inputCom.Jump_Set(inputModule.IsJump);
-            inputCom.Grap_Set(inputModule.IsGrap);
+            if (game.isEliminateWar) {
+                inputCom.Grap_Set(inputModule.IsGrap);
+            }
             inputCom.RecoredCastKey(inputModule.InputCastKey);
-
             inputCom.MoveDir_Set(inputModule.MoveDir);
         }
 

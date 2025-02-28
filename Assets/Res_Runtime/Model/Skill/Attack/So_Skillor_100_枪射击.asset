@@ -22,7 +22,7 @@ MonoBehaviour:
     actionTMs:
     - loopTM:
         loopFlag: -1
-        maintainFrame: 0
+        maintainFrame: 5
         triggerIntervalSec: 0
         triggerTimesMax: 0
       hasMove: 0

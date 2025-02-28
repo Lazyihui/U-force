@@ -2,11 +2,9 @@ using System;
 using UnityEngine;
 using TriInspector;
 
-namespace UF
-{
+namespace UF {
     [Serializable]
-    public class PropTM
-    {
+    public class PropTM {
         public int typeID;
         public string typeName;
 

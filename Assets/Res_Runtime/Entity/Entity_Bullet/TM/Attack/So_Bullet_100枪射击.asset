@@ -32,9 +32,19 @@ MonoBehaviour:
     frames:
     - loopTM:
         loopFlag: -1
-        maintainFrame: 0
+        maintainFrame: 1
         triggerIntervalSec: 0
         triggerTimesMax: 0
       hasBulletBehaviour: 1
       bulletBehaviourTM:
         isMoveTo: 1
+        isBomb: 0
+    - loopTM:
+        loopFlag: 0
+        maintainFrame: 1
+        triggerIntervalSec: 24
+        triggerTimesMax: 24
+      hasBulletBehaviour: 1
+      bulletBehaviourTM:
+        isMoveTo: 0
+        isBomb: 1

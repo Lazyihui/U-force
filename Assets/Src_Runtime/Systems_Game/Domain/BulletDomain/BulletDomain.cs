@@ -123,11 +123,17 @@ namespace UF {
         #region Frame:Acting
 
         static void Frame_Acting(GameSystemContext ctx, BulletEntity bullet, BulletFrameModel frame, float dt) {
+            ref var loopModel = ref frame.loopModel;
+            if (loopModel.isDone) {
+                return;
+            }
 
             if (frame.hasBulletBehaviour) {
                 Debug.LogWarning("有角色行为");
                 BulletBehaviour_Acting(ctx, bullet, frame.bulletBehaviourModel);
             }
+
+            loopModel.CheckDone();
         }
 
         #endregion
@@ -139,6 +145,13 @@ namespace UF {
             if (model.isMove) {
                 // 正常移动
                 Loco_Shaped(ctx, bullet);
+            }
+
+            if (model.isBomb) {
+                // 爆炸
+                Debug.LogWarning("爆炸");
+                bullet.Move_Stop();
+                // Skill_Boom(ctx, bullet);
             }
 
         }

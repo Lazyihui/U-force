@@ -7,6 +7,7 @@ namespace UF {
         // -Move
         public bool isMoveTo;
 
+        public bool isBomb;
 
     }
 }

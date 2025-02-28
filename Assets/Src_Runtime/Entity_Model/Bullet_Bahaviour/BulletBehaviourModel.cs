@@ -7,8 +7,11 @@ namespace UF {
 
         public bool isMove;
 
+        public bool isBomb;
+
         public void FormTM(BulletBehaviourTM tm) {
             isMove = tm.isMoveTo;
+            isBomb = tm.isBomb;
         }
     }
 }

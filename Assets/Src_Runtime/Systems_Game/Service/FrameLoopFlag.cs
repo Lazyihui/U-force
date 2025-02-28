@@ -4,9 +4,9 @@ namespace UF {
 
     [Flags]
     public enum FrameLoopFlag {
-        Once = 0,
-        LoopByTriggerTimesEnd = 1 << 0,
-        LoopWhenTimeEnd = 1 << 1,
+        Once = 0,//时间运行完结束
+        LoopByTriggerTimesEnd = 1 << 0,//触发次数结束
+        LoopWhenTimeEnd = 1 << 1,//时间结束 和 noce 差不错
 
         // LoopForever = 1 << 1,
         // GroundEnd = 1 << 2,
