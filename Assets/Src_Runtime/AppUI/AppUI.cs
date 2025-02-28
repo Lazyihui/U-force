@@ -719,6 +719,22 @@ namespace UF {
             panel.SetEnterGameButton(isShow);
         }
 
+        public void Panel_CardSelected_SciTxtActive(bool isActive) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.Set_sicTxtActive(isActive);
+        }
+
+        public void Panel_CardSelected_PropTxtActive(bool isActive) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.Set_PropTxtActice(isActive);
+        }
+
         #endregion
 
         #region Notice
