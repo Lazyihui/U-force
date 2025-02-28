@@ -39,7 +39,7 @@ namespace UF {
             var skillorCom = owner.skillorSlotComponent;
 
             // 大招
-            if (sciType != -1) {
+            if (sciType != -2 && sciType != -1) {
                 SkillModel skillorSci = GameFactory.Skillor_Create(ctx.assetsModule, ctx.templateCore, ctx.idService, sciType);
                 skillorSci.Set_InputCastKey(InputKeyFlag.Tech);
                 skillorCom.Add(skillorSci);
@@ -94,7 +94,7 @@ namespace UF {
             var state = fsm.Status;
             var attrCom = owner.AttributeComponent;
             RoleDomain.DetectionMinionByPos(ctx, owner, owner.TF_GetPos(), attrCom.GetBaseDamage());
-            
+
             if (game.state == GameState.GameOver) {
                 return;
             }

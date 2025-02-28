@@ -43,5 +43,21 @@ namespace UF {
         public void AddRoleEnemyTM(RoleTM roleTM) {
             roleEnemyTMs.Add(roleTM);
         }
+
+        public int GetRoleTMsCount() {
+            return roleTMs.Count;
+        }
+
+        public int GetBulletTMsCount() {
+            return bulletAgrTMs.Count;
+        }
+
+        public int GetBulletIndTMsCount() {
+            return bulletIndTMs.Count;
+        }
+
+        public int GetBulletSciTMsCount() {
+            return bulletSciTMs.Count;
+        }
     }
 }

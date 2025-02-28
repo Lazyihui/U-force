@@ -182,14 +182,30 @@ namespace UF {
                 int sciType = appUI.selectedInFormation.scienceTypeID;
                 int slotMax = appUI.playerSaveData.GetSlotMax();
 
+                var card = appUI.Get_CardModel();
 
-                // // TODO:要改 加上roleID  和 science 的ID
-                // if (typeIDs.Count < slotMax || stageID == -1 || roleTypeID == -1 || sciType == -1) {
-                //     Debug.Log("长度" + typeIDs.Count + " 最大长度" + slotMax);
-                //     Debug.Log("请先选择卡片");
-                //     isNoticeOpen = appUI.Panel_Notice_Open("请选择完卡片才可以进入游戏");
-                //     return;
-                // }
+                // 道具
+                int propCount = card.GetBulletTMsCount();
+                if (propCount == 0) {
+                    Debug.Log("不用选择道具 + 按键设为fasle");
+                    slotMax = -2;
+                }
+
+                // 科技
+                int sciCount = card.GetBulletSciTMsCount();
+                if (sciCount == 0) {
+                    Debug.Log("不用选择科技 + 按键设为fasle");
+                    sciType = -2;
+                }
+
+                // TODO:要改 加上roleID  和 science 的ID
+
+                if (typeIDs.Count < slotMax || stageID == -1 || roleTypeID == -1 || sciType == -1) {
+                    Debug.Log("长度" + typeIDs.Count + " 最大长度" + slotMax);
+                    Debug.Log("请先选择卡片");
+                    isNoticeOpen = appUI.Panel_Notice_Open("请选择完卡片才可以进入游戏");
+                    return;
+                }
 
                 appUI.Reset();
                 appUI.Panel_CardSelection_Close();
