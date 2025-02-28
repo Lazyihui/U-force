@@ -228,6 +228,39 @@ namespace UF {
             }
         }
 
+        // 计算进入游戏Button是否可用
+        public static void isEnterGameButton(AppUI appUI) {
+
+            appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
+
+            int stageID = appUI.playerSaveData.GetStageCurID();
+            int roleTypeID = appUI.selectedInFormation.roleSelectedTypeID;
+            int sciType = appUI.selectedInFormation.scienceTypeID;
+            int slotMax = appUI.playerSaveData.GetSlotMax();
+            var card = appUI.Get_CardModel();
+            if (card == null) {
+                return;
+            }
+
+
+            int propCount = card.GetPropTMsCount();
+            if (propCount == 0) {
+                slotMax = -2;
+            }
+
+            // 科技
+            int sciCount = card.GetBulletSciTMsCount();
+            if (sciCount == 0) {
+                sciType = -2;
+                appUI.Panel_CardSelected_SciButton(false);
+            }
+
+            if (typeIDs.Count < slotMax || stageID == -1 || roleTypeID == -1 || sciType == -1) {
+                appUI.Panel_CardSelected_EnterGame(false);
+            } else {
+                appUI.Panel_CardSelected_EnterGame(true);
+            }
+        }
 
         #region  Role
         public static void HUD_Progressbar_Update(AppUI ui, RoleAttributeComponent attrCom, float gameWaves) {

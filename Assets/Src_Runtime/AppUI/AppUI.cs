@@ -446,7 +446,7 @@ namespace UF {
                     eventCenter.OnBackClick();
                 };
 
-                }
+            }
 
             ctx.panel_StageSelection = panel;
             panel.Show();
@@ -685,6 +685,38 @@ namespace UF {
             }
             panel.TearDown();
             ctx.panel_CardSelection = null;
+        }
+
+        public void Panel_CardSelected_SciButton(bool isShow) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.SetSicButton(isShow);
+        }
+
+        public void Panel_CardSelected_IndButton(bool isShow) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.SetIndButton(isShow);
+        }
+
+        public void Panel_CardSelected_AgrButton(bool isShow) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.SetAgrButton(isShow);
+        }
+
+        public void Panel_CardSelected_EnterGame(bool isShow) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.SetEnterGameButton(isShow);
         }
 
         #endregion
