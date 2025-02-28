@@ -246,6 +246,9 @@ namespace UF {
             int propCount = card.GetPropTMsCount();
             if (propCount == 0) {
                 slotMax = -2;
+                appUI.Panel_CardSelected_AgrButton(false);
+                appUI.Panel_CardSelected_IndButton(false);
+                appUI.Panel_CardSelected_PropTxtActive(true);
             }
 
             // 科技
@@ -253,6 +256,7 @@ namespace UF {
             if (sciCount == 0) {
                 sciType = -2;
                 appUI.Panel_CardSelected_SciButton(false);
+                appUI.Panel_CardSelected_SciTxtActive(true);
             }
 
             if (typeIDs.Count < slotMax || stageID == -1 || roleTypeID == -1 || sciType == -1) {

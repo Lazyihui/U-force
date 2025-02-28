@@ -74,7 +74,7 @@ namespace UF.UIApplication {
             }
         }
 
-        #region  Button
+        #region  Button text
 
         public void SetSicButton(bool isShow) {
             btn_SelectSci.interactable = isShow;
@@ -90,6 +90,14 @@ namespace UF.UIApplication {
 
         public void SetEnterGameButton(bool isShow) {
             btn_EnterGame.interactable = isShow;
+        }
+
+        public void Set_sicTxtActive(bool isActive) {
+            cardSelected.Set_sicTxtActive(isActive);
+        }
+
+        public void Set_PropTxtActice(bool isActive) {
+            cardSelected.Set_PropTxtActice(isActive);
         }
 
         #endregion

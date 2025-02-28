@@ -3,13 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace UF {
     // 选择的卡槽
     public class Panel_CardSelected : MonoBehaviour {
         [SerializeField] Transform cardGroup;
+        [SerializeField] TextMeshProUGUI txt_Prop;//道具
         [SerializeField] Image img_hero;
         [SerializeField] Image img_science;
+        [SerializeField] TextMeshProUGUI txt_sciene;//科技
 
         [SerializeField] Panel_CardSelectedElement elePrefab;
         List<Panel_CardSelectedElement> eles;
@@ -17,6 +20,8 @@ namespace UF {
 
         public void Ctor() {
             eles = new List<Panel_CardSelectedElement>();
+            txt_Prop.gameObject.SetActive(false);
+            txt_sciene.gameObject.SetActive(false);
         }
 
         // 遍历物品
@@ -79,7 +84,13 @@ namespace UF {
             img_science.sprite = sprite;
         }
 
+        public void Set_sicTxtActive(bool isShow) {
+            txt_sciene.gameObject.SetActive(isShow);
+        }
 
+        public void Set_PropTxtActice(bool isShow) {
+            txt_Prop.gameObject.SetActive(isShow);
+        }
         void OnCardSelectedClick(int typeID) {
             if (OnCardClickSelectedHandle != null) {
                 OnCardClickSelectedHandle.Invoke(typeID);
