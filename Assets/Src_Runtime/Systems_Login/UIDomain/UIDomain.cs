@@ -293,5 +293,20 @@ namespace UF {
         //     var model = templateModule.TrainCard_TryGet(1, out TrainCardTM tm);
         // }
         #endregion
+
+        #region 图鉴
+        public static void Panel_Illustrated_Open(AppUI appUI, TemplateMoudle templateMoudle) {
+            appUI.Panel_Illustrated_Open();
+
+            var EnemyTypeIDs = appUI.playerSaveData.EnemyTypeIDs;
+            int len = EnemyTypeIDs.Count;
+            for (int i = 0; i < len; i += 1) {
+                int typeID = EnemyTypeIDs[i];
+                var role = templateMoudle.Role_TryGet(typeID, out var tm);
+
+                appUI.Panel_Illustrated_Add(typeID, tm.sprite);
+            }
+        }
+        #endregion
     }
 }

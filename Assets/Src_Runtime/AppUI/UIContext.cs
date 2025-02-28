@@ -29,6 +29,7 @@ namespace UF {
         public Panel_Training_Pause panel_Training_Pause;
         public Panel_Notice panel_Notice;
         public Panel_Training_GameOver panel_Training_GameOver;
+        public Panel_Illustrated panel_Illustrated;
 
         // HUD
         public HUD_Progressbar hud_Progressbar;

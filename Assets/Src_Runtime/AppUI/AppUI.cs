@@ -801,6 +801,7 @@ namespace UF {
                 return;
             }
             panel.TearDown();
+            ctx.panel_BackSelection = null;
         }
         #endregion
 
@@ -840,6 +841,7 @@ namespace UF {
             if (panel == null) { return; }
 
             panel.TearDown();
+            ctx.panel_Watchtower = null;
         }
 
         // 设置光标
@@ -885,6 +887,7 @@ namespace UF {
             if (panel == null) { return; }
 
             panel.TearDown();
+            ctx.panel_WatchDetail = null;
         }
         #endregion
 
@@ -933,6 +936,7 @@ namespace UF {
             if (panel == null) { return; }
 
             panel.TearDown();
+            ctx.panel_Training_Select = null;
         }
 
         public void Panel_Training_Select_SetPlayer(int typeID, Sprite sprite, string description, string weaponSpeed, string damage, string attackSpeed) {
@@ -991,6 +995,7 @@ namespace UF {
             if (panel == null) { return; }
 
             panel.TearDown();
+            ctx.panel_Training_Tip = null;
         }
 
         public void Panel_Training_Button_Show() {
@@ -1020,6 +1025,7 @@ namespace UF {
             if (panel == null) { return; }
 
             panel.TearDown();
+            ctx.panel_Training_Button = null;
         }
 
         public void Panel_Training_Pause_Show() {
@@ -1057,6 +1063,7 @@ namespace UF {
             if (panel == null) { return; }
 
             panel.TearDown();
+            ctx.panel_Training_Pause = null;
         }
         #endregion
 
@@ -1093,6 +1100,7 @@ namespace UF {
             if (panel == null) { return; }
 
             panel.TearDown();
+            ctx.panel_Training_GameOver = null;
         }
 
         void Panel_Training_GameOver_SetText(string text) {
@@ -1109,6 +1117,55 @@ namespace UF {
             if (panel == null) { return; }
 
             panel.SetWinner(sprite);
+        }
+        #endregion
+
+        #region Illustrated
+        public void Panel_Illustrated_Open() {
+            Panel_Illustrated panel = ctx.panel_Illustrated;
+
+            if (panel == null) {
+                GameObject prefab = ctx.assetsCore.Panel_GetIllustrated();
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                panel = go.GetComponent<Panel_Illustrated>();
+                panel.Ctor();
+
+                panel.OnCloseClickHandle = () => {
+                    eventCenter.OnGameIllusCardClick();
+                };
+
+                panel.OnGameIllusCardClickHandle = (typeID) => {
+                    eventCenter.OnGameIllusCardClick(typeID);
+                };
+            }
+            ctx.panel_Illustrated = panel;
+            panel.Show();
+        }
+
+        public void Panel_Illustrated_Add(int typeID, Sprite sprite) {
+            Panel_Illustrated panel = ctx.panel_Illustrated;
+
+            if (panel == null) { return; }
+
+            panel.Add(typeID, sprite);
+        }
+
+        public void Panel_Illustrated_SetContent(Sprite sprite, string name, string description)
+        {
+            Panel_Illustrated panel = ctx.panel_Illustrated;
+
+            if (panel == null) { return; }
+
+            panel.SetContent(sprite, name, description);
+        }
+
+        public void Panel_Illustrated_Close() {
+            Panel_Illustrated panel = ctx.panel_Illustrated;
+
+            if (panel == null) { return; }
+
+            panel.TearDown();
+            ctx.panel_Illustrated = null;
         }
         #endregion
     }

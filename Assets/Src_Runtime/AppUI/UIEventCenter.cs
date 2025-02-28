@@ -360,5 +360,21 @@ namespace UF {
             }
         }
         #endregion
+
+        #region Illustrated
+        public Action OnGameIllusCloseClickHandle;
+        public void OnGameIllusCardClick() {
+            if (OnGameIllusCloseClickHandle != null) {
+                OnGameIllusCloseClickHandle();
+            }
+        }
+
+        public Action<int> OnGameIllusCardClickHandle;
+        public void OnGameIllusCardClick(int a) {
+            if (OnGameIllusCardClickHandle != null) {
+                OnGameIllusCardClickHandle(a);
+            }
+        }
+        #endregion
     }
 }

@@ -373,6 +373,16 @@ namespace UF {
                     UIDomain.Panel_StageSelectionEnter(appUI);
                 }
             };
+
+            gameEvent.OnGameIllusCloseClickHandle += () => {
+                appUI.Panel_Illustrated_Close();
+            };
+
+            gameEvent.OnGameIllusCardClickHandle += (int typeID) => {
+                templateModule.Role_TryGet(typeID, out RoleTM tm);
+
+                appUI.Panel_Illustrated_SetContent(tm.sprite, tm.typeName, tm.feature);
+            };
         }
         #endregion
 
@@ -391,7 +401,7 @@ namespace UF {
             };
 
             pauseEvent.OnPauseIllustratedHandle += () => {
-                Debug.Log("Illustrated");
+                UIDomain.Panel_Illustrated_Open(appUI, templateModule);
             };
 
             pauseEvent.OnPauseExitGameHandle += () => {
