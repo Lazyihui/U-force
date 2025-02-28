@@ -33,7 +33,7 @@ namespace UF.UIApplication {
         [SerializeField] Button btn_EnterGame;//进入游戏
 
         public Action OnSelectHeroClickHandle;
-        [SerializeField] Button btn_SelectHero;
+        [SerializeField] Button btn_SelectHero;//选择英雄
         public Action OnSelectAgrClickHandle;
         [SerializeField] Button btn_SelectAgr;//选择农业
         public Action OnSelectIndClickHandle;
@@ -73,6 +73,26 @@ namespace UF.UIApplication {
                 txt_ChapterName.text = "消除战";
             }
         }
+
+        #region  Button
+
+        public void SetSicButton(bool isShow) {
+            btn_SelectSci.interactable = isShow;
+        }
+
+        public void SetIndButton(bool isShow) {
+            btn_SelectInd.interactable = isShow;
+        }
+
+        public void SetAgrButton(bool isShow) {
+            btn_SelectAgr.interactable = isShow;
+        }
+
+        public void SetEnterGameButton(bool isShow) {
+            btn_EnterGame.interactable = isShow;
+        }
+
+        #endregion
 
         #region Card
         public void AddCard(int id, Sprite sprite) {

@@ -34,8 +34,7 @@ namespace UF {
         public PropRepository propRepository;
 
         // TODO:不能写在这里 没想好好放哪里先放这里
-        bool isNoticeOpen = false;
-        float noticeTimer = 1;
+
 
         void Start() {
 
@@ -135,6 +134,26 @@ namespace UF {
                 appUI.playerSaveData.SetStageCurID(stageID);
                 UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule);
 
+                var card = appUI.Get_CardModel();
+
+                int indCount = card.GetBulletIndTMsCount();
+                if (indCount == 0) {
+                    Debug.Log("不用选择工业 + 按键设为fasle");
+                    appUI.Panel_CardSelected_IndButton(false);
+                }
+
+                int agrCount = card.GetBulletAgrTMsCount();
+                if (agrCount == 0) {
+                    Debug.Log("不用选择农业 + 按键设为fasle");
+                    appUI.Panel_CardSelected_AgrButton(false);
+                }
+
+                int sciCount = card.GetBulletSciTMsCount();
+                if (sciCount == 0) {
+                    Debug.Log("不用选择科技 + 按键设为fasle");
+                    appUI.Panel_CardSelected_SciButton(false);
+                }
+
             };
 
             loginEvent.OnChapterClickHandle += (chapter) => {
@@ -174,6 +193,7 @@ namespace UF {
             };
 
             loginEvent.OnSelectEnterGameClickHandle += () => {
+                Debug.Log("EnterGame");
                 // 放到UIDomain里
                 appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
 
@@ -181,15 +201,6 @@ namespace UF {
                 int roleTypeID = appUI.selectedInFormation.roleSelectedTypeID;
                 int sciType = appUI.selectedInFormation.scienceTypeID;
                 int slotMax = appUI.playerSaveData.GetSlotMax();
-
-
-                // // TODO:要改 加上roleID  和 science 的ID
-                // if (typeIDs.Count < slotMax || stageID == -1 || roleTypeID == -1 || sciType == -1) {
-                //     Debug.Log("长度" + typeIDs.Count + " 最大长度" + slotMax);
-                //     Debug.Log("请先选择卡片");
-                //     isNoticeOpen = appUI.Panel_Notice_Open("请选择完卡片才可以进入游戏");
-                //     return;
-                // }
 
                 appUI.Reset();
                 appUI.Panel_CardSelection_Close();
@@ -232,77 +243,73 @@ namespace UF {
                 appUI.Panel_OneCardSelection_UnLock(typeID);
             };
 
-            {
-                bool isClicked = false;
-                loginEvent.OnViewClickHandle += () => {
-                    Debug.Log("ViewClick");
-                    appUI.Panel_WatchTower_SetCursor(); // 如果不点击瞭望塔头像, 会一直变化光标, 之后看看怎么改
-                    isClicked = true;
-                };
+            bool isClicked = false;
+            loginEvent.OnViewClickHandle += () => {
+                Debug.Log("ViewClick");
+                appUI.Panel_WatchTower_SetCursor(); // 如果不点击瞭望塔头像, 会一直变化光标, 之后看看怎么改
+                isClicked = true;
+            };
 
-                loginEvent.OnSelectionWatchCardClickHandle += (typeID) => { // typeID 应该是传进来的
-                    if (isClicked) {
-                        Debug.Log("SelectionWatchCardClick " + typeID);
-                        appUI.Panel_WatchTower_ClearCursor();
-                        isClicked = false;
+            loginEvent.OnSelectionWatchCardClickHandle += (typeID) => { // typeID 应该是传进来的
+                if (isClicked) {
+                    Debug.Log("SelectionWatchCardClick " + typeID);
+                    appUI.Panel_WatchTower_ClearCursor();
+                    isClicked = false;
 
-                        UIDomain.Panel_WatchTower_GetDetail(typeID, templateModule, appUI);
-                    }
-                };
-            }
+                    UIDomain.Panel_WatchTower_GetDetail(typeID, templateModule, appUI);
+                }
+            };
 
             loginEvent.OnDetailCloseClickHandle += () => {
                 appUI.Panel_WatchDetail_Close();
             };
 
             // Train
-            {
-                bool hasPlayer = false;
+            bool hasPlayer = false;
 
-                loginEvent.OnPlayer1ReadyClickHandle += () => {
-                    if (hasPlayer) {
-                        Debug.Log("Player1Ready");
-                        appUI.Panel_Training_Select_SetButton();
-                        appUI.Panel_Training_Select_AddPlayer();
+            loginEvent.OnPlayer1ReadyClickHandle += () => {
+                if (hasPlayer) {
+                    Debug.Log("Player1Ready");
+                    appUI.Panel_Training_Select_SetButton();
+                    appUI.Panel_Training_Select_AddPlayer();
 
-                        hasPlayer = false;
-                    }
-                };
+                    hasPlayer = false;
+                }
+            };
 
-                loginEvent.OnPlayer2ReadyClickHandle += () => {
-                    if (hasPlayer) {
-                        appUI.Panel_Training_Select_Close();
-                        appUI.Panel_Training_Select_AddPlayer();
+            loginEvent.OnPlayer2ReadyClickHandle += () => {
+                if (hasPlayer) {
+                    appUI.Panel_Training_Select_Close();
+                    appUI.Panel_Training_Select_AddPlayer();
 
-                        appUI.Panel_Training_Select_TakeAll(out List<int> typeIDs);
+                    appUI.Panel_Training_Select_TakeAll(out List<int> typeIDs);
 
-                        loginSystem.Exit();
-                        trainSystem.Enter(typeIDs);
+                    loginSystem.Exit();
+                    trainSystem.Enter(typeIDs);
 
-                        appUI.HUD_Training_Open();
-                        appUI.HUD_Training_CD_Open();
-                        appUI.HUD_Training_CD_Open();
-                    }
-                };
+                    appUI.HUD_Training_Open();
+                    appUI.HUD_Training_CD_Open();
+                    appUI.HUD_Training_CD_Open();
+                }
+            };
 
-                loginEvent.OnTrainTipClickHandle += () => {
-                    appUI.Panel_Training_Tip_Open();
-                };
+            loginEvent.OnTrainTipClickHandle += () => {
+                appUI.Panel_Training_Tip_Open();
+            };
 
-                loginEvent.OnSelectionTrainCardClickHandle += (typeID) => {
-                    Debug.Log("SelectionTrainCardClick " + typeID);
-                    // 这样写感觉model没什么意义
-                    templateModule.Role_TryGet(typeID, out RoleTM roleTM);
-                    // TODO: 武器速度 伤害 攻击速度
-                    appUI.Panel_Training_Select_SetPlayer(typeID, roleTM.sprite, roleTM.feature, "0", "0", "0");
+            loginEvent.OnSelectionTrainCardClickHandle += (typeID) => {
+                Debug.Log("SelectionTrainCardClick " + typeID);
+                // 这样写感觉model没什么意义
+                templateModule.Role_TryGet(typeID, out RoleTM roleTM);
+                // TODO: 武器速度 伤害 攻击速度
+                appUI.Panel_Training_Select_SetPlayer(typeID, roleTM.sprite, roleTM.feature, "0", "0", "0");
 
-                    hasPlayer = true;
-                };
+                hasPlayer = true;
+            };
 
-                loginEvent.OnTrainTipCloseClickHandle += () => {
-                    appUI.Panel_Training_Tip_Close();
-                };
-            }
+            loginEvent.OnTrainTipCloseClickHandle += () => {
+                appUI.Panel_Training_Tip_Close();
+            };
         }
         #endregion
 
@@ -473,12 +480,12 @@ namespace UF {
             pauseSystem.Tick(dt);
             trainSystem.Tick(dt);
 
-            if (isNoticeOpen) {
-                noticeTimer -= dt;
-                if (noticeTimer <= 0) {
+            if (appUI.ctx.isNoticeOpen) {
+                appUI.ctx.noticeTimer -= dt;
+                if (appUI.ctx.noticeTimer <= 0) {
                     appUI.Panel_Notice_Close();
-                    noticeTimer = 1;
-                    isNoticeOpen = false;
+                    appUI.ctx.noticeTimer = 1;
+                    appUI.ctx.isNoticeOpen = false;
                 }
             }
         }

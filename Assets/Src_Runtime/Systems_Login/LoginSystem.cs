@@ -77,12 +77,14 @@ namespace UF {
         }
 
         void LogicTick(float dt) {
-
+            UIDomain.isEnterGameButton(ctx.appUI);
         }
 
         void LastTick(float dt) {
 
         }
+
+
 
 
         public void Login_Binding() {

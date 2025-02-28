@@ -8,8 +8,8 @@ namespace UF {
         public int typeID;
         public int slotMax;
         public List<RoleTM> roleTMs;
-        public List<BulletTM> bulletAgrTMs;
-        public List<BulletTM> bulletIndTMs;
+        public List<BulletTM> bulletAgrTMs;//农业
+        public List<BulletTM> bulletIndTMs;//工业
         public List<BulletTM> bulletSciTMs;
 
         public List<RoleTM> roleEnemyTMs;
@@ -43,5 +43,27 @@ namespace UF {
         public void AddRoleEnemyTM(RoleTM roleTM) {
             roleEnemyTMs.Add(roleTM);
         }
+
+        public int GetRoleTMsCount() {
+            return roleTMs.Count;
+        }
+
+        public int GetBulletAgrTMsCount() {
+            return bulletAgrTMs.Count;
+        }
+
+        public int GetBulletIndTMsCount() {
+            return bulletIndTMs.Count;
+        }
+
+        public int GetBulletSciTMsCount() {
+            return bulletSciTMs.Count;
+        }
+
+        public int GetPropTMsCount() {
+            return bulletAgrTMs.Count + bulletIndTMs.Count;
+        }
+
+
     }
 }

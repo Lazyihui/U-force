@@ -40,9 +40,15 @@ namespace UF {
         public bool isTabDown;
         public bool isEscDown;
 
+        // temp
+        public bool isNoticeOpen;
+        public float noticeTimer;
+
 
         public UIContext() {
             isTabDown = false;
+            isNoticeOpen = false;
+            noticeTimer = 1;
         }
 
         public void Inject(Canvas screenCanvas, AssetsModule assetsCore) {
