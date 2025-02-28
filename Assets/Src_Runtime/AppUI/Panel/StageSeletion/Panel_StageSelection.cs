@@ -30,6 +30,10 @@ namespace UF.UIApplication {
         [SerializeField] Sprite spr_js;
         [SerializeField] Image img_keyPrompt;//键盘提示图片
 
+        // 放回按钮
+        [SerializeField] Button btn_back;
+        public Action OnBackHandle;
+
         // 
         int chapter;
         Dictionary<int, Button> chapterBtns;
@@ -46,6 +50,8 @@ namespace UF.UIApplication {
             btn_c3.onClick.AddListener(() => OnChapterClickHandle.Invoke(3));
             btn_c4.onClick.AddListener(() => OnChapterClickHandle.Invoke(4));
             btn_c5.onClick.AddListener(() => OnChapterClickHandle.Invoke(5));
+
+            btn_back.onClick.AddListener(() => OnBackHandle.Invoke());
 
             chapterBtns = new Dictionary<int, Button> {
                 {1, btn_c1},

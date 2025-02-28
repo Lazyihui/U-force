@@ -306,10 +306,11 @@ namespace UF {
 
         #region Rope
 
-        public static RopeEntity Rope_Create(AssetsModule assetsCore, IDService idService, Transform muzzle) {
+        public static RopeEntity Rope_Create(AssetsModule assetsCore, IDService idService, Vector2 muzzle) {
             GameObject prefab = assetsCore.Entity_GetRope();
-            GameObject go = GameObject.Instantiate(prefab, muzzle);
+            GameObject go = GameObject.Instantiate(prefab);
             RopeEntity rope = go.GetComponent<RopeEntity>();
+            rope.TF_Pos(muzzle);
             rope.idSig = new IDSignature(EntityType.Rope, idService.PickRopeID());
             rope.Ctor();
             return rope;

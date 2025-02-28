@@ -19,16 +19,27 @@ namespace UF {
 
         public Vector2 originalPos;
         public Vector2 targetPos;
+        public void Set_MoveTarget(Vector2 pos) {
+            targetPos = pos;
+        }
 
         public void Ctor() {
-            stretchLength = 30;
+            stretchLength = 15;
             stretchSpeed = 5;
             shorteningSpeed = 5;
             originalPos = rope.transform.position;
         }
 
-        public void UnSpawn(RopeEntity entity) {
+        public void TearDown(RopeEntity entity) {
             Destroy(entity.gameObject);
+        }
+
+        public void TF_Pos(Vector2 pos) {
+            transform.position = pos + new Vector2(0, 10);
+        }
+
+        public void Set_Pos(Vector2 pos) {
+            rope.transform.position = pos;
         }
 
         public void EnterStretch() {
