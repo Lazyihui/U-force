@@ -307,6 +307,19 @@ namespace UF {
                 appUI.Panel_Illustrated_Add(typeID, tm.sprite);
             }
         }
+
+        public static void Panel_TrainIllustrated_Open(AppUI appUI, TemplateMoudle templateMoudle) {
+            appUI.Panel_TrainIllustrated_Open();
+
+            templateMoudle.Stage_TryGet(500, out StageTM tm);
+            var props = tm.gameTM.sceneProps;
+            int len = props.Length;
+
+            for (int i = 0; i < len; i += 1) {
+                var prop = props[i];
+                appUI.Panel_TrainIllustrated_Add(prop.tm.typeID, prop.tm.sprite);
+            }
+        }
         #endregion
     }
 }

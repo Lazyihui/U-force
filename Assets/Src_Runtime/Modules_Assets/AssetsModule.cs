@@ -179,6 +179,11 @@ namespace UF {
             return panel;
         }
 
+        public GameObject Panel_GetTrainIllustrated() {
+            panels.TryGetValue("Panel_TrainIllustrated", out GameObject panel);
+            return panel;
+        }
+
 
         // HUD
         public GameObject HUD_GetProgressbar() {

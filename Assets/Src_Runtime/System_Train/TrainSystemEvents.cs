@@ -44,5 +44,19 @@ namespace UF {
                 OnTrainOverBackClickHandle();
             }
         }
+
+        public Action OnTrainIllusCloseClickHandle;
+        public void OnTrainIllusCloseClick() {
+            if (OnTrainIllusCloseClickHandle != null) {
+                OnTrainIllusCloseClickHandle();
+            }
+        }
+
+        public Action<int> OnTrainIllusCardClickHandle;
+        public void OnTrainIllusCardClick(int a) {
+            if (OnTrainIllusCardClickHandle != null) {
+                OnTrainIllusCardClickHandle(a);
+            }
+        }
     }
 }

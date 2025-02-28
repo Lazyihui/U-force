@@ -1168,5 +1168,54 @@ namespace UF {
             ctx.panel_Illustrated = null;
         }
         #endregion
+
+        #region TrainIllustrated
+        public void Panel_TrainIllustrated_Open() {
+            Panel_TrainIllustrated panel = ctx.panel_TrainIllustrated;
+
+            if (panel == null) {
+                GameObject prefab = ctx.assetsCore.Panel_GetTrainIllustrated();
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                panel = go.GetComponent<Panel_TrainIllustrated>();
+                panel.Ctor();
+
+                panel.OnCloseClickHandle = () => {
+                    eventCenter.OnTrainIllusCardClick();
+                };
+
+                panel.OnGameIllusCardClickHandle = (typeID) => {
+                    eventCenter.OnTrainIllusCardClick(typeID);
+                };
+            }
+            ctx.panel_TrainIllustrated = panel;
+            panel.Show();
+        }
+
+        public void Panel_TrainIllustrated_Add(int typeID, Sprite sprite) {
+            Panel_TrainIllustrated panel = ctx.panel_TrainIllustrated;
+
+            if (panel == null) { return; }
+
+            panel.Add(typeID, sprite);
+        }
+
+        public void Panel_TrainIllustrated_SetContent(Sprite sprite, string name, string description)
+        {
+            Panel_TrainIllustrated panel = ctx.panel_TrainIllustrated;
+
+            if (panel == null) { return; }
+
+            panel.SetContent(sprite, name, description);
+        }
+
+        public void Panel_TrainIllustrated_Close() {
+            Panel_TrainIllustrated panel = ctx.panel_TrainIllustrated;
+
+            if (panel == null) { return; }
+
+            panel.TearDown();
+            ctx.panel_TrainIllustrated = null;
+        }
+        #endregion
     }
 }

@@ -17,6 +17,8 @@ MonoBehaviour:
     typeName: "\u589E\u52A0\u65F6\u95F4"
     type: 3
     moveType: 0
+    sprite: {fileID: 21300000, guid: 5b7e0702032789e4e9aac23e78e2a5a8, type: 3}
+    feature: "\u6E38\u620F\u5269\u4F59\u65F6\u95F4\u589E\u52A030s"
     isPlayerProp: 0
     modPrefab: {fileID: 796010565688435010, guid: da1bfdeb484465b418b5593b98e8663e, type: 3}
     moveSpeed: 0

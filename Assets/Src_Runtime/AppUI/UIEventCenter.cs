@@ -376,5 +376,21 @@ namespace UF {
             }
         }
         #endregion
+
+        #region TrainIllustrated
+        public Action OnTrainIllusCloseClickHandle;
+        public void OnTrainIllusCardClick() {
+            if (OnTrainIllusCloseClickHandle != null) {
+                OnTrainIllusCloseClickHandle();
+            }
+        }
+
+        public Action<int> OnTrainIllusCardClickHandle;
+        public void OnTrainIllusCardClick(int a) {
+            if (OnTrainIllusCardClickHandle != null) {
+                OnTrainIllusCardClickHandle(a);
+            }
+        }
+        #endregion
     }
 }
