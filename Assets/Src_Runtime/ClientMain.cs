@@ -279,10 +279,10 @@ namespace UF {
 
             loginEvent.OnPlayer2ReadyClickHandle += () => {
                 if (hasPlayer) {
-                    appUI.Panel_Training_Select_Close();
                     appUI.Panel_Training_Select_AddPlayer();
-
                     appUI.Panel_Training_Select_TakeAll(out List<int> typeIDs);
+
+                    appUI.Panel_Training_Select_Close();
 
                     loginSystem.Exit();
                     trainSystem.Enter(typeIDs);
@@ -373,6 +373,16 @@ namespace UF {
                     UIDomain.Panel_StageSelectionEnter(appUI);
                 }
             };
+
+            gameEvent.OnGameIllusCloseClickHandle += () => {
+                appUI.Panel_Illustrated_Close();
+            };
+
+            gameEvent.OnGameIllusCardClickHandle += (int typeID) => {
+                templateModule.Role_TryGet(typeID, out RoleTM tm);
+
+                appUI.Panel_Illustrated_SetContent(tm.sprite, tm.typeName, tm.feature);
+            };
         }
         #endregion
 
@@ -391,7 +401,7 @@ namespace UF {
             };
 
             pauseEvent.OnPauseIllustratedHandle += () => {
-                Debug.Log("Illustrated");
+                UIDomain.Panel_Illustrated_Open(appUI, templateModule);
             };
 
             pauseEvent.OnPauseExitGameHandle += () => {
@@ -441,7 +451,7 @@ namespace UF {
             };
 
             trainEvent.OnTrainIllustratedClickHandle += () => {
-                Debug.Log("Train Illustrated");
+                UIDomain.Panel_TrainIllustrated_Open(appUI, templateModule);
             };
 
             trainEvent.OnTrainQuitClickHandle += () => {
@@ -458,6 +468,16 @@ namespace UF {
                 trainSystem.Exit();
                 loginSystem.Enter();
                 loginSystem.EnterPanel_Login();
+            };
+
+            trainEvent.OnTrainIllusCloseClickHandle += () => {
+                appUI.Panel_TrainIllustrated_Close();
+            };
+
+            trainEvent.OnTrainIllusCardClickHandle += (int typeID) => {
+                templateModule.Prop_TryGet(typeID, out var tm);
+
+                appUI.Panel_TrainIllustrated_SetContent(tm.sprite, tm.typeName, tm.feature);
             };
         }
         #endregion

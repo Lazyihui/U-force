@@ -30,6 +30,9 @@ namespace UF {
                 }
             }
 
+            // Stuff 测试抓取
+            StuffDoamin.Spawn(ctx, 100);
+
             owner = RoleDomain.SpawnByPos(ctx, selectedRoleTypeID, new Vector3(-15, 0, 0));
             game.OwnerIDsig = owner.idSig;
 

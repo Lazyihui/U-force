@@ -184,6 +184,14 @@ namespace UF.System_Train {
             eventCenter.OnTrainOverBackClickHandle += () => {
                 events.OnTrainOverBackClick();
             };
+
+            eventCenter.OnTrainIllusCloseClickHandle += () => {
+                events.OnTrainIllusCloseClick();
+            };
+
+            eventCenter.OnTrainIllusCardClickHandle += (int typeID) => {
+                events.OnTrainIllusCardClick(typeID);
+            };
         }
         #endregion
 

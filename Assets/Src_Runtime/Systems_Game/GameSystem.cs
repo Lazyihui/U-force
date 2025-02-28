@@ -228,6 +228,14 @@ namespace UF {
             eventCenter.OnGameOverHandle += (bool isWin) => {
                 events.OnGameOver(isWin);
             };
+
+            eventCenter.OnGameIllusCloseClickHandle += () => {
+                events.OnGameIllusCloseClick();
+            };
+
+            eventCenter.OnGameIllusCardClickHandle += (int typeID) => {
+                events.OnGameIllusCardClick(typeID);
+            };
         }
     }
 }

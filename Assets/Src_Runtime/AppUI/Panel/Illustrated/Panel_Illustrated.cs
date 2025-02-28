@@ -8,7 +8,7 @@ namespace UF {
     public class Panel_Illustrated : MonoBehaviour {
         [SerializeField] Panel_CardOneIllustrated oneCardPrefab;
         List<Panel_CardOneIllustrated> cards;
-        Transform group;
+        [SerializeField] Transform group;
 
         [SerializeField] Button btn_Close;
         public Action OnCloseClickHandle;
@@ -20,7 +20,13 @@ namespace UF {
         public Action<int> OnGameIllusCardClickHandle;
 
         public void Ctor() {
-            btn_Close.onClick.AddListener(() => OnCloseClickHandle?.Invoke());
+            cards = new List<Panel_CardOneIllustrated>();
+
+            btn_Close.onClick.AddListener(() => {
+                if (OnCloseClickHandle != null) {
+                    OnCloseClickHandle.Invoke();
+                }
+            });
         }
 
         public void Show() {
@@ -31,8 +37,7 @@ namespace UF {
             Destroy(gameObject);
         }
 
-        public void Add(int id, Sprite img)
-        {
+        public void Add(int id, Sprite img) {
             Panel_CardOneIllustrated card = Instantiate(oneCardPrefab, group);
             card.Ctor();
             card.Init(id, img);
@@ -43,12 +48,22 @@ namespace UF {
 
         void OnCardClick(int typeID) {
             OnGameIllusCardClickHandle?.Invoke(typeID);
+            SetButtonInter();
         }
 
         public void SetContent(Sprite sprite, string name, string description) {
             img_Sprite.sprite = sprite;
             text_Name.text = name;
             text_Description.text = description;
+        }
+
+        public void SetButtonInter() {
+            int len = cards.Count;
+
+            for (int i = 0; i < len; i++) {
+                var card = cards[i];
+                card.SetInterTrue();
+            }
         }
     }
 }

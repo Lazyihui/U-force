@@ -460,7 +460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -642,6 +642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oneCardPrefab: {fileID: 4838113407793676561, guid: fa08b0240d8d1864e8062403ce847447, type: 3}
+  group: {fileID: 8947531111120198507}
   btn_Close: {fileID: 747533674521780917}
   img_Sprite: {fileID: 7872665991157672691}
   text_Name: {fileID: 6332390474770156629}

@@ -39,5 +39,12 @@ namespace UF {
             gameObject.SetActive(true);
         }
 
+        public void TF_SetPos(Vector3 pos) {
+            transform.position = pos;
+        }
+
+        public Vector3 TF_GetPos() {
+            return transform.position;
+        }
     }
 }

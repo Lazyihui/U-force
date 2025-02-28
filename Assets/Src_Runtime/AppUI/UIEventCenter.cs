@@ -360,5 +360,37 @@ namespace UF {
             }
         }
         #endregion
+
+        #region Illustrated
+        public Action OnGameIllusCloseClickHandle;
+        public void OnGameIllusCardClick() {
+            if (OnGameIllusCloseClickHandle != null) {
+                OnGameIllusCloseClickHandle();
+            }
+        }
+
+        public Action<int> OnGameIllusCardClickHandle;
+        public void OnGameIllusCardClick(int a) {
+            if (OnGameIllusCardClickHandle != null) {
+                OnGameIllusCardClickHandle(a);
+            }
+        }
+        #endregion
+
+        #region TrainIllustrated
+        public Action OnTrainIllusCloseClickHandle;
+        public void OnTrainIllusCardClick() {
+            if (OnTrainIllusCloseClickHandle != null) {
+                OnTrainIllusCloseClickHandle();
+            }
+        }
+
+        public Action<int> OnTrainIllusCardClickHandle;
+        public void OnTrainIllusCardClick(int a) {
+            if (OnTrainIllusCardClickHandle != null) {
+                OnTrainIllusCardClickHandle(a);
+            }
+        }
+        #endregion
     }
 }
