@@ -62,7 +62,7 @@ namespace UF {
                     triggerIntervalTimer += triggerIntervalSec;
                     istrigger = true;
                 }
-                
+
             } else {
                 triggerIntervalTimer = 0;
                 isNextFrame = true;
@@ -85,7 +85,7 @@ namespace UF {
                     maintainTimer = 0;
                 }
             }
-             if (loopFlag.HasFlag(FrameLoopFlag.LoopWhenTimeEnd)) {
+            if (loopFlag.HasFlag(FrameLoopFlag.LoopWhenTimeEnd)) {
                 if (maintainTimer <= 0) {
                     isDone = true;
                 }

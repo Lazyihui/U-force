@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace UF {
@@ -14,6 +15,11 @@ namespace UF {
 
         public static BulletEntity SpawnByRole_Spawner(GameSystemContext ctx, RoleEntity role, BulletSpawnerTM spawnerTM) {
             // TODO:生成位置
+            Debug.Assert(spawnerTM.bulletSo != null, "spawnerTM.bulletSo is null");
+            Debug.Assert(spawnerTM.spawnPos != null, "spawnerTM.spawnPos is null");
+            Debug.Assert(spawnerTM.spawnDir != null, "spawnerTM.spawnDir is null");
+            Debug.Assert(spawnerTM.bulletSo.tm != null, "spawnerTM.bulletSo.tm is null");
+
             var BulletEntity = BulletDomain.Spawn(ctx, spawnerTM.bulletSo.tm.typeID, spawnerTM.spawnPos.position, spawnerTM.spawnDir.position);
             return BulletEntity;
         }
@@ -24,7 +30,6 @@ namespace UF {
         }
 
         public static void UnSpawn(GameSystemContext ctx, BulletEntity bullet, RoleEntity role) {
-            UnSpawn_Skill(ctx, bullet, role);
             ctx.bulletRepository.Remove(bullet);
             bullet.TearDown();
         }
@@ -42,9 +47,11 @@ namespace UF {
 
         #region FSM
         public static void FSM_All_Execute(GameSystemContext ctx, BulletEntity bullet, float dt) {
-            if (bullet.type == BulletMoveType.Shaped) {
-                Loco_Shaped(ctx, bullet);
-            }
+            // if (bullet.type == BulletMoveType.Shaped) {
+            //     Loco_Shaped(ctx, bullet);
+            // }
+
+            Frames_Tick(ctx, bullet, dt);
         }
         #endregion
 
@@ -85,47 +92,62 @@ namespace UF {
                 }
             }
         }
+        #endregion
+
+        #region  Frame:Tick 
+        public static void Frames_Tick(GameSystemContext ctx, BulletEntity bullet, float dt) {
+
+            if (bullet.IsDead()) {
+                return;
+            }
+
+            ref int frameIndex = ref bullet.frameIndex;
+            List<BulletFrameModel> frames = bullet.frames;
+            var frame = frames[frameIndex];
+
+            frame.loopModel.Tick(dt, out bool istrigger, out bool isNextFrame);
+
+            if (istrigger) {
+                Debug.Log("istrigg");
+                BulletDomain.Frame_Acting(ctx, bullet, frame, dt);
+            }
+
+            if (isNextFrame) {
+                frameIndex += 1;
+            }
+
+        }
+
+        #endregion
+
+        #region Frame:Acting
+
+        static void Frame_Acting(GameSystemContext ctx, BulletEntity bullet, BulletFrameModel frame, float dt) {
+
+            if (frame.hasBulletBehaviour) {
+                Debug.LogWarning("有角色行为");
+                BulletBehaviour_Acting(ctx, bullet, frame.bulletBehaviourModel);
+            }
+        }
+
+        #endregion
+
+        #region  BulletBehaviour
+
+        static void BulletBehaviour_Acting(GameSystemContext ctx, BulletEntity bullet, BulletBehaviourModel model) {
+
+            if (model.isMove) {
+                // 正常移动
+                Loco_Shaped(ctx, bullet);
+            }
+
+        }
 
         #endregion
 
         #region 技能(子弹效果)
         static void UnSpawn_Skill(GameSystemContext ctx, BulletEntity bullet, RoleEntity role) {
-            switch (bullet.skillType) {
-                case BulletSkillType.Boom:
-                    Skill_Boom(ctx, bullet);
-                    break;
 
-                case BulletSkillType.Slow:
-                    Skill_Slow(ctx, bullet, role);
-                    break;
-
-                case BulletSkillType.Stop:
-                    Skill_Stop(ctx, bullet);
-                    break;
-
-                case BulletSkillType.Down:
-                    Skill_Down(ctx, bullet, role);
-                    break;
-
-                case BulletSkillType.Appear:
-                    Skill_Appear(ctx, bullet);
-                    break;
-
-                case BulletSkillType.Back:
-                    Skill_Back(ctx, bullet, role);
-                    break;
-
-                case BulletSkillType.Elec:
-                    Skill_Elec(ctx, bullet);
-                    break;
-
-                case BulletSkillType.Converge:
-                    Skill_Converge(ctx, bullet);
-                    break;
-                    
-                default:
-                    break;
-            }
         }
 
         static void Skill_Boom(GameSystemContext ctx, BulletEntity bullet) {

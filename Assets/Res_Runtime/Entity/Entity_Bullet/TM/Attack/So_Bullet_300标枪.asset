@@ -15,7 +15,7 @@ MonoBehaviour:
   tm:
     typeID: 300
     typeName: "Bullet300\u6807\u67AA"
-    hp: 0
+    hp: 100
     hitTimes: 5
     attackDamage: 5
     isBomb: 0
@@ -28,3 +28,5 @@ MonoBehaviour:
     modPrefab: {fileID: 4840816823108615241, guid: 9ade10b510b0edf47886b8f17e6a7f79, type: 3}
     sprite: {fileID: 21300000, guid: 83ef431b5d7e2074790282d93009725c, type: 3}
     content: "\u6807\u67AA"
+    skillType: 0
+    frames: []

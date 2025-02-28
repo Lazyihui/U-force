@@ -1,10 +1,10 @@
 using System;
 
-namespace UF
-{
+namespace UF {
     public enum BulletSkillType // 子弹技能(效果)
     {
         None,
+        Move, // 直线移动
         Boom, // 爆炸
         Slow, // 减速
         Stop, // 停顿 + 持续伤害

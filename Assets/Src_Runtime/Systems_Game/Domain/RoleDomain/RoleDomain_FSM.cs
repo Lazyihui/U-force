@@ -123,6 +123,7 @@ namespace UF {
 
             var action = frames[stateModel.frameIndex];
             // RoleDomain.Skillor_Act_Move(ctx, role, skillor, action, dt);
+            
             action.loopModel.Tick(dt, out bool istrigger, out bool isNextFrame);
 
             if (istrigger) {

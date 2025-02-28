@@ -32,5 +32,10 @@ namespace UF {
         public string content;
         
         public BulletSkillType skillType;
+
+        [Title("Frame")]
+        public BulletFrameTM[] frames;
+
+        
     }
 }

@@ -188,16 +188,19 @@ namespace UF {
             GameObject go = GameObject.Instantiate(prefab);
             BulletEntity bullet = go.GetComponent<BulletEntity>();
             bullet.Reuse();
+            bullet.Ctor();
+
 
             // - Frames
-            // var frameTMs = tm.frames;
-            // if (frameTMs != null) {
-            //     for (int i = 0; i < frameTMs.Length; i += 1) {
-            //         var frameTM = frameTMs[i];
-            //         var frame = BulletFrame_Create(poolService, frameTM);
-            //         bullet.frames.Add(frame);
-            //     }
-            // }
+            var frameTMs = tm.frames;
+            if (frameTMs != null) {
+                for (int i = 0; i < frameTMs.Length; i += 1) {
+                    var frameTM = frameTMs[i];
+                    var frame = BulletFrame_Create(frameTM);
+                    Debug.Assert(bullet.frames != null, "bullet.Frames ==null");
+                    bullet.frames.Add(frame);
+                }
+            }
             bullet.frameIndex = 0;
 
             //  - mod
@@ -221,7 +224,6 @@ namespace UF {
 
 
             bullet.Inject(mod);
-            bullet.Ctor();
 
             bullet.TF_SetPosition(pos);
             bullet.TF_SetRotation(dir);
@@ -231,6 +233,16 @@ namespace UF {
         }
 
         #endregion
+
+        #region Bullet Frame: Create
+        public static BulletFrameModel BulletFrame_Create(in BulletFrameTM frameTM) {
+            var frame = new BulletFrameModel();
+            frame.Reset();
+            frame.FromTM(frameTM);
+            return frame;
+        }
+        #endregion
+
 
         public static MapEntity Map_Create(AssetsModule assetsCore, IDService idService, GameObject mapPrefab) {
             GameObject go = GameObject.Instantiate(mapPrefab);

@@ -32,7 +32,7 @@ namespace UF {
         public float damageRange;//伤害范围
 
         // -Frames
-        public List<BulletFrameMod> frames;
+        public List<BulletFrameModel> frames;
         public int frameIndex;
 
         // -Interaction
@@ -54,11 +54,9 @@ namespace UF {
 
         public bool IsDead() {
             bool isDead = hp <= 0;
-            // TODO:L
-            /* 这里还没弄懂
+            // Debug.Log(hp + frameIndex + hitMaxTimes);
             isDead |= hitTimes < 0;
             isDead |= frameIndex >= frames.Count;
-            */
             return isDead;
         }
 
@@ -69,11 +67,16 @@ namespace UF {
         #region  Locomotion
 
         public void Loco_Shaped() {
+            moveSpeed *= 5;
+
             // 向右移动
             rb.velocity = new Vector2(1, 0) * moveSpeed;
+            Debug.Log("movespeed" + moveSpeed);
         }
 
         public void Loco_ToLeft() {
+            moveSpeed *= 5;
+
             rb.velocity = new Vector2(-1, 0) * moveSpeed;
         }
 
@@ -83,10 +86,8 @@ namespace UF {
         #endregion
 
         public void Ctor() {
-            frames = new List<BulletFrameMod>();
+            frames = new List<BulletFrameModel>();
             targetComponent = new BulletTragetComponent();
-
-            moveSpeed *= 5;
         }
 
         public void Inject(BulletMod mod) {
@@ -112,7 +113,7 @@ namespace UF {
 
         #region frames
 
-        public bool Frame_TryGetCurrent(out BulletFrameMod frame) {
+        public bool Frame_TryGetCurrent(out BulletFrameModel frame) {
             if (frameIndex >= frames.Count) {
                 frame = null;//如果超出边界就返回null
                 return false;
