@@ -229,10 +229,12 @@ namespace UF {
         #region 子弹想行为
 
         static void Bullet_BoomStart(GameSystemContext ctx, BulletEntity bullet) {
+            // 写完
             Debug.Log("爆炸");
             bullet.isStartBoomDamege = true;
         }
         static void Bullet_ContinuousDamageStart(GameSystemContext ctx, BulletEntity bullet) {
+            // 写完
             Debug.Log("停止持续伤害");
             bullet.isStartContinueDamege = true;
         }
@@ -249,9 +251,6 @@ namespace UF {
             float moveSpeed = attaCom.GetMoveSpeed();
             attaCom.SetMoveSpeed(moveSpeed / 2);
         }
-        static void Skill_Down(GameSystemContext ctx, BulletEntity bullet, RoleEntity role) {
-            role.isControlledDown = true;
-        }
 
         static void Bullet_Appear(GameSystemContext ctx, BulletEntity bullet) {
             Debug.Log("现形");
@@ -261,15 +260,17 @@ namespace UF {
             Debug.Log("隐身 次状态不可以攻击");
         }
 
+        static void Skill_Converge(GameSystemContext ctx, BulletEntity bullet) {
+            Debug.Log("汇聚");
+        }
+
+        static void Skill_Down(GameSystemContext ctx, BulletEntity bullet, RoleEntity role) {
+            role.isControlledDown = true;
+        }
         static void Skill_Back(GameSystemContext ctx, BulletEntity bullet, RoleEntity role) {
             role.isControlledRight = true;
         }
 
-
-
-        static void Skill_Converge(GameSystemContext ctx, BulletEntity bullet) {
-            Debug.Log("汇聚");
-        }
         #endregion
     }
 }

@@ -31,7 +31,7 @@ MonoBehaviour:
     feature: "\u67AA\u5C04\u51FB"
     skill: 
     restraint: 
-    isMinion: 0
+    isMinion: 1
     restBullet: []
     restKill: []
     restPlayer: []

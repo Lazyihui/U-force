@@ -17,7 +17,6 @@ namespace UF {
 
         [SerializeField] public Transform bodyRoot; // 子弹生成的根节点        
 
-        public BulletTragetComponent targetComponent;//暂时没用到
 
         // -life
         public int hp;
@@ -30,11 +29,10 @@ namespace UF {
         public float damageInterval;//伤害间隔
         public float damageTimer;//伤害计时器
 
-        // 
+        public bool isMakeBulletAppear;//是否生使子弹出现
+        // temp bool
         public bool isStartContinueDamege;//是否开始持续伤害
         public bool isStartBoomDamege;//是否开始爆炸伤害
-
-
 
         public float damageRange;//伤害范围
 
@@ -91,7 +89,6 @@ namespace UF {
 
         public void Ctor() {
             frames = new List<BulletFrameModel>();
-            targetComponent = new BulletTragetComponent();
         }
 
         public void Inject(BulletMod mod) {
@@ -112,7 +109,6 @@ namespace UF {
 
         public void Release() {
             gameObject.SetActive(false);
-            targetComponent.Release();
         }
 
         #region frames

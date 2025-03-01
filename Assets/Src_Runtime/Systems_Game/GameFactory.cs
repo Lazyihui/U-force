@@ -60,6 +60,10 @@ namespace UF {
                 }
             }
 
+            // -Feature
+            var featureCom = role.FeatureComponent;
+            featureCom.SetFeature(tm.featureType);
+
 
             return role;
         }
@@ -220,6 +224,7 @@ namespace UF {
             bullet.damageInterval = tm.damageInterval;
             bullet.damageTimer = tm.damageTimer;
             bullet.damageRange = tm.damageRange;
+            bullet.isMakeBulletAppear = tm.isMakeBulletAppear;
 
 
             bullet.Inject(mod);

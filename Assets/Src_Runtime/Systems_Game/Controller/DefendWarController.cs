@@ -88,8 +88,6 @@ namespace UF {
             }
 
             // Player的逻辑
-
-
             var fsm = owner.FSMComponent;
             var state = fsm.Status;
             var attrCom = owner.AttributeComponent;

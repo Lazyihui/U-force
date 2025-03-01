@@ -58,6 +58,10 @@ namespace UF {
         RoleAttributeComponent attributeComponent;
         public RoleAttributeComponent AttributeComponent => attributeComponent;
 
+        // -Feature//特性
+        RoleFeatureComponent featureComponent;
+        public RoleFeatureComponent FeatureComponent => featureComponent;
+
         // 训练营
         public T_RoleType t_roleType;
 
@@ -74,7 +78,7 @@ namespace UF {
             moveComponent = new RoleMoveComponent();
             spawnerPosComponent = new RoleSpawnerPosComponent();
             attributeComponent = new RoleAttributeComponent();
-
+            featureComponent = new RoleFeatureComponent();
             moveComponent.Inject(rb);
 
             isControlledDown = false;
@@ -228,6 +232,18 @@ namespace UF {
 
             return result;
         }
+
+        #region Feature
+
+        public void Set_SpriteAppear() {
+            mod.Set_SpriteAppear();
+        }
+
+        public void Set_SpriteDisappear() {
+            mod.Set_SpriteDisappear();
+        }
+
+        #endregion
 
     }
 }

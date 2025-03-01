@@ -39,6 +39,12 @@ namespace UF {
             RoleDomain.FallingtodeathCheck(ctx, role);
             RoleDomain.IsDeadState(ctx, role);
 
+            var feaCom = role.FeatureComponent;
+            
+            if (feaCom.featureType == FeatureType.appear) {
+                role.Set_SpriteAppear();
+            }
+
         }
 
         public static void FSM_All_Pause(RoleEntity role) {
@@ -123,7 +129,7 @@ namespace UF {
 
             var action = frames[stateModel.frameIndex];
             // RoleDomain.Skillor_Act_Move(ctx, role, skillor, action, dt);
-            
+
             action.loopModel.Tick(dt, out bool istrigger, out bool isNextFrame);
 
             if (istrigger) {
