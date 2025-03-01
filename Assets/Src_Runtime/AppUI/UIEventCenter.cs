@@ -368,6 +368,29 @@ namespace UF {
         }
         #endregion
 
+        #region Training Back
+        public Action OnTrainBackCloseClickHandle;
+        public void OnTrainBackCloseClick() {
+            if (OnTrainBackCloseClickHandle != null) {
+                OnTrainBackCloseClickHandle();
+            }
+        }
+
+        public Action OnTrainBackContinueClickHandle;
+        public void OnTrainBackContinueClick() {
+            if (OnTrainBackContinueClickHandle != null) {
+                OnTrainBackContinueClickHandle();
+            }
+        }
+
+        public Action OnTrainBackQuitClickHandle;
+        public void OnTrainBackQuitClick() {
+            if (OnTrainBackQuitClickHandle != null) {
+                OnTrainBackQuitClickHandle();
+            }
+        }
+        #endregion
+
         #region Illustrated
         public Action OnGameIllusCloseClickHandle;
         public void OnGameIllusCardClick() {

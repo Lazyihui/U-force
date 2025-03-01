@@ -28,38 +28,53 @@ namespace UF {
 
         #region BackSelection
         public Action OnCloseWarningHandle;
-        public void OnCloseWarning()
-        {
-            if (OnCloseWarningHandle != null)
-            {
+        public void OnCloseWarning() {
+            if (OnCloseWarningHandle != null) {
                 OnCloseWarningHandle();
             }
         }
 
         public Action OnContinueWarningHandle;
-        public void OnContinueWarning()
-        {
-            if (OnContinueWarningHandle != null)
-            {
+        public void OnContinueWarning() {
+            if (OnContinueWarningHandle != null) {
                 OnContinueWarningHandle();
             }
         }
 
         public Action OnResetWarningHandle;
-        public void OnResetWarning()
-        {
-            if (OnResetWarningHandle != null)
-            {
+        public void OnResetWarning() {
+            if (OnResetWarningHandle != null) {
                 OnResetWarningHandle();
             }
         }
 
         public Action OnQuitWarningHandle;
-        public void OnQuitWarning()
-        {
-            if (OnQuitWarningHandle != null)
-            {
+        public void OnQuitWarning() {
+            if (OnQuitWarningHandle != null) {
                 OnQuitWarningHandle();
+            }
+        }
+        #endregion
+
+        #region Train Back
+        public Action OnTrainBackCloseClickHandle;
+        public void OnTrainBackCloseClick() {
+            if (OnTrainBackCloseClickHandle != null) {
+                OnTrainBackCloseClickHandle();
+            }
+        }
+
+        public Action OnTrainBackContinueClickHandle;
+        public void OnTrainBackContinueClick() {
+            if (OnTrainBackContinueClickHandle != null) {
+                OnTrainBackContinueClickHandle();
+            }
+        }
+
+        public Action OnTrainBackQuitClickHandle;
+        public void OnTrainBackQuitClick() {
+            if (OnTrainBackQuitClickHandle != null) {
+                OnTrainBackQuitClickHandle();
             }
         }
         #endregion

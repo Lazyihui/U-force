@@ -245,8 +245,7 @@ namespace UF {
 
             bool isClicked = false;
             loginEvent.OnViewClickHandle += () => {
-                Debug.Log("ViewClick");
-                appUI.Panel_WatchTower_SetCursor(); // 如果不点击瞭望塔头像, 会一直变化光标, 之后看看怎么改
+                appUI.Panel_WatchTower_SetCursor(); // TODO: 如果不点击瞭望塔头像, 会一直变化光标, 之后看看怎么改
                 isClicked = true;
             };
 
@@ -281,6 +280,7 @@ namespace UF {
                 if (hasPlayer) {
                     appUI.Panel_Training_Select_AddPlayer();
                     appUI.Panel_Training_Select_TakeAll(out List<int> typeIDs);
+                    appUI.selectedInTrain.typeIDs = typeIDs;
 
                     appUI.Panel_Training_Select_Close();
 
@@ -455,6 +455,28 @@ namespace UF {
                 UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule);
             };
 
+            pauseEvent.OnTrainBackCloseClickHandle += () => {
+                appUI.Panel_Training_Back_Close();
+
+                pauseSystem.Exit();
+                trainSystem.ExitPause();
+            };
+
+            pauseEvent.OnTrainBackContinueClickHandle += () => {
+                appUI.Panel_Training_Back_Close();
+
+                pauseSystem.Exit();
+                trainSystem.ExitPause();
+            };
+
+            pauseEvent.OnTrainBackQuitClickHandle += () => {
+                trainSystem.ClearGame();
+                trainSystem.Exit();
+                loginSystem.Enter();
+
+                appUI.Panel_Training_Back_Close();
+                UIDomain.Panel_Training_Select_Open(appUI, assetsModule, templateModule);
+            };
         }
         #endregion
 
@@ -479,8 +501,8 @@ namespace UF {
             };
 
             trainEvent.OnTrainQuitClickHandle += () => {
-                Debug.Log("Train Quit");
-                // Button TODO
+                appUI.Panel_Training_Back_Open();
+                appUI.Panel_Training_Pause_Close();
             };
 
             trainEvent.OnTrainOverResetClickHandle += () => {

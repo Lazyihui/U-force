@@ -10,12 +10,14 @@ namespace UF {
         public UIContext ctx;
         public UIEventCenter eventCenter;
         public SelectedInFormation selectedInFormation;
+        public SelectedInFormation selectedInTrain;
         public PlayerEntity playerSaveData;
 
         public void Ctor() {
             ctx = new UIContext();
             eventCenter = new UIEventCenter();
             selectedInFormation = new SelectedInFormation();
+            selectedInTrain = new SelectedInFormation();
         }
 
         public void Reset() {
@@ -1124,6 +1126,43 @@ namespace UF {
         }
         #endregion
 
+        #region Training Back
+        public void Panel_Training_Back_Open() {
+            Panel_Training_Back panel = ctx.panel_Training_Back;
+
+            if (panel == null) {
+                GameObject prefab = ctx.assetsCore.Panel_GetTraining_Back();
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                panel = go.GetComponent<Panel_Training_Back>();
+                panel.Ctor();
+
+                panel.OnCloseClickHandle = () => {
+                    eventCenter.OnTrainBackCloseClick();
+                };
+
+                panel.OnContinueClickHandle = () => {
+                    eventCenter.OnTrainBackContinueClick();
+                };
+
+                panel.OnQuitClickHandle = () => {
+                    eventCenter.OnTrainBackQuitClick();
+                };
+            }
+
+            ctx.panel_Training_Back = panel;
+            panel.Show();
+        }
+
+        public void Panel_Training_Back_Close() {
+            Panel_Training_Back panel = ctx.panel_Training_Back;
+
+            if (panel == null) { return; }
+
+            panel.TearDown();
+            ctx.panel_Training_Back = null;
+        }
+        #endregion
+
         #region Illustrated
         public void Panel_Illustrated_Open() {
             Panel_Illustrated panel = ctx.panel_Illustrated;
@@ -1154,8 +1193,7 @@ namespace UF {
             panel.Add(typeID, sprite);
         }
 
-        public void Panel_Illustrated_SetContent(Sprite sprite, string name, string description)
-        {
+        public void Panel_Illustrated_SetContent(Sprite sprite, string name, string description) {
             Panel_Illustrated panel = ctx.panel_Illustrated;
 
             if (panel == null) { return; }
@@ -1203,8 +1241,7 @@ namespace UF {
             panel.Add(typeID, sprite);
         }
 
-        public void Panel_TrainIllustrated_SetContent(Sprite sprite, string name, string description)
-        {
+        public void Panel_TrainIllustrated_SetContent(Sprite sprite, string name, string description) {
             Panel_TrainIllustrated panel = ctx.panel_TrainIllustrated;
 
             if (panel == null) { return; }
