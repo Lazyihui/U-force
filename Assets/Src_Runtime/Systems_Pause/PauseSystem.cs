@@ -116,6 +116,19 @@ namespace UF {
             eventCenter.OnQuitWarningClickHandle += () => {
                 events.OnQuitWarning();
             };
+
+            // Train Back
+            eventCenter.OnTrainBackCloseClickHandle += () => {
+                events.OnTrainBackCloseClick();
+            };
+
+            eventCenter.OnTrainBackContinueClickHandle += () => {
+                events.OnTrainBackContinueClick();
+            };
+
+            eventCenter.OnTrainBackQuitClickHandle += () => {
+                events.OnTrainBackQuitClick();
+            };
         }
     }
 }
