@@ -39,6 +39,14 @@ namespace UF {
             RoleDomain.FallingtodeathCheck(ctx, role);
             RoleDomain.IsDeadState(ctx, role);
 
+            var feaCom = role.FeatureComponent;
+            if (feaCom.featureType == FeatureType.DisAppear) {
+                // 1.怪物隐身
+                role.Set_SpriteAppear();
+                // 2.怪物不可被普通子弹攻击到
+
+            }
+
         }
 
         public static void FSM_All_Pause(RoleEntity role) {
@@ -123,7 +131,7 @@ namespace UF {
 
             var action = frames[stateModel.frameIndex];
             // RoleDomain.Skillor_Act_Move(ctx, role, skillor, action, dt);
-            
+
             action.loopModel.Tick(dt, out bool istrigger, out bool isNextFrame);
 
             if (istrigger) {

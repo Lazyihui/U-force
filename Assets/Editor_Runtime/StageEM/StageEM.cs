@@ -27,6 +27,7 @@ namespace UF {
             // 引用所有的TM
             SaveRole();
             SaveTower();
+            SaveStuff();
         }
 
 
@@ -60,6 +61,22 @@ namespace UF {
             }
 
             so.tm.towerSpawns = towersTM;
+            EditorUtility.SetDirty(so);
+        }
+
+        public void SaveStuff() {
+            StuffSpawnerEM[] stuffsEM = GetComponentsInChildren<StuffSpawnerEM>();
+            Debug.Log("stuffEM.Length = " + stuffsEM.Length);
+            StuffSpawnerTM[] stuffsTM = new StuffSpawnerTM[stuffsEM.Length];
+
+            for (int i = 0; i < stuffsEM.Length; i++) {
+                StuffSpawnerEM em = stuffsEM[i];
+
+                em.Save();
+                stuffsTM[i] = em.spawnTM;
+            }
+
+            so.tm.stuffSpawns = stuffsTM;
             EditorUtility.SetDirty(so);
         }
 

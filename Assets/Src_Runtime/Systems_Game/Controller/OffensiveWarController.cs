@@ -61,7 +61,7 @@ namespace UF {
             for (int i = 0; i < bulletLen; i += 1) {
                 BulletEntity bullet = bullets[i];
                 BulletDomain.FSM_All_Execute(ctx, bullet, dt);
-                BulletDomain.CheckUnSpawn(ctx, bullet);
+                BulletDomain.CheckUnSpawn(ctx, bullet,dt);
             }
 
 

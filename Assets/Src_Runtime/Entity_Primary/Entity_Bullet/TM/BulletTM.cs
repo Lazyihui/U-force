@@ -33,6 +33,10 @@ namespace UF {
         public Sprite sprite;
         public string content;
 
+        [Title("子弹特性")]
+        public bool isMakeBulletAppear;
+
+
         [Title("Frame")]
         public BulletFrameTM[] frames;
 

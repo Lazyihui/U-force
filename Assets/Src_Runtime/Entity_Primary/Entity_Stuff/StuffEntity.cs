@@ -11,7 +11,6 @@ namespace UF {
         [SerializeField] public Transform bodyRoot;
 
         [SerializeField] public Rigidbody2D rb;
-
         public IDSignature idSig;
         public int typeID;
         public string typeName;
@@ -38,7 +37,12 @@ namespace UF {
 
         public void TF_SetPos(Vector3 pos) {
             transform.position = pos;
-            Debug.Log(pos);
+        }
+        public void TF_SetRot(Vector3 rot) {
+            transform.eulerAngles = rot;
+        }
+        public void TF_SetRot(Vector3 rot) {
+            transform.eulerAngles = rot;
         }
 
         public Vector3 TF_GetPos() {

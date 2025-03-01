@@ -15,7 +15,14 @@ MonoBehaviour:
   tm:
     stageID: 11
     roleSpawns: []
-    towerSpawns: []
+    towerSpawns:
+    - so: {fileID: 11400000, guid: d8699dbf713c3fa4fba559e682df9a00, type: 2}
+      position: {x: 10, y: 0, z: 0}
+      rotation: {x: -0, y: 0, z: 0}
+    stuffSpawns:
+    - so: {fileID: 11400000, guid: ce581359125e29d4ba87fb9a68548e8f, type: 2}
+      position: {x: -5.14, y: 0, z: 0}
+      rotation: {x: -0, y: 0, z: 0}
     mapPrefab: {fileID: 5583965160097215281, guid: 26b5c1f3a71115b43a861c018797b1c3, type: 3}
     gameTM:
       isDefendWar: 0
@@ -38,3 +45,5 @@ MonoBehaviour:
       bossSpawnMinionIntervalTimer: 0
       bossProgress: 0
       isEliminateWar: 1
+      isTrainingWar: 0
+      sceneProps: []

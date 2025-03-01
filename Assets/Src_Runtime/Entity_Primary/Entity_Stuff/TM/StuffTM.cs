@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using TriInspector;
 
 namespace UF {
@@ -18,6 +19,7 @@ namespace UF {
 
         [Title("mod")]
         public StuffMod modPrefab;
+        public Sprite sprite;
         public string description;
 
     }

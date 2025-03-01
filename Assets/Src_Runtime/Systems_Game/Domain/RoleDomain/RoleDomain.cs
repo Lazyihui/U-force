@@ -275,6 +275,7 @@ namespace UF {
                 role.SetRoleState(RoleState.Dead);
             }
         }
+        
         // 下落过程的检测 检测到地面状态变为死亡 和检测是否碰到敌人
         public static void FallingtodeathCheck(GameSystemContext ctx, RoleEntity role) {
             if (role.state != RoleState.Fall) {

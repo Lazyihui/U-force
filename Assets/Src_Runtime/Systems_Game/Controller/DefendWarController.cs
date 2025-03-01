@@ -88,8 +88,6 @@ namespace UF {
             }
 
             // Player的逻辑
-
-
             var fsm = owner.FSMComponent;
             var state = fsm.Status;
             var attrCom = owner.AttributeComponent;
@@ -122,7 +120,7 @@ namespace UF {
             for (int i = 0; i < bulletLen; i += 1) {
                 BulletEntity bullet = bullets[i];
                 BulletDomain.FSM_All_Execute(ctx, bullet, dt);
-                BulletDomain.CheckUnSpawn(ctx, bullet);
+                BulletDomain.CheckUnSpawn(ctx, bullet, dt);
             }
 
 
