@@ -121,6 +121,7 @@ namespace UF {
 
             loginEvent.OnSettingHandle += () => {
                 Debug.Log("设置");
+                // Button TODO
             };
 
             loginEvent.OnQuitHandle += () => {
@@ -197,12 +198,12 @@ namespace UF {
                 // 放到UIDomain里
                 appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
 
+                appUI.selectedInFormation.typeIDs = typeIDs;
                 int stageID = appUI.playerSaveData.GetStageCurID();
                 int roleTypeID = appUI.selectedInFormation.roleSelectedTypeID;
                 int sciType = appUI.selectedInFormation.scienceTypeID;
                 int slotMax = appUI.playerSaveData.GetSlotMax();
 
-                appUI.Reset();
                 appUI.Panel_CardSelection_Close();
                 appUI.Panel_WatchTower_Close();
                 loginSystem.Exit();
@@ -238,7 +239,6 @@ namespace UF {
             };
 
             loginEvent.OnCardSelectedClickHandle += (typeID) => {
-
                 appUI.Panel_CardSelection_RemoveCardSelected(typeID);
                 appUI.Panel_OneCardSelection_UnLock(typeID);
             };
@@ -250,7 +250,7 @@ namespace UF {
                 isClicked = true;
             };
 
-            loginEvent.OnSelectionWatchCardClickHandle += (typeID) => { // typeID 应该是传进来的
+            loginEvent.OnSelectionWatchCardClickHandle += (typeID) => {
                 if (isClicked) {
                     Debug.Log("SelectionWatchCardClick " + typeID);
                     appUI.Panel_WatchTower_ClearCursor();
@@ -297,12 +297,19 @@ namespace UF {
                 appUI.Panel_Training_Tip_Open();
             };
 
+            loginEvent.OnTrainBackClickHandle += () => {
+                appUI.Panel_Training_Select_Close();
+                appUI.Panel_Login_Open();
+            };
+
             loginEvent.OnSelectionTrainCardClickHandle += (typeID) => {
                 Debug.Log("SelectionTrainCardClick " + typeID);
                 // 这样写感觉model没什么意义
                 templateModule.Role_TryGet(typeID, out RoleTM roleTM);
-                // TODO: 武器速度 伤害 攻击速度
-                appUI.Panel_Training_Select_SetPlayer(typeID, roleTM.sprite, roleTM.feature, "0", "0", "0");
+                var skill = roleTM.skillorSoArray[0];
+                templateModule.Bullet_TryGet(skill.tm.typeID, out BulletTM bulletTM);
+
+                appUI.Panel_Training_Select_SetPlayer(typeID, roleTM.sprite, roleTM.feature, bulletTM.moveSpeed.ToString(), bulletTM.attackDamage.ToString(), skill.tm.cd.ToString());
 
                 hasPlayer = true;
             };
@@ -367,6 +374,7 @@ namespace UF {
 
                 if (isWin) {
                     Debug.Log("进入下一关 进入备战(选卡片)页面");
+                    appUI.Reset();
                     gameSystem.ClearGame();
                     gameSystem.Exit();
                     loginSystem.Enter();
@@ -423,12 +431,28 @@ namespace UF {
                 gameSystem.Continue();
             };
 
-            pauseEvent.OnResetWarningHandle += () => {
-                Debug.Log("重新开始此关");
+            pauseEvent.OnResetWarningHandle += () => { // 重新开始
+                var typeIDs = appUI.selectedInFormation.typeIDs;
+                int stageID = appUI.playerSaveData.GetStageCurID();
+                int roleTypeID = appUI.selectedInFormation.roleSelectedTypeID;
+                int sciType = appUI.selectedInFormation.scienceTypeID;
+                int slotMax = appUI.playerSaveData.GetSlotMax();
+
+                appUI.Panel_BackSelection_Close();
+
+                gameSystem.Exit();
+                gameSystem.ClearGame();
+                pauseSystem.Exit();
+                gameSystem.Enter(stageID, roleTypeID, typeIDs.ToArray(), sciType);
             };
 
             pauseEvent.OnQuitWarningHandle += () => {
-                Debug.Log("进入备战(选卡片)页面");
+                gameSystem.ClearGame();
+                gameSystem.Exit();
+                loginSystem.Enter();
+
+                appUI.Panel_BackSelection_Close();
+                UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule);
             };
 
         }
@@ -456,6 +480,7 @@ namespace UF {
 
             trainEvent.OnTrainQuitClickHandle += () => {
                 Debug.Log("Train Quit");
+                // Button TODO
             };
 
             trainEvent.OnTrainOverResetClickHandle += () => {

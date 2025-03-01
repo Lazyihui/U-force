@@ -189,6 +189,10 @@ namespace UF {
                 events.OnTrainTipClick();
             };
 
+            eventCenter.OnTrainBackClickHandle += () => { // 返回主页面
+                events.OnTrainBackClick();
+            };
+
             eventCenter.OnSelectionTrainCardClickHandle += (int typeID) => { // 选择卡片(玩家)
                 events.OnSelectionTrainCardClick(typeID);
             };

@@ -24,6 +24,9 @@ namespace UF
         [SerializeField] Button btn_Tip;
         public Action OnTipClickHandle;
 
+        [SerializeField] Button btn_Back;
+        public Action OnBackClickHandle;
+
         public Action<int> OnSelectionTrainCardClickHandle;
 
         public void Ctor()
@@ -33,6 +36,7 @@ namespace UF
             btn_Ready_Player1.onClick.AddListener(() => OnPlayer1ReadyClickHandle.Invoke());
             btn_Ready_Player2.onClick.AddListener(() => OnPlayer2ReadyClickHandle.Invoke());
             btn_Tip.onClick.AddListener(() => OnTipClickHandle.Invoke());
+            btn_Back.onClick.AddListener(() => OnBackClickHandle.Invoke());
 
             btn_Ready_Player2.interactable = false;
         }

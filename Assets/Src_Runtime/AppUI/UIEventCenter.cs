@@ -317,6 +317,13 @@ namespace UF {
             }
         }
 
+        public Action OnTrainBackClickHandle;
+        public void OnTrainBackClick() {
+            if (OnTrainBackClickHandle != null) {
+                OnTrainBackClickHandle();
+            }
+        }
+
         // 游戏界面
         public Action OnTrainPauseClickHandle; // 暂停
         public void OnTrainPauseClick() {

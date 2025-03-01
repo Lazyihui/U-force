@@ -178,6 +178,13 @@ namespace UF {
             }
         }
 
+        public Action OnTrainBackClickHandle;
+        public void OnTrainBackClick() {
+            if (OnTrainBackClickHandle != null) {
+                OnTrainBackClickHandle();
+            }
+        }
+
         public Action<int> OnSelectionTrainCardClickHandle;
         public void OnSelectionTrainCardClick(int typeID) {
             if (OnSelectionTrainCardClickHandle != null) {

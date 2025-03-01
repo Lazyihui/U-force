@@ -913,6 +913,10 @@ namespace UF {
                     eventCenter.OnTrainTipClick();
                 };
 
+                panel.OnBackClickHandle = () => {
+                    eventCenter.OnTrainBackClick();
+                };
+
                 panel.OnSelectionTrainCardClickHandle = (typeID) => {
                     eventCenter.OnSelectionTrainCardClick(typeID);
                 };
