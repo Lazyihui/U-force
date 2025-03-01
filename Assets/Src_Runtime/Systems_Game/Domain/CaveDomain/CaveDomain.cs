@@ -45,7 +45,6 @@ namespace UF {
             game.cdEnemy -= dt;
 
             if (game.curWaves >= game.maxWaves) {
-                Debug.Log("游戏结束");
                 game.wavesProgress = 1;
                 return;
             }

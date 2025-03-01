@@ -6,8 +6,10 @@ namespace UF {
 
     [Serializable]
     public class BulletFrameTM {
-        [Title("什么阶段可以运行")]
 
+        [InfoBox("==== Life Cycle ====")]
+
+        [Title("什么阶段可以运行")]
         public LoopTM loopTM;
 
 
@@ -16,4 +18,4 @@ namespace UF {
         [ShowIf(nameof(hasBulletBehaviour))] public BulletBehaviourTM bulletBehaviourTM;
 
     }
-}
+}   

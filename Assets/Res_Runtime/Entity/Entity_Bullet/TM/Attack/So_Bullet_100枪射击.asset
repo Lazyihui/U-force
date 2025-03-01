@@ -19,32 +19,54 @@ MonoBehaviour:
     hitTimes: 3
     attackDamage: 4
     isBomb: 0
-    isHaveContinueDamege: 0
-    continueDamege: 0
+    isHaveContinueDamege: 1
+    continueDamege: 1
+    damageInterval: 2
+    damageTimer: 2
     isHaveDamageRange: 1
-    damageRange: 1
+    damageRange: 5
     type: 1
     moveSpeed: 5
     modPrefab: {fileID: 4840816823108615241, guid: bb011586b6e1c234eb9b943c831258c5, type: 3}
     sprite: {fileID: 21300000, guid: 521e0b58194c5d1498e3a125b28a69a7, type: 3}
     content: "\u67AA\u5C04\u51FB"
-    skillType: 0
     frames:
     - loopTM:
         loopFlag: -1
-        maintainFrame: 1
+        maintainFrame: 0.5
         triggerIntervalSec: 0
         triggerTimesMax: 0
       hasBulletBehaviour: 1
       bulletBehaviourTM:
-        isMoveTo: 1
-        isBomb: 0
+        isMove: 1
+        isStop: 0
+        isHaveContinueDamege: 0
+        isHaveContinueBoomDamege: 0
+        isDestorySelf: 0
+        isRoleMoveSpeedDown: 0
     - loopTM:
-        loopFlag: 0
-        maintainFrame: 1
-        triggerIntervalSec: 24
-        triggerTimesMax: 24
+        loopFlag: -1
+        maintainFrame: 10
+        triggerIntervalSec: 0
+        triggerTimesMax: 0
       hasBulletBehaviour: 1
       bulletBehaviourTM:
-        isMoveTo: 0
-        isBomb: 1
+        isMove: 0
+        isStop: 1
+        isHaveContinueDamege: 1
+        isHaveContinueBoomDamege: 0
+        isDestorySelf: 0
+        isRoleMoveSpeedDown: 0
+    - loopTM:
+        loopFlag: -1
+        maintainFrame: 0
+        triggerIntervalSec: 0
+        triggerTimesMax: 0
+      hasBulletBehaviour: 1
+      bulletBehaviourTM:
+        isMove: 0
+        isStop: 0
+        isHaveContinueDamege: 0
+        isHaveContinueBoomDamege: 0
+        isDestorySelf: 1
+        isRoleMoveSpeedDown: 0
