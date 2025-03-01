@@ -270,12 +270,14 @@ namespace UF {
             stuff.idSig = new IDSignature(EntityType.Stuff, iDService.PickStuffID());
             stuff.typeID = typeID;
             stuff.typeName = tm.typeName;
-            stuff.cd = tm.cd;
-            stuff.cdMax = tm.cdMax;
-            stuff.damage = tm.damage;
-            stuff.isHaveContinueDamege = tm.isHaveContinueDamege;
-            stuff.continueDamege = tm.continueDamege;
-            stuff.damageRange = tm.damageRange;
+
+            stuff.weight = tm.weight;
+            stuff.isEnergy = tm.isEnergy;
+            stuff.isTimeStuff = tm.isTimeStuff;
+            if (tm.isTimeStuff) {
+                stuff.addTime = tm.addTime;
+            }
+
             stuff.Ctor();
             return stuff;
         }

@@ -9,14 +9,12 @@ namespace UF {
         public string typeName;
 
         [Title("Attribute")]
-        public float cd;
-        public float cdMax;
-        public float damage;
+        public int weight; // 重量(计算抓取速度)
 
-        public bool isHaveContinueDamege;
-        public float continueDamege;
+        public bool isEnergy;
 
-        public float damageRange;
+        public bool isTimeStuff; // 时间道具
+        [ShowIf(nameof(isTimeStuff))] public int addTime;
 
         [Title("mod")]
         public StuffMod modPrefab;

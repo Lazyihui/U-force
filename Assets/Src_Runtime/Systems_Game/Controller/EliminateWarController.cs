@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 namespace UF {
-    public static class EliminateWarController {
+    public static class EliminateWarController { // 资源战
         public static void Enter(GameSystemContext ctx, int stageID, int selectedRoleTypeID, int[] skillorTypeIDArray, int sciType, StageTM tm) {
 
             Debug.Log("EliminateWarController Enter");
@@ -31,7 +31,8 @@ namespace UF {
             }
 
             // Stuff 测试抓取
-            StuffDoamin.Spawn(ctx, 100);
+            var stuff = StuffDoamin.Spawn(ctx, 100);
+            stuff.TF_SetPos(new Vector2(3, -2));
 
             owner = RoleDomain.SpawnByPos(ctx, selectedRoleTypeID, new Vector3(-15, 0, 0));
             game.OwnerIDsig = owner.idSig;
@@ -56,6 +57,14 @@ namespace UF {
             // 绳子Tick
             RopeDomain.FSM_All_Tick(ctx, owner.GetPos(), dt);
 
+            // Stuff
+            int stuffLen = ctx.stuffRepository.TakeAll(out StuffEntity[] stuffs);
+            for (int i = 0; i < stuffLen; i += 1) {
+                StuffEntity stuff = stuffs[i];
+
+                StuffDoamin.FSM_Normal_Execute(ctx, stuff);
+                StuffDoamin.CheckUnSpawn(ctx, stuff);
+            }
         }
 
         public static void LastTick(float dt) {

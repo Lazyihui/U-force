@@ -10,16 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1866c3b29e1ac440b870c89a00f7bb0, type: 3}
-  m_Name: So_Stuff_100
+  m_Name: "So_Stuff_100_\u80FD\u91CF\u68D2"
   m_EditorClassIdentifier: 
   tm:
     typeID: 100
-    typeName: "\u7F50\u5934"
-    cd: 1
-    cdMax: 1
-    damage: 5
-    isHaveContinueDamege: 0
-    continueDamege: 0
-    damageRange: 0
+    typeName: "\u80FD\u91CF\u68D2"
+    weight: 1
+    isEnergy: 1
+    isTimeStuff: 0
+    addTime: 20
     modPrefab: {fileID: 1121275383739533645, guid: 4206e7c886c82c94983df0aca5cc5445, type: 3}
-    description: "\u56FA\u5B9A-\u533A\u57DF\u7206\u70B8\u4EA7\u751F\u6301\u7EED\u4F24\u5BB3"
+    description: "\u6E38\u620F\u80DC\u5229\u6536\u96C6\u7269"

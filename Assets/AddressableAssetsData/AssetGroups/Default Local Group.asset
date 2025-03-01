@@ -17,12 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 2d2b89a9dc968d14286ba76ffed229d2
   m_SerializeEntries:
-  - m_GUID: ce581359125e29d4ba87fb9a68548e8f
-    m_Address: So_Stuff_100
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - So_Stuff
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 464275325087f874a8bb23f071e8d880
     m_Address: So_RoleBoss_1000
     m_ReadOnly: 0
@@ -34,18 +28,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - So_Card
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2c314cf7109f7024ca7634bb1964eccc
-    m_Address: So_Stage_10
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - So_Stage
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 45b1257c23a48f242811c45c4713c626
-    m_Address: So_Stage_11
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - So_Stage
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3524d9ecbdd8e574d8759bb4ba81f1d2
     m_Address: So_Card_10 1

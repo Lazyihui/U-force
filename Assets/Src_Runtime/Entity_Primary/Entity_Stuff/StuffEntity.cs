@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TriInspector;
 using UnityEngine;
 
 
@@ -9,30 +10,26 @@ namespace UF {
 
         [SerializeField] public Transform bodyRoot;
 
+        [SerializeField] public Rigidbody2D rb;
+
         public IDSignature idSig;
         public int typeID;
         public string typeName;
 
-
         // 属性内容
-        public float cd;
-        public float cdMax;
+        public int weight;
 
-        public float damage;
+        public bool isEnergy;
 
-        public bool isHaveContinueDamege;//是否有持续伤害
-        public float continueDamege;//持续伤害
-
-        public float damageRange;//伤害范围
-
-        public bool isHavePenetrate;//是否有穿透不知道这个是干什么用的
+        public bool isTimeStuff;
+        [ShowIf(nameof(isTimeStuff))] public int addTime;
 
         public void Ctor() {
 
         }
 
         public void TearDown() {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
 
         public void Reuse() {
@@ -41,10 +38,15 @@ namespace UF {
 
         public void TF_SetPos(Vector3 pos) {
             transform.position = pos;
+            Debug.Log(pos);
         }
 
         public Vector3 TF_GetPos() {
             return transform.position;
+        }
+
+        public void Fall() {
+            rb.bodyType = RigidbodyType2D.Dynamic;
         }
     }
 }

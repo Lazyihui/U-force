@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 namespace UF {
-    public static class DefendWarController {
+    public static class DefendWarController { // 进攻战
         public static void Enter(GameSystemContext ctx, int stageID, int selectedRoleTypeID, int[] skillorTypeIDArray, int sciType, StageTM tm) {
             var game = ctx.gameEntity;
             var playerData = game.playerSaveData;

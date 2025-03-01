@@ -35,8 +35,10 @@ namespace UF {
             var state = rope.state;
             if (state == RopeStage.Stretch) {
                 Stretch(ctx, rope, dt);
-            } else if (state == RopeStage.shortening) {
+            } else if (state == RopeStage.Shortening) {
                 shortening(ctx, rope, dt);
+            } else if (state == RopeStage.ShorteningWithStuff) {
+                shorteningWithStuff(ctx, rope, dt);
             }
         }
 
@@ -67,6 +69,36 @@ namespace UF {
             }
         }
 
+        static void shorteningWithStuff(GameSystemContext ctx, RopeEntity entity, float dt) {
+            var hookPos = entity.hook.transform.position;
+
+            // 移动
+            hookPos = Vector2.MoveTowards(hookPos, entity.originalPos, entity.backWithStuffMoveSpeed * dt);
+            entity.Set_HookPos(hookPos);
+
+            // 销毁
+            if (ComparePos(entity)) {
+                entity.EnterShortening();
+            }
+
+            float dis = Vector3.Distance(hookPos, entity.originalPos);
+            if (dis <= 1) {
+                UnSpawn(ctx);
+            }
+        }
+
+        static bool ComparePos(RopeEntity rope) { // true表示离开引力场
+            var pos = rope.hook.transform.position;
+            Vector2 pointPos = new Vector2(9, 0);
+
+            float dis = Vector2.Distance(pos, pointPos);
+
+            if (dis < 9.5) { // 半径9.5(略大于stuff判断半径, 防止停在引力场内)
+                return false;
+            }
+            return true;
+        }
+
         static void detectionStuffByPos(GameSystemContext ctx, RopeEntity rope, Vector3 pos) {
             int len = ctx.stuffRepository.TakeAll(out var stuffs);
 
@@ -76,10 +108,17 @@ namespace UF {
                 float dis = Vector3.Distance(stuff.TF_GetPos(), pos);
 
                 if (dis < 1) {
-                    rope.EnterShortening();
-                    stuff.TF_SetPos(pos);
+                    int stuffWeight = stuff.weight;
+                    rope.backWithStuffMoveSpeed = 40f / stuffWeight;
 
-                    // TODO: 物品掉落(成功获取) 和 根据物品质量设置回收速度
+                    if (!ComparePos(rope)) {
+                        rope.EnterShorteningWithStuff();
+                    }
+
+                    if (rope.state == RopeStage.ShorteningWithStuff) {
+                        Debug.Log(rope.state);
+                        stuff.TF_SetPos(pos);
+                    }
                 }
             }
         }

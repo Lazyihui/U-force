@@ -14,6 +14,7 @@ namespace UF {
 
         public float outMoveSpeed; // 绳子伸长速度
         public float backMoveSpeed; // 绳子回收速度
+        public float backWithStuffMoveSpeed; // 抓取物品绳子回收速度
         public float maxLength;
 
         public Vector2 spawnPos;
@@ -43,7 +44,12 @@ namespace UF {
 
         public void EnterShortening() {
             Debug.Log("EnterShortening Enter");
-            state = RopeStage.shortening;
+            state = RopeStage.Shortening;
+        }
+
+        public void EnterShorteningWithStuff() {
+            Debug.Log("EnterShorteningWithStuff");
+            state = RopeStage.ShorteningWithStuff;
         }
 
         public void TF_SetPos(Vector2 pos) {

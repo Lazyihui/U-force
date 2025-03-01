@@ -3,6 +3,7 @@ namespace UF {
 
     public enum RopeStage {
         Stretch,//拉伸
-        shortening,//缩短
+        Shortening,//缩短
+        ShorteningWithStuff,//抓取住物品
     }
 }
