@@ -109,7 +109,7 @@ namespace UF {
 
                 if (dis < 1) {
                     int stuffWeight = stuff.weight;
-                    rope.backWithStuffMoveSpeed = 40f / stuffWeight;
+                    rope.backWithStuffMoveSpeed = 20f / stuffWeight;
 
                     if (!ComparePos(rope)) {
                         rope.EnterShorteningWithStuff();

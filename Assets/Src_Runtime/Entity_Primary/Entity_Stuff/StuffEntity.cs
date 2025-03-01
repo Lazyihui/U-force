@@ -41,9 +41,6 @@ namespace UF {
         public void TF_SetRot(Vector3 rot) {
             transform.eulerAngles = rot;
         }
-        public void TF_SetRot(Vector3 rot) {
-            transform.eulerAngles = rot;
-        }
 
         public Vector3 TF_GetPos() {
             return transform.position;
