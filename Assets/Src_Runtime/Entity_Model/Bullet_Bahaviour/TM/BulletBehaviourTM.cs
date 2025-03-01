@@ -7,7 +7,9 @@ namespace UF {
         // -Move
         public bool isMoveTo;
 
-        public bool isBomb;
+        public bool isStop;
 
+        [Header("role身上的")]
+        public bool isRoleMoveSpeedDown;
     }
 }

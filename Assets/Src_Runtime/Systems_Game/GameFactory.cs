@@ -210,16 +210,13 @@ namespace UF {
             bullet.idSig = new IDSignature(EntityType.Bullet, idService.PickBulletID());
             bullet.typeID = typeID;
             bullet.type = tm.type;
-            bullet.skillType = tm.skillType;
             bullet.hp = tm.hp;
             bullet.damage = tm.attackDamage;
             bullet.hitMaxTimes = tm.hitTimes;
             bullet.hitTimes = tm.hitTimes;
             bullet.isBomb = tm.isBomb;
             bullet.moveSpeed = tm.moveSpeed;
-            bullet.isHaveContinueDamege = tm.isHaveContinueDamege;
             bullet.continueDamege = tm.continueDamege;
-            bullet.isHaveDamageRange = tm.isHaveDamageRange;
             bullet.damageRange = tm.damageRange;
 
 

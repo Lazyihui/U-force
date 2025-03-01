@@ -12,7 +12,8 @@ namespace UF {
         public IDSignature idSig;//自身唯一标识
         public IDSignature belongIDSig;//属于谁的 玩家 还是 敌人
         public BulletMoveType type;
-        public BulletSkillType skillType;
+
+        public IDSignature touchRoleIDSig;//碰撞到的角色的ID
 
         [SerializeField] public Transform bodyRoot; // 子弹生成的根节点        
 
@@ -25,10 +26,8 @@ namespace UF {
         public int hitTimes;//击中次数 可以集中几下
         public int hitMaxTimes;//最大击中次数 是否有穿透(可以打几个敌人)
 
-        public bool isHaveContinueDamege;//是否有持续伤害
         public float continueDamege;//持续伤害
 
-        public bool isHaveDamageRange;//是否有伤害范围
         public float damageRange;//伤害范围
 
         // -Frames
@@ -46,10 +45,10 @@ namespace UF {
         public Rigidbody2D Rb => rb;
         public float moveSpeed;
 
-
         public BulletMod mod;
         public Vector2 centerPos => this.transform.position;
         public Vector3 TF_GetPos() => this.transform.position;
+
 
 
         public bool IsDead() {

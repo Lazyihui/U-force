@@ -7,11 +7,17 @@ namespace UF {
 
         public bool isMove;
 
-        public bool isBomb;
+        public bool isStop;
+
+        // role身上的
+        public bool isRoleMoveSpeedDown;
 
         public void FormTM(BulletBehaviourTM tm) {
             isMove = tm.isMoveTo;
-            isBomb = tm.isBomb;
+            isStop = tm.isStop;
+
+            // role身上的
+            isRoleMoveSpeedDown = tm.isRoleMoveSpeedDown;
         }
     }
 }
