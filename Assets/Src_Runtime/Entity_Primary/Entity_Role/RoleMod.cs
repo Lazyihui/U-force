@@ -20,12 +20,12 @@ namespace UF {
             this.gameObject.SetActive(false);
         }
 
-        public void Set_SpriteAppear() {
+        public void Set_SpriteDisAppear() {
             // 变透明
-            sr.color = new Color(1, 1, 1, 0.5f);
+            sr.color = new Color(1, 1, 1, 0.2f);
         }
 
-        public void Set_SpriteDisappear() {
+        public void Set_SpriteAppear() {
             // 变不透明
             sr.color = new Color(1, 1, 1, 1);
         }

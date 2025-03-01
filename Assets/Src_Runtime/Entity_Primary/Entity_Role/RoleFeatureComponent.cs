@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-
+using UnityEngine;
 namespace UF {
 
     public class RoleFeatureComponent {
@@ -11,7 +9,8 @@ namespace UF {
         public RoleFeatureComponent() {
         }
 
-        public void SetFeature(FeatureType value) {
+        public void SetFeatureType(FeatureType value) {
+            Debug.Log("怪物特性状态:" + value);
             featureType = value;
         }
 

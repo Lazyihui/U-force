@@ -236,11 +236,11 @@ namespace UF {
         #region Feature
 
         public void Set_SpriteAppear() {
-            mod.Set_SpriteAppear();
+            mod.Set_SpriteDisAppear();
         }
 
         public void Set_SpriteDisappear() {
-            mod.Set_SpriteDisappear();
+            mod.Set_SpriteAppear();
         }
 
         #endregion

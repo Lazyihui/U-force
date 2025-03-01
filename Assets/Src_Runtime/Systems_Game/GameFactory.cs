@@ -62,7 +62,7 @@ namespace UF {
 
             // -Feature
             var featureCom = role.FeatureComponent;
-            featureCom.SetFeature(tm.featureType);
+            featureCom.SetFeatureType(tm.featureType);
 
 
             return role;
@@ -116,7 +116,9 @@ namespace UF {
                     skillorCom.Add(skillor);
                 }
             }
-
+            // -Feature
+            var featureCom = role.FeatureComponent;
+            featureCom.SetFeatureType(tm.featureType);
 
             return role;
         }
@@ -173,7 +175,9 @@ namespace UF {
                     skillorCom.Add(skillor);
                 }
             }
-
+            // -Feature
+            var featureCom = role.FeatureComponent;
+            featureCom.SetFeatureType(tm.featureType);
 
             return role;
         }

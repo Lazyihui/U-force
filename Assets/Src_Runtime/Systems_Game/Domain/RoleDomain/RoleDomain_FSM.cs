@@ -40,9 +40,11 @@ namespace UF {
             RoleDomain.IsDeadState(ctx, role);
 
             var feaCom = role.FeatureComponent;
-            
-            if (feaCom.featureType == FeatureType.appear) {
+            if (feaCom.featureType == FeatureType.DisAppear) {
+                // 1.怪物隐身
                 role.Set_SpriteAppear();
+                // 2.怪物不可被普通子弹攻击到
+
             }
 
         }
