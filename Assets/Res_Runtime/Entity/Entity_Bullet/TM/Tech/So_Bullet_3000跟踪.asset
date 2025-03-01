@@ -21,6 +21,8 @@ MonoBehaviour:
     isBomb: 0
     isHaveContinueDamege: 0
     continueDamege: 0
+    damageInterval: 0
+    damageTimer: 0
     isHaveDamageRange: 0
     damageRange: 0
     type: 1
@@ -28,3 +30,18 @@ MonoBehaviour:
     modPrefab: {fileID: 5909918833320266611, guid: cb3e352c802aa3b43a716d55251e7a05, type: 3}
     sprite: {fileID: 21300000, guid: 9874f1ec2986b4642b100aa4f990b6b6, type: 3}
     content: "\u8DDF\u8E2A"
+    isMakeBulletAppear: 0
+    frames:
+    - loopTM:
+        loopFlag: 0
+        maintainFrame: 2
+        triggerIntervalSec: 0
+        triggerTimesMax: 0
+      hasBulletBehaviour: 1
+      bulletBehaviourTM:
+        isMove: 1
+        isStop: 0
+        isHaveContinueDamege: 0
+        isHaveContinueBoomDamege: 0
+        isDestorySelf: 0
+        isRoleMoveSpeedDown: 0
