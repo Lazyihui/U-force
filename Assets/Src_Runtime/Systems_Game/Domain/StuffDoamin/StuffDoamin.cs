@@ -12,6 +12,12 @@ namespace UF {
             return entity;
         }
 
+        public static StuffEntity SpawnBySpawner(GameSystemContext ctx, StuffSpawnerTM spawnerTM) {
+            StuffEntity entity = GameFactory.Stuff_CreateBySpawner(ctx.assetsModule, ctx.templateCore, ctx.idService, spawnerTM);
+            ctx.stuffRepository.Add(entity);
+            return entity;
+        }
+
         public static void UnSpawn(GameSystemContext ctx, StuffEntity entity) {
             ctx.stuffRepository.Remove(entity);
             entity.TearDown();
@@ -25,7 +31,7 @@ namespace UF {
             }
             ctx.stuffRepository.Clear();
         }
-        
+
         #endregion
 
         #region FSM

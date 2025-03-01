@@ -8,7 +8,6 @@ namespace UF {
     public class StuffEntity : MonoBehaviour {
 
         [SerializeField] public Transform bodyRoot;
-
         public IDSignature idSig;
         public int typeID;
         public string typeName;
@@ -41,6 +40,9 @@ namespace UF {
 
         public void TF_SetPos(Vector3 pos) {
             transform.position = pos;
+        }
+        public void TF_SetRot(Vector3 rot) {
+            transform.eulerAngles = rot;
         }
 
         public Vector3 TF_GetPos() {

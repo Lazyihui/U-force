@@ -259,6 +259,7 @@ namespace UF {
 
         #region Stuff
         public static StuffEntity Stuff_Create(AssetsModule assetsCore, TemplateMoudle templateCore, IDService iDService, int typeID) {
+
             bool has = templateCore.Stuff_TryGet(typeID, out var tm);
             if (!has) {
                 Debug.LogError("Stuff_Create: tm is null" + typeID);
@@ -282,6 +283,39 @@ namespace UF {
             stuff.continueDamege = tm.continueDamege;
             stuff.damageRange = tm.damageRange;
             stuff.Ctor();
+
+            return stuff;
+        }
+        public static StuffEntity Stuff_CreateBySpawner(AssetsModule assetsCore, TemplateMoudle templateCore, IDService iDService, StuffSpawnerTM spawnerTM) {
+
+            int typeID = spawnerTM.so.tm.typeID;
+            bool has = templateCore.Stuff_TryGet(typeID, out var tm);
+            if (!has) {
+                Debug.LogError("Stuff_Create: tm is null" + typeID);
+                return null;
+            }
+            GameObject prefab = assetsCore.Entity_GetStuff();
+            Debug.Assert(prefab != null, "prefab != null");
+            GameObject go = GameObject.Instantiate(prefab);
+            StuffEntity stuff = go.GetComponent<StuffEntity>();
+
+            // - mod
+            var mod = StuffMod_Create(tm, stuff.bodyRoot);
+
+            stuff.idSig = new IDSignature(EntityType.Stuff, iDService.PickStuffID());
+            stuff.typeID = typeID;
+            stuff.typeName = tm.typeName;
+            stuff.cd = tm.cd;
+            stuff.cdMax = tm.cdMax;
+            stuff.damage = tm.damage;
+            stuff.isHaveContinueDamege = tm.isHaveContinueDamege;
+            stuff.continueDamege = tm.continueDamege;
+            stuff.damageRange = tm.damageRange;
+            stuff.Ctor();
+
+            stuff.TF_SetPos(spawnerTM.position);
+            stuff.TF_SetRot(spawnerTM.rotation);
+
             return stuff;
         }
         #endregion

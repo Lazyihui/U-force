@@ -36,6 +36,12 @@ namespace UF {
             owner = RoleDomain.SpawnByPos(ctx, selectedRoleTypeID, new Vector3(-15, 0, 0));
             game.OwnerIDsig = owner.idSig;
 
+            // stuff 生成道具
+            for (int i = 0; i < tm.stuffSpawns.Length; i += 1) {
+                StuffSpawnerTM spawnerTM = tm.stuffSpawns[i];
+                StuffDoamin.SpawnBySpawner(ctx, spawnerTM);
+            }
+
         }
 
         public static void PreTick(GameSystemContext ctx, float dt) {

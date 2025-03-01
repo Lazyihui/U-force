@@ -10,6 +10,7 @@ namespace UF {
 
         public RoleSpawnerTM[] roleSpawns;
         public CaveSpawnerTM[] towerSpawns;
+        public StuffSpawnerTM[] stuffSpawns;
 
         // map 
         public GameObject mapPrefab;
