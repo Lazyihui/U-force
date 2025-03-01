@@ -217,6 +217,8 @@ namespace UF {
             bullet.isBomb = tm.isBomb;
             bullet.moveSpeed = tm.moveSpeed;
             bullet.continueDamege = tm.continueDamege;
+            bullet.damageInterval = tm.damageInterval;
+            bullet.damageTimer = tm.damageTimer;
             bullet.damageRange = tm.damageRange;
 
 

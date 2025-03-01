@@ -41,16 +41,20 @@ namespace UF {
 
         #region FSM
         public static void FSM_All_Execute(GameSystemContext ctx, BulletEntity bullet, float dt) {
-            // if (bullet.type == BulletMoveType.Shaped) {
-            //     Loco_Shaped(ctx, bullet);
-            // }
-
             Frames_Tick(ctx, bullet, dt);
+
+            if (bullet.isStartContinueDamege) {
+                Bullet_ContinuousDamage(ctx, bullet, dt);
+            }
+            if (bullet.isStartBoomDamege) {
+                Bullet_ContinuousBoomDamage(ctx, bullet, dt);
+            }
         }
         #endregion
 
         #region  Loco 行为
         public static void Loco_Shaped(GameSystemContext ctx, BulletEntity bullet) {
+            Debug.Log("子弹移动");
             bullet.Loco_Shaped();
         }
         #endregion
@@ -62,6 +66,9 @@ namespace UF {
                 UnSpawn(ctx, bullet);
             }
 
+            if (bullet.isStartBoomDamege || bullet.isStartContinueDamege) {
+                return;
+            }
             detectionMinionByPos(ctx, bullet, pos);
         }
 
@@ -104,7 +111,6 @@ namespace UF {
             frame.loopModel.Tick(dt, out bool istrigger, out bool isNextFrame);
 
             if (istrigger) {
-                Debug.Log("istrigg");
                 BulletDomain.Frame_Acting(ctx, bullet, frame, dt);
             }
 
@@ -125,8 +131,7 @@ namespace UF {
             }
 
             if (frame.hasBulletBehaviour) {
-                Debug.LogWarning("有角色行为");
-                BulletBehaviour_Acting(ctx, bullet, frame.bulletBehaviourModel);
+                BulletBehaviour_Acting(ctx, bullet, frame.bulletBehaviourModel, dt);
             }
 
             loopModel.CheckDone();
@@ -136,17 +141,18 @@ namespace UF {
 
         #region  BulletBehaviour
 
-        static void BulletBehaviour_Acting(GameSystemContext ctx, BulletEntity bullet, BulletBehaviourModel model) {
+        static void BulletBehaviour_Acting(GameSystemContext ctx, BulletEntity bullet, BulletBehaviourModel model, float dt) {
 
             if (model.isMove) {
                 // 正常移动
+                Debug.LogWarning("正常移动");
                 Loco_Shaped(ctx, bullet);
             }
 
             if (model.isStop) {
                 // 爆炸
-                Debug.LogWarning("爆炸");
-                bullet.Move_Stop();
+                Debug.LogWarning("停顿");
+                Bullet_Stop(ctx, bullet);
                 // Skill_Boom(ctx, bullet);
             }
 
@@ -156,17 +162,79 @@ namespace UF {
                 Bullet_DownRoleMoveSpeed(ctx, bullet);
             }
 
+            if (model.isHaveContinueDamege) {
+                // 持续伤害
+                Debug.LogWarning("持续伤害");
+                Bullet_ContinuousDamageStart(ctx, bullet);
+            }
+
+            if (model.isHaveContinueBoomDamege) {
+                Bullet_BoomStart(ctx, bullet);
+            }
+
+            if (model.isDestorySelf) {
+                // 子弹死亡
+                Debug.LogWarning("子弹死亡");
+                UnSpawn(ctx, bullet);
+            }
+
         }
 
         #endregion
+        static void Bullet_ContinuousDamage(GameSystemContext ctx, BulletEntity bullet, float dt) {
+            int len = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
+            for (int i = 0; i < len; i += 1) {
+                RoleEntity role = roles[i];
+                if (role.roleType == RoleType.Player) {
+                    continue;
+                }
+                float dis = Vector3.Distance(role.TF_GetPos(), bullet.TF_GetPos());
+
+                if (dis < bullet.damageRange) {
+                    role.moveType = RoleMoveType.Prohibit;
+                    // 持续伤害
+                    bullet.damageTimer += dt;
+                    if (bullet.damageTimer > bullet.damageInterval) {
+                        bullet.damageTimer = 0;
+                        RoleDomain.HpReduce_MinionFall(ctx, role, bullet.continueDamege);
+                    }
+                }
+            }
+        }
+
+        // 同上想差别不会使敌人停止
+        static void Bullet_ContinuousBoomDamage(GameSystemContext ctx, BulletEntity bullet, float dt) {
+            int len = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
+            for (int i = 0; i < len; i += 1) {
+                RoleEntity role = roles[i];
+                if (role.roleType == RoleType.Player) {
+                    continue;
+                }
+                float dis = Vector3.Distance(role.TF_GetPos(), bullet.TF_GetPos());
+                Debug.DrawLine(bullet.transform.position, Vector3.up, Color.red, bullet.damageRange);
+                Debug.DrawLine(bullet.transform.position, Vector3.down, Color.red, bullet.damageRange);
+                Debug.DrawLine(bullet.transform.position, Vector3.right, Color.red, bullet.damageRange);
+                Debug.DrawLine(bullet.transform.position, Vector3.left, Color.red, bullet.damageRange);
+                if (dis < bullet.damageRange) {
+                    // 持续伤害
+                    bullet.damageTimer += dt;
+                    if (bullet.damageTimer > bullet.damageInterval) {
+                        bullet.damageTimer = 0;
+                        RoleDomain.HpReduce_MinionFall(ctx, role, bullet.continueDamege);
+                    }
+                }
+            }
+        }
 
         #region 子弹想行为
 
-        static void Bullet_Boom(GameSystemContext ctx, BulletEntity bullet) {
+        static void Bullet_BoomStart(GameSystemContext ctx, BulletEntity bullet) {
             Debug.Log("爆炸");
+            bullet.isStartBoomDamege = true;
         }
-        static void Bullet_ContinuousDamage(GameSystemContext ctx, BulletEntity bullet) {
-            Debug.Log("持续伤害");
+        static void Bullet_ContinuousDamageStart(GameSystemContext ctx, BulletEntity bullet) {
+            Debug.Log("停止持续伤害");
+            bullet.isStartContinueDamege = true;
         }
         static void Bullet_Stop(GameSystemContext ctx, BulletEntity bullet) {
             // 写完

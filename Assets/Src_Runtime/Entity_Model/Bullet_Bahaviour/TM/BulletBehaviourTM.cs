@@ -5,11 +5,12 @@ namespace UF {
     [Serializable]
     public struct BulletBehaviourTM {
         // -Move
-        public bool isMoveTo;
-
+        public bool isMove;
         public bool isStop;
+        public bool isHaveContinueDamege;
+        public bool isHaveContinueBoomDamege;
+        public bool isDestorySelf;
 
-        [Header("role身上的")]
         public bool isRoleMoveSpeedDown;
     }
 }

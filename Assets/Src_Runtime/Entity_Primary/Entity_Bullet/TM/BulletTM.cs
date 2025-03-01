@@ -17,7 +17,9 @@ namespace UF {
         public bool isBomb;
 
         public bool isHaveContinueDamege;
-        [ShowIf(nameof(isHaveContinueDamege))] public float continueDamege;
+        [ShowIf(nameof(isHaveContinueDamege))] public int continueDamege;
+        [ShowIf(nameof(isHaveContinueDamege))] public float damageInterval;
+        [ShowIf(nameof(isHaveContinueDamege))] public float damageTimer;
 
         public bool isHaveDamageRange;
         [ShowIf(nameof(isHaveDamageRange))] public float damageRange;
@@ -30,10 +32,10 @@ namespace UF {
         public BulletMod modPrefab;
         public Sprite sprite;
         public string content;
-        
+
         [Title("Frame")]
         public BulletFrameTM[] frames;
 
-        
+
     }
 }
