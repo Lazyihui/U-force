@@ -422,5 +422,35 @@ namespace UF {
             }
         }
         #endregion
+
+        #region Eliminate资源战
+        public Action OnEliminatePauseClickHandle;
+        public void OnEliminateCloseClick() {
+            if (OnEliminatePauseClickHandle != null) {
+                OnEliminatePauseClickHandle();
+            }
+        }
+
+        public Action OnEliminateContinueClickHandle;
+        public void OnEliminateContinueClick() {
+            if (OnEliminateContinueClickHandle != null) {
+                OnEliminateContinueClickHandle();
+            }
+        }
+
+        public Action OnEliminateIllustratedClickHandle;
+        public void OnEliminateIllustratedClick() {
+            if (OnEliminateIllustratedClickHandle != null) {
+                OnEliminateIllustratedClickHandle();
+            }
+        }
+
+        public Action OnEliminateQuitClickHandle;
+        public void OnEliminateQuitClick() {
+            if (OnEliminateQuitClickHandle != null) {
+                OnEliminateQuitClickHandle();
+            }
+        }
+        #endregion
     }
 }

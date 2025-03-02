@@ -52,6 +52,7 @@ namespace UF {
             if (dis < 10) { // 半径10
                 return false;
             }
+            stuff.isStretched = false;
             return true;
         }
 

@@ -129,6 +129,23 @@ namespace UF {
             eventCenter.OnTrainBackQuitClickHandle += () => {
                 events.OnTrainBackQuitClick();
             };
+
+            // Eliminate资源战
+            eventCenter.OnEliminatePauseClickHandle += () => {
+                events.OnEliminateCloseClick();
+            };
+
+            eventCenter.OnEliminateContinueClickHandle += () => {
+                events.OnEliminateContinueClick();
+            };
+
+            eventCenter.OnEliminateIllustratedClickHandle += () => {
+                events.OnEliminateIllustratedClick();
+            };
+
+            eventCenter.OnEliminateQuitClickHandle += () => {
+                events.OnEliminateQuitClick();
+            };
         }
     }
 }

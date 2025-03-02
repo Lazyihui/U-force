@@ -1296,5 +1296,67 @@ namespace UF {
             ctx.panel_TrainIllustrated = null;
         }
         #endregion
+
+        #region Eliminate资源战
+        public void Panel_Eliminate_Button_Open() {
+            Panel_Eliminate_Button panel = ctx.panel_Eliminate_Button;
+
+            if (panel == null) {
+                GameObject prefab = ctx.assetsCore.Panel_GetEliminate_Button();
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                panel = go.GetComponent<Panel_Eliminate_Button>();
+                panel.Ctor();
+
+                panel.OnPauseClickHandle = () => {
+                    eventCenter.OnEliminateCloseClick();
+                };
+            }
+            ctx.panel_Eliminate_Button = panel;
+            panel.Show();
+        }
+
+        public void Panel_Eliminate_Button_Close() {
+            Panel_Eliminate_Button panel = ctx.panel_Eliminate_Button;
+
+            if (panel == null) { return; }
+
+            panel.TearDown();
+            ctx.panel_Eliminate_Button = null;
+        }
+
+        public void Panel_Eliminate_Pause_Open() {
+            Panel_Eliminate_Pause panel = ctx.panel_Eliminate_Pause;
+
+            if (panel == null) {
+                GameObject prefab = ctx.assetsCore.Panel_GetEliminate_Pause();
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                panel = go.GetComponent<Panel_Eliminate_Pause>();
+                panel.Ctor();
+
+                panel.OnContinueClickHandle = () => {
+                    eventCenter.OnEliminateContinueClick();
+                };
+
+                panel.OnIllustratedClickHandle = () => {
+                    eventCenter.OnEliminateIllustratedClick();
+                };
+
+                panel.OnQuitClickHandle = () => {
+                    eventCenter.OnEliminateQuitClick();
+                };
+            }
+            ctx.panel_Eliminate_Pause = panel;
+            panel.Show();
+        }
+
+        public void Panel_Eliminate_Pause_Close() {
+            Panel_Eliminate_Pause panel = ctx.panel_Eliminate_Pause;
+
+            if (panel == null) { return; }
+
+            panel.TearDown();
+            ctx.panel_Eliminate_Pause = null;
+        }
+        #endregion
     }
 }

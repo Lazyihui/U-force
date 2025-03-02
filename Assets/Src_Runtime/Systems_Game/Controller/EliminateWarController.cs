@@ -62,6 +62,7 @@ namespace UF {
             // UI
             var progress = game.gameTime / game.gameMax;
             ctx.appUI.HUD_Eliminate_Update(progress, game.energyNumber);
+            ctx.appUI.Panel_Eliminate_Button_Open();
 
             // 人物移动
             RoleDomain.LocoDefendAndOffensive_Execute(ctx, owner, dt);

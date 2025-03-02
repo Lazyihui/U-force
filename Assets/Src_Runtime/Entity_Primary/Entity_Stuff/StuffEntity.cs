@@ -23,6 +23,8 @@ namespace UF {
         public bool isTimeStuff;
         [ShowIf(nameof(isTimeStuff))] public int addTime;
 
+        public bool isStretched; // 是否被抓取
+
         public void Ctor() {
 
         }

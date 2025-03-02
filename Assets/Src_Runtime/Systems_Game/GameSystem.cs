@@ -47,6 +47,9 @@ namespace UF {
             appUI.Panel_GamePause_Close();
             appUI.Panel_GameDefend_Button_Close();
             appUI.HUD_Progressbar_Close();
+            appUI.HUD_Eliminate_Close();
+            appUI.Panel_Eliminate_Pause_Close();
+            appUI.Panel_Eliminate_Button_Close();
         }
 
         public void Enter(int stageID, int selectedRoleTypeID, int[] skillorTypeIDArray, int sciType) {

@@ -477,6 +477,28 @@ namespace UF {
                 appUI.Panel_Training_Back_Close();
                 UIDomain.Panel_Training_Select_Open(appUI, assetsModule, templateModule);
             };
+
+            pauseEvent.OnEliminatePauseClickHandle += () => {
+                appUI.Panel_GamePause_Open();
+                gameSystem.Exit();
+                pauseSystem.Enter();
+            };
+
+            pauseEvent.OnEliminateContinueClickHandle += () => {
+                appUI.Panel_Eliminate_Pause_Close();
+
+                pauseSystem.Exit();
+                gameSystem.Continue();
+            };
+
+            pauseEvent.OnEliminateIllustratedClickHandle += () => {
+                Debug.Log("资源战图鉴");
+            };
+
+            pauseEvent.OnEliminateQuitClickHandle += () => {
+                appUI.Panel_BackSelection_Open();
+                appUI.Panel_Eliminate_Pause_Close();
+            };
         }
         #endregion
 

@@ -32,6 +32,7 @@ namespace UF {
             var pos = rope.hook.transform.position;
             detectionStuffByPos(ctx, rope, pos);
             detectionRoleByPos(ctx, rope, pos);
+            detectionOtherMove(ctx, rope, pos);
 
             var state = rope.state;
             if (state == RopeStage.Stretch) {
@@ -101,6 +102,8 @@ namespace UF {
         }
 
         static void detectionStuffByPos(GameSystemContext ctx, RopeEntity rope, Vector3 pos) {
+            if (rope.state != RopeStage.Stretch) { return; }
+
             int len = ctx.stuffRepository.TakeAll(out var stuffs);
 
             for (int i = 0; i < len; i++) {
@@ -117,13 +120,15 @@ namespace UF {
                     }
 
                     if (rope.state == RopeStage.ShorteningWithStuff) {
-                        stuff.TF_SetPos(pos);
+                        stuff.isStretched = true;
                     }
                 }
             }
         }
 
         static void detectionRoleByPos(GameSystemContext ctx, RopeEntity rope, Vector3 pos) { //障碍物和核心
+            if (rope.state != RopeStage.Stretch) { return; }
+
             int len = ctx.roleRepository.TakeAll(out var roles);
 
             for (int i = 0; i < len; i++) {
@@ -142,10 +147,28 @@ namespace UF {
                     }
 
                     if (rope.state == RopeStage.ShorteningWithStuff) {
-                        role.TF_SetPos(pos);
                         role.state = RoleState.Stretched;
-                        role.Move_Stretched_Stop();
                     }
+                }
+            }
+        }
+
+        static void detectionOtherMove(GameSystemContext ctx, RopeEntity rope, Vector3 pos) {
+            int roleLen = ctx.roleRepository.TakeAll(out var roles);
+            int stuffLen = ctx.stuffRepository.TakeAll(out var stuffs);
+
+            for (int i = 0; i < roleLen; i++) {
+                var role = roles[i];
+                if (role.state == RoleState.Stretched) {
+                    role.TF_SetPos(pos);
+                    role.Move_Stretched_Stop();
+                }
+            }
+
+            for (int i = 0; i < stuffLen; i++) {
+                var stuff = stuffs[i];
+                if (stuff.isStretched) {
+                    stuff.TF_SetPos(pos);
                 }
             }
         }

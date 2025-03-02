@@ -338,6 +338,7 @@ namespace UF {
             if (dis < 10) {
                 return false;
             }
+            role.state = RoleState.Fall;
             return true;
         }
         #endregion

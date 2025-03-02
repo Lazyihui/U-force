@@ -56,6 +56,10 @@ namespace UF {
             transform.position = pos;
         }
 
+        public Vector3 TF_GetPos() {
+            return transform.position;
+        }
+
         public void Set_OriginalPos(Vector2 pos) {
             originalPos = pos;
         }

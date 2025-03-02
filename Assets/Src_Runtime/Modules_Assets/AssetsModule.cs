@@ -189,6 +189,15 @@ namespace UF {
             return panel;
         }
 
+        public GameObject Panel_GetEliminate_Button() {
+            panels.TryGetValue("Panel_Eliminate_Button", out GameObject panel);
+            return panel;
+        }
+
+        public GameObject Panel_GetEliminate_Pause() {
+            panels.TryGetValue("Panel_Eliminate_Pause", out GameObject panel);
+            return panel;
+        }
 
         // HUD
         public GameObject HUD_GetProgressbar() {

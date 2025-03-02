@@ -108,12 +108,12 @@ namespace UF {
             IsDeadState(ctx, role);
 
             // 判断是否离开引力场
+            bool isLeave = ComparePos(role);
+
             if (role.GetRbType() != RigidbodyType2D.Static) {
                 return;
             }
             
-            bool isLeave = ComparePos(role);
-
             if (isLeave) {
                 role.SetRbType(RigidbodyType2D.Dynamic);
                 return;
