@@ -38,6 +38,7 @@ namespace UF {
         public HUD_Training hud_Training;
         public HUD_Training_CD hud_Training_CD1;
         public HUD_Training_CD hud_Training_CD2;
+        public HUD_Eliminate hud_Eliminate;
 
         // input
         public bool isTabDown;

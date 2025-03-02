@@ -69,5 +69,6 @@ MonoBehaviour:
       bossSpawnMinionIntervalTimer: 0
       bossProgress: 0
       isEliminateWar: 1
+      gameMax: 90
       isTrainingWar: 0
       sceneProps: []

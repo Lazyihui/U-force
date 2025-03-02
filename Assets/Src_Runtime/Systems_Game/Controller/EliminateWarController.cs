@@ -10,8 +10,7 @@ namespace UF {
             var playerData = game.playerSaveData;
 
             // UI
-            ctx.appUI.HUD_Progressbar_Open(game.maxWaves);
-            ctx.appUI.Panel_WatchTower_ClearCursor();//清除塔的光标
+            ctx.appUI.HUD_Eliminate_Open(game.gameMax);
 
             // Map
             MapEntity map = MapDomain.Spawn(ctx.assetsModule, ctx.idService, tm.mapPrefab);
@@ -57,6 +56,12 @@ namespace UF {
 
             var game = ctx.gameEntity;
             var owner = ctx.Get_Owner();
+
+            game.gameTime += dt;
+
+            // UI
+            var progress = game.gameTime / game.gameMax;
+            ctx.appUI.HUD_Eliminate_Update(progress, game.energyNumber);
 
             // 人物移动
             RoleDomain.LocoDefendAndOffensive_Execute(ctx, owner, dt);

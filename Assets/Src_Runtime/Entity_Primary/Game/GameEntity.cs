@@ -32,12 +32,21 @@ namespace UF {
 
         #endregion
 
+        #region 资源战数据
+        public float gameTime;
+        public float gameMax;
+        public int energyNumber; // 能量棒数量
+        #endregion
+
         public bool isDefendWar;
         public bool isOffensiveWar;
         public bool isEliminateWar;
 
         public GameEntity() {
             wavesProgress = 0;
+
+            gameTime = 0;
+            energyNumber = 0;
         }
 
         public void InitFromTM(GameTM tm) {
@@ -71,7 +80,10 @@ namespace UF {
                 progress = tm.bossProgress;
             }
 
-            if (isEliminateWar) { }
+            if (isEliminateWar) {
+                Debug.Log("进入资源战");
+                gameMax = tm.gameMax;
+            }
 
         }
 

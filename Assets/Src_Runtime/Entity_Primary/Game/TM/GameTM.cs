@@ -34,6 +34,7 @@ namespace UF {
 
         [Title("消除战")]
         public bool isEliminateWar;//是否是消除战
+        [ShowIf(nameof(isEliminateWar))] public float gameMax;
 
         [Title("训练营")]
         public bool isTrainingWar;//是否是训练营

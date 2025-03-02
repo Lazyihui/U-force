@@ -210,5 +210,10 @@ namespace UF {
             panels.TryGetValue("HUD_Training_CD", out GameObject hud);
             return hud;
         }
+
+        public GameObject HUD_GetEliminate() {
+            panels.TryGetValue("HUD_Eliminate", out GameObject hud);
+            return hud;
+        }
     }
 }

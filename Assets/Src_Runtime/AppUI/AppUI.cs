@@ -420,6 +420,44 @@ namespace UF {
         }
         #endregion
 
+        #region HUD_Eliminate
+        public void HUD_Eliminate_Open(float time) {
+            HUD_Eliminate hud = ctx.hud_Eliminate;
+
+            if (hud == null) {
+                GameObject prefab = ctx.assetsCore.HUD_GetEliminate();
+
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                hud = go.GetComponent<HUD_Eliminate>();
+                hud.Ctor();
+            }
+
+            ctx.hud_Eliminate = hud;
+            hud.Show();
+
+            hud.Set_Time(time);
+            hud.Set_Text();
+        }
+
+        public void HUD_Eliminate_Close() {
+            HUD_Eliminate hud = ctx.hud_Eliminate;
+
+            if (hud == null) { return; }
+
+            hud.TearDown();
+            ctx.hud_Eliminate = null;
+        }
+
+        public void HUD_Eliminate_Update(float progress, int number) {
+            HUD_Eliminate hud = ctx.hud_Eliminate;
+
+            if (hud == null) { return; }
+
+            hud.Set_Progress(progress);
+            hud.Set_NumberText(number);
+        }
+        #endregion
+
         #region StageSelection
 
         public void Panel_StageSelection_Open(int chapter, int maxChapter) {
