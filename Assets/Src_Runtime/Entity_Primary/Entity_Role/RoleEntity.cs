@@ -144,8 +144,7 @@ namespace UF {
         public void Move_Regular(float moveSpeed, float dt) { // 资源战动态障碍-固定
             var pos = GetPos();
 
-            var newPos = moveComponent.Move_Regular(pos, moveSpeed, dt);
-            TF_SetPos(newPos);
+            moveComponent.Move_Regular(pos, moveSpeed, dt);
         }
 
         public void Move_Random() { // 资源战动态障碍-随机
@@ -154,6 +153,10 @@ namespace UF {
 
         public void Move_Stop() {
             moveComponent.Move_Stop();
+        }
+
+        public void Move_Stretched_Stop() {
+            moveComponent.Move_Stretched_Stop();
         }
 
         public void Move_Reset() {

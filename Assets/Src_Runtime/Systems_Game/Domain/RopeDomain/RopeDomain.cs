@@ -143,6 +143,8 @@ namespace UF {
 
                     if (rope.state == RopeStage.ShorteningWithStuff) {
                         role.TF_SetPos(pos);
+                        role.state = RoleState.Stretched;
+                        role.Move_Stretched_Stop();
                     }
                 }
             }

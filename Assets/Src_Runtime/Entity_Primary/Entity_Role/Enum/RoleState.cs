@@ -6,6 +6,7 @@ namespace UF {
         Move,
         Fall,
         Dead,
+        Stretched, // 被抓取
     }
 
 }

@@ -44,8 +44,6 @@ namespace UF {
                 }
             } else if (moveType == RoleMoveType.Ghost) {
                 role.Move_Ghost(attrCom.moveSpeed);
-            } else if (moveType == RoleMoveType.Regular) {
-                role.Move_Regular(attrCom.moveSpeed, dt);
             }
         }
 
@@ -82,7 +80,7 @@ namespace UF {
             var attrCom = role.AttributeComponent;
 
             RoleMoveType moveType = role.moveType;
-
+            
             if (moveType == RoleMoveType.Regular) {
                 role.Move_Regular(attrCom.moveSpeed, dt);
             }

@@ -81,21 +81,28 @@ public class RoleMoveComponent {
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
-    public Vector2 Move_Regular(Vector2 pos, float moveSpeed, float dt) {
+    public void Move_Regular(Vector2 pos, float moveSpeed, float dt) {
         SetRbType(RigidbodyType2D.Dynamic);
         Set_Garvity(0);
 
         var dis = Vector2.Distance(pos, posArr[index]);
 
-        if (dis > 0.1f) {
+        if (dis < 0.1f) {
             index = (index + 1) % 3;
         }
 
-        Vector2 newPos = Vector2.Lerp(pos, posArr[index], moveSpeed * dt);
-        return newPos;
+        var moveToPos = posArr[index];
+        Vector2 dir = (moveToPos - pos).normalized;
+
+        Vector2 oldVelo = rb.velocity;
+        oldVelo = dir * moveSpeed;
+        rb.velocity = oldVelo;
     }
 
     public void Move_Random() {
+        SetRbType(RigidbodyType2D.Dynamic);
+        Set_Garvity(0);
+
 
     }
 
@@ -104,6 +111,10 @@ public class RoleMoveComponent {
         rb.bodyType = RigidbodyType2D.Static;
     }
 
+    public void Move_Stretched_Stop() {
+        rb.velocity = Vector2.zero;
+        Set_Garvity(1);
+    }
     public void Move_Controlled_Down() { // 被子弹击中向下移动
         Vector2 dir = Vector2.down;
 
