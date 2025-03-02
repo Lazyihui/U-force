@@ -44,6 +44,8 @@ namespace UF {
                 }
             } else if (moveType == RoleMoveType.Ghost) {
                 role.Move_Ghost(attrCom.moveSpeed);
+            } else if (moveType == RoleMoveType.Regular) {
+                role.Move_Regular(attrCom.moveSpeed, dt);
             }
         }
 
@@ -66,6 +68,26 @@ namespace UF {
         #endregion
 
         #region Mvoe:进攻战
+
+        #region Move: 资源战
+        public static void Loco_MoveEliminate(GameSystemContext ctx, RoleEntity role, float dt) {
+            if (dt <= 0) {
+                return;
+            }
+
+            if (role.state != RoleState.Move) {
+                return;
+            }
+
+            var attrCom = role.AttributeComponent;
+
+            RoleMoveType moveType = role.moveType;
+
+            if (moveType == RoleMoveType.Regular) {
+                role.Move_Regular(attrCom.moveSpeed, dt);
+            }
+        }
+        #endregion
 
         static void Loco_MoveOffensive(RoleEntity role) {
 
@@ -130,7 +152,7 @@ namespace UF {
             }
         }
 
-     
+
 
 
         static void ControlledCheck(GameSystemContext ctx, RoleEntity role) {

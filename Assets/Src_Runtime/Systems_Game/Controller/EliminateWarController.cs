@@ -81,6 +81,7 @@ namespace UF {
                 if (!role.isEliminateRole) { continue; }
 
                 RoleDomain.FSM_AllEliminate_Execute(ctx, role, dt);
+                RoleDomain.Loco_MoveEliminate(ctx, role, dt);
             }
         }
 

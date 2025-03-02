@@ -5,4 +5,6 @@ public enum RoleMoveType {
     Ghost, //暂定小怪移动，悬浮，向左
     OffensiveUDRL, //进攻战 玩家移动(UDRL上下左右)
     Prohibit, //禁止移动
+    Regular, // 动态障碍-固定
+    Random, // 动态障碍-随机
 }

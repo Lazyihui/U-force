@@ -77,7 +77,7 @@ MonoBehaviour:
     m_SerializedLabels:
     - So_Stage
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 45b1257c23a48f242811c45c4713c626
+  - m_GUID: f071e16be2639d842b812b4c01ad4146
     m_Address: So_Stage_11
     m_ReadOnly: 0
     m_SerializedLabels:

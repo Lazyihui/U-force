@@ -15,7 +15,7 @@ MonoBehaviour:
   tm:
     typeName: Eliminate340
     roleType: 4
-    moveType: 3
+    moveType: 4
     roleState: 1
     typeID: 340
     hp: 1

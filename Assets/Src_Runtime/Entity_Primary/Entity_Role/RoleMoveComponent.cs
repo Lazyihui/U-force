@@ -20,8 +20,22 @@ public class RoleMoveComponent {
     // TODO:感觉要改，但还没想好
     Vector2 pauseVelo;
 
+    // 资源战(因为move持续执行, 不想每帧创建一次, 所以写在了这里)
+    static Vector2 pos1 = new Vector2(9, 9);
+    static Vector2 pos2 = new Vector2(0, 0);
+    static Vector2 pos3 = new Vector2(9, -9);
+    Vector2[] posArr;
+    int index; // 固定移动的坐标点索引
+
     public RoleMoveComponent() {
         isGround = false;
+
+        pos1 = new Vector2(9, 9);
+        pos2 = new Vector2(0, 0);
+        pos3 = new Vector2(9, -9);
+        posArr = new Vector2[] { pos1, pos2, pos3 };
+        index = 0;
+
     }
 
     public void Set_PlayerRbConstraints() {
@@ -65,6 +79,24 @@ public class RoleMoveComponent {
 
         rb.gravityScale = 0;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
+    public Vector2 Move_Regular(Vector2 pos, float moveSpeed, float dt) {
+        SetRbType(RigidbodyType2D.Dynamic);
+        Set_Garvity(0);
+
+        var dis = Vector2.Distance(pos, posArr[index]);
+
+        if (dis > 0.1f) {
+            index = (index + 1) % 3;
+        }
+
+        Vector2 newPos = Vector2.Lerp(pos, posArr[index], moveSpeed * dt);
+        return newPos;
+    }
+
+    public void Move_Random() {
+
     }
 
     public void Move_Stop() {
