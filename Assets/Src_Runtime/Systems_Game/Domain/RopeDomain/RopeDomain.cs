@@ -112,6 +112,20 @@ namespace UF {
                 float dis = Vector3.Distance(stuff.TF_GetPos(), pos);
 
                 if (dis < 1) {
+                    if (stuff.isTimeStuff) { // 时间道具
+                        rope.EnterShortening();
+                        StuffDoamin.UnSpawn(ctx, stuff);
+
+                        var addTime = stuff.addTime;
+                        ctx.gameEntity.gameTime -= addTime;
+                        if (ctx.gameEntity.gameTime < 0) {
+                            ctx.gameEntity.gameTime = 0;
+                        }
+
+                        return;
+                    }
+
+                    // 其他道具
                     int stuffWeight = stuff.weight;
                     rope.backWithStuffMoveSpeed = 10f / stuffWeight;
 
@@ -153,7 +167,7 @@ namespace UF {
             }
         }
 
-        static void detectionOtherMove(GameSystemContext ctx, RopeEntity rope, Vector3 pos) {
+        static void detectionOtherMove(GameSystemContext ctx, RopeEntity rope, Vector3 pos) { // 被抓取物品的移动
             int roleLen = ctx.roleRepository.TakeAll(out var roles);
             int stuffLen = ctx.stuffRepository.TakeAll(out var stuffs);
 

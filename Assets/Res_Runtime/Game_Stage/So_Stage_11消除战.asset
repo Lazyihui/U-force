@@ -70,5 +70,6 @@ MonoBehaviour:
       bossProgress: 0
       isEliminateWar: 1
       gameMax: 90
+      stuffMax: 45
       isTrainingWar: 0
       sceneProps: []

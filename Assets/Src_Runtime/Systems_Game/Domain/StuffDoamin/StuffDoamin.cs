@@ -19,6 +19,10 @@ namespace UF {
         }
 
         public static void UnSpawn(GameSystemContext ctx, StuffEntity entity) {
+            if (entity.isEnergy) {
+                ctx.gameEntity.energyNumber += 1;
+            }
+
             ctx.stuffRepository.Remove(entity);
             entity.TearDown();
         }
@@ -37,6 +41,8 @@ namespace UF {
         #region FSM
 
         public static void FSM_Normal_Execute(GameSystemContext ctx, StuffEntity entity) {
+            if (entity.isTimeStuff) { return; }
+            
             bool isLeave = ComparePos(entity);
             if (isLeave) {
                 Loco_Fall(entity);

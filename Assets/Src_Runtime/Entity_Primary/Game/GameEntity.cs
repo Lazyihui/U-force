@@ -36,6 +36,9 @@ namespace UF {
         public float gameTime;
         public float gameMax;
         public int energyNumber; // 能量棒数量
+
+        public float stuffCD; // 道具生成cd
+        public float stuffMax;
         #endregion
 
         public bool isDefendWar;
@@ -83,6 +86,7 @@ namespace UF {
             if (isEliminateWar) {
                 Debug.Log("进入资源战");
                 gameMax = tm.gameMax;
+                stuffMax = tm.stuffMax;
             }
 
         }

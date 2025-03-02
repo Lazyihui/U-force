@@ -58,14 +58,32 @@ namespace UF {
             var owner = ctx.Get_Owner();
 
             game.gameTime += dt;
+            game.stuffCD -= dt;
 
             // UI
             var progress = game.gameTime / game.gameMax;
             ctx.appUI.HUD_Eliminate_Update(progress, game.energyNumber);
             ctx.appUI.Panel_Eliminate_Button_Open();
 
-            // 人物移动
+            // Player
             RoleDomain.LocoDefendAndOffensive_Execute(ctx, owner, dt);
+            RoleDomain.FSM_All_Execute(ctx, owner, dt);
+            var fsm = owner.FSMComponent;
+            var state = fsm.Status;
+            var attrCom = owner.AttributeComponent;
+            RoleDomain.DetectionMinionByPos(ctx, owner, owner.TF_GetPos(), attrCom.GetBaseDamage());
+
+            if (game.state == GameState.GameOver) {
+                return;
+            }
+
+            if (state == RoleFSMStatus.Normal) {
+                RoleDomain.FSM_Normal_Execute(ctx, owner, dt);
+            } else if (state == RoleFSMStatus.Casting) {
+                RoleDomain.FSM_Casting_Execute(ctx, owner, dt);
+            } else if (state == RoleFSMStatus.Dead) {
+
+            }
 
 
             // 绳子Tick
@@ -80,6 +98,14 @@ namespace UF {
                 StuffDoamin.CheckUnSpawn(ctx, stuff);
             }
 
+            // 时间道具生成
+            if (game.stuffCD <= 0) {
+                game.stuffCD = game.stuffMax;
+                var stuff = StuffDoamin.Spawn(ctx, 200);
+                var pos = new Vector2(UnityEngine.Random.Range(-9, -7), UnityEngine.Random.Range(-5, 8));
+                stuff.TF_SetPos(pos);
+            }
+
             // Role 障碍物 核心
             int roleLen = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
             for (int i = 0; i < roleLen; i += 1) {
@@ -88,6 +114,19 @@ namespace UF {
 
                 RoleDomain.FSM_AllEliminate_Execute(ctx, role, dt);
                 RoleDomain.Loco_MoveEliminate(ctx, role, dt);
+            }
+
+            // Bullet
+            int bulletLen = ctx.bulletRepository.TakeAll(out BulletEntity[] bullets);
+
+            for (int i = 0; i < bulletLen; i += 1) {
+                BulletEntity bullet = bullets[i];
+                BulletDomain.FSM_All_Execute(ctx, bullet, dt);
+                BulletDomain.CheckUnSpawn(ctx, bullet, dt);
+            }
+
+            if (game.energyNumber >= 4 || game.gameTime >= game.gameMax) {
+                Debug.Log("游戏结束");
             }
         }
 
