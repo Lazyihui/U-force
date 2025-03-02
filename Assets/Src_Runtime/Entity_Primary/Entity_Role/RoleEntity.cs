@@ -187,6 +187,14 @@ namespace UF {
             return rb.velocity;
         }
 
+        public RigidbodyType2D GetRbType() {
+            return rb.bodyType;
+        }
+
+        public void SetRbType(RigidbodyType2D type) {
+            moveComponent.SetRbType(type);
+        }
+
         #region Attribute
 
         public void Attr_Hp_Set(int value) {

@@ -104,14 +104,23 @@ namespace UF {
 
         #region 资源战
         public static void FSM_AllEliminate_Execute(GameSystemContext ctx, RoleEntity role, float dt) { // 只有障碍和核心逻辑
-            if (role.moveType == RoleMoveType.Prohibit) {
-                role.Move_Stop();
-            }
+            // 判断消失
+            IsDeadState(ctx, role);
 
+            // 判断是否离开引力场
+            if (role.GetRbType() != RigidbodyType2D.Static) {
+                return;
+            }
+            
             bool isLeave = ComparePos(role);
 
             if (isLeave) {
-                role.Fall();
+                role.SetRbType(RigidbodyType2D.Dynamic);
+                return;
+            }
+
+            if (role.moveType == RoleMoveType.Prohibit) {
+                role.Move_Stop();
             }
         }
         #endregion

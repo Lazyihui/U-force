@@ -16,22 +16,22 @@ MonoBehaviour:
     stageID: 11
     roleSpawns:
     - so: {fileID: 11400000, guid: f96d8444c1a43f146b54cd3643dafa34, type: 2}
-      position: {x: 9, y: 0, z: 0}
+      position: {x: 13, y: -2.5, z: 0}
       rotation: {x: 0, y: 0, z: 0}
     - so: {fileID: 11400000, guid: af12f9a6fb6feae44b54ae6ccf3c3651, type: 2}
-      position: {x: 8, y: 0, z: 0}
+      position: {x: 8, y: -2, z: 0}
       rotation: {x: 0, y: 0, z: 0}
     - so: {fileID: 11400000, guid: e016fc7b936d4eb4eb442eae9f6b4ab2, type: 2}
-      position: {x: 7, y: 0, z: 0}
+      position: {x: 7, y: 5, z: 0}
       rotation: {x: 0, y: 0, z: 0}
     - so: {fileID: 11400000, guid: 0d9c375e6e9410349827c23ec6aec5ef, type: 2}
-      position: {x: 6, y: 0, z: 0}
+      position: {x: 5, y: -4, z: 0}
       rotation: {x: 0, y: 0, z: 0}
     - so: {fileID: 11400000, guid: a78b145e3f0b62d4aa416d1e6587420f, type: 2}
-      position: {x: 5, y: 0, z: 0}
+      position: {x: 11.5, y: 1, z: 0}
       rotation: {x: 0, y: 0, z: 0}
     - so: {fileID: 11400000, guid: 6bc4ceb5e472580489f2a058d69cb4d5, type: 2}
-      position: {x: 4, y: 0, z: 0}
+      position: {x: 3, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0}
     towerSpawns: []
     stuffSpawns:

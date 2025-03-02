@@ -304,8 +304,9 @@ namespace UF {
         // 否是死亡状态 
         public static void IsDeadState(GameSystemContext ctx, RoleEntity role) {
             var game = ctx.gameEntity;
+            var pos = role.GetPos();
 
-            if (role.GetPos().x < -21) {
+            if (pos.x < -21 || pos.x > 21 || pos.y < -12 || pos.y > 12) {
                 role.SetRoleState(RoleState.Dead);
             }
 

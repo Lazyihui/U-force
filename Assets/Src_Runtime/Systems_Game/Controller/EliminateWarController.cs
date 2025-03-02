@@ -42,7 +42,8 @@ namespace UF {
             // Role 生成障碍物和核心
             for (int i = 0; i < tm.roleSpawns.Length; i += 1) {
                 RoleSpawnerTM spawnerTM = tm.roleSpawns[i];
-                RoleDomain.SpawnBySpawner(ctx, spawnerTM);
+                var role = RoleDomain.SpawnBySpawner(ctx, spawnerTM);
+                role.SetRbType(RigidbodyType2D.Static);
             }
         }
 
