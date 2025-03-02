@@ -36,5 +36,7 @@ namespace UF {
         public string skill; // 技能
         public string restraint; // 相克武器
 
+        [Title("Eliminate")]
+        public bool isEliminateRole;
     }
 }

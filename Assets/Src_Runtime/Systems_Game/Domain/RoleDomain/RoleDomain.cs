@@ -324,5 +324,21 @@ namespace UF {
         }
 
         #endregion
+
+        #region 资源战检测
+        public static bool ComparePos(RoleEntity role) { // true表示离开引力场
+            if (!role.isEliminateRole) { return false; }
+
+            var pos = role.TF_GetPos();
+            Vector2 pointPos = new Vector2(9, 0);
+
+            float dis = Vector2.Distance(pos, pointPos);
+
+            if (dis < 10) {
+                return false;
+            }
+            return true;
+        }
+        #endregion
     }
 }

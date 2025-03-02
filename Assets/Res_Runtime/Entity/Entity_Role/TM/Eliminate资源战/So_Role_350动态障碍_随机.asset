@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d72292fc95d6e41aba9cebe752d514, type: 3}
+  m_Name: "So_Role_350\u52A8\u6001\u969C\u788D_\u968F\u673A"
+  m_EditorClassIdentifier: 
+  tm:
+    typeName: Eliminate350
+    roleType: 4
+    moveType: 3
+    roleState: 1
+    typeID: 350
+    hp: 1
+    moveSpeed: 0
+    jumpForce: 0
+    baseDamage: 0
+    fallDamage: 0
+    skillorSoArray: []
+    modPrefab: {fileID: 6212524744480640400, guid: 295823b107d7c2445a60dd9295db4f58, type: 3}
+    featureType: 0
+    sprite: {fileID: 21300000, guid: afe4af880b2dce74ca2f009b38dbd0c7, type: 3}
+    content: "\u52A8\u6001\u969C\u788D_\u968F\u673A"
+    feature: "\u52A8\u6001\u969C\u788D_\u968F\u673A"
+    skill: 
+    restraint: 
+    isEliminateRole: 1

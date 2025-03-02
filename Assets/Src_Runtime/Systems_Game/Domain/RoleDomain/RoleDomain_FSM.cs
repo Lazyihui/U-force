@@ -102,6 +102,20 @@ namespace UF {
 
         #endregion
 
+        #region 资源战
+        public static void FSM_AllEliminate_Execute(GameSystemContext ctx, RoleEntity role, float dt) { // 只有障碍和核心逻辑
+            if (role.moveType == RoleMoveType.Prohibit) {
+                role.Move_Stop();
+            }
+
+            bool isLeave = ComparePos(role);
+
+            if (isLeave) {
+                role.Fall();
+            }
+        }
+        #endregion
+
         #region Execute(tick)
         // Tick Execute循环的意思
         public static void FSM_Casting_Hand_Execute(GameSystemContext ctx, RoleEntity role, RoleCastingStateModel stateModel, float dt) {

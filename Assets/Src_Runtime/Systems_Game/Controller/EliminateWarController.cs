@@ -30,10 +30,6 @@ namespace UF {
                 }
             }
 
-            // Stuff 测试抓取
-            var stuff = StuffDoamin.Spawn(ctx, 100);
-            stuff.TF_SetPos(new Vector2(3, -2));
-
             owner = RoleDomain.SpawnByPos(ctx, selectedRoleTypeID, new Vector3(-15, 0, 0));
             game.OwnerIDsig = owner.idSig;
 
@@ -43,6 +39,11 @@ namespace UF {
                 StuffDoamin.SpawnBySpawner(ctx, spawnerTM);
             }
 
+            // Role 生成障碍物和核心
+            for (int i = 0; i < tm.roleSpawns.Length; i += 1) {
+                RoleSpawnerTM spawnerTM = tm.roleSpawns[i];
+                RoleDomain.SpawnBySpawner(ctx, spawnerTM);
+            }
         }
 
         public static void PreTick(GameSystemContext ctx, float dt) {
@@ -70,6 +71,15 @@ namespace UF {
 
                 StuffDoamin.FSM_Normal_Execute(ctx, stuff);
                 StuffDoamin.CheckUnSpawn(ctx, stuff);
+            }
+
+            // Role 障碍物 核心
+            int roleLen = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
+            for (int i = 0; i < roleLen; i += 1) {
+                RoleEntity role = roles[i];
+                if (!role.isEliminateRole) { continue; }
+
+                RoleDomain.FSM_AllEliminate_Execute(ctx, role, dt);
             }
         }
 

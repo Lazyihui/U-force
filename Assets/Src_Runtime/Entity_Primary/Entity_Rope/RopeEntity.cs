@@ -25,7 +25,7 @@ namespace UF {
         public void Ctor() {
             outMoveSpeed = 10;
             backMoveSpeed = 50;
-            maxLength = 20;
+            maxLength = 30;
             spawnPos = hook.transform.position;
 
             // 防止一开始闪烁一下

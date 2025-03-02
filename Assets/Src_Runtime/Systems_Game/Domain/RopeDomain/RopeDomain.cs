@@ -31,6 +31,7 @@ namespace UF {
             // 抓取
             var pos = rope.hook.transform.position;
             detectionStuffByPos(ctx, rope, pos);
+            detectionRoleByPos(ctx, rope, pos);
 
             var state = rope.state;
             if (state == RopeStage.Stretch) {
@@ -93,7 +94,7 @@ namespace UF {
 
             float dis = Vector2.Distance(pos, pointPos);
 
-            if (dis < 9.5) { // 半径9.5(略大于stuff判断半径, 防止停在引力场内)
+            if (dis < 10.5) { // 半径10.5(略大于stuff判断半径, 防止停在引力场内)
                 return false;
             }
             return true;
@@ -109,15 +110,39 @@ namespace UF {
 
                 if (dis < 1) {
                     int stuffWeight = stuff.weight;
-                    rope.backWithStuffMoveSpeed = 20f / stuffWeight;
+                    rope.backWithStuffMoveSpeed = 10f / stuffWeight;
 
                     if (!ComparePos(rope)) {
                         rope.EnterShorteningWithStuff();
                     }
 
                     if (rope.state == RopeStage.ShorteningWithStuff) {
-                        Debug.Log(rope.state);
                         stuff.TF_SetPos(pos);
+                    }
+                }
+            }
+        }
+
+        static void detectionRoleByPos(GameSystemContext ctx, RopeEntity rope, Vector3 pos) { //障碍物和核心
+            int len = ctx.roleRepository.TakeAll(out var roles);
+
+            for (int i = 0; i < len; i++) {
+                var role = roles[i];
+
+                if (role.roleType != RoleType.Barrier) { continue; }
+
+                var dis = Vector3.Distance(role.TF_GetPos(), pos);
+
+                if (dis < 1) {
+                    var attr = role.AttributeComponent;
+                    rope.backWithStuffMoveSpeed = 10f / attr.GetHp();
+
+                    if (!ComparePos(rope)) {
+                        rope.EnterShorteningWithStuff();
+                    }
+
+                    if (rope.state == RopeStage.ShorteningWithStuff) {
+                        role.TF_SetPos(pos);
                     }
                 }
             }

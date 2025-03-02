@@ -179,6 +179,9 @@ namespace UF {
             var featureCom = role.FeatureComponent;
             featureCom.SetFeatureType(tm.featureType);
 
+            // -Eliminate
+            role.isEliminateRole = tm.isEliminateRole;
+
             return role;
         }
 

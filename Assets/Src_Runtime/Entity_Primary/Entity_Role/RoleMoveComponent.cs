@@ -89,6 +89,8 @@ public class RoleMoveComponent {
     }
 
     public void Fall() {
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        
         rb.gravityScale = 1;
         rb.velocity = Vector2.zero;
     }

@@ -49,7 +49,7 @@ namespace UF {
 
             float dis = Vector2.Distance(pos, pointPos);
 
-            if (dis < 9) { // 半径9
+            if (dis < 10) { // 半径10
                 return false;
             }
             return true;

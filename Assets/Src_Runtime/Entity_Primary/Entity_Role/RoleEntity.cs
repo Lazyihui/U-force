@@ -71,6 +71,9 @@ namespace UF {
         public Vector2 downPos;
         public Vector2 rightPos;
 
+        // 资源战
+        public bool isEliminateRole; // 是否为资源战中除玩家的role
+
         public void Ctor() {
             fsmComponent = new RoleFSMConponent();
             skillorSlotComponent = new RoleSkillSlotComponent();
