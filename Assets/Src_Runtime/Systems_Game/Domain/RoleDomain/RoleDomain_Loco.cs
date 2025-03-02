@@ -80,9 +80,11 @@ namespace UF {
             var attrCom = role.AttributeComponent;
 
             RoleMoveType moveType = role.moveType;
-            
+
             if (moveType == RoleMoveType.Regular) {
-                role.Move_Regular(attrCom.moveSpeed, dt);
+                role.Move_Regular(attrCom.moveSpeed);
+            } else if (moveType == RoleMoveType.Random) {
+                role.Move_Random(attrCom.moveSpeed);
             }
         }
         #endregion

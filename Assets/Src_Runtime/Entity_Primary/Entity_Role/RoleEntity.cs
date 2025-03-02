@@ -141,14 +141,14 @@ namespace UF {
             moveComponent.Move_Attack(dir, moveSpeed);
         }
 
-        public void Move_Regular(float moveSpeed, float dt) { // 资源战动态障碍-固定
+        public void Move_Regular(float moveSpeed) { // 资源战动态障碍-固定
             var pos = GetPos();
-
-            moveComponent.Move_Regular(pos, moveSpeed, dt);
+            moveComponent.Move_Regular(pos, moveSpeed);
         }
 
-        public void Move_Random() { // 资源战动态障碍-随机
-            moveComponent.Move_Random();
+        public void Move_Random(float moveSpeed) { // 资源战动态障碍-随机
+            var pos = GetPos();
+            moveComponent.Move_Random(pos, moveSpeed);
         }
 
         public void Move_Stop() {

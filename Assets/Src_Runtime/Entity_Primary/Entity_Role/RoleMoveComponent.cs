@@ -21,11 +21,14 @@ public class RoleMoveComponent {
     Vector2 pauseVelo;
 
     // 资源战(因为move持续执行, 不想每帧创建一次, 所以写在了这里)
-    static Vector2 pos1 = new Vector2(9, 9);
-    static Vector2 pos2 = new Vector2(0, 0);
-    static Vector2 pos3 = new Vector2(9, -9);
+    static Vector2 pos1;
+    static Vector2 pos2;
+    static Vector2 pos3;
     Vector2[] posArr;
     int index; // 固定移动的坐标点索引
+
+    Vector2 point; // 随机移动目标点
+    bool isMoveToPoint; // 是否正在移动到目标点
 
     public RoleMoveComponent() {
         isGround = false;
@@ -36,6 +39,7 @@ public class RoleMoveComponent {
         posArr = new Vector2[] { pos1, pos2, pos3 };
         index = 0;
 
+        isMoveToPoint = false;
     }
 
     public void Set_PlayerRbConstraints() {
@@ -81,7 +85,7 @@ public class RoleMoveComponent {
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
-    public void Move_Regular(Vector2 pos, float moveSpeed, float dt) {
+    public void Move_Regular(Vector2 pos, float moveSpeed) {
         SetRbType(RigidbodyType2D.Dynamic);
         Set_Garvity(0);
 
@@ -99,11 +103,32 @@ public class RoleMoveComponent {
         rb.velocity = oldVelo;
     }
 
-    public void Move_Random() {
+    public void Move_Random(Vector2 pos, float moveSpeed) {
         SetRbType(RigidbodyType2D.Dynamic);
         Set_Garvity(0);
 
+        if (!isMoveToPoint) {
+            Vector2 center = new Vector2(9, 0);
+            point.x = UnityEngine.Random.Range(0, 18);
+            point.y = UnityEngine.Random.Range(-9, 9);
 
+            var pointDis = Vector2.Distance(center, point);
+            if (pointDis >= 10) { return; }
+
+            isMoveToPoint = true;
+        }
+
+        var dis = Vector2.Distance(pos, point);
+
+        if (dis < 0.1f) {
+            isMoveToPoint = false;
+        }
+
+        Vector2 dir = (point - pos).normalized;
+
+        Vector2 oldVelo = rb.velocity;
+        oldVelo = dir * moveSpeed;
+        rb.velocity = oldVelo;
     }
 
     public void Move_Stop() {
