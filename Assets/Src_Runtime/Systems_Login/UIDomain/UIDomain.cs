@@ -321,8 +321,40 @@ namespace UF {
                 int typeID = EnemyTypeIDs[i];
                 var role = templateMoudle.Role_TryGet(typeID, out var tm);
 
-                appUI.Panel_Illustrated_Add(typeID, tm.sprite);
+                appUI.Panel_Illustrated_Add(typeID, tm.sprite, true);
             }
+
+            appUI.Panel_Illustrated_OpenCard();
+        }
+
+        public static void Panel_Eliminate_Illustrated_Open(AppUI appUI, TemplateMoudle templateMoudle) {
+            appUI.Panel_Illustrated_Open();
+
+            var stageID = appUI.playerSaveData.GetStageCurID();
+            templateMoudle.Stage_TryGet(stageID, out var tm);
+
+            var roles = tm.roleSpawns;
+            var stuffs = tm.stuffSpawns;
+
+            for (int i = 0; i < roles.Length; i += 1) {
+                var role = roles[i];
+                var roleTM = role.so.tm;
+
+                if (appUI.Panel_Illustrated_TryGet(roleTM.typeID)) { continue; }
+
+                appUI.Panel_Illustrated_Add(roleTM.typeID, roleTM.sprite, true);
+            }
+
+            for (int i = 0; i < stuffs.Length; i += 1) {
+                var stuff = stuffs[i];
+                var stuffTM = stuff.so.tm;
+
+                if (appUI.Panel_Illustrated_TryGet(stuffTM.typeID)) { continue; }
+
+                appUI.Panel_Illustrated_Add(stuffTM.typeID, stuffTM.sprite, false);
+            }
+
+            appUI.Panel_Illustrated_OpenCard();
         }
 
         public static void Panel_TrainIllustrated_Open(AppUI appUI, TemplateMoudle templateMoudle) {
@@ -336,6 +368,8 @@ namespace UF {
                 var prop = props[i];
                 appUI.Panel_TrainIllustrated_Add(prop.tm.typeID, prop.tm.sprite);
             }
+
+            appUI.Panel_TrainIllustrated_OpenCard();
         }
         #endregion
     }

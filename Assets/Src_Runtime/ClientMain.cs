@@ -372,6 +372,12 @@ namespace UF {
 
                 appUI.Panel_Illustrated_SetContent(tm.sprite, tm.typeName, tm.feature);
             };
+
+            gameEvent.OnGameIllusStuffCardClickHandle += (int typeID) => {
+                templateModule.Stuff_TryGet(typeID, out StuffTM tm);
+
+                appUI.Panel_Illustrated_SetContent(tm.sprite, tm.typeName, tm.description);
+            };
         }
         #endregion
 
@@ -464,7 +470,7 @@ namespace UF {
             };
 
             pauseEvent.OnEliminatePauseClickHandle += () => {
-                appUI.Panel_GamePause_Open();
+                appUI.Panel_Eliminate_Pause_Open();
                 gameSystem.Exit();
                 pauseSystem.Enter();
             };
@@ -477,7 +483,7 @@ namespace UF {
             };
 
             pauseEvent.OnEliminateIllustratedClickHandle += () => {
-                Debug.Log("资源战图鉴");
+                UIDomain.Panel_Eliminate_Illustrated_Open(appUI, templateModule);
             };
 
             pauseEvent.OnEliminateQuitClickHandle += () => {

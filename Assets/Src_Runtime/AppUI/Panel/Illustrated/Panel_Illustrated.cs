@@ -18,6 +18,7 @@ namespace UF {
         [SerializeField] TextMeshProUGUI text_Description;
 
         public Action<int> OnGameIllusCardClickHandle;
+        public Action<int> OnGameIllusStuffCardClickHandle;
 
         public void Ctor() {
             cards = new List<Panel_CardOneIllustrated>();
@@ -37,17 +38,28 @@ namespace UF {
             Destroy(gameObject);
         }
 
-        public void Add(int id, Sprite img) {
+        public void Add(int id, Sprite img, bool isRole) {
             Panel_CardOneIllustrated card = Instantiate(oneCardPrefab, group);
             card.Ctor();
             card.Init(id, img);
-            card.OnCardClickHandle += OnCardClick;
+            card.isRole = isRole;
+
+            if (isRole) {
+                card.OnCardClickHandle += OnCardClick;
+            } else {
+                card.OnCardClickHandle += OnStuffCardClick;
+            }
 
             cards.Add(card);
         }
 
         void OnCardClick(int typeID) {
             OnGameIllusCardClickHandle?.Invoke(typeID);
+            SetButtonInter();
+        }
+
+        void OnStuffCardClick(int typeID) {
+            OnGameIllusStuffCardClickHandle?.Invoke(typeID);
             SetButtonInter();
         }
 
@@ -64,6 +76,24 @@ namespace UF {
                 var card = cards[i];
                 card.SetInterTrue();
             }
+        }
+
+        public bool TryGet(int typeID) {
+            int len = cards.Count;
+
+            for (int i = 0; i < len; i++) {
+                var card = cards[i];
+
+                if (card.id == typeID) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public void OpenCard() {
+            cards[0].OnClick();
         }
     }
 }

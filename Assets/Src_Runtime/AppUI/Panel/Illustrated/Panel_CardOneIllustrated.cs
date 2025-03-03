@@ -4,11 +4,13 @@ using UnityEngine.UI;
 
 namespace UF {
     public class Panel_CardOneIllustrated : MonoBehaviour {
-        int id;
+        public int id;
         [SerializeField] Image img_Sprite;
 
         [SerializeField] Button btn_Card;
         public Action<int> OnCardClickHandle;
+
+        public bool isRole;
 
         public void Ctor() {
             btn_Card.onClick.AddListener(() => {
@@ -30,6 +32,10 @@ namespace UF {
 
         public void SetInterFalse() {
             btn_Card.interactable = false;
+        }
+
+        public void OnClick() {
+            btn_Card.onClick.Invoke();
         }
     }
 }
