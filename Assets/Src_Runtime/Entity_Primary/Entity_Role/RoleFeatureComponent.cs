@@ -10,7 +10,6 @@ namespace UF {
         }
 
         public void SetFeatureType(FeatureType value) {
-            Debug.Log("怪物特性状态:" + value);
             featureType = value;
         }
 

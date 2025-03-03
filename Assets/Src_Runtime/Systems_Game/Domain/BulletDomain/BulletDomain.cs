@@ -9,7 +9,7 @@ namespace UF {
         public static BulletEntity Spawn(GameSystemContext ctx, int typeID, Vector3 pos, Vector3 dir) {
             BulletEntity entity = GameFactory.Bullet_Create(ctx.assetsModule, ctx.templateCore, ctx.idService, typeID, pos, dir);
             ctx.bulletRepository.Add(entity);
-            return null;
+            return entity;
         }
 
         public static BulletEntity SpawnByRole_Spawner(GameSystemContext ctx, RoleEntity role, BulletSpawnerTM spawnerTM) {
@@ -22,12 +22,10 @@ namespace UF {
             ctx.bulletRepository.Remove(bullet);
             bullet.TearDown();
         }
-
         public static void UnSpawn(GameSystemContext ctx, BulletEntity bullet, RoleEntity role) {
             ctx.bulletRepository.Remove(bullet);
             bullet.TearDown();
         }
-
         public static void Clear(GameSystemContext ctx) {
             int len = ctx.bulletRepository.TakeAll(out BulletEntity[] bullets);
             for (int i = 0; i < len; i += 1) {
@@ -42,8 +40,6 @@ namespace UF {
         #region FSM
         public static void FSM_All_Execute(GameSystemContext ctx, BulletEntity bullet, float dt) {
             Frames_Tick(ctx, bullet, dt);
-
-
         }
         #endregion
 

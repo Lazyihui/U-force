@@ -98,9 +98,10 @@ namespace UF {
                 // SpawnBullet
                 var spawnTM = model.bulletSpawnerTM;
                 spawnTM.spawnPos.position = role.GetMuzzlePos();
-                BulletDomain.SpawnByRole_Spawner(ctx, role, spawnTM);
+                BulletEntity bullet = BulletDomain.SpawnByRole_Spawner(ctx, role, spawnTM);
+                Debug.LogWarning("生成子弹" + bullet.typeID);
                 // 记录一共发射了多少次
-                ctx.gameEntity.playerSaveData.shootAllTimes += 1;
+                ctx.gameEntity.playerSaveData.HitTimes  += 1;
             }
 
             if (model.hasBulletTearDown) {
@@ -251,11 +252,10 @@ namespace UF {
             role.Attr_Hp_Set(finalHp);
 
             var playerData = ctx.gameEntity.playerSaveData;
-            playerData.SetHitTimes(playerData.hitTimes + 1);
+            playerData.SetHitTimes(playerData.shootTimes + 1);
 
             if (attCom.hp <= 0) {
                 role.SetRoleState(RoleState.Fall);
-                Debug.Log("进入掉落状态");
                 role.Fall();
                 role.Set_RbConstraints();
             }
@@ -275,7 +275,7 @@ namespace UF {
                 role.SetRoleState(RoleState.Dead);
             }
         }
-        
+
         // 下落过程的检测 检测到地面状态变为死亡 和检测是否碰到敌人
         public static void FallingtodeathCheck(GameSystemContext ctx, RoleEntity role) {
             if (role.state != RoleState.Fall) {
@@ -320,7 +320,7 @@ namespace UF {
                 // TODO:L写这里其实不太好
                 ctx.gameEntity.state = GameState.GameOver;
                 var playerData = game.playerSaveData;
-                ctx.appUI.Panel_GameOver_Open(false, playerData.GetRoleGetHurt(), playerData.shootAllTimes, playerData.hitTimes, playerData.GetRoleHitRate(), 0);
+                ctx.appUI.Panel_GameOver_Open(false, playerData.GetRoleGetHurt(), playerData.HitTimes , playerData.shootTimes, playerData.GetRoleHitRate(), 0);
             }
         }
 
