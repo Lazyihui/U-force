@@ -65,5 +65,9 @@ namespace UF {
                 card.SetInterTrue();
             }
         }
+
+        public void OpenCard() {
+            cards[0].OnClick();
+        }
     }
 }

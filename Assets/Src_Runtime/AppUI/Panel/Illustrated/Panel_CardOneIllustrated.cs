@@ -33,5 +33,9 @@ namespace UF {
         public void SetInterFalse() {
             btn_Card.interactable = false;
         }
+
+        public void OnClick() {
+            btn_Card.onClick.Invoke();
+        }
     }
 }

@@ -1259,6 +1259,14 @@ namespace UF {
 
             return panel.TryGet(typeID);
         }
+
+        public void Panel_Illustrated_OpenCard() {
+            Panel_Illustrated panel = ctx.panel_Illustrated;
+
+            if (panel == null) { return; }
+
+            panel.OpenCard();
+        }
         #endregion
 
         #region TrainIllustrated
@@ -1306,6 +1314,14 @@ namespace UF {
 
             panel.TearDown();
             ctx.panel_TrainIllustrated = null;
+        }
+
+        public void Panel_TrainIllustrated_OpenCard() {
+            Panel_TrainIllustrated panel = ctx.panel_TrainIllustrated;
+
+            if (panel == null) { return; }
+            
+            panel.OpenCard();
         }
         #endregion
 

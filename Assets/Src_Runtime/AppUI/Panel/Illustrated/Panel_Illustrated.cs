@@ -91,5 +91,9 @@ namespace UF {
 
             return false;
         }
+
+        public void OpenCard() {
+            cards[0].OnClick();
+        }
     }
 }
