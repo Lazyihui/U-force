@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53636999024a9f443bd25141242a63ea, type: 3}
-  m_Name: "So_Stage_11\u6D88\u9664\u6218"
+  m_Name: "So_Stage_15\u6D88\u9664\u6218"
   m_EditorClassIdentifier: 
   tm:
-    stageID: 11
+    stageID: 15
     roleSpawns:
     - so: {fileID: 11400000, guid: f96d8444c1a43f146b54cd3643dafa34, type: 2}
       position: {x: 13, y: -2.5, z: 0}

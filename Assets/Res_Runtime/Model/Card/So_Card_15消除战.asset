@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2184839ec8517724cab1a6f5e3c3e2fc, type: 3}
-  m_Name: "So_Card_11\u6D88\u9664\u6218"
+  m_Name: "So_Card_15\u6D88\u9664\u6218"
   m_EditorClassIdentifier: 
   tm:
-    typeID: 11
+    typeID: 15
     slotMax: 2
     roleSoArray:
     - {fileID: 11400000, guid: 772c31f3954c55f48b735dc0c0226a7e, type: 2}

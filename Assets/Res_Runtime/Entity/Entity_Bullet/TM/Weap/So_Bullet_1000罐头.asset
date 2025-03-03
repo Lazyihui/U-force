@@ -45,3 +45,29 @@ MonoBehaviour:
         isHaveContinueBoomDamege: 0
         isDestorySelf: 0
         isRoleMoveSpeedDown: 0
+    - loopTM:
+        loopFlag: -1
+        maintainFrame: 2
+        triggerIntervalSec: 0
+        triggerTimesMax: 0
+      hasBulletBehaviour: 1
+      bulletBehaviourTM:
+        isMove: 0
+        isStop: 1
+        isHaveContinueDamege: 0
+        isHaveContinueBoomDamege: 1
+        isDestorySelf: 0
+        isRoleMoveSpeedDown: 0
+    - loopTM:
+        loopFlag: -1
+        maintainFrame: 2
+        triggerIntervalSec: 0
+        triggerTimesMax: 0
+      hasBulletBehaviour: 1
+      bulletBehaviourTM:
+        isMove: 0
+        isStop: 0
+        isHaveContinueDamege: 0
+        isHaveContinueBoomDamege: 0
+        isDestorySelf: 1
+        isRoleMoveSpeedDown: 0

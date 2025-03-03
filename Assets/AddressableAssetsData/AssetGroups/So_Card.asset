@@ -84,7 +84,7 @@ MonoBehaviour:
     - So_Card
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3524d9ecbdd8e574d8759bb4ba81f1d2
-    m_Address: "So_Card_11\u6D88\u9664\u6218"
+    m_Address: So_Card_15
     m_ReadOnly: 0
     m_SerializedLabels:
     - So_Card

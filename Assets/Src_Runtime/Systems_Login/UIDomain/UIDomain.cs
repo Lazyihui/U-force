@@ -210,9 +210,11 @@ namespace UF {
             int curChapterID = appUI.playerSaveData.GetChapterCurID();
             int unLockChapterID = appUI.playerSaveData.GetUnLockChapterID();
             int unLockStageCount = appUI.playerSaveData.GetUnLockStageCount();
+            int starAllCount = appUI.playerSaveData.GetstarAllCount();
 
             appUI.Panel_StageSelection_Open(curChapterID, unLockChapterID);
             appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, curChapterID, unLockChapterID);
+            appUI.Panel_StageSelection_SetStarNum(starAllCount);
 
 
             for (int i = 0; i < unLockStageCount; i += 1) {

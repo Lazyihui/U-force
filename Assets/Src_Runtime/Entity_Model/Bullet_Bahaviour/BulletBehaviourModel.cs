@@ -14,6 +14,8 @@ namespace UF {
 
         // role身上的
         public bool isRoleMoveSpeedDown;
+        public bool isRoleMoveDown; // 往下掉
+        public bool isRoleMoveRight; // 击退
 
 
         public void FormTM(BulletBehaviourTM tm) {
@@ -25,6 +27,8 @@ namespace UF {
 
             // role身上的
             isRoleMoveSpeedDown = tm.isRoleMoveSpeedDown;
+            isRoleMoveDown = tm.isRoleMoveDown;
+            isRoleMoveRight = tm.isRoleMoveRight;
         }
     }
 }

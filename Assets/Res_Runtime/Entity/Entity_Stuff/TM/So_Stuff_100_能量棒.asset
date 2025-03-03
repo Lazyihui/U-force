@@ -20,4 +20,5 @@ MonoBehaviour:
     isTimeStuff: 0
     addTime: 20
     modPrefab: {fileID: 1121275383739533645, guid: 4206e7c886c82c94983df0aca5cc5445, type: 3}
+    sprite: {fileID: 0}
     description: "\u6E38\u620F\u80DC\u5229\u6536\u96C6\u7269"
