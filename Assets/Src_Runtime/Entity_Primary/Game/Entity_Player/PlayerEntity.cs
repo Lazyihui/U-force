@@ -30,6 +30,9 @@ namespace UF {
         public int GetSlotMax() => slotMax;
         public void Set_slotMax(int slotMax) => this.slotMax = slotMax;
 
+        public int starAllCount;//总星数
+        public int GetstarAllCount() => starAllCount;
+
         // 结算信息
         public int ownerGetHurt;
         public void SetOwnerGetHurt(int value) => ownerGetHurt = value;
@@ -60,12 +63,23 @@ namespace UF {
 
             // 保存星级
             Set_stage_PassedStar(stageCurID, starCount);
+            Set_stage_AllStar();
             return starCount;
         }
         public void Set_stage_PassedStar(int stageID, int star) {
             stage_PassedStar[stageID] = star;
         }
 
+        public void Set_stage_AllStar() {
+            int len = stage_PassedStar.Count;
+            starAllCount = 0;
+
+            for (int i = 0; i < len; i++) {
+                i += 1;
+                int star = stage_PassedStar[i];
+                starAllCount += star;
+            }
+        }
 
         public PlayerEntity() {
             stageCurID = 0;

@@ -233,6 +233,18 @@ namespace UF {
                 UnSpawn(ctx, bullet);
             }
 
+            if (model.isRoleMoveDown) {
+                // 角色下移一格
+                Debug.LogWarning("角色一格");
+                Bullet_RoleMoveDown(ctx, bullet);
+            }
+
+            if (model.isRoleMoveRight) {
+                // 角色击退
+                Debug.LogWarning("角色击退");
+                Bullet_RoleMoveBack(ctx, bullet);
+            }
+
         }
 
         #endregion
@@ -278,11 +290,13 @@ namespace UF {
             Debug.Log("汇聚");
         }
 
-        static void Skill_Down(GameSystemContext ctx, BulletEntity bullet, RoleEntity role) {
+        static void Bullet_RoleMoveDown(GameSystemContext ctx, BulletEntity bullet) {
+            ctx.roleRepository.TryGet(bullet.touchRoleIDSig, out RoleEntity role);
             role.isControlledDown = true;
         }
 
-        static void Skill_Back(GameSystemContext ctx, BulletEntity bullet, RoleEntity role) {
+        static void Bullet_RoleMoveBack(GameSystemContext ctx, BulletEntity bullet) {
+            ctx.roleRepository.TryGet(bullet.touchRoleIDSig, out RoleEntity role);
             role.isControlledRight = true;
         }
 

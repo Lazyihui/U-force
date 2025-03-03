@@ -12,5 +12,7 @@ namespace UF {
         public bool isDestorySelf;
 
         public bool isRoleMoveSpeedDown;
+        public bool isRoleMoveDown;
+        public bool isRoleMoveRight;
     }
 }

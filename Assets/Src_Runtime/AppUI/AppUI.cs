@@ -534,6 +534,14 @@ namespace UF {
             panel.Add(stageID, isPassed, getStarCount);
         }
 
+        public void Panel_StageSelection_SetStarNum(int starNum) {
+            Panel_StageSelection panel = ctx.panel_StageSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.Set_StarNum(starNum);
+        }
+
         // 当前关卡的星星
         public void Panel_StageSelection_SetGetStar(int stageID, int starCount) {
             Panel_StageSelection panel = ctx.panel_StageSelection;

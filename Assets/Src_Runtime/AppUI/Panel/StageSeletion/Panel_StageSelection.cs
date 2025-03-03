@@ -12,6 +12,7 @@ namespace UF.UIApplication {
 
         [SerializeField] Transform oneStegeGroup;
         [SerializeField] TextMeshProUGUI txt_chapter;
+        [SerializeField] TextMeshProUGUI txt_starNum;
         [SerializeField] Panel_StageSelection_OneStage oneStagePrefab;
 
         List<Panel_StageSelection_OneStage> stage;
@@ -140,6 +141,10 @@ namespace UF.UIApplication {
 
         public void SetNativeSize() {
             img_keyPrompt.SetNativeSize();
+        }
+
+        public void Set_StarNum(int num) {
+            txt_starNum.text = "勋章数量: " + num.ToString();
         }
 
         public void Clear() {
