@@ -43,7 +43,6 @@ namespace UF {
             ctx.gameEntity.Clear();
 
             // 2.关闭所有Ui
-            appUI.Reset();
 
             appUI.Panel_GameOver_Close();
             appUI.Panel_GamePause_Close();

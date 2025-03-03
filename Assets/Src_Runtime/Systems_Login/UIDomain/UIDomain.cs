@@ -49,7 +49,6 @@ namespace UF {
                 appUI.Panel_WatchTower_Add(roleTM.typeID, roleTM.sprite);
             }
 
-            // 那些卡片不用选择
             int indCount = card.GetBulletIndTMsCount();
             if (indCount == 0) {
                 Debug.Log("不用选择工业 + 按键设为fasle");

@@ -20,6 +20,6 @@ namespace UF {
             scienceTypeID = -1;
             typeIDs.Clear();
         }
-        
+
     }
 }

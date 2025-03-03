@@ -134,12 +134,7 @@ namespace UF {
                 appUI.Panel_StageSelection_Close();
                 appUI.playerSaveData.SetStageCurID(stageID);
 
-                Debug.Log("进入选择人物页面 选择的关卡ID " + stageID);
-
                 UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule);
-
-             
-
             };
 
             loginEvent.OnChapterClickHandle += (chapter) => {
@@ -194,7 +189,6 @@ namespace UF {
                 loginSystem.Exit();
 
                 gameSystem.Enter(stageID, roleTypeID, typeIDs.ToArray(), sciType);
-                appUI.Reset();
             };
 
             loginEvent.OnSelectBackClickHandle += () => {
@@ -419,6 +413,9 @@ namespace UF {
             };
 
             pauseEvent.OnResetWarningHandle += () => { // 重新开始
+
+                // 重新开始游戏
+
                 var typeIDs = appUI.selectedInFormation.typeIDs;
                 int stageID = appUI.playerSaveData.GetStageCurID();
                 int roleTypeID = appUI.selectedInFormation.roleSelectedTypeID;
@@ -430,16 +427,16 @@ namespace UF {
                 gameSystem.Exit();
                 gameSystem.ClearGame();
                 pauseSystem.Exit();
+
+                Debug.Log("重新开始游戏" + "role" + roleTypeID + " sci" + sciType);
                 gameSystem.Enter(stageID, roleTypeID, typeIDs.ToArray(), sciType);
             };
 
             pauseEvent.OnQuitWarningHandle += () => {
-                Debug.Log("退出游戏 进入备战(选卡片)页面");
                 gameSystem.ClearGame();
                 gameSystem.Exit();
                 loginSystem.Enter();
                 appUI.Panel_BackSelection_Close();
-
                 UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule);
             };
 
