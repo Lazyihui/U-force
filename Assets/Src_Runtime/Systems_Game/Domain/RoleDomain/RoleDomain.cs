@@ -98,7 +98,8 @@ namespace UF {
                 // SpawnBullet
                 var spawnTM = model.bulletSpawnerTM;
                 spawnTM.spawnPos.position = role.GetMuzzlePos();
-                BulletDomain.SpawnByRole_Spawner(ctx, role, spawnTM);
+                BulletEntity bullet = BulletDomain.SpawnByRole_Spawner(ctx, role, spawnTM);
+                Debug.LogWarning("生成子弹" + bullet.typeID);
                 // 记录一共发射了多少次
                 ctx.gameEntity.playerSaveData.shootAllTimes += 1;
             }
@@ -255,7 +256,6 @@ namespace UF {
 
             if (attCom.hp <= 0) {
                 role.SetRoleState(RoleState.Fall);
-                Debug.Log("进入掉落状态");
                 role.Fall();
                 role.Set_RbConstraints();
             }
@@ -275,7 +275,7 @@ namespace UF {
                 role.SetRoleState(RoleState.Dead);
             }
         }
-        
+
         // 下落过程的检测 检测到地面状态变为死亡 和检测是否碰到敌人
         public static void FallingtodeathCheck(GameSystemContext ctx, RoleEntity role) {
             if (role.state != RoleState.Fall) {

@@ -58,9 +58,8 @@ namespace UF {
 
 
         public bool IsDead() {
-            bool isDead = hp <= 0;
+            bool isDead = hitTimes <= 0;
             // Debug.Log(hp + frameIndex + hitMaxTimes);
-            isDead |= hitTimes < 0;
             isDead |= frameIndex >= frames.Count;
             return isDead;
         }

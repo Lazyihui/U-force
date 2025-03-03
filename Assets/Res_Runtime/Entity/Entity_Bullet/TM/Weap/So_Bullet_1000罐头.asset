@@ -33,7 +33,7 @@ MonoBehaviour:
     isMakeBulletAppear: 0
     frames:
     - loopTM:
-        loopFlag: 0
+        loopFlag: -1
         maintainFrame: 2
         triggerIntervalSec: 0
         triggerTimesMax: 0
