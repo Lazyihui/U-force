@@ -7,6 +7,7 @@ namespace UF {
     public class CardModel {
         public int typeID;
         public int slotMax;
+        public int stageCurType;
         public List<RoleTM> roleTMs;
         public List<BulletTM> bulletAgrTMs;//农业
         public List<BulletTM> bulletIndTMs;//工业
@@ -16,6 +17,7 @@ namespace UF {
 
         public CardModel() {
             roleTMs = new List<RoleTM>();
+            stageCurType = 0;
             bulletAgrTMs = new List<BulletTM>();
             bulletIndTMs = new List<BulletTM>();
             bulletSciTMs = new List<BulletTM>();

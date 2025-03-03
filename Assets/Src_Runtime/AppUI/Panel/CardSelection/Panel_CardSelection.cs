@@ -71,6 +71,8 @@ namespace UF.UIApplication {
                 txt_ChapterName.text = "进攻战";
             } else if (chapterID == 3) {
                 txt_ChapterName.text = "消除战";
+            } else if (chapterID == 0) {
+                Debug.LogWarning("没有配置card.StageTyerCur");
             }
         }
 

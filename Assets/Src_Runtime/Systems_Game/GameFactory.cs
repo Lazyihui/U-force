@@ -425,6 +425,7 @@ namespace UF {
             CardModel model = new CardModel();
 
             model.typeID = typeID;
+            model.stageCurType = tm.stageCurType;
 
             // var skillorTMArray = tm.skillorSoArray;
 

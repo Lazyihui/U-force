@@ -12,7 +12,6 @@ namespace UF {
             Debug.Log("Panel_CardSelection_Open+选择卡牌界面");
             int stageID = appUI.playerSaveData.GetStageCurID();
             int chapterID = appUI.playerSaveData.GetChapterCurID();
-            int stageCurType = appUI.playerSaveData.GetStageCurType();
             appUI.Panel_StageSelection_Close();
 
             CardModel spawnCard = GameFactory.Card_Create(assetsModule, templateModule, stageID);
@@ -29,8 +28,7 @@ namespace UF {
             // 记录卡槽数
             playerSaveData.Set_slotMax(card.slotMax);
 
-            appUI.Panel_CardSelection_Open(stageID, stageCurType);// 打开卡牌选择界面
-
+            appUI.Panel_CardSelection_Open(stageID, card.stageCurType);// 打开卡牌选择界面
             appUI.Panel_CardSelection_AddCardSelected(playerSaveData.slotMax);// 放卡片的地方
 
             // 第一个

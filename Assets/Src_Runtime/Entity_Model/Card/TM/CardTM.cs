@@ -9,6 +9,7 @@ namespace UF {
     public class CardTM {
         public int typeID;
         public int slotMax;
+        public int stageCurType;
         public List<RoleSo> roleSoArray;
         public List<BulletSo> bulletAgrSoArray;
         public List<BulletSo> bulletIndSoArray;
