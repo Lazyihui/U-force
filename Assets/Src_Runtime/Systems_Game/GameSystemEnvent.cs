@@ -79,6 +79,13 @@ namespace UF {
                 OnGameIllusCardClickHandle(a);
             }
         }
+
+        public Action<int> OnGameIllusStuffCardClickHandle;
+        public void OnGameIllusStuffCardClick(int a) {
+            if (OnGameIllusStuffCardClickHandle != null) {
+                OnGameIllusStuffCardClickHandle(a);
+            }
+        }
         #endregion
     }
 }

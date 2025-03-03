@@ -1218,17 +1218,21 @@ namespace UF {
                 panel.OnGameIllusCardClickHandle = (typeID) => {
                     eventCenter.OnGameIllusCardClick(typeID);
                 };
+
+                panel.OnGameIllusStuffCardClickHandle = (typeID) => {
+                    eventCenter.OnGameIllusStuffCardClick(typeID);
+                };
             }
             ctx.panel_Illustrated = panel;
             panel.Show();
         }
 
-        public void Panel_Illustrated_Add(int typeID, Sprite sprite) {
+        public void Panel_Illustrated_Add(int typeID, Sprite sprite, bool isRole) {
             Panel_Illustrated panel = ctx.panel_Illustrated;
 
             if (panel == null) { return; }
 
-            panel.Add(typeID, sprite);
+            panel.Add(typeID, sprite, isRole);
         }
 
         public void Panel_Illustrated_SetContent(Sprite sprite, string name, string description) {
@@ -1246,6 +1250,14 @@ namespace UF {
 
             panel.TearDown();
             ctx.panel_Illustrated = null;
+        }
+
+        public bool Panel_Illustrated_TryGet(int typeID) {
+            Panel_Illustrated panel = ctx.panel_Illustrated;
+
+            if (panel == null) { return false; }
+
+            return panel.TryGet(typeID);
         }
         #endregion
 

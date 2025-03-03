@@ -239,6 +239,10 @@ namespace UF {
             eventCenter.OnGameIllusCardClickHandle += (int typeID) => {
                 events.OnGameIllusCardClick(typeID);
             };
+
+            eventCenter.OnGameIllusStuffCardClickHandle += (int typeID) => {
+                events.OnGameIllusStuffCardClick(typeID);
+            };
         }
     }
 }
