@@ -458,6 +458,13 @@ namespace UF {
                 OnEliminateQuitClickHandle();
             }
         }
+
+        public Action<bool> OnEliminateGameOverButtonClick;
+        public void OnEliminateOverResetClick(bool iswin) {
+            if (OnEliminateGameOverButtonClick != null) {
+                OnEliminateGameOverButtonClick(iswin);
+            }
+        }
         #endregion
     }
 }

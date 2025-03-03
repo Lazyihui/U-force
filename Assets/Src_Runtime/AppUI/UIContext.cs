@@ -34,6 +34,7 @@ namespace UF {
         public Panel_Training_Back panel_Training_Back;
         public Panel_Eliminate_Button panel_Eliminate_Button;
         public Panel_Eliminate_Pause panel_Eliminate_Pause;
+        public Panel_EliminateGameOver panel_EliminateGameOver;
 
         // HUD
         public HUD_Progressbar hud_Progressbar;
