@@ -156,7 +156,6 @@ namespace UF {
         public static void Frames_Tick(GameSystemContext ctx, BulletEntity bullet, float dt) {
 
             if (bullet.IsDead()) {
-                Debug.LogWarning("子弹死亡");
                 return;
             }
 

@@ -101,7 +101,7 @@ namespace UF {
                 BulletEntity bullet = BulletDomain.SpawnByRole_Spawner(ctx, role, spawnTM);
                 Debug.LogWarning("生成子弹" + bullet.typeID);
                 // 记录一共发射了多少次
-                ctx.gameEntity.playerSaveData.shootAllTimes += 1;
+                ctx.gameEntity.playerSaveData.HitTimes  += 1;
             }
 
             if (model.hasBulletTearDown) {
@@ -252,7 +252,7 @@ namespace UF {
             role.Attr_Hp_Set(finalHp);
 
             var playerData = ctx.gameEntity.playerSaveData;
-            playerData.SetHitTimes(playerData.hitTimes + 1);
+            playerData.SetHitTimes(playerData.shootTimes + 1);
 
             if (attCom.hp <= 0) {
                 role.SetRoleState(RoleState.Fall);
@@ -320,7 +320,7 @@ namespace UF {
                 // TODO:L写这里其实不太好
                 ctx.gameEntity.state = GameState.GameOver;
                 var playerData = game.playerSaveData;
-                ctx.appUI.Panel_GameOver_Open(false, playerData.GetRoleGetHurt(), playerData.shootAllTimes, playerData.hitTimes, playerData.GetRoleHitRate(), 0);
+                ctx.appUI.Panel_GameOver_Open(false, playerData.GetRoleGetHurt(), playerData.HitTimes , playerData.shootTimes, playerData.GetRoleHitRate(), 0);
             }
         }
 

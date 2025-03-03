@@ -51,19 +51,16 @@ namespace UF {
 
             int indCount = card.GetBulletIndTMsCount();
             if (indCount == 0) {
-                Debug.Log("不用选择工业 + 按键设为fasle");
                 appUI.Panel_CardSelected_IndButton(false);
             }
 
             int agrCount = card.GetBulletAgrTMsCount();
             if (agrCount == 0) {
-                Debug.Log("不用选择农业 + 按键设为fasle");
                 appUI.Panel_CardSelected_AgrButton(false);
             }
 
             int sciCount = card.GetBulletSciTMsCount();
             if (sciCount == 0) {
-                Debug.Log("不用选择科技 + 按键设为fasle");
                 appUI.Panel_CardSelected_SciButton(false);
             }
 

@@ -32,16 +32,18 @@ namespace UF {
         public int ownerGetHurt;
         public void SetOwnerGetHurt(int value) => ownerGetHurt = value;
         public int GetRoleGetHurt() => ownerGetHurt;
-        public int hitTimes;//射中次数
-        public void SetHitTimes(int value) => hitTimes = value;
-        public int shootAllTimes;//射击所有次数
-        public void SetHitNumberMax(int value) => shootAllTimes = value;
+        public int shootTimes;//射击次数
+        public void SetHitTimes(int value) => shootTimes = value;
+        public int HitTimes;//命中次数
+        public void SetHitNumberMax(int value) => HitTimes = value;
 
         public float GetRoleHitRate() {
-            if (shootAllTimes == 0) {
+            if (HitTimes == 0) {
                 return 0;
             }
-            return (float)hitTimes / shootAllTimes;
+
+            Debug.Log("hitTimes:" + shootTimes + "shootAllTimes:" + HitTimes + "hitTimes/shootAllTimes:" + (float)shootTimes / HitTimes);
+            return (float)HitTimes / shootTimes;
         }
 
         public int GetStarCount() {
