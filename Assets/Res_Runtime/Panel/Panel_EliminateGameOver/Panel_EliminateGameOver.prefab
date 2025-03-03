@@ -428,6 +428,7 @@ GameObject:
   - component: {fileID: 6279122250328020041}
   - component: {fileID: 4581187136047187810}
   - component: {fileID: 6712158981928065337}
+  - component: {fileID: -4842973465432505834}
   m_Layer: 5
   m_Name: Panel_EliminateGameOver
   m_TagString: Untagged
@@ -493,6 +494,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-4842973465432505834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3919605646391364175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68c3d64f6c98c5499a482e32c1b7927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Text_Title: {fileID: 4087825624645672692}
+  Text_Energy: {fileID: 8659374809184777228}
+  Text_Shoot: {fileID: 7277519007672873343}
+  Text_TakeTime: {fileID: 1554006662712701819}
+  Btn_GameOver: {fileID: 5565470189226831343}
+  star1: {fileID: 1441213224333366532}
+  star2: {fileID: 4476684495857773730}
+  star3: {fileID: 3051831626102411116}
 --- !u!1 &4464542096632906881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,7 +1028,7 @@ GameObject:
   - component: {fileID: 6058747261606153854}
   - component: {fileID: 1554006662712701819}
   m_Layer: 5
-  m_Name: Text_HitNumber
+  m_Name: Text_TakeTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
