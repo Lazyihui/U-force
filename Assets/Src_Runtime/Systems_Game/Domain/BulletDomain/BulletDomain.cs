@@ -160,8 +160,6 @@ namespace UF {
                 return;
             }
 
-            Debug.Log("子弹执行");
-
             ref int frameIndex = ref bullet.frameIndex;
             List<BulletFrameModel> frames = bullet.frames;
             var frame = frames[frameIndex];

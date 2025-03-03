@@ -8,6 +8,8 @@ namespace UF {
     public static class UIDomain {
 
         public static void Panel_CardSelection_Open(AppUI appUI, AssetsModule assetsModule, TemplateMoudle templateModule) {
+            Debug.Log("Panel_CardSelection_Open+选择卡牌界面");
+
             int stageID = appUI.playerSaveData.GetStageCurID();
             int chapterID = appUI.playerSaveData.GetChapterCurID();
 
@@ -46,6 +48,26 @@ namespace UF {
                 RoleTM roleTM = card.roleEnemyTMs[i];
                 appUI.Panel_WatchTower_Add(roleTM.typeID, roleTM.sprite);
             }
+
+            // 那些卡片不用选择
+            int indCount = card.GetBulletIndTMsCount();
+            if (indCount == 0) {
+                Debug.Log("不用选择工业 + 按键设为fasle");
+                appUI.Panel_CardSelected_IndButton(false);
+            }
+
+            int agrCount = card.GetBulletAgrTMsCount();
+            if (agrCount == 0) {
+                Debug.Log("不用选择农业 + 按键设为fasle");
+                appUI.Panel_CardSelected_AgrButton(false);
+            }
+
+            int sciCount = card.GetBulletSciTMsCount();
+            if (sciCount == 0) {
+                Debug.Log("不用选择科技 + 按键设为fasle");
+                appUI.Panel_CardSelected_SciButton(false);
+            }
+
         }
 
         // 卡片更新
@@ -188,7 +210,6 @@ namespace UF {
         }
 
         public static void Panel_StageSelectionEnter(AppUI appUI) {
-            Debug.Log("Panel_StageSelectionEnter+选择关卡界面");
 
             int curChapterID = appUI.playerSaveData.GetChapterCurID();
             int unLockChapterID = appUI.playerSaveData.GetUnLockChapterID();

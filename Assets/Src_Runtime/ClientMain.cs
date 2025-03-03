@@ -133,27 +133,12 @@ namespace UF {
             loginEvent.OnStageClickHandle += (stageID) => {
                 appUI.Panel_StageSelection_Close();
                 appUI.playerSaveData.SetStageCurID(stageID);
+
+                Debug.Log("进入选择人物页面 选择的关卡ID " + stageID);
+
                 UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule);
 
-                var card = appUI.Get_CardModel();
-
-                int indCount = card.GetBulletIndTMsCount();
-                if (indCount == 0) {
-                    Debug.Log("不用选择工业 + 按键设为fasle");
-                    appUI.Panel_CardSelected_IndButton(false);
-                }
-
-                int agrCount = card.GetBulletAgrTMsCount();
-                if (agrCount == 0) {
-                    Debug.Log("不用选择农业 + 按键设为fasle");
-                    appUI.Panel_CardSelected_AgrButton(false);
-                }
-
-                int sciCount = card.GetBulletSciTMsCount();
-                if (sciCount == 0) {
-                    Debug.Log("不用选择科技 + 按键设为fasle");
-                    appUI.Panel_CardSelected_SciButton(false);
-                }
+             
 
             };
 
@@ -207,7 +192,9 @@ namespace UF {
                 appUI.Panel_CardSelection_Close();
                 appUI.Panel_WatchTower_Close();
                 loginSystem.Exit();
+
                 gameSystem.Enter(stageID, roleTypeID, typeIDs.ToArray(), sciType);
+                appUI.Reset();
             };
 
             loginEvent.OnSelectBackClickHandle += () => {
@@ -447,11 +434,12 @@ namespace UF {
             };
 
             pauseEvent.OnQuitWarningHandle += () => {
+                Debug.Log("退出游戏 进入备战(选卡片)页面");
                 gameSystem.ClearGame();
                 gameSystem.Exit();
                 loginSystem.Enter();
-
                 appUI.Panel_BackSelection_Close();
+
                 UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule);
             };
 
