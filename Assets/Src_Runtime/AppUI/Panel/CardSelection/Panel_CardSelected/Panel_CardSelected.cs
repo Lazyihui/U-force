@@ -9,7 +9,7 @@ namespace UF {
     // 选择的卡槽
     public class Panel_CardSelected : MonoBehaviour {
         [SerializeField] Transform cardGroup;
-        [SerializeField] TextMeshProUGUI txt_Prop;//道具
+        [SerializeField] TextMeshProUGUI txt_Prop;//道具无法使用
         [SerializeField] Image img_hero;
         [SerializeField] Image img_science;
         [SerializeField] TextMeshProUGUI txt_sciene;//科技
@@ -36,6 +36,9 @@ namespace UF {
         }
 
         public void Init(int slotMax) {
+            if (slotMax <= 0) {
+                return;
+            }
             for (int i = 0; i < slotMax; i += 1) {
                 Panel_CardSelectedElement ele = Instantiate(elePrefab, cardGroup);
                 ele.Ctor();

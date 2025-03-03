@@ -9,7 +9,7 @@ namespace UF {
     public class Panel_CardSelectionDetails : MonoBehaviour {
 
         [SerializeField] Image img_Card;
-        [SerializeField] TextMeshProUGUI txt_Content;
+        [SerializeField] TextMeshProUGUI txt_Content;//内容
 
         public Action<int> OnConfirmClickHandle;
         [SerializeField] Button btn_confirm;//确认选择

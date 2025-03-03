@@ -16,6 +16,8 @@ namespace UF {
         HashSet<int> stage_reached;//到达的关卡
         public int stageCurID;//当前关卡
         public int GetStageCurID() => stageCurID;
+        public int stageCurType;//当前关卡类型
+        public int GetStageCurType() => stageCurType;
         public MapEntity mapEntity;
         public int unLockStageCount;//解锁的关卡 
         public int GetUnLockStageCount() => unLockStageCount;
@@ -67,6 +69,7 @@ namespace UF {
 
         public PlayerEntity() {
             stageCurID = 0;
+            stageCurType = 0;
             chapterCurID = 1;//当前章节
             unLockChapterID = 2;//解锁的章节
             unLockStageCount = 10;//最大就是10
@@ -79,6 +82,7 @@ namespace UF {
 
         public void Reset() {
             stageCurID = 0;
+            stageCurType = 0;
             chapterCurID = 1;
             unLockChapterID = 0;
 
@@ -115,6 +119,10 @@ namespace UF {
         public void SetStageCurID(int stageID) {
             stageCurID = stageID;
         }//设置当前关卡
+
+        public void SetStageCurType(int stageType) {
+            stageCurType = stageType;
+        }//设置当前关卡类型
 
         public void SetChapterCurID(int chapterID) {
             chapterCurID = chapterID;

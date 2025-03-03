@@ -8,11 +8,11 @@ namespace UF {
     public static class UIDomain {
 
         public static void Panel_CardSelection_Open(AppUI appUI, AssetsModule assetsModule, TemplateMoudle templateModule) {
-            Debug.Log("Panel_CardSelection_Open+选择卡牌界面");
 
+            Debug.Log("Panel_CardSelection_Open+选择卡牌界面");
             int stageID = appUI.playerSaveData.GetStageCurID();
             int chapterID = appUI.playerSaveData.GetChapterCurID();
-
+            int stageCurType = appUI.playerSaveData.GetStageCurType();
             appUI.Panel_StageSelection_Close();
 
             CardModel spawnCard = GameFactory.Card_Create(assetsModule, templateModule, stageID);
@@ -29,7 +29,8 @@ namespace UF {
             // 记录卡槽数
             playerSaveData.Set_slotMax(card.slotMax);
 
-            appUI.Panel_CardSelection_Open(stageID, chapterID);// 打开卡牌选择界面
+            appUI.Panel_CardSelection_Open(stageID, stageCurType);// 打开卡牌选择界面
+
             appUI.Panel_CardSelection_AddCardSelected(playerSaveData.slotMax);// 放卡片的地方
 
             // 第一个
@@ -258,7 +259,6 @@ namespace UF {
             if (card == null) {
                 return;
             }
-
 
             int propCount = card.GetPropTMsCount();
             if (propCount == 0) {
