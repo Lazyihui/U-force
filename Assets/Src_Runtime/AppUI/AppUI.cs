@@ -246,6 +246,31 @@ namespace UF {
             ctx.panel_GameOver = null;
             Debug.Log("GameOver Close");
         }
+
+        public void Panel_EliminateGameOver_Open(bool isWin, int takeEnergy, int shootTimes, int TakeTime, int starCount) {
+            Panel_EliminateGameOver panel = ctx.panel_EliminateGameOver;
+
+            if (panel == null) {
+                GameObject prefab = ctx.assetsCore.Panel_GetEliminateGameOver();
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                panel = go.GetComponent<Panel_EliminateGameOver>();
+                panel.Ctor();
+
+                panel.OnEliminateGameOverButtonClick += (iswin) => {
+                    eventCenter.OnEliminateOverResetClick(iswin);
+                };
+            }
+            ctx.panel_EliminateGameOver = panel;
+            panel.Show();
+            panel.Init(isWin, takeEnergy, shootTimes, TakeTime, starCount);
+        }
+
+        public void Panel_Eliminate_GameOver_Close() {
+            Panel_EliminateGameOver panel = ctx.panel_EliminateGameOver;
+            if (panel == null) { return; }
+            panel.TearDown();
+            ctx.panel_EliminateGameOver = null;
+        }
         #endregion
 
         #region HUD_Progressbar
@@ -1357,6 +1382,9 @@ namespace UF {
             panel.TearDown();
             ctx.panel_Eliminate_Pause = null;
         }
+
+
+
         #endregion
     }
 }
