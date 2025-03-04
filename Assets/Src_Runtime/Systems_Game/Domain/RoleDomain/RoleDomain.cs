@@ -101,7 +101,6 @@ namespace UF {
                 BulletEntity bullet = BulletDomain.SpawnByRole_Spawner(ctx, role, spawnTM);
                 // 记录一共发射了多少次
                 ctx.gameEntity.playerSaveData.shootTimes += 1;
-                Debug.LogWarning("RoleDomain.SpawnBullet");
             }
 
             if (model.hasBulletTearDown) {
