@@ -9,7 +9,6 @@ namespace UF {
 
         public CardModel cardModel;
 
-
         public Canvas screenCanvas;
         public AssetsModule assetsCore;
 

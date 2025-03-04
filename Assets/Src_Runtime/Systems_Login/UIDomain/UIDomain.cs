@@ -25,15 +25,12 @@ namespace UF {
             for (int i = 0; i < card.roleEnemyTMs.Count; i += 1) {
                 RoleTM roleTM = card.roleEnemyTMs[i];
                 playerSaveData.EnemyTypeIDs.Add(roleTM.typeID);
-                Debug.Log("Panel_CardSelection_Open+选择卡牌界面+roleTM.typeID:" + roleTM.typeID);
             }
 
             // 记录卡槽数
             playerSaveData.Set_slotMax(card.slotMax);
 
             appUI.Panel_CardSelection_Open(stageID, card.stageCurType);// 打开卡牌选择界面
-            
-            Debug.Log(playerSaveData.slotMax);
             appUI.Panel_CardSelection_AddCardSelected(playerSaveData.slotMax);// 放卡片的地方
 
             // 第一个
@@ -95,6 +92,13 @@ namespace UF {
         }
 
         public static void Panel_OneCardSelection_Update(AppUI appUI) {
+            // appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
+
+            // if (typeIDs.Count >= appUI.playerSaveData.GetSlotMax()) {
+            //     Debug.Log("已经选择了" + typeIDs.Count + "张卡片");
+            //     appUI.Panel_CardDetailsBtn_Lock();
+            // }
+
             //1.先清空卡片选择界面 
             appUI.Panel_OneCardSelection_Clear();
             var selectedInFormation = appUI.selectedInFormation;
@@ -253,6 +257,7 @@ namespace UF {
             }
         }
 
+        #region  Tick
         // 计算进入游戏Button是否可用
         public static void isEnterGameButton(AppUI appUI) {
 
@@ -289,6 +294,34 @@ namespace UF {
                 appUI.Panel_CardSelected_EnterGame(true);
             }
         }
+        // 计算单个card是否可选择
+        public static void isOneCardSelectedButton(AppUI appUI) {
+            CardType cardType = appUI.Panel_GetCardType();
+
+            if (cardType == CardType.Hero) {
+            }
+
+            if (cardType == CardType.Agriculture) {
+                appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
+                if (typeIDs.Count >= appUI.playerSaveData.GetSlotMax()) {
+                    appUI.Panel_CardDetailsBtn_Lock();
+                    return;
+                }
+            }
+
+            if (cardType == CardType.Industry) {
+                appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
+                if (typeIDs.Count >= appUI.playerSaveData.GetSlotMax()) {
+                    appUI.Panel_CardDetailsBtn_Lock();
+                    return;
+                }
+            }
+
+            if (cardType == CardType.Science) {
+            }
+        }
+
+        #endregion
 
         #region  Role
         public static void HUD_Progressbar_Update(AppUI ui, RoleAttributeComponent attrCom, float gameWaves) {

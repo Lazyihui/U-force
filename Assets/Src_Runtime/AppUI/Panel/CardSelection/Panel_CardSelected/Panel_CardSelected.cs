@@ -36,9 +36,7 @@ namespace UF {
         }
 
         public void Init(int slotMax) {
-            Debug.Log("Init slotMax:" + slotMax);
             if (slotMax <= 0) {
-                Debug.Log("slotMax <= 0");
                 return;
             }
             for (int i = 0; i < slotMax; i += 1) {

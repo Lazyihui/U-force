@@ -160,7 +160,6 @@ namespace UF {
             loginEvent.OnSelectAgrClickHandle += () => {
                 appUI.Panel_SetCardType(CardType.Agriculture);
                 UIDomain.Panel_OneCardSelection_Update(appUI);
-
             };
 
             loginEvent.OnSelectIndClickHandle += () => {
@@ -196,7 +195,6 @@ namespace UF {
 
                 appUI.Panel_CardSelection_Close();
                 appUI.Panel_WatchTower_Close();
-
                 UIDomain.Panel_StageSelectionEnter(appUI);
             };
 
@@ -206,14 +204,18 @@ namespace UF {
             };
 
             loginEvent.OnConfirmClickHandle += (typeID) => {
+
+                Debug.Log("ConfirmClick " + typeID);
                 appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
                 int roleTypeID = appUI.selectedInFormation.roleSelectedTypeID;
                 int sciType = appUI.selectedInFormation.scienceTypeID;
+
+               
                 if (typeIDs.Count >= appUI.playerSaveData.GetSlotMax() && roleTypeID == -1 && sciType == -1) {
-                    Debug.Log("已经选择了" + typeIDs.Count + "张卡片");
                     appUI.Panel_Notice_Open("道具已经选完了");
                     return;
                 }
+
                 UIDomain.Panel_SelectedCardAddToSlot(appUI, templateModule, typeID);
                 appUI.Panel_OneCardSelection_Lock(typeID);
                 appUI.Panel_CardDetailsBtn_Lock();

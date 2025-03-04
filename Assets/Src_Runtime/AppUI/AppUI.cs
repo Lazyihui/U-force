@@ -1353,7 +1353,7 @@ namespace UF {
             Panel_TrainIllustrated panel = ctx.panel_TrainIllustrated;
 
             if (panel == null) { return; }
-            
+
             panel.OpenCard();
         }
         #endregion
