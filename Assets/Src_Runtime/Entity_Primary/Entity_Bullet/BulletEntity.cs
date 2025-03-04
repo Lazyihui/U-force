@@ -51,7 +51,8 @@ namespace UF {
         public Vector2 centerPos => this.transform.position;
         public Vector3 TF_GetPos() => this.transform.position;
 
-
+        // 判断hitTime
+        public bool isHit;
 
         public bool IsDead() {
             bool isDead = hitTimes <= 0;
@@ -84,6 +85,8 @@ namespace UF {
 
         public void Ctor() {
             frames = new List<BulletFrameModel>();
+
+            isHit = false;
         }
 
         public void Inject(BulletMod mod) {

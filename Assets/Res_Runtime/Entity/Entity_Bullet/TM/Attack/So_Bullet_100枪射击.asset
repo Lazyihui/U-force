@@ -15,7 +15,7 @@ MonoBehaviour:
   tm:
     typeID: 100
     typeName: "Bullet100\u67AA\u5C04\u51FB"
-    hp: 10000
+    hp: 0
     hitTimes: 3
     attackDamage: 4
     isBomb: 0
@@ -34,7 +34,7 @@ MonoBehaviour:
     frames:
     - loopTM:
         loopFlag: -1
-        maintainFrame: 0.5
+        maintainFrame: 2
         triggerIntervalSec: 0
         triggerTimesMax: 0
       hasBulletBehaviour: 1
