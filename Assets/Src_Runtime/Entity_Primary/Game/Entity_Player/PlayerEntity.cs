@@ -93,7 +93,6 @@ namespace UF {
         }
 
         public void Clear() {
-            EnemyTypeIDs.Clear();
 
             stageCurType = 0;
             chapterCurID = 1;

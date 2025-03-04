@@ -91,7 +91,9 @@ namespace UF {
 
                     bullet.touchRoleIDSig = minion.idSig;
                     RoleDomain.HpReduce_MinionFall(ctx, minion, bullet.damage);
+                    
                     bullet.hitTimes -= 1;
+                    Debug.Log("击中次数" + bullet.hitTimes);
 
                     if (bullet.hitTimes <= 0) {
                         UnSpawn(ctx, bullet, minion);

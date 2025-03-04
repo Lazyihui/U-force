@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: So_Card_11
   m_EditorClassIdentifier: 
   tm:
-    typeID: 9
+    typeID: 11
     slotMax: 2
     stageCurType: 1
     roleSoArray:

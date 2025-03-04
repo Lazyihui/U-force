@@ -8,9 +8,7 @@ namespace UF {
 
     public class GameSystem : MonoBehaviour {
         public SystemType SystemType => SystemType.Game;
-
         public static GameSystemContext ctx;
-
         public GameSystemEvents events;
 
         public void Ctor() {
@@ -21,7 +19,6 @@ namespace UF {
         public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository, BulletRepository bulletRepository, PlayerEntity playerSaveData) {
             ctx.Inject(ScreenCanvas, assetsCore, templateCore, appUI, inputModule, roleRepository, bulletRepository, playerSaveData);
         }
-
 
         public void Exit() {
             ctx.isRunning = false;

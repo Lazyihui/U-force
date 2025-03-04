@@ -21,9 +21,11 @@ namespace UF {
 
             // 把怪物的typeID存下来
             var playerSaveData = appUI.playerSaveData;
+            playerSaveData.ClearEnemyTypeID();
             for (int i = 0; i < card.roleEnemyTMs.Count; i += 1) {
                 RoleTM roleTM = card.roleEnemyTMs[i];
                 playerSaveData.EnemyTypeIDs.Add(roleTM.typeID);
+                Debug.Log("Panel_CardSelection_Open+选择卡牌界面+roleTM.typeID:" + roleTM.typeID);
             }
 
             // 记录卡槽数
