@@ -100,7 +100,7 @@ namespace UF {
                 spawnTM.spawnPos.position = role.GetMuzzlePos();
                 BulletEntity bullet = BulletDomain.SpawnByRole_Spawner(ctx, role, spawnTM);
                 // 记录一共发射了多少次
-                ctx.gameEntity.playerSaveData.HitTimes  += 1;
+                ctx.gameEntity.playerSaveData.HitTimes += 1;
             }
 
             if (model.hasBulletTearDown) {
@@ -255,17 +255,17 @@ namespace UF {
 
             if (attCom.hp <= 0) {
                 role.SetRoleState(RoleState.Fall);
-                role.Fall();
                 role.Set_RbConstraints();
+                role.Fall();
+                Debug.Log("Minion死亡" + damage + "当前血量" + attCom.hp);
+            } else {
+                Debug.Log("Minion受伤" + damage + "当前血量" + attCom.hp);
             }
         }
 
         public static void HpReduce_Role(GameSystemContext ctx, RoleEntity role, int damage) {
             var playerData = ctx.gameEntity.playerSaveData;
-            if (role.roleType == RoleType.Player) {
-                // 受到的伤害
-                playerData.SetOwnerGetHurt(playerData.GetRoleGetHurt() + damage);
-            }
+            playerData.SetOwnerGetHurt(playerData.GetRoleGetHurt() + damage);
             var attCom = role.AttributeComponent;
             int finalHp = attCom.hp - damage;
             role.Attr_Hp_Set(finalHp);
@@ -282,7 +282,7 @@ namespace UF {
             }
 
             // TODO:感觉是这里的问题
-            DetectionEnemyAndEnemyByPos(ctx, role, role.GetPos(), role.AttributeComponent.GetFallDamage());
+            // DetectionEnemyAndEnemyByPos(ctx, role, role.GetPos(), role.AttributeComponent.GetFallDamage());
 
             // 和地面的交叉检测
             RaycastHit2D[] hits = Physics2D.RaycastAll(role.GetPos(), Vector2.down, 1.1f);
@@ -297,7 +297,6 @@ namespace UF {
                 }
             }
         }
-
 
 
         // 否是死亡状态 
@@ -319,7 +318,7 @@ namespace UF {
                 // TODO:L写这里其实不太好
                 ctx.gameEntity.state = GameState.GameOver;
                 var playerData = game.playerSaveData;
-                ctx.appUI.Panel_GameOver_Open(false, playerData.GetRoleGetHurt(), playerData.HitTimes , playerData.shootTimes, playerData.GetRoleHitRate(), 0);
+                ctx.appUI.Panel_GameOver_Open(false, playerData.GetRoleGetHurt(), playerData.HitTimes, playerData.shootTimes, playerData.GetRoleHitRate(), 0);
             }
         }
 
