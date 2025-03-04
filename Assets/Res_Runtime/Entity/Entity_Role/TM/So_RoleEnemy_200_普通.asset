@@ -20,7 +20,7 @@ MonoBehaviour:
     typeID: 200
     hp: 1
     moveSpeed: 5
-    jumpForce: 5
+    jumpForce: 0
     baseDamage: 1
     fallDamage: 1
     skillorSoArray: []

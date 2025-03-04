@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d72292fc95d6e41aba9cebe752d514, type: 3}
+  m_Name: "So_RoleEnemy_240_\u8DDF\u8E2A"
+  m_EditorClassIdentifier: 
+  tm:
+    typeName: Minion240
+    roleType: 1
+    moveType: 1
+    roleState: 1
+    typeID: 240
+    hp: 3
+    moveSpeed: 3
+    jumpForce: 0
+    baseDamage: 1
+    fallDamage: 0
+    skillorSoArray: []
+    modPrefab: {fileID: 1663118547299982050, guid: 48bfce6b1bf9f894e9295e0952f89e32, type: 3}
+    featureType: 0
+    sprite: {fileID: -8624728757701206814, guid: e1e24ffa8df5bcf4c8dd6f4ace885b2d, type: 3}
+    content: "\u8DDF\u8E2A"
+    feature: "\u8DDF\u8E2A"
+    skill: 
+    restraint: 
+    isEliminateRole: 0

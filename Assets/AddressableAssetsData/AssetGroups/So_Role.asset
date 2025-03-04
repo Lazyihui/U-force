@@ -107,6 +107,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - So_Role
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dd579c698e82e524fbb1e7b0fe40b2a9
+    m_Address: "So_RoleEnemy_240_\u8DDF\u8E2A"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Role
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 4b47acea7a70a444998ddd6e6fd8b9bf, type: 2}
   m_SchemaSet:
