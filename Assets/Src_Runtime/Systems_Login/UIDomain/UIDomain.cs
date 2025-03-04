@@ -232,9 +232,8 @@ namespace UF {
                 int stageid = stageID + multiple * 10;
                 int starCount = appUI.playerSaveData.GetStagePassedStar(stageid * curChapterID);
 
-                bool isPrassed = appUI.playerSaveData.IsStagePassed(stageid * curChapterID);
-                Debug.Log("stageID" + isPrassed);
-
+                bool isPrassed = appUI.playerSaveData.IsStageReached(stageid * curChapterID);
+                Debug.Log("stageID" + stageID + isPrassed);
                 appUI.Panel_StageSelectionOneStage_Add(stageid, isPrassed, starCount);
             }
 
@@ -252,8 +251,9 @@ namespace UF {
                 int stageid = stageID + multiple * 10;
 
                 int starCount = appUI.playerSaveData.GetStagePassedStar(stageid * chapter);
-                bool isPrassed = appUI.playerSaveData.IsStagePassed(stageid * chapter);
+                bool isPrassed = appUI.playerSaveData.IsStageReached(stageid * chapter);
 
+                Debug.Log("stageID" + stageID + isPrassed);
                 appUI.Panel_StageSelectionOneStage_Add(stageid, isPrassed, starCount);
             }
         }

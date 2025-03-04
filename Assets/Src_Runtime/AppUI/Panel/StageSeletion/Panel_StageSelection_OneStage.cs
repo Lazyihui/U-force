@@ -48,8 +48,10 @@ namespace UF.UIApplication {
 
             if (isUnLock) {
                 img_Bg.sprite = bg_Unlock;
+                btn_stage.enabled = true;
             } else {
                 img_Bg.sprite = bg_Lock;
+                btn_stage.enabled = false;
             }
         }
 
