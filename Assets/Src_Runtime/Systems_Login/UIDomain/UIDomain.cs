@@ -14,6 +14,7 @@ namespace UF {
             int chapterID = appUI.playerSaveData.GetChapterCurID();
             appUI.Panel_StageSelection_Close();
 
+            Debug.Log("Panel_CardSelection_Open+选择卡牌界面+stageID:" + stageID);
             CardModel spawnCard = GameFactory.Card_Create(assetsModule, templateModule, stageID);
             appUI.Set_CardModel(spawnCard);
             CardModel card = appUI.Get_CardModel();
@@ -205,6 +206,8 @@ namespace UF {
         }
 
         public static void Panel_StageSelectionEnter(AppUI appUI) {
+            // 1.清空之前的数据
+            appUI.Reset();
 
             int curChapterID = appUI.playerSaveData.GetChapterCurID();
             int unLockChapterID = appUI.playerSaveData.GetUnLockChapterID();

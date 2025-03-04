@@ -200,7 +200,6 @@ namespace UF {
 
             if (model.isMove) {
                 // 正常移动
-                Debug.LogWarning("正常移动");
                 Bullet_Shaped(ctx, bullet);
             }
 

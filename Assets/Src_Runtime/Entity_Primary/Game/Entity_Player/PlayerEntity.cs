@@ -93,8 +93,7 @@ namespace UF {
         }
 
         public void Clear() {
-            stageCurID = 0;
-            stageCurType = 0;
+            stageCurType =  0;
             chapterCurID = 1;
             ownerGetHurt = 0;
             shootTimes = 0;

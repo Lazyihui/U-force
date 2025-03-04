@@ -43,7 +43,7 @@ namespace UF {
             ctx.gameEntity.Clear();
 
             // 2.关闭所有Ui
-
+            appUI.Reset();
             appUI.Panel_GameOver_Close();
             appUI.Panel_GamePause_Close();
             appUI.Panel_GameDefend_Button_Close();
@@ -183,7 +183,7 @@ namespace UF {
                 Exit();
                 var playerData = ctx.gameEntity.playerSaveData;
                 int starCount = playerData.GetStarCount();
-                ctx.appUI.Panel_GameOver_Open(true, playerData.GetRoleGetHurt(), playerData.HitTimes , playerData.shootTimes, playerData.GetRoleHitRate(), starCount);
+                ctx.appUI.Panel_GameOver_Open(true, playerData.GetRoleGetHurt(), playerData.HitTimes, playerData.shootTimes, playerData.GetRoleHitRate(), starCount);
                 game.state = GameState.GameOver;
 
                 // 保存数据 得到的星级 和 通关的关卡

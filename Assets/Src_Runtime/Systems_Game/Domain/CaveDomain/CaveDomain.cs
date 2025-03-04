@@ -74,7 +74,6 @@ namespace UF {
             }
 
             if (game.spawnEnemyTimer <= 0) {
-                Debug.Log("波次结束");
                 game.curWaves += 1;
 
                 game.spawnEnemyTimer = game.spawnEnemyCount;

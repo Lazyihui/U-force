@@ -193,19 +193,20 @@ namespace UF {
 
             loginEvent.OnSelectBackClickHandle += () => {
                 Debug.Log("SelectBack");
+                // 1.清空选中的卡片
+
                 appUI.Panel_CardSelection_Close();
                 appUI.Panel_WatchTower_Close();
+
                 UIDomain.Panel_StageSelectionEnter(appUI);
             };
 
             loginEvent.OnSelectionCardClickHandle += (typeID) => {
-                Debug.Log("选择的卡片的ID " + typeID);
                 UIDomain.Update_CardSelectionDetails(typeID, templateModule, appUI);
                 appUI.Panel_CardDetailsBtn_UnLock();
             };
 
             loginEvent.OnConfirmClickHandle += (typeID) => {
-                Debug.Log("确认选择  的卡片" + typeID);
                 appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
                 int roleTypeID = appUI.selectedInFormation.roleSelectedTypeID;
                 int sciType = appUI.selectedInFormation.scienceTypeID;
@@ -355,7 +356,6 @@ namespace UF {
 
                 if (isWin) {
                     Debug.Log("进入下一关 进入备战(选卡片)页面");
-                    appUI.Reset();
                     gameSystem.ClearGame();
                     gameSystem.Exit();
                     loginSystem.Enter();
