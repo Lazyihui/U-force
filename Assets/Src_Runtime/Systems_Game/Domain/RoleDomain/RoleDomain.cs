@@ -218,7 +218,8 @@ namespace UF {
                     HpReduce_Role(ctx, role, damage);
 
                     // minion进基地死掉
-                    HpReduce_Role(ctx, minion, damage);
+                    int hpMax = minion.AttributeComponent.GetHpMax();
+                    HpReduce_Role(ctx, minion, hpMax);
                 }
             }
         }
@@ -238,7 +239,6 @@ namespace UF {
                 float radius = 2f;
 
                 if (dis < radius) {
-
                     HpReduce_MinionFall(ctx, Touchminion, damage);
                 }
             }

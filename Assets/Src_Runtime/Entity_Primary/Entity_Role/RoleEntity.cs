@@ -74,6 +74,9 @@ namespace UF {
         // 资源战
         public bool isEliminateRole; // 是否为资源战中除玩家的role
 
+        // 判断是否被子弹击中
+        public bool isHit;
+
         public void Ctor() {
             fsmComponent = new RoleFSMConponent();
             skillorSlotComponent = new RoleSkillSlotComponent();
@@ -86,6 +89,7 @@ namespace UF {
 
             isControlledDown = false;
             isControlledRight = false;
+            isHit = false;
         }
 
         public void TearDown() {

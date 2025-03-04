@@ -89,8 +89,10 @@ namespace UF {
                         }
                     }
 
+                    if (minion.isHit) { continue; }
                     bullet.touchRoleIDSig = minion.idSig;
                     RoleDomain.HpReduce_MinionFall(ctx, minion, bullet.damage);
+                    minion.isHit = true;
                     
                     bullet.hitTimes -= 1;
                     Debug.Log("击中次数" + bullet.hitTimes);
