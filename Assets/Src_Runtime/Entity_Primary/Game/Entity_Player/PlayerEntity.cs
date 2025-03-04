@@ -46,8 +46,6 @@ namespace UF {
             if (HitTimes == 0) {
                 return 0;
             }
-
-            Debug.Log("hitTimes:" + shootTimes + "shootAllTimes:" + HitTimes + "hitTimes/shootAllTimes:" + (float)shootTimes / HitTimes);
             return (float)HitTimes / shootTimes;
         }
 
@@ -94,6 +92,14 @@ namespace UF {
             stage_reached = new HashSet<int>();
         }
 
+        public void Clear() {
+            stageCurID = 0;
+            stageCurType = 0;
+            chapterCurID = 1;
+            ownerGetHurt = 0;
+            shootTimes = 0;
+            HitTimes = 0;
+        }
         public void Reset() {
             stageCurID = 0;
             stageCurType = 0;

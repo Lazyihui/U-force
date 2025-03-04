@@ -96,6 +96,7 @@ namespace UF {
             isRunning = false;
             restFixTime = 0;
             state = GameState.None;
+            playerSaveData.Clear();
         }
 
 
