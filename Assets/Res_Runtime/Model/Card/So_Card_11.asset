@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2184839ec8517724cab1a6f5e3c3e2fc, type: 3}
+  m_Name: So_Card_11
+  m_EditorClassIdentifier: 
+  tm:
+    typeID: 9
+    slotMax: 2
+    stageCurType: 1
+    roleSoArray:
+    - {fileID: 11400000, guid: 772c31f3954c55f48b735dc0c0226a7e, type: 2}
+    - {fileID: 11400000, guid: 28216538e0d7d1c40af159f8b49c1c56, type: 2}
+    bulletAgrSoArray:
+    - {fileID: 11400000, guid: f8fa8df0f443f694aa9bda115442c447, type: 2}
+    - {fileID: 11400000, guid: ec25f1894dd14f14cbd7b712e1774852, type: 2}
+    - {fileID: 11400000, guid: b442cd8e7b4604a4b9cad18072b7ce16, type: 2}
+    bulletIndSoArray:
+    - {fileID: 11400000, guid: 616ede907c0618b43b84e91bf51a06df, type: 2}
+    - {fileID: 11400000, guid: ccad191109302174caf4e6099cd17a07, type: 2}
+    - {fileID: 11400000, guid: 770b6fe25edad1747869a9e124259040, type: 2}
+    bulletSciSoArray:
+    - {fileID: 11400000, guid: ed460d7d5c7d2e74c814c4a6b706fd43, type: 2}
+    - {fileID: 11400000, guid: f39f978c37b8dbb4e9068e529c9d2443, type: 2}
+    roleEnemySoArray:
+    - {fileID: 11400000, guid: 9d04dd169b2febc41a88d55ba222c7bb, type: 2}
+    - {fileID: 11400000, guid: 9391e59375eca984b9ba5a4e34b2580b, type: 2}
+    - {fileID: 11400000, guid: 8c8302dbf62cfcf4085cf714c5324766, type: 2}
+    - {fileID: 11400000, guid: 23dc881e38489ec4fbd99028dc078639, type: 2}
+    isTrain: 0

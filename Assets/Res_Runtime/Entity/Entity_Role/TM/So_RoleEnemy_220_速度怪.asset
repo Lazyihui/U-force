@@ -20,18 +20,15 @@ MonoBehaviour:
     typeID: 220
     hp: 1
     moveSpeed: 4
-    jumpForce: 5
+    jumpForce: 0
     baseDamage: 1
     fallDamage: 0
     skillorSoArray: []
     modPrefab: {fileID: 1663118547299982050, guid: 7ffacbb97fbdae34493c16f77e4805b7, type: 3}
+    featureType: 0
     sprite: {fileID: 1353156543, guid: 4c8cd296c3e3d6748b2cc2725360a963, type: 3}
     content: "\u901F\u5EA6\u602A"
     feature: "\u901F\u5EA6\u602A"
     skill: 
     restraint: 
-    isMinion: 1
-    restBullet:
-    - {fileID: 11400000, guid: ec25f1894dd14f14cbd7b712e1774852, type: 2}
-    restKill: []
-    restPlayer: []
+    isEliminateRole: 0

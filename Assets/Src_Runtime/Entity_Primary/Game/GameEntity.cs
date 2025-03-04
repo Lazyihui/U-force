@@ -45,7 +45,8 @@ namespace UF {
         public bool isOffensiveWar;
         public bool isEliminateWar;
 
-        public GameEntity() {
+        public void Ctor()
+        {
             wavesProgress = 0;
 
             gameTime = 0;

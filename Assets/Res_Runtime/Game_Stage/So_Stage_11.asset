@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53636999024a9f443bd25141242a63ea, type: 3}
+  m_Name: So_Stage_11
+  m_EditorClassIdentifier: 
+  tm:
+    stageID: 11
+    roleSpawns: []
+    towerSpawns:
+    - so: {fileID: 11400000, guid: d8699dbf713c3fa4fba559e682df9a00, type: 2}
+      position: {x: 16, y: 6, z: 0}
+      rotation: {x: -0, y: 0, z: 0}
+    - so: {fileID: 11400000, guid: d8699dbf713c3fa4fba559e682df9a00, type: 2}
+      position: {x: 16, y: 4, z: 0}
+      rotation: {x: -0, y: 0, z: 0}
+    - so: {fileID: 11400000, guid: d8699dbf713c3fa4fba559e682df9a00, type: 2}
+      position: {x: 16, y: 2, z: 0}
+      rotation: {x: -0, y: 0, z: 0}
+    - so: {fileID: 11400000, guid: d8699dbf713c3fa4fba559e682df9a00, type: 2}
+      position: {x: 16, y: 0, z: 0}
+      rotation: {x: -0, y: 0, z: 0}
+    - so: {fileID: 11400000, guid: d8699dbf713c3fa4fba559e682df9a00, type: 2}
+      position: {x: 16, y: -2, z: 0}
+      rotation: {x: -0, y: 0, z: 0}
+    - so: {fileID: 11400000, guid: d8699dbf713c3fa4fba559e682df9a00, type: 2}
+      position: {x: 16, y: -4, z: 0}
+      rotation: {x: -0, y: 0, z: 0}
+    stuffSpawns: []
+    mapPrefab: {fileID: 7992499427466167066, guid: 54926dcec846f17499fedec8ce4437cf, type: 3}
+    gameTM:
+      isDefendWar: 1
+      spawnEnemyCount: 4
+      maxWaves: 4
+      curWaves: 0
+      cdEnemy: 0
+      cdEnemyMax: 1
+      spawnEnemyInterval: 2
+      spawnEnemyIntervalTimer: 0
+      progress: 0.0625
+      isOffensiveWar: 0
+      spanwBossTimer: 0
+      spanwBossCount: 0
+      bossMaxWaves: 0
+      bossCurWaves: 0
+      bossCdMinion: 0
+      bossCd: 0
+      bossSpawnMinionInterval: 0
+      bossSpawnMinionIntervalTimer: 0
+      bossProgress: 0
+      isEliminateWar: 0
+      gameMax: 0
+      stuffMax: 0
+      isTrainingWar: 0
+      sceneProps: []
