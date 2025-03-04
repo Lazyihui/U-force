@@ -25,7 +25,7 @@ MonoBehaviour:
     fallDamage: 1
     skillorSoArray: []
     modPrefab: {fileID: 1663118547299982050, guid: 5a620a83dc403ac4088d098d5ecf911b, type: 3}
-    featureType: 1
+    featureType: 0
     sprite: {fileID: -2973340319329001583, guid: 4c8cd296c3e3d6748b2cc2725360a963, type: 3}
     content: "\u666E\u901A"
     feature: "\u666E\u901A"

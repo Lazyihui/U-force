@@ -54,6 +54,7 @@ namespace UF {
         }
 
         public void InitFromTM(GameTM tm) {
+            Debug.Log("InitFromTM");
             isDefendWar = tm.isDefendWar;
             isOffensiveWar = tm.isOffensiveWar;
             isEliminateWar = tm.isEliminateWar;
@@ -69,6 +70,7 @@ namespace UF {
                 spawnEnemyInterval = tm.spawnEnemyInterval;
                 spawnEnemyIntervalTimer = tm.spawnEnemyIntervalTimer;
                 progress = tm.progress;
+                Debug.Log("spawnEnemyTimer:" + spawnEnemyTimer + " spawnEnemyCount:" + spawnEnemyCount + " maxWaves:" + maxWaves + " curWaves:" + curWaves + " cdEnemy:" + cdEnemy + " cdEnemyMax:" + cdEnemyMax + " spawnEnemyInterval:" + spawnEnemyInterval + " spawnEnemyIntervalTimer:" + spawnEnemyIntervalTimer + " progress:" + progress);
             }
 
             if (isOffensiveWar) {
@@ -97,6 +99,7 @@ namespace UF {
             isRunning = false;
             restFixTime = 0;
             state = GameState.None;
+            playerSaveData.Clear();
         }
 
 

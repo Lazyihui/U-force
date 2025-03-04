@@ -99,7 +99,6 @@ namespace UF {
                 var spawnTM = model.bulletSpawnerTM;
                 spawnTM.spawnPos.position = role.GetMuzzlePos();
                 BulletEntity bullet = BulletDomain.SpawnByRole_Spawner(ctx, role, spawnTM);
-                Debug.LogWarning("生成子弹" + bullet.typeID);
                 // 记录一共发射了多少次
                 ctx.gameEntity.playerSaveData.HitTimes  += 1;
             }
