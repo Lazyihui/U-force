@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tm:
     typeID: 15
-    slotMax: 2
+    slotMax: 0
     stageCurType: 3
     roleSoArray:
     - {fileID: 11400000, guid: 772c31f3954c55f48b735dc0c0226a7e, type: 2}

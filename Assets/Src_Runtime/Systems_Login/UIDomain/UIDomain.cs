@@ -32,6 +32,8 @@ namespace UF {
             playerSaveData.Set_slotMax(card.slotMax);
 
             appUI.Panel_CardSelection_Open(stageID, card.stageCurType);// 打开卡牌选择界面
+            
+            Debug.Log(playerSaveData.slotMax);
             appUI.Panel_CardSelection_AddCardSelected(playerSaveData.slotMax);// 放卡片的地方
 
             // 第一个
