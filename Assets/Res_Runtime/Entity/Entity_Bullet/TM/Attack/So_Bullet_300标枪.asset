@@ -15,7 +15,7 @@ MonoBehaviour:
   tm:
     typeID: 300
     typeName: "Bullet300\u6807\u67AA"
-    hp: 100
+    hp: 0
     hitTimes: 5
     attackDamage: 5
     isBomb: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
     isMakeBulletAppear: 0
     frames:
     - loopTM:
-        loopFlag: 0
+        loopFlag: -1
         maintainFrame: 2
         triggerIntervalSec: 0
         triggerTimesMax: 0
@@ -45,6 +45,8 @@ MonoBehaviour:
         isHaveContinueBoomDamege: 0
         isDestorySelf: 0
         isRoleMoveSpeedDown: 0
+        isRoleMoveDown: 0
+        isRoleMoveRight: 0
     - loopTM:
         loopFlag: 0
         maintainFrame: 0
@@ -58,3 +60,5 @@ MonoBehaviour:
         isHaveContinueBoomDamege: 0
         isDestorySelf: 1
         isRoleMoveSpeedDown: 0
+        isRoleMoveDown: 0
+        isRoleMoveRight: 0

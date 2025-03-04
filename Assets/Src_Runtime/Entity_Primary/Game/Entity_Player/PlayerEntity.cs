@@ -38,9 +38,9 @@ namespace UF {
         public void SetOwnerGetHurt(int value) => ownerGetHurt = value;
         public int GetRoleGetHurt() => ownerGetHurt;
         public int shootTimes;//射击次数
-        public void SetHitTimes(int value) => shootTimes = value;
+        public void SetShootTimes(int value) => shootTimes = value;
         public int HitTimes;//命中次数
-        public void SetHitNumberMax(int value) => HitTimes = value;
+        public void SetHitTimes(int value) => HitTimes = value;
 
         public float GetRoleHitRate() {
             if (HitTimes == 0) {
