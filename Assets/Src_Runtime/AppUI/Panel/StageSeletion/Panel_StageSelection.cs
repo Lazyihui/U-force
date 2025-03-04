@@ -87,7 +87,6 @@ namespace UF.UIApplication {
             if (stage.Count == 1) {
                 Select(oneStage.gameObject);
             }
-
         }
 
         public void Set_GetStar(int stageID, int starCount) {

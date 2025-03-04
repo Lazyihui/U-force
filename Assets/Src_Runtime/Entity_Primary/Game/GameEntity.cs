@@ -109,6 +109,10 @@ namespace UF {
             energyNumber = 0;
         }
 
+        
+        public void Add_ReachStage(int stageID) {
+            playerSaveData.AddStageReached(stageID);
+        }
 
         public void Inject(PlayerEntity playerSaveData) {
             this.playerSaveData = playerSaveData;

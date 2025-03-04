@@ -218,21 +218,22 @@ namespace UF {
             appUI.Reset();
 
             int curChapterID = appUI.playerSaveData.GetChapterCurID();
-            int unLockChapterID = appUI.playerSaveData.GetUnLockChapterID();
-            int unLockStageCount = appUI.playerSaveData.GetUnLockStageCount();
+            int unLockChapterID = appUI.playerSaveData.GetUnLockChapterID();//解锁关卡
+            int unLockStageCount = appUI.playerSaveData.GetUnLockStageCount();//解锁关卡数量
             int starAllCount = appUI.playerSaveData.GetstarAllCount();
 
             appUI.Panel_StageSelection_Open(curChapterID, unLockChapterID);
             appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, curChapterID, unLockChapterID);
             appUI.Panel_StageSelection_SetStarNum(starAllCount);
 
-
             for (int i = 0; i < unLockStageCount; i += 1) {
                 int stageID = i + 1;
                 int multiple = curChapterID - 1;
                 int stageid = stageID + multiple * 10;
                 int starCount = appUI.playerSaveData.GetStagePassedStar(stageid * curChapterID);
+
                 bool isPrassed = appUI.playerSaveData.IsStagePassed(stageid * curChapterID);
+                Debug.Log("stageID" + isPrassed);
 
                 appUI.Panel_StageSelectionOneStage_Add(stageid, isPrassed, starCount);
             }

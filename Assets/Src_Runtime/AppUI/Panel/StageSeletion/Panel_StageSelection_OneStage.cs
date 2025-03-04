@@ -44,11 +44,12 @@ namespace UF.UIApplication {
         }
 
         // 关卡是否锁定
-        public void Set_IsLock(bool isLock) {
-            if (isLock) {
-                img_Bg.sprite = bg_Lock;
-            } else {
+        public void Set_IsLock(bool isUnLock) {
+
+            if (isUnLock) {
                 img_Bg.sprite = bg_Unlock;
+            } else {
+                img_Bg.sprite = bg_Lock;
             }
         }
 
@@ -60,6 +61,7 @@ namespace UF.UIApplication {
             txt_stage.text = str;//关卡名
 
             if (isPassed) {
+                Debug.Log(stageID + "关卡解锁");
                 stageLock.gameObject.SetActive(false);
                 stageGoup.gameObject.SetActive(true);
                 Set_GetStar(getStarCount);

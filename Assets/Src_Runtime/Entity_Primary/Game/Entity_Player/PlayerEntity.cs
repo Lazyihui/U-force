@@ -13,14 +13,17 @@ namespace UF {
         // 关卡信息
         HashSet<int> stage_Passed;//通关的关卡
         Dictionary<int, int> stage_PassedStar;//通关关卡的星级
-        HashSet<int> stage_reached;//到达的关卡
+
+        HashSet<int> stage_UnLock;//到达的关卡
+
+        public int unLockStageCount;//解锁的关卡 
+        public int GetUnLockStageCount() => unLockStageCount;
+
         public int stageCurID;//当前关卡
         public int GetStageCurID() => stageCurID;
         public int stageCurType;//当前关卡类型
         public int GetStageCurType() => stageCurType;
         public MapEntity mapEntity;
-        public int unLockStageCount;//解锁的关卡 
-        public int GetUnLockStageCount() => unLockStageCount;
         public int chapterCurID;//当前章节
         public int GetChapterCurID() => chapterCurID;
         public int unLockChapterID;//解锁的章节
@@ -89,7 +92,12 @@ namespace UF {
             EnemyTypeIDs = new List<int>();
             stage_Passed = new HashSet<int>();
             stage_PassedStar = new Dictionary<int, int>();
-            stage_reached = new HashSet<int>();
+            stage_UnLock = new HashSet<int>();
+
+            // 第一关先进去
+            AddStageReached(1);
+            AddStagePassed(1);
+
         }
 
         public void Clear() {
@@ -100,6 +108,7 @@ namespace UF {
             shootTimes = 0;
             HitTimes = 0;
         }
+
         public void Reset() {
             stageCurID = 0;
             stageCurType = 0;
@@ -108,7 +117,11 @@ namespace UF {
 
             stage_Passed.Clear();
             stage_PassedStar.Clear();
-            stage_reached.Clear();
+            stage_UnLock.Clear();
+        }
+
+        public void AddStageReached(int stageID) {
+            stage_UnLock.Add(stageID);
         }
 
         public void AddEnemyTypeID(int typeID) {
@@ -128,13 +141,14 @@ namespace UF {
             stage_Passed.Add(stageID);
         }
 
+        public int GetStagePassedCount() {
+            return stage_Passed.Count;
+        }
+
         public void AddStagePassedStar(int stageID, int star) {
             stage_PassedStar[stageID] = star;
         }
 
-        public void AddStageReached(int stageID) {
-            stage_reached.Add(stageID);
-        }
 
         public void SetStageCurID(int stageID) {
             stageCurID = stageID;
@@ -157,7 +171,7 @@ namespace UF {
         }
 
         public bool IsStageReached(int stageID) {
-            return stage_reached.Contains(stageID);
+            return stage_UnLock.Contains(stageID);
         }
 
         public int GetStagePassedStar(int stageID) {

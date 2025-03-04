@@ -16,5 +16,18 @@ namespace UF {
             return false;
         }
 
+        public static void Add_ReachStage(GameSystemContext ctx) {
+            var game = ctx.gameEntity;
+            var playerSaveData = game.playerSaveData;
+
+            int passedCount = playerSaveData.GetStagePassedCount();
+            int stageAllCount = playerSaveData.GetstarAllCount();
+
+            if (stageAllCount > passedCount * 1.5f) {
+                Debug.Log(passedCount + 1);
+                playerSaveData.AddStageReached(passedCount + 1);
+            }
+        }
+
     }
 }

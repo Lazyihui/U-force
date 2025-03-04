@@ -182,13 +182,14 @@ namespace UF {
                 Exit();
                 var playerData = ctx.gameEntity.playerSaveData;
                 int starCount = playerData.GetStarCount();
+                // 技术到达的关卡
+                GameDomain.Add_ReachStage(ctx);
                 ctx.appUI.Panel_GameOver_Open(true, playerData.GetRoleGetHurt(), playerData.shootTimes, playerData.HitTimes, playerData.GetRoleHitRate(), starCount);
                 game.state = GameState.GameOver;
 
                 // 保存数据 得到的星级 和 通关的关卡
                 int stageID = appUI.playerSaveData.GetStageCurID();
                 appUI.playerSaveData.AddStagePassed(stageID);
-
             }
         }
 
