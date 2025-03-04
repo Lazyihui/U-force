@@ -45,12 +45,14 @@ namespace UF {
         public bool isOffensiveWar;
         public bool isEliminateWar;
 
-        public void Ctor()
-        {
+        public GameEntity() {
             wavesProgress = 0;
 
             gameTime = 0;
             energyNumber = 0;
+        }
+        public void Ctor() {
+
         }
 
         public void InitFromTM(GameTM tm) {
@@ -100,6 +102,11 @@ namespace UF {
             restFixTime = 0;
             state = GameState.None;
             playerSaveData.Clear();
+
+            wavesProgress = 0;
+
+            gameTime = 0;
+            energyNumber = 0;
         }
 
 

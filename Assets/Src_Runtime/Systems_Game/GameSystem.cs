@@ -63,7 +63,8 @@ namespace UF {
                 Debug.LogError("StageID not found");
                 return;
             }
-            game.Ctor();
+
+            game.Clear();
             game.InitFromTM(tm.gameTM);
 
             if (game.isDefendWar) {

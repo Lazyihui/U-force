@@ -31,8 +31,6 @@ namespace UF {
             isRunning = false;
 
             gameEntity = new GameEntity();
-            gameEntity.Ctor();
-
             idService = new IDService();
 
 
