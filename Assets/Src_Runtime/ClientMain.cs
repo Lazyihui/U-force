@@ -193,7 +193,6 @@ namespace UF {
 
             loginEvent.OnSelectBackClickHandle += () => {
                 Debug.Log("SelectBack");
-                // 1.清空选中的卡片
 
                 appUI.Panel_CardSelection_Close();
                 appUI.Panel_WatchTower_Close();

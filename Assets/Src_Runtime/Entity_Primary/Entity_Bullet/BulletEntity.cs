@@ -23,7 +23,6 @@ namespace UF {
         public int damage;
 
         public int hitTimes;//击中次数 可以集中几下
-        public int hitMaxTimes;//最大击中次数 是否有穿透(可以打几个敌人)
 
         public int continueDamege;//持续伤害
         public float damageInterval;//伤害间隔

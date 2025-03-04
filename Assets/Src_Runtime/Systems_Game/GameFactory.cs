@@ -223,7 +223,6 @@ namespace UF {
             bullet.type = tm.type;
             bullet.hp = tm.hp;
             bullet.damage = tm.attackDamage;
-            bullet.hitMaxTimes = tm.hitTimes;
             bullet.hitTimes = tm.hitTimes;
             bullet.isBomb = tm.isBomb;
             bullet.moveSpeed = tm.moveSpeed;

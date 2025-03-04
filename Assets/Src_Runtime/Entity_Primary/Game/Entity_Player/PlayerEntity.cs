@@ -93,7 +93,9 @@ namespace UF {
         }
 
         public void Clear() {
-            stageCurType =  0;
+            EnemyTypeIDs.Clear();
+
+            stageCurType = 0;
             chapterCurID = 1;
             ownerGetHurt = 0;
             shootTimes = 0;
