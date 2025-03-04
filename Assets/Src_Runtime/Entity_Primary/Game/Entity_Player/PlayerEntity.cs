@@ -76,8 +76,8 @@ namespace UF {
             starAllCount = 0;
 
             for (int i = 0; i < len; i++) {
-                i += 1;
-                int star = stage_PassedStar[i];
+                int j = i + 1;
+                int star = stage_PassedStar[j];
                 starAllCount += star;
             }
         }
