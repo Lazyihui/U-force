@@ -199,7 +199,7 @@ namespace UF {
         #region Player physics
 
         public static void DetectionMinionByPos(GameSystemContext ctx, RoleEntity role, Vector2 pos, int damage) {
-            // 检测周围的minion 碰到扣血
+            // minion进入基地
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] minions);
 
             for (int i = 0; i < len; i++) {
@@ -209,11 +209,11 @@ namespace UF {
                     continue;
                 }
 
-                float dis = Vector2.Distance(minion.TF_GetPos(), pos);
+                var minionPos = minion.TF_GetPos();
+                float homeX = -12; // 基地的x坐标
                 // TODO:可能要改成用 collider   
-                float radius = 2f;
 
-                if (dis < radius) {
+                if (minionPos.x <= homeX) {
                     // player扣血 或者失败  
                     HpReduce_Role(ctx, role, damage);
 
@@ -229,17 +229,22 @@ namespace UF {
 
             for (int i = 0; i < len; i++) {
 
-                var Touchminion = touchMinions[i];
-                if (Touchminion == Enemy) {
+                var touchMinion = touchMinions[i];
+                if (touchMinion == Enemy) {
                     continue;
                 }
 
-                float dis = Vector2.Distance(Touchminion.TF_GetPos(), pos);
+                var owner = ctx.Get_Owner(); // 检测是否碰到玩家
+                if (touchMinion == owner) {
+                    continue;
+                }
+
+                float dis = Vector2.Distance(touchMinion.TF_GetPos(), pos);
                 // TODO:可能要改成用 collider   
                 float radius = 2f;
 
                 if (dis < radius) {
-                    HpReduce_MinionFall(ctx, Touchminion, damage);
+                    HpReduce_MinionFall(ctx, touchMinion, damage);
                 }
             }
         }
