@@ -175,12 +175,18 @@ namespace UF {
             }
 
             if (isGameWin) {
+                var playerData = ctx.gameEntity.playerSaveData;
+
+                if (owner.state == RoleState.Dead) {
+                    ctx.gameEntity.state = GameState.GameOver;
+                    ctx.appUI.Panel_GameOver_Open(false, playerData.GetRoleGetHurt(), playerData.shootTimes, playerData.HitTimes, playerData.GetRoleHitRate(), 0);
+                }
+
                 Debug.Log("游戏胜利");
                 // 没找到这里StopRole_AllMove();要多运行一遍
                 owner.Jump_Stop();
                 owner.Move_Stop();
                 Exit();
-                var playerData = ctx.gameEntity.playerSaveData;
                 int starCount = playerData.GetStarCount();
                 ctx.appUI.Panel_GameOver_Open(true, playerData.GetRoleGetHurt(), playerData.shootTimes, playerData.HitTimes, playerData.GetRoleHitRate(), starCount);
                 game.state = GameState.GameOver;
