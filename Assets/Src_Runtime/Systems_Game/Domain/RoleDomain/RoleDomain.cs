@@ -108,7 +108,6 @@ namespace UF {
                 Debug.LogWarning("RoleDomain.TearDown");
             }
 
-
         }
         #endregion
 
@@ -321,7 +320,7 @@ namespace UF {
                 // TODO:L写这里其实不太好
                 ctx.gameEntity.state = GameState.GameOver;
                 var playerData = game.playerSaveData;
-                ctx.appUI.Panel_GameOver_Open(false, playerData.GetRoleGetHurt(), playerData.shootTimes , playerData.HitTimes, playerData.GetRoleHitRate(), 0);
+                ctx.appUI.Panel_GameOver_Open(false, playerData.GetRoleGetHurt(), playerData.shootTimes, playerData.HitTimes, playerData.GetRoleHitRate(), 0);
             }
         }
 
