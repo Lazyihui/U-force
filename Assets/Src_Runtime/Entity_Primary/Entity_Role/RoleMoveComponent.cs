@@ -140,15 +140,13 @@ public class RoleMoveComponent {
         rb.velocity = Vector2.zero;
         Set_Garvity(1);
     }
-    public void Move_Controlled_Down() { // 被子弹击中向下移动
-        Vector2 dir = Vector2.down;
-
+    public void Move_ChangeLine(Vector2 changeLineDir) { // 换行
         Vector2 oldVelo = rb.velocity;
-        oldVelo = dir * 5;
+        oldVelo = changeLineDir * 5;
         rb.velocity = oldVelo;
     }
 
-    public void Move_Controlled_Right() { // 被子弹击中向右移动
+    public void Move_Repulsed() { // 被击退
         Vector2 dir = Vector2.right;
 
         Vector2 oldVelo = rb.velocity;

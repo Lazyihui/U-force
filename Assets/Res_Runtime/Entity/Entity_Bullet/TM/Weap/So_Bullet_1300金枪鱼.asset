@@ -29,7 +29,7 @@ MonoBehaviour:
     moveSpeed: 10
     modPrefab: {fileID: 431577423833956408, guid: 304062ff352923a439b12f55489ad13b, type: 3}
     sprite: {fileID: 21300000, guid: 9bbb503ab17f97a418eb8761e63e3c52, type: 3}
-    content: "\u91D1\u67AA\u9C7C"
+    content: "\u5355\u884C\u8FDB\u653B"
     isMakeBulletAppear: 0
     frames:
     - loopTM:
@@ -45,3 +45,11 @@ MonoBehaviour:
         isHaveContinueBoomDamege: 0
         isDestorySelf: 0
         isRoleMoveSpeedDown: 0
+        isRoleMoveDown: 0
+        isRoleMoveRight: 0
+    isChangeLine: 0
+    changeLinePos: {x: 0, y: 0}
+    LineNum: 0
+    LineLength: 0
+    isRepelled: 0
+    repeLength: 0

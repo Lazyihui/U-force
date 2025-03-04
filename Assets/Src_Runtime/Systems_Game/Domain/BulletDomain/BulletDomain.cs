@@ -232,6 +232,8 @@ namespace UF {
             }
 
             if (model.isHaveContinueBoomDamege) {
+                // 爆炸
+                Debug.LogWarning("爆炸");
                 Bullet_BoomStart(ctx, bullet);
             }
 
@@ -243,7 +245,7 @@ namespace UF {
 
             if (model.isRoleMoveDown) {
                 // 角色下移一格
-                Debug.LogWarning("角色一格");
+                Debug.LogWarning("角色下移一格");
                 Bullet_RoleMoveDown(ctx, bullet);
             }
 
@@ -299,13 +301,15 @@ namespace UF {
         }
 
         static void Bullet_RoleMoveDown(GameSystemContext ctx, BulletEntity bullet) {
+            Debug.Log("角色下移一格 换行");
             ctx.roleRepository.TryGet(bullet.touchRoleIDSig, out RoleEntity role);
-            role.isControlledDown = true;
+            role.isChangeLine = true;
         }
 
         static void Bullet_RoleMoveBack(GameSystemContext ctx, BulletEntity bullet) {
+            Debug.Log("角色击退");
             ctx.roleRepository.TryGet(bullet.touchRoleIDSig, out RoleEntity role);
-            role.isControlledRight = true;
+            role.isRepulsed = true;
         }
 
         #endregion

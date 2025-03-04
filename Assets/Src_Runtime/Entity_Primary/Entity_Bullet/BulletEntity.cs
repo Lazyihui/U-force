@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TriInspector;
 using UnityEngine;
 
 namespace UF {
@@ -53,6 +54,15 @@ namespace UF {
 
         // 判断hitTime
         public bool isHit;
+
+        // 使击中目标变换Move方式(位置)效果参数
+        public bool isChangeLine;
+        [ShowIf(nameof(isChangeLine))] public Vector2 changeLinePos;
+        [ShowIf(nameof(isChangeLine))] public int LineNum; // 变换的行数
+        [ShowIf(nameof(isChangeLine))] public float LineLength; // 每行长度
+
+        public bool isRepelled; // 击退
+        [ShowIf(nameof(isRepelled))] public float repeLength; // 击退距离
 
         public bool IsDead() {
             bool isDead = hitTimes <= 0;

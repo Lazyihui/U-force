@@ -40,6 +40,13 @@ namespace UF {
         [Title("Frame")]
         public BulletFrameTM[] frames;
 
+        [Title("作用于role")]
+        public bool isChangeLine;
+        [ShowIf(nameof(isChangeLine))] public Vector2 changeLinePos;
+        [ShowIf(nameof(isChangeLine))] public int LineNum; // 变换的行数
+        [ShowIf(nameof(isChangeLine))] public float LineLength; // 每行长度
 
+        public bool isRepelled; // 击退
+        [ShowIf(nameof(isRepelled))] public float repeLength; // 击退距离
     }
 }

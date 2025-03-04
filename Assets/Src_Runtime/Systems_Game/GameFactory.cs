@@ -232,6 +232,18 @@ namespace UF {
             bullet.damageRange = tm.damageRange;
             bullet.isMakeBulletAppear = tm.isMakeBulletAppear;
 
+            bullet.isChangeLine = tm.isChangeLine;
+            if (tm.isChangeLine) {
+                bullet.changeLinePos = tm.changeLinePos;
+                bullet.LineNum = tm.LineNum;
+                bullet.LineLength = tm.LineLength;
+            }
+            
+            bullet.isRepelled = tm.isRepelled;
+            if (tm.isRepelled) {
+                bullet.repeLength = tm.repeLength;
+            }
+
 
             bullet.Inject(mod);
 
@@ -320,7 +332,7 @@ namespace UF {
             if (tm.isTimeStuff) {
                 stuff.addTime = tm.addTime;
             }
-            
+
             stuff.Ctor();
 
             stuff.TF_SetPos(spawnerTM.position);

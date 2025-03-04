@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TriInspector;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -65,11 +66,14 @@ namespace UF {
         // 训练营
         public T_RoleType t_roleType;
 
-        public bool isControlledDown;
-        public bool isControlledRight;
+        public bool isChangeLine; // 是否换行
+        public Vector2 changeLineDir; // 换行方向
+        public bool isRepulsed; // 是否被击退
 
-        public Vector2 downPos;
-        public Vector2 rightPos;
+        public Vector2 changeLinePos;
+        public float ChangeLineLength; // 换行距离(行数 * 每行长度)
+        public Vector2 RepulsedPos;
+        public float RepulsedLength; // 被击退距离
 
         // 资源战
         public bool isEliminateRole; // 是否为资源战中除玩家的role
@@ -87,8 +91,8 @@ namespace UF {
             featureComponent = new RoleFeatureComponent();
             moveComponent.Inject(rb);
 
-            isControlledDown = false;
-            isControlledRight = false;
+            isChangeLine = false;
+            isRepulsed = false;
             isHit = false;
         }
 
@@ -128,15 +132,15 @@ namespace UF {
         }
 
         public void Move_Ghost(float moveSpeed) {
-            if (isControlledRight) {
-                moveComponent.Move_Controlled_Right();
-                rightPos = TF_GetPos();
+            if (isRepulsed) {
+                moveComponent.Move_Repulsed();
+                RepulsedPos = TF_GetPos();
             } else {
                 moveComponent.Move_Ghost(moveSpeed);
 
-                if (isControlledDown) {
-                    moveComponent.Move_Controlled_Down();
-                    downPos = TF_GetPos();
+                if (isChangeLine) {
+                    moveComponent.Move_ChangeLine(changeLineDir);
+                    changeLinePos = TF_GetPos();
                 }
             }
         }

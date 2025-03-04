@@ -152,17 +152,14 @@ namespace UF {
             }
         }
 
-
-
-
         static void ControlledCheck(GameSystemContext ctx, RoleEntity role) {
             var pos = role.GetPos();
 
-            if (pos.x >= role.rightPos.x + 3) {
-                role.isControlledRight = false;
+            if (pos.x >= role.RepulsedPos.x + 3) {
+                role.isRepulsed = false;
             }
-            if (pos.y <= role.downPos.y - 2) {
-                role.isControlledDown = false;
+            if (pos.y <= role.changeLinePos.y - 2) {
+                role.isChangeLine = false;
             }
         }
     }
