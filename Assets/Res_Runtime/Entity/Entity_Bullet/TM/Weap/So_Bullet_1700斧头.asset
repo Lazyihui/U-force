@@ -48,8 +48,8 @@ MonoBehaviour:
         isRoleMoveDown: 0
         isRoleMoveRight: 0
     isChangeLine: 0
-    changeLinePos: {x: 0, y: 0}
+    changeLineDir: {x: 0, y: 0}
     LineNum: 0
     LineLength: 0
-    isRepelled: 0
-    repeLength: 0
+    isRepelled: 1
+    repeLength: 3

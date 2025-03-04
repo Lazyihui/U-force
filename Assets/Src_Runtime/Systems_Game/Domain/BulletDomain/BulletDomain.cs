@@ -304,12 +304,15 @@ namespace UF {
             Debug.Log("角色下移一格 换行");
             ctx.roleRepository.TryGet(bullet.touchRoleIDSig, out RoleEntity role);
             role.isChangeLine = true;
+            role.changeLineDir = bullet.changeLineDir;
+            role.changeLineLength = bullet.LineNum * bullet.LineLength;
         }
 
         static void Bullet_RoleMoveBack(GameSystemContext ctx, BulletEntity bullet) {
             Debug.Log("角色击退");
             ctx.roleRepository.TryGet(bullet.touchRoleIDSig, out RoleEntity role);
             role.isRepulsed = true;
+            role.RepulsedLength = bullet.repeLength;
         }
 
         #endregion

@@ -155,10 +155,14 @@ namespace UF {
         static void ControlledCheck(GameSystemContext ctx, RoleEntity role) {
             var pos = role.GetPos();
 
-            if (pos.x >= role.RepulsedPos.x + 3) {
+            if (pos.x >= role.RepulsedPos.x + role.RepulsedLength) {
                 role.isRepulsed = false;
             }
-            if (pos.y <= role.changeLinePos.y - 2) {
+
+            var dirY = role.changeLineDir.y;
+            if (dirY > 0 && pos.y >= role.changeLinePos.y + role.changeLineLength) {
+                role.isChangeLine = false;
+            } else if (dirY < 0 && pos.y <= role.changeLinePos.y - role.changeLineLength) {
                 role.isChangeLine = false;
             }
         }

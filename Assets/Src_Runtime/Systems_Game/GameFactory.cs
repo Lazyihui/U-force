@@ -234,11 +234,11 @@ namespace UF {
 
             bullet.isChangeLine = tm.isChangeLine;
             if (tm.isChangeLine) {
-                bullet.changeLinePos = tm.changeLinePos;
+                bullet.changeLineDir = tm.changeLineDir;
                 bullet.LineNum = tm.LineNum;
                 bullet.LineLength = tm.LineLength;
             }
-            
+
             bullet.isRepelled = tm.isRepelled;
             if (tm.isRepelled) {
                 bullet.repeLength = tm.repeLength;

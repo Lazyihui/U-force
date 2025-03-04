@@ -67,13 +67,14 @@ namespace UF {
         public T_RoleType t_roleType;
 
         public bool isChangeLine; // 是否换行
-        public Vector2 changeLineDir; // 换行方向
         public bool isRepulsed; // 是否被击退
 
-        public Vector2 changeLinePos;
-        public float ChangeLineLength; // 换行距离(行数 * 每行长度)
-        public Vector2 RepulsedPos;
+        public Vector2 changeLineDir; // 换行方向
+        public float changeLineLength; // 换行距离(行数 * 每行长度)
         public float RepulsedLength; // 被击退距离
+
+        public Vector2 changeLinePos;
+        public Vector2 RepulsedPos;
 
         // 资源战
         public bool isEliminateRole; // 是否为资源战中除玩家的role
@@ -134,12 +135,16 @@ namespace UF {
         public void Move_Ghost(float moveSpeed) {
             if (isRepulsed) {
                 moveComponent.Move_Repulsed();
+
+                if (RepulsedPos != null) { return; }
                 RepulsedPos = TF_GetPos();
             } else {
                 moveComponent.Move_Ghost(moveSpeed);
 
                 if (isChangeLine) {
                     moveComponent.Move_ChangeLine(changeLineDir);
+
+                    if (changeLinePos != null) { return; }
                     changeLinePos = TF_GetPos();
                 }
             }

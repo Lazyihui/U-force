@@ -42,7 +42,7 @@ namespace UF {
 
         [Title("作用于role")]
         public bool isChangeLine;
-        [ShowIf(nameof(isChangeLine))] public Vector2 changeLinePos;
+        [ShowIf(nameof(isChangeLine))] public Vector2 changeLineDir;
         [ShowIf(nameof(isChangeLine))] public int LineNum; // 变换的行数
         [ShowIf(nameof(isChangeLine))] public float LineLength; // 每行长度
 

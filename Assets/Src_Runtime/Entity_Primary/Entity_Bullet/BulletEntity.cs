@@ -57,7 +57,7 @@ namespace UF {
 
         // 使击中目标变换Move方式(位置)效果参数
         public bool isChangeLine;
-        [ShowIf(nameof(isChangeLine))] public Vector2 changeLinePos;
+        [ShowIf(nameof(isChangeLine))] public Vector2 changeLineDir;
         [ShowIf(nameof(isChangeLine))] public int LineNum; // 变换的行数
         [ShowIf(nameof(isChangeLine))] public float LineLength; // 每行长度
 
