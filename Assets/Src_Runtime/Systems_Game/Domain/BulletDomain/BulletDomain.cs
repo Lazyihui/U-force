@@ -95,6 +95,7 @@ namespace UF {
                     minion.isHit = true;
 
                     bullet.hitTimes -= 1;
+                    Bullet_HitRole(bullet.frames[bullet.frameIndex]);
                     Debug.Log("击中次数" + bullet.hitTimes);
 
                     if (bullet.hitTimes <= 0) {
@@ -186,6 +187,11 @@ namespace UF {
 
         #endregion
 
+        static void Bullet_HitRole(BulletFrameModel frame) {
+            frame.loopModel.hitCount += 1;
+            Debug.Log("击中次数" + frame.loopModel.hitCount);
+        }
+
         #region Frame:Acting
 
         static void Frame_Acting(GameSystemContext ctx, BulletEntity bullet, BulletFrameModel frame, float dt) {
@@ -214,7 +220,6 @@ namespace UF {
 
             if (model.isStop) {
                 // 爆炸
-                Debug.LogWarning("停顿");
                 Bullet_Stop(ctx, bullet);
                 // Skill_Boom(ctx, bullet);
             }

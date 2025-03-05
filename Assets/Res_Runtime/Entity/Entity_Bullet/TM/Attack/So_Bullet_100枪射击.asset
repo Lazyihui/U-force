@@ -33,8 +33,8 @@ MonoBehaviour:
     isMakeBulletAppear: 0
     frames:
     - loopTM:
-        loopFlag: -1
-        maintainFrame: 0.5
+        loopFlag: 4
+        maintainFrame: 1
         triggerIntervalSec: 0
         triggerTimesMax: 0
       hasBulletBehaviour: 1
@@ -59,21 +59,6 @@ MonoBehaviour:
         isHaveContinueDamege: 0
         isHaveContinueBoomDamege: 0
         isDestorySelf: 0
-        isRoleMoveSpeedDown: 0
-        isRoleMoveDown: 0
-        isRoleMoveRight: 0
-    - loopTM:
-        loopFlag: -1
-        maintainFrame: 1
-        triggerIntervalSec: 0
-        triggerTimesMax: 0
-      hasBulletBehaviour: 1
-      bulletBehaviourTM:
-        isMove: 0
-        isStop: 0
-        isHaveContinueDamege: 0
-        isHaveContinueBoomDamege: 0
-        isDestorySelf: 1
         isRoleMoveSpeedDown: 0
         isRoleMoveDown: 0
         isRoleMoveRight: 0

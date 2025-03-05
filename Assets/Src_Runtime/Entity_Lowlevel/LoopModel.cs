@@ -71,7 +71,7 @@ namespace UF {
             }
             maintainTimer -= dt;
             triggerIntervalTimer -= dt;
-            
+
         }
 
         public void CheckDone() {

@@ -80,7 +80,6 @@ namespace UF {
         public void Loco_Shaped() {
             // 向右移动
             rb.velocity = new Vector2(1, 0) * moveSpeed;
-            Debug.Log(moveSpeed);
         }
 
         public void Loco_ToLeft() {
