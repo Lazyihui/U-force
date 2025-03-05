@@ -95,7 +95,6 @@ namespace UF {
                     minion.isHit = true;
 
                     bullet.hitTimes -= 1;
-
                     if (bullet.hitTimes <= 0) {
                         UnSpawn(ctx, bullet, minion);
                     }

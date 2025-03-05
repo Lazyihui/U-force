@@ -102,7 +102,7 @@ namespace UF {
 
             if (loopFlag.HasFlag(FrameLoopFlag.HitEnd)) {
                 if (hitCount > 0) {
-                    Debug.LogWarning("HitEnd");
+                    Debug.Log("HitEnd");
                     isDone = true;
                 }
             }
