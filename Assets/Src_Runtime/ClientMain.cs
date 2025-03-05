@@ -210,12 +210,6 @@ namespace UF {
                 int roleTypeID = appUI.selectedInFormation.roleSelectedTypeID;
                 int sciType = appUI.selectedInFormation.scienceTypeID;
 
-               
-                if (typeIDs.Count >= appUI.playerSaveData.GetSlotMax() && roleTypeID == -1 && sciType == -1) {
-                    appUI.Panel_Notice_Open("道具已经选完了");
-                    return;
-                }
-
                 UIDomain.Panel_SelectedCardAddToSlot(appUI, templateModule, typeID);
                 appUI.Panel_OneCardSelection_Lock(typeID);
                 appUI.Panel_CardDetailsBtn_Lock();
