@@ -312,7 +312,7 @@ namespace UF {
             Debug.Log("角色击退");
             ctx.roleRepository.TryGet(bullet.touchRoleIDSig, out RoleEntity role);
             role.isRepulsed = true;
-            role.RepulsedLength = bullet.repeLength;
+            role.repulsedLength = bullet.repeLength;
         }
 
         #endregion

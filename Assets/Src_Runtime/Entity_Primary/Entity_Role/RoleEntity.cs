@@ -66,15 +66,18 @@ namespace UF {
         // 训练营
         public T_RoleType t_roleType;
 
+        // 特殊移动行为
         public bool isChangeLine; // 是否换行
+        [ShowIf(nameof(isChangeLine))] public Vector2 changeLineDir; // 换行方向
+        [ShowIf(nameof(isChangeLine))] public float changeLineLength; // 换行距离(行数 * 每行长度)
+
         public bool isRepulsed; // 是否被击退
+        [ShowIf(nameof(isRepulsed))] public float repulsedLength; // 被击退距离
 
-        public Vector2 changeLineDir; // 换行方向
-        public float changeLineLength; // 换行距离(行数 * 每行长度)
-        public float RepulsedLength; // 被击退距离
-
-        public Vector2 changeLinePos;
-        public Vector2 RepulsedPos;
+        [HideInInspector] public Vector2 changeLinePos;
+        [HideInInspector] public Vector2 repulsedPos;
+        [HideInInspector] public bool hasChangeLinePos;
+        [HideInInspector] public bool hasRepulsedPos;
 
         // 资源战
         public bool isEliminateRole; // 是否为资源战中除玩家的role
@@ -91,10 +94,6 @@ namespace UF {
             attributeComponent = new RoleAttributeComponent();
             featureComponent = new RoleFeatureComponent();
             moveComponent.Inject(rb);
-
-            isChangeLine = false;
-            isRepulsed = false;
-            isHit = false;
         }
 
         public void TearDown() {
@@ -136,17 +135,20 @@ namespace UF {
             if (isRepulsed) {
                 moveComponent.Move_Repulsed();
 
-                if (RepulsedPos != null) { return; }
-                RepulsedPos = TF_GetPos();
+                if (hasRepulsedPos) { return; }
+                repulsedPos = TF_GetPos();
+                hasRepulsedPos = true;
             } else {
                 moveComponent.Move_Ghost(moveSpeed);
+            }
 
-                if (isChangeLine) {
-                    moveComponent.Move_ChangeLine(changeLineDir);
+            if (isChangeLine) {
+                moveComponent.Move_ChangeLine(changeLineDir);
 
-                    if (changeLinePos != null) { return; }
-                    changeLinePos = TF_GetPos();
-                }
+                if (hasChangeLinePos) { return; }
+                changeLinePos = TF_GetPos();
+                hasChangeLinePos = true;
+
             }
         }
 
