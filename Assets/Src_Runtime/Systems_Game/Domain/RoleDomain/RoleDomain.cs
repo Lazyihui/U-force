@@ -76,8 +76,8 @@ namespace UF {
             if (frame.hasRoleBehaviour) {
                 Behavior_Act(ctx, role, frame.roleBehaviour, dt);
             }
-        }
 
+        }
         public static void Behavior_Act(GameSystemContext ctx, RoleEntity role, RoleBehaviorModel model, float dt) {
 
             if (model.isMoveTo) {

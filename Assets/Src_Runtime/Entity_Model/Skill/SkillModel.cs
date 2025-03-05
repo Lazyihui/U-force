@@ -49,6 +49,9 @@ namespace UF {
         public void Ctor() {
 
         }
+        public void Reuse() {
+            Reset();
+        }
 
         public void Reset() {
             if (frames != null) {

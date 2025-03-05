@@ -403,6 +403,7 @@ namespace UF {
             }
 
             SkillModel model = new SkillModel();
+            model.Reuse();
 
             model.idSig = new IDSignature(EntityType.Skillor, idService.PickSkillorID());
             model.typeID = typeID;

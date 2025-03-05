@@ -55,9 +55,14 @@ namespace UF {
         }
 
         static void FSM_Casting_Enter(GameSystemContext ctx, RoleEntity role, SkillModel skillor, float dt) {
+            // 进入刷新状态
+            skillor.Reset();
+
             // 完成
             var fsm = role.FSMComponent;
             fsm.Casting_Enter(skillor);
+
+
         }
 
         static void FSM_Normal_Enter(GameSystemContext ctx, RoleEntity role, float dt) {
@@ -113,7 +118,7 @@ namespace UF {
             if (role.GetRbType() != RigidbodyType2D.Static) {
                 return;
             }
-            
+
             if (isLeave) {
                 role.SetRbType(RigidbodyType2D.Dynamic);
                 return;
