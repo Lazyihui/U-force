@@ -48,28 +48,29 @@ namespace UF {
 
         #endregion
 
+        #region Act: Hit ->Role
+
+        static void Skill_Act_HitRole(GameSystemContext ctx, RoleEntity role, RoleEntity target, SkillFrameModel frame, float dt) {
+            frame.loopModel.hitCount += 1;
+        }
+
+        #endregion
+
         #region Act 行为
-        public static void Skillor_Frame_Acting(GameSystemContext ctx, RoleEntity role, RoleCastingStateModel stateModel, SkillFrameModel frame, float dt) {
+        public static void Skillor_Act_Acting(GameSystemContext ctx, RoleEntity role, RoleCastingStateModel stateModel, SkillFrameModel frame, float dt) {
             var skillor = stateModel.skillor;
 
-            // if (frame.loopModel.isDone) {
-            //     return;
-            // }
+            if (frame.loopModel.isDone) {
+                Debug.Log("Skillor_Act_Acting frame.loopModel.isDone");
+                return;
+            }
 
-            // frame.loopModel.CheckDone();
+            frame.loopModel.CheckDone();
 
             if (skillor == null) {
                 Debug.Log("Skillor_Frame_Acting skillor == null");
                 return;
             }
-
-            if (frame.loopModel.isDone) {
-                Debug.Log("Skillor_Frame_Acting frame.loopModel.isDone");
-                return;
-            }
-
-            // TODO:问J 不懂用法
-            // frame.loopModel.CheckDone();
 
             // -Role Behavior
             if (frame.hasRoleBehaviour) {

@@ -198,7 +198,7 @@ namespace UF {
                 BulletBehaviour_Acting(ctx, bullet, frame.bulletBehaviourModel, dt);
             }
 
-            loopModel.CheckDone();
+            loopModel.CheckDone();//检测是否结束
         }
 
         #endregion
@@ -239,7 +239,6 @@ namespace UF {
 
             if (model.isDestorySelf) {
                 // 子弹死亡
-                Debug.LogWarning("子弹死亡");
                 UnSpawn(ctx, bullet);
             }
 
@@ -261,7 +260,6 @@ namespace UF {
 
         #region 子弹想行为
         public static void Bullet_Shaped(GameSystemContext ctx, BulletEntity bullet) {
-            Debug.Log("子弹移动");
             bullet.Loco_Shaped();
         }
         static void Bullet_BoomStart(GameSystemContext ctx, BulletEntity bullet) {

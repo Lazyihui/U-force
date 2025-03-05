@@ -158,7 +158,7 @@ namespace UF {
             action.loopModel.Tick(dt, out bool istrigger, out bool isNextFrame);
 
             if (istrigger) {
-                RoleDomain.Skillor_Frame_Acting(ctx, role, stateModel, action, dt);
+                RoleDomain.Skillor_Act_Acting(ctx, role, stateModel, action, dt);
             }
 
             if (isNextFrame) {
