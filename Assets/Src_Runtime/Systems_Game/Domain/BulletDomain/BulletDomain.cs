@@ -95,15 +95,14 @@ namespace UF {
                     minion.isHit = true;
 
                     bullet.hitTimes -= 1;
-                    Debug.Log("frame" + bullet.frameIndex);
-
-                    Bullet_HitRole(bullet.frames[bullet.frameIndex]);
 
                     if (bullet.hitTimes <= 0) {
                         UnSpawn(ctx, bullet, minion);
                     }
 
                     if (bullet.isHit) { continue; }
+                    Debug.Log("frame" + bullet.frameIndex);
+                    Bullet_HitRole(bullet.frames[bullet.frameIndex]);
                     var playerData = ctx.gameEntity.playerSaveData;
                     playerData.HitTimes += 1;
                     bullet.isHit = true;
