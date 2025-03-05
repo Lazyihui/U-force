@@ -16,6 +16,8 @@ namespace UF {
         public float triggerTimes;//触发时间
         public float triggerTimesMax;
 
+        public int hitCount;//击中次数
+
         public bool isDone; //是否结束 
 
         public LoopModel() { }
@@ -25,6 +27,8 @@ namespace UF {
             triggerIntervalTimer = 0;
 
             maintainTimer = maintainSec;
+
+            hitCount = 0;
 
             isDone = false;
         }
@@ -45,7 +49,7 @@ namespace UF {
             triggerIntervalTimer = 0;
             triggerTimes = 0;
             triggerTimesMax = tm.triggerTimesMax;
-
+            hitCount = 0;
             isDone = false;
         }
 
@@ -67,6 +71,7 @@ namespace UF {
             }
             maintainTimer -= dt;
             triggerIntervalTimer -= dt;
+            
         }
 
         public void CheckDone() {
@@ -92,6 +97,13 @@ namespace UF {
                 Debug.Log("LoopWhenTimeEnd");
                 if (maintainTimer <= 0) {
                     isDone = true;
+                }
+            }
+            if (loopFlag.HasFlag(FrameLoopFlag.HitEnd)) {
+                if (hitCount > 0) {
+                    Debug.Log("HitEnd");
+                    isDone = true;
+                    maintainTimer = 0;
                 }
             }
         }
