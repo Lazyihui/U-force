@@ -35,11 +35,11 @@ namespace UF {
 
         public void FromTM(LoopTM tm) {
 
-            // maintainSec = tm.maintainFrame * 1 / 24f;//LOGIC_FPS
-            // maintainTimer = tm.maintainFrame * 1 / 24f;//LOGIC_FPS
+            maintainSec = tm.maintainFrame * 1 / 24f;//LOGIC_FPS
+            maintainTimer = tm.maintainFrame * 1 / 24f;//LOGIC_FPS
             // Debug.Log(maintainSec + maintainTimer);
-            maintainSec = tm.maintainFrame;
-            maintainTimer = tm.maintainFrame;
+            // maintainSec = tm.maintainFrame;
+            // maintainTimer = tm.maintainFrame;
 
             if (!tm.loopFlag.HasFlag(FrameLoopFlag.LoopWhenTimeEnd) && tm.triggerIntervalSec == 0) {
                 triggerIntervalSec = 1 * 24f;
@@ -51,6 +51,8 @@ namespace UF {
             triggerTimesMax = tm.triggerTimesMax;
             hitCount = 0;
             isDone = false;
+
+            loopFlag = tm.loopFlag;
         }
 
         public void Tick(float dt, out bool istrigger, out bool out_isDone) {
@@ -61,6 +63,7 @@ namespace UF {
             if (!isCurFrameEnd) {
                 if (triggerIntervalTimer <= 0) {
                     triggerIntervalTimer += triggerIntervalSec;
+                    triggerTimes += 1;
                     istrigger = true;
                 }
 
@@ -71,7 +74,6 @@ namespace UF {
             }
             maintainTimer -= dt;
             triggerIntervalTimer -= dt;
-
         }
 
         public void CheckDone() {
@@ -85,25 +87,23 @@ namespace UF {
             }
 
             if (loopFlag.HasFlag(FrameLoopFlag.LoopByTriggerTimesEnd)) {
-                triggerTimes += 1;
                 if (triggerTimes >= triggerTimesMax) {
                     Debug.Log("LoopByTriggerTimesEnd");
                     isDone = true;
-                    maintainTimer = 0;
                 }
             }
 
             if (loopFlag.HasFlag(FrameLoopFlag.LoopWhenTimeEnd)) {
-                Debug.Log("LoopWhenTimeEnd");
                 if (maintainTimer <= 0) {
+                    Debug.Log("LoopWhenTimeEnd");
                     isDone = true;
                 }
             }
+
             if (loopFlag.HasFlag(FrameLoopFlag.HitEnd)) {
                 if (hitCount > 0) {
-                    Debug.Log("HitEnd");
+                    Debug.LogWarning("HitEnd");
                     isDone = true;
-                    maintainTimer = 0;
                 }
             }
         }

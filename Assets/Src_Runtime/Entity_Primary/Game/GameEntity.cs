@@ -56,13 +56,11 @@ namespace UF {
         }
 
         public void InitFromTM(GameTM tm) {
-            Debug.Log("InitFromTM");
             isDefendWar = tm.isDefendWar;
             isOffensiveWar = tm.isOffensiveWar;
             isEliminateWar = tm.isEliminateWar;
 
             if (isDefendWar) {
-                Debug.Log("进入防守战");
                 spawnEnemyTimer = tm.spawnEnemyCount;
                 spawnEnemyCount = tm.spawnEnemyCount;
                 maxWaves = tm.maxWaves;
@@ -72,9 +70,7 @@ namespace UF {
                 spawnEnemyInterval = tm.spawnEnemyInterval;
                 spawnEnemyIntervalTimer = tm.spawnEnemyIntervalTimer;
                 progress = tm.progress;
-                Debug.Log("spawnEnemyTimer:" + spawnEnemyTimer + " spawnEnemyCount:" + spawnEnemyCount + " maxWaves:" + maxWaves + " curWaves:" + curWaves + " cdEnemy:" + cdEnemy + " cdEnemyMax:" + cdEnemyMax + " spawnEnemyInterval:" + spawnEnemyInterval + " spawnEnemyIntervalTimer:" + spawnEnemyIntervalTimer + " progress:" + progress);
             }
-
             if (isOffensiveWar) {
                 Debug.Log("进入进攻战");
                 spawnEnemyTimer = tm.spanwBossTimer;

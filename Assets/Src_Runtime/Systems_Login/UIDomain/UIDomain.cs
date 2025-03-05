@@ -9,12 +9,10 @@ namespace UF {
 
         public static void Panel_CardSelection_Open(AppUI appUI, AssetsModule assetsModule, TemplateMoudle templateModule) {
 
-            Debug.Log("Panel_CardSelection_Open+选择卡牌界面");
             int stageID = appUI.playerSaveData.GetStageCurID();
             int chapterID = appUI.playerSaveData.GetChapterCurID();
             appUI.Panel_StageSelection_Close();
 
-            Debug.Log("Panel_CardSelection_Open+选择卡牌界面+stageID:" + stageID);
             CardModel spawnCard = GameFactory.Card_Create(assetsModule, templateModule, stageID);
             appUI.Set_CardModel(spawnCard);
             CardModel card = appUI.Get_CardModel();

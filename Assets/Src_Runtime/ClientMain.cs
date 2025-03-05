@@ -205,7 +205,6 @@ namespace UF {
 
             loginEvent.OnConfirmClickHandle += (typeID) => {
 
-                Debug.Log("ConfirmClick " + typeID);
                 appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
                 int roleTypeID = appUI.selectedInFormation.roleSelectedTypeID;
                 int sciType = appUI.selectedInFormation.scienceTypeID;

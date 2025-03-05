@@ -33,10 +33,10 @@ MonoBehaviour:
     isMakeBulletAppear: 0
     frames:
     - loopTM:
-        loopFlag: 4
-        maintainFrame: 1
-        triggerIntervalSec: 0
-        triggerTimesMax: 0
+        loopFlag: -1
+        maintainFrame: 10000000
+        triggerIntervalSec: 24
+        triggerTimesMax: 24
       hasBulletBehaviour: 1
       bulletBehaviourTM:
         isMove: 1
@@ -48,8 +48,8 @@ MonoBehaviour:
         isRoleMoveDown: 0
         isRoleMoveRight: 0
     - loopTM:
-        loopFlag: -1
-        maintainFrame: 1
+        loopFlag: 3
+        maintainFrame: 10
         triggerIntervalSec: 0
         triggerTimesMax: 0
       hasBulletBehaviour: 1

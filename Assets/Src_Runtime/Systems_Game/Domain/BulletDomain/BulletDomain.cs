@@ -95,8 +95,9 @@ namespace UF {
                     minion.isHit = true;
 
                     bullet.hitTimes -= 1;
+                    Debug.Log("frame" + bullet.frameIndex);
+
                     Bullet_HitRole(bullet.frames[bullet.frameIndex]);
-                    Debug.Log("击中次数" + bullet.hitTimes);
 
                     if (bullet.hitTimes <= 0) {
                         UnSpawn(ctx, bullet, minion);
@@ -177,9 +178,12 @@ namespace UF {
 
             if (istrigger) {
                 BulletDomain.Frame_Acting(ctx, bullet, frame, dt);
+                // Debug.Log("frameIndex" + frameIndex);
             }
 
-            if (isNextFrame) {
+            frame.loopModel.CheckDone();//检测是否结束
+
+            if (frame.loopModel.isDone) {
                 frameIndex += 1;
             }
 
@@ -204,7 +208,6 @@ namespace UF {
                 BulletBehaviour_Acting(ctx, bullet, frame.bulletBehaviourModel, dt);
             }
 
-            loopModel.CheckDone();//检测是否结束
         }
 
         #endregion
@@ -215,11 +218,13 @@ namespace UF {
 
             if (model.isMove) {
                 // 正常移动
+                Debug.LogWarning("正常移动");
                 Bullet_Shaped(ctx, bullet);
             }
 
             if (model.isStop) {
-                // 爆炸
+                // 停顿
+                Debug.LogWarning("停顿");
                 Bullet_Stop(ctx, bullet);
                 // Skill_Boom(ctx, bullet);
             }

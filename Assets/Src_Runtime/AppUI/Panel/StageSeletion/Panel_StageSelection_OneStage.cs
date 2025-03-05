@@ -63,7 +63,6 @@ namespace UF.UIApplication {
             txt_stage.text = str;//关卡名
 
             if (isPassed) {
-                Debug.Log(stageID + "关卡解锁");
                 stageLock.gameObject.SetActive(false);
                 stageGoup.gameObject.SetActive(true);
                 Set_GetStar(getStarCount);
