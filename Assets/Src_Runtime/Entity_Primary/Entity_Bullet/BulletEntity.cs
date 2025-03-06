@@ -90,6 +90,11 @@ namespace UF {
         public void Move_Stop() {
             rb.velocity = Vector2.zero;
         }
+
+        public void Loco_MoveDir(Vector2 dir) {
+            rb.velocity = dir * moveSpeed/10;
+        }
+
         #endregion
 
         public void Ctor() {

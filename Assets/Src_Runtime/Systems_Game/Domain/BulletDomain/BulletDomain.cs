@@ -44,7 +44,7 @@ namespace UF {
             Frames_Tick(ctx, bullet, dt);
 
             // 子弹移动
-            Bullet_Loco(bullet, dt);
+            Bullet_Loco(ctx, bullet, dt);
         }
         #endregion
 

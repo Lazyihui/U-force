@@ -115,7 +115,7 @@ namespace UF {
         public static void Bullet_Shaped(GameSystemContext ctx, BulletEntity bullet) {
             // bullet.Loco_Shaped();
             Debug.LogWarning("正常移动");
-            bullet.Set_MoveType(BulletMoveType.Shaped);
+            bullet.Set_MoveType(bullet.moveType);
             Debug.Log("bullet.MoveType" + bullet.moveType);
         }
         static void Bullet_BoomStart(GameSystemContext ctx, BulletEntity bullet) {
