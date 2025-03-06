@@ -34,9 +34,9 @@ MonoBehaviour:
     frames:
     - loopTM:
         loopFlag: -1
-        maintainFrame: 2
-        triggerIntervalSec: 0
-        triggerTimesMax: 0
+        maintainFrame: 1e+17
+        triggerIntervalSec: 24
+        triggerTimesMax: 24
       hasBulletBehaviour: 1
       bulletBehaviourTM:
         isMove: 1
@@ -78,7 +78,7 @@ MonoBehaviour:
         isRoleMoveDown: 0
         isRoleMoveRight: 0
     isChangeLine: 0
-    changeLinePos: {x: 0, y: 0}
+    changeLineDir: {x: 0, y: 0}
     LineNum: 0
     LineLength: 0
     isRepelled: 0
