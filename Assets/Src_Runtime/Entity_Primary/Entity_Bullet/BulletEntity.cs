@@ -12,7 +12,8 @@ namespace UF {
         public int typeID;
         public IDSignature idSig;//自身唯一标识
         public IDSignature belongIDSig;//属于谁的 玩家 还是 敌人
-        public BulletMoveType type;
+        public BulletMoveType moveType;
+        public void Set_MoveType(BulletMoveType moveType) => this.moveType = moveType;
         public IDSignature touchRoleIDSig;//碰撞到的角色的ID
         [SerializeField] public Transform bodyRoot; // 子弹生成的根节点        
 
@@ -89,6 +90,11 @@ namespace UF {
         public void Move_Stop() {
             rb.velocity = Vector2.zero;
         }
+
+        public void Loco_MoveDir(Vector2 dir) {
+            rb.velocity = dir * moveSpeed/10;
+        }
+
         #endregion
 
         public void Ctor() {

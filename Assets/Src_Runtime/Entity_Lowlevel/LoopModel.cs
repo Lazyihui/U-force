@@ -82,27 +82,23 @@ namespace UF {
             }
 
             if (loopFlag == FrameLoopFlag.Once) {
-                Debug.Log("Once");
                 isDone = true;
             }
 
             if (loopFlag.HasFlag(FrameLoopFlag.LoopByTriggerTimesEnd)) {
                 if (triggerTimes >= triggerTimesMax) {
-                    Debug.Log("LoopByTriggerTimesEnd");
                     isDone = true;
                 }
             }
 
             if (loopFlag.HasFlag(FrameLoopFlag.LoopWhenTimeEnd)) {
                 if (maintainTimer <= 0) {
-                    Debug.Log("LoopWhenTimeEnd");
                     isDone = true;
                 }
             }
 
             if (loopFlag.HasFlag(FrameLoopFlag.HitEnd)) {
                 if (hitCount > 0) {
-                    Debug.Log("HitEnd");
                     isDone = true;
                 }
             }

@@ -7,9 +7,9 @@ namespace UF.System_Train {
             BulletEntity entity = GameFactory.Bullet_Create(ctx.assetsModule, ctx.templateMoudle, ctx.idService, typeID, pos, Vector3.zero);
 
             if (role.t_roleType == T_RoleType.Player1) {
-                entity.type = BulletMoveType.Shaped;
+                entity.moveType = BulletMoveType.Shaped;
             } else if (role.t_roleType == T_RoleType.Player2) {
-                entity.type = BulletMoveType.ToLeft;
+                entity.moveType = BulletMoveType.ToLeft;
             }
 
             ctx.bulletRepository.Add(entity);
@@ -41,9 +41,9 @@ namespace UF.System_Train {
         }
 
         public static void FSM_All_Execute(BulletEntity bullet) {
-            if (bullet.type == BulletMoveType.Shaped) {
+            if (bullet.moveType == BulletMoveType.Shaped) {
                 Loco_Shaped(bullet);
-            } else if (bullet.type == BulletMoveType.ToLeft) {
+            } else if (bullet.moveType == BulletMoveType.ToLeft) {
                 Loco_ToLeft(bullet);
             }
         }
@@ -70,8 +70,8 @@ namespace UF.System_Train {
             for (int i = 0; i < len; i += 1) {
                 RoleEntity role = roles[i];
 
-                bool check1 = role.t_roleType == T_RoleType.Player1 && bullet.type == BulletMoveType.Shaped;
-                bool check2 = role.t_roleType == T_RoleType.Player2 && bullet.type == BulletMoveType.ToLeft;
+                bool check1 = role.t_roleType == T_RoleType.Player1 && bullet.moveType == BulletMoveType.Shaped;
+                bool check2 = role.t_roleType == T_RoleType.Player2 && bullet.moveType == BulletMoveType.ToLeft;
                 if (check1 || check2) {
                     continue;
                 }
