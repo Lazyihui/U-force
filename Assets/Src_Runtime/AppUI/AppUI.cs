@@ -891,10 +891,6 @@ namespace UF {
                 panel.OnViewClickHandle = () => {
                     eventCenter.OnViewClick();
                 };
-
-                panel.OnSelectionWatchCardClickHandle = (typeID) => {
-                    eventCenter.OnSelectionWatchCardClick(typeID);
-                };
             }
             ctx.panel_Watchtower = panel;
             panel.Show();
@@ -916,26 +912,9 @@ namespace UF {
             panel.TearDown();
             ctx.panel_Watchtower = null;
         }
-
-        // 设置光标
-        public void Panel_WatchTower_SetCursor() {
-            Panel_WatchTower panel = ctx.panel_Watchtower;
-
-            if (panel == null) { return; }
-
-            panel.Set_Cursor();
-        }
-
-        // 恢复默认光标
-        public void Panel_WatchTower_ClearCursor() {
-            Panel_WatchTower panel = ctx.panel_Watchtower;
-            if (panel == null) { return; }
-            panel.Clear_Cursor();
-        }
         #endregion
 
         #region WatchDetail
-        // 从敌人tm里读, 待改
         public void Panel_WatchDetail_Open(Sprite sprite, string name, string feature, int hp, string skill, string restraint) {
             Panel_WatchDetail panel = ctx.panel_WatchDetail;
 
@@ -952,6 +931,24 @@ namespace UF {
             ctx.panel_WatchDetail = panel;
             panel.Show();
             panel.Init(sprite, name, feature, hp, skill, restraint);
+        }
+
+        public void Panel_WatchDetail_Open(Sprite sprite, string name, string feature) { // 给stuff用
+            Panel_WatchDetail panel = ctx.panel_WatchDetail;
+
+            if (panel == null) {
+                GameObject prefab = ctx.assetsCore.Panel_GetWatchDetail();
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                panel = go.GetComponent<Panel_WatchDetail>();
+                panel.Ctor();
+
+                panel.OnCloseClickHandle = () => {
+                    eventCenter.OnDetailClose();
+                };
+            }
+            ctx.panel_WatchDetail = panel;
+            panel.Show();
+            panel.Init(sprite, name, feature);
         }
 
         public void Panel_WatchDetail_Close() {
@@ -1268,14 +1265,6 @@ namespace UF {
             panel.Add(typeID, sprite, isRole);
         }
 
-        public void Panel_Illustrated_SetContent(Sprite sprite, string name, string description) {
-            Panel_Illustrated panel = ctx.panel_Illustrated;
-
-            if (panel == null) { return; }
-
-            panel.SetContent(sprite, name, description);
-        }
-
         public void Panel_Illustrated_Close() {
             Panel_Illustrated panel = ctx.panel_Illustrated;
 
@@ -1291,14 +1280,6 @@ namespace UF {
             if (panel == null) { return false; }
 
             return panel.TryGet(typeID);
-        }
-
-        public void Panel_Illustrated_OpenCard() {
-            Panel_Illustrated panel = ctx.panel_Illustrated;
-
-            if (panel == null) { return; }
-
-            panel.OpenCard();
         }
         #endregion
 
@@ -1332,14 +1313,6 @@ namespace UF {
             panel.Add(typeID, sprite);
         }
 
-        public void Panel_TrainIllustrated_SetContent(Sprite sprite, string name, string description) {
-            Panel_TrainIllustrated panel = ctx.panel_TrainIllustrated;
-
-            if (panel == null) { return; }
-
-            panel.SetContent(sprite, name, description);
-        }
-
         public void Panel_TrainIllustrated_Close() {
             Panel_TrainIllustrated panel = ctx.panel_TrainIllustrated;
 
@@ -1347,14 +1320,6 @@ namespace UF {
 
             panel.TearDown();
             ctx.panel_TrainIllustrated = null;
-        }
-
-        public void Panel_TrainIllustrated_OpenCard() {
-            Panel_TrainIllustrated panel = ctx.panel_TrainIllustrated;
-
-            if (panel == null) { return; }
-
-            panel.OpenCard();
         }
         #endregion
 

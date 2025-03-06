@@ -10,7 +10,6 @@ namespace UF {
             // UI
             ctx.appUI.Panel_GameDefend_Button_Open(playerData.slotMax);
             ctx.appUI.HUD_Progressbar_Open(game.maxWaves);
-            ctx.appUI.Panel_WatchTower_ClearCursor();
             if (stageID == 1) {
                 ctx.appUI.Panel_GameDefend_SetBtnTech_Hide();
             }

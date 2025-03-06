@@ -219,20 +219,8 @@ namespace UF {
                 appUI.Panel_OneCardSelection_UnLock(typeID);
             };
 
-            bool isClicked = false;
             loginEvent.OnViewClickHandle += () => {
-                appUI.Panel_WatchTower_SetCursor(); // TODO: 如果不点击瞭望塔头像, 会一直变化光标, 之后看看怎么改
-                isClicked = true;
-            };
-
-            loginEvent.OnSelectionWatchCardClickHandle += (typeID) => {
-                if (isClicked) {
-                    Debug.Log("SelectionWatchCardClick " + typeID);
-                    appUI.Panel_WatchTower_ClearCursor();
-                    isClicked = false;
-
-                    UIDomain.Panel_WatchTower_GetDetail(typeID, templateModule, appUI);
-                }
+                UIDomain.Panel_WatchTower_View_Open(appUI, templateModule);
             };
 
             loginEvent.OnDetailCloseClickHandle += () => {
@@ -364,13 +352,13 @@ namespace UF {
             gameEvent.OnGameIllusCardClickHandle += (int typeID) => {
                 templateModule.Role_TryGet(typeID, out RoleTM tm);
 
-                appUI.Panel_Illustrated_SetContent(tm.sprite, tm.typeName, tm.feature);
+                appUI.Panel_WatchDetail_Open(tm.sprite, tm.typeName, tm.feature, tm.hp, tm.skill, tm.restraint);
             };
 
             gameEvent.OnGameIllusStuffCardClickHandle += (int typeID) => {
                 templateModule.Stuff_TryGet(typeID, out StuffTM tm);
 
-                appUI.Panel_Illustrated_SetContent(tm.sprite, tm.typeName, tm.description);
+                appUI.Panel_WatchDetail_Open(tm.sprite, tm.typeName, tm.description);
             };
         }
         #endregion
@@ -531,7 +519,7 @@ namespace UF {
             trainEvent.OnTrainIllusCardClickHandle += (int typeID) => {
                 templateModule.Prop_TryGet(typeID, out var tm);
 
-                appUI.Panel_TrainIllustrated_SetContent(tm.sprite, tm.typeName, tm.feature);
+                appUI.Panel_WatchDetail_Open(tm.sprite, tm.typeName, tm.feature);
             };
         }
         #endregion

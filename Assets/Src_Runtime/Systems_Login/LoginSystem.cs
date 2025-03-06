@@ -172,10 +172,6 @@ namespace UF {
                 events.OnViewClick();
             };
 
-            eventCenter.OnSelectionWatchCardClickHandle += (typeID) => { // 选择敌人卡片(查看的第二部)
-                events.OnSelectionWatchCardClick(typeID);
-            };
-
             eventCenter.OnDetailCloseHandle += () => { // 关闭敌人详情
                 events.OnDetailCloseClick();
             };

@@ -263,13 +263,6 @@ namespace UF {
                 OnViewClickHandle();
             }
         }
-
-        public Action<int> OnSelectionWatchCardClickHandle;
-        public void OnSelectionWatchCardClick(int typeID) {
-            if (OnSelectionWatchCardClickHandle != null) {
-                OnSelectionWatchCardClickHandle(typeID);
-            }
-        }
         #endregion
 
         #region WatchDetail

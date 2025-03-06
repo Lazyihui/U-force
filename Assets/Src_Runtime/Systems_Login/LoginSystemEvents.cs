@@ -141,13 +141,6 @@ namespace UF {
             }
         }
 
-        public Action<int> OnSelectionWatchCardClickHandle;
-        public void OnSelectionWatchCardClick(int typeID) {
-            if (OnSelectionWatchCardClickHandle != null) {
-                OnSelectionWatchCardClickHandle(typeID);
-            }
-        }
-
         public Action OnDetailCloseClickHandle;
         public void OnDetailCloseClick() {
             if (OnDetailCloseClickHandle != null) {

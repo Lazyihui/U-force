@@ -13,10 +13,6 @@ namespace UF {
         [SerializeField] Button btn_Close;
         public Action OnCloseClickHandle;
 
-        [SerializeField] Image img_Sprite;
-        [SerializeField] TextMeshProUGUI text_Name;
-        [SerializeField] TextMeshProUGUI text_Description;
-
         public Action<int> OnGameIllusCardClickHandle;
         public Action<int> OnGameIllusStuffCardClickHandle;
 
@@ -63,12 +59,6 @@ namespace UF {
             SetButtonInter();
         }
 
-        public void SetContent(Sprite sprite, string name, string description) {
-            img_Sprite.sprite = sprite;
-            text_Name.text = name;
-            text_Description.text = description;
-        }
-
         public void SetButtonInter() {
             int len = cards.Count;
 
@@ -90,10 +80,6 @@ namespace UF {
             }
 
             return false;
-        }
-
-        public void OpenCard() {
-            cards[0].OnClick();
         }
     }
 }

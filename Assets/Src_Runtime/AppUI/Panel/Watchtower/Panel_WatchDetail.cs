@@ -32,6 +32,16 @@ namespace UF
             Set_Restraint(restraint);
         }
 
+        public void Init(Sprite sprite, string name, string feature)
+        {
+            Set_Sprite(sprite);
+            Set_Name(name);
+            Set_Feature(feature);
+            text_HP.text = "";
+            text_Skill.text = "";
+            text_Restraint.text = "";
+        }
+
         public void Show()
         {
             gameObject.SetActive(true);

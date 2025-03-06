@@ -14,8 +14,6 @@ namespace UF
         [SerializeField] Button btn_View; // 放大镜按钮, 按了才能点击头像查看详情
         public Action OnViewClickHandle;
 
-        public Action<int> OnSelectionWatchCardClickHandle;
-
         [SerializeField] Texture2D icon;
 
         public void Ctor()
@@ -29,7 +27,6 @@ namespace UF
             Panel_OneCardWatch oneCard = Instantiate(oneCardPrefab, cardGroup);
             oneCard.Ctor();
             oneCard.Init(id, sprite);
-            oneCard.OnCardClickHandle += OnCardClick;//点击卡片 绑定事件
 
             cards.Add(oneCard);
         }
@@ -42,21 +39,6 @@ namespace UF
         public void TearDown()
         {
             Destroy(gameObject);
-        }
-
-        void OnCardClick(int typeID)
-        {
-            OnSelectionWatchCardClickHandle.Invoke(typeID);
-        }
-
-        public void Set_Cursor()
-        {
-            Cursor.SetCursor(icon, Vector2.zero, CursorMode.Auto);
-        }
-
-        public void Clear_Cursor()
-        {
-            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         }
     }
 }
