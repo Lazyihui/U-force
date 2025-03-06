@@ -62,7 +62,6 @@ namespace UF {
 
             if (model.isMove) {
                 // 正常移动
-                Debug.LogWarning("正常移动");
                 Bullet_Shaped(ctx, bullet);
             }
 
@@ -114,7 +113,10 @@ namespace UF {
 
         #region 子弹想行为
         public static void Bullet_Shaped(GameSystemContext ctx, BulletEntity bullet) {
-            bullet.Loco_Shaped();
+            // bullet.Loco_Shaped();
+            Debug.LogWarning("正常移动");
+            bullet.Set_MoveType(BulletMoveType.Shaped);
+            Debug.Log("bullet.MoveType" + bullet.moveType);
         }
         static void Bullet_BoomStart(GameSystemContext ctx, BulletEntity bullet) {
             // 写完
@@ -129,7 +131,8 @@ namespace UF {
         static void Bullet_Stop(GameSystemContext ctx, BulletEntity bullet) {
             // 写完
             Debug.Log("停顿 ");
-            bullet.Move_Stop();
+            // bullet.Move_Stop();
+            bullet.Set_MoveType(BulletMoveType.None);
         }
         static void Bullet_DownRoleMoveSpeed(GameSystemContext ctx, BulletEntity bullet) {
             // 写完

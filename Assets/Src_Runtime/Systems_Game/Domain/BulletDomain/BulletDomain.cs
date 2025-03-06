@@ -42,6 +42,9 @@ namespace UF {
         #region FSM
         public static void FSM_All_Execute(GameSystemContext ctx, BulletEntity bullet, float dt) {
             Frames_Tick(ctx, bullet, dt);
+
+            // 子弹移动
+            Bullet_Loco(bullet, dt);
         }
         #endregion
 
