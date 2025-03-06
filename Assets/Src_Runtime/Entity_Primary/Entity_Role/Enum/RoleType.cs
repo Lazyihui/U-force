@@ -8,6 +8,9 @@ namespace UF {
         // 资源战
         Core,           // 核心
         Barrier,        // 障碍
+
+        // 训练营
+        AI,             // AI
     }
 
 }

@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd438ff4915820d42ae483e2497b41fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oneCardPrefab: {fileID: 2135784199380428813, guid: ab3bf056f9fc5a442858d4c64d19d901, type: 3}
+  oneCardPrefab: {fileID: 8573846111320541453, guid: ab3bf056f9fc5a442858d4c64d19d901, type: 3}
   group: {fileID: 8947531111120198507}
   btn_Close: {fileID: 747533674521780917}
 --- !u!1 &4832237267154346941

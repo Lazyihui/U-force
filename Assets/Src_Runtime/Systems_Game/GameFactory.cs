@@ -457,7 +457,16 @@ namespace UF {
                 }
             }
 
-            if (tm.isTrain == true) { return model; }
+            if (tm.isTrain == true) {
+                var aiSoArr = tm.aiSoArray;
+                if (aiSoArr != null) {
+                    for (int i = 0; i < aiSoArr.Count; i += 1) {
+                        var aiSo = aiSoArr[i];
+                        model.aiTms.Add(aiSo.tm);
+                    }
+                }
+                return model;
+            }
 
             var bulletAgrSoArr = tm.bulletAgrSoArray;
             if (bulletAgrSoArr != null) {

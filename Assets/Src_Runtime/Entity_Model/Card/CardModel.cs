@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TriInspector;
 
 namespace UF {
 
@@ -8,6 +9,9 @@ namespace UF {
         public int typeID;
         public int slotMax;
         public int stageCurType;
+
+        public bool isTrain;
+        [ShowIf(nameof(isTrain))] public List<RoleTM> aiTms;
         public List<RoleTM> roleTMs;
         public List<BulletTM> bulletAgrTMs;//农业
         public List<BulletTM> bulletIndTMs;//工业
@@ -16,6 +20,7 @@ namespace UF {
         public List<RoleTM> roleEnemyTMs;
 
         public CardModel() {
+            aiTms = new List<RoleTM>();
             roleTMs = new List<RoleTM>();
             stageCurType = 0;
             bulletAgrTMs = new List<BulletTM>();

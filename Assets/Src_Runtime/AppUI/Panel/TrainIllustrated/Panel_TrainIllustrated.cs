@@ -44,16 +44,6 @@ namespace UF {
 
         void OnCardClick(int typeID) {
             OnGameIllusCardClickHandle?.Invoke(typeID);
-            SetButtonInter();
-        }
-
-        public void SetButtonInter() {
-            int len = cards.Count;
-
-            for (int i = 0; i < len; i++) {
-                var card = cards[i];
-                card.SetInterTrue();
-            }
         }
     }
 }

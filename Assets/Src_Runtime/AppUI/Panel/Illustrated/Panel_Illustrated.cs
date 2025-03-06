@@ -64,7 +64,6 @@ namespace UF {
 
             for (int i = 0; i < len; i++) {
                 var card = cards[i];
-                card.SetInterTrue();
             }
         }
 

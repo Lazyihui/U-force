@@ -236,6 +236,8 @@ namespace UF {
                     appUI.Panel_Training_Select_SetButton();
                     appUI.Panel_Training_Select_AddPlayer();
 
+                    UIDomain.Panel_Training_Select_AddPlayer(appUI, templateModule);
+
                     hasPlayer = false;
                 }
             };

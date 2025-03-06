@@ -33,7 +33,7 @@ namespace UF {
 
             // 第一个
             RoleTM roleTM0 = card.roleTMs[0];
-            appUI.Panel_CardDetails_Update(roleTM0.sprite, roleTM0.content, roleTM0.typeID);
+            appUI.Panel_CardDetails_Update(roleTM0.sprite, roleTM0.feature, roleTM0.typeID);
 
             for (int i = 0; i < card.roleTMs.Count; i += 1) {
                 RoleTM roleTM = card.roleTMs[i];
@@ -71,7 +71,7 @@ namespace UF {
             CardType cardType = appUI.Panel_GetCardType();
             if (cardType == CardType.Hero) {
                 templateMoudle.Role_TryGet(typeID, out RoleTM roleTM);
-                appUI.Panel_CardDetails_Update(roleTM.sprite, roleTM.content, roleTM.typeID);
+                appUI.Panel_CardDetails_Update(roleTM.sprite, roleTM.feature, roleTM.typeID);
 
             } else if (cardType == CardType.Agriculture) {
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
@@ -112,7 +112,7 @@ namespace UF {
 
                     // 更新右边详情页
                     RoleTM roleTM0 = cardModel.roleTMs[0];
-                    appUI.Panel_CardDetails_Update(roleTM0.sprite, roleTM0.content, roleTM0.typeID);
+                    appUI.Panel_CardDetails_Update(roleTM0.sprite, roleTM0.feature, roleTM0.typeID);
 
 
                 }
@@ -208,7 +208,7 @@ namespace UF {
             for (int i = 0; i < roleTM.skillorSoArray.Length; i += 1) {
                 skill += roleTM.skillorSoArray[i].tm.typeName + "\n";
             }
-            appUI.Panel_WatchDetail_Open(roleTM.sprite, roleTM.typeName, roleTM.content, roleTM.hp, skill, roleTM.restraint);
+            appUI.Panel_WatchDetail_Open(roleTM.sprite, roleTM.typeName, roleTM.feature, roleTM.hp, skill, roleTM.restraint);
         }
 
         public static void Panel_StageSelectionEnter(AppUI appUI) {
@@ -335,6 +335,18 @@ namespace UF {
 
             CardModel model = GameFactory.Card_Create(assetsModule, templateModule, 500);
             var cards = model.roleTMs;
+
+            for (int i = 0; i < cards.Count; i += 1) {
+                var card = cards[i];
+                appUI.Panel_Training_Select_Add(card.typeID, card.sprite, card.typeName);
+            }
+
+            appUI.Set_CardModel(model);
+        }
+
+        public static void Panel_Training_Select_AddPlayer(AppUI appUI, TemplateMoudle templateModule) {
+            CardModel model = appUI.Get_CardModel();
+            var cards = model.aiTms;
 
             for (int i = 0; i < cards.Count; i += 1) {
                 var card = cards[i];

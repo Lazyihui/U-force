@@ -7,4 +7,5 @@ public enum RoleMoveType {
     Prohibit, //禁止移动
     Regular, // 动态障碍-固定
     Random, // 动态障碍-随机
+    AI, // AI移动
 }

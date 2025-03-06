@@ -184,7 +184,7 @@ TextureImporter:
       name: People_4
       rect:
         serializedVersion: 2
-        x: 600
+        x: 599
         y: 0
         width: 100
         height: 200
@@ -197,6 +197,48 @@ TextureImporter:
       bones: []
       spriteID: f8356d1811afbb4499e6485a9101ab27
       internalID: 2074218510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: People_AI_E
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 0
+        width: 100
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f44849f1ca7a7f541ad230c62703f430
+      internalID: -589068760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: People_AI_H
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 0
+        width: 100
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ad6a8f263ee5b14ab1ba148512f3945
+      internalID: -1844459013
       vertices: []
       indices: 
       edges: []
@@ -217,6 +259,8 @@ TextureImporter:
       People_2: -492597407
       People_3: -1421781264
       People_4: 2074218510
+      People_AI_E: -589068760
+      People_AI_H: -1844459013
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

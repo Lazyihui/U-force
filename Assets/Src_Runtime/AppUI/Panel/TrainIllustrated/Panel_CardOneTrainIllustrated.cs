@@ -14,7 +14,6 @@ namespace UF {
             btn_Card.onClick.AddListener(() => {
                 if (OnCardClickHandle != null) {
                     OnCardClickHandle.Invoke(id);
-                    SetInterFalse();
                 }
             });
         }
@@ -22,14 +21,6 @@ namespace UF {
         public void Init(int id, Sprite sprite) {
             this.id = id;
             img_Sprite.sprite = sprite;
-        }
-
-        public void SetInterTrue() {
-            btn_Card.interactable = true;
-        }
-
-        public void SetInterFalse() {
-            btn_Card.interactable = false;
         }
 
         public void OnClick() {

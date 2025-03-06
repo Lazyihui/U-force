@@ -7,5 +7,6 @@ namespace UF
     {
         Player1,
         Player2,
+        AI,
     }
 }

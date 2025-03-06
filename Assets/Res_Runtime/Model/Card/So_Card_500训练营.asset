@@ -10,10 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2184839ec8517724cab1a6f5e3c3e2fc, type: 3}
-  m_Name: So_Card_500
+  m_Name: "So_Card_500\u8BAD\u7EC3\u8425"
   m_EditorClassIdentifier: 
   tm:
     typeID: 500
+    slotMax: 0
+    stageCurType: 0
+    isTrain: 1
+    aiSoArray:
+    - {fileID: 11400000, guid: 40d1db4baefe7df47a69a8bf1b96cba0, type: 2}
+    - {fileID: 11400000, guid: 6f2762fda614d6741bcd169b99ea0128, type: 2}
     roleSoArray:
     - {fileID: 11400000, guid: 772c31f3954c55f48b735dc0c0226a7e, type: 2}
     - {fileID: 11400000, guid: 475c8e789f014494b8e09ca386d98675, type: 2}
@@ -24,4 +30,3 @@ MonoBehaviour:
     bulletIndSoArray: []
     bulletSciSoArray: []
     roleEnemySoArray: []
-    isTrain: 1

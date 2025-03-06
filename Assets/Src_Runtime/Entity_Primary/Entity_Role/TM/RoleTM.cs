@@ -29,7 +29,6 @@ namespace UF {
 
         [Title("sprite")]
         public Sprite sprite;
-        public String content;
 
         [Title("detail")]
         public string feature; // 特征 / 介绍
