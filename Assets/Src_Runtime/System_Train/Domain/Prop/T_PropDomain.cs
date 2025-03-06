@@ -76,8 +76,8 @@ namespace UF.System_Train {
             for (int i = 0; i < len; i += 1) {
                 BulletEntity bullet = bullets[i];
 
-                bool check1 = prop.type == PropType.Armor1 && bullet.type == BulletMoveType.Shaped;
-                bool check2 = prop.type == PropType.Armor2 && bullet.type == BulletMoveType.ToLeft;
+                bool check1 = prop.type == PropType.Armor1 && bullet.moveType == BulletMoveType.Shaped;
+                bool check2 = prop.type == PropType.Armor2 && bullet.moveType == BulletMoveType.ToLeft;
                 if (check1 || check2) {
                     continue;
                 }
@@ -86,9 +86,9 @@ namespace UF.System_Train {
                 float dis = Vector3.Distance(bullet.TF_GetPos(), pos);
 
                 if (dis < 1.0f) {
-                    if (bullet.type == BulletMoveType.Shaped) {
+                    if (bullet.moveType == BulletMoveType.Shaped) {
                         UseProp1(ctx, prop);
-                    } else if (bullet.type == BulletMoveType.ToLeft) {
+                    } else if (bullet.moveType == BulletMoveType.ToLeft) {
                         UseProp2(ctx, prop);
                     }
 
