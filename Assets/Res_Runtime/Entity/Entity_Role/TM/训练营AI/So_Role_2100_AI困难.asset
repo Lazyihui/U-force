@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tm:
     typeName: "AI\u56F0\u96BE"
-    roleType: 5
+    roleType: 6
     moveType: 6
     roleState: 1
     typeID: 2100

@@ -144,5 +144,11 @@ namespace UF.System_Train {
                 role.MoveComponent.Set_Garvity(1);
             }
         }
+
+        #region AI
+        public static void AI_Execute(TrainSystemContext ctx, RoleEntity role, float dt) {
+            
+        }
+        #endregion
     }
 }
