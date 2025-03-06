@@ -139,7 +139,7 @@ namespace UF {
                 if (role.roleType == RoleType.Player) {
                     continue;
                 }
-                float distance = -10 - role.TF_GetPos().x;
+                float distance = -10 + role.TF_GetPos().y;
                 if (distance < minDistance) {
                     minDistance = distance;
                     nearestEnemy = role;
