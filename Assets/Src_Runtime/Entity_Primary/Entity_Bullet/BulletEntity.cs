@@ -27,7 +27,10 @@ namespace UF {
         public float damageInterval;//伤害间隔
         public float damageTimer;//伤害计时器
 
+        // 特性
         public bool isMakeBulletAppear;//是否生使子弹出现
+        public bool isDestotyALine;//是否销毁一行
+
         // temp bool
         public bool isStartContinueDamege;//是否开始持续伤害
         public bool isStartBoomDamege;//是否开始爆炸伤害

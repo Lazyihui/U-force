@@ -231,6 +231,7 @@ namespace UF {
             bullet.damageTimer = tm.damageTimer;
             bullet.damageRange = tm.damageRange;
             bullet.isMakeBulletAppear = tm.isMakeBulletAppear;
+            bullet.isDestotyALine = tm.isDestoryALine;
 
             bullet.isChangeLine = tm.isChangeLine;
             if (tm.isChangeLine) {

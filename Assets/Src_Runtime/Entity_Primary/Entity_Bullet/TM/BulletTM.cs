@@ -35,6 +35,7 @@ namespace UF {
 
         [Title("子弹特性")]
         public bool isMakeBulletAppear;
+        public bool isDestoryALine;
 
 
         [Title("Frame")]

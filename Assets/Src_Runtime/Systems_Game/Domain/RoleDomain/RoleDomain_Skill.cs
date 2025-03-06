@@ -112,6 +112,10 @@ namespace UF {
                 // SpawnBullet
                 var spawnTM = model.bulletSpawnerTM;
                 spawnTM.spawnPos.position = role.GetMuzzlePos();
+                if (spawnTM.bulletSo.tm.isDestoryALine) {
+                    Debug.LogWarning("RoleDomain.MakeBulletAppear");
+                    spawnTM.spawnPos.position = GetNearestEnemyPosition(ctx, role);
+                }
                 BulletEntity bullet = BulletDomain.SpawnByRole_Spawner(ctx, role, spawnTM);
                 // 记录一共发射了多少次
                 ctx.gameEntity.playerSaveData.shootTimes += 1;
@@ -124,26 +128,29 @@ namespace UF {
 
         }
         #endregion
-        #region  查找
-        public static Vector3 GetNestRolePos(GameSystemContext ctx, RoleEntity player) {
+        #region  查找坐标x轴最近的敌人坐标
+        public static Vector3 GetNearestEnemyPosition(GameSystemContext ctx, RoleEntity player) {
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
-            RoleEntity target = null;
-            float minDis = float.MaxValue;
-            for (int i = 0; i < len; i += 1) {
+            RoleEntity nearestEnemy = null;
+            float minDistance = float.MaxValue;
+
+            for (int i = 0; i < len; i++) {
                 RoleEntity role = roles[i];
                 if (role.roleType == RoleType.Player) {
                     continue;
                 }
-                float dis = Vector3.Distance(player.TF_GetPos(), role.TF_GetPos());
-                if (dis < minDis) {
-                    minDis = dis;
-                    target = role;
+                float distance = Mathf.Abs(-10 - player.TF_GetPos().x);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    nearestEnemy = role;
                 }
             }
-            if (target == null) {
+
+            if (nearestEnemy == null) {
                 return player.TF_GetPos();
             }
-            return target.TF_GetPos();
+            var pos = new Vector3(player.TF_GetPos().x, nearestEnemy.TF_GetPos().y, 0);
+            return pos;
         }
         #endregion
     }
