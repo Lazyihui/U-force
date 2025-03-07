@@ -169,18 +169,15 @@ namespace UF.System_Train {
         }
 
         static int AI_Check(TrainSystemContext ctx, RoleEntity role) { // 1防御, 2攻击, 3跳跃
-            // role基本属性
+            // 基本属性
             float randomDev = UnityEngine.Random.Range(0f, role.AIDeviation); // ai的偏差
             var pos = role.GetPos();
 
-            var attrCom = role.AttributeComponent;
-            var moveSpeed = attrCom.GetMoveSpeed();
             float attackCD = 0;
             float defenseCD = 0;
 
             float g = 9.81f; // 重力加速度
             float minY = role.GetMinY();
-
             var velo = role.GetVelocity();
 
             if (role.t_roleType == T_RoleType.Player1) {
@@ -193,7 +190,6 @@ namespace UF.System_Train {
 
             int roleLen = ctx.roleRepository.TakeAll(out var roles);
             RoleEntity enemy = null;
-
             for (int i = 0; i < roleLen; i++) {
                 if (roles[i] != role) {
                     enemy = roles[i];
@@ -214,37 +210,12 @@ namespace UF.System_Train {
                     if (bullets[i].moveType == type) {
                         var bullet = bullets[i];
                         var bulletPos = bullet.TF_GetPos();
-                        var bulletSpeed = bullet.moveSpeed;
 
-                        if (bulletPos.x > pos.x) { return 0; }
+                        if (bulletPos.x > enemy.TF_GetPos().x) { return 0; }
 
-                        float time = (pos.x - bulletPos.x) / bulletSpeed; // 子弹到达玩家x轴时间
-                        float upTime = moveSpeed / g; // 玩家上升总时间
-                        float T = 2 * upTime; // 玩家运动周期
-                        float maxY = minY + (float)(Math.Pow(moveSpeed, 2) / (2 * g)); // 玩家最高点
+                        bool check = AI_CheckRoleAndBullet(ctx, enemy, bullet, minY, randomDev, g);
 
-                        float moveTime = 0; // 玩家当前周期已运动时间
-                        double a = 0;
-
-                        a = (moveSpeed - Math.Sqrt(Math.Pow(moveSpeed, 2) - 2 * g * (maxY - pos.y))) / g; // 玩家上升时间
-                        if (velo.y < 0) {
-                            a += Math.Sqrt(2 * (maxY - pos.y) / g); // 玩家下降时间
-                        }
-                        moveTime = (float)a;
-                        time += moveTime;
-
-                        time = time % T;
-                        float playerY = minY;
-
-                        // TODO: 还有种可能是跳跃, 因为改变了velo, 所以这么算不准, 还没想好怎么写
-                        if (time < upTime) {
-                            playerY += (moveSpeed * time) - (float)(g / 2 * Math.Pow(time, 2));
-                        } else {
-                            playerY += maxY - (float)(g / 2 * Math.Pow((time - upTime), 2));
-                        }
-
-                        float dis = Mathf.Abs(playerY - bulletPos.y);
-                        if (dis < randomDev) {
+                        if (check) {
                             if (defenseCD > 0) {
                                 return 3;
                             } else {
@@ -258,17 +229,22 @@ namespace UF.System_Train {
 
             // TODO: 检测敌人位置, 判断攻击
             {
-                var posY = pos.y;
                 var enemyPos = enemy.GetPos();
 
-                var attr = enemy.AttributeComponent;
-                var enemySpeed = attr.GetMoveSpeed();
-
-                var bulletPos = pos;
+                var skillCom = role.skillorSlotComponent;
+                int skillLen = skillCom.TakeAll(out var skills);
+                var skill = skills[0];
+                var templateMoudle = ctx.templateMoudle;
+                templateMoudle.Bullet_TryGet(skill.typeID, out var bulletTM);
+                var bulletPos = role.GetPos();
 
                 if (bulletPos.x < enemyPos.x) { return 0; }
 
-                float time = (bulletPos.x - enemyPos.x) / enemySpeed; // 子弹到达敌人x轴时间
+                bool check = AI_CheckRoleAndBullet(ctx, enemy, bulletTM, bulletPos, minY, randomDev, g);
+
+                if (check && attackCD <= 0) {
+                    return 2;
+                }
             }
 
             // 检测道具位置, 判断攻击和跳跃
@@ -285,6 +261,95 @@ namespace UF.System_Train {
             }
 
             return 0;
+        }
+
+        static bool AI_CheckRoleAndBullet(TrainSystemContext ctx, RoleEntity role, BulletEntity bullet, float roleMinY, float dev, float g) { // 判断子弹能否击中role
+            // return true: 可能击中
+            // roleMinY: role的最低点
+            // dev: 偏差
+            // g: 重力加速度
+            var rolePos = role.GetPos();
+            var RoleSpeed = role.AttributeComponent.GetMoveSpeed();
+            var roleVelo = role.GetVelocity();
+
+            var bulletPos = bullet.TF_GetPos();
+            var bulletSpeed = bullet.moveSpeed;
+
+            float time = Math.Abs(rolePos.x - bulletPos.x) / bulletSpeed; // 子弹到达role的x轴时间
+            float upTime = RoleSpeed / g; // role上升总时间
+            float T = 2 * upTime; // role运动周期
+            float maxY = roleMinY + (float)(Math.Pow(RoleSpeed, 2) / (2 * g)); // role最高点
+
+            float moveTime = 0; // role当前周期已运动时间
+            double a = 0;
+
+            a = (RoleSpeed - Math.Sqrt(Math.Pow(RoleSpeed, 2) - 2 * g * (maxY - rolePos.y))) / g; // role上升时间
+            if (roleVelo.y < 0) {
+                a += Math.Sqrt(2 * (maxY - rolePos.y) / g); // role下降时间
+            }
+            moveTime = (float)a;
+            time += moveTime;
+
+            time = time % T;
+            float playerY = roleMinY;
+
+            // TODO: 还有种可能是跳跃, 因为改变了velo, 所以这么算不准, 还没想好怎么写
+            if (time < upTime) {
+                playerY += (RoleSpeed * time) - (float)(g / 2 * Math.Pow(time, 2));
+            } else {
+                playerY += maxY - (float)(g / 2 * Math.Pow((time - upTime), 2));
+            }
+
+            float dis = Mathf.Abs(playerY - bulletPos.y);
+            if (dis < dev) {
+                return true;
+            }
+
+            return false;
+        }
+
+        static bool AI_CheckRoleAndBullet(TrainSystemContext ctx, RoleEntity role, BulletTM bullet, Vector2 bulletPos, float roleMinY, float dev, float g) { // 判断子弹能否击中role
+            // return true: 可能击中
+            // roleMinY: role的最低点
+            // dev: 偏差
+            // g: 重力加速度
+            var rolePos = role.GetPos();
+            var RoleSpeed = role.AttributeComponent.GetMoveSpeed();
+            var roleVelo = role.GetVelocity();
+
+            var bulletSpeed = bullet.moveSpeed;
+
+            float time = Math.Abs(rolePos.x - bulletPos.x) / bulletSpeed; // 子弹到达role的x轴时间
+            float upTime = RoleSpeed / g; // role上升总时间
+            float T = 2 * upTime; // role运动周期
+            float maxY = roleMinY + (float)(Math.Pow(RoleSpeed, 2) / (2 * g)); // role最高点
+
+            float moveTime = 0; // role当前周期已运动时间
+            double a = 0;
+
+            a = (RoleSpeed - Math.Sqrt(Math.Pow(RoleSpeed, 2) - 2 * g * (maxY - rolePos.y))) / g; // role上升时间
+            if (roleVelo.y < 0) {
+                a += Math.Sqrt(2 * (maxY - rolePos.y) / g); // role下降时间
+            }
+            moveTime = (float)a;
+            time += moveTime;
+
+            time = time % T;
+            float playerY = roleMinY;
+
+            // TODO: 还有种可能是跳跃, 因为改变了velo, 所以这么算不准, 还没想好怎么写
+            if (time < upTime) {
+                playerY += (RoleSpeed * time) - (float)(g / 2 * Math.Pow(time, 2));
+            } else {
+                playerY += maxY - (float)(g / 2 * Math.Pow((time - upTime), 2));
+            }
+
+            float dis = Mathf.Abs(playerY - bulletPos.y);
+            if (dis < dev) {
+                return true;
+            }
+
+            return false;
         }
 
         static void AI_Defense(TrainSystemContext ctx, RoleEntity role) {
