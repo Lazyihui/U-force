@@ -17,8 +17,8 @@ MonoBehaviour:
     typeName: "3600\u653B\u51FB\u70B9"
     castKeys: 0
     cd: 1
-    restUseTimes: 1
-    maxUseTimes: 1
+    restUseTimes: 10000000
+    maxUseTimes: 100000000
     actionTMs:
     - loopTM:
         loopFlag: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
       moveTM:
         moveOffset: {x: 0, y: 0}
         moveSpeed: 0
-      hasRoleBehaviour: 1
+      hasRoleBehaviour: 0
       roleBehaviourTM:
         belongWho:
           value: 0
@@ -54,3 +54,7 @@ MonoBehaviour:
         isRestoreMp: 0
         restoreMp: 0
         isAttachBuff: 0
+      hasWorldBehaviour: 1
+      worldBehaviourTM:
+        isSpawnStuff: 1
+        stuffSo: {fileID: 11400000, guid: 9b5a683b85813454a83ca4af882562b1, type: 2}

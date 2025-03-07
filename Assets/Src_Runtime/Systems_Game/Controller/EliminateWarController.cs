@@ -35,7 +35,7 @@ namespace UF {
             // stuff 生成道具
             for (int i = 0; i < tm.stuffSpawns.Length; i += 1) {
                 StuffSpawnerTM spawnerTM = tm.stuffSpawns[i];
-                StuffDoamin.SpawnBySpawner(ctx, spawnerTM);
+                StuffDomain.SpawnBySpawner(ctx, spawnerTM);
             }
 
             // Role 生成障碍物和核心
@@ -94,14 +94,14 @@ namespace UF {
             for (int i = 0; i < stuffLen; i += 1) {
                 StuffEntity stuff = stuffs[i];
 
-                StuffDoamin.FSM_Normal_Execute(ctx, stuff);
-                StuffDoamin.CheckUnSpawn(ctx, stuff);
+                StuffDomain.FSM_Normal_Execute(ctx, stuff);
+                StuffDomain.CheckUnSpawn(ctx, stuff);
             }
 
             // 时间道具生成
             if (game.stuffCD <= 0) {
                 game.stuffCD = game.stuffMax;
-                var stuff = StuffDoamin.Spawn(ctx, 200);
+                var stuff = StuffDomain.Spawn(ctx, 200);
                 var pos = new Vector2(UnityEngine.Random.Range(-9, -7), UnityEngine.Random.Range(-5, 8));
                 stuff.TF_SetPos(pos);
             }

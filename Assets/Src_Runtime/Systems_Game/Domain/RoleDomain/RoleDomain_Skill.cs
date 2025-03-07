@@ -92,7 +92,10 @@ namespace UF {
             }
 
             // -world Behavior
-            
+            if (frame.hasWorldBehaviour) {
+                WorldBehavior_Act(ctx, role, frame.worldBehaviourModel, dt);
+            }
+
         }
         public static void RoleBehavior_Act(GameSystemContext ctx, RoleEntity role, RoleBehaviorModel model, float dt) {
 
@@ -129,6 +132,19 @@ namespace UF {
                 Debug.LogWarning("RoleDomain.TearDown");
             }
 
+        }
+
+        public static void WorldBehavior_Act(GameSystemContext ctx, RoleEntity role, WorldBehaviourModel model, float dt) {
+
+            if (model.isSpawnStuff) {
+                Debug.LogWarning("RoleDomain.SpawnStuff生成4物品");
+                // SpawnStuff
+                for (int i = 0; i < 4; i++) {
+                    // 得到随机的坐标
+                    Vector3 pos = new Vector3(UnityEngine.Random.Range(-7, 6), UnityEngine.Random.Range(12, -4), 0);
+                    StuffEntity stuff = StuffDomain.SpawnByPos(ctx, model.stuffSo.tm.typeID,pos);
+                }
+            }
         }
         #endregion
         #region  查找坐标Y轴最近的敌人坐标

@@ -114,7 +114,7 @@ namespace UF {
                 if (dis < 1) {
                     if (stuff.isTimeStuff) { // 时间道具
                         rope.EnterShortening();
-                        StuffDoamin.UnSpawn(ctx, stuff);
+                        StuffDomain.UnSpawn(ctx, stuff);
 
                         var addTime = stuff.addTime;
                         ctx.gameEntity.gameTime -= addTime;

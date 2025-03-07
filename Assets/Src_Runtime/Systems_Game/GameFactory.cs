@@ -311,6 +311,36 @@ namespace UF {
 
             stuff.isAttackPoint = tm.isAttackPoint;
 
+            return stuff;
+        }
+        public static StuffEntity Stuff_CreateByPos(AssetsModule assetsCore, TemplateMoudle templateCore, IDService iDService, int typeID, Vector2 pos) {
+
+            bool has = templateCore.Stuff_TryGet(typeID, out var tm);
+            if (!has) {
+                Debug.LogError("Stuff_Create: tm is null" + typeID);
+                return null;
+            }
+            GameObject prefab = assetsCore.Entity_GetStuff();
+            GameObject go = GameObject.Instantiate(prefab);
+            StuffEntity stuff = go.GetComponent<StuffEntity>();
+
+            // - mod
+            var mod = StuffMod_Create(tm, stuff.bodyRoot);
+
+            stuff.idSig = new IDSignature(EntityType.Stuff, iDService.PickStuffID());
+            stuff.Ctor();
+            stuff.typeID = typeID;
+            stuff.typeName = tm.typeName;
+
+            stuff.weight = tm.weight;
+            stuff.isEnergy = tm.isEnergy;
+            stuff.isTimeStuff = tm.isTimeStuff;
+            if (tm.isTimeStuff) {
+                stuff.addTime = tm.addTime;
+            }
+
+            stuff.isAttackPoint = tm.isAttackPoint;
+            stuff.TF_SetPos(pos);
 
             return stuff;
         }
@@ -333,6 +363,7 @@ namespace UF {
             stuff.idSig = new IDSignature(EntityType.Stuff, iDService.PickStuffID());
             stuff.typeID = typeID;
             stuff.typeName = tm.typeName;
+            stuff.Ctor();
 
             stuff.weight = tm.weight;
             stuff.isEnergy = tm.isEnergy;
@@ -341,7 +372,7 @@ namespace UF {
                 stuff.addTime = tm.addTime;
             }
 
-            stuff.Ctor();
+            stuff.isAttackPoint = tm.isAttackPoint;
 
             stuff.TF_SetPos(spawnerTM.position);
             stuff.TF_SetRot(spawnerTM.rotation);

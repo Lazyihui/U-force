@@ -15,6 +15,9 @@ namespace UF {
         public bool hasRoleBehaviour;
         public RoleBehaviorModel roleBehaviour;
 
+        public bool hasWorldBehaviour;
+        public WorldBehaviourModel worldBehaviourModel;
+
         public SkillFrameModel() {
             this.loopModel = new LoopModel();
         }
@@ -25,17 +28,20 @@ namespace UF {
 
         public SkillFrameModel FromTM(int typeID, SkillFrameTM tm) {
 
-            this.loopModel.FromTM(tm.loopTM);
+            loopModel.FromTM(tm.loopTM);
 
-            // this.moveModel = new SkillMoveModel();
-            // this.moveModel.moveOffset = tm.moveTM.moveOffset;
-            // this.moveModel.moveSpeed = tm.moveTM.moveSpeed;
+            // moveModel = new SkillMoveModel();
+            // moveModel.moveOffset = tm.moveTM.moveOffset;
+            // moveModel.moveSpeed = tm.moveTM.moveSpeed;
 
-            this.hasRoleBehaviour = tm.hasRoleBehaviour;
+            hasRoleBehaviour = tm.hasRoleBehaviour;
+            if (hasRoleBehaviour) {
+                roleBehaviour.FromTM(tm.roleBehaviourTM);
+            }
 
-            if (this.hasRoleBehaviour) {
-                // 有角色行为就把角色行为配置到角色行为模型
-                this.roleBehaviour.FromTM(tm.roleBehaviourTM);
+            hasWorldBehaviour = tm.hasWorldBehaviour;
+            if (hasWorldBehaviour) {
+                worldBehaviourModel.FromTM(tm.worldBehaviourTM);
             }
 
             return this;
