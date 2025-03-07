@@ -153,7 +153,6 @@ namespace UF.System_Train {
             Loco_Move(role, dt);
 
             int check = AI_Check(ctx, role);
-            Debug.Log(check);
             switch (check) {
                 case 1: // 防御
                     AI_Defense(ctx, role);
@@ -246,7 +245,12 @@ namespace UF.System_Train {
 
                         float dis = Mathf.Abs(playerY - bulletPos.y);
                         if (dis < randomDev) {
-                            if (defenseCD > 0) { return 3; } else { return 1; }
+                            if (defenseCD > 0) {
+                                return 3;
+                            } else {
+                                var bulletDis = pos.x - bulletPos.x;
+                                if (bulletDis < 1.5f + randomDev) { return 1; }
+                            }
                         }
                     }
                 }
