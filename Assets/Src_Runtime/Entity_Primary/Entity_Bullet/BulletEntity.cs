@@ -61,12 +61,12 @@ namespace UF {
 
         // 使击中目标变换Move方式(位置)效果参数
         public bool isChangeLine;
-        [ShowIf(nameof(isChangeLine))] public Vector2 changeLineDir;
-        [ShowIf(nameof(isChangeLine))] public int LineNum; // 变换的行数
-        [ShowIf(nameof(isChangeLine))] public float LineLength; // 每行长度
+        public Vector2 changeLineDir;
+        public int LineNum; // 变换的行数
+        public float LineLength; // 每行长度
 
         public bool isRepelled; // 击退
-        [ShowIf(nameof(isRepelled))] public float repeLength; // 击退距离
+        public float repeLength; // 击退距离
 
         public bool IsDead() {
             bool isDead = hitTimes <= 0;
@@ -95,7 +95,7 @@ namespace UF {
         }
 
         public void Loco_MoveDir(Vector2 dir) {
-            rb.velocity = dir * moveSpeed/10;
+            rb.velocity = dir * moveSpeed / 10;
         }
 
         #endregion

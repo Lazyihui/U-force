@@ -16,6 +16,8 @@ MonoBehaviour:
     typeID: 2
     slotMax: 1
     stageCurType: 1
+    isTrain: 0
+    aiSoArray: []
     roleSoArray:
     - {fileID: 11400000, guid: 772c31f3954c55f48b735dc0c0226a7e, type: 2}
     bulletAgrSoArray:
@@ -23,7 +25,7 @@ MonoBehaviour:
     bulletIndSoArray: []
     bulletSciSoArray:
     - {fileID: 11400000, guid: ed460d7d5c7d2e74c814c4a6b706fd43, type: 2}
+    - {fileID: 11400000, guid: bccf0edbb1a31314d9776bfb2aae3df5, type: 2}
     roleEnemySoArray:
     - {fileID: 11400000, guid: 9d04dd169b2febc41a88d55ba222c7bb, type: 2}
     - {fileID: 11400000, guid: 9391e59375eca984b9ba5a4e34b2580b, type: 2}
-    isTrain: 0

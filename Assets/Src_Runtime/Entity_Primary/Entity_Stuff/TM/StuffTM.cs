@@ -17,6 +17,8 @@ namespace UF {
         public bool isTimeStuff; // 时间道具
         [ShowIf(nameof(isTimeStuff))] public int addTime;
 
+        public bool isAttackPoint; // 是否是攻击点
+
         [Title("mod")]
         public StuffMod modPrefab;
         public Sprite sprite;

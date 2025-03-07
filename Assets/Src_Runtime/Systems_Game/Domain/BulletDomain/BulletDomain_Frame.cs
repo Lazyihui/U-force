@@ -52,6 +52,10 @@ namespace UF {
                 BulletBehaviour_Acting(ctx, bullet, frame.bulletBehaviourModel, dt);
             }
 
+            if (frame.hasWorldBehaviour) {
+                WorldBehaviour_Acting(ctx, bullet, frame.worldBehaviourModel, dt);
+            }
+
         }
 
         #endregion
@@ -107,6 +111,14 @@ namespace UF {
                 Bullet_RoleMoveBack(ctx, bullet);
             }
 
+        }
+
+        public static void WorldBehaviour_Acting(GameSystemContext ctx, BulletEntity bullet, WorldBehaviourModel model,float dt) {
+
+            if(model.isSpawnStuff){
+                // 随机生成4个点
+                Debug.Log("生成4个点");
+            }
         }
 
         #endregion
