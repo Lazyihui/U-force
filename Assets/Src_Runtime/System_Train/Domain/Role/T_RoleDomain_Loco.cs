@@ -157,8 +157,22 @@ namespace UF.System_Train {
 
             float randomDev = UnityEngine.Random.Range(0f, role.AIDeviation); // ai的偏差
             var pos = role.GetPos();
-            
-            float minY = role.minY;
+
+            var attrCom = role.AttributeComponent;
+            var moveSpeed = attrCom.GetMoveSpeed();
+            float attackCD;
+            float defenseCD;
+
+            float g = 9.81f; // 重力加速度
+            float minY = role.GetMinY();
+
+            if (role.t_roleType == T_RoleType.Player1) {
+                attackCD = ctx.trainEntity.attackCD1;
+                defenseCD = ctx.trainEntity.defenseCD1;
+            } else if (role.t_roleType == T_RoleType.Player2) {
+                attackCD = ctx.trainEntity.attackCD2;
+                defenseCD = ctx.trainEntity.defenseCD2;
+            }
 
             int roleLen = ctx.roleRepository.TakeAll(out var roles);
             RoleEntity enemy = null;
@@ -185,7 +199,24 @@ namespace UF.System_Train {
                     var bulletSpeed = bullet.moveSpeed;
 
                     if (bulletPos.x > pos.x) { return 0; }
-                    float time = (pos.x - bulletPos.x) / bulletSpeed;
+
+                    float time = (pos.x - bulletPos.x) / bulletSpeed; // 子弹到达玩家x轴时间
+                    float upTime = moveSpeed / g; // 玩家上升总时间
+                    float T = 2 * upTime; // 玩家运动周期
+                    time = time % T;
+                    float playerY = minY;
+                    float maxY = minY + (float)(Math.Sqrt(moveSpeed) / (2 * g)); // 玩家最高点
+                    // TODO: 还有种可能是跳跃, 因为改变了velo, 所以这么算不准, 还没想好怎么写
+                    if (time < upTime) {
+                        playerY += (moveSpeed * time) - (float)(g / 2 * Math.Sqrt(time));
+                    } else {
+                        playerY += maxY - (float)(g / 2 * Math.Sqrt(time - upTime));
+                    }
+
+                    float dis = Mathf.Abs(playerY - bulletPos.y);
+                    if (dis < randomDev) {
+                        return 1;
+                    }
                 }
             }
 

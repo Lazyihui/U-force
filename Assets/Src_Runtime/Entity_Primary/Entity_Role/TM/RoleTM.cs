@@ -40,6 +40,6 @@ namespace UF {
 
         [Title("Train")]
         public bool isTrainAI;
-        [ShowIf(nameof(isTrainAI))] public float AIDeviation;
+        [ShowIf(nameof(isTrainAI))] public float AIDeviation; // AI偏差, 越小精度越高
     }
 }
