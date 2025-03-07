@@ -10,7 +10,8 @@ namespace UF {
         Barrier,        // 障碍
 
         // 训练营
-        AI,             // AI
+        AIEasy,             // AI简单
+        AIHard,             // AI困难
     }
 
 }

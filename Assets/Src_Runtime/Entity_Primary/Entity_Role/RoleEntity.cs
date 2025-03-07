@@ -65,6 +65,8 @@ namespace UF {
 
         // 训练营
         public T_RoleType t_roleType;
+        public float AIDeviation;
+        public float minY;
 
         // 特殊移动行为
         public bool isChangeLine; // 是否换行
@@ -284,6 +286,14 @@ namespace UF {
         }
 
         #endregion
+
+        public float GetMinY() {
+            var pos = GetPos();
+            if (pos.y < minY) {
+                minY = pos.y;
+            }
+            return minY;
+        }
 
     }
 }

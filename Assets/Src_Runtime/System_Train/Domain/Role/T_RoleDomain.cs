@@ -31,6 +31,9 @@ namespace UF.System_Train {
         }
 
         public static void Input_Record(TrainSystemContext ctx, RoleEntity role, float dt) {
+            if (role.roleType == RoleType.AIEasy) { return; }
+            if (role.roleType == RoleType.AIHard) { return; }
+
             Debug.Assert(role != null, "RoleDomain.Input_Record role == null");
             Debug.Assert(ctx != null, "RoleDomain.Input_Record ctx == null");
             Debug.Assert(role.InputComponent != null, "RoleDomain.Input_Record role.InputComponent == null");
