@@ -120,6 +120,11 @@ namespace UF {
             var featureCom = role.FeatureComponent;
             featureCom.SetFeatureType(tm.featureType);
 
+            // -Train
+            if (tm.isTrainAI) {
+                role.AIDeviation = tm.AIDeviation;
+            }
+
             return role;
         }
         public static RoleEntity Role_CreateBySpawner(AssetsModule assetsCore, TemplateMoudle templateCore, IDService idService, RoleSpawnerTM spawnerTM) {

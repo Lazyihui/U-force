@@ -37,5 +37,9 @@ namespace UF {
 
         [Title("Eliminate")]
         public bool isEliminateRole;
+
+        [Title("Train")]
+        public bool isTrainAI;
+        [ShowIf(nameof(isTrainAI))] public float AIDeviation;
     }
 }

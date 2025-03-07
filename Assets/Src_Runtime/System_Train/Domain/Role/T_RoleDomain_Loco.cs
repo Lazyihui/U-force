@@ -147,7 +147,60 @@ namespace UF.System_Train {
 
         #region AI
         public static void AI_Execute(TrainSystemContext ctx, RoleEntity role, float dt) {
+            GroundCheck(role);
+
+            Loco_MoveReset(role);
+            Loco_Move(role, dt);
+        }
+
+        static int AI_Check(TrainSystemContext ctx, RoleEntity role) { // 1防御, 2攻击, 3跳跃
+
+            float randomDev = UnityEngine.Random.Range(0f, role.AIDeviation); // ai的偏差
+            var pos = role.GetPos();
             
+            float minY = role.minY;
+
+            int roleLen = ctx.roleRepository.TakeAll(out var roles);
+            RoleEntity enemy = null;
+
+            for (int i = 0; i < roleLen; i++) {
+                if (roles[i] != role) {
+                    enemy = roles[i];
+                }
+            }
+
+            BulletMoveType type = BulletMoveType.None;
+            if (enemy.t_roleType == T_RoleType.Player1) {
+                type = BulletMoveType.Shaped;
+            } else if (enemy.t_roleType == T_RoleType.Player2) {
+                type = BulletMoveType.ToLeft;
+            }
+
+            int bulletLen = ctx.bulletRepository.TakeAll(out var bullets);
+            for (int i = 0; i < bulletLen; i++) {
+                if (bullets[i].moveType == type) {
+                    // TODO: 检测子弹位置, 判断防御(防御cd不够就跳跃)
+                    var bullet = bullets[i];
+                    var bulletPos = bullet.TF_GetPos();
+                    var bulletSpeed = bullet.moveSpeed;
+
+                    if (bulletPos.x > pos.x) { return 0; }
+                    float time = (pos.x - bulletPos.x) / bulletSpeed;
+                }
+            }
+
+            // TODO: 检测敌人位置, 判断攻击
+
+            int propLen = ctx.propRepository.TakeAll(out var props);
+            for (int i = 0; i < propLen; i++) {
+                // TODO: 检测道具位置, 判断攻击和跳跃
+            }
+
+            return 0;
+        }
+
+        static void AI_Jump(TrainSystemContext ctx, RoleEntity role) {
+
         }
         #endregion
     }
