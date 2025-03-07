@@ -151,20 +151,38 @@ namespace UF.System_Train {
 
             Loco_MoveReset(role);
             Loco_Move(role, dt);
+
+            int check = AI_Check(ctx, role);
+            Debug.Log(check);
+            switch (check) {
+                case 1: // 防御
+                    AI_Defense(ctx, role);
+                    break;
+                case 2: // 攻击
+                    AI_Attack(ctx, role);
+                    break;
+                case 3: // 跳跃
+                    AI_Jump(ctx, role);
+                    break;
+                default:
+                    break;
+            }
         }
 
         static int AI_Check(TrainSystemContext ctx, RoleEntity role) { // 1防御, 2攻击, 3跳跃
-
+            // role基本属性
             float randomDev = UnityEngine.Random.Range(0f, role.AIDeviation); // ai的偏差
             var pos = role.GetPos();
 
             var attrCom = role.AttributeComponent;
             var moveSpeed = attrCom.GetMoveSpeed();
-            float attackCD;
-            float defenseCD;
+            float attackCD = 0;
+            float defenseCD = 0;
 
             float g = 9.81f; // 重力加速度
             float minY = role.GetMinY();
+
+            var velo = role.GetVelocity();
 
             if (role.t_roleType == T_RoleType.Player1) {
                 attackCD = ctx.trainEntity.attackCD1;
@@ -183,6 +201,7 @@ namespace UF.System_Train {
                 }
             }
 
+            // 检测子弹位置, 判断防御(防御cd不够就跳跃)
             BulletMoveType type = BulletMoveType.None;
             if (enemy.t_roleType == T_RoleType.Player1) {
                 type = BulletMoveType.Shaped;
@@ -193,7 +212,6 @@ namespace UF.System_Train {
             int bulletLen = ctx.bulletRepository.TakeAll(out var bullets);
             for (int i = 0; i < bulletLen; i++) {
                 if (bullets[i].moveType == type) {
-                    // TODO: 检测子弹位置, 判断防御(防御cd不够就跳跃)
                     var bullet = bullets[i];
                     var bulletPos = bullet.TF_GetPos();
                     var bulletSpeed = bullet.moveSpeed;
@@ -203,35 +221,81 @@ namespace UF.System_Train {
                     float time = (pos.x - bulletPos.x) / bulletSpeed; // 子弹到达玩家x轴时间
                     float upTime = moveSpeed / g; // 玩家上升总时间
                     float T = 2 * upTime; // 玩家运动周期
+                    float maxY = minY + (float)(Math.Pow(moveSpeed, 2) / (2 * g)); // 玩家最高点
+
+                    float moveTime = 0; // 玩家当前周期已运动时间
+                    double a = 0;
+
+                    a = (moveSpeed - Math.Sqrt(Math.Pow(moveSpeed, 2) - 2 * g * (maxY - pos.y))) / g; // 玩家上升时间
+                    if (velo.y < 0) {
+                        a += Math.Sqrt(2 * (maxY - pos.y) / g); // 玩家下降时间
+                    }
+                    moveTime = (float)a;
+                    time += moveTime;
+
                     time = time % T;
                     float playerY = minY;
-                    float maxY = minY + (float)(Math.Sqrt(moveSpeed) / (2 * g)); // 玩家最高点
+
                     // TODO: 还有种可能是跳跃, 因为改变了velo, 所以这么算不准, 还没想好怎么写
                     if (time < upTime) {
-                        playerY += (moveSpeed * time) - (float)(g / 2 * Math.Sqrt(time));
+                        playerY += (moveSpeed * time) - (float)(g / 2 * Math.Pow(time, 2));
                     } else {
-                        playerY += maxY - (float)(g / 2 * Math.Sqrt(time - upTime));
+                        playerY += maxY - (float)(g / 2 * Math.Pow((time - upTime), 2));
                     }
 
                     float dis = Mathf.Abs(playerY - bulletPos.y);
                     if (dis < randomDev) {
-                        return 1;
+                        if (defenseCD > 0) { return 3; } else { return 1; }
                     }
                 }
             }
 
             // TODO: 检测敌人位置, 判断攻击
+            var posY = pos.y;
+            var enemyPos = enemy.GetPos();
 
+            // 检测道具位置, 判断攻击和跳跃
             int propLen = ctx.propRepository.TakeAll(out var props);
             for (int i = 0; i < propLen; i++) {
-                // TODO: 检测道具位置, 判断攻击和跳跃
+                var prop = props[i];
+                var propPos = prop.TF_GetPos();
+
+                var dis = Mathf.Abs(pos.y - propPos.y);
+                if (dis < randomDev && attackCD <= 0) { return 2; }
+                if (propPos.y > posY && attackCD <= 0 && velo.y > 0) { return 3; }
             }
 
             return 0;
         }
 
-        static void AI_Jump(TrainSystemContext ctx, RoleEntity role) {
+        static void AI_Defense(TrainSystemContext ctx, RoleEntity role) {
+            var train = ctx.trainEntity;
 
+            if (train.defenseCD2 > 0) { return; }
+            PropEntity prop = PropDomain.SpawnByRole(ctx, role);
+
+            prop.type = PropType.Armor2;
+            train.defenseCD2 = train.defenseMax;
+
+            if (train.player2Shields > 0) {
+                prop.times = 2;
+            }
+        }
+
+        static void AI_Attack(TrainSystemContext ctx, RoleEntity role) {
+            var train = ctx.trainEntity;
+
+            int skillLen = role.skillorSlotComponent.TakeAll(out var skills);
+            var skill = skills[0]; // 只获取普攻, 要求必须配第一个技能是Attack, 看看后面能不能改
+
+            if (train.attackCD2 > 0) { return; }
+            BulletDomain.SpawnByRolePos(ctx, role);
+            train.attackCD2 = skill.cd;
+            train.attackMax2 = skill.cd;
+        }
+
+        static void AI_Jump(TrainSystemContext ctx, RoleEntity role) {
+            role.Jump();
         }
         #endregion
     }
