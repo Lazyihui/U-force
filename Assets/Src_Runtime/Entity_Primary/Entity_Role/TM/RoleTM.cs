@@ -26,6 +26,8 @@ namespace UF {
         public RoleMod modPrefab;
         [Title("Feature特性")]
         public FeatureType featureType;
+        [ShowIf(nameof(featureType), FeatureType.Accelerate)] public float accelerateTimer;
+
 
         [Title("sprite")]
         public Sprite sprite;

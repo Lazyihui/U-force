@@ -70,16 +70,16 @@ namespace UF {
 
         // 特殊移动行为
         public bool isChangeLine; // 是否换行
-        [ShowIf(nameof(isChangeLine))] public Vector2 changeLineDir; // 换行方向
-        [ShowIf(nameof(isChangeLine))] public float changeLineLength; // 换行距离(行数 * 每行长度)
+        public Vector2 changeLineDir; // 换行方向
+        public float changeLineLength; // 换行距离(行数 * 每行长度)
 
         public bool isRepulsed; // 是否被击退
-        [ShowIf(nameof(isRepulsed))] public float repulsedLength; // 被击退距离
+        public float repulsedLength; // 被击退距离
 
-        [HideInInspector] public Vector2 changeLinePos;
-        [HideInInspector] public Vector2 repulsedPos;
-        [HideInInspector] public bool hasChangeLinePos;
-        [HideInInspector] public bool hasRepulsedPos;
+        public Vector2 changeLinePos;
+        public Vector2 repulsedPos;
+        public bool hasChangeLinePos;
+        public bool hasRepulsedPos;
 
         // 资源战
         public bool isEliminateRole; // 是否为资源战中除玩家的role

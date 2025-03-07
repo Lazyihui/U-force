@@ -50,7 +50,7 @@ namespace UF {
         }
 
         public static void FSM_All_Pause(RoleEntity role) {
-            Loco_MoveStop(role);
+            role.Move_Stop();
             //TODO: 施法过程中暂停
         }
 
@@ -91,7 +91,7 @@ namespace UF {
             var game = ctx.gameEntity;
 
             // 任何状态都运行的逻辑
-            Loco_MoveOffensive(role);
+            Loco_MoveOffensive(role,dt);
             // skill
             int skillLen = role.skillorSlotComponent.TakeAll(out var skills);
             for (int i = 0; i < skillLen; i += 1) {

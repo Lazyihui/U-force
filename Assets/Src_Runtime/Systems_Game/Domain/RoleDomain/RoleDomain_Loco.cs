@@ -5,20 +5,40 @@ namespace UF {
     public static partial class RoleDomain {
 
         public static void LocoDefendAndOffensive_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
-
             // 人物移动
             var moveCom = role.MoveComponent;
             GroundCheck(ctx, role);
             ControlledCheck(ctx, role);
 
-            Loco_MoveReset(role);
+            role.Move_Reset();
             Loco_Jump(role, moveCom.jumpForce);
             Loco_MoveDefend(ctx, role, dt);
 
             // 抓取
             Loco_Grap(ctx, role);
         }
+
+        // 进攻战
+        static void Loco_MoveOffensive(RoleEntity role, float dt) {
+
+            var inputCom = role.InputComponent;
+            var attrCom = role.AttributeComponent;
+
+            if (role.moveType == RoleMoveType.OffensiveUDRL) {
+                role.Move_Offensive(inputCom.MoveDir, attrCom.GetMoveSpeed());
+            } else if (role.moveType == RoleMoveType.Ghost) {
+
+            } else if (role.moveType == RoleMoveType.PlayerUpDown) {
+
+            } else if (role.moveType == RoleMoveType.Prohibit) {
+                role.Move_Stop();
+            }
+
+
+        }
+
         #region Move: 防守战
+
         static void Loco_MoveDefend(GameSystemContext ctx, RoleEntity role, float dt) {
             if (dt <= 0) {
                 return;
@@ -27,7 +47,6 @@ namespace UF {
             if (role.state != RoleState.Move) {
                 return;
             }
-
             // TODO:改成近基地死掉
             if (role.transform.position.y >= 11.25) {
                 role.Jump_Stop();
@@ -35,9 +54,7 @@ namespace UF {
             }
 
             var attrCom = role.AttributeComponent;
-
             RoleMoveType moveType = role.moveType;
-
             if (moveType == RoleMoveType.PlayerUpDown) {
                 if (role.IsGround() && role.AllowPlayerMove()) {
                     role.Move_Player(attrCom.moveSpeed);
@@ -45,14 +62,9 @@ namespace UF {
             } else if (moveType == RoleMoveType.Ghost) {
                 role.Move_Ghost(attrCom.moveSpeed);
             }
-        }
 
-        public static void Loco_MoveStop(RoleEntity role) {
-            role.Move_Stop();
-        }
-
-        public static void Loco_MoveReset(RoleEntity role) {
-            role.Move_Reset();
+            // 加速怪
+            Accelerate(role, dt);
         }
 
         public static void Loco_Jump(RoleEntity role, float jumpForce) {
@@ -62,10 +74,7 @@ namespace UF {
             }
             role.Jump();
         }
-
         #endregion
-
-        #region Mvoe:进攻战
 
         #region Move: 资源战
         public static void Loco_MoveEliminate(GameSystemContext ctx, RoleEntity role, float dt) {
@@ -89,26 +98,8 @@ namespace UF {
         }
         #endregion
 
-        static void Loco_MoveOffensive(RoleEntity role) {
-
-            var inputCom = role.InputComponent;
-            var attrCom = role.AttributeComponent;
-            if (role.moveType == RoleMoveType.OffensiveUDRL) {
-                role.Move_Offensive(inputCom.MoveDir, attrCom.GetMoveSpeed());
-            } else if (role.moveType == RoleMoveType.Ghost) {
-
-            } else if (role.moveType == RoleMoveType.PlayerUpDown) {
-
-            } else if (role.moveType == RoleMoveType.Prohibit) {
-                role.Move_Stop();
-            }
-
-        }
-
-        #endregion
 
         #region 消除战
-
         public static void Loco_Grap(GameSystemContext ctx, RoleEntity role) {
             // 抓取
             bool canGrap = ctx.isRopeUnExist();
@@ -118,9 +109,7 @@ namespace UF {
                 Vector2 pos = role.GetPos();
                 ctx.ropeEntity = RopeDomain.Spawn(ctx, pos);
             }
-
         }
-
         #endregion
 
         public static void GroundCheck(GameSystemContext ctx, RoleEntity role) {
@@ -140,13 +129,11 @@ namespace UF {
                 RaycastHit2D hit = hits[i];
                 if (hit.collider.gameObject != null) {
                 }
-
                 if (hit.collider.gameObject.CompareTag("Ground")) {
                     isColliderGround = true;
                     break;
                 }
             }
-
             if (isColliderGround) {
                 role.EnterGround();
             }
@@ -154,13 +141,10 @@ namespace UF {
 
         static void ControlledCheck(GameSystemContext ctx, RoleEntity role) {
             var pos = role.GetPos();
-
             if (pos.x >= role.repulsedPos.x + role.repulsedLength) {
                 role.isRepulsed = false;
             }
-
             var dirY = role.changeLineDir.y;
-            
             if (dirY > 0 && pos.y >= role.changeLinePos.y + role.changeLineLength) {
                 role.isChangeLine = false;
                 role.hasChangeLinePos = false;
@@ -169,5 +153,24 @@ namespace UF {
                 role.hasChangeLinePos = false;
             }
         }
+
+        #region 移动
+        public static void Accelerate(RoleEntity role, float dt) {
+            // 加速
+            var feaCom = role.FeatureComponent;
+            if (feaCom.featureType != FeatureType.Accelerate) {
+                return;
+            }
+
+            feaCom.AccelerateTimer -= dt;
+            Debug.Log(feaCom.AccelerateTimer);
+            if (feaCom.AccelerateTimer <= 0) {
+                feaCom.SetFeatureType(FeatureType.None);
+                var attrCom = role.AttributeComponent;
+                attrCom.moveSpeed = attrCom.moveSpeed * 2;
+            }
+        }
+
+        #endregion
     }
 }

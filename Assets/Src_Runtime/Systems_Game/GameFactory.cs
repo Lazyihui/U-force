@@ -63,6 +63,7 @@ namespace UF {
             // -Feature
             var featureCom = role.FeatureComponent;
             featureCom.SetFeatureType(tm.featureType);
+            featureCom.Init(tm.accelerateTimer);
 
 
             return role;
@@ -119,6 +120,7 @@ namespace UF {
             // -Feature
             var featureCom = role.FeatureComponent;
             featureCom.SetFeatureType(tm.featureType);
+            featureCom.Init(tm.accelerateTimer);
 
             // -Train
             if (tm.isTrainAI) {
@@ -183,6 +185,7 @@ namespace UF {
             // -Feature
             var featureCom = role.FeatureComponent;
             featureCom.SetFeatureType(tm.featureType);
+            featureCom.Init(tm.accelerateTimer);
 
             // -Eliminate
             role.isEliminateRole = tm.isEliminateRole;

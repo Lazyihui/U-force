@@ -25,10 +25,12 @@ MonoBehaviour:
     fallDamage: 0
     skillorSoArray: []
     modPrefab: {fileID: 1663118547299982050, guid: 7ffacbb97fbdae34493c16f77e4805b7, type: 3}
-    featureType: 0
+    featureType: 2
+    accelerateTimer: 1.21
     sprite: {fileID: 1353156543, guid: 4c8cd296c3e3d6748b2cc2725360a963, type: 3}
-    content: "\u901F\u5EA6\u602A"
     feature: "\u901F\u5EA6\u602A"
     skill: 
     restraint: 
     isEliminateRole: 0
+    isTrainAI: 0
+    AIDeviation: 0

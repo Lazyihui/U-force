@@ -19,19 +19,17 @@ namespace UF {
             return entity;
         }
 
+        public static RoleEntity SpawnBySpawner(GameSystemContext ctx, RoleSpawnerTM spawnerTM) {
+            RoleEntity role = GameFactory.Role_CreateBySpawner(ctx.assetsModule, ctx.templateCore, ctx.idService, spawnerTM);
+            ctx.roleRepository.Add(role);
+            return role;
+        }
         public static RoleEntity SpawnBySkillorType(GameSystemContext ctx, Vector2 pos, int typeID, int[] skillorTypeIDArray) {
             RoleEntity role = GameFactory.Role_CreateByTypeSkillType(ctx.assetsModule, ctx.templateCore, ctx.idService, typeID, skillorTypeIDArray);
             role.TF_SetPos(pos);
             ctx.roleRepository.Add(role);
             return role;
         }
-
-        public static RoleEntity SpawnBySpawner(GameSystemContext ctx, RoleSpawnerTM spawnerTM) {
-            RoleEntity role = GameFactory.Role_CreateBySpawner(ctx.assetsModule, ctx.templateCore, ctx.idService, spawnerTM);
-            ctx.roleRepository.Add(role);
-            return role;
-        }
-
         public static void UnSpawn(GameSystemContext ctx, RoleEntity role) {
             ctx.roleRepository.Remove(role);
             role.TearDown();
@@ -53,7 +51,6 @@ namespace UF {
             var game = ctx.gameEntity;
             var inputCom = role.InputComponent;
             var inputModule = ctx.inputModule;
-
             inputCom.Jump_Set(inputModule.IsJump);
             if (game.isEliminateWar) {
                 inputCom.Grap_Set(inputModule.IsGrap);
@@ -61,12 +58,9 @@ namespace UF {
             inputCom.RecoredCastKey(inputModule.InputCastKey);
             inputCom.MoveDir_Set(inputModule.MoveDir);
         }
-
         #endregion
 
-
         #region Player physics
-
         public static void DetectionMinionByPos(GameSystemContext ctx, RoleEntity role, Vector2 pos, int damage) {
             // minion进入基地
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] minions);
@@ -85,7 +79,6 @@ namespace UF {
                 if (minionPos.x <= homeX) {
                     // player扣血 或者失败  
                     HpReduce_Role(ctx, role, damage);
-
                     // minion进基地死掉
                     int hpMax = minion.AttributeComponent.GetHpMax();
                     HpReduce_Role(ctx, minion, hpMax);
@@ -97,17 +90,14 @@ namespace UF {
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] touchMinions);
 
             for (int i = 0; i < len; i++) {
-
                 var touchMinion = touchMinions[i];
                 if (touchMinion == Enemy) {
                     continue;
                 }
-
                 var owner = ctx.Get_Owner(); // 检测是否碰到玩家
                 if (touchMinion == owner) {
                     continue;
                 }
-
                 float dis = Vector2.Distance(touchMinion.TF_GetPos(), pos);
                 // TODO:可能要改成用 collider   
                 float radius = 2f;
@@ -151,10 +141,8 @@ namespace UF {
             if (role.state != RoleState.Fall) {
                 return;
             }
-
             // TODO:感觉是这里的问题
             DetectionEnemyAndEnemyByPos(ctx, role, role.GetPos(), role.AttributeComponent.GetFallDamage());
-
             // 和地面的交叉检测
             RaycastHit2D[] hits = Physics2D.RaycastAll(role.GetPos(), Vector2.down, 1.1f);
             Debug.DrawRay(role.GetPos(), Vector2.down * 0.6f, Color.gray, 0.1f);
@@ -169,23 +157,17 @@ namespace UF {
             }
         }
 
-
-
         // 否是死亡状态 
         public static void IsDeadState(GameSystemContext ctx, RoleEntity role) {
             var game = ctx.gameEntity;
             var pos = role.GetPos();
-
             if (pos.x < -21 || pos.x > 21 || pos.y < -12 || pos.y > 12) {
                 role.SetRoleState(RoleState.Dead);
             }
-
             if (role.state != RoleState.Dead) {
                 return;
             }
-
             UnSpawn(ctx, role);
-
             if (role.roleType == RoleType.Player) {
                 // TODO:L写这里其实不太好
                 ctx.gameEntity.state = GameState.GameOver;
