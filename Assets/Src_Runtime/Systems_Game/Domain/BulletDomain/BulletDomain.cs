@@ -6,14 +6,15 @@ namespace UF {
     public static partial class BulletDomain {
 
         #region Lifecycle
-        public static BulletEntity Spawn(GameSystemContext ctx, int typeID, Vector3 pos, Vector3 dir) {
+        public static BulletEntity SpawnByPos(GameSystemContext ctx, int typeID, Vector3 pos, Vector3 dir) {
             BulletEntity entity = GameFactory.Bullet_Create(ctx.assetsModule, ctx.templateCore, ctx.idService, typeID, pos, dir);
             ctx.bulletRepository.Add(entity);
             return entity;
         }
+
         public static BulletEntity SpawnByRole_Spawner(GameSystemContext ctx, RoleEntity role, BulletSpawnerTM spawnerTM) {
             // TODO:生成位置
-            var BulletEntity = BulletDomain.Spawn(ctx, spawnerTM.bulletSo.tm.typeID, spawnerTM.spawnPos.position, spawnerTM.spawnDir.position);
+            var BulletEntity = BulletDomain.SpawnByPos(ctx, spawnerTM.bulletSo.tm.typeID, spawnerTM.spawnPos.position, spawnerTM.spawnDir.position);
             return BulletEntity;
         }
 
@@ -44,6 +45,19 @@ namespace UF {
 
             // 子弹移动
             Bullet_Loco(ctx, bullet, dt);
+
+            // 持续伤害
+            if (bullet.isStartContinueDamege) {
+                Bullet_ContinuousDamage(ctx, bullet, dt);
+            }
+            if (bullet.isStartBoomDamege) {
+                Bullet_ContinuousBoomDamage(ctx, bullet, dt);
+            }
+
+            if (bullet.isHaveContinueDamege) {
+                Debug.Log("持续伤害");
+                Bullet_ContinuousBoomDamage(ctx, bullet, dt);
+            }
         }
         #endregion
 
@@ -59,13 +73,6 @@ namespace UF {
             }
 
             detectionMinionByPos(ctx, bullet, pos, 1);
-
-            if (bullet.isStartContinueDamege) {
-                Bullet_ContinuousDamage(ctx, bullet, dt);
-            }
-            if (bullet.isStartBoomDamege) {
-                Bullet_ContinuousBoomDamage(ctx, bullet, dt);
-            }
         }
 
         static void detectionMinionByPos(GameSystemContext ctx, BulletEntity bullet, Vector3 pos, float range) {
@@ -91,7 +98,7 @@ namespace UF {
 
                     if (minion.isHit) { continue; }
                     bullet.touchRoleIDSig = minion.idSig;
-                    RoleDomain.HpReduce_MinionFall(ctx, minion, bullet.damage);
+                    RoleDomain.HpReduce_Minion(ctx, minion, bullet.damage);
                     minion.isHit = true;
 
                     bullet.hitTimes -= 1;
@@ -128,8 +135,9 @@ namespace UF {
                     bullet.damageTimer += dt;
                     if (bullet.damageTimer > bullet.damageInterval) {
                         bullet.damageTimer = 0;
-                        RoleDomain.HpReduce_MinionFall(ctx, minion, bullet.continueDamege);
+                        RoleDomain.HpReduce_Minion(ctx, minion, bullet.continueDamege);
                     }
+
                 }
             }
         }
@@ -153,9 +161,11 @@ namespace UF {
                     bullet.damageTimer += dt;
                     if (bullet.damageTimer > bullet.damageInterval) {
                         bullet.damageTimer = 0;
-                        RoleDomain.HpReduce_MinionFall(ctx, minion, bullet.continueDamege);
+                        Debug.Log("产生爆炸伤害");
+                        RoleDomain.HpReduce_Minion(ctx, minion, bullet.continueDamege);
                     }
                 }
+
             }
         }
         #endregion

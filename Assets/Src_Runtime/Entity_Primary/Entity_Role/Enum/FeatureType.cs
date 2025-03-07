@@ -4,6 +4,6 @@ namespace UF {
         None,
         DisAppear,
         Accelerate,
+        HurtOneself,
     }
-
 }

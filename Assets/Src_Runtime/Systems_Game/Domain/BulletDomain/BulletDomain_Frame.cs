@@ -111,8 +111,15 @@ namespace UF {
                 Bullet_RoleMoveBack(ctx, bullet);
             }
         }
-        public static void WorldBehaviour_Acting(GameSystemContext ctx, BulletEntity bullet, WorldBehaviourModel model,float dt) {
+        static void WorldBehaviour_Acting(GameSystemContext ctx, BulletEntity bullet, WorldBehaviourModel model, float dt) {
+            if (model.isSpawnStuff) {
+                Debug.Log("生成物品");
+            }
 
+            if (model.isSpawnBullet) {
+                Debug.Log("生成子弹");
+                BulletDomain.SpawnByPos(ctx, model.bulletSo.tm.typeID, bullet.TF_GetPos(), new Vector3(0, 0, 0));
+            }
         }
 
         #endregion
@@ -122,7 +129,6 @@ namespace UF {
             // bullet.Loco_Shaped();
             Debug.LogWarning("正常移动");
             bullet.Set_MoveType(bullet.moveType);
-            Debug.Log("bullet.MoveType" + bullet.moveType);
         }
         static void Bullet_BoomStart(GameSystemContext ctx, BulletEntity bullet) {
             // 写完

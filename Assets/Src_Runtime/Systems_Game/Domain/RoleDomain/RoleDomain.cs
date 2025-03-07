@@ -24,12 +24,6 @@ namespace UF {
             ctx.roleRepository.Add(role);
             return role;
         }
-        public static RoleEntity SpawnBySkillorType(GameSystemContext ctx, Vector2 pos, int typeID, int[] skillorTypeIDArray) {
-            RoleEntity role = GameFactory.Role_CreateByTypeSkillType(ctx.assetsModule, ctx.templateCore, ctx.idService, typeID, skillorTypeIDArray);
-            role.TF_SetPos(pos);
-            ctx.roleRepository.Add(role);
-            return role;
-        }
         public static void UnSpawn(GameSystemContext ctx, RoleEntity role) {
             ctx.roleRepository.Remove(role);
             role.TearDown();
@@ -101,23 +95,29 @@ namespace UF {
                 float dis = Vector2.Distance(touchMinion.TF_GetPos(), pos);
                 // TODO:可能要改成用 collider   
                 float radius = 2f;
-
                 if (dis < radius) {
-                    HpReduce_MinionFall(ctx, touchMinion, damage);
+                    HpReduce_Minion(ctx, touchMinion, damage);
                 }
             }
         }
 
-        public static void HpReduce_MinionFall(GameSystemContext ctx, RoleEntity role, int damage) {
+        public static void HpReduce_Minion(GameSystemContext ctx, RoleEntity role, int damage) {
 
             var attCom = role.AttributeComponent;
+            var feaCom = role.FeatureComponent;
             int finalHp = attCom.hp - damage;
             role.Attr_Hp_Set(finalHp);
 
             if (attCom.hp <= 0) {
-                role.SetRoleState(RoleState.Fall);
-                role.Fall();
-                role.Set_RbConstraints();
+                if (feaCom.featureType == FeatureType.HurtOneself) {
+                    Debug.Log("HurtOneself");
+                    BulletEntity bullet = BulletDomain.SpawnByPos(ctx, 5000, role.TF_GetPos(), new Vector3(0, 0, 0));
+                    role.SetRoleState(RoleState.Dead); //TODO:这样写其实不好
+                } else {
+                    role.SetRoleState(RoleState.Fall);
+                    role.Fall();
+                    role.Set_RbConstraints();
+                }
             }
         }
 
@@ -152,7 +152,6 @@ namespace UF {
                 if (hit.collider.gameObject.CompareTag("Ground")) {
                     Debug.Log("死亡动画");
                     role.SetRoleState(RoleState.Dead);
-
                 }
             }
         }
@@ -167,6 +166,8 @@ namespace UF {
             if (role.state != RoleState.Dead) {
                 return;
             }
+
+
             UnSpawn(ctx, role);
             if (role.roleType == RoleType.Player) {
                 // TODO:L写这里其实不太好

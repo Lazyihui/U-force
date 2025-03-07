@@ -16,13 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 2d2b89a9dc968d14286ba76ffed229d2
-  m_SerializeEntries:
-  - m_GUID: dcb32cad783930145a5ca1d9cbe740fc
-    m_Address: "So_Skillor_3600_\u653B\u51FB\u70B9"
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - So_Skill
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 4b47acea7a70a444998ddd6e6fd8b9bf, type: 2}
   m_SchemaSet:

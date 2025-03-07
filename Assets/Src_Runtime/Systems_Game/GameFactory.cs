@@ -78,7 +78,6 @@ namespace UF {
             GameObject prefab = assetsCore.Entity_GetRole();
             GameObject go = GameObject.Instantiate(prefab);
             RoleEntity role = go.GetComponent<RoleEntity>();
-            Debug.Assert(role != null, "role != null");
 
             var mod = RoleMod_Create(tm, role.bodyRoot);
 
@@ -234,6 +233,8 @@ namespace UF {
             bullet.hitTimes = tm.hitTimes;
             bullet.isBomb = tm.isBomb;
             bullet.moveSpeed = tm.moveSpeed * 5;
+
+            bullet.isHaveContinueDamege = tm.isHaveContinueDamege;
             bullet.continueDamege = tm.continueDamege;
             bullet.damageInterval = tm.damageInterval;
             bullet.damageTimer = tm.damageTimer;

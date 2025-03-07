@@ -23,6 +23,7 @@ namespace UF {
 
         public int hitTimes;//击中次数 可以集中几下
 
+        public bool isHaveContinueDamege;//是否有持续伤害
         public int continueDamege;//持续伤害
         public float damageInterval;//伤害间隔
         public float damageTimer;//伤害计时器

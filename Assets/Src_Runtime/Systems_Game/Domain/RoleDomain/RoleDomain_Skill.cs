@@ -142,8 +142,14 @@ namespace UF {
                 for (int i = 0; i < 4; i++) {
                     // 得到随机的坐标
                     Vector3 pos = new Vector3(UnityEngine.Random.Range(-7, 6), UnityEngine.Random.Range(12, -4), 0);
-                    StuffEntity stuff = StuffDomain.SpawnByPos(ctx, model.stuffSo.tm.typeID,pos);
+                    StuffEntity stuff = StuffDomain.SpawnByPos(ctx, model.stuffSo.tm.typeID, pos);
                 }
+            }
+
+            if (model.isSpawnBullet) {
+                Debug.LogWarning("RoleDomain.SpawnBullet生成子弹");
+                // SpawnBullet
+                BulletDomain.SpawnByPos(ctx, model.bulletSo.tm.typeID, role.TF_GetPos(), new Vector3(0, 0, 0));
             }
         }
         #endregion

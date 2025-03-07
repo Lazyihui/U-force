@@ -29,3 +29,4 @@ MonoBehaviour:
     roleEnemySoArray:
     - {fileID: 11400000, guid: 9d04dd169b2febc41a88d55ba222c7bb, type: 2}
     - {fileID: 11400000, guid: 9391e59375eca984b9ba5a4e34b2580b, type: 2}
+    - {fileID: 11400000, guid: 8b7ec7b576c72e3439b8c50336f1b450, type: 2}
