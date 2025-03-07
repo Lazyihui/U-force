@@ -202,67 +202,82 @@ namespace UF.System_Train {
             }
 
             // 检测子弹位置, 判断防御(防御cd不够就跳跃)
-            BulletMoveType type = BulletMoveType.None;
-            if (enemy.t_roleType == T_RoleType.Player1) {
-                type = BulletMoveType.Shaped;
-            } else if (enemy.t_roleType == T_RoleType.Player2) {
-                type = BulletMoveType.ToLeft;
-            }
+            {
+                BulletMoveType type = BulletMoveType.None;
+                if (enemy.t_roleType == T_RoleType.Player1) {
+                    type = BulletMoveType.Shaped;
+                } else if (enemy.t_roleType == T_RoleType.Player2) {
+                    type = BulletMoveType.ToLeft;
+                }
 
-            int bulletLen = ctx.bulletRepository.TakeAll(out var bullets);
-            for (int i = 0; i < bulletLen; i++) {
-                if (bullets[i].moveType == type) {
-                    var bullet = bullets[i];
-                    var bulletPos = bullet.TF_GetPos();
-                    var bulletSpeed = bullet.moveSpeed;
+                int bulletLen = ctx.bulletRepository.TakeAll(out var bullets);
+                for (int i = 0; i < bulletLen; i++) {
+                    if (bullets[i].moveType == type) {
+                        var bullet = bullets[i];
+                        var bulletPos = bullet.TF_GetPos();
+                        var bulletSpeed = bullet.moveSpeed;
 
-                    if (bulletPos.x > pos.x) { return 0; }
+                        if (bulletPos.x > pos.x) { return 0; }
 
-                    float time = (pos.x - bulletPos.x) / bulletSpeed; // 子弹到达玩家x轴时间
-                    float upTime = moveSpeed / g; // 玩家上升总时间
-                    float T = 2 * upTime; // 玩家运动周期
-                    float maxY = minY + (float)(Math.Pow(moveSpeed, 2) / (2 * g)); // 玩家最高点
+                        float time = (pos.x - bulletPos.x) / bulletSpeed; // 子弹到达玩家x轴时间
+                        float upTime = moveSpeed / g; // 玩家上升总时间
+                        float T = 2 * upTime; // 玩家运动周期
+                        float maxY = minY + (float)(Math.Pow(moveSpeed, 2) / (2 * g)); // 玩家最高点
 
-                    float moveTime = 0; // 玩家当前周期已运动时间
-                    double a = 0;
+                        float moveTime = 0; // 玩家当前周期已运动时间
+                        double a = 0;
 
-                    a = (moveSpeed - Math.Sqrt(Math.Pow(moveSpeed, 2) - 2 * g * (maxY - pos.y))) / g; // 玩家上升时间
-                    if (velo.y < 0) {
-                        a += Math.Sqrt(2 * (maxY - pos.y) / g); // 玩家下降时间
-                    }
-                    moveTime = (float)a;
-                    time += moveTime;
+                        a = (moveSpeed - Math.Sqrt(Math.Pow(moveSpeed, 2) - 2 * g * (maxY - pos.y))) / g; // 玩家上升时间
+                        if (velo.y < 0) {
+                            a += Math.Sqrt(2 * (maxY - pos.y) / g); // 玩家下降时间
+                        }
+                        moveTime = (float)a;
+                        time += moveTime;
 
-                    time = time % T;
-                    float playerY = minY;
+                        time = time % T;
+                        float playerY = minY;
 
-                    // TODO: 还有种可能是跳跃, 因为改变了velo, 所以这么算不准, 还没想好怎么写
-                    if (time < upTime) {
-                        playerY += (moveSpeed * time) - (float)(g / 2 * Math.Pow(time, 2));
-                    } else {
-                        playerY += maxY - (float)(g / 2 * Math.Pow((time - upTime), 2));
-                    }
+                        // TODO: 还有种可能是跳跃, 因为改变了velo, 所以这么算不准, 还没想好怎么写
+                        if (time < upTime) {
+                            playerY += (moveSpeed * time) - (float)(g / 2 * Math.Pow(time, 2));
+                        } else {
+                            playerY += maxY - (float)(g / 2 * Math.Pow((time - upTime), 2));
+                        }
 
-                    float dis = Mathf.Abs(playerY - bulletPos.y);
-                    if (dis < randomDev) {
-                        if (defenseCD > 0) { return 3; } else { return 1; }
+                        float dis = Mathf.Abs(playerY - bulletPos.y);
+                        if (dis < randomDev) {
+                            if (defenseCD > 0) { return 3; } else { return 1; }
+                        }
                     }
                 }
             }
 
             // TODO: 检测敌人位置, 判断攻击
-            var posY = pos.y;
-            var enemyPos = enemy.GetPos();
+            {
+                var posY = pos.y;
+                var enemyPos = enemy.GetPos();
+
+                var attr = enemy.AttributeComponent;
+                var enemySpeed = attr.GetMoveSpeed();
+
+                var bulletPos = pos;
+
+                if (bulletPos.x < enemyPos.x) { return 0; }
+
+                float time = (bulletPos.x - enemyPos.x) / enemySpeed; // 子弹到达敌人x轴时间
+            }
 
             // 检测道具位置, 判断攻击和跳跃
-            int propLen = ctx.propRepository.TakeAll(out var props);
-            for (int i = 0; i < propLen; i++) {
-                var prop = props[i];
-                var propPos = prop.TF_GetPos();
+            {
+                int propLen = ctx.propRepository.TakeAll(out var props);
+                for (int i = 0; i < propLen; i++) {
+                    var prop = props[i];
+                    var propPos = prop.TF_GetPos();
 
-                var dis = Mathf.Abs(pos.y - propPos.y);
-                if (dis < randomDev && attackCD <= 0) { return 2; }
-                if (propPos.y > posY && attackCD <= 0 && velo.y > 0) { return 3; }
+                    var dis = Mathf.Abs(pos.y - propPos.y);
+                    if (dis < randomDev && attackCD <= 0) { return 2; }
+                    if (propPos.y > pos.y && attackCD <= 0 && velo.y > 0) { return 3; }
+                }
             }
 
             return 0;
