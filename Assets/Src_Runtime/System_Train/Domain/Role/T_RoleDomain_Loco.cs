@@ -166,6 +166,11 @@ namespace UF.System_Train {
                 default:
                     break;
             }
+
+            if (check != 0)
+            {
+                Debug.Log(check);
+            }
         }
 
         static int AI_Check(TrainSystemContext ctx, RoleEntity role) { // 1防御, 2攻击, 3跳跃
@@ -227,6 +232,19 @@ namespace UF.System_Train {
                 }
             }
 
+            // 检测道具位置, 判断攻击和跳跃
+            {
+                int propLen = ctx.propRepository.TakeAll(out var props);
+                for (int i = 0; i < propLen; i++) {
+                    var prop = props[i];
+                    var propPos = prop.TF_GetPos();
+
+                    var dis = Mathf.Abs(pos.y - propPos.y);
+                    if (propPos.y > pos.y && attackCD <= 0 && velo.y > 0) { return 3; }
+                    if (dis < randomDev && attackCD <= 0) { return 2; }
+                }
+            }
+
             // TODO: 检测敌人位置, 判断攻击
             {
                 var enemyPos = enemy.GetPos();
@@ -246,20 +264,6 @@ namespace UF.System_Train {
                     return 2;
                 }
             }
-
-            // 检测道具位置, 判断攻击和跳跃
-            {
-                int propLen = ctx.propRepository.TakeAll(out var props);
-                for (int i = 0; i < propLen; i++) {
-                    var prop = props[i];
-                    var propPos = prop.TF_GetPos();
-
-                    var dis = Mathf.Abs(pos.y - propPos.y);
-                    if (dis < randomDev && attackCD <= 0) { return 2; }
-                    if (propPos.y > pos.y && attackCD <= 0 && velo.y > 0) { return 3; }
-                }
-            }
-
             return 0;
         }
 
