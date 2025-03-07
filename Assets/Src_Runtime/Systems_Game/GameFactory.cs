@@ -310,6 +310,7 @@ namespace UF {
             }
 
             stuff.isAttackPoint = tm.isAttackPoint;
+            stuff.disAppearTimer = tm.DisAppearTimer;
 
             return stuff;
         }
@@ -340,6 +341,8 @@ namespace UF {
             }
 
             stuff.isAttackPoint = tm.isAttackPoint;
+            stuff.disAppearTimer = tm.DisAppearTimer;
+
             stuff.TF_SetPos(pos);
 
             return stuff;
@@ -373,6 +376,7 @@ namespace UF {
             }
 
             stuff.isAttackPoint = tm.isAttackPoint;
+            stuff.disAppearTimer = tm.DisAppearTimer;
 
             stuff.TF_SetPos(spawnerTM.position);
             stuff.TF_SetRot(spawnerTM.rotation);

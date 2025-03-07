@@ -25,6 +25,7 @@ namespace UF {
         public bool isStretched; // 是否被抓取
 
         public bool isAttackPoint;//是否是攻击点
+        public float disAppearTimer;
 
         public void Ctor() {
 

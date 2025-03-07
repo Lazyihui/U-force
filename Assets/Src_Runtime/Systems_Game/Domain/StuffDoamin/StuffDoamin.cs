@@ -45,19 +45,26 @@ namespace UF {
 
         #region FSM
 
-        public static void FSM_Normal_Execute(GameSystemContext ctx, StuffEntity entity) {
-            if (entity.isTimeStuff) { return; }
+        public static void FSM_Normal_Execute(GameSystemContext ctx, StuffEntity entity, float dt) {
+            if (entity.isTimeStuff) {
+                return;
+            }
 
             bool isLeave = ComparePos(entity);
             if (isLeave) {
                 Loco_Fall(entity);
             }
+
+            CheckAttackPoint(ctx, entity, dt);
         }
 
         public static bool ComparePos(StuffEntity stuff) { // true表示离开引力场
+            if (!stuff.isEnergy) {
+                return false;
+            }   
+
             var pos = stuff.TF_GetPos();
             Vector2 pointPos = new Vector2(9, 0);
-
             float dis = Vector2.Distance(pos, pointPos);
 
             if (dis < 10) { // 半径10
@@ -82,6 +89,20 @@ namespace UF {
             }
 
         }
+        #endregion
+
+        #region isAttackPoint
+
+        public static void CheckAttackPoint(GameSystemContext ctx, StuffEntity stuff, float dt) {
+            if (!stuff.isAttackPoint) {
+                return;
+            }
+            stuff.disAppearTimer -= dt;
+            if (stuff.disAppearTimer <= 0) {
+                UnSpawn(ctx, stuff);
+            }
+        }
+
         #endregion
     }
 }

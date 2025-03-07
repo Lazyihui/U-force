@@ -85,7 +85,6 @@ namespace UF {
 
             }
 
-
             // 绳子Tick
             RopeDomain.FSM_All_Tick(ctx, owner.GetPos(), dt);
 
@@ -94,7 +93,7 @@ namespace UF {
             for (int i = 0; i < stuffLen; i += 1) {
                 StuffEntity stuff = stuffs[i];
 
-                StuffDomain.FSM_Normal_Execute(ctx, stuff);
+                StuffDomain.FSM_Normal_Execute(ctx, stuff, dt);
                 StuffDomain.CheckUnSpawn(ctx, stuff);
             }
 
