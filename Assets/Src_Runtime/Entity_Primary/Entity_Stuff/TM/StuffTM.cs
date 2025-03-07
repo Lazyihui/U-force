@@ -18,7 +18,8 @@ namespace UF {
         [ShowIf(nameof(isTimeStuff))] public int addTime;
 
         public bool isAttackPoint; // 是否是攻击点
-
+        [ShowIf(nameof(isAttackPoint))] public float DisAppearTimer;
+        
         [Title("mod")]
         public StuffMod modPrefab;
         public Sprite sprite;

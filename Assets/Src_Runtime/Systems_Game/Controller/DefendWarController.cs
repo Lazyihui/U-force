@@ -130,6 +130,14 @@ namespace UF {
                 CaveEntity tower = towers[i];
                 CaveDomain.FSM_All_Execute(ctx, tower, dt);
             }
+
+            // Stuff
+            int stuffLen = ctx.stuffRepository.TakeAll(out StuffEntity[] stuffs);
+            for (int i = 0; i < stuffLen; i += 1) {
+                StuffEntity stuff = stuffs[i];
+                StuffDomain.CheckUnSpawn(ctx, stuff);
+                StuffDomain.FSM_Normal_Execute(ctx, stuff, dt);
+            }
         }
 
         public static void LastTick(float dt) {

@@ -20,6 +20,7 @@ MonoBehaviour:
     isTimeStuff: 0
     addTime: 0
     isAttackPoint: 1
+    DisAppearTimer: 10
     modPrefab: {fileID: 1121275383739533645, guid: 7946ef20b2bc7e44d853dd43c3e99891, type: 3}
     sprite: {fileID: 21300000, guid: 8f74e053a21eeca4684f693209dab1f0, type: 3}
     description: "\u653B\u51FB\u70B9"
