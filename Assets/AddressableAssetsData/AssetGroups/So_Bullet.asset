@@ -108,7 +108,7 @@ MonoBehaviour:
     - So_Bullet
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bccf0edbb1a31314d9776bfb2aae3df5
-    m_Address: "So_Bullet_3300\u5730\u9762\u55B7\u5C04"
+    m_Address: "So_Bullet_3600\u751F\u6210\u56FA\u5B9A\u70B9"
     m_ReadOnly: 0
     m_SerializedLabels:
     - So_Bullet
@@ -139,6 +139,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 687a9744a028fb948ac11bc4f2b14ce3
     m_Address: "So_Bullet_500\u8DDF\u8E2A\u56DE\u529B\u6807"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Bullet
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 22d7664782209a0418e795f154fdac63
+    m_Address: "So_Bullet_3300\u5730\u9762\u55B7\u5C04 1"
     m_ReadOnly: 0
     m_SerializedLabels:
     - So_Bullet

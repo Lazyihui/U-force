@@ -9,6 +9,10 @@ namespace UF {
         public bool hasBulletBehaviour;
         public BulletBehaviourModel bulletBehaviourModel;
 
+        public bool hasWorldBehaviour;
+        public WorldBehaviourModel worldBehaviourModel;
+
+
         public BulletFrameModel() {
             this.loopModel = new LoopModel();
         }
@@ -24,6 +28,11 @@ namespace UF {
             hasBulletBehaviour = tm.hasBulletBehaviour;
             if (hasBulletBehaviour) {
                 bulletBehaviourModel.FormTM(tm.bulletBehaviourTM);
+            }
+
+            hasWorldBehaviour = tm.hasWorldBehaviour;
+            if (hasWorldBehaviour) {
+                worldBehaviourModel.FormTM(tm.worldBehaviourTM);
             }
 
         }

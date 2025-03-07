@@ -17,5 +17,9 @@ namespace UF {
         public bool hasBulletBehaviour;
         [ShowIf(nameof(hasBulletBehaviour))] public BulletBehaviourTM bulletBehaviourTM;
 
+        [Title("世界行为")]
+        public bool hasWorldBehaviour;
+        [ShowIf(nameof(hasWorldBehaviour))] public WorldBehaviourTM worldBehaviourTM;
+
     }
 }   

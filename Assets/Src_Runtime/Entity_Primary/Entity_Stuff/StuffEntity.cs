@@ -17,13 +17,14 @@ namespace UF {
 
         // 属性内容
         public int weight;
-
         public bool isEnergy;
 
         public bool isTimeStuff;
-        [ShowIf(nameof(isTimeStuff))] public int addTime;
+        public int addTime;
 
         public bool isStretched; // 是否被抓取
+
+        public bool isAttackPoint;//是否是攻击点
 
         public void Ctor() {
 

@@ -88,10 +88,13 @@ namespace UF {
 
             // -Role Behavior
             if (frame.hasRoleBehaviour) {
-                Behavior_Act(ctx, role, frame.roleBehaviour, dt);
+                RoleBehavior_Act(ctx, role, frame.roleBehaviour, dt);
             }
+
+            // -world Behavior
+            
         }
-        public static void Behavior_Act(GameSystemContext ctx, RoleEntity role, RoleBehaviorModel model, float dt) {
+        public static void RoleBehavior_Act(GameSystemContext ctx, RoleEntity role, RoleBehaviorModel model, float dt) {
 
             if (model.isMoveTo) {
                 // MoveTo
@@ -128,7 +131,7 @@ namespace UF {
 
         }
         #endregion
-        #region  查找坐标x轴最近的敌人坐标
+        #region  查找坐标Y轴最近的敌人坐标
         public static Vector3 GetNearestEnemyPosition(GameSystemContext ctx, RoleEntity player) {
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
             RoleEntity nearestEnemy = null;

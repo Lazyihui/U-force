@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dad6dc5d9069b0469746cbf1136968c, type: 3}
+  m_Name: "So_Skillor_3600_\u653B\u51FB\u70B9"
+  m_EditorClassIdentifier: 
+  tm:
+    typeID: 3600
+    typeName: "3600\u653B\u51FB\u70B9"
+    castKeys: 0
+    cd: 1
+    restUseTimes: 1
+    maxUseTimes: 1
+    actionTMs:
+    - loopTM:
+        loopFlag: 0
+        maintainFrame: 1e+13
+        triggerIntervalSec: 24
+        triggerTimesMax: 24
+      hasMove: 0
+      moveTM:
+        moveOffset: {x: 0, y: 0}
+        moveSpeed: 0
+      hasRoleBehaviour: 1
+      roleBehaviourTM:
+        belongWho:
+          value: 0
+          entityType: 0
+          entityID: 0
+        belongMap:
+          value: 0
+          entityType: 0
+          entityID: 0
+        isMoveTo: 0
+        isJump: 0
+        isRestoreSkillTimes: 0
+        isSpawnBullet: 1
+        bulletSpawnerTM:
+          bulletSo: {fileID: 11400000, guid: bccf0edbb1a31314d9776bfb2aae3df5, type: 2}
+          spawnPos: {fileID: 4549695350095514862, guid: c9eea0833c744504aa107299ad0f64b6, type: 3}
+          spawnDir: {fileID: 4549695350095514862, guid: c9eea0833c744504aa107299ad0f64b6, type: 3}
+        hasBulletTearDown: 0
+        tearDownBullets: []
+        isRestoreHp: 0
+        restoreHp: 0
+        isRestoreMp: 0
+        restoreMp: 0
+        isAttachBuff: 0

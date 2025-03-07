@@ -298,6 +298,7 @@ namespace UF {
             var mod = StuffMod_Create(tm, stuff.bodyRoot);
 
             stuff.idSig = new IDSignature(EntityType.Stuff, iDService.PickStuffID());
+            stuff.Ctor();
             stuff.typeID = typeID;
             stuff.typeName = tm.typeName;
 
@@ -308,7 +309,8 @@ namespace UF {
                 stuff.addTime = tm.addTime;
             }
 
-            stuff.Ctor();
+            stuff.isAttackPoint = tm.isAttackPoint;
+
 
             return stuff;
         }
