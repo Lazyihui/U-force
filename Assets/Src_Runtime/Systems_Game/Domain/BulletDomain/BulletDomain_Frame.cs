@@ -110,15 +110,9 @@ namespace UF {
                 Debug.LogWarning("角色击退");
                 Bullet_RoleMoveBack(ctx, bullet);
             }
-
         }
-
         public static void WorldBehaviour_Acting(GameSystemContext ctx, BulletEntity bullet, WorldBehaviourModel model,float dt) {
 
-            if(model.isSpawnStuff){
-                // 随机生成4个点
-                Debug.Log("生成4个点");
-            }
         }
 
         #endregion

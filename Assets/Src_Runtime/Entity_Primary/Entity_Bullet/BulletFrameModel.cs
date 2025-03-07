@@ -24,15 +24,13 @@ namespace UF {
         public void FromTM(in BulletFrameTM tm) {
 
             loopModel.FromTM(tm.loopTM);
-
             hasBulletBehaviour = tm.hasBulletBehaviour;
             if (hasBulletBehaviour) {
                 bulletBehaviourModel.FormTM(tm.bulletBehaviourTM);
             }
-
             hasWorldBehaviour = tm.hasWorldBehaviour;
             if (hasWorldBehaviour) {
-                worldBehaviourModel.FormTM(tm.worldBehaviourTM);
+                worldBehaviourModel.FromTM(tm.worldBehaviourTM);
             }
 
         }

@@ -4,12 +4,11 @@ using UnityEngine;
 
 namespace UF {
 
-    public class WorldBehaviourModel {
-
+    public struct WorldBehaviourModel {
         public bool isSpawnStuff;
         public StuffSo stuffSo;
 
-        public void FormTM(WorldBehaviourTM tm) {
+        public void FromTM(WorldBehaviourTM tm) {
             isSpawnStuff = tm.isSpawnStuff;
             stuffSo = tm.stuffSo;
         }

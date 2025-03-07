@@ -11,7 +11,6 @@ namespace UF {
             ctx.bulletRepository.Add(entity);
             return entity;
         }
-
         public static BulletEntity SpawnByRole_Spawner(GameSystemContext ctx, RoleEntity role, BulletSpawnerTM spawnerTM) {
             // TODO:生成位置
             var BulletEntity = BulletDomain.Spawn(ctx, spawnerTM.bulletSo.tm.typeID, spawnerTM.spawnPos.position, spawnerTM.spawnDir.position);

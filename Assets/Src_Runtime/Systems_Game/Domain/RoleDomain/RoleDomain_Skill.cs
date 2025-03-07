@@ -92,7 +92,10 @@ namespace UF {
             }
 
             // -world Behavior
-            
+            if (frame.hasWorldBehaviour) {
+                WorldBehavior_Act(ctx, role, frame.worldBehaviourModel, dt);
+            }
+
         }
         public static void RoleBehavior_Act(GameSystemContext ctx, RoleEntity role, RoleBehaviorModel model, float dt) {
 
@@ -129,6 +132,13 @@ namespace UF {
                 Debug.LogWarning("RoleDomain.TearDown");
             }
 
+        }
+
+        public static void WorldBehavior_Act(GameSystemContext ctx, RoleEntity role, WorldBehaviourModel model, float dt) {
+
+            if (model.isSpawnStuff) {
+                Debug.LogWarning("RoleDomain.SpawnStuff生成4物品");
+            }
         }
         #endregion
         #region  查找坐标Y轴最近的敌人坐标

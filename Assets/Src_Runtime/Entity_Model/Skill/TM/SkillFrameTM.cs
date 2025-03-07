@@ -20,6 +20,10 @@ namespace UF {
         public bool hasRoleBehaviour;
         [ShowIf(nameof(hasRoleBehaviour))] public RoleBehaviourTM roleBehaviourTM;
 
+        [Title("World Behaviour")]
+        public bool hasWorldBehaviour;
+        [ShowIf(nameof(hasWorldBehaviour))] public WorldBehaviourTM worldBehaviourTM;
+
         public void Transtion() {
             if (hasRoleBehaviour) {
                 // roleBehaviourTM.Transtion();//没实现还不知道是干什么的
