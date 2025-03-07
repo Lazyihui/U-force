@@ -116,12 +116,6 @@ namespace UF.System_Train {
 
             HUD_Training_Update(dt);
 
-            // 场景道具生成
-            if (train.propSpawnCD <= 0) {
-                PropDomain.SpawnByRandom(ctx);
-                train.propSpawnCD = train.propSpawnMax;
-            }
-
             // 所有角色逻辑
             ctx.roleRepository.TakeAll(out RoleEntity[] roles);
             //不知道为什么, 用length一直是3, 会有bug
@@ -132,7 +126,7 @@ namespace UF.System_Train {
 
                 if (role.roleType == RoleType.AIEasy || role.roleType == RoleType.AIHard) {
                     RoleDomain.AI_Execute(ctx, role, dt);
-                    return;
+                    break;
                 }
 
                 RoleDomain.Loco_Execute(ctx, role, dt);
@@ -154,6 +148,12 @@ namespace UF.System_Train {
                 PropEntity prop = props[i];
                 PropDomain.FSM_All_Execute(ctx, prop);
                 PropDomain.CheckUnSpawn(ctx, prop);
+            }
+
+            // 场景道具生成
+            if (train.propSpawnCD <= 0) {
+                PropDomain.SpawnByRandom(ctx);
+                train.propSpawnCD = train.propSpawnMax;
             }
         }
 
