@@ -294,6 +294,5 @@ namespace UF {
             }
             return minY;
         }
-
     }
 }

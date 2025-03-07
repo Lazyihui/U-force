@@ -32,3 +32,5 @@ MonoBehaviour:
     skill: 
     restraint: 
     isEliminateRole: 0
+    isTrainAI: 1
+    AIDeviation: 5

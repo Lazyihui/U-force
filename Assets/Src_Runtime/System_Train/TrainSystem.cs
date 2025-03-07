@@ -116,16 +116,28 @@ namespace UF.System_Train {
 
             HUD_Training_Update(dt);
 
+            // 场景道具生成
+            if (train.propSpawnCD <= 0) {
+                PropDomain.SpawnByRandom(ctx);
+                train.propSpawnCD = train.propSpawnMax;
+            }
+
             // 所有角色逻辑
             ctx.roleRepository.TakeAll(out RoleEntity[] roles);
             //不知道为什么, 用length一直是3, 会有bug
             for (int i = 0; i < 2; i++) {
                 RoleEntity role = roles[i];
+
+                HUD_Training_CD_Update(role);
+
+                if (role.roleType == RoleType.AIEasy || role.roleType == RoleType.AIHard) {
+                    RoleDomain.AI_Execute(ctx, role, dt);
+                    return;
+                }
+
                 RoleDomain.Loco_Execute(ctx, role, dt);
 
                 RoleDomain.Input_Record(ctx, role, dt);
-
-                HUD_Training_CD_Update(role);
             }
 
             // Button
@@ -142,12 +154,6 @@ namespace UF.System_Train {
                 PropEntity prop = props[i];
                 PropDomain.FSM_All_Execute(ctx, prop);
                 PropDomain.CheckUnSpawn(ctx, prop);
-            }
-
-            // 场景道具生成
-            if (train.propSpawnCD <= 0) {
-                PropDomain.SpawnByRandom(ctx);
-                train.propSpawnCD = train.propSpawnMax;
             }
         }
 
