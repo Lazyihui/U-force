@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 namespace UF {
-    public static class StuffDoamin {
+    public static class StuffDomain {
         #region life
         public static StuffEntity Spawn(GameSystemContext ctx, int typeID) {
             StuffEntity entity = GameFactory.Stuff_Create(ctx.assetsModule, ctx.templateCore, ctx.idService, typeID);
@@ -18,11 +18,16 @@ namespace UF {
             return entity;
         }
 
+        public static StuffEntity SpawnByPos(GameSystemContext ctx, int typeID, Vector2 pos) {
+            StuffEntity entity = GameFactory.Stuff_CreateByPos(ctx.assetsModule, ctx.templateCore, ctx.idService, typeID, pos);
+            ctx.stuffRepository.Add(entity);
+            return entity;
+        }
+
         public static void UnSpawn(GameSystemContext ctx, StuffEntity entity) {
             if (entity.isEnergy) {
                 ctx.gameEntity.energyNumber += 1;
             }
-
             ctx.stuffRepository.Remove(entity);
             entity.TearDown();
         }
@@ -42,7 +47,7 @@ namespace UF {
 
         public static void FSM_Normal_Execute(GameSystemContext ctx, StuffEntity entity) {
             if (entity.isTimeStuff) { return; }
-            
+
             bool isLeave = ComparePos(entity);
             if (isLeave) {
                 Loco_Fall(entity);

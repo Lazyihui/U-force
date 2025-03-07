@@ -138,6 +138,12 @@ namespace UF {
 
             if (model.isSpawnStuff) {
                 Debug.LogWarning("RoleDomain.SpawnStuff生成4物品");
+                // SpawnStuff
+                for (int i = 0; i < 4; i++) {
+                    // 得到随机的坐标
+                    Vector3 pos = new Vector3(UnityEngine.Random.Range(-7, 6), UnityEngine.Random.Range(12, -4), 0);
+                    StuffEntity stuff = StuffDomain.SpawnByPos(ctx, model.stuffSo.tm.typeID,pos);
+                }
             }
         }
         #endregion
