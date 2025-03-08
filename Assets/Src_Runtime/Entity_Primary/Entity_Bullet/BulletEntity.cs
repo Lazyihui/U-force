@@ -18,7 +18,6 @@ namespace UF {
         [SerializeField] public Transform bodyRoot; // 子弹生成的根节点        
 
         // -life
-        public int hp;
         public int damage;
 
         public int hitTimes;//击中次数 可以集中几下
@@ -27,12 +26,13 @@ namespace UF {
         public int continueDamege;//持续伤害
         public float damageInterval;//伤害间隔
         public float damageTimer;//伤害计时器
+        public float destoryOneselfTime;//自毁时间
 
-        // 特性
+        //  大招
         public bool isMakeBulletAppear;//是否生使子弹出现
-        public bool isDestotyALine;//是否销毁一行
+        public bool isDestotyBottomALine;//是否销毁一行
 
-        // temp bool
+        // temp bool TODO:这里可能要改掉
         public bool isStartContinueDamege;//是否开始持续伤害
         public bool isStartBoomDamege;//是否开始爆炸伤害
 
@@ -41,12 +41,6 @@ namespace UF {
         // -Frames
         public List<BulletFrameModel> frames;
         public int frameIndex;
-
-        // -Interaction
-        public bool isBomb;
-
-        // TODO:
-        public int SkillTypeID; // 后面写技能系统的时候再加 
 
         // -rigidbody
         [SerializeField] Rigidbody2D rb;

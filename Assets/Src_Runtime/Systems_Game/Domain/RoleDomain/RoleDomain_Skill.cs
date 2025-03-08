@@ -118,7 +118,8 @@ namespace UF {
                 // SpawnBullet
                 var spawnTM = model.bulletSpawnerTM;
                 spawnTM.spawnPos.position = role.GetMuzzlePos();
-                if (spawnTM.bulletSo.tm.isDestoryALine) {
+                if (spawnTM.bulletSo.tm.isDestotyBottomALine) {
+                    // TODO:
                     Debug.LogWarning("RoleDomain.MakeBulletAppear");
                     spawnTM.spawnPos.position = GetNearestEnemyPosition(ctx, role);
                 }

@@ -228,10 +228,8 @@ namespace UF {
             bullet.idSig = new IDSignature(EntityType.Bullet, idService.PickBulletID());
             bullet.typeID = typeID;
             bullet.moveType = tm.type;
-            bullet.hp = tm.hp;
             bullet.damage = tm.attackDamage;
             bullet.hitTimes = tm.hitTimes;
-            bullet.isBomb = tm.isBomb;
             bullet.moveSpeed = tm.moveSpeed * 5;
 
             bullet.isHaveContinueDamege = tm.isHaveContinueDamege;
@@ -239,8 +237,10 @@ namespace UF {
             bullet.damageInterval = tm.damageInterval;
             bullet.damageTimer = tm.damageTimer;
             bullet.damageRange = tm.damageRange;
+            bullet.destoryOneselfTime = tm.destoryOneselfTime;
+
             bullet.isMakeBulletAppear = tm.isMakeBulletAppear;
-            bullet.isDestotyALine = tm.isDestoryALine;
+            bullet.isDestotyBottomALine = tm.isDestotyBottomALine;
 
             bullet.isChangeLine = tm.isChangeLine;
             if (tm.isChangeLine) {

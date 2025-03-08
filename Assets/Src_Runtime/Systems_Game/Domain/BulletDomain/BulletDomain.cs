@@ -50,15 +50,23 @@ namespace UF {
             if (bullet.isStartContinueDamege) {
                 Bullet_ContinuousDamage(ctx, bullet, dt);
             }
-            if (bullet.isStartBoomDamege) {
+            if (bullet.isStartBoomDamege) { 
                 Bullet_ContinuousBoomDamage(ctx, bullet, dt);
             }
 
             if (bullet.isHaveContinueDamege) {
                 Bullet_ContinuousBoomDamage(ctx, bullet, dt);
+                Bullet_DestoryOneself(ctx, bullet, dt);
             }
         }
         #endregion
+
+        public static void Bullet_DestoryOneself(GameSystemContext ctx, BulletEntity bullet, float dt) {
+            bullet.destoryOneselfTime -= dt;
+            if (bullet.destoryOneselfTime < 0) {
+                UnSpawn(ctx, bullet);
+            }
+        }
 
         #region detection检测
         public static void CheckUnSpawn(GameSystemContext ctx, BulletEntity bullet, float dt) {
