@@ -9,6 +9,7 @@ namespace UF {
     public class ClientMain : MonoBehaviour {
 
         [SerializeField] Canvas screenCanvas;
+        [SerializeField] Camera mainCamera;
         bool isInit = false;
         bool isTearDown = false;
 
@@ -74,7 +75,7 @@ namespace UF {
 
 
             // Inject
-            gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, bulletRepository, playerSaveData);
+            gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, bulletRepository, playerSaveData,mainCamera);
             loginSystem.Inject(appUI, inputModule);
             pauseSystem.Inject(appUI, roleRepository, bulletRepository, propRepository);
             trainSystem.Inject(appUI, templateModule, assetsModule, inputModule, roleRepository, bulletRepository, propRepository);

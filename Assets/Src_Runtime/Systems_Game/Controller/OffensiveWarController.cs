@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 namespace UF {
-    public static class OffensiveWarController { // 防守战
+    public static class OffensiveWarController { // boos战
         public static void Enter(GameSystemContext ctx, int stageID, int selectedRoleTypeID, int[] skillorTypeIDArray, int selectSciTypeID, StageTM tm) {
 
         }
@@ -60,7 +60,7 @@ namespace UF {
 
             for (int i = 0; i < bulletLen; i += 1) {
                 BulletEntity bullet = bullets[i];
-                BulletDomain.CheckUnSpawn(ctx, bullet,dt);
+                BulletDomain.CheckUnSpawn(ctx, bullet, dt);
                 BulletDomain.FSM_All_Execute(ctx, bullet, dt);
             }
 
@@ -75,8 +75,15 @@ namespace UF {
 
         }
 
-        public static void LastTick(float dt) {
+        public static void LastTick(GameSystemContext ctx, float dt) {
 
+            RoleEntity owner = ctx.Get_Owner();
+            if (owner == null) {
+                return;
+            }
+            // 相机跟随
+            var moduleCamera = ctx.moduleCamera;
+            moduleCamera.Follow(owner.transform);
         }
     }
 }

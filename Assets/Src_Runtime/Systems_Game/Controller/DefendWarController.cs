@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 namespace UF {
-    public static class DefendWarController { // 进攻战
+    public static class DefendWarController { // 防守战
         public static void Enter(GameSystemContext ctx, int stageID, int selectedRoleTypeID, int[] skillorTypeIDArray, int sciType, StageTM tm) {
             var game = ctx.gameEntity;
             var playerData = game.playerSaveData;
@@ -140,7 +140,7 @@ namespace UF {
             }
         }
 
-        public static void LastTick(float dt) {
+        public static void LastTick(GameSystemContext ctx,float dt) {
 
         }
     }

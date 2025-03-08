@@ -16,8 +16,8 @@ namespace UF {
             events = new GameSystemEvents();
         }
 
-        public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository, BulletRepository bulletRepository, PlayerEntity playerSaveData) {
-            ctx.Inject(ScreenCanvas, assetsCore, templateCore, appUI, inputModule, roleRepository, bulletRepository, playerSaveData);
+        public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository, BulletRepository bulletRepository, PlayerEntity playerSaveData, Camera camera) {
+            ctx.Inject(ScreenCanvas, assetsCore, templateCore, appUI, inputModule, roleRepository, bulletRepository, playerSaveData, camera);
         }
 
         public void Exit() {
@@ -149,7 +149,15 @@ namespace UF {
         }
 
         void LastTick(float dt) {
+            var game = ctx.gameEntity;
 
+            if (game.isDefendWar) {
+                DefendWarController.LastTick(ctx, dt);
+            } else if (game.isOffensiveWar) {
+                OffensiveWarController.LastTick(ctx, dt);
+            } else if (game.isEliminateWar) {
+                EliminateWarController.LastTick(ctx, dt);
+            }
         }
 
         #region Role

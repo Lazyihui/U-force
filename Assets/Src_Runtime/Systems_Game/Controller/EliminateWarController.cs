@@ -129,7 +129,7 @@ namespace UF {
             }
         }
 
-        public static void LastTick(float dt) {
+        public static void LastTick(GameSystemContext ctx, float dt) {
 
         }
     }
