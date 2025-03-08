@@ -7,17 +7,23 @@ namespace UF {
 
     public class PlayerEntity {
 
-        // 可以生成怪物的TypeID
-        public List<int> EnemyTypeIDs;
+
+        #region  要存储的数据
 
         // 关卡信息
         HashSet<int> stage_Passed;//通关的关卡
         Dictionary<int, int> stage_PassedStar;//通关关卡的星级
-
         HashSet<int> stage_UnLock;//到达的关卡
-
         public int unLockStageCount;//解锁的关卡 
+        public int unLockChapterID;//解锁的章节
+        public int starAllCount;//总星数
+
+        public int GetUnLockChapterID() => unLockChapterID;
         public int GetUnLockStageCount() => unLockStageCount;
+        public int GetstarAllCount() => starAllCount;
+        
+        #endregion
+
 
         public int stageCurID;//当前关卡
         public int GetStageCurID() => stageCurID;
@@ -26,15 +32,13 @@ namespace UF {
         public MapEntity mapEntity;
         public int chapterCurID;//当前章节
         public int GetChapterCurID() => chapterCurID;
-        public int unLockChapterID;//解锁的章节
-        public int GetUnLockChapterID() => unLockChapterID;
 
         public int slotMax;//卡槽最大数量 也是按钮数量
         public int GetSlotMax() => slotMax;
         public void Set_slotMax(int slotMax) => this.slotMax = slotMax;
 
-        public int starAllCount;//总星数
-        public int GetstarAllCount() => starAllCount;
+        // 可以生成怪物的TypeID
+        public List<int> EnemyTypeIDs;
 
         // 结算信息
         public int ownerGetHurt;
