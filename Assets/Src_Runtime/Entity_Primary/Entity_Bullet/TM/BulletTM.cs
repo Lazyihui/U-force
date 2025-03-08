@@ -21,8 +21,7 @@ namespace UF {
         [ShowIf(nameof(isHaveContinueDamege))] public float damageInterval;
         [ShowIf(nameof(isHaveContinueDamege))] public float damageTimer;
 
-        public bool isHaveDamageRange;
-        [ShowIf(nameof(isHaveDamageRange))] public float damageRange;
+        [ShowIf(nameof(isHaveContinueDamege))] public float damageRange;
 
 
         [Title("Locomotion")]

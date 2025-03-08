@@ -107,7 +107,7 @@ namespace UF {
             var feaCom = role.FeatureComponent;
             int finalHp = attCom.hp - damage;
             role.Attr_Hp_Set(finalHp);
-
+            Debug.Log("minion hp:" + attCom.hp);
             if (attCom.hp <= 0) {
                 if (feaCom.featureType == FeatureType.HurtOneself) {
                     Debug.Log("HurtOneself");

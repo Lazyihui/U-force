@@ -21,10 +21,9 @@ MonoBehaviour:
     isBomb: 0
     isHaveContinueDamege: 1
     continueDamege: 1
-    damageInterval: 1000
-    damageTimer: 1000
-    isHaveDamageRange: 0
-    damageRange: 0
+    damageInterval: 1
+    damageTimer: 0
+    damageRange: 5
     type: 0
     moveSpeed: 0
     modPrefab: {fileID: 431577423833956408, guid: fd88d8c754b667d42b923d4fb9775d61, type: 3}

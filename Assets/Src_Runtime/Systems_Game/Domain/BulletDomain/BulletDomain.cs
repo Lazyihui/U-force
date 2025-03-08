@@ -55,7 +55,6 @@ namespace UF {
             }
 
             if (bullet.isHaveContinueDamege) {
-                Debug.Log("持续伤害");
                 Bullet_ContinuousBoomDamage(ctx, bullet, dt);
             }
         }
@@ -152,16 +151,15 @@ namespace UF {
                 }
                 float dis = Vector3.Distance(minion.TF_GetPos(), bullet.TF_GetPos());
 
-                if (dis < bullet.damageRange) {
-                    var feaCom = minion.FeatureComponent;
-                    if (feaCom.featureType == FeatureType.DisAppear) {
-                        continue;
-                    }
-                    // 持续伤害
-                    bullet.damageTimer += dt;
-                    if (bullet.damageTimer > bullet.damageInterval) {
-                        bullet.damageTimer = 0;
-                        Debug.Log("产生爆炸伤害");
+                // 持续伤害
+                bullet.damageTimer += dt;
+                if (bullet.damageTimer > bullet.damageInterval) {
+                    bullet.damageTimer = 0;
+                    if (dis < bullet.damageRange) {
+                        var feaCom = minion.FeatureComponent;
+                        if (feaCom.featureType == FeatureType.DisAppear) {
+                            continue;
+                        }
                         RoleDomain.HpReduce_Minion(ctx, minion, bullet.continueDamege);
                     }
                 }
