@@ -139,7 +139,27 @@ namespace UF {
         }
         #endregion
 
+        #region Gizmos
+        void OnDrawGizmos() {
+            if (!isHaveContinueDamege) {
+                return;
+            }
+            int segments = 320;   // 圆的线段数量，越多越圆滑
+            Gizmos.color = Color.green;
+            float angle = 0;
+            var center = this.transform.position;
+            Vector3 lastPoint = center + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * damageRange;
 
+            for (int i = 0; i < segments; i += 10) {
+                angle = (i / (float)segments) * 2 * Mathf.PI;
+                Vector3 nextPoint = center + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * damageRange;
+                Gizmos.DrawLine(lastPoint, nextPoint);
+                lastPoint = nextPoint;
+            }
+
+        }
+
+        #endregion 
 
     }
 }
