@@ -15,7 +15,7 @@ namespace UF {
         public HashSet<int> stage_Passed;//通关的关卡
         public Dictionary<int, int> stage_PassedStar;//通关关卡的星级
         public HashSet<int> stage_UnLock;//到达的关卡
-        
+
         public int unLockStageCount;//解锁的关卡 
         public int unLockChapterID;//解锁的章节
         public int starAllCount;//总星数

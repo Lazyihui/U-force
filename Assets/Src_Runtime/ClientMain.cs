@@ -14,6 +14,7 @@ namespace UF {
         bool isTearDown = false;
 
         public GameSaveModel playerSaveData;
+        public SaveCore saveCore;
 
         // system
         public static GameSystem gameSystem;
@@ -72,15 +73,34 @@ namespace UF {
             propRepository = new PropRepository();
 
             playerSaveData = new GameSaveModel();
-
+            saveCore = new SaveCore();
 
             // Inject
-            gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, bulletRepository, playerSaveData,mainCamera);
+            gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, bulletRepository, playerSaveData, mainCamera);
             loginSystem.Inject(appUI, inputModule);
             pauseSystem.Inject(appUI, roleRepository, bulletRepository, propRepository);
             trainSystem.Inject(appUI, templateModule, assetsModule, inputModule, roleRepository, bulletRepository, propRepository);
 
             appUI.Inject(screenCanvas, assetsModule, playerSaveData);
+
+            // save存档
+            bool has0 = saveCore.Slot_Has(0);
+            if (!has0) {
+                playerSaveData.slotID = 0;
+                saveCore.Slot_Save(playerSaveData);
+            }
+            bool has3 = saveCore.Slot_Has(3);
+            if (!has3) {
+                playerSaveData.slotID = 3;
+                saveCore.Slot_Save(playerSaveData);
+            }
+            // 合并存档
+            has0 = saveCore.Slot_TryLoad(0, out var save0);
+            has3 = saveCore.Slot_TryLoad(3, out var save3);
+            save0 = saveCore.CombineRightToLeft(save0, save3);
+            playerSaveData.slotID = 0;
+            GameMainDomain.Game_Load(playerSaveData, save0);
+            saveCore.Slot_Save(playerSaveData);
 
             // ---  Binding  ---
             // Binding_Login();

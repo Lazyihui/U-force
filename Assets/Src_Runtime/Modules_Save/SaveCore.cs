@@ -45,6 +45,7 @@ namespace UF {
 
         #region SlotGame
 
+        // 保存存档
         public void Slot_Save(GameSaveModel model) {
             string file = File_Slot(model.slotID);
 

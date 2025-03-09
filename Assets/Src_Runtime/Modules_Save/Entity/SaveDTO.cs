@@ -26,7 +26,6 @@ namespace UF {
             size += sizeof(int) * stage_PassedStar.Count * sizeof(int);
             size += sizeof(int) * stage_UnLock.Count * sizeof(int);
 
-            Debug.Log("SaveDTO size: " + size);
             return size;
         }
 
