@@ -11,7 +11,7 @@ namespace UF {
         public float restFixTime;
         public GameState state;
         public IDSignature OwnerIDsig;
-        public PlayerEntity playerSaveData;
+        public GameSaveModel playerSaveData;
 
 
         #region 生成小怪的波次数据
@@ -110,7 +110,7 @@ namespace UF {
             playerSaveData.AddStageReached(stageID);
         }
 
-        public void Inject(PlayerEntity playerSaveData) {
+        public void Inject(GameSaveModel playerSaveData) {
             this.playerSaveData = playerSaveData;
         }
 

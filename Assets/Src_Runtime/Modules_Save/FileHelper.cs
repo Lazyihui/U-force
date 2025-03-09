@@ -4,7 +4,11 @@ using UnityEngine;
 
 namespace UF {
 
-    public static class FileHelper {
+    public static class FileHepler {
+
+        public static void Mount(string mountName) {
+            // switch
+        }
 
         // 是否存在文件
         public static bool ExistFile(string path) {

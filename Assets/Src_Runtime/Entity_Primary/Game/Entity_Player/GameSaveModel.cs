@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace UF {
 
-    public class PlayerEntity {
+    public class GameSaveModel {
 
 
         #region  要存储的数据
@@ -86,7 +86,7 @@ namespace UF {
             }
         }
 
-        public PlayerEntity() {
+        public GameSaveModel() {
             stageCurID = 0;
             stageCurType = 0;
             chapterCurID = 1;//当前章节

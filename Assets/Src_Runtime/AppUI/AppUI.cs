@@ -11,7 +11,7 @@ namespace UF {
         public UIEventCenter eventCenter;
         public SelectedInFormation selectedInFormation;
         public SelectedInFormation selectedInTrain;
-        public PlayerEntity playerSaveData;
+        public GameSaveModel playerSaveData;
 
         public void Ctor() {
             ctx = new UIContext();
@@ -24,7 +24,7 @@ namespace UF {
             selectedInFormation.Reset();
         }
 
-        public void Inject(Canvas screenCanvas, AssetsModule assetsCore, PlayerEntity playerSaveData) {
+        public void Inject(Canvas screenCanvas, AssetsModule assetsCore, GameSaveModel playerSaveData) {
             ctx.Inject(screenCanvas, assetsCore);
             this.playerSaveData = playerSaveData;
         }

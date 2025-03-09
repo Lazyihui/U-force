@@ -1,7 +1,9 @@
 using System;
-using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using System.Runtime.InteropServices;
 
 namespace UF {
     public class InputModule : MonoBehaviour {
@@ -173,7 +175,17 @@ namespace UF {
         public void Set_InputCastKey(InputKeyFlag flag) {
             inputCastKey |= flag;
         }
+        // ==== Save ====
+        public string ToJson() {
+            string json = player1.SaveBindingOverridesAsJson();
+            return json;
+        }
 
+        public void FromJson(string json) {
+            if (!string.IsNullOrEmpty(json)) {
+                player1.LoadBindingOverridesFromJson(json, true);
+            }
+        }
 
     }
 }

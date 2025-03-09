@@ -13,7 +13,7 @@ namespace UF {
         bool isInit = false;
         bool isTearDown = false;
 
-        public PlayerEntity playerSaveData;
+        public GameSaveModel playerSaveData;
 
         // system
         public static GameSystem gameSystem;
@@ -71,7 +71,7 @@ namespace UF {
             bulletRepository = new BulletRepository();
             propRepository = new PropRepository();
 
-            playerSaveData = new PlayerEntity();
+            playerSaveData = new GameSaveModel();
 
 
             // Inject
