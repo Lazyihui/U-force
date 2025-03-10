@@ -51,6 +51,16 @@ namespace UF {
             gameTime = 0;
             energyNumber = 0;
         }
+
+        public void Reset() {
+            playerSaveData.Reset();
+
+            // TOOO:没认真看这个要不要reset
+            wavesProgress = 0;
+            gameTime = 0;
+            energyNumber = 0;
+        }
+
         public void Ctor() {
 
         }
@@ -105,7 +115,7 @@ namespace UF {
             energyNumber = 0;
         }
 
-        
+
         public void Add_ReachStage(int stageID) {
             playerSaveData.AddStageReached(stageID);
         }

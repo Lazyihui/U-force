@@ -148,6 +148,18 @@ namespace UF {
             stage_Passed.Add(stageID);
         }
 
+        public void FeachStagePassed() {
+            // 遍历所有的关卡
+            foreach (var stageID in stage_UnLock) {
+                if (stage_Passed.Contains(stageID)) {
+                    Debug.Log("通关的关卡: " + stageID);
+                    continue;
+                }
+                // 如果没有通关就跳出
+                break;
+            }
+        }
+
         public int GetStagePassedCount() {
             return stage_Passed.Count;
         }

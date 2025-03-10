@@ -35,11 +35,7 @@ namespace UF {
         public BulletRepository bulletRepository;
         public PropRepository propRepository;
 
-        // TODO:不能写在这里 没想好好放哪里先放这里
-
-
         void Start() {
-
             // ---  UI
             appUI = GetComponentInChildren<AppUI>();
             appUI.Ctor();
@@ -76,7 +72,7 @@ namespace UF {
             saveCore = new SaveCore();
 
             // Inject
-            gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, bulletRepository, playerSaveData, mainCamera);
+            gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, bulletRepository, playerSaveData, mainCamera, saveCore);
             loginSystem.Inject(appUI, inputModule);
             pauseSystem.Inject(appUI, roleRepository, bulletRepository, propRepository);
             trainSystem.Inject(appUI, templateModule, assetsModule, inputModule, roleRepository, bulletRepository, propRepository);
@@ -99,7 +95,7 @@ namespace UF {
             has3 = saveCore.Slot_TryLoad(3, out var save3);
             save0 = saveCore.CombineRightToLeft(save0, save3);
             playerSaveData.slotID = 0;
-            GameMainDomain.Game_Load(playerSaveData, save0);
+            // GameMainDomain.Game_Load(out playerSaveData, save0);
             saveCore.Slot_Save(playerSaveData);
 
             // ---  Binding  ---
@@ -131,6 +127,13 @@ namespace UF {
             var loginEvent = loginSystem.Events;
 
             loginEvent.OnLoginStartHandle += () => {
+                // 进入游戏
+                Debug.Log("登入游戏");
+                // 存档
+                // GameMainDomain.Slot_LoadGame(out playerSaveData, out saveCore, playerSaveData.slotID);
+                gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, bulletRepository, playerSaveData, mainCamera, saveCore);
+                playerSaveData.FeachStagePassed();
+
                 appUI.Panel_Login_Close();
                 UIDomain.Panel_StageSelectionEnter(appUI);
             };

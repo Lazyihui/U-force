@@ -16,8 +16,8 @@ namespace UF {
             events = new GameSystemEvents();
         }
 
-        public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository, BulletRepository bulletRepository, GameSaveModel playerSaveData, Camera camera) {
-            ctx.Inject(ScreenCanvas, assetsCore, templateCore, appUI, inputModule, roleRepository, bulletRepository, playerSaveData, camera);
+        public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository, BulletRepository bulletRepository, GameSaveModel playerSaveData, Camera camera, SaveCore saveCore) {
+            ctx.Inject(ScreenCanvas, assetsCore, templateCore, appUI, inputModule, roleRepository, bulletRepository, playerSaveData, camera, saveCore);
         }
 
         public void Exit() {
@@ -191,6 +191,9 @@ namespace UF {
                 }
 
                 Debug.Log("游戏胜利");
+                Debug.Log("保存游戏");
+                // 保存数据 得到的星级 和 通关的关卡
+                GameMainDomain.Slot_SaveCurrent(playerData, ctx.saveCore);
                 // 没找到这里StopRole_AllMove();要多运行一遍
                 owner.Jump_Stop();
                 owner.Move_Stop();

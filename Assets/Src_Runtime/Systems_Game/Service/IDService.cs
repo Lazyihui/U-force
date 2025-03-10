@@ -22,6 +22,17 @@ namespace UF {
             RopeID = 1;
         }
 
+        public void Reset() {
+            roleID = 1;
+            BulletID = 1;
+            SkillID = 1;
+            TowerID = 1;
+            StuffID = 1;
+            mapID = 1;
+            PropID = 1;
+            RopeID = 1;
+        }
+
         public int PickRoleID() {
             return ++roleID;
         }

@@ -81,6 +81,8 @@ namespace UF {
             save.WriteTo(writeSlotBuffer, ref offset);
             // 写入文件
             FileHepler.WriteFileAfterClean(MOUNT_NAME, file, writeSlotBuffer, offset);
+
+            Debug.Log("Slot saved: " + size);
         }
 
         // 读取存 是否有存档SlotID

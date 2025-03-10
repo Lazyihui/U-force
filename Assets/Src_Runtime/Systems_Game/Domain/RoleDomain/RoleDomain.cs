@@ -171,6 +171,7 @@ namespace UF {
             if (role.roleType == RoleType.Player) {
                 // TODO:L写这里其实不太好
                 ctx.gameEntity.state = GameState.GameOver;
+                Debug.Log("GameOver");
                 var playerData = game.playerSaveData;
                 ctx.appUI.Panel_GameOver_Open(false, playerData.GetRoleGetHurt(), playerData.shootTimes, playerData.HitTimes, playerData.GetRoleHitRate(), 0);
             }
