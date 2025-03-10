@@ -10,15 +10,17 @@ namespace UF {
         public InputModule inputModule;
 
         // model
+        public SaveCore saveCore;
 
         public LoginSystemContext() {
             isRunning = false;
 
         }
 
-        public void Inject(AppUI appUI, InputModule input) {
+        public void Inject(AppUI appUI, InputModule input, SaveCore saveCore) {
             this.appUI = appUI;
             this.inputModule = input;
+            this.saveCore = saveCore;
         }
 
     }

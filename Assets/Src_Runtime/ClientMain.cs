@@ -71,14 +71,6 @@ namespace UF {
             playerSaveData = new GameSaveModel();
             saveCore = new SaveCore();
 
-            // Inject
-            gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, bulletRepository, playerSaveData, mainCamera, saveCore);
-            loginSystem.Inject(appUI, inputModule);
-            pauseSystem.Inject(appUI, roleRepository, bulletRepository, propRepository);
-            trainSystem.Inject(appUI, templateModule, assetsModule, inputModule, roleRepository, bulletRepository, propRepository);
-
-            appUI.Inject(screenCanvas, assetsModule, playerSaveData);
-
             // save存档
             bool has0 = saveCore.Slot_Has(0);
             if (!has0) {
@@ -95,9 +87,18 @@ namespace UF {
             has3 = saveCore.Slot_TryLoad(3, out var save3);
             save0 = saveCore.CombineRightToLeft(save0, save3);
             playerSaveData.slotID = 0;
-            // GameMainDomain.Game_Load(out playerSaveData, save0);
+            // 加载存档
+            GameMainDomain.Game_Load(playerSaveData, save0);
+            // 保存存档
             saveCore.Slot_Save(playerSaveData);
 
+            // Inject
+            gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, bulletRepository, playerSaveData, mainCamera, saveCore);
+            loginSystem.Inject(appUI, inputModule, saveCore);
+            pauseSystem.Inject(appUI, roleRepository, bulletRepository, propRepository);
+            trainSystem.Inject(appUI, templateModule, assetsModule, inputModule, roleRepository, bulletRepository, propRepository);
+
+            appUI.Inject(screenCanvas, assetsModule, playerSaveData);
             // ---  Binding  ---
             // Binding_Login();
             Login_Binding();
@@ -130,10 +131,7 @@ namespace UF {
                 // 进入游戏
                 Debug.Log("登入游戏");
                 // 存档
-                // GameMainDomain.Slot_LoadGame(out playerSaveData, out saveCore, playerSaveData.slotID);
-                gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, bulletRepository, playerSaveData, mainCamera, saveCore);
-                playerSaveData.FeachStagePassed();
-
+                GameMainDomain.Slot_LoadGame(playerSaveData, out saveCore, playerSaveData.slotID);
                 appUI.Panel_Login_Close();
                 UIDomain.Panel_StageSelectionEnter(appUI);
             };

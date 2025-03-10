@@ -109,7 +109,6 @@ namespace UF {
             role.Attr_Hp_Set(finalHp);
             if (attCom.hp <= 0) {
                 if (feaCom.featureType == FeatureType.HurtOneself) {
-                    Debug.Log("HurtOneself");
                     BulletEntity bullet = BulletDomain.SpawnByPos(ctx, 5000, role.TF_GetPos(), new Vector3(0, 0, 0));
                     role.SetRoleState(RoleState.Dead); //TODO:这样写其实不好
                 } else {

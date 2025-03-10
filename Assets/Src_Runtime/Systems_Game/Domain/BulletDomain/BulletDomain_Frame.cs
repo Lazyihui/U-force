@@ -37,7 +37,6 @@ namespace UF {
 
         static void Bullet_HitRole(BulletFrameModel frame) {
             frame.loopModel.hitCount += 1;
-            Debug.Log("击中次数" + frame.loopModel.hitCount);
         }
 
         #region Frame:Acting
@@ -71,7 +70,6 @@ namespace UF {
 
             if (model.isStop) {
                 // 停顿
-                Debug.LogWarning("停顿");
                 Bullet_Stop(ctx, bullet);
                 // Skill_Boom(ctx, bullet);
             }
@@ -142,8 +140,6 @@ namespace UF {
         }
         static void Bullet_Stop(GameSystemContext ctx, BulletEntity bullet) {
             // 写完
-            Debug.Log("停顿 ");
-            // bullet.Move_Stop();
             bullet.Set_MoveType(BulletMoveType.None);
         }
         static void Bullet_DownRoleMoveSpeed(GameSystemContext ctx, BulletEntity bullet) {

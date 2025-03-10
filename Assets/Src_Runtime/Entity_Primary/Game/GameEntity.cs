@@ -116,10 +116,6 @@ namespace UF {
         }
 
 
-        public void Add_ReachStage(int stageID) {
-            playerSaveData.AddStageReached(stageID);
-        }
-
         public void Inject(GameSaveModel playerSaveData) {
             this.playerSaveData = playerSaveData;
         }

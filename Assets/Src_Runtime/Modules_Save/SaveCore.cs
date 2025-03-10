@@ -55,6 +55,7 @@ namespace UF {
             save.stage_Passed = new List<int>();
             foreach (var int32 in model.stage_Passed) {
                 save.stage_Passed.Add(int32);
+                Debug.Log("已经通关的关卡: " + int32);
             }
 
             save.stage_PassedStar = new List<int>();
@@ -101,9 +102,11 @@ namespace UF {
                 Array.Copy(readBuffer, newBuffer, readBuffer.Length);
                 save = new SaveDTO();
                 save.FromBytes(newBuffer, ref offset);
+                Debug.Log("Slot loaded: " + slotID);
                 return true;
             } else {
                 save = default;
+                Debug.LogError("Slot not found: " + slotID);
                 return false;
             }
 

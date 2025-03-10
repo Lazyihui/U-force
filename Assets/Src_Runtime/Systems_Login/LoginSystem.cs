@@ -20,8 +20,8 @@ namespace UF {
             events = new LoginSystemEvents();
         }
 
-        public void Inject(AppUI appUI, InputModule input) {
-            ctx.Inject(appUI, input);
+        public void Inject(AppUI appUI, InputModule input, SaveCore saveCore) {
+            ctx.Inject(appUI, input, saveCore);
         }
 
         public void EnterPanel_Login() {

@@ -193,14 +193,17 @@ namespace UF {
                 Debug.Log("游戏胜利");
                 Debug.Log("保存游戏");
                 // 保存数据 得到的星级 和 通关的关卡
-                GameMainDomain.Slot_SaveCurrent(playerData, ctx.saveCore);
-                // 没找到这里StopRole_AllMove();要多运行一遍
+                // 添加关卡
+                GameDomain.Add_ReachStage(ctx);
+
+                // 保存数据
+                GameDomain.Slot_SaveCurrent(ctx);
+                
                 owner.Jump_Stop();
                 owner.Move_Stop();
                 Exit();
                 int starCount = playerData.GetStarCount();
                 // 技术到达的关卡
-                GameDomain.Add_ReachStage(ctx);
                 ctx.appUI.Panel_GameOver_Open(true, playerData.GetRoleGetHurt(), playerData.shootTimes, playerData.HitTimes, playerData.GetRoleHitRate(), starCount);
                 game.state = GameState.GameOver;
 

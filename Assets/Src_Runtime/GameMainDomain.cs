@@ -7,8 +7,8 @@ namespace UF {
 
     public static class GameMainDomain {
         // 赋值存档
-        public static void Game_Load(ref GameSaveModel saveModel, SaveDTO save) {
-            GameSaveModel model = new GameSaveModel();
+        public static void Game_Load(GameSaveModel model, SaveDTO save) {
+            // 给 GameSaveModel 赋值
             model.slotID = save.slotID;
 
             model.stage_Passed = new HashSet<int>();
@@ -30,34 +30,26 @@ namespace UF {
             model.unLockStageCount = save.unLockStageCount;
             model.unLockChapterID = save.unLockChapterID;
             model.starAllCount = save.starAllCount;
-
-            // 赋值给 GameSaveModel
-            saveModel.stage_Passed = model.stage_Passed;
-            saveModel.stage_PassedStar = model.stage_PassedStar;
-            saveModel.stage_UnLock = model.stage_UnLock;
-            saveModel.unLockStageCount = model.unLockStageCount;
-            saveModel.unLockChapterID = model.unLockChapterID;
-            saveModel.starAllCount = model.starAllCount;
         }
 
-        // // 加载存档
-        // public static void Slot_LoadGame(out GameSaveModel models, out SaveCore saveCore, int slotID) {
-        //     saveCore = new SaveCore();
-        //     // 找到存档
-        //     bool has = saveCore.Slot_TryLoad(slotID, out var saveData);
-        //     if (has) {
-        //         Debug.Log("加载成功: " + slotID);
-        //     } else {
-        //         Debug.LogError("加载失败: " + slotID);
-        //     }
-        //     // 将存档里面的数值赋值给 GameSaveModel
-        //     // Game_Load(out models, saveData);
+        // 加载存档
+        public static void Slot_LoadGame(GameSaveModel models, out SaveCore saveCore, int slotID) {
+            saveCore = new SaveCore();
+            // 找到存档
+            bool has = saveCore.Slot_TryLoad(slotID, out var saveData);
+            if (has) {
+                Debug.Log("加载成功: " + slotID);
+            } else {
+                Debug.LogError("加载失败: " + slotID);
+            }
+            // 将存档里面的数值赋值给 GameSaveModel
+            Game_Load(models, saveData);
+        }
+
+        // public static void Slot_SaveCurrent(GameSaveModel model, SaveCore saveCore) {
+        //     //TODO: 这里要把他存到Main的里面
+        //     saveCore.Slot_Save(model);
         // }
-
-        public static void Slot_SaveCurrent(GameSaveModel model, SaveCore saveCore) {
-            //TODO: 这里要把他存到Main的里面
-            saveCore.Slot_Save(model);
-        }
 
     }
 }
