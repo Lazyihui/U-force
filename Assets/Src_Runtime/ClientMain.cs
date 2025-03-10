@@ -83,6 +83,8 @@ namespace UF {
                 saveCore.Slot_Save(playerSaveData);
             }
             // 合并存档
+            // saveCore.Slot_Delete(0);
+            // saveCore.Slot_Delete(3);
             has0 = saveCore.Slot_TryLoad(0, out var save0);
             has3 = saveCore.Slot_TryLoad(3, out var save3);
             save0 = saveCore.CombineRightToLeft(save0, save3);

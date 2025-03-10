@@ -244,7 +244,6 @@ namespace UF {
             }
             panel.TearDown();
             ctx.panel_GameOver = null;
-            Debug.Log("GameOver Close");
         }
 
         public void Panel_EliminateGameOver_Open(bool isWin, int takeEnergy, int shootTimes, int TakeTime, int starCount) {

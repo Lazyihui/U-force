@@ -81,6 +81,7 @@ namespace UF {
             int len = stage_PassedStar.Count;
             starAllCount = 0;
 
+            Debug.Log("总星数: " + starAllCount + " 关卡数: " + len);
             for (int i = 0; i < len; i++) {
                 int j = i + 1;
                 int star = stage_PassedStar[j];

@@ -46,10 +46,5 @@ namespace UF {
             Game_Load(models, saveData);
         }
 
-        // public static void Slot_SaveCurrent(GameSaveModel model, SaveCore saveCore) {
-        //     //TODO: 这里要把他存到Main的里面
-        //     saveCore.Slot_Save(model);
-        // }
-
     }
 }

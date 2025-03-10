@@ -212,7 +212,6 @@ namespace UF {
         }
 
         public static void Panel_StageSelectionEnter(AppUI appUI) {
-            Debug.Log("进入选着关卡界面");
 
             // 1.清空之前的数据
             appUI.Reset();
