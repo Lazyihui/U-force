@@ -732,6 +732,31 @@ namespace UF {
                 return;
             }
             panel.UpdateCardDetail(sprite, content, typeID);
+
+            Panel_CardDetailsBtn_UnLock();
+
+            CardType type = Panel_GetCardType();
+            if (type == CardType.Hero) {
+                if (selectedInFormation.roleSelectedTypeID == typeID) {
+                    Panel_CardDetailsBtn_Lock();
+                }
+
+            } else if (type == CardType.Agriculture || type == CardType.Industry) {
+                Panel_CardSelected_TakeAll(out List<int> typeIDs);
+                int len = typeIDs.Count;
+                Debug.Log("Len: " + len);
+                for (int i = 0; i < len; i++) {
+                    if (typeID == typeIDs[i]) {
+                        Panel_CardDetailsBtn_Lock();
+                        return;
+                    }
+                }
+
+            } else if (type == CardType.Science) {
+                if (selectedInFormation.scienceTypeID == typeID) {
+                    Panel_CardDetailsBtn_Lock();
+                }
+            }
         }
 
         public void Panel_CardDetailsBtn_Lock() {

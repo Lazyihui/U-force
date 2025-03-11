@@ -224,7 +224,7 @@ namespace UF {
 
             loginEvent.OnSelectionCardClickHandle += (typeID) => {
                 UIDomain.Update_CardSelectionDetails(typeID, templateModule, appUI);
-                appUI.Panel_CardDetailsBtn_UnLock();
+                // appUI.Panel_CardDetailsBtn_UnLock();
             };
 
             loginEvent.OnConfirmClickHandle += (typeID) => {

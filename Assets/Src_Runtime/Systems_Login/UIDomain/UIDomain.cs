@@ -31,6 +31,8 @@ namespace UF {
             appUI.Panel_CardSelection_Open(stageID, card.stageCurType);// 打开卡牌选择界面
             appUI.Panel_CardSelection_AddCardSelected(playerSaveData.slotMax);// 放卡片的地方
 
+            appUI.Panel_SetCardType(CardType.Hero);
+
             // 第一个
             RoleTM roleTM0 = card.roleTMs[0];
             appUI.Panel_CardDetails_Update(roleTM0.sprite, roleTM0.feature, roleTM0.typeID);
@@ -39,8 +41,6 @@ namespace UF {
                 RoleTM roleTM = card.roleTMs[i];
                 appUI.Panel_CardSelection_AddCard(roleTM.typeID, roleTM.sprite);
             }
-            appUI.Panel_SetCardType(CardType.Hero);
-
 
             appUI.Panel_WatchTower_Open();
             for (int i = 0; i < card.roleEnemyTMs.Count; i += 1) {
@@ -97,11 +97,11 @@ namespace UF {
             //     appUI.Panel_CardDetailsBtn_Lock();
             // }
 
-            //1.先清空卡片选择界面 
+            // 1.先清空卡片选择界面 
             appUI.Panel_OneCardSelection_Clear();
             var selectedInFormation = appUI.selectedInFormation;
 
-            // 3.展示卡片
+            // 2.展示卡片
             CardType cardType = appUI.Panel_GetCardType();
             var cardModel = appUI.Get_CardModel();
 
@@ -147,19 +147,19 @@ namespace UF {
 
             if (selectedInFormation.roleSelectedTypeID != -1) {
                 appUI.Panel_OneCardSelection_Lock(selectedInFormation.roleSelectedTypeID);
-                appUI.Panel_CardDetailsBtn_Lock();
+                // appUI.Panel_CardDetailsBtn_Lock();
             }
 
             if (selectedInFormation.scienceTypeID != -1) {
                 appUI.Panel_OneCardSelection_Lock(selectedInFormation.scienceTypeID);
-                appUI.Panel_CardDetailsBtn_Lock();
+                // appUI.Panel_CardDetailsBtn_Lock();
             }
 
             appUI.Panel_CardSelected_TakeAll(out List<int> selectedList);
             for (int i = 0; i < selectedList.Count; i += 1) {
                 int typeID = selectedList[i];
                 appUI.Panel_OneCardSelection_Lock(typeID);
-                appUI.Panel_CardDetailsBtn_Lock();
+                // appUI.Panel_CardDetailsBtn_Lock();
             }
 
 
@@ -302,7 +302,7 @@ namespace UF {
             if (cardType == CardType.Agriculture) {
                 appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
                 if (typeIDs.Count >= appUI.playerSaveData.GetSlotMax()) {
-                    appUI.Panel_CardDetailsBtn_Lock();
+                    // appUI.Panel_CardDetailsBtn_Lock();
                     return;
                 }
             }
@@ -310,7 +310,7 @@ namespace UF {
             if (cardType == CardType.Industry) {
                 appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
                 if (typeIDs.Count >= appUI.playerSaveData.GetSlotMax()) {
-                    appUI.Panel_CardDetailsBtn_Lock();
+                    // appUI.Panel_CardDetailsBtn_Lock();
                     return;
                 }
             }
