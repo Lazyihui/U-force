@@ -16,15 +16,14 @@ namespace UF {
         public Dictionary<int, int> stage_PassedStar;//通关关卡的星级
         public HashSet<int> stage_UnLock;//到达的关卡
 
-        public int unLockChapterID;//解锁的章节
+        public int unLockChapterID;//解锁的章节2
         public int starAllCount;//总星数
 
-        public int GetUnLockStageCount() => unLockStageCount;
+        public int GetUnLockChapterID() => unLockChapterID;
         public int GetstarAllCount() => starAllCount;
 
         #endregion
-        public int unLockStageCount;//解锁的关卡 
-        public int GetUnLockChapterID() => unLockChapterID;
+        public int unLockStageCount;//解锁的关卡数量
 
         public int stageCurID;//当前关卡
         public int GetStageCurID() => stageCurID;
@@ -137,18 +136,6 @@ namespace UF {
 
         public void AddStagePassed(int stageID) {
             stage_Passed.Add(stageID);
-        }
-
-        public void FeachStagePassed() {
-            // 遍历所有的关卡
-            foreach (var stageID in stage_UnLock) {
-                if (stage_Passed.Contains(stageID)) {
-                    Debug.Log("通关的关卡: " + stageID);
-                    continue;
-                }
-                // 如果没有通关就跳出
-                break;
-            }
         }
 
         public int GetStagePassedCount() {

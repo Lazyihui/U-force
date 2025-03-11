@@ -192,10 +192,7 @@ namespace UF {
                     ctx.appUI.Panel_GameOver_Open(false, playerData.GetRoleGetHurt(), playerData.shootTimes, playerData.HitTimes, playerData.GetRoleHitRate(), 0);
                 }
 
-                Debug.Log("游戏胜利");
-                Debug.Log("保存游戏");
                 // 保存数据
-                // GameDomain.Slot_SaveCurrent(ctx);
 
                 owner.Jump_Stop();
                 owner.Move_Stop();

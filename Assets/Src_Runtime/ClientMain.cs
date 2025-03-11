@@ -74,25 +74,25 @@ namespace UF {
             // saveCore.Slot_Delete(3);
 
             // save存档
-            // bool has0 = saveCore.Slot_Has(0);
-            // if (!has0) {
-            //     playerSaveData.slotID = 0;
-            //     saveCore.Slot_Save(playerSaveData);
-            // }
-            // bool has3 = saveCore.Slot_Has(3);
-            // if (!has3) {
-            //     playerSaveData.slotID = 3;
-            //     saveCore.Slot_Save(playerSaveData);
-            // }
-            // // 合并存档
-            // has0 = saveCore.Slot_TryLoad(0, out var save0);
-            // has3 = saveCore.Slot_TryLoad(3, out var save3);
-            // save0 = saveCore.CombineRightToLeft(save0, save3);
-            // playerSaveData.slotID = 0;
-            // // 加载存档
-            // GameMainDomain.Game_Load(playerSaveData, save0);
-            // // 保存存档
-            // saveCore.Slot_Save(playerSaveData);
+            bool has0 = saveCore.Slot_Has(0);
+            if (!has0) {
+                playerSaveData.slotID = 0;
+                saveCore.Slot_Save(playerSaveData);
+            }
+            bool has3 = saveCore.Slot_Has(3);
+            if (!has3) {
+                playerSaveData.slotID = 3;
+                saveCore.Slot_Save(playerSaveData);
+            }
+            // 合并存档
+            has0 = saveCore.Slot_TryLoad(0, out var save0);
+            has3 = saveCore.Slot_TryLoad(3, out var save3);
+            save0 = saveCore.CombineRightToLeft(save0, save3);
+            playerSaveData.slotID = 0;
+            // 加载存档
+            GameMainDomain.Game_Load(playerSaveData, save0);
+            // 保存存档
+            saveCore.Slot_Save(playerSaveData);
 
             // Inject
             gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, bulletRepository, playerSaveData, mainCamera, saveCore);
@@ -131,9 +131,7 @@ namespace UF {
 
             loginEvent.OnLoginStartHandle += () => {
                 // 进入游戏
-                Debug.Log("登入游戏");
-                // 存档
-                // GameMainDomain.Slot_LoadGame(playerSaveData, out saveCore, playerSaveData.slotID);
+                GameMainDomain.Slot_LoadGame(playerSaveData, out saveCore, playerSaveData.slotID);
                 appUI.Panel_Login_Close();
                 UIDomain.Panel_StageSelectionEnter(appUI);
             };
@@ -427,21 +425,6 @@ namespace UF {
             };
 
             pauseEvent.OnResetWarningHandle += () => { // 重新开始
-                // 重新开始游戏
-                // var typeIDs = appUI.selectedInFormation.typeIDs;
-                // int stageID = appUI.playerSaveData.GetStageCurID();
-                // int roleTypeID = appUI.selectedInFormation.roleSelectedTypeID;
-                // int sciType = appUI.selectedInFormation.scienceTypeID;
-                // int slotMax = appUI.playerSaveData.GetSlotMax();
-
-                // appUI.Panel_BackSelection_Close();
-
-                // gameSystem.Exit();
-                // gameSystem.ClearGame();
-                // pauseSystem.Exit();
-
-                // Debug.Log("重新开始游戏" + "role" + roleTypeID + " sci" + sciType);
-                // gameSystem.Enter(stageID, roleTypeID, typeIDs.ToArray(), sciType);
 
                 // 改成回到选卡片界面
                 gameSystem.ClearGame();
@@ -458,7 +441,6 @@ namespace UF {
                 loginSystem.Enter();
                 appUI.Panel_BackSelection_Close();
 
-                GameMainDomain.Slot_LoadGame(playerSaveData, out saveCore, playerSaveData.slotID);
                 UIDomain.Panel_StageSelectionEnter(appUI);
             };
 
@@ -583,6 +565,13 @@ namespace UF {
                     appUI.ctx.noticeTimer = 1;
                     appUI.ctx.isNoticeOpen = false;
                 }
+            }
+
+            if (Input.GetKey(KeyCode.R)) {
+                // 清除存档
+                saveCore.Slot_Delete(0);
+                saveCore.Slot_Delete(3);
+                Debug.Log("删除存档");
             }
         }
 
