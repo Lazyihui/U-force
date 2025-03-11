@@ -68,7 +68,6 @@ namespace UF {
                 save.stage_UnLock.Add(int32);
             }
 
-            save.unLockStageCount = model.unLockStageCount;
             save.unLockChapterID = model.unLockChapterID;
             save.starAllCount = model.starAllCount;
 

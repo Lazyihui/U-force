@@ -27,7 +27,6 @@ namespace UF {
                 model.stage_UnLock.Add(u32);
             }
 
-            model.unLockStageCount = save.unLockStageCount;
             model.unLockChapterID = save.unLockChapterID;
             model.starAllCount = save.starAllCount;
         }

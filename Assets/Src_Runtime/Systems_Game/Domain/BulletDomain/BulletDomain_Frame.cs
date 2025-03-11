@@ -125,7 +125,6 @@ namespace UF {
         #region 子弹想行为
         public static void Bullet_Shaped(GameSystemContext ctx, BulletEntity bullet) {
             // bullet.Loco_Shaped();
-            Debug.LogWarning("正常移动");
             bullet.Set_MoveType(bullet.moveType);
         }
         static void Bullet_BoomStart(GameSystemContext ctx, BulletEntity bullet) {

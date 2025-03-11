@@ -17,7 +17,7 @@ MonoBehaviour:
     typeName: "Bullet1000\u7F50\u5934"
     hitTimes: 1
     attackDamage: 2
-    isHaveContinueDamege: 1
+    isHaveContinueDamege: 0
     continueDamege: 1
     damageInterval: 0
     damageTimer: 0
