@@ -70,29 +70,29 @@ namespace UF {
 
             playerSaveData = new GameSaveModel();
             saveCore = new SaveCore();
-
-            // save存档
-            bool has0 = saveCore.Slot_Has(0);
-            if (!has0) {
-                playerSaveData.slotID = 0;
-                saveCore.Slot_Save(playerSaveData);
-            }
-            bool has3 = saveCore.Slot_Has(3);
-            if (!has3) {
-                playerSaveData.slotID = 3;
-                saveCore.Slot_Save(playerSaveData);
-            }
-            // 合并存档
             // saveCore.Slot_Delete(0);
             // saveCore.Slot_Delete(3);
-            has0 = saveCore.Slot_TryLoad(0, out var save0);
-            has3 = saveCore.Slot_TryLoad(3, out var save3);
-            save0 = saveCore.CombineRightToLeft(save0, save3);
-            playerSaveData.slotID = 0;
-            // 加载存档
-            GameMainDomain.Game_Load(playerSaveData, save0);
-            // 保存存档
-            saveCore.Slot_Save(playerSaveData);
+
+            // save存档
+            // bool has0 = saveCore.Slot_Has(0);
+            // if (!has0) {
+            //     playerSaveData.slotID = 0;
+            //     saveCore.Slot_Save(playerSaveData);
+            // }
+            // bool has3 = saveCore.Slot_Has(3);
+            // if (!has3) {
+            //     playerSaveData.slotID = 3;
+            //     saveCore.Slot_Save(playerSaveData);
+            // }
+            // // 合并存档
+            // has0 = saveCore.Slot_TryLoad(0, out var save0);
+            // has3 = saveCore.Slot_TryLoad(3, out var save3);
+            // save0 = saveCore.CombineRightToLeft(save0, save3);
+            // playerSaveData.slotID = 0;
+            // // 加载存档
+            // GameMainDomain.Game_Load(playerSaveData, save0);
+            // // 保存存档
+            // saveCore.Slot_Save(playerSaveData);
 
             // Inject
             gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, bulletRepository, playerSaveData, mainCamera, saveCore);
@@ -133,7 +133,7 @@ namespace UF {
                 // 进入游戏
                 Debug.Log("登入游戏");
                 // 存档
-                GameMainDomain.Slot_LoadGame(playerSaveData, out saveCore, playerSaveData.slotID);
+                // GameMainDomain.Slot_LoadGame(playerSaveData, out saveCore, playerSaveData.slotID);
                 appUI.Panel_Login_Close();
                 UIDomain.Panel_StageSelectionEnter(appUI);
             };

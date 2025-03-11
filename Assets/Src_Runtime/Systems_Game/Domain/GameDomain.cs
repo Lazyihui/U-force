@@ -23,7 +23,8 @@ namespace UF {
             int passedCount = playerSaveData.GetStagePassedCount();
             int stageAllCount = playerSaveData.GetstarAllCount();
             if (stageAllCount >= passedCount * 1.5f) {
-                Debug.Log("通关的关卡: " + (passedCount + 1));
+                Debug.Log("总星星数: " + stageAllCount + " 通关的关卡: " + passedCount + " 通关的关卡: " + passedCount * 1.5f);
+
                 playerSaveData.AddStageReached(passedCount + 1);
             } else {
 

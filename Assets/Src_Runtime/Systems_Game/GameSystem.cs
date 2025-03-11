@@ -185,6 +185,8 @@ namespace UF {
             if (isGameWin) {
                 var playerData = ctx.gameEntity.playerSaveData;
 
+                Debug.Assert(playerData != null, "playerDate==null");
+                Debug.Assert(owner != null, "owner==null");
                 if (owner.state == RoleState.Dead) {
                     ctx.gameEntity.state = GameState.GameOver;
                     ctx.appUI.Panel_GameOver_Open(false, playerData.GetRoleGetHurt(), playerData.shootTimes, playerData.HitTimes, playerData.GetRoleHitRate(), 0);
@@ -197,8 +199,8 @@ namespace UF {
                 GameDomain.Add_ReachStage(ctx);
 
                 // 保存数据
-                GameDomain.Slot_SaveCurrent(ctx);
-                
+                // GameDomain.Slot_SaveCurrent(ctx);
+
                 owner.Jump_Stop();
                 owner.Move_Stop();
                 Exit();

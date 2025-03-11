@@ -15,22 +15,27 @@ MonoBehaviour:
   tm:
     typeID: 1000
     typeName: "Bullet1000\u7F50\u5934"
-    hp: 0
     hitTimes: 1
     attackDamage: 2
-    isBomb: 0
     isHaveContinueDamege: 1
     continueDamege: 1
     damageInterval: 0
     damageTimer: 0
-    isHaveDamageRange: 1
     damageRange: 1
+    destoryOneselfTime: 0
+    isChangeLine: 0
+    changeLineDir: {x: 0, y: 0}
+    LineNum: 0
+    LineLength: 0
+    isMakeBulletAppear: 0
+    isDestotyBottomALine: 0
+    isRepelled: 0
+    repeLength: 0
     type: 1
     moveSpeed: 10
     modPrefab: {fileID: 3976039306336967783, guid: 61887ad1eb59040478fb3c8eec178ff3, type: 3}
     sprite: {fileID: 21300000, guid: 9b7afa97fe210a147a93161c718e2b89, type: 3}
     content: "\u56FA\u5B9A-\u533A\u57DF\u7206\u70B8\u4EA7\u751F\u6301\u7EED\u4F24\u5BB3"
-    isMakeBulletAppear: 0
     frames:
     - loopTM:
         loopFlag: -1
@@ -47,39 +52,9 @@ MonoBehaviour:
         isRoleMoveSpeedDown: 0
         isRoleMoveDown: 0
         isRoleMoveRight: 0
-    - loopTM:
-        loopFlag: -1
-        maintainFrame: 2
-        triggerIntervalSec: 0
-        triggerTimesMax: 0
-      hasBulletBehaviour: 1
-      bulletBehaviourTM:
-        isMove: 0
-        isStop: 1
-        isHaveContinueDamege: 0
-        isHaveContinueBoomDamege: 1
-        isDestorySelf: 0
-        isRoleMoveSpeedDown: 0
-        isRoleMoveDown: 0
-        isRoleMoveRight: 0
-    - loopTM:
-        loopFlag: -1
-        maintainFrame: 2
-        triggerIntervalSec: 0
-        triggerTimesMax: 0
-      hasBulletBehaviour: 1
-      bulletBehaviourTM:
-        isMove: 0
-        isStop: 0
-        isHaveContinueDamege: 0
-        isHaveContinueBoomDamege: 0
-        isDestorySelf: 1
-        isRoleMoveSpeedDown: 0
-        isRoleMoveDown: 0
-        isRoleMoveRight: 0
-    isChangeLine: 0
-    changeLineDir: {x: 0, y: 0}
-    LineNum: 0
-    LineLength: 0
-    isRepelled: 0
-    repeLength: 0
+      hasWorldBehaviour: 0
+      worldBehaviourTM:
+        isSpawnStuff: 0
+        stuffSo: {fileID: 0}
+        isSpawnBullet: 0
+        bulletSo: {fileID: 0}

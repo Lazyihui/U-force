@@ -25,8 +25,6 @@ namespace UF {
         public int GetstarAllCount() => starAllCount;
 
         #endregion
-
-
         public int stageCurID;//当前关卡
         public int GetStageCurID() => stageCurID;
         public int stageCurType;//当前关卡类型
@@ -78,14 +76,8 @@ namespace UF {
         }
 
         public void Set_stage_AllStar() {
-            int len = stage_PassedStar.Count;
-            starAllCount = 0;
-
-            Debug.Log("总星数: " + starAllCount + " 关卡数: " + len);
-            for (int i = 0; i < len; i++) {
-                int j = i + 1;
-                int star = stage_PassedStar[j];
-                starAllCount += star;
+            foreach (var stars in stage_PassedStar.Values) {
+                starAllCount += stars;
             }
         }
 
