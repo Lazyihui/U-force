@@ -194,10 +194,6 @@ namespace UF {
 
                 Debug.Log("游戏胜利");
                 Debug.Log("保存游戏");
-                // 保存数据 得到的星级 和 通关的关卡
-                // 添加关卡
-                GameDomain.Add_ReachStage(ctx);
-
                 // 保存数据
                 // GameDomain.Slot_SaveCurrent(ctx);
 
@@ -212,6 +208,9 @@ namespace UF {
                 // 保存数据 得到的星级 和 通关的关卡
                 int stageID = appUI.playerSaveData.GetStageCurID();
                 appUI.playerSaveData.AddStagePassed(stageID);
+
+                // 添加关卡
+                GameDomain.Add_ReachStage(ctx);
             }
         }
 

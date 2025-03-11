@@ -30,7 +30,7 @@ namespace UF {
 
                 Debug.Log("总星星数: " + stageAllCount + " 通关的关卡: " + passedCount + " 通关的关卡: " + passedCount * 1.5f);
                 Debug.Log("没有 " + (passedCount + 1));
-                playerSaveData.AddStageReached(passedCount + 1);
+                // playerSaveData.AddStageReached(passedCount + 1);
             }
         }
 
