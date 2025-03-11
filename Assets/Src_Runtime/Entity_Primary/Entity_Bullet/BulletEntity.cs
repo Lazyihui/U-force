@@ -63,6 +63,12 @@ namespace UF {
         public bool isRepelled; // 击退
         public float repeLength; // 击退距离
 
+        // 带电
+        public bool isElectricity;
+        public int elecDamage; // 伤害
+        public int elecTimes; // 伤害次数
+        public float elecMax; // 伤害间隔
+
         public bool IsDead() {
             bool isDead = hitTimes <= 0;
             // Debug.Log(hp + frameIndex + hitMaxTimes);

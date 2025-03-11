@@ -141,19 +141,23 @@ public class RoleMoveComponent {
         Set_Garvity(1);
     }
     public void Move_ChangeLine(Vector2 changeLineDir) { // 换行
+        const float changeMoveSpeed = 20;
+
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         Vector2 oldVelo = rb.velocity;
-        oldVelo.y = changeLineDir.y * 20;
+        oldVelo.y = changeLineDir.y * changeMoveSpeed;
         rb.velocity = oldVelo;
 
         Debug.LogWarning("换行");
     }
 
     public void Move_Repulsed() { // 被击退
+        const float changeMoveSpeed = 20;
+
         Vector2 dir = Vector2.right;
 
         Vector2 oldVelo = rb.velocity;
-        oldVelo.x = dir.x * 20;
+        oldVelo.x = dir.x * changeMoveSpeed;
         rb.velocity = oldVelo;
 
         Debug.LogWarning("被击退");

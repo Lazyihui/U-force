@@ -16,6 +16,7 @@ namespace UF {
         public bool isRoleMoveSpeedDown;
         public bool isRoleMoveDown; // 往下掉
         public bool isRoleMoveRight; // 击退
+        public bool isRoleElectricity; // 带电
 
 
         public void FormTM(BulletBehaviourTM tm) {
@@ -29,6 +30,7 @@ namespace UF {
             isRoleMoveSpeedDown = tm.isRoleMoveSpeedDown;
             isRoleMoveDown = tm.isRoleMoveDown;
             isRoleMoveRight = tm.isRoleMoveRight;
+            isRoleElectricity = tm.isRoleElectricity;
         }
     }
 }

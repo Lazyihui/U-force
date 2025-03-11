@@ -22,7 +22,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 772c31f3954c55f48b735dc0c0226a7e, type: 2}
     bulletAgrSoArray:
     - {fileID: 11400000, guid: f8fa8df0f443f694aa9bda115442c447, type: 2}
-    bulletIndSoArray: []
+    bulletIndSoArray:
+    - {fileID: 11400000, guid: 2c96a299017c4b649935ed088e2a5578, type: 2}
     bulletSciSoArray: []
     roleEnemySoArray:
     - {fileID: 11400000, guid: 9d04dd169b2febc41a88d55ba222c7bb, type: 2}

@@ -25,6 +25,14 @@ namespace UF {
         [ShowIf(nameof(isChangeLine))] public Vector2 changeLineDir;
         [ShowIf(nameof(isChangeLine))] public int LineNum; // 变换的行数
         [ShowIf(nameof(isChangeLine))] public float LineLength; // 每行长度
+
+        [Title("带电")]
+        public bool isElectricity;
+        [ShowIf(nameof(isElectricity))] public int elecDamage; // 伤害
+        [ShowIf(nameof(isElectricity))] public int elecTimes; // 伤害次数
+        [ShowIf(nameof(isElectricity))] public float elecMax; // 伤害间隔
+
+
         [Title("子弹特性")]
         public bool isMakeBulletAppear;
         public bool isDestotyBottomALine;

@@ -81,6 +81,13 @@ namespace UF {
         public bool hasChangeLinePos;
         public bool hasRepulsedPos;
 
+        // 特殊状态
+        public bool isElectricity; // 是否带电
+        public int elecDamage; // 伤害值
+        public int elecTimes; // 伤害次数
+        public float elecMax; // 伤害间隔
+        public float elecTimer; // 伤害计时器
+
         // 资源战
         public bool isEliminateRole; // 是否为资源战中除玩家的role
 

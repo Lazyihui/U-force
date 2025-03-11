@@ -14,6 +14,8 @@ namespace UF {
             Loco_Jump(role, moveCom.jumpForce);
             Loco_MoveDefend(ctx, role, dt);
 
+            ElectricityCheck(ctx, role, dt); // 带电检测, 不知道放哪了，先放这
+
             // 抓取
             Loco_Grap(ctx, role);
         }
@@ -170,6 +172,25 @@ namespace UF {
             }
         }
 
+        #endregion
+
+        #region 带电掉血
+        public static void ElectricityCheck(GameSystemContext ctx, RoleEntity role, float dt) {
+            if (role.isElectricity) {
+                if (role.elecTimes <= 0) {
+                    role.isElectricity = false;
+                    return;
+                }
+
+                role.elecTimer -= dt;
+
+                if (role.elecTimer <= 0) {
+                    HpReduce_Minion(ctx, role, role.elecDamage);
+                    role.elecTimes -= 1;
+                    role.elecTimer = role.elecMax;
+                }
+            }
+        }
         #endregion
     }
 }

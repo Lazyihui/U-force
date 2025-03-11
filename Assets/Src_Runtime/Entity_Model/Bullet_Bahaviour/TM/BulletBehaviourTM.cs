@@ -14,5 +14,6 @@ namespace UF {
         public bool isRoleMoveSpeedDown;
         public bool isRoleMoveDown;
         public bool isRoleMoveRight;
+        public bool isRoleElectricity;
     }
 }

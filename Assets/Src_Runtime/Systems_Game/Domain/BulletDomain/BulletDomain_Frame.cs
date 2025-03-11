@@ -108,6 +108,12 @@ namespace UF {
                 Debug.LogWarning("角色击退");
                 Bullet_RoleMoveBack(ctx, bullet);
             }
+
+            if (model.isRoleElectricity) {
+                // 带电
+                Debug.LogWarning("带电");
+                Bullet_Electricity(ctx, bullet);
+            }
         }
         static void WorldBehaviour_Acting(GameSystemContext ctx, BulletEntity bullet, WorldBehaviourModel model, float dt) {
             if (model.isSpawnStuff) {
@@ -150,14 +156,6 @@ namespace UF {
             attaCom.SetMoveSpeed(moveSpeed / 2);
         }
 
-        static void Bullet_Appear(GameSystemContext ctx, BulletEntity bullet) {
-            Debug.Log("现形");
-        }
-
-        static void Bullet_Disappear(GameSystemContext ctx, BulletEntity bullet) {
-            Debug.Log("隐身 次状态不可以攻击");
-        }
-
         static void Skill_Converge(GameSystemContext ctx, BulletEntity bullet) {
             Debug.Log("汇聚");
         }
@@ -175,6 +173,16 @@ namespace UF {
             ctx.roleRepository.TryGet(bullet.touchRoleIDSig, out RoleEntity role);
             role.isRepulsed = true;
             role.repulsedLength = bullet.repeLength;
+        }
+
+        static void Bullet_Electricity(GameSystemContext ctx, BulletEntity bullet) {
+            Debug.Log("带电");
+            ctx.roleRepository.TryGet(bullet.touchRoleIDSig, out RoleEntity role);
+
+            role.elecDamage = bullet.elecDamage;
+            role.elecTimes = bullet.elecTimes;
+            role.elecMax = bullet.elecMax;
+            role.isElectricity = true;
         }
 
         #endregion

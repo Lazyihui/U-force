@@ -242,6 +242,11 @@ namespace UF {
             bullet.isMakeBulletAppear = tm.isMakeBulletAppear;
             bullet.isDestotyBottomALine = tm.isDestotyBottomALine;
 
+            bullet.isElectricity = tm.isElectricity;
+            bullet.elecDamage = tm.elecDamage;
+            bullet.elecTimes = tm.elecTimes;
+            bullet.elecMax = tm.elecMax;
+
             bullet.isChangeLine = tm.isChangeLine;
             if (tm.isChangeLine) {
                 bullet.changeLineDir = tm.changeLineDir;
