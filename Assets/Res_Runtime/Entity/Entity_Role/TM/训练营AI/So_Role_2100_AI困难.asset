@@ -27,6 +27,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7ac70641e002e114a9d7d03d8e309c15, type: 2}
     modPrefab: {fileID: 1663118547299982050, guid: 375d26969752a9142bf596d8266e3f7c, type: 3}
     featureType: 0
+    accelerateTimer: 0
     sprite: {fileID: -1844459013, guid: c0ca71d20da4c9e4e936ccf61b6fc8ca, type: 3}
     feature: "\u56F0\u96BE\u7684AI"
     skill: 

@@ -427,31 +427,39 @@ namespace UF {
             };
 
             pauseEvent.OnResetWarningHandle += () => { // 重新开始
-
                 // 重新开始游戏
+                // var typeIDs = appUI.selectedInFormation.typeIDs;
+                // int stageID = appUI.playerSaveData.GetStageCurID();
+                // int roleTypeID = appUI.selectedInFormation.roleSelectedTypeID;
+                // int sciType = appUI.selectedInFormation.scienceTypeID;
+                // int slotMax = appUI.playerSaveData.GetSlotMax();
 
-                var typeIDs = appUI.selectedInFormation.typeIDs;
-                int stageID = appUI.playerSaveData.GetStageCurID();
-                int roleTypeID = appUI.selectedInFormation.roleSelectedTypeID;
-                int sciType = appUI.selectedInFormation.scienceTypeID;
-                int slotMax = appUI.playerSaveData.GetSlotMax();
+                // appUI.Panel_BackSelection_Close();
 
-                appUI.Panel_BackSelection_Close();
+                // gameSystem.Exit();
+                // gameSystem.ClearGame();
+                // pauseSystem.Exit();
 
-                gameSystem.Exit();
-                gameSystem.ClearGame();
-                pauseSystem.Exit();
+                // Debug.Log("重新开始游戏" + "role" + roleTypeID + " sci" + sciType);
+                // gameSystem.Enter(stageID, roleTypeID, typeIDs.ToArray(), sciType);
 
-                Debug.Log("重新开始游戏" + "role" + roleTypeID + " sci" + sciType);
-                gameSystem.Enter(stageID, roleTypeID, typeIDs.ToArray(), sciType);
-            };
-
-            pauseEvent.OnQuitWarningHandle += () => {
+                // 改成回到选卡片界面
                 gameSystem.ClearGame();
                 gameSystem.Exit();
                 loginSystem.Enter();
                 appUI.Panel_BackSelection_Close();
                 UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule);
+            };
+
+            pauseEvent.OnQuitWarningHandle += () => {
+                // 返回选关界面
+                gameSystem.ClearGame();
+                gameSystem.Exit();
+                loginSystem.Enter();
+                appUI.Panel_BackSelection_Close();
+
+                GameMainDomain.Slot_LoadGame(playerSaveData, out saveCore, playerSaveData.slotID);
+                UIDomain.Panel_StageSelectionEnter(appUI);
             };
 
             pauseEvent.OnTrainBackCloseClickHandle += () => {
