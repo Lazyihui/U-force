@@ -16,15 +16,15 @@ namespace UF {
         public Dictionary<int, int> stage_PassedStar;//通关关卡的星级
         public HashSet<int> stage_UnLock;//到达的关卡
 
-        public int unLockStageCount;//解锁的关卡 
-        public int unLockChapterID;//解锁的章节
+        public int unLockChapterID;//解锁的章节2
         public int starAllCount;//总星数
 
         public int GetUnLockChapterID() => unLockChapterID;
-        public int GetUnLockStageCount() => unLockStageCount;
         public int GetstarAllCount() => starAllCount;
 
         #endregion
+        public int unLockStageCount;//解锁的关卡数量
+
         public int stageCurID;//当前关卡
         public int GetStageCurID() => stageCurID;
         public int stageCurType;//当前关卡类型
@@ -125,10 +125,6 @@ namespace UF {
             stage_UnLock.Add(stageID);
         }
 
-        public void AddEnemyTypeID(int typeID) {
-            EnemyTypeIDs.Add(typeID);
-        }
-
         public void ClearEnemyTypeID() {
             EnemyTypeIDs.Clear();
         }
@@ -142,34 +138,13 @@ namespace UF {
             stage_Passed.Add(stageID);
         }
 
-        public void FeachStagePassed() {
-            // 遍历所有的关卡
-            foreach (var stageID in stage_UnLock) {
-                if (stage_Passed.Contains(stageID)) {
-                    Debug.Log("通关的关卡: " + stageID);
-                    continue;
-                }
-                // 如果没有通关就跳出
-                break;
-            }
-        }
-
         public int GetStagePassedCount() {
             return stage_Passed.Count;
         }
 
-        public void AddStagePassedStar(int stageID, int star) {
-            stage_PassedStar[stageID] = star;
-        }
-
-
         public void SetStageCurID(int stageID) {
             stageCurID = stageID;
         }//设置当前关卡
-
-        public void SetStageCurType(int stageType) {
-            stageCurType = stageType;
-        }//设置当前关卡类型
 
         public void SetChapterCurID(int chapterID) {
             chapterCurID = chapterID;

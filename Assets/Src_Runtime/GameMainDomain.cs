@@ -27,7 +27,6 @@ namespace UF {
                 model.stage_UnLock.Add(u32);
             }
 
-            model.unLockStageCount = save.unLockStageCount;
             model.unLockChapterID = save.unLockChapterID;
             model.starAllCount = save.starAllCount;
         }
@@ -37,11 +36,6 @@ namespace UF {
             saveCore = new SaveCore();
             // 找到存档
             bool has = saveCore.Slot_TryLoad(slotID, out var saveData);
-            if (has) {
-                Debug.Log("加载成功: " + slotID);
-            } else {
-                Debug.LogError("加载失败: " + slotID);
-            }
             // 将存档里面的数值赋值给 GameSaveModel
             Game_Load(models, saveData);
         }

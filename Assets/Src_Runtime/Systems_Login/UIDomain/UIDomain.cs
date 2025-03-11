@@ -67,6 +67,7 @@ namespace UF {
 
         // 卡片更新
         public static void Update_CardSelectionDetails(int typeID, TemplateMoudle templateMoudle, AppUI appUI) {
+            // 确认按钮打开
 
             CardType cardType = appUI.Panel_GetCardType();
             if (cardType == CardType.Hero) {
@@ -90,12 +91,6 @@ namespace UF {
         }
 
         public static void Panel_OneCardSelection_Update(AppUI appUI) {
-            // appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
-
-            // if (typeIDs.Count >= appUI.playerSaveData.GetSlotMax()) {
-            //     Debug.Log("已经选择了" + typeIDs.Count + "张卡片");
-            //     appUI.Panel_CardDetailsBtn_Lock();
-            // }
 
             // 1.先清空卡片选择界面 
             appUI.Panel_OneCardSelection_Clear();
@@ -218,7 +213,7 @@ namespace UF {
 
             int curChapterID = appUI.playerSaveData.GetChapterCurID();
             int unLockChapterID = appUI.playerSaveData.GetUnLockChapterID();//解锁关卡
-            int unLockStageCount = appUI.playerSaveData.GetUnLockStageCount();//解锁关卡数量
+            int unLockStageCount = appUI.playerSaveData.unLockStageCount;//解锁关卡数量
             int starAllCount = appUI.playerSaveData.GetstarAllCount();
 
             appUI.Panel_StageSelection_Open(curChapterID, unLockChapterID);
@@ -241,7 +236,7 @@ namespace UF {
             appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, chapter, maxChapter);
 
             int unLockChapterID = appUI.playerSaveData.GetUnLockChapterID();
-            int unLockStageCount = appUI.playerSaveData.GetUnLockStageCount();
+            int unLockStageCount = appUI.playerSaveData.unLockStageCount;
 
             for (int i = 0; i < unLockStageCount; i += 1) {
                 int stageID = i + 1;
