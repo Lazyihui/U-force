@@ -47,7 +47,6 @@ namespace UF {
             if (role.state != RoleState.Move) {
                 return;
             }
-            // TODO:改成近基地死掉
             if (role.transform.position.y >= 11.25) {
                 role.Jump_Stop();
                 return;

@@ -70,7 +70,12 @@ namespace UF {
                 float homeX = -12; // 基地的x坐标
                 // TODO:可能要改成用 collider   
 
+                // 近基地死亡
                 if (minionPos.x <= homeX) {
+                    if (minion.state == RoleState.Dead || minion.state == RoleState.Fall) {
+                        return;
+                    }
+
                     // player扣血 或者失败  
                     HpReduce_Role(ctx, role, damage);
                     // minion进基地死掉
