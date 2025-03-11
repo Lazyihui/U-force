@@ -76,6 +76,7 @@ namespace UF {
         }
 
         public void Set_stage_AllStar() {
+            starAllCount = 0;
             foreach (var stars in stage_PassedStar.Values) {
                 starAllCount += stars;
             }
