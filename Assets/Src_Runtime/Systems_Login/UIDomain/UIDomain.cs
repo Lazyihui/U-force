@@ -82,7 +82,6 @@ namespace UF {
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
                 appUI.Panel_CardDetails_Update(bulletTM.sprite, bulletTM.content, bulletTM.typeID);
 
-
             } else if (cardType == CardType.Science) {
                 templateMoudle.Bullet_TryGet(typeID, out BulletTM bulletTM);
                 appUI.Panel_CardDetails_Update(bulletTM.sprite, bulletTM.content, bulletTM.typeID);

@@ -742,8 +742,15 @@ namespace UF {
                 }
 
             } else if (type == CardType.Agriculture || type == CardType.Industry) {
+                CardModel card = Get_CardModel();
                 Panel_CardSelected_TakeAll(out List<int> typeIDs);
                 int len = typeIDs.Count;
+
+                if (len == card.slotMax) {
+                    Panel_CardDetailsBtn_Lock();
+                    return;
+                }
+
                 for (int i = 0; i < len; i++) {
                     if (typeID == typeIDs[i]) {
                         Panel_CardDetailsBtn_Lock();
@@ -766,7 +773,7 @@ namespace UF {
             panel.CardDetailsBtn_Lock();
         }
 
-        public void Panel_CardDetailsBtn_UnLock() {
+        void Panel_CardDetailsBtn_UnLock() {
             Panel_CardSelection panel = ctx.panel_CardSelection;
             if (panel == null) {
                 return;
