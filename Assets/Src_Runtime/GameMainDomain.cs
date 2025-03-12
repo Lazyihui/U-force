@@ -16,10 +16,11 @@ namespace UF {
                 model.stage_Passed.Add(u32);
             }
 
-            model.stage_PassedStar = new Dictionary<int, int>();
-            for (int i = 0; i < save.stage_PassedStar.Count; i++) {
-                int value = save.stage_PassedStar[i];
-                model.stage_PassedStar.Add(i, value);
+            model.stage_PassedStar = new HashSet<StarSignature>();
+            for (int i = 0; i < model.stage_PassedStar.Count; i += 1) {
+                model.stage_PassedStar.Add(new StarSignature(i, save.stage_PassedStar[i]));
+                Debug.Log("已经通关的关卡: " + i + " 星级: " + save.stage_PassedStar[i]);
+                Debug.Log("已经通关的关卡: " + i + " 星级: " + model.stage_PassedStar.Count);
             }
 
             model.stage_UnLock = new HashSet<int>();

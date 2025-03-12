@@ -13,7 +13,7 @@ namespace UF {
 
         // 关卡信息
         public HashSet<int> stage_Passed;//通关的关卡
-        public Dictionary<int, int> stage_PassedStar;//通关关卡的星级
+        public HashSet<StarSignature> stage_PassedStar;//通关关卡的星级
         public HashSet<int> stage_UnLock;//到达的关卡
 
         public int unLockChapterID;//解锁的章节2
@@ -67,20 +67,21 @@ namespace UF {
             }
 
             // 保存星级
-            Set_stage_PassedStar(stageCurID, starCount);
+            Add_Stage_PassedStar(stageCurID, starCount);
             Set_stage_AllStar();
             return starCount;
         }
-        public void Set_stage_PassedStar(int stageID, int star) {
-            stage_PassedStar[stageID] = star;
+        public void Add_Stage_PassedStar(int stageID, int star) {
+            stage_PassedStar.Add(new StarSignature(stageID, star));
         }
 
         public void Set_stage_AllStar() {
             starAllCount = 0;
-            foreach (var stars in stage_PassedStar.Values) {
-                starAllCount += stars;
+            foreach (var stars in stage_PassedStar) {
+                starAllCount += stars.starCount;
             }
         }
+
 
         public GameSaveModel() {
             slotID = 0;
@@ -92,7 +93,7 @@ namespace UF {
 
             EnemyTypeIDs = new List<int>();
             stage_Passed = new HashSet<int>();
-            stage_PassedStar = new Dictionary<int, int>();
+            stage_PassedStar = new HashSet<StarSignature>();
             stage_UnLock = new HashSet<int>();
 
             // 第一关先进去
@@ -163,11 +164,12 @@ namespace UF {
         }
 
         public int GetStagePassedStar(int stageID) {
-            if (stage_PassedStar.TryGetValue(stageID, out int star)) {
-                return star;
+            foreach (var stars in stage_PassedStar) {
+                if (stars.stageID == stageID) {
+                    return stars.starCount;
+                }
             }
             return 0;
         }
-
     }
 }

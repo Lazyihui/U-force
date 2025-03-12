@@ -53,18 +53,18 @@ namespace UF {
             save.slotID = model.slotID;
 
             save.stage_Passed = new List<int>();
-            foreach (var int32 in model.stage_Passed) {
+            foreach (Int32 int32 in model.stage_Passed) {
                 save.stage_Passed.Add(int32);
                 Debug.Log("已经通关的关卡: " + int32);
             }
 
             save.stage_PassedStar = new List<int>();
-            foreach (var int32 in model.stage_PassedStar.Values) {
-                save.stage_PassedStar.Add(int32);
+            foreach (StarSignature int32 in model.stage_PassedStar) {
+                save.stage_PassedStar.Add(int32.starCount);
             }
 
             save.stage_UnLock = new List<int>();
-            foreach (var int32 in model.stage_UnLock) {
+            foreach (Int32 int32 in model.stage_UnLock) {
                 save.stage_UnLock.Add(int32);
             }
 
