@@ -9,6 +9,7 @@ namespace UF {
         // 赋值存档
         public static void Game_Load(GameSaveModel model, SaveDTO save) {
             // 给 GameSaveModel 赋值
+            Debug.Log("存档ID: " + save.slotID);
             model.slotID = save.slotID;
 
             model.stage_Passed = new HashSet<int>();
@@ -17,10 +18,10 @@ namespace UF {
             }
 
             model.stage_PassedStar = new HashSet<StarSignature>();
-            for (int i = 0; i < model.stage_PassedStar.Count; i += 1) {
+            for (int i = 0; i < save.stage_PassedStar.Count; i += 1) {
                 model.stage_PassedStar.Add(new StarSignature(i, save.stage_PassedStar[i]));
                 Debug.Log("已经通关的关卡: " + i + " 星级: " + save.stage_PassedStar[i]);
-                Debug.Log("已经通关的关卡: " + i + " 星级: " + model.stage_PassedStar.Count);
+                Debug.Log(save.stage_PassedStar.Count);
             }
 
             model.stage_UnLock = new HashSet<int>();
