@@ -219,6 +219,7 @@ namespace UF.UIApplication {
             cardDetails.CardDetailsBtn_UnLock();
         }
 
+        public int CardDetails_GetTypeID() => cardDetails.typeID;
 
         public void Init() {
 

@@ -650,6 +650,25 @@ namespace UF {
                 return;
             }
             panel.RemoveCardSelected(typeID);
+
+            Panel_CardDetailsBtn_UnLock();
+
+            CardType type = Panel_GetCardType();
+            if (type == CardType.Agriculture || type == CardType.Industry) {
+                int id = Panel_CardDetails_GetTypeID();
+
+                if (id == -1) { return; }
+
+                Panel_CardSelected_TakeAll(out List<int> typeIDs);
+                int len = typeIDs.Count;
+
+                for (int i = 0; i < len; i++) {
+                    if (id == typeIDs[i]) {
+                        Panel_CardDetailsBtn_Lock();
+                        return;
+                    }
+                }
+            }
         }
 
         public void Panel_CardSelected_TakeAll(out List<int> typeIDs) {
@@ -685,7 +704,7 @@ namespace UF {
             }
             return panel.CardSelected_SetProp(typeID, sprite);
         }
-        // 
+
         public void Panel_OneCardSelection_Clear() {
             Panel_CardSelection panel = ctx.panel_CardSelection;
             if (panel == null) {
@@ -773,12 +792,21 @@ namespace UF {
             panel.CardDetailsBtn_Lock();
         }
 
-        void Panel_CardDetailsBtn_UnLock() {
+        public void Panel_CardDetailsBtn_UnLock() {
             Panel_CardSelection panel = ctx.panel_CardSelection;
             if (panel == null) {
                 return;
             }
             panel.CardDetailsBtn_UnLock();
+        }
+
+        public int Panel_CardDetails_GetTypeID()
+        {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+            if (panel == null) {
+                return -1;
+            }
+            return panel.CardDetails_GetTypeID();
         }
 
         public void Panel_CardSelection_Close() {
