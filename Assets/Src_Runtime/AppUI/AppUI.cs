@@ -744,7 +744,6 @@ namespace UF {
             } else if (type == CardType.Agriculture || type == CardType.Industry) {
                 Panel_CardSelected_TakeAll(out List<int> typeIDs);
                 int len = typeIDs.Count;
-                Debug.Log("Len: " + len);
                 for (int i = 0; i < len; i++) {
                     if (typeID == typeIDs[i]) {
                         Panel_CardDetailsBtn_Lock();

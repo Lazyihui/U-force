@@ -114,6 +114,12 @@ namespace UF {
                 Debug.LogWarning("带电");
                 Bullet_Electricity(ctx, bullet);
             }
+
+            if (model.isHaveConverge) {
+                // 汇聚
+                Debug.LogWarning("汇聚");
+                Skill_Converge(ctx, bullet);
+            }
         }
         static void WorldBehaviour_Acting(GameSystemContext ctx, BulletEntity bullet, WorldBehaviourModel model, float dt) {
             if (model.isSpawnStuff) {
@@ -158,6 +164,7 @@ namespace UF {
 
         static void Skill_Converge(GameSystemContext ctx, BulletEntity bullet) {
             Debug.Log("汇聚");
+            bullet.isHaveConverge = true;
         }
 
         static void Bullet_RoleMoveDown(GameSystemContext ctx, BulletEntity bullet) {

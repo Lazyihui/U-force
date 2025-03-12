@@ -9,6 +9,7 @@ namespace UF {
         public bool isStop;
         public bool isHaveContinueDamege;
         public bool isHaveContinueBoomDamege;
+        public bool isHaveConverge;
         public bool isDestorySelf;
 
         public bool isRoleMoveSpeedDown;

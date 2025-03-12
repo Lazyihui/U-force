@@ -9,6 +9,7 @@ namespace UF {
         public bool isStop;
         public bool isHaveContinueDamege;
         public bool isHaveContinueBoomDamege;
+        public bool isHaveConverge; // 汇聚
 
         public bool isDestorySelf;
 
@@ -24,6 +25,7 @@ namespace UF {
             isStop = tm.isStop;
             isHaveContinueDamege = tm.isHaveContinueDamege;
             isHaveContinueBoomDamege = tm.isHaveContinueBoomDamege;
+            isHaveConverge = tm.isHaveConverge;
             isDestorySelf = tm.isDestorySelf;
 
             // role身上的

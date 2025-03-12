@@ -122,8 +122,6 @@ namespace UF {
                     role.Set_RbConstraints();
                 }
             }
-            
-            Debug.Log(attCom.GetHp());
         }
 
         public static void HpReduce_Role(GameSystemContext ctx, RoleEntity role, int damage) {

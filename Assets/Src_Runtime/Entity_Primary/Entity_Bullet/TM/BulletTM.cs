@@ -20,6 +20,9 @@ namespace UF {
         [ShowIf(nameof(isHaveContinueDamege))] public float damageRange;
         [ShowIf(nameof(isHaveContinueDamege))] public float destoryOneselfTime;
 
+        public bool isHaveConverge;
+        [ShowIf(nameof(isHaveConverge))] public float convergeLine; // 汇聚行数(比如1代表上下各一行共三行)
+
         [Title("作用于role")]
         public bool isChangeLine;
         [ShowIf(nameof(isChangeLine))] public Vector2 changeLineDir;

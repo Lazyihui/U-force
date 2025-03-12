@@ -50,13 +50,18 @@ namespace UF {
             if (bullet.isStartContinueDamege) {
                 Bullet_ContinuousDamage(ctx, bullet, dt);
             }
-            if (bullet.isStartBoomDamege) { 
+            if (bullet.isStartBoomDamege) {
                 Bullet_ContinuousBoomDamage(ctx, bullet, dt);
             }
 
             if (bullet.isHaveContinueDamege) {
                 Bullet_ContinuousBoomDamage(ctx, bullet, dt);
                 Bullet_DestoryOneself(ctx, bullet, dt);
+            }
+
+            // 汇聚
+            if (bullet.isHaveConverge) {
+                Bullet_Converge(ctx, bullet, dt);
             }
         }
         #endregion
@@ -123,6 +128,7 @@ namespace UF {
         }
 
         static void Bullet_ContinuousDamage(GameSystemContext ctx, BulletEntity bullet, float dt) {
+
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
             for (int i = 0; i < len; i += 1) {
                 RoleEntity minion = roles[i];
@@ -173,6 +179,60 @@ namespace UF {
                 }
 
             }
+        }
+
+        static void Bullet_Converge(GameSystemContext ctx, BulletEntity bullet, float dt) {
+            if (bullet.convergeTimes <= 0) { return; }
+
+            Debug.Log("Bullet_Converge");
+
+            bullet.convergeTimes -= 1;
+
+            int len = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
+            for (int i = 0; i < len; i += 1) {
+                RoleEntity minion = roles[i];
+                if (minion.roleType == RoleType.Player) {
+                    continue;
+                }
+                var minionPos = minion.TF_GetPos();
+                float dis = Vector3.Distance(minionPos, bullet.TF_GetPos());
+
+                if (dis < bullet.convergeRange) {
+                    int y = Bullet_GetYNearTower(bullet);
+                    float minionY = minionPos.y;
+
+                    if (minionY == y) { continue; }
+
+                    Vector2 dir = Vector2.zero;
+                    dir.y = y - minionY > 0 ? 1 : -1;
+                    float length = Math.Abs(y - minionY);
+
+                    minion.isChangeLine = true;
+                    minion.changeLineDir = dir;
+                    minion.changeLineLength = length;
+                }
+            }
+        }
+
+        static int Bullet_GetYNearTower(BulletEntity bullet) {
+            float centerY = bullet.TF_GetPos().y;
+            int y = (int)Math.Round(centerY);
+
+            if (y % 2 != 0) {
+                if ((int)centerY % 2 == 0) {
+                    y = (int)centerY;
+                } else {
+                    y = (int)centerY + 1;
+                }
+            }
+
+            if (y > 6) {
+                y = 6;
+            } else if (y < -4) {
+                y = -4;
+            }
+
+            return y;
         }
         #endregion
 

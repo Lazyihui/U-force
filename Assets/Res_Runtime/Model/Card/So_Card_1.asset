@@ -23,7 +23,7 @@ MonoBehaviour:
     bulletAgrSoArray:
     - {fileID: 11400000, guid: f8fa8df0f443f694aa9bda115442c447, type: 2}
     bulletIndSoArray:
-    - {fileID: 11400000, guid: 2c96a299017c4b649935ed088e2a5578, type: 2}
+    - {fileID: 11400000, guid: adbf7912529e92547a25790d37f3ab38, type: 2}
     bulletSciSoArray: []
     roleEnemySoArray:
     - {fileID: 11400000, guid: 9d04dd169b2febc41a88d55ba222c7bb, type: 2}

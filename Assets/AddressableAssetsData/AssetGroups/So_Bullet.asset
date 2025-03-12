@@ -144,7 +144,7 @@ MonoBehaviour:
     - So_Bullet
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 22d7664782209a0418e795f154fdac63
-    m_Address: "So_Bullet_3300\u5730\u9762\u55B7\u5C04 1"
+    m_Address: "So_Bullet_3300\u5730\u9762\u55B7\u5C04"
     m_ReadOnly: 0
     m_SerializedLabels:
     - So_Bullet

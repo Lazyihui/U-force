@@ -72,7 +72,7 @@ public class RoleMoveComponent {
 
         Vector2 oldVelo = rb.velocity;
         oldVelo.x = xAxis * moveSpeed;
-        oldVelo.y = 0;
+        // oldVelo.y = 0;
         rb.velocity = oldVelo;
     }
 

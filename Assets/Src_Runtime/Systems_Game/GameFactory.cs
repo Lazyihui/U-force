@@ -237,6 +237,8 @@ namespace UF {
             bullet.damageInterval = tm.damageInterval;
             bullet.damageTimer = tm.damageTimer;
             bullet.damageRange = tm.damageRange;
+            bullet.convergeRange = tm.convergeLine * 2 + 0.5f; // 行高2, 加0.5容错
+            bullet.convergeTimes = 1; // 想不出来怎么判断不重复汇聚了
             bullet.destoryOneselfTime = tm.destoryOneselfTime;
 
             bullet.isMakeBulletAppear = tm.isMakeBulletAppear;

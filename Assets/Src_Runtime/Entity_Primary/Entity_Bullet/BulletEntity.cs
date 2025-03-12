@@ -28,6 +28,11 @@ namespace UF {
         public float damageTimer;//伤害计时器
         public float destoryOneselfTime;//自毁时间
 
+        // 汇聚
+        public bool isHaveConverge;
+        public float convergeRange;
+        public int convergeTimes;
+
         //  大招
         public bool isMakeBulletAppear;//是否生使子弹出现
         public bool isDestotyBottomALine;//是否销毁一行
@@ -156,7 +161,6 @@ namespace UF {
                 Gizmos.DrawLine(lastPoint, nextPoint);
                 lastPoint = nextPoint;
             }
-
         }
 
         #endregion 
