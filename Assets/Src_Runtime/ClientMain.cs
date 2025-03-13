@@ -195,7 +195,6 @@ namespace UF {
             };
 
             loginEvent.OnSelectEnterGameClickHandle += () => {
-                Debug.Log("EnterGame");
                 // 放到UIDomain里
                 appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
 

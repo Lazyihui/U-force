@@ -81,6 +81,7 @@ namespace UF {
                 if (item.stageID == stageID) {
                     // 找到后更新星级
                     temp = item;
+                    if (temp.starCount >= star) return;
                     temp.starCount = star; // 修改星级
                     stage_PassedStar.Remove(item); // 移除旧记录
                     stage_PassedStar.Add(temp); //   添加更新后的记录
