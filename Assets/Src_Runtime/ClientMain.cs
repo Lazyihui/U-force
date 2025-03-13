@@ -361,7 +361,6 @@ namespace UF {
                 }
 
                 if (isWin) {
-                    Debug.Log("进入下一关 进入备战(选卡片)页面");
                     gameSystem.ClearGame();
                     gameSystem.Exit();
                     loginSystem.Enter();

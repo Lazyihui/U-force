@@ -72,10 +72,30 @@ namespace UF {
             return starCount;
         }
         public void Add_Stage_PassedStar(int stageID, int star) {
-            stage_PassedStar.Add(new StarSignature(stageID, star));
-            Debug.Log("已经通关的关卡: " + stageID + "星级: " + star);
-        }
+            // 创建一个临时的 StarSignature 用于查找
+            StarSignature temp = new StarSignature(stageID, 0);
 
+            // 查找是否已存在相同 stageID 的记录
+            bool found = false;
+            foreach (var item in stage_PassedStar) {
+                if (item.stageID == stageID) {
+                    // 找到后更新星级
+                    temp = item;
+                    temp.starCount = star; // 修改星级
+                    stage_PassedStar.Remove(item); // 移除旧记录
+                    stage_PassedStar.Add(temp); //   添加更新后的记录
+                    found = true;
+                    Debug.Log("更新关卡的星级: " + stageID + " 新星级: " + star);
+                    break;
+                }
+            }
+
+            // 如果没有找到，则添加新记录
+            if (!found) {
+                stage_PassedStar.Add(new StarSignature(stageID, star));
+                Debug.Log("添加新关卡的星级: " + stageID + " 星级: " + star);
+            }
+        }
         public void Set_stage_AllStar() {
             starAllCount = 0;
             foreach (var stars in stage_PassedStar) {

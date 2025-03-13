@@ -66,7 +66,6 @@ namespace UF {
         // 写入文件
         public static void WriteFile(string mount, string path, byte[] buffer, long length) {
             using (var fs = new System.IO.FileStream(path, System.IO.FileMode.Create)) {
-                Debug.Log("WriteFile: " + path);
                 fs.Write(buffer, 0, (int)length);
             }
         }

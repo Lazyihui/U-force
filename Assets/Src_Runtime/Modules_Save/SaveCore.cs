@@ -60,7 +60,6 @@ namespace UF {
             save.stage_PassedStar = new List<ulong>();
             foreach (StarSignature int32 in model.stage_PassedStar) {
                 save.stage_PassedStar.Add(int32.value);
-                Debug.Log("得到的星星: " + int32.starCount + "关卡" + int32.stageID);
             }
 
             save.stage_UnLock = new List<int>();
@@ -101,11 +100,9 @@ namespace UF {
                 Array.Copy(readBuffer, newBuffer, readBuffer.Length);
                 save = new SaveDTO();
                 save.FromBytes(newBuffer, ref offset);
-                Debug.Log("Slot loaded: " + slotID);
                 return true;
             } else {
                 save = default;
-                Debug.LogError("Slot not found: " + slotID);
                 return false;
             }
 
