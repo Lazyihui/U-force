@@ -16,7 +16,7 @@ MonoBehaviour:
     typeID: 2100
     typeName: "\u78C1\u94C1"
     castKeys: 4
-    cd: 5
+    cd: 0.1
     restUseTimes: 1000
     maxUseTimes: 1000
     actionTMs:
@@ -54,3 +54,9 @@ MonoBehaviour:
         isRestoreMp: 0
         restoreMp: 0
         isAttachBuff: 0
+      hasWorldBehaviour: 0
+      worldBehaviourTM:
+        isSpawnStuff: 0
+        stuffSo: {fileID: 0}
+        isSpawnBullet: 0
+        bulletSo: {fileID: 0}

@@ -157,7 +157,6 @@ namespace UF {
                 if (hasChangeLinePos) { return; }
                 changeLinePos = TF_GetPos();
                 hasChangeLinePos = true;
-
             }
         }
 
