@@ -35,13 +35,6 @@ namespace UF {
             var game = ctx.gameEntity;
             var saveCore = ctx.saveCore;
             saveCore.Slot_Save(game.playerSaveData);
-            Debug.Log("保存成功: " + game.playerSaveData.stage_Passed.Count);
-            for (int i = 0; i <= game.playerSaveData.stage_Passed.Count; i++) {
-                if (game.playerSaveData.stage_Passed.Contains(i)) {
-                    Debug.Log("已经通关的关卡: " + i);
-                }
-            }
-
         }
 
     }

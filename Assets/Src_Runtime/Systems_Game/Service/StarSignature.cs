@@ -12,10 +12,10 @@ namespace UF {
         [UnityEngine.HideInInspector]
         public ulong value; // 0~8
 
-        [FieldOffset(4)]
+        [FieldOffset(0)]
         public int stageID;
 
-        [FieldOffset(8)]
+        [FieldOffset(4)]
         public int starCount;
 
         public StarSignature(int stageID, int starCount) {

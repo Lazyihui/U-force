@@ -10,7 +10,7 @@ namespace UF {
         public int slotID;// 存档ID
 
         public List<int> stage_Passed;//通关的关卡
-        public List<int> stage_PassedStar;//通关关卡的星级
+        public List<ulong> stage_PassedStar;//通关关卡的星级
         public List<int> stage_UnLock;//到达的关卡
 
         public int unLockChapterID;//解锁的章节
@@ -23,7 +23,7 @@ namespace UF {
             size += sizeof(int) * 2;
 
             size += sizeof(int) * stage_Passed.Count * sizeof(int);
-            size += sizeof(int) * stage_PassedStar.Count * sizeof(int);
+            size += sizeof(int) * stage_PassedStar.Count * sizeof(ulong);
             size += sizeof(int) * stage_UnLock.Count * sizeof(int);
 
             return size;
@@ -33,7 +33,7 @@ namespace UF {
             GFBufferEncoderWriter.WriteInt32(dst, slotID, ref offset);
 
             GFBufferEncoderWriter.WriteInt32List(dst, stage_Passed, ref offset);
-            GFBufferEncoderWriter.WriteInt32List(dst, stage_PassedStar, ref offset);
+            GFBufferEncoderWriter.WriteUInt64List(dst, stage_PassedStar, ref offset);
             GFBufferEncoderWriter.WriteInt32List(dst, stage_UnLock, ref offset);
 
             GFBufferEncoderWriter.WriteInt32(dst, unLockChapterID, ref offset);
@@ -45,7 +45,7 @@ namespace UF {
             slotID = GFBufferEncoderReader.ReadInt32(src, ref offset);
 
             stage_Passed = GFBufferEncoderReader.ReadInt32List(src, ref offset);
-            stage_PassedStar = GFBufferEncoderReader.ReadInt32List(src, ref offset);
+            stage_PassedStar = GFBufferEncoderReader.ReadUInt64List(src, ref offset);
             stage_UnLock = GFBufferEncoderReader.ReadInt32List(src, ref offset);
 
             unLockChapterID = GFBufferEncoderReader.ReadInt32(src, ref offset);

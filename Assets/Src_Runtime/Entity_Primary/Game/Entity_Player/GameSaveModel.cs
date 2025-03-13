@@ -73,6 +73,7 @@ namespace UF {
         }
         public void Add_Stage_PassedStar(int stageID, int star) {
             stage_PassedStar.Add(new StarSignature(stageID, star));
+            Debug.Log("已经通关的关卡: " + stageID + "星级: " + star);
         }
 
         public void Set_stage_AllStar() {

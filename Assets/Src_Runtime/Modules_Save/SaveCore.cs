@@ -55,12 +55,12 @@ namespace UF {
             save.stage_Passed = new List<int>();
             foreach (Int32 int32 in model.stage_Passed) {
                 save.stage_Passed.Add(int32);
-                Debug.Log("已经通关的关卡: " + int32);
             }
 
-            save.stage_PassedStar = new List<int>();
+            save.stage_PassedStar = new List<ulong>();
             foreach (StarSignature int32 in model.stage_PassedStar) {
-                save.stage_PassedStar.Add(int32.starCount);
+                save.stage_PassedStar.Add(int32.value);
+                Debug.Log("得到的星星: " + int32.starCount + "关卡" + int32.stageID);
             }
 
             save.stage_UnLock = new List<int>();
