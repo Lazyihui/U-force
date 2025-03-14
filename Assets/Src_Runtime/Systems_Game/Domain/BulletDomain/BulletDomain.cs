@@ -195,7 +195,7 @@ namespace UF {
                     continue;
                 }
                 var minionPos = minion.TF_GetPos();
-                float dis = Vector3.Distance(minionPos, bullet.TF_GetPos());
+                float dis = Vector3.Distance(bullet.TF_GetPos(), minionPos);
 
                 if (dis < bullet.convergeRange) {
                     int y = Bullet_GetYNearTower(bullet);
@@ -207,9 +207,9 @@ namespace UF {
                     dir.y = y - minionY > 0 ? 1 : -1;
                     float length = Math.Abs(y - minionY);
 
-                    minion.isChangeLine = true;
                     minion.changeLineDir = dir;
                     minion.changeLineLength = length;
+                    minion.isChangeLine = true;
                 }
             }
         }
