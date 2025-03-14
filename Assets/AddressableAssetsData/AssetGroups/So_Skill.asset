@@ -149,6 +149,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - So_Skill
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1e4152d5a62bc084d835e0ea0ba1be6e
+    m_Address: "So_Skillor_3400_\u9F99\u5377\u98CE"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 4b47acea7a70a444998ddd6e6fd8b9bf, type: 2}
   m_SchemaSet:

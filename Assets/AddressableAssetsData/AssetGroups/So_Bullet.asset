@@ -155,6 +155,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - So_Bullet
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e199d60d992a56a4b885544846d39fdf
+    m_Address: "So_Bullet_3400\u9F99\u5377\u98CE"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Bullet
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 4b47acea7a70a444998ddd6e6fd8b9bf, type: 2}
   m_SchemaSet:

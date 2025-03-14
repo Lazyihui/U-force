@@ -66,6 +66,7 @@ MonoBehaviour:
         stuffSo: {fileID: 0}
         isSpawnBullet: 0
         bulletSo: {fileID: 0}
+        isHaveCentred: 0
     - loopTM:
         loopFlag: 3
         maintainFrame: 1e+11
@@ -89,6 +90,7 @@ MonoBehaviour:
         stuffSo: {fileID: 0}
         isSpawnBullet: 0
         bulletSo: {fileID: 0}
+        isHaveCentred: 0
     - loopTM:
         loopFlag: 0
         maintainFrame: 1e+11
@@ -112,3 +114,4 @@ MonoBehaviour:
         stuffSo: {fileID: 0}
         isSpawnBullet: 0
         bulletSo: {fileID: 0}
+        isHaveCentred: 0

@@ -11,12 +11,16 @@ namespace UF {
         public bool isSpawnBullet;
         public BulletSo bulletSo;
 
+        public bool isHaveCentred;
+
         public void FromTM(WorldBehaviourTM tm) {
             isSpawnStuff = tm.isSpawnStuff;
             stuffSo = tm.stuffSo;
 
             isSpawnBullet = tm.isSpawnBullet;
             bulletSo = tm.bulletSo;
+
+            isHaveCentred = tm.isHaveCentred;
         }
 
     }
