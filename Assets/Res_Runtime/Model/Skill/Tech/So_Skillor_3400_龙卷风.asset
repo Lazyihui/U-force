@@ -16,7 +16,7 @@ MonoBehaviour:
     typeID: 3400
     typeName: "\u9F99\u5377\u98CE"
     castKeys: 64
-    cd: 20
+    cd: 1
     restUseTimes: 1000
     maxUseTimes: 1000
     actionTMs:
@@ -54,10 +54,10 @@ MonoBehaviour:
         isRestoreMp: 0
         restoreMp: 0
         isAttachBuff: 0
-      hasWorldBehaviour: 0
+      hasWorldBehaviour: 1
       worldBehaviourTM:
         isSpawnStuff: 0
         stuffSo: {fileID: 0}
         isSpawnBullet: 0
         bulletSo: {fileID: 0}
-        isHaveCentred: 0
+        isHaveCentred: 1

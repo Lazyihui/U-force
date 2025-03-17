@@ -142,8 +142,7 @@ namespace UF {
             };
 
             loginEvent.OnSettingHandle += () => {
-                Debug.Log("设置");
-                // Button TODO
+                appUI.Panel_Setting_Open();
             };
 
             loginEvent.OnQuitHandle += () => {
