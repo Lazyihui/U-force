@@ -1454,6 +1454,10 @@ namespace UF {
                 GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
                 panel = go.GetComponent<Panel_Setting>();
                 panel.Ctor();
+
+                panel.OnBackClickHandle = () => {
+                    eventCenter.OnSettingBackClick();
+                };
             }
             ctx.panel_Setting = panel;
             panel.Show();

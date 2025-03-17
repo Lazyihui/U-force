@@ -1,10 +1,17 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Panel_Setting : MonoBehaviour {
-    // TODO: 设置
+    [SerializeField] Button btn_Back;
+    public Action OnBackClickHandle;
+
     public void Ctor() {
-        
+        btn_Back.onClick.AddListener(() => {
+            if (OnBackClickHandle != null) {
+                OnBackClickHandle();
+            }
+        });
     }
 
     public void Show() {
