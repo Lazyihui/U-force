@@ -54,24 +54,18 @@ namespace UF {
                 Bullet_ContinuousBoomDamage(ctx, bullet, dt);
             }
 
-            if (bullet.isHaveContinueDamege) {
-                Bullet_ContinuousBoomDamage(ctx, bullet, dt);
-                Bullet_DestoryOneself(ctx, bullet, dt);
-            }
-
             // 汇聚
             if (bullet.isHaveConverge) {
                 Bullet_Converge(ctx, bullet, dt);
             }
+
+            if (bullet.isFixedBoomPoint) {
+                // 交叉检测然后检测到爆炸 产生一次伤害
+                Bullet_FixedBltHitBullet(ctx, bullet, dt);
+            }
         }
         #endregion
 
-        public static void Bullet_DestoryOneself(GameSystemContext ctx, BulletEntity bullet, float dt) {
-            bullet.destoryOneselfTime -= dt;
-            if (bullet.destoryOneselfTime < 0) {
-                UnSpawn(ctx, bullet);
-            }
-        }
 
         #region detection检测
         public static void CheckUnSpawn(GameSystemContext ctx, BulletEntity bullet, float dt) {
@@ -83,7 +77,6 @@ namespace UF {
             if (bullet.isStartBoomDamege || bullet.isStartContinueDamege) {
                 return;
             }
-
             detectionMinionByPos(ctx, bullet, pos, 1);
         }
 
@@ -179,6 +172,30 @@ namespace UF {
                 }
 
             }
+        }
+
+        static void Bullet_FixedBltHitBullet(GameSystemContext ctx, BulletEntity fixBlt, float dt) {
+            int len = ctx.bulletRepository.TakeAll(out BulletEntity[] bullets);
+
+            for (int i = 0; i < len; i += 1) {
+                BulletEntity bullet = bullets[i];
+                if (bullet.isFixedBoomPoint) {
+                    continue;
+                }
+
+                float dis = Vector3.Distance(bullet.TF_GetPos(), fixBlt.TF_GetPos());
+                
+                if (dis < 1) {
+                    if (fixBlt.isHit) { continue; }
+                    Bullet_HitBullet(fixBlt.frames[fixBlt.frameIndex]);
+                    fixBlt.isHit = true;
+                    Debug.Log("Bullet_FixedBltHitBullet");
+                }
+
+
+
+            }
+
         }
 
         static void Bullet_Converge(GameSystemContext ctx, BulletEntity bullet, float dt) {

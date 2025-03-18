@@ -39,6 +39,10 @@ namespace UF {
             frame.loopModel.hitCount += 1;
         }
 
+        static void Bullet_HitBullet(BulletFrameModel frame) {
+            frame.loopModel.hitCount += 1;
+            Debug.Log("击中子弹"+ frame.loopModel.hitCount);
+        }
         #region Frame:Acting
 
         static void Frame_Acting(GameSystemContext ctx, BulletEntity bullet, BulletFrameModel frame, float dt) {
@@ -146,7 +150,7 @@ namespace UF {
         }
         static void Bullet_ContinuousDamageStart(GameSystemContext ctx, BulletEntity bullet) {
             // 写完
-            Debug.Log("停止持续伤害");
+            Debug.Log("持续伤害");
             bullet.isStartContinueDamege = true;
         }
         static void Bullet_Stop(GameSystemContext ctx, BulletEntity bullet) {

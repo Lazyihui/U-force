@@ -22,11 +22,10 @@ namespace UF {
 
         public int hitTimes;//击中次数 可以集中几下
 
-        public bool isHaveContinueDamege;//是否有持续伤害
+        // public bool isHaveContinueDamege;//是否有持续伤害
         public int continueDamege;//持续伤害
         public float damageInterval;//伤害间隔
         public float damageTimer;//伤害计时器
-        public float destoryOneselfTime;//自毁时间
 
         // 汇聚
         public bool isHaveConverge;
@@ -149,20 +148,20 @@ namespace UF {
 
         #region Gizmos
         void OnDrawGizmos() {
-            if (!isHaveContinueDamege) {
-                return;
-            }
-            int segments = 320;   // 圆的线段数量，越多越圆滑
-            Gizmos.color = Color.green;
-            float angle = 0;
-            var center = this.transform.position;
-            Vector3 lastPoint = center + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * damageRange;
+            if (isStartBoomDamege || isStartContinueDamege) {
 
-            for (int i = 0; i < segments; i += 10) {
-                angle = (i / (float)segments) * 2 * Mathf.PI;
-                Vector3 nextPoint = center + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * damageRange;
-                Gizmos.DrawLine(lastPoint, nextPoint);
-                lastPoint = nextPoint;
+                int segments = 320;   // 圆的线段数量，越多越圆滑
+                Gizmos.color = Color.green;
+                float angle = 0;
+                var center = this.transform.position;
+                Vector3 lastPoint = center + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * damageRange;
+
+                for (int i = 0; i < segments; i += 10) {
+                    angle = (i / (float)segments) * 2 * Mathf.PI;
+                    Vector3 nextPoint = center + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * damageRange;
+                    Gizmos.DrawLine(lastPoint, nextPoint);
+                    lastPoint = nextPoint;
+                }
             }
         }
 

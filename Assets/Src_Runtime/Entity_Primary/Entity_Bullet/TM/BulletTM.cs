@@ -13,12 +13,10 @@ namespace UF {
         public int hitTimes;
         public int attackDamage;
 
-        public bool isHaveContinueDamege;
-        [ShowIf(nameof(isHaveContinueDamege))] public int continueDamege;
-        [ShowIf(nameof(isHaveContinueDamege))] public float damageInterval;
-        [ShowIf(nameof(isHaveContinueDamege))] public float damageTimer;
-        [ShowIf(nameof(isHaveContinueDamege))] public float damageRange;
-        [ShowIf(nameof(isHaveContinueDamege))] public float destoryOneselfTime;
+        public int continueDamege;
+        public float damageInterval;
+        public float damageTimer;
+        public float damageRange;
 
         public bool isHaveConverge;
         [ShowIf(nameof(isHaveConverge))] public float convergeLine; // 汇聚行数(比如1代表上下各一行共三行)

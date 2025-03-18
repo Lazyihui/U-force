@@ -15,26 +15,35 @@ MonoBehaviour:
   tm:
     typeID: 3600
     typeName: "Bullet3600\u5730\u9762\u55B7\u5C04"
-    hp: 0
     hitTimes: 1
-    attackDamage: 6
-    isBomb: 0
-    isHaveContinueDamege: 0
+    attackDamage: 4
     continueDamege: 0
-    damageInterval: 0
-    damageTimer: 0
-    isHaveDamageRange: 1
+    damageInterval: 1
+    damageTimer: 1
     damageRange: 5
+    isHaveConverge: 0
+    convergeLine: 0
+    isChangeLine: 0
+    changeLineDir: {x: 0, y: 0}
+    LineNum: 0
+    LineLength: 0
+    isElectricity: 0
+    elecDamage: 0
+    elecTimes: 0
+    elecMax: 0
+    isMakeBulletAppear: 0
+    isDestotyBottomALine: 0
+    isFixedBoomPoint: 1
+    isRepelled: 0
+    repeLength: 0
     type: 0
     moveSpeed: 10
     modPrefab: {fileID: 5909918833320266611, guid: e2c440242ad6e0c4c8d6654a6aa2dacd, type: 3}
     sprite: {fileID: 21300000, guid: 8f74e053a21eeca4684f693209dab1f0, type: 3}
     content: "\u653B\u51FB\u70B9"
-    isMakeBulletAppear: 0
-    isDestoryALine: 0
     frames:
     - loopTM:
-        loopFlag: 4
+        loopFlag: -1
         maintainFrame: 1e+12
         triggerIntervalSec: 24
         triggerTimesMax: 24
@@ -44,33 +53,43 @@ MonoBehaviour:
         isStop: 0
         isHaveContinueDamege: 0
         isHaveContinueBoomDamege: 0
+        isHaveConverge: 0
         isDestorySelf: 0
         isRoleMoveSpeedDown: 0
         isRoleMoveDown: 0
         isRoleMoveRight: 0
+        isRoleElectricity: 0
       hasWorldBehaviour: 0
       worldBehaviourTM:
         isSpawnStuff: 1
         stuffSo: {fileID: 11400000, guid: 9b5a683b85813454a83ca4af882562b1, type: 2}
+        isSpawnBullet: 0
+        bulletSo: {fileID: 0}
+        isHaveCentred: 0
     - loopTM:
         loopFlag: 3
         maintainFrame: 1e+12
-        triggerIntervalSec: 24
-        triggerTimesMax: 24
+        triggerIntervalSec: 240
+        triggerTimesMax: 240
       hasBulletBehaviour: 1
       bulletBehaviourTM:
         isMove: 0
         isStop: 0
         isHaveContinueDamege: 0
         isHaveContinueBoomDamege: 1
+        isHaveConverge: 0
         isDestorySelf: 0
         isRoleMoveSpeedDown: 0
         isRoleMoveDown: 0
         isRoleMoveRight: 0
+        isRoleElectricity: 0
       hasWorldBehaviour: 0
       worldBehaviourTM:
         isSpawnStuff: 1
         stuffSo: {fileID: 11400000, guid: 9b5a683b85813454a83ca4af882562b1, type: 2}
+        isSpawnBullet: 0
+        bulletSo: {fileID: 0}
+        isHaveCentred: 0
     - loopTM:
         loopFlag: 3
         maintainFrame: 1e+12
@@ -82,17 +101,16 @@ MonoBehaviour:
         isStop: 0
         isHaveContinueDamege: 0
         isHaveContinueBoomDamege: 0
+        isHaveConverge: 0
         isDestorySelf: 1
         isRoleMoveSpeedDown: 0
         isRoleMoveDown: 0
         isRoleMoveRight: 0
+        isRoleElectricity: 0
       hasWorldBehaviour: 0
       worldBehaviourTM:
         isSpawnStuff: 1
         stuffSo: {fileID: 11400000, guid: 9b5a683b85813454a83ca4af882562b1, type: 2}
-    isChangeLine: 0
-    changeLineDir: {x: 0, y: 0}
-    LineNum: 0
-    LineLength: 0
-    isRepelled: 0
-    repeLength: 0
+        isSpawnBullet: 0
+        bulletSo: {fileID: 0}
+        isHaveCentred: 0

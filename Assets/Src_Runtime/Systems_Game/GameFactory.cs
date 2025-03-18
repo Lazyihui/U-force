@@ -232,14 +232,12 @@ namespace UF {
             bullet.hitTimes = tm.hitTimes;
             bullet.moveSpeed = tm.moveSpeed * 5;
 
-            bullet.isHaveContinueDamege = tm.isHaveContinueDamege;
             bullet.continueDamege = tm.continueDamege;
             bullet.damageInterval = tm.damageInterval;
             bullet.damageTimer = tm.damageTimer;
             bullet.damageRange = tm.damageRange;
             bullet.convergeRange = tm.convergeLine * 2 + 1.5f; // 行高2, 加1.5容错
             bullet.convergeTimes = 1; // 想不出来怎么判断不重复汇聚了
-            bullet.destoryOneselfTime = tm.destoryOneselfTime;
 
             bullet.isMakeBulletAppear = tm.isMakeBulletAppear;
             bullet.isDestotyBottomALine = tm.isDestotyBottomALine;
