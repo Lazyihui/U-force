@@ -13,7 +13,7 @@ namespace UF {
 
         // 关卡信息
         public HashSet<int> stage_Passed;//通关的关卡
-        public HashSet<StarSignature> stage_PassedStar;//通关关卡的星级
+        public HashSet<StarSignature> stage_PassedStar;//通关关卡的星级 这里的优化，可以加一个dictionario<int,int>  key是关卡id value是星级,用来查找星级
         public HashSet<int> stage_UnLock;//到达的关卡
 
         public int unLockChapterID;//解锁的章节2
