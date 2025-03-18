@@ -24,7 +24,7 @@ MonoBehaviour:
     damageRange: 5
     destoryOneselfTime: 0
     isHaveConverge: 1
-    convergeLine: 1
+    convergeLine: 5
     isChangeLine: 0
     changeLineDir: {x: 0, y: 0}
     LineNum: 0
@@ -38,19 +38,19 @@ MonoBehaviour:
     isRepelled: 0
     repeLength: 0
     type: 1
-    moveSpeed: 10
+    moveSpeed: 2
     modPrefab: {fileID: 431577423833956408, guid: 6d23d913f4474824880f28041419e081, type: 3}
     sprite: {fileID: 21300000, guid: 0a9e8d62c2bd5a64cbaee55148dbaf82, type: 3}
     content: "\u6C47\u96C6\u602A\u7269"
     frames:
     - loopTM:
         loopFlag: 3
-        maintainFrame: 24
-        triggerIntervalSec: 24
-        triggerTimesMax: 24
-      hasBulletBehaviour: 0
+        maintainFrame: 1e+11
+        triggerIntervalSec: 2
+        triggerTimesMax: 2
+      hasBulletBehaviour: 1
       bulletBehaviourTM:
-        isMove: 0
+        isMove: 1
         isStop: 0
         isHaveContinueDamege: 0
         isHaveContinueBoomDamege: 0
@@ -62,19 +62,20 @@ MonoBehaviour:
         isRoleElectricity: 0
       hasWorldBehaviour: 0
       worldBehaviourTM:
-        isSpawnStuff: 1
-        stuffSo: {fileID: 11400000, guid: 9b5a683b85813454a83ca4af882562b1, type: 2}
+        isSpawnStuff: 0
+        stuffSo: {fileID: 0}
         isSpawnBullet: 0
         bulletSo: {fileID: 0}
+        isHaveCentred: 0
     - loopTM:
         loopFlag: 3
-        maintainFrame: 1e+12
-        triggerIntervalSec: 24
-        triggerTimesMax: 24
+        maintainFrame: 1e+11
+        triggerIntervalSec: 5
+        triggerTimesMax: 5
       hasBulletBehaviour: 1
       bulletBehaviourTM:
         isMove: 0
-        isStop: 0
+        isStop: 1
         isHaveContinueDamege: 0
         isHaveContinueBoomDamege: 0
         isHaveConverge: 1
@@ -85,13 +86,14 @@ MonoBehaviour:
         isRoleElectricity: 0
       hasWorldBehaviour: 0
       worldBehaviourTM:
-        isSpawnStuff: 1
-        stuffSo: {fileID: 11400000, guid: 9b5a683b85813454a83ca4af882562b1, type: 2}
+        isSpawnStuff: 0
+        stuffSo: {fileID: 0}
         isSpawnBullet: 0
         bulletSo: {fileID: 0}
+        isHaveCentred: 0
     - loopTM:
-        loopFlag: 3
-        maintainFrame: 1e+12
+        loopFlag: 0
+        maintainFrame: 1e+11
         triggerIntervalSec: 24
         triggerTimesMax: 24
       hasBulletBehaviour: 1
@@ -108,7 +110,8 @@ MonoBehaviour:
         isRoleElectricity: 0
       hasWorldBehaviour: 0
       worldBehaviourTM:
-        isSpawnStuff: 1
-        stuffSo: {fileID: 11400000, guid: 9b5a683b85813454a83ca4af882562b1, type: 2}
+        isSpawnStuff: 0
+        stuffSo: {fileID: 0}
         isSpawnBullet: 0
         bulletSo: {fileID: 0}
+        isHaveCentred: 0

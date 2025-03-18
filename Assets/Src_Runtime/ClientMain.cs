@@ -142,8 +142,8 @@ namespace UF {
             };
 
             loginEvent.OnSettingHandle += () => {
-                Debug.Log("设置");
-                // Button TODO
+                appUI.Panel_Setting_Open();
+                appUI.Panel_Login_Close();
             };
 
             loginEvent.OnQuitHandle += () => {
@@ -303,6 +303,12 @@ namespace UF {
 
             loginEvent.OnTrainTipCloseClickHandle += () => {
                 appUI.Panel_Training_Tip_Close();
+            };
+
+            // 设置
+            loginEvent.OnSettingBackClickHandle += () => {
+                appUI.Panel_Setting_Close();
+                appUI.Panel_Login_Open();
             };
         }
         #endregion

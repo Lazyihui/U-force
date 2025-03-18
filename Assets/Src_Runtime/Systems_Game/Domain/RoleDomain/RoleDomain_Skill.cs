@@ -152,6 +152,11 @@ namespace UF {
                 // SpawnBullet
                 BulletDomain.SpawnByPos(ctx, model.bulletSo.tm.typeID, role.TF_GetPos(), new Vector3(0, 0, 0));
             }
+
+            if (model.isHaveCentred) {
+                Debug.LogWarning("RoleDomain.Bullet_Centred集中位置");
+                Bullet_Centred(ctx);
+            }
         }
         #endregion
         #region  查找坐标Y轴最近的敌人坐标
@@ -177,6 +182,44 @@ namespace UF {
             }
             var pos = new Vector3(player.TF_GetPos().x, nearestEnemy.TF_GetPos().y, 0);
             return pos;
+        }
+        #endregion
+
+        #region 击中位置(大招版汇聚)
+        static void Bullet_Centred(GameSystemContext ctx) {
+            int len = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
+            for (int i = 0; i < len; i += 1) {
+                RoleEntity minion = roles[i];
+                if (minion.roleType == RoleType.Player) {
+                    continue;
+                }
+                var minionPos = minion.TF_GetPos();
+
+                int random = UnityEngine.Random.Range(1, 4);
+                int y = 0;
+                switch (random) {
+                    case 1:
+                        y = 4;
+                        break;
+                    case 2:
+                        y = 2;
+                        break;
+                    case 3:
+                        y = 0;
+                        break;
+                }
+                float minionY = minionPos.y;
+                
+                if (minionY == y) { continue; }
+
+                Vector2 dir = Vector2.zero;
+                dir.y = y - minionY > 0 ? 1 : -1;
+                float length = Math.Abs(y - minionY);
+
+                minion.changeLineDir = dir;
+                minion.changeLineLength = length;
+                minion.isChangeLine = true;
+            }
         }
         #endregion
     }

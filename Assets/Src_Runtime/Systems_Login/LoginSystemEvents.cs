@@ -192,5 +192,14 @@ namespace UF {
             }
         }
         #endregion
+
+        #region Setting
+        public Action OnSettingBackClickHandle;
+        public void OnSettingBackClick() {
+            if (OnSettingBackClickHandle != null) {
+                OnSettingBackClickHandle();
+            }
+        }
+        #endregion
     }
 }

@@ -200,6 +200,11 @@ namespace UF {
             eventCenter.OnTrainTipCloseClickHandle += () => { // 关闭训练营按键提示Panel
                 events.OnTrainTipCloseClick();
             };
+
+            // 设置
+            eventCenter.OnSettingBackClickHandle += () => { // 关闭设置
+                events.OnSettingBackClick();
+            };
         }
     }
 }

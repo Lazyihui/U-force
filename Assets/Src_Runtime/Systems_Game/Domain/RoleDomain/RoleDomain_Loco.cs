@@ -141,17 +141,23 @@ namespace UF {
         }
 
         static void ControlledCheck(GameSystemContext ctx, RoleEntity role) {
+            if (role.roleType == RoleType.Player) { return; }
+
             var pos = role.GetPos();
+
             if (pos.x >= role.repulsedPos.x + role.repulsedLength) {
                 role.isRepulsed = false;
             }
+
             var dirY = role.changeLineDir.y;
             if (dirY > 0 && pos.y >= role.changeLinePos.y + role.changeLineLength) {
                 role.isChangeLine = false;
                 role.hasChangeLinePos = false;
+                role.Set_RbConstraints();
             } else if (dirY < 0 && pos.y <= role.changeLinePos.y - role.changeLineLength) {
                 role.isChangeLine = false;
                 role.hasChangeLinePos = false;
+                role.Set_RbConstraints();
             }
         }
 

@@ -800,8 +800,7 @@ namespace UF {
             panel.CardDetailsBtn_UnLock();
         }
 
-        public int Panel_CardDetails_GetTypeID()
-        {
+        public int Panel_CardDetails_GetTypeID() {
             Panel_CardSelection panel = ctx.panel_CardSelection;
             if (panel == null) {
                 return -1;
@@ -1444,6 +1443,34 @@ namespace UF {
 
 
 
+        #endregion
+
+        #region Setting
+        public void Panel_Setting_Open() {
+            Panel_Setting panel = ctx.panel_Setting;
+
+            if (panel == null) {
+                GameObject prefab = ctx.assetsCore.Panel_GetSetting();
+                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                panel = go.GetComponent<Panel_Setting>();
+                panel.Ctor();
+
+                panel.OnBackClickHandle = () => {
+                    eventCenter.OnSettingBackClick();
+                };
+            }
+            ctx.panel_Setting = panel;
+            panel.Show();
+        }
+
+        public void Panel_Setting_Close() {
+            Panel_Setting panel = ctx.panel_Setting;
+
+            if (panel == null) { return; }
+
+            panel.TearDown();
+            ctx.panel_Setting = null;
+        }
         #endregion
     }
 }
