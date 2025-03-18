@@ -24,7 +24,7 @@ MonoBehaviour:
     damageRange: 5
     destoryOneselfTime: 0
     isHaveConverge: 1
-    convergeLine: 5
+    convergeLine: 1
     isChangeLine: 0
     changeLineDir: {x: 0, y: 0}
     LineNum: 0
