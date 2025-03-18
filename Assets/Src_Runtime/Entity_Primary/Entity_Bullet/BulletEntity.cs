@@ -74,6 +74,9 @@ namespace UF {
         public int elecTimes; // 伤害次数
         public float elecMax; // 伤害间隔
 
+        // 固定爆炸点
+        public bool isFixedBoomPoint;
+
         public bool IsDead() {
             bool isDead = hitTimes <= 0;
             // Debug.Log(hp + frameIndex + hitMaxTimes);

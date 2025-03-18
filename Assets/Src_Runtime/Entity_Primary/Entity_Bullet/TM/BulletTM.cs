@@ -39,6 +39,7 @@ namespace UF {
         [Title("子弹特性")]
         public bool isMakeBulletAppear;
         public bool isDestotyBottomALine;
+        public bool isFixedBoomPoint;
         public bool isRepelled; // 击退
         [ShowIf(nameof(isRepelled))] public float repeLength; // 击退距离
 
