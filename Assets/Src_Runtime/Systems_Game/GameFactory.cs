@@ -243,6 +243,7 @@ namespace UF {
 
             bullet.isMakeBulletAppear = tm.isMakeBulletAppear;
             bullet.isDestotyBottomALine = tm.isDestotyBottomALine;
+            bullet.isFixedBoomPoint = tm.isFixedBoomPoint;
 
             bullet.isElectricity = tm.isElectricity;
             bullet.elecDamage = tm.elecDamage;

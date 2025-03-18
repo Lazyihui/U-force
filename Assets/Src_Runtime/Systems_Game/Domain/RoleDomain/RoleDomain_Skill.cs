@@ -150,7 +150,13 @@ namespace UF {
             if (model.isSpawnBullet) {
                 Debug.LogWarning("RoleDomain.SpawnBullet生成子弹");
                 // SpawnBullet
-                BulletDomain.SpawnByPos(ctx, model.bulletSo.tm.typeID, role.TF_GetPos(), new Vector3(0, 0, 0));
+                if (model.bulletSo.tm.isFixedBoomPoint) {
+                    for (int i = 0; i < 4; i++) {
+                        // 得到随机的坐标
+                        Vector3 pos = new Vector3(UnityEngine.Random.Range(-7, 6), UnityEngine.Random.Range(12, -4), 0);
+                        BulletEntity bullet = BulletDomain.SpawnByPos(ctx, model.bulletSo.tm.typeID, pos, new Vector3(0, 0, 0));
+                    }
+                }
             }
 
             if (model.isHaveCentred) {
@@ -209,7 +215,7 @@ namespace UF {
                         break;
                 }
                 float minionY = minionPos.y;
-                
+
                 if (minionY == y) { continue; }
 
                 Vector2 dir = Vector2.zero;
