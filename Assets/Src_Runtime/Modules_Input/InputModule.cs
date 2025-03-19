@@ -20,7 +20,6 @@ namespace UF {
         bool isGrap;
         public bool IsGrap => isGrap;
 
-        public bool isUpdateProcess;
         public bool isPressStuff1;
 
         bool isTabDown;
@@ -56,7 +55,6 @@ namespace UF {
             player1 = new InputControls_Player();
             player1.Enable();
 
-            isUpdateProcess = true;
         }
 
         public void ReSetJump() {

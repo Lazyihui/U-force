@@ -112,29 +112,6 @@ namespace UF {
                     eventCenter.OnGamePause();
                 };
 
-                panel.OnAttackClickHandle += () => {
-                    eventCenter.OnAttack();
-                };
-
-                panel.OnTechClickHandle += () => {
-                    eventCenter.OnTech();
-                };
-
-                panel.OnWeap1ClickHandle += () => {
-                    eventCenter.OnWeap1();
-                };
-
-                panel.OnWeap2ClickHandle += () => {
-                    eventCenter.OnWeap2();
-                };
-
-                panel.OnWeap3ClickHandle += () => {
-                    eventCenter.OnWeap3();
-                };
-
-                panel.OnWeap4ClickHandle += () => {
-                    eventCenter.OnWeap4();
-                };
             }
             ctx.panel_GameDefend_Button = panel;
 

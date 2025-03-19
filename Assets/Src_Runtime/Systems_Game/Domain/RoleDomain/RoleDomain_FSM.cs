@@ -78,9 +78,6 @@ namespace UF {
             FSM_Normal_Enter(ctx, role, dt);//施法状态结束 进入正常状态
             inputCom.ClearCastKeys();
 
-            // TODO:
-            input.isUpdateProcess = true;
-
         }
         #endregion
 

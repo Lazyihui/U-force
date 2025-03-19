@@ -66,3 +66,27 @@ MonoBehaviour:
         isSpawnBullet: 0
         bulletSo: {fileID: 0}
         isHaveCentred: 0
+    - loopTM:
+        loopFlag: 3
+        maintainFrame: 1e+12
+        triggerIntervalSec: 360
+        triggerTimesMax: 360
+      hasBulletBehaviour: 1
+      bulletBehaviourTM:
+        isMove: 0
+        isStop: 0
+        isHaveContinueDamege: 0
+        isHaveContinueBoomDamege: 0
+        isHaveConverge: 0
+        isDestorySelf: 1
+        isRoleMoveSpeedDown: 0
+        isRoleMoveDown: 0
+        isRoleMoveRight: 0
+        isRoleElectricity: 0
+      hasWorldBehaviour: 0
+      worldBehaviourTM:
+        isSpawnStuff: 0
+        stuffSo: {fileID: 0}
+        isSpawnBullet: 0
+        bulletSo: {fileID: 0}
+        isHaveCentred: 0

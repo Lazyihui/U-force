@@ -325,36 +325,6 @@ namespace UF {
                 pauseSystem.Enter();
             };
 
-            gameEvent.OnAttackHandle += () => {
-                inputModule.isUpdateProcess = false;
-                inputModule.Set_InputCastKey(InputKeyFlag.Attack);
-            };
-
-            gameEvent.OnTechHandle += () => {
-                inputModule.isUpdateProcess = false;
-                inputModule.Set_InputCastKey(InputKeyFlag.Tech);
-            };
-
-            gameEvent.OnWeap1Handle += () => {
-                inputModule.isUpdateProcess = false;
-                inputModule.Set_InputCastKey(InputKeyFlag.Weap1);
-            };
-
-            gameEvent.OnWeap2Handle += () => {
-                inputModule.isUpdateProcess = false;
-                inputModule.Set_InputCastKey(InputKeyFlag.Weap2);
-            };
-
-            gameEvent.OnWeap3Handle += () => {
-                inputModule.isUpdateProcess = false;
-                inputModule.Set_InputCastKey(InputKeyFlag.Weap3);
-            };
-
-            gameEvent.OnWeap4Handle += () => {
-                inputModule.isUpdateProcess = false;
-                inputModule.Set_InputCastKey(InputKeyFlag.Weap4);
-            };
-
             gameEvent.OnGameContinueOverHandle += (bool isWin) => {
 
                 if (!isWin) {
@@ -553,10 +523,8 @@ namespace UF {
             float dt = Time.deltaTime;
 
             var input = inputModule;
-            if (input.isUpdateProcess) {
-                input.Process(dt);
-            }
-
+            input.Process(dt);
+            
             gameSystem.Tick(dt);
             loginSystem.Tick(dt);
             pauseSystem.Tick(dt);

@@ -554,7 +554,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d1f5f5ec95f104ba1edc06560bf571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUpdateProcess: 0
   isPressStuff1: 0
 --- !u!1 &1712753919
 GameObject:

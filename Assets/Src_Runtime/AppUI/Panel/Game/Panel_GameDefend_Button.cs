@@ -11,16 +11,9 @@ namespace UF {
         public Action OnPauseClickHandle;
 
         //Skill
-        [SerializeField] Button btn_Attack;
-        public Action OnAttackClickHandle;
+        [SerializeField] Image img_Attack;
 
-        [SerializeField] Button btn_Tech;
-        public Action OnTechClickHandle;
-
-        public Action OnWeap1ClickHandle;
-        public Action OnWeap2ClickHandle;
-        public Action OnWeap3ClickHandle;
-        public Action OnWeap4ClickHandle;
+        [SerializeField] Image img_Tech;
 
         [SerializeField] GameObject weapPrefab;
         [SerializeField] Transform skillTrans;
@@ -28,14 +21,10 @@ namespace UF {
         int slotmax;
         public void Set_SlotMax(int value) => slotmax = value;
 
-        Button btn_Weap1;
-        Button btn_Weap2;
-        Button btn_Weap3;
-        Button btn_Weap4;
-        Button[] weapList;
+        Image[] weapList;
 
         public void Ctor(int slotMax) {
-            weapList = new Button[slotMax];
+            weapList = new Image[slotMax];
 
             //Pause
             btn_Pause.onClick.AddListener(() => {
@@ -44,55 +33,20 @@ namespace UF {
                 }
             });
 
-            //Skill
-            btn_Attack.onClick.AddListener(() => {
-                if (OnAttackClickHandle != null) {
-                    OnAttackClickHandle.Invoke();
-                }
-            });
-
-            btn_Tech.onClick.AddListener(() => {
-                if (OnTechClickHandle != null) {
-                    OnTechClickHandle.Invoke();
-                }
-            });
-
             Set_SlotMax(slotMax);
             Set_WeapButton();
-
-            for (int i = 0; i < weapList.Length; i++) {
-                int index = i + 1;
-                if (weapList[i] != null) {
-                    weapList[i].onClick.AddListener(() => {
-                        switch (index) {
-                            case 1:
-                                OnWeap1ClickHandle?.Invoke();
-                                break;
-                            case 2:
-                                OnWeap2ClickHandle?.Invoke();
-                                break;
-                            case 3:
-                                OnWeap3ClickHandle?.Invoke();
-                                break;
-                            case 4:
-                                OnWeap4ClickHandle?.Invoke();
-                                break;
-                        }
-                    });
-                }
-            }
         }
 
         public void Set_CD(SkillModel skill, float cd, float maxCD) {
-            Button btn = null;
+            Image btn = null;
             Image img;
 
             switch (skill.castKeys) {
                 case InputKeyFlag.Attack:
-                    btn = btn_Attack;
+                    btn = img_Attack;
                     break;
                 case InputKeyFlag.Tech:
-                    btn = btn_Tech;
+                    btn = img_Tech;
                     break;
                 case InputKeyFlag.Weap1:
                     if (weapList.Length >= 1 && weapList[0] != null) {
@@ -127,7 +81,7 @@ namespace UF {
 
         void Set_WeapButton() {
             for (int i = 1; i <= slotmax; i++) {
-                Button btn_Weap = Instantiate(weapPrefab, skillTrans).GetComponent<Button>();
+                Image btn_Weap = Instantiate(weapPrefab, skillTrans).GetComponent<Image>();
                 RectTransform rectTransform = btn_Weap.GetComponent<RectTransform>();
 
                 // -Transform
@@ -163,7 +117,7 @@ namespace UF {
         }
 
         public void Set_BtnTech_Hide() {
-            btn_Tech.gameObject.SetActive(false);
+            img_Tech.gameObject.SetActive(false);
         }
 
         public void Show() {

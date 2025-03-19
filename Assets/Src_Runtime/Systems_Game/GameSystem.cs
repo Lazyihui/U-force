@@ -222,31 +222,6 @@ namespace UF {
                 events.OnGamePause();
             };
 
-            // 攻击
-            eventCenter.OnAttackHandle += () => {
-                events.OnAttack();
-            };
-
-            eventCenter.OnTechHandle += () => {
-                events.OnTech();
-            };
-
-            eventCenter.OnWeap1Handle += () => {
-                events.OnWeap1();
-            };
-
-            eventCenter.OnWeap2Handle += () => {
-                events.OnWeap2();
-            };
-
-            eventCenter.OnWeap3Handle += () => {
-                events.OnWeap3();
-            };
-
-            eventCenter.OnWeap4Handle += () => {
-                events.OnWeap4();
-            };
-
             eventCenter.OnGameOverHandle += (bool isWin) => {
                 events.OnGameOver(isWin);
             };
