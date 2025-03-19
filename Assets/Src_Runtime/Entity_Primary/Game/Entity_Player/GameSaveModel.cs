@@ -76,6 +76,7 @@ namespace UF {
             StarSignature temp = new StarSignature(stageID, 0);
 
             // 查找是否已存在相同 stageID 的记录
+            // TODO:foreach里面不能添加和移除元素，会报错 要改
             bool found = false;
             foreach (var item in stage_PassedStar) {
                 if (item.stageID == stageID) {
@@ -97,6 +98,7 @@ namespace UF {
                 Debug.Log("添加新关卡的星级: " + stageID + " 星级: " + star);
             }
         }
+        
         public void Set_stage_AllStar() {
             starAllCount = 0;
             foreach (var stars in stage_PassedStar) {
