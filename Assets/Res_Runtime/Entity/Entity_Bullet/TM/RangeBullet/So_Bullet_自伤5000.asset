@@ -17,18 +17,23 @@ MonoBehaviour:
     typeName: "\u81EA\u4F245000"
     hitTimes: 10000000
     attackDamage: 1
-    isHaveContinueDamege: 1
     continueDamege: 1
     damageInterval: 2
     damageTimer: 0
     damageRange: 5
-    destoryOneselfTime: 5
+    isHaveConverge: 0
+    convergeLine: 0
     isChangeLine: 0
     changeLineDir: {x: 0, y: 0}
     LineNum: 0
     LineLength: 0
+    isElectricity: 0
+    elecDamage: 0
+    elecTimes: 0
+    elecMax: 0
     isMakeBulletAppear: 0
     isDestotyBottomALine: 0
+    isFixedBoomPoint: 0
     isRepelled: 0
     repeLength: 0
     type: 0
@@ -38,7 +43,7 @@ MonoBehaviour:
     content: "\u81EA\u4F24"
     frames:
     - loopTM:
-        loopFlag: -1
+        loopFlag: 3
         maintainFrame: 1e+12
         triggerIntervalSec: 360
         triggerTimesMax: 360
@@ -46,15 +51,18 @@ MonoBehaviour:
       bulletBehaviourTM:
         isMove: 0
         isStop: 1
-        isHaveContinueDamege: 0
+        isHaveContinueDamege: 1
         isHaveContinueBoomDamege: 0
+        isHaveConverge: 0
         isDestorySelf: 0
         isRoleMoveSpeedDown: 0
         isRoleMoveDown: 0
         isRoleMoveRight: 0
+        isRoleElectricity: 0
       hasWorldBehaviour: 0
       worldBehaviourTM:
         isSpawnStuff: 0
         stuffSo: {fileID: 0}
         isSpawnBullet: 0
         bulletSo: {fileID: 0}
+        isHaveCentred: 0

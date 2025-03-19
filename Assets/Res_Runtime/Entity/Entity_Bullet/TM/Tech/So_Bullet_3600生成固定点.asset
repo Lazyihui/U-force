@@ -19,7 +19,7 @@ MonoBehaviour:
     attackDamage: 4
     continueDamege: 0
     damageInterval: 1
-    damageTimer: 1
+    damageTimer: 0
     damageRange: 5
     isHaveConverge: 0
     convergeLine: 0
