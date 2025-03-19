@@ -36,12 +36,11 @@ namespace UF {
         #endregion
 
         static void Bullet_HitRole(BulletFrameModel frame) {
-            frame.loopModel.hitCount += 1;
+            frame.loopModel.SetHitCount(1);
         }
 
         static void Bullet_HitBullet(BulletFrameModel frame) {
-            frame.loopModel.hitCount += 1;
-            Debug.Log("击中子弹"+ frame.loopModel.hitCount);
+            frame.loopModel.SetHitCount(1);
         }
         #region Frame:Acting
 

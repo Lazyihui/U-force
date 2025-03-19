@@ -8,15 +8,18 @@ namespace UF {
         public FrameLoopFlag loopFlag;
 
         // maintain 和 triggerInterval 是两个不同的概念(是分开用的)
-        public float maintainSec;//持续时间
-        public float maintainTimer;//倒计时
+        float maintainSec;//持续时间
+        float maintainTimer;//倒计时
+            
+        float triggerIntervalSec;//触发间隔
+        float triggerIntervalTimer;
+        float triggerTimes;//触发时间
+        float triggerTimesMax;
 
-        public float triggerIntervalSec;//触发间隔
-        public float triggerIntervalTimer;
-        public float triggerTimes;//触发时间
-        public float triggerTimesMax;
-
-        public int hitCount;//击中次数
+        int hitCount;//击中次数
+        public void SetHitCount(int count) {
+            hitCount += count;
+        }
 
         public bool isDone; //是否结束 
 
@@ -37,9 +40,6 @@ namespace UF {
 
             maintainSec = tm.maintainFrame * 1 / 24f;//LOGIC_FPS
             maintainTimer = tm.maintainFrame * 1 / 24f;//LOGIC_FPS
-            // Debug.Log(maintainSec + maintainTimer);
-            // maintainSec = tm.maintainFrame;
-            // maintainTimer = tm.maintainFrame;
 
             if (!tm.loopFlag.HasFlag(FrameLoopFlag.LoopWhenTimeEnd) && tm.triggerIntervalSec == 0) {
                 triggerIntervalSec = 1 * 24f;
