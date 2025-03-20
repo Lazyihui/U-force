@@ -202,7 +202,7 @@ namespace UF {
             for (int i = 0; i < roleTM.skillorSoArray.Length; i += 1) {
                 skill += roleTM.skillorSoArray[i].tm.typeName + "\n";
             }
-            appUI.Panel_WatchDetail_Open(roleTM.sprite, roleTM.typeName, roleTM.feature, roleTM.hp, skill, roleTM.restraint);
+            appUI.Panel_WatchDetail_Open(typeID);
         }
 
         public static void Panel_StageSelectionEnter(AppUI appUI) {

@@ -24,8 +24,8 @@ namespace UF {
             selectedInFormation.Reset();
         }
 
-        public void Inject(Canvas screenCanvas, AssetsModule assetsCore, GameSaveModel playerSaveData) {
-            ctx.Inject(screenCanvas, assetsCore);
+        public void Inject(Canvas screenCanvas, AssetsModule assetsCore, TemplateMoudle templateMoudle, GameSaveModel playerSaveData) {
+            ctx.Inject(screenCanvas, assetsCore, templateMoudle);
             this.playerSaveData = playerSaveData;
         }
         public CardModel Get_CardModel() {
@@ -195,7 +195,7 @@ namespace UF {
         #endregion
 
         #region GameOver
-        public void Panel_GameOver_Open(bool isWin, int hurt, int shoot, int hitedTimes, float hitRate, int starCount) {
+        public void Panel_GameOver_Open(bool isWin, int starCount) {
             Panel_GameOver panel = ctx.panel_GameOver;
 
             if (panel == null) {
@@ -211,7 +211,7 @@ namespace UF {
             ctx.panel_GameOver = panel;
 
             panel.Show();
-            panel.Init(isWin, hurt, shoot, hitedTimes, hitRate, starCount);
+            panel.Init(isWin, playerSaveData.GetRoleGetHurt(), playerSaveData.shootTimes, playerSaveData.HitTimes, playerSaveData.GetRoleHitRate(), starCount);
         }
 
         public void Panel_GameOver_Close() {
@@ -223,6 +223,7 @@ namespace UF {
             ctx.panel_GameOver = null;
         }
 
+        // TODO: 资源战结算UI
         public void Panel_EliminateGameOver_Open(bool isWin, int takeEnergy, int shootTimes, int TakeTime, int starCount) {
             Panel_EliminateGameOver panel = ctx.panel_EliminateGameOver;
 
@@ -282,14 +283,6 @@ namespace UF {
                 return;
             }
             hud.Set_Text();
-        }
-
-        void HUD_Progressbar_SetAchiText(int hp, int maxHp) {
-            HUD_Progressbar hud = ctx.hud_Progressbar;
-            if (hud == null) {
-                return;
-            }
-            hud.Set_AchiText(hp, maxHp);
         }
 
         public void HUD_Progressbar_Update(float progress, int hp, int maxHp) {
@@ -674,6 +667,7 @@ namespace UF {
             panel.CardSelected_SetScience(sprite);
         }
 
+        // 这种typeID本就是从tm里传进来的, 没必要为了精简重复获取感觉
         public bool Panel_CardSelection_SetProp(int typeID, Sprite sprite) {
             Panel_CardSelection panel = ctx.panel_CardSelection;
             if (panel == null) {
@@ -949,7 +943,7 @@ namespace UF {
         #endregion
 
         #region WatchDetail
-        public void Panel_WatchDetail_Open(Sprite sprite, string name, string feature, int hp, string skill, string restraint) {
+        public void Panel_WatchDetail_Open(int typeID) {
             Panel_WatchDetail panel = ctx.panel_WatchDetail;
 
             if (panel == null) {
@@ -964,10 +958,18 @@ namespace UF {
             }
             ctx.panel_WatchDetail = panel;
             panel.Show();
+
+            ctx.templateMoudle.Role_TryGet(typeID, out RoleTM tm);
+            var sprite = tm.sprite;
+            var name = tm.typeName;
+            var feature = tm.feature;
+            var hp = tm.hp;
+            var skill = tm.skill;
+            var restraint = tm.restraint;
             panel.Init(sprite, name, feature, hp, skill, restraint);
         }
 
-        public void Panel_WatchDetail_Open(Sprite sprite, string name, string feature) { // 给stuff用
+        public void Panel_WatchDetail_Open_Stuff(int typeID) { // 给stuff用
             Panel_WatchDetail panel = ctx.panel_WatchDetail;
 
             if (panel == null) {
@@ -982,6 +984,11 @@ namespace UF {
             }
             ctx.panel_WatchDetail = panel;
             panel.Show();
+
+            ctx.templateMoudle.Stuff_TryGet(typeID, out StuffTM tm);
+            var sprite = tm.sprite;
+            var name = tm.typeName;
+            var feature = tm.description;
             panel.Init(sprite, name, feature);
         }
 
@@ -1047,12 +1054,22 @@ namespace UF {
             ctx.panel_Training_Select = null;
         }
 
-        public void Panel_Training_Select_SetPlayer(int typeID, Sprite sprite, string description, string weaponSpeed, string damage, string attackSpeed) {
+        public void Panel_Training_Select_SetPlayer(int typeID) {
             Panel_Training_Select panel = ctx.panel_Training_Select;
 
             if (panel == null) { return; }
 
-            panel.SetPlayer(typeID, sprite, description, weaponSpeed, damage, attackSpeed);
+            ctx.templateMoudle.Role_TryGet(typeID, out RoleTM roleTM);
+            var skill = roleTM.skillorSoArray[0];
+            ctx.templateMoudle.Bullet_TryGet(skill.tm.typeID, out BulletTM bulletTM);
+
+            var sprite = roleTM.sprite;
+            var feature = roleTM.feature;
+            var weaponSpeed = bulletTM.moveSpeed.ToString();
+            var damage = bulletTM.attackDamage.ToString();
+            var attackSpeed = skill.tm.cd.ToString();
+            
+            panel.SetPlayer(typeID, sprite, feature, weaponSpeed, damage, attackSpeed);
         }
 
         public void Panel_Training_Select_AddPlayer() {
