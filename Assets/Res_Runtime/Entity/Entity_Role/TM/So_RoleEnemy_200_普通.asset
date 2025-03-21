@@ -18,7 +18,7 @@ MonoBehaviour:
     moveType: 1
     roleState: 1
     typeID: 200
-    hp: 1000
+    hp: 1
     moveSpeed: 5
     jumpForce: 0
     baseDamage: 1

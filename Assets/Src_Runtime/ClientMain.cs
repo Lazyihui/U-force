@@ -339,6 +339,23 @@ namespace UF {
             gameEvent.OnGameIllusStuffCardClickHandle += (int typeID) => {
                 appUI.Panel_WatchDetail_Open_Stuff(typeID);
             };
+
+            gameEvent.OnEliminateOverResetClickHandle += (bool isWin) => {
+                if (!isWin) {
+                    Debug.Log("重新开始此关");
+                    gameSystem.ClearGame();
+                    gameSystem.Exit();
+                    loginSystem.Enter();
+                    UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule);
+                }
+
+                if (isWin) {
+                    gameSystem.ClearGame();
+                    gameSystem.Exit();
+                    loginSystem.Enter();
+                    UIDomain.Panel_StageSelectionEnter(appUI);
+                }
+            };
         }
         #endregion
 

@@ -232,6 +232,11 @@ namespace UF {
             moveComponent.SetRbType(type);
         }
 
+        public void SetRbGravityScale (int value)
+        {
+            moveComponent.Set_Garvity(value);
+        }
+
         #region Attribute
 
         public void Attr_Hp_Set(int value) {

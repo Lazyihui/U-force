@@ -38,11 +38,13 @@ namespace UF {
                 StuffDomain.SpawnBySpawner(ctx, spawnerTM);
             }
 
+            game.stuffCD = 0;
+
             // Role 生成障碍物和核心
             for (int i = 0; i < tm.roleSpawns.Length; i += 1) {
                 RoleSpawnerTM spawnerTM = tm.roleSpawns[i];
                 var role = RoleDomain.SpawnBySpawner(ctx, spawnerTM);
-                role.SetRbType(RigidbodyType2D.Static);
+                role.SetRbGravityScale(0);
             }
         }
 
@@ -57,6 +59,19 @@ namespace UF {
             var game = ctx.gameEntity;
             var playerSaveData = game.playerSaveData;
             var owner = ctx.Get_Owner();
+
+            // Bullet
+            int bulletLen = ctx.bulletRepository.TakeAll(out BulletEntity[] bullets);
+
+            for (int i = 0; i < bulletLen; i += 1) {
+                BulletEntity bullet = bullets[i];
+                BulletDomain.CheckUnSpawn(ctx, bullet, dt);
+                BulletDomain.FSM_All_Execute(ctx, bullet, dt);
+            }
+
+            if (game.state == GameState.GameOver) {
+                return;
+            }
 
             game.gameTime += dt;
             game.stuffCD -= dt;
@@ -74,10 +89,6 @@ namespace UF {
             var state = fsm.Status;
             var attrCom = owner.AttributeComponent;
             RoleDomain.DetectionMinionByPos(ctx, owner, owner.TF_GetPos(), attrCom.GetBaseDamage());
-
-            if (game.state == GameState.GameOver) {
-                return;
-            }
 
             if (state == RoleFSMStatus.Normal) {
                 RoleDomain.FSM_Normal_Execute(ctx, owner, dt);
@@ -117,27 +128,28 @@ namespace UF {
                 RoleDomain.Loco_MoveEliminate(ctx, role, dt);
             }
 
-            // Bullet
-            int bulletLen = ctx.bulletRepository.TakeAll(out BulletEntity[] bullets);
-
-            for (int i = 0; i < bulletLen; i += 1) {
-                BulletEntity bullet = bullets[i];
-                BulletDomain.CheckUnSpawn(ctx, bullet, dt);
-                BulletDomain.FSM_All_Execute(ctx, bullet, dt);
-            }
-
             var energy = game.energyNumber;
             if (energy >= 4) {
                 game.state = GameState.GameOver;
-                
+
+                ctx.appUI.HUD_Eliminate_Update(progress, game.energyNumber);
                 ctx.appUI.Panel_EliminateGameOver_Open(true, 3); // 四个能量棒必定三星  
+
+                // 保存数据 得到的星级 和 通关的关卡
+                int stageID = ctx.appUI.playerSaveData.GetStageCurID();
+                ctx.appUI.playerSaveData.AddStagePassed(stageID, 3);
+
+                // 添加关卡
+                GameDomain.Add_ReachStage(ctx);
             }
 
             if (game.gameTime >= game.gameMax) {
                 game.state = GameState.GameOver;
 
                 if (energy <= 1) {
+                    ctx.appUI.HUD_Eliminate_Update(progress, game.energyNumber);
                     ctx.appUI.Panel_EliminateGameOver_Open(false, 0);
+
                 } else {
                     int star = 0;
                     switch (star) {
@@ -155,7 +167,15 @@ namespace UF {
                             break;
                     }
 
+                    ctx.appUI.HUD_Eliminate_Update(progress, game.energyNumber);
                     ctx.appUI.Panel_EliminateGameOver_Open(true, star);
+
+                    // 保存数据 得到的星级 和 通关的关卡
+                    int stageID = ctx.appUI.playerSaveData.GetStageCurID();
+                    ctx.appUI.playerSaveData.AddStagePassed(stageID, star);
+
+                    // 添加关卡
+                    GameDomain.Add_ReachStage(ctx);
                 }
             }
         }

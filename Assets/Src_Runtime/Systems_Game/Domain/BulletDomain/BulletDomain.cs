@@ -15,6 +15,12 @@ namespace UF {
         public static BulletEntity SpawnByRole_Spawner(GameSystemContext ctx, RoleEntity role, BulletSpawnerTM spawnerTM) {
             // TODO:生成位置
             var BulletEntity = BulletDomain.SpawnByPos(ctx, spawnerTM.bulletSo.tm.typeID, spawnerTM.spawnPos.position, spawnerTM.spawnDir.position);
+
+            var game = ctx.gameEntity;
+            if (game.isEliminateWar) {
+                BulletEntity.EliminateBullet();
+            }
+
             return BulletEntity;
         }
 
@@ -78,10 +84,11 @@ namespace UF {
                 return;
             }
             detectionMinionByPos(ctx, bullet, pos, 1);
+            DetectionStuffByPos(ctx, bullet, pos);
         }
 
         static void detectionMinionByPos(GameSystemContext ctx, BulletEntity bullet, Vector3 pos, float range) {
-
+            var game = ctx.gameEntity;
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] minions);
             for (int i = 0; i < len; i += 1) {
                 RoleEntity minion = minions[i];
@@ -101,7 +108,7 @@ namespace UF {
                         }
                     }
 
-                    if (minion.isHit) { continue; }
+                    if (minion.isHit && !game.isEliminateWar) { continue; }
                     bullet.touchRoleIDSig = minion.idSig;
                     RoleDomain.HpReduce_Minion(ctx, minion, bullet.damage);
                     minion.isHit = true;
@@ -116,6 +123,31 @@ namespace UF {
                     var playerData = ctx.gameEntity.playerSaveData;
                     playerData.HitTimes += 1;
                     bullet.isHit = true;
+                }
+            }
+        }
+
+        public static void DetectionStuffByPos(GameSystemContext ctx, BulletEntity bullet, Vector3 pos) {
+            int len = ctx.stuffRepository.TakeAll(out StuffEntity[] stuffs);
+            for (int i = 0; i < len; i += 1) {
+                StuffEntity stuff = stuffs[i];
+
+                if (!stuff.isTimeStuff) { continue; }
+
+                float dis = Vector3.Distance(stuff.TF_GetPos(), bullet.TF_GetPos());
+                if (dis < 1) {
+                    StuffDomain.UnSpawn(ctx, stuff);
+
+                    var addTime = stuff.addTime;
+                    ctx.gameEntity.gameTime -= addTime;
+                    if (ctx.gameEntity.gameTime < 0) {
+                        ctx.gameEntity.gameTime = 0;
+                    }
+
+                    bullet.hitTimes -= 1;
+                    if (bullet.hitTimes <= 0) {
+                        UnSpawn(ctx, bullet);
+                    }
                 }
             }
         }
@@ -184,7 +216,7 @@ namespace UF {
                 }
 
                 float dis = Vector3.Distance(bullet.TF_GetPos(), fixBlt.TF_GetPos());
-                
+
                 if (dis < 1) {
                     if (fixBlt.isHit) { continue; }
                     Bullet_HitBullet(fixBlt.frames[fixBlt.frameIndex]);
