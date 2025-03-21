@@ -24,7 +24,6 @@ namespace UF {
 
         #endregion
         public int unLockStageCount;//解锁的关卡数量
-
         public int stageCurID;//当前关卡
         public int GetStageCurID() => stageCurID;
         public int stageCurType;//当前关卡类型
