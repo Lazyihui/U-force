@@ -85,34 +85,23 @@ namespace UF {
         }
 
         #endregion
-        public bool Slot_Has(int slotID) {
-            string file = File_Slot(slotID);
-            return FileHepler.ExistFile(file);
-        }
-        public bool Slot_TryLoad(int slotID, out GameSaveDTO save) {
-            string file = File_Slot(slotID);
-            if (FileHepler.ExistFile(file)) {
-                FileHepler.ReadFile(file, out var readBuffer);
-                int offset = 0;
-                byte[] newBuffer = new byte[readBuffer.Length * 2];
-                // 复制数组
-                Array.Copy(readBuffer, newBuffer, readBuffer.Length);
-                save = new GameSaveDTO();
-                save.FromBytes(newBuffer, ref offset);
-                return true;
-            } else {
-                save = default;
-                return false;
-            }
-        }
-
-
-        // 删除存档
-        // public void Slot_Delete(int slotID) {
+        // public bool Slot_TryLoad(int slotID, out GameSaveDTO save) {
         //     string file = File_Slot(slotID);
         //     if (FileHepler.ExistFile(file)) {
+        //         FileHepler.ReadFile(file, out var readBuffer);
+        //         int offset = 0;
+        //         byte[] newBuffer = new byte[readBuffer.Length * 2];
+        //         // 复制数组
+        //         Array.Copy(readBuffer, newBuffer, readBuffer.Length);
+        //         save = new GameSaveDTO();
+        //         save.FromBytes(newBuffer, ref offset);
+        //         return true;
+        //     } else {
+        //         save = default;
+        //         return false;
         //     }
         // }
+
         #endregion
 
         #region Delete

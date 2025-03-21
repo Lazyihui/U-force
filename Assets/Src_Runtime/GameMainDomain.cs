@@ -6,19 +6,16 @@ using UnityEngine;
 namespace UF {
 
     public static class GameMainDomain {
-        // 赋值存档
-        public static void Game_Load(GameSaveModel model, GameSaveDTO save) {
-            // 给 GameSaveModel 赋值
-            model.FromDTO(save);
+        public static void Slot_NewGame(int slotID, GameEntity game, SaveCore saveCore) {
         }
 
         // 加载存档
-        public static void Slot_LoadGame(GameSaveModel models, out SaveCore saveCore, int slotID) {
-            saveCore = new SaveCore();
-            // 找到存档
-            bool has = saveCore.Slot_TryLoad(slotID, out var saveData);
-            // 将存档里面的数值赋值给 GameSaveModel
-            Game_Load(models, saveData);
+        public static void Slot_LoadGame(int slotID, GameEntity game, SaveCore saveCore) {
+            // 1.读取存档数据
+            saveCore.Slot_Full_TryLoad(slotID, out var dto);
+            // 2.赋值存档数据
+            game.FromDTO(dto);
+            Debug.Log($"加载存档成功, slotID: {slotID}");
         }
 
     }

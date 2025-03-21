@@ -16,8 +16,8 @@ namespace UF {
             events = new GameSystemEvents();
         }
 
-        public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository, BulletRepository bulletRepository, GameSaveModel playerSaveData, Camera camera, SaveCore saveCore, SaveSlotFullDTO saveSlotFullDTO) {
-            ctx.Inject(ScreenCanvas, assetsCore, templateCore, appUI, inputModule, roleRepository, bulletRepository, playerSaveData, camera, saveCore, saveSlotFullDTO);
+        public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository, BulletRepository bulletRepository, GameSaveModel playerSaveData, Camera camera, SaveCore saveCore, SaveSlotFullDTO saveSlotFullDTO, GameEntity gameEntity) {
+            ctx.Inject(ScreenCanvas, assetsCore, templateCore, appUI, inputModule, roleRepository, bulletRepository, playerSaveData, camera, saveCore, saveSlotFullDTO, gameEntity);
         }
 
         public void Exit() {
@@ -185,14 +185,10 @@ namespace UF {
             if (isGameWin) {
                 var playerData = ctx.gameEntity.playerSaveData;
 
-                Debug.Assert(playerData != null, "playerDate==null");
-                Debug.Assert(owner != null, "owner==null");
                 if (owner.state == RoleState.Dead) {
                     ctx.gameEntity.state = GameState.GameOver;
                     ctx.appUI.Panel_GameOver_Open(false, 0);
                 }
-
-                // 保存数据
 
                 owner.Jump_Stop();
                 owner.Move_Stop();
@@ -204,7 +200,7 @@ namespace UF {
 
                 // 保存数据 得到的星级 和 通关的关卡
                 int stageID = appUI.playerSaveData.GetStageCurID();
-                appUI.playerSaveData.AddStagePassed(stageID,starCount);
+                appUI.playerSaveData.Add_Stage_PassedStar(stageID, starCount, StagePassStatus.Passed);
 
                 // 添加关卡
                 GameDomain.Add_ReachStage(ctx);

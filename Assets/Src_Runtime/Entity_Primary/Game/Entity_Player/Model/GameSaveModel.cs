@@ -21,7 +21,7 @@ namespace UF {
             return count;
         }
         #endregion
-        
+
         public void FromDTO(in GameSaveDTO dto) {
             slotID = dto.slotID;
             unLockChapterID = dto.unLockChapterID;
@@ -189,14 +189,6 @@ namespace UF {
             return EnemyTypeIDs[index];
         }
 
-        public void AddStagePassed(int stageID, int starCount) {
-            StageInfoModel stage = new StageInfoModel {
-                stageID = stageID,
-                starCount = starCount,
-                passStatus = StagePassStatus.Passed,
-            };
-            stages.Add(stageID, stage);
-        }
 
         public int GetStagePassedCount() {
             int PassedCount = 0;

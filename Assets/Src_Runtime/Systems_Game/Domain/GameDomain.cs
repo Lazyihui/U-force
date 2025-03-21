@@ -27,14 +27,13 @@ namespace UF {
             }
             // 保存数据
             GameDomain.Slot_SaveCurrent(ctx);
-
         }
 
         public static void Slot_SaveCurrent(GameSystemContext ctx) {
             var game = ctx.gameEntity;
             var saveCore = ctx.saveCore;
-            GameSaveDTO dto = ctx.saveSlotFullDTO.gameSaveDTO;
-            saveCore.GameSave_Save(dto);
+            saveCore.Slot_Full_Save(game);
+            Debug.Log($"存档成功, slotID:");
         }
 
     }

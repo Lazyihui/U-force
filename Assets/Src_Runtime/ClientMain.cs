@@ -37,6 +37,7 @@ namespace UF {
 
         // 
         public SaveSlotFullDTO saveSlotFullDTO;
+        public GameEntity gameEntity;
 
         void Start() {
             // ---  UI
@@ -74,14 +75,16 @@ namespace UF {
             playerSaveData = new GameSaveModel();
             saveSlotFullDTO = new SaveSlotFullDTO();
             saveCore = new SaveCore();
+            gameEntity = new GameEntity();
 
+            #region 存档
             // 1.加载存档
             saveCore.Slot_Full_TryLoad(0, out saveSlotFullDTO);
-            // 2.保存存档
-            saveCore.Slot_Full_Save();
-
+            gameEntity.Init(0);
+            // 2.将存档数据加载到游戏实体
+            #endregion
             // Inject
-            gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, bulletRepository, playerSaveData, mainCamera, saveCore, saveSlotFullDTO);
+            gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, bulletRepository, playerSaveData, mainCamera, saveCore, saveSlotFullDTO, gameEntity);
             loginSystem.Inject(appUI, inputModule, saveCore);
             pauseSystem.Inject(appUI, roleRepository, bulletRepository, propRepository);
             trainSystem.Inject(appUI, templateModule, assetsModule, inputModule, roleRepository, bulletRepository, propRepository);
@@ -117,7 +120,7 @@ namespace UF {
 
             loginEvent.OnLoginStartHandle += () => {
                 // 进入游戏
-                GameMainDomain.Slot_LoadGame(playerSaveData, out saveCore, playerSaveData.slotID);
+                GameMainDomain.Slot_LoadGame(0, gameEntity, saveCore);
                 appUI.Panel_Login_Close();
                 UIDomain.Panel_StageSelectionEnter(appUI);
             };
@@ -517,8 +520,7 @@ namespace UF {
 
             if (Input.GetKey(KeyCode.R)) {
                 // 清除存档
-                saveCore.Slot_Delete(0);
-                saveCore.Slot_Delete(3);
+                saveCore.DeleteSlot(0);
                 Debug.Log("删除存档");
             }
         }

@@ -33,7 +33,6 @@ namespace UF {
         public GameSystemContext() {
             isRunning = false;
 
-            gameEntity = new GameEntity();
             idService = new IDService();
 
 
@@ -47,7 +46,7 @@ namespace UF {
         public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore,
          TemplateMoudle templateCore, AppUI appUI,
          InputModule inputModule, RoleRepository roleRepository, BulletRepository bulletRepository,
-         GameSaveModel playerSaveData, Camera camera, SaveCore saveCore, SaveSlotFullDTO saveSlotFullDTO) {
+         GameSaveModel playerSaveData, Camera camera, SaveCore saveCore, SaveSlotFullDTO saveSlotFullDTO, GameEntity gameEntity) {
             this.assetsModule = assetsCore;
             this.templateCore = templateCore;
             this.appUI = appUI;
@@ -62,6 +61,7 @@ namespace UF {
             gameEntity.Inject(playerSaveData);
 
             this.saveSlotFullDTO = saveSlotFullDTO;
+            this.gameEntity = gameEntity;
         }
 
         public RoleEntity Get_Owner() {

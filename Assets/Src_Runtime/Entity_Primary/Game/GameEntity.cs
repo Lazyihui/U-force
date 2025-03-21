@@ -62,10 +62,12 @@ namespace UF {
         }
 
         public void FromDTO(SaveSlotFullDTO dto) {
+            // 将存档数据赋值给当前对象
             playerSaveData.FromDTO(dto.gameSaveDTO);
         }
 
         public SaveSlotFullDTO ToDTO() {
+            // 将当前对象的数据转换为存档数据
             SaveSlotFullDTO dto = new SaveSlotFullDTO();
             dto.gameSaveDTO = playerSaveData.ToDTO();
             return dto;
