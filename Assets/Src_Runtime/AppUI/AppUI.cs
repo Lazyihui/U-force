@@ -224,7 +224,7 @@ namespace UF {
         }
 
         // TODO: 资源战结算UI
-        public void Panel_EliminateGameOver_Open(bool isWin, int takeEnergy, int shootTimes, int TakeTime, int starCount) {
+        public void Panel_EliminateGameOver_Open(bool isWin, int starCount) {
             Panel_EliminateGameOver panel = ctx.panel_EliminateGameOver;
 
             if (panel == null) {
@@ -239,7 +239,7 @@ namespace UF {
             }
             ctx.panel_EliminateGameOver = panel;
             panel.Show();
-            panel.Init(isWin, takeEnergy, shootTimes, TakeTime, starCount);
+            panel.Init(isWin, playerSaveData.GetEnergyCount(), playerSaveData.GetEliShootTimes(), playerSaveData.GetEliTakeTimes(), starCount);
         }
 
         public void Panel_Eliminate_GameOver_Close() {

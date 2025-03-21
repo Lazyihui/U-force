@@ -26,7 +26,11 @@ namespace UF {
 
         public static void UnSpawn(GameSystemContext ctx, StuffEntity entity) {
             if (entity.isEnergy) {
-                ctx.gameEntity.energyNumber += 1;
+                var game = ctx.gameEntity;
+                var playerSaveData = game.playerSaveData;
+
+                game.energyNumber += 1;
+                playerSaveData.SetEnergyCount(game.energyNumber);
             }
             ctx.stuffRepository.Remove(entity);
             entity.TearDown();

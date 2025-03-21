@@ -55,10 +55,12 @@ namespace UF {
         public static void Tick(GameSystemContext ctx, float dt) {
 
             var game = ctx.gameEntity;
+            var playerSaveData = game.playerSaveData;
             var owner = ctx.Get_Owner();
 
             game.gameTime += dt;
             game.stuffCD -= dt;
+            playerSaveData.eliTakeTimes += dt;
 
             // UI
             var progress = game.gameTime / game.gameMax;
@@ -124,8 +126,37 @@ namespace UF {
                 BulletDomain.FSM_All_Execute(ctx, bullet, dt);
             }
 
-            if (game.energyNumber >= 4 || game.gameTime >= game.gameMax) {
-                Debug.Log("游戏结束");
+            var energy = game.energyNumber;
+            if (energy >= 4) {
+                game.state = GameState.GameOver;
+                
+                ctx.appUI.Panel_EliminateGameOver_Open(true, 3); // 四个能量棒必定三星  
+            }
+
+            if (game.gameTime >= game.gameMax) {
+                game.state = GameState.GameOver;
+
+                if (energy <= 1) {
+                    ctx.appUI.Panel_EliminateGameOver_Open(false, 0);
+                } else {
+                    int star = 0;
+                    switch (star) {
+                        case 2:
+                            star = 1;
+                            break;
+                        case 3:
+                            star = 2;
+                            break;
+                        case 4:
+                            star = 3;
+                            break;
+                        default:
+                            star = 0;
+                            break;
+                    }
+
+                    ctx.appUI.Panel_EliminateGameOver_Open(true, star);
+                }
             }
         }
 

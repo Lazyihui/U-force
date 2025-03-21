@@ -8,6 +8,10 @@ namespace UF {
         public static RopeEntity Spawn(GameSystemContext ctx, Vector2 muzzle) {
             var rope = GameFactory.Rope_Create(ctx.assetsModule, ctx.idService, muzzle);
             ctx.ropeEntity = rope;
+
+            var playerSaveData = ctx.gameEntity.playerSaveData;
+            playerSaveData.shootTimes += 1;
+            
             return rope;
         }
 

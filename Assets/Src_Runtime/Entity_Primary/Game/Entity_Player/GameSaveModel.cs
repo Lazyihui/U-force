@@ -49,6 +49,17 @@ namespace UF {
         public int HitTimes;//命中次数
         public void SetHitTimes(int value) => HitTimes = value;
 
+        // 资源战结算
+        int energyCount; // 能量棒
+        public void SetEnergyCount(int value) => energyCount = value;
+        public int GetEnergyCount() => energyCount;
+
+        public int eliShootTimes; // 资源战射击次数
+        public int GetEliShootTimes() => eliShootTimes;
+
+        public float eliTakeTimes; // 耗时
+        public int GetEliTakeTimes() => (int)eliTakeTimes;
+
         public float GetRoleHitRate() {
             if (HitTimes == 0) {
                 return 0;
@@ -123,7 +134,6 @@ namespace UF {
             // 第一关先进去
             AddStageReached(1);
             AddStagePassed(1);
-
         }
 
         public void Clear() {
@@ -133,6 +143,9 @@ namespace UF {
             ownerGetHurt = 0;
             shootTimes = 0;
             HitTimes = 0;
+            energyCount = 0;
+            eliShootTimes = 0;
+            eliTakeTimes = 0;
         }
 
         public void Reset() {
