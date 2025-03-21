@@ -15,6 +15,12 @@ namespace UF {
         public static BulletEntity SpawnByRole_Spawner(GameSystemContext ctx, RoleEntity role, BulletSpawnerTM spawnerTM) {
             // TODO:生成位置
             var BulletEntity = BulletDomain.SpawnByPos(ctx, spawnerTM.bulletSo.tm.typeID, spawnerTM.spawnPos.position, spawnerTM.spawnDir.position);
+
+            var game = ctx.gameEntity;
+            if (game.isEliminateWar) {
+                BulletEntity.EliminateBullet();
+            }
+
             return BulletEntity;
         }
 
@@ -81,7 +87,7 @@ namespace UF {
         }
 
         static void detectionMinionByPos(GameSystemContext ctx, BulletEntity bullet, Vector3 pos, float range) {
-
+            var game = ctx.gameEntity;
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] minions);
             for (int i = 0; i < len; i += 1) {
                 RoleEntity minion = minions[i];
@@ -101,7 +107,7 @@ namespace UF {
                         }
                     }
 
-                    if (minion.isHit) { continue; }
+                    if (minion.isHit && !game.isEliminateWar) { continue; }
                     bullet.touchRoleIDSig = minion.idSig;
                     RoleDomain.HpReduce_Minion(ctx, minion, bullet.damage);
                     minion.isHit = true;
@@ -184,7 +190,7 @@ namespace UF {
                 }
 
                 float dis = Vector3.Distance(bullet.TF_GetPos(), fixBlt.TF_GetPos());
-                
+
                 if (dis < 1) {
                     if (fixBlt.isHit) { continue; }
                     Bullet_HitBullet(fixBlt.frames[fixBlt.frameIndex]);

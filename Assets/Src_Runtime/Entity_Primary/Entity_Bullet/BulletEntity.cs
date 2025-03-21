@@ -148,7 +148,7 @@ namespace UF {
 
         #region Gizmos
         void OnDrawGizmos() {
-            if (isStartBoomDamege    || isStartContinueDamege) {
+            if (isStartBoomDamege || isStartContinueDamege) {
 
                 int segments = 320;   // 圆的线段数量，越多越圆滑
                 Gizmos.color = Color.green;
@@ -167,5 +167,11 @@ namespace UF {
 
         #endregion 
 
+        #region 资源战子弹
+        public void EliminateBullet() {
+            damage = 1;
+            hitTimes = 1;
+        }
+        #endregion
     }
 }
