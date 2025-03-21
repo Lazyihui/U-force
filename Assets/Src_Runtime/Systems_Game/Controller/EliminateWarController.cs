@@ -38,11 +38,13 @@ namespace UF {
                 StuffDomain.SpawnBySpawner(ctx, spawnerTM);
             }
 
+            game.stuffCD = 0;
+
             // Role 生成障碍物和核心
             for (int i = 0; i < tm.roleSpawns.Length; i += 1) {
                 RoleSpawnerTM spawnerTM = tm.roleSpawns[i];
                 var role = RoleDomain.SpawnBySpawner(ctx, spawnerTM);
-                role.SetRbType(RigidbodyType2D.Static);
+                role.SetRbGravityScale(0);
             }
         }
 

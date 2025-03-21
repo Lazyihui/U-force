@@ -37,6 +37,7 @@ namespace UF {
             CaveDomain.Clear(ctx);
             MapDomain.Clear(ctx.gameEntity.playerSaveData.mapEntity);
             StuffDomain.Clear(ctx);
+            RopeDomain.Clear(ctx);
             ctx.gameEntity.Clear();
 
             // 2.关闭所有Ui

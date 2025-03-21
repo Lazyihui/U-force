@@ -11,12 +11,22 @@ namespace UF {
 
             var playerSaveData = ctx.gameEntity.playerSaveData;
             playerSaveData.shootTimes += 1;
-            
+
             return rope;
         }
 
         public static void UnSpawn(GameSystemContext ctx) {
             var rope = ctx.ropeEntity;
+            rope.TearDown(rope);
+            ctx.ropeEntity = null;
+        }
+
+        public static void Clear(GameSystemContext ctx) {
+            var rope = ctx.ropeEntity;
+
+            if (rope == null) {
+                return;
+            }
             rope.TearDown(rope);
             ctx.ropeEntity = null;
         }
@@ -166,6 +176,7 @@ namespace UF {
 
                     if (rope.state == RopeStage.ShorteningWithStuff) {
                         role.state = RoleState.Stretched;
+                        Debug.LogWarning(role.state.ToString());
                     }
                 }
             }
