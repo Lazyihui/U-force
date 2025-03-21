@@ -58,6 +58,10 @@ namespace UF {
             var playerSaveData = game.playerSaveData;
             var owner = ctx.Get_Owner();
 
+            if (game.state == GameState.GameOver) {
+                return;
+            }
+
             game.gameTime += dt;
             game.stuffCD -= dt;
             playerSaveData.eliTakeTimes += dt;
@@ -74,10 +78,6 @@ namespace UF {
             var state = fsm.Status;
             var attrCom = owner.AttributeComponent;
             RoleDomain.DetectionMinionByPos(ctx, owner, owner.TF_GetPos(), attrCom.GetBaseDamage());
-
-            if (game.state == GameState.GameOver) {
-                return;
-            }
 
             if (state == RoleFSMStatus.Normal) {
                 RoleDomain.FSM_Normal_Execute(ctx, owner, dt);
@@ -129,7 +129,7 @@ namespace UF {
             var energy = game.energyNumber;
             if (energy >= 4) {
                 game.state = GameState.GameOver;
-                
+
                 ctx.appUI.Panel_EliminateGameOver_Open(true, 3); // 四个能量棒必定三星  
             }
 
