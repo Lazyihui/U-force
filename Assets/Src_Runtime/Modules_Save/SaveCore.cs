@@ -49,39 +49,39 @@ namespace UF {
         public void Slot_Save(GameSaveModel model) {
             string file = File_Slot(model.slotID);
 
-            SaveDTO save;
-            save.slotID = model.slotID;
+            // SaveDTO save;
+            // save.slotID = model.slotID;
 
-            save.stage_Passed = new List<int>();
-            foreach (Int32 int32 in model.stage_Passed) {
-                save.stage_Passed.Add(int32);
-            }
+            // save.stage_Passed = new List<int>();
+            // foreach (Int32 int32 in model.stage_Passed) {
+            //     save.stage_Passed.Add(int32);
+            // }
 
-            save.stage_PassedStar = new List<ulong>();
-            foreach (StarSignature int32 in model.stage_PassedStar) {
-                save.stage_PassedStar.Add(int32.value);
-            }
+            // save.stage_PassedStar = new List<ulong>();
+            // foreach (StarSignature int32 in model.stage_PassedStar) {
+            //     save.stage_PassedStar.Add(int32.value);
+            // }
 
-            save.stage_UnLock = new List<int>();
-            foreach (Int32 int32 in model.stage_UnLock) {
-                save.stage_UnLock.Add(int32);
-            }
+            // save.stage_UnLock = new List<int>();
+            // foreach (Int32 int32 in model.stage_UnLock) {
+            //     save.stage_UnLock.Add(int32);
+            // }
 
-            save.unLockChapterID = model.unLockChapterID;
-            save.starAllCount = model.starAllCount;
+            // save.unLockChapterID = model.unLockChapterID;
+            // save.starAllCount = model.starAllCount;
 
-            int offset = 0;
-            int size = save.GetSizeForWrite();
-            // 如果缓冲区不够大，重新分配
-            if (writeSlotBuffer.Length < size) {
-                writeSlotBuffer = new byte[size];
-            }
-            // 写入数据
-            save.WriteTo(writeSlotBuffer, ref offset);
-            // 写入文件
-            FileHepler.WriteFileAfterClean(MOUNT_NAME, file, writeSlotBuffer, offset);
+            // int offset = 0;
+            // int size = save.GetSizeForWrite();
+            // // 如果缓冲区不够大，重新分配
+            // if (writeSlotBuffer.Length < size) {
+            //     writeSlotBuffer = new byte[size];
+            // }
+            // // 写入数据
+            // save.WriteTo(writeSlotBuffer, ref offset);
+            // // 写入文件
+            // FileHepler.WriteFileAfterClean(MOUNT_NAME, file, writeSlotBuffer, offset);
 
-            Debug.Log("Slot saved: " + size);
+            // Debug.Log("Slot saved: " + size);
         }
 
         // 读取存 是否有存档SlotID
