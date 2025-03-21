@@ -100,7 +100,7 @@ namespace UF {
             pauseSystem.Inject(appUI, roleRepository, bulletRepository, propRepository);
             trainSystem.Inject(appUI, templateModule, assetsModule, inputModule, roleRepository, bulletRepository, propRepository);
 
-            appUI.Inject(screenCanvas, assetsModule, playerSaveData);
+            appUI.Inject(screenCanvas, assetsModule, templateModule, playerSaveData);
             // ---  Binding  ---
             // Binding_Login();
             Login_Binding();
@@ -291,12 +291,8 @@ namespace UF {
 
             loginEvent.OnSelectionTrainCardClickHandle += (typeID) => {
                 Debug.Log("SelectionTrainCardClick " + typeID);
-                // 这样写感觉model没什么意义
-                templateModule.Role_TryGet(typeID, out RoleTM roleTM);
-                var skill = roleTM.skillorSoArray[0];
-                templateModule.Bullet_TryGet(skill.tm.typeID, out BulletTM bulletTM);
 
-                appUI.Panel_Training_Select_SetPlayer(typeID, roleTM.sprite, roleTM.feature, bulletTM.moveSpeed.ToString(), bulletTM.attackDamage.ToString(), skill.tm.cd.ToString());
+                appUI.Panel_Training_Select_SetPlayer(typeID);
 
                 hasPlayer = true;
             };
@@ -348,15 +344,11 @@ namespace UF {
             };
 
             gameEvent.OnGameIllusCardClickHandle += (int typeID) => {
-                templateModule.Role_TryGet(typeID, out RoleTM tm);
-
-                appUI.Panel_WatchDetail_Open(tm.sprite, tm.typeName, tm.feature, tm.hp, tm.skill, tm.restraint);
+                appUI.Panel_WatchDetail_Open(typeID);
             };
 
             gameEvent.OnGameIllusStuffCardClickHandle += (int typeID) => {
-                templateModule.Stuff_TryGet(typeID, out StuffTM tm);
-
-                appUI.Panel_WatchDetail_Open(tm.sprite, tm.typeName, tm.description);
+                appUI.Panel_WatchDetail_Open_Stuff(typeID);
             };
         }
         #endregion
@@ -507,9 +499,7 @@ namespace UF {
             };
 
             trainEvent.OnTrainIllusCardClickHandle += (int typeID) => {
-                templateModule.Prop_TryGet(typeID, out var tm);
-
-                appUI.Panel_WatchDetail_Open(tm.sprite, tm.typeName, tm.feature);
+                appUI.Panel_WatchDetail_Open_Stuff(typeID);
             };
         }
         #endregion
@@ -524,7 +514,7 @@ namespace UF {
 
             var input = inputModule;
             input.Process(dt);
-            
+
             gameSystem.Tick(dt);
             loginSystem.Tick(dt);
             pauseSystem.Tick(dt);

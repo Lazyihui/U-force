@@ -189,7 +189,7 @@ namespace UF {
                 Debug.Assert(owner != null, "owner==null");
                 if (owner.state == RoleState.Dead) {
                     ctx.gameEntity.state = GameState.GameOver;
-                    ctx.appUI.Panel_GameOver_Open(false, playerData.GetRoleGetHurt(), playerData.shootTimes, playerData.HitTimes, playerData.GetRoleHitRate(), 0);
+                    ctx.appUI.Panel_GameOver_Open(false, 0);
                 }
 
                 // 保存数据
@@ -199,7 +199,7 @@ namespace UF {
                 Exit();
                 int starCount = playerData.GetStarCount();
                 // 技术到达的关卡
-                ctx.appUI.Panel_GameOver_Open(true, playerData.GetRoleGetHurt(), playerData.shootTimes, playerData.HitTimes, playerData.GetRoleHitRate(), starCount);
+                ctx.appUI.Panel_GameOver_Open(true, starCount);
                 game.state = GameState.GameOver;
 
                 // 保存数据 得到的星级 和 通关的关卡
