@@ -6,20 +6,44 @@ using UnityEngine;
 namespace UF {
 
     public class GameSaveModel {
-
-
         #region  要存储的数据
         public int slotID;// 存档ID
-
-        public List<StageInfoModel> stages;
+        public Dictionary<int, StageInfoModel> stages;
 
         // 关卡信息
         public int unLockChapterID;//解锁的章节2
-        public int starAllCount;//总星数
         public int GetUnLockChapterID() => unLockChapterID;
-        public int GetstarAllCount() => starAllCount;
-        
+        public int GetstarAllCount() {
+            int count = 0;
+            foreach (var stage in stages.Values) {
+                count += stage.starCount;
+            }
+            return count;
+        }
         #endregion
+        
+        public void FromDTO(in GameSaveDTO dto) {
+            slotID = dto.slotID;
+            unLockChapterID = dto.unLockChapterID;
+            stages.Clear();
+            foreach (var stageDTO in dto.all) {
+                StageInfoModel stage = new StageInfoModel();
+                stage.FromDTO(stageDTO);
+                stages.Add(stage.stageID, stage);
+            }
+        }
+
+        public GameSaveDTO ToDTO() {
+            GameSaveDTO dto;
+            dto.slotID = slotID;
+            dto.unLockChapterID = unLockChapterID;
+            dto.all = new List<StageInfoDTO>();
+            foreach (var stage in stages.Values) {
+                dto.all.Add(stage.ToDTO());
+            }
+            return dto;
+        }
+
         public int unLockStageCount;//解锁的关卡数量
         public int stageCurID;//当前关卡
         public int GetStageCurID() => stageCurID;
@@ -75,49 +99,28 @@ namespace UF {
 
             // 保存星级
             Add_Stage_PassedStar(stageCurID, starCount, StagePassStatus.Passed);
-            Set_stage_AllStar();
             return starCount;
         }
+
         public void Add_Stage_PassedStar(int stageID, int starCount, StagePassStatus passStatus) {
-            bool exists = false;
-            for (int i = 0; i < stages.Count; i++) {
-                var stage = stages[i];
-                if (stage.stageID == stageID) {
-                    // 如果存在，更新记录
-                    stage = new StageInfoModel {
-                        stageID = stageID,
-                        stageCount = starCount,
-                        passStatus = passStatus
-                    };
-                    exists = true;
-                    Debug.Log($"更新关卡: ID={stageID}, Count={starCount}, Status={passStatus}");
-                    break;
-                }
-            }
-
-            // 如果不存在，添加新记录
-            if (!exists) {
-                stages.Add(new StageInfoModel {
+            bool has = stages.TryGetValue(stageID, out var stage);
+            if (has) {
+                stage.starCount = starCount;
+                stage.passStatus = passStatus;
+                stages[stageID] = stage;
+            } else {
+                stage = new StageInfoModel {
                     stageID = stageID,
-                    stageCount = starCount,
-                    passStatus = passStatus
-                });
-                Debug.Log($"添加新关卡: ID={stageID}, Count={starCount}, Status={passStatus}");
+                    starCount = starCount,
+                    passStatus = passStatus,
+                };
+                stages.Add(stageID, stage);
             }
         }
-
-        public void Set_stage_AllStar() {
-            starAllCount = 0;
-            // TODO:感觉可能有问题
-            foreach (var stage in stages) {
-                starAllCount += stage.stageCount;
-            }
-        }
-
 
         public GameSaveModel() {
             slotID = 0;
-            stages = new List<StageInfoModel>();
+            stages = new Dictionary<int, StageInfoModel>();
 
 
             stageCurID = 0;
@@ -140,10 +143,10 @@ namespace UF {
         public void AddStageAll() {
             StageInfoModel stage1 = new StageInfoModel {
                 stageID = 1,
-                stageCount = 0,
+                starCount = 0,
                 passStatus = StagePassStatus.Reached,
             };
-            stages.Add(stage1);
+            stages.Add(stage1.stageID, stage1);
         }
 
         public void Clear() {
@@ -170,11 +173,11 @@ namespace UF {
         public void AddStageReached(int stageID) {
             StageInfoModel stage = new StageInfoModel {
                 stageID = stageID,
-                stageCount = 0,
+                starCount = 0,
                 passStatus = StagePassStatus.Reached,
             };
 
-            stages.Add(stage);
+            stages.Add(stageID, stage);
         }
 
         public void ClearEnemyTypeID() {
@@ -189,15 +192,15 @@ namespace UF {
         public void AddStagePassed(int stageID, int starCount) {
             StageInfoModel stage = new StageInfoModel {
                 stageID = stageID,
-                stageCount = starCount,
+                starCount = starCount,
                 passStatus = StagePassStatus.Passed,
             };
-            stages.Add(stage);
+            stages.Add(stageID, stage);
         }
 
         public int GetStagePassedCount() {
             int PassedCount = 0;
-            foreach (var stage in stages) {
+            foreach (var stage in stages.Values) {
                 if (stage.passStatus == StagePassStatus.Passed) {
                     PassedCount++;
                 }
@@ -219,7 +222,7 @@ namespace UF {
 
         public bool IsStageReached(int stageID) {
             bool isReach = false;
-            foreach (var stage in stages) {
+            foreach (var stage in stages.Values) {
                 if (stage.stageID == stageID) {
                     if (stage.passStatus == StagePassStatus.Reached) {
                         isReach = true;
@@ -231,9 +234,9 @@ namespace UF {
         }
 
         public int GetStagePassedStar(int stageID) {
-            foreach (var stage in stages) {
+            foreach (var stage in stages.Values) {
                 if (stage.stageID == stageID) {
-                    return stage.stageCount;
+                    return stage.starCount;
                 }
             }
             return 0;

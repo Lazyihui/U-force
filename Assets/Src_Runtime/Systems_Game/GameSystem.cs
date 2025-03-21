@@ -16,8 +16,8 @@ namespace UF {
             events = new GameSystemEvents();
         }
 
-        public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository, BulletRepository bulletRepository, GameSaveModel playerSaveData, Camera camera, SaveCore saveCore) {
-            ctx.Inject(ScreenCanvas, assetsCore, templateCore, appUI, inputModule, roleRepository, bulletRepository, playerSaveData, camera, saveCore);
+        public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository, BulletRepository bulletRepository, GameSaveModel playerSaveData, Camera camera, SaveCore saveCore, SaveSlotFullDTO saveSlotFullDTO) {
+            ctx.Inject(ScreenCanvas, assetsCore, templateCore, appUI, inputModule, roleRepository, bulletRepository, playerSaveData, camera, saveCore, saveSlotFullDTO);
         }
 
         public void Exit() {

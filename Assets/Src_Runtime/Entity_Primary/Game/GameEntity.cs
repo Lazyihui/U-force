@@ -11,9 +11,9 @@ namespace UF {
         public float restFixTime;
         public GameState state;
         public IDSignature OwnerIDsig;
-        public GameSaveModel playerSaveData;
-        public GameSettingModel setting;
 
+        // 存档数据
+        public GameSaveModel playerSaveData;
 
         #region 生成小怪的波次数据
         // TODO: 之后可能要改用行的。cs文件里面的数据，不要放在这里
@@ -47,14 +47,33 @@ namespace UF {
         public bool isEliminateWar;
 
         public GameEntity() {
-            setting = new GameSettingModel();
+            // 存档
+            playerSaveData = new GameSaveModel();
+
             wavesProgress = 0;
 
             gameTime = 0;
             energyNumber = 0;
         }
 
+        #region 存档
+        public void Init(int slotID) {
+            playerSaveData.slotID = slotID;
+        }
+
+        public void FromDTO(SaveSlotFullDTO dto) {
+            playerSaveData.FromDTO(dto.gameSaveDTO);
+        }
+
+        public SaveSlotFullDTO ToDTO() {
+            SaveSlotFullDTO dto = new SaveSlotFullDTO();
+            dto.gameSaveDTO = playerSaveData.ToDTO();
+            return dto;
+        }
+
+        #endregion
         public void Reset() {
+            // 存档
             playerSaveData.Reset();
 
             // TOOO:没认真看这个要不要reset

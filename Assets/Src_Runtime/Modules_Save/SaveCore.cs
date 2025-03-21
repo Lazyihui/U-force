@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.IO;
+using UnityEngine;
+using GameFunctions;
 
 namespace UF {
 
@@ -17,80 +19,77 @@ namespace UF {
         public void Inti() {
         }
 
-        #region  Binding
+        #region   DTO
+        // where T : IGFBufferEncoderMessage<T>：约束 T 必须实现 IGFBufferEncoderMessage<T> 接口。
+        void SaveDTO<T>(string file, T dto) where T : IGFBufferEncoderMessage<T> {
+            int offset = 0;
+            dto.WriteTo(writeSlotBuffer, ref offset);
+            FileHepler.WriteFileAfterClean(MOUNT_NAME, file, writeSlotBuffer, offset);
+        }
 
-        // 这里面的内容是保存绑定的内容 （暂时没看懂）
-        public bool Binding_TryLoad(InputModule input) {
-            string file = File_InputBinding();
+        bool TryLoadDTO<T>(string file, out T dto) where T : IGFBufferEncoderMessage<T>, new() {
             if (FileHepler.ExistFile(file)) {
-                string json = FileHepler.ReadAllText_UTF8(file);
-                if (!string.IsNullOrEmpty(json)) {
-                    Debug.Log("Binding loaded: " + json);
-                    input.FromJson(json);
-                    return true;
-                } else {
-                    return false;
-                }
+                FileHepler.ReadFile(file, out var readBuffer);
+                int offset = 0;
+                byte[] newBuffer = new byte[readBuffer.Length * 2];
+                // 复制数组
+                Array.Copy(readBuffer, newBuffer, readBuffer.Length);
+                dto = new T();
+                dto.FromBytes(newBuffer, ref offset);
+                return true;
             } else {
+                dto = default;
                 return false;
             }
         }
 
-        public void Binding_Save(InputModule input) {
-            string file = File_InputBinding();
-            FileHepler.WriteAllText_UTF8(MOUNT_NAME, file, input.ToJson());
+        #region 读 写 删
+        public void Slot_Full_TryLoad(int slotID, out SaveSlotFullDTO dto) {
+            dto = new SaveSlotFullDTO();
+            bool has;
+
+            has = GameSave_TryLoad(slotID, out dto.gameSaveDTO);
+            if (has) {
+                dto.gameSaveDTO.slotID = slotID;
+            } else {
+                dto.gameSaveDTO.Creat(slotID);
+            }
+        }
+
+        public void Slot_Full_Save(GameEntity save) {
+
+            var dto = save.ToDTO();
+            GameSave_Save(dto.gameSaveDTO);
+
+        }
+
+        public void DeleteSlot(int slotID) {
+            Delete(File_Slot(slotID));
+        }
+
+
+        #endregion
+        #region Slot: GameSaveModel
+        void GameSave_Save(in GameSaveDTO dto) {
+            string file = GameSave_FilePath(dto.slotID);
+            SaveDTO(file, dto);
+        }
+
+        bool GameSave_TryLoad(int slotID, out GameSaveDTO save) {
+            string file = GameSave_FilePath(slotID);
+            return TryLoadDTO(file, out save);
+        }
+
+        string GameSave_FilePath(int slot) {
+            return FileHepler.CombineDirAndFile(Persistent(), $"save_{slot}.UF");
         }
 
         #endregion
-
-        #region SlotGame
-
-        // 保存存档
-        public void Slot_Save(GameSaveModel model) {
-            string file = File_Slot(model.slotID);
-
-            // SaveDTO save;
-            // save.slotID = model.slotID;
-
-            // save.stage_Passed = new List<int>();
-            // foreach (Int32 int32 in model.stage_Passed) {
-            //     save.stage_Passed.Add(int32);
-            // }
-
-            // save.stage_PassedStar = new List<ulong>();
-            // foreach (StarSignature int32 in model.stage_PassedStar) {
-            //     save.stage_PassedStar.Add(int32.value);
-            // }
-
-            // save.stage_UnLock = new List<int>();
-            // foreach (Int32 int32 in model.stage_UnLock) {
-            //     save.stage_UnLock.Add(int32);
-            // }
-
-            // save.unLockChapterID = model.unLockChapterID;
-            // save.starAllCount = model.starAllCount;
-
-            // int offset = 0;
-            // int size = save.GetSizeForWrite();
-            // // 如果缓冲区不够大，重新分配
-            // if (writeSlotBuffer.Length < size) {
-            //     writeSlotBuffer = new byte[size];
-            // }
-            // // 写入数据
-            // save.WriteTo(writeSlotBuffer, ref offset);
-            // // 写入文件
-            // FileHepler.WriteFileAfterClean(MOUNT_NAME, file, writeSlotBuffer, offset);
-
-            // Debug.Log("Slot saved: " + size);
-        }
-
-        // 读取存 是否有存档SlotID
         public bool Slot_Has(int slotID) {
             string file = File_Slot(slotID);
             return FileHepler.ExistFile(file);
         }
-
-        public bool Slot_TryLoad(int slotID, out SaveDTO save) {
+        public bool Slot_TryLoad(int slotID, out GameSaveDTO save) {
             string file = File_Slot(slotID);
             if (FileHepler.ExistFile(file)) {
                 FileHepler.ReadFile(file, out var readBuffer);
@@ -98,37 +97,30 @@ namespace UF {
                 byte[] newBuffer = new byte[readBuffer.Length * 2];
                 // 复制数组
                 Array.Copy(readBuffer, newBuffer, readBuffer.Length);
-                save = new SaveDTO();
+                save = new GameSaveDTO();
                 save.FromBytes(newBuffer, ref offset);
                 return true;
             } else {
                 save = default;
                 return false;
             }
+        }
 
-        }
-        // 合并存档
-        public SaveDTO CombineRightToLeft(SaveDTO a, SaveDTO b) {
-            b.stage_Passed.ForEach(id => {
-                a.stage_Passed.Add(id);
-            });
-            b.stage_PassedStar.ForEach(id => {
-                a.stage_PassedStar.Add(id);
-            });
-            b.stage_UnLock.ForEach(id => {
-                a.stage_UnLock.Add(id);
-            });
-            return a;
-        }
 
         // 删除存档
-        public void Slot_Delete(int slotID) {
-            string file = File_Slot(slotID);
+        // public void Slot_Delete(int slotID) {
+        //     string file = File_Slot(slotID);
+        //     if (FileHepler.ExistFile(file)) {
+        //     }
+        // }
+        #endregion
+
+        #region Delete
+        void Delete(string file) {
             if (FileHepler.ExistFile(file)) {
                 FileHepler.DeleteFile(MOUNT_NAME, file);
             }
         }
-
         #endregion
 
         // 保存游戏内容
@@ -156,5 +148,6 @@ namespace UF {
             }
         }
         #endregion
+
     }
 }

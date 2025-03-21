@@ -1,0 +1,19 @@
+{
+    "name": "U_Force.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:dac063e0fb108694f89095f450863428",
+        "GUID:6ab90af8c2ba87e4bba6df4a563258ff",
+        "GUID:8ec02171008f88849bb5a5c71e6db939",
+        "GUID:324caed91501a9c47a04ebfd87b68794"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

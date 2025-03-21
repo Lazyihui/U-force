@@ -9,6 +9,7 @@ namespace UF {
 
         public GameEntity gameEntity;
         public SaveCore saveCore;
+        public SaveSlotFullDTO saveSlotFullDTO;
 
         // ---  Common  ---
         public IDService idService;
@@ -43,7 +44,10 @@ namespace UF {
             moduleCamera = new ModuleCamera();
         }
 
-        public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository, BulletRepository bulletRepository, GameSaveModel playerSaveData, Camera camera, SaveCore saveCore) {
+        public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore,
+         TemplateMoudle templateCore, AppUI appUI,
+         InputModule inputModule, RoleRepository roleRepository, BulletRepository bulletRepository,
+         GameSaveModel playerSaveData, Camera camera, SaveCore saveCore, SaveSlotFullDTO saveSlotFullDTO) {
             this.assetsModule = assetsCore;
             this.templateCore = templateCore;
             this.appUI = appUI;
@@ -56,6 +60,8 @@ namespace UF {
             this.bulletRepository = bulletRepository;
             this.saveCore = saveCore;
             gameEntity.Inject(playerSaveData);
+
+            this.saveSlotFullDTO = saveSlotFullDTO;
         }
 
         public RoleEntity Get_Owner() {

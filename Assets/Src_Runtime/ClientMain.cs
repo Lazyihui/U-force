@@ -35,6 +35,9 @@ namespace UF {
         public BulletRepository bulletRepository;
         public PropRepository propRepository;
 
+        // 
+        public SaveSlotFullDTO saveSlotFullDTO;
+
         void Start() {
             // ---  UI
             appUI = GetComponentInChildren<AppUI>();
@@ -69,33 +72,16 @@ namespace UF {
             propRepository = new PropRepository();
 
             playerSaveData = new GameSaveModel();
+            saveSlotFullDTO = new SaveSlotFullDTO();
             saveCore = new SaveCore();
-            // saveCore.Slot_Delete(0);
-            // saveCore.Slot_Delete(3);
 
-            // save存档
-            bool has0 = saveCore.Slot_Has(0);
-            if (!has0) {
-                playerSaveData.slotID = 0;
-                saveCore.Slot_Save(playerSaveData);
-            }
-            bool has3 = saveCore.Slot_Has(3);
-            if (!has3) {
-                playerSaveData.slotID = 3;
-                saveCore.Slot_Save(playerSaveData);
-            }
-            // 合并存档
-            has0 = saveCore.Slot_TryLoad(0, out var save0);
-            has3 = saveCore.Slot_TryLoad(3, out var save3);
-            save0 = saveCore.CombineRightToLeft(save0, save3);
-            playerSaveData.slotID = 0;
-            // 加载存档
-            GameMainDomain.Game_Load(playerSaveData, save0);
-            // 保存存档
-            saveCore.Slot_Save(playerSaveData);
+            // 1.加载存档
+            saveCore.Slot_Full_TryLoad(0, out saveSlotFullDTO);
+            // 2.保存存档
+            saveCore.Slot_Full_Save();
 
             // Inject
-            gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, bulletRepository, playerSaveData, mainCamera, saveCore);
+            gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, bulletRepository, playerSaveData, mainCamera, saveCore, saveSlotFullDTO);
             loginSystem.Inject(appUI, inputModule, saveCore);
             pauseSystem.Inject(appUI, roleRepository, bulletRepository, propRepository);
             trainSystem.Inject(appUI, templateModule, assetsModule, inputModule, roleRepository, bulletRepository, propRepository);

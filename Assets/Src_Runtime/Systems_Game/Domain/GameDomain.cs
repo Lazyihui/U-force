@@ -33,7 +33,8 @@ namespace UF {
         public static void Slot_SaveCurrent(GameSystemContext ctx) {
             var game = ctx.gameEntity;
             var saveCore = ctx.saveCore;
-            saveCore.Slot_Save(game.playerSaveData);
+            GameSaveDTO dto = ctx.saveSlotFullDTO.gameSaveDTO;
+            saveCore.GameSave_Save(dto);
         }
 
     }
