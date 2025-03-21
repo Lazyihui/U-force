@@ -111,11 +111,20 @@ namespace UF {
             var attCom = role.AttributeComponent;
             var feaCom = role.FeatureComponent;
             int finalHp = attCom.hp - damage;
+            var game = ctx.gameEntity;
             role.Attr_Hp_Set(finalHp);
             if (attCom.hp <= 0) {
                 if (feaCom.featureType == FeatureType.HurtOneself) {
                     BulletEntity bullet = BulletDomain.SpawnByPos(ctx, 5000, role.TF_GetPos(), new Vector3(0, 0, 0));
                     role.SetRoleState(RoleState.Dead); //TODO:这样写其实不好
+
+                } else if (game.isEliminateWar) {
+                    role.SetRoleState(RoleState.Dead);
+
+                    if (role.roleType == RoleType.Core) {
+                        CoreDead(ctx);
+                    }
+
                 } else {
                     role.SetRoleState(RoleState.Fall);
                     role.Fall();
@@ -136,6 +145,37 @@ namespace UF {
 
             if (attCom.hp <= 0) {
                 role.SetRoleState(RoleState.Dead);
+            }
+        }
+
+        // 核心死亡, 所有物品掉落
+        public static void CoreDead(GameSystemContext ctx) {
+            var game = ctx.gameEntity;
+            if (!game.isEliminateWar) { // 没什么用的检测, 但是写上就显得很严谨
+                return;
+            }
+
+            int roleLen = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
+            int StuffLen = ctx.stuffRepository.TakeAll(out StuffEntity[] stuffs);
+
+            for (int i = 0; i < roleLen; i++) {
+                var role = roles[i];
+                if (role.roleType == RoleType.Player || role.roleType == RoleType.Core) {
+                    continue;
+                }
+                
+                role.SetRoleState(RoleState.Fall);
+                role.Fall();
+                role.Set_RbConstraints();
+            }
+
+            for (int i = 0; i < StuffLen; i++) {
+                var stuff = stuffs[i];
+                if (stuff.typeID != 100) {
+                    continue;
+                }
+
+                stuff.Fall();
             }
         }
 
