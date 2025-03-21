@@ -7,6 +7,11 @@ namespace UF {
     public static partial class BulletDomain {
 
         public static void Bullet_Loco(GameSystemContext ctx, BulletEntity bullet, float dt) {
+            if (ctx.gameEntity.state == GameState.GameOver)
+            {
+                Bullet_Loco_Stop(bullet, dt);
+                return;
+            }
 
             if (bullet.moveType == BulletMoveType.None) {
                 Bullet_Loco_Stop(bullet, dt);

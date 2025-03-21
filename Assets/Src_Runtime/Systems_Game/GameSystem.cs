@@ -49,6 +49,7 @@ namespace UF {
             appUI.HUD_Eliminate_Close();
             appUI.Panel_Eliminate_Pause_Close();
             appUI.Panel_Eliminate_Button_Close();
+            appUI.Panel_Eliminate_GameOver_Close();
         }
 
         public void Enter(int stageID, int selectedRoleTypeID, int[] skillorTypeIDArray, int sciType) {
@@ -242,6 +243,10 @@ namespace UF {
 
             eventCenter.OnGameIllusStuffCardClickHandle += (int typeID) => {
                 events.OnGameIllusStuffCardClick(typeID);
+            };
+
+            eventCenter.OnEliminateGameOverButtonClick += (bool isWin) => {
+                events.OnEliminateOverResetClick(isWin);
             };
         }
     }

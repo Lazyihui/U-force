@@ -60,6 +60,15 @@ namespace UF {
             var playerSaveData = game.playerSaveData;
             var owner = ctx.Get_Owner();
 
+            // Bullet
+            int bulletLen = ctx.bulletRepository.TakeAll(out BulletEntity[] bullets);
+
+            for (int i = 0; i < bulletLen; i += 1) {
+                BulletEntity bullet = bullets[i];
+                BulletDomain.CheckUnSpawn(ctx, bullet, dt);
+                BulletDomain.FSM_All_Execute(ctx, bullet, dt);
+            }
+
             if (game.state == GameState.GameOver) {
                 return;
             }
@@ -119,15 +128,6 @@ namespace UF {
                 RoleDomain.Loco_MoveEliminate(ctx, role, dt);
             }
 
-            // Bullet
-            int bulletLen = ctx.bulletRepository.TakeAll(out BulletEntity[] bullets);
-
-            for (int i = 0; i < bulletLen; i += 1) {
-                BulletEntity bullet = bullets[i];
-                BulletDomain.CheckUnSpawn(ctx, bullet, dt);
-                BulletDomain.FSM_All_Execute(ctx, bullet, dt);
-            }
-
             var energy = game.energyNumber;
             if (energy >= 4) {
                 game.state = GameState.GameOver;
@@ -142,7 +142,7 @@ namespace UF {
                 if (energy <= 1) {
                     ctx.appUI.HUD_Eliminate_Update(progress, game.energyNumber);
                     ctx.appUI.Panel_EliminateGameOver_Open(false, 0);
-                    
+
                 } else {
                     int star = 0;
                     switch (star) {

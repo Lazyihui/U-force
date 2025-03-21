@@ -43,5 +43,12 @@ namespace UF {
             }
         }
         #endregion
+
+        public Action<bool> OnEliminateOverResetClickHandle;
+        public void OnEliminateOverResetClick(bool isWin) {
+            if (OnEliminateOverResetClickHandle != null) {
+                OnEliminateOverResetClickHandle(isWin);
+            }
+        }
     }
 }
