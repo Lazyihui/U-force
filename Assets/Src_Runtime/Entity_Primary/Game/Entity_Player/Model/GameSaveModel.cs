@@ -216,7 +216,7 @@ namespace UF {
             bool isReach = false;
             foreach (var stage in stages.Values) {
                 if (stage.stageID == stageID) {
-                    if (stage.passStatus == StagePassStatus.Reached) {
+                    if (stage.passStatus == StagePassStatus.Reached || stage.passStatus == StagePassStatus.Passed) {
                         isReach = true;
                         return isReach;
                     }

@@ -39,11 +39,9 @@ namespace UF.UIApplication {
         int chapter;
         Dictionary<int, Button> chapterBtns;
 
-
         public Action<int> OnChapterClickHandle;//章节
         public Action<int> OnStageClickHandle;
         public Action OnCloseHandle;//关闭
-
 
         public void Ctor() {
             btn_c1.onClick.AddListener(() => OnChapterClickHandle.Invoke(1));

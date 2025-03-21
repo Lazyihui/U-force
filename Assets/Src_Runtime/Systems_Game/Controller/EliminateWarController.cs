@@ -137,7 +137,7 @@ namespace UF {
 
                 // 保存数据 得到的星级 和 通关的关卡
                 int stageID = ctx.appUI.playerSaveData.GetStageCurID();
-                ctx.appUI.playerSaveData.AddStagePassed(stageID, 3);
+                ctx.appUI.playerSaveData.Add_Stage_PassedStar(stageID, 3, StagePassStatus.Passed);
 
                 // 添加关卡
                 GameDomain.Add_ReachStage(ctx);
@@ -172,7 +172,7 @@ namespace UF {
 
                     // 保存数据 得到的星级 和 通关的关卡
                     int stageID = ctx.appUI.playerSaveData.GetStageCurID();
-                    ctx.appUI.playerSaveData.AddStagePassed(stageID, star);
+                    ctx.appUI.playerSaveData.Add_Stage_PassedStar(stageID, star, StagePassStatus.Passed);
 
                     // 添加关卡
                     GameDomain.Add_ReachStage(ctx);
