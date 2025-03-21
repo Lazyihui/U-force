@@ -23,7 +23,7 @@ namespace UF {
             int passedCount = playerSaveData.GetStagePassedCount();
             int stageAllCount = playerSaveData.GetstarAllCount();
             if (stageAllCount >= passedCount * 1.5f) {
-                playerSaveData.AddStageReached(passedCount + 1);
+                playerSaveData.AddStageReached(passedCount + 1, StagePassStatus.Reached);
             }
             // 保存数据
             GameDomain.Slot_SaveCurrent(ctx);

@@ -118,6 +118,19 @@ namespace UF {
             }
         }
 
+        public void AddStageReached(int stageID, StagePassStatus passStatus) {
+            bool has = stages.TryGetValue(stageID, out var stage);
+            if (has) {
+                stage.passStatus = passStatus;
+                stages[stageID] = stage;
+            } else {
+                stage = new StageInfoModel {
+                    stageID = stageID,
+                    passStatus = passStatus,
+                };
+                stages.Add(stageID, stage);
+            }
+        }
         public GameSaveModel() {
             slotID = 0;
             stages = new Dictionary<int, StageInfoModel>();
@@ -170,15 +183,7 @@ namespace UF {
             stages.Clear();
         }
 
-        public void AddStageReached(int stageID) {
-            StageInfoModel stage = new StageInfoModel {
-                stageID = stageID,
-                starCount = 0,
-                passStatus = StagePassStatus.Reached,
-            };
 
-            stages.Add(stageID, stage);
-        }
 
         public void ClearEnemyTypeID() {
             EnemyTypeIDs.Clear();
