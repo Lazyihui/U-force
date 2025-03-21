@@ -210,15 +210,21 @@ namespace UF {
                 return;
             }
 
-
-            UnSpawn(ctx, role);
             if (role.roleType == RoleType.Player) {
                 // TODO:L写这里其实不太好
+                var ui = ctx.appUI;
+                var attr = role.AttributeComponent;
+                UIDomain.HUD_Progressbar_Update(ui, attr, game.wavesProgress);
+
                 ctx.gameEntity.state = GameState.GameOver;
                 Debug.Log("GameOver");
                 var playerData = game.playerSaveData;
                 ctx.appUI.Panel_GameOver_Open(false, 0);
+
+                return;
             }
+
+            UnSpawn(ctx, role);
         }
 
         #endregion

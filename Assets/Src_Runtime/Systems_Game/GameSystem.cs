@@ -185,10 +185,13 @@ namespace UF {
 
             if (isGameWin) {
                 var playerData = ctx.gameEntity.playerSaveData;
+                var attr = owner.AttributeComponent;
 
                 Debug.Assert(playerData != null, "playerDate==null");
                 Debug.Assert(owner != null, "owner==null");
                 if (owner.state == RoleState.Dead) {
+                    UIDomain.HUD_Progressbar_Update(appUI, attr, game.wavesProgress);
+
                     ctx.gameEntity.state = GameState.GameOver;
                     ctx.appUI.Panel_GameOver_Open(false, 0);
                 }
@@ -200,6 +203,8 @@ namespace UF {
                 Exit();
                 int starCount = playerData.GetStarCount();
                 // 技术到达的关卡
+                UIDomain.HUD_Progressbar_Update(appUI, attr, game.wavesProgress);
+
                 ctx.appUI.Panel_GameOver_Open(true, starCount);
                 game.state = GameState.GameOver;
 

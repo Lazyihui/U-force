@@ -65,7 +65,7 @@ namespace UF {
         public static bool ComparePos(StuffEntity stuff) { // true表示离开引力场
             if (!stuff.isEnergy) {
                 return false;
-            }   
+            }
 
             var pos = stuff.TF_GetPos();
             Vector2 pointPos = new Vector2(9, 0);

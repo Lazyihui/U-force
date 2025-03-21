@@ -132,6 +132,7 @@ namespace UF {
             if (energy >= 4) {
                 game.state = GameState.GameOver;
 
+                ctx.appUI.HUD_Eliminate_Update(progress, game.energyNumber);
                 ctx.appUI.Panel_EliminateGameOver_Open(true, 3); // 四个能量棒必定三星  
             }
 
@@ -139,7 +140,9 @@ namespace UF {
                 game.state = GameState.GameOver;
 
                 if (energy <= 1) {
+                    ctx.appUI.HUD_Eliminate_Update(progress, game.energyNumber);
                     ctx.appUI.Panel_EliminateGameOver_Open(false, 0);
+                    
                 } else {
                     int star = 0;
                     switch (star) {
@@ -157,6 +160,7 @@ namespace UF {
                             break;
                     }
 
+                    ctx.appUI.HUD_Eliminate_Update(progress, game.energyNumber);
                     ctx.appUI.Panel_EliminateGameOver_Open(true, star);
                 }
             }
