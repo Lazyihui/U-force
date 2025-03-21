@@ -12,6 +12,7 @@ namespace UF {
         public GameState state;
         public IDSignature OwnerIDsig;
         public GameSaveModel playerSaveData;
+        public GameSettingModel setting;
 
 
         #region 生成小怪的波次数据
@@ -46,6 +47,7 @@ namespace UF {
         public bool isEliminateWar;
 
         public GameEntity() {
+            setting = new GameSettingModel();
             wavesProgress = 0;
 
             gameTime = 0;

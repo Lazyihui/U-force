@@ -117,8 +117,8 @@ MonoBehaviour:
   btn_c5: {fileID: 5502923181118646236}
   spr_chapterSelected: {fileID: 21300000, guid: 7287be7bd14321e469e6828907c79a68, type: 3}
   spr_chapterNotSelected: {fileID: 21300000, guid: d5abad237d70f804fbe3ae72e57b1522, type: 3}
-  spr_kb: {fileID: 21300000, guid: 10a48c4242f398a4aaef38dc91f22dca, type: 3}
-  spr_js: {fileID: 21300000, guid: 541c3d537cfbd3f4c9fd3f60c8d9cb28, type: 3}
+  spr_kb: {fileID: 21300000, guid: 541c3d537cfbd3f4c9fd3f60c8d9cb28, type: 3}
+  spr_js: {fileID: 21300000, guid: 023a4ad8ab410fb47841cf234fda53fc, type: 3}
   img_keyPrompt: {fileID: 292572765279166492}
   btn_back: {fileID: 4698235396343524291}
 --- !u!1 &771240299287987881
