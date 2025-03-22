@@ -8,8 +8,8 @@ using System.Runtime.InteropServices;
 namespace UF {
     public class InputModule : MonoBehaviour {
 
-        InputControls_Player player1;
-        public InputControls_Player Player1 => player1;
+        InputControls_Player player;
+        public InputControls_Player Player => player;
 
         InputKeyFlag inputCastKey;
         public InputKeyFlag InputCastKey => inputCastKey;
@@ -52,8 +52,8 @@ namespace UF {
         public Vector2 MoveDir => moveDir;
 
         public void Ctor() {
-            player1 = new InputControls_Player();
-            player1.Enable();
+            player = new InputControls_Player();
+            player.Enable();
 
         }
 
@@ -68,7 +68,9 @@ namespace UF {
         public void Process(float dt) {
             UnButtonPress();
 
-            var world = player1.World;
+            var world = player.World;
+            var player1 = player.Player1;
+            var player2 = player.Player2;
 
             // -Input
             {
@@ -141,25 +143,25 @@ namespace UF {
 
             // 训练营Player1
             {
-                bool isPlayer1JumpDown = world.Player1Jump.WasPressedThisFrame();
+                bool isPlayer1JumpDown = player1.Player1Jump.WasPressedThisFrame();
                 isPlayer1Jump = isPlayer1JumpDown;
 
-                bool isPlayer1AttackDown = world.Player1Attack.WasPressedThisFrame();
+                bool isPlayer1AttackDown = player1.Player1Attack.WasPressedThisFrame();
                 isPlayer1Attack = isPlayer1AttackDown;
 
-                bool isPlayer1DefenseDown = world.Player1Defense.WasPressedThisFrame();
+                bool isPlayer1DefenseDown = player1.Player1Defense.WasPressedThisFrame();
                 isPlayer1Defense = isPlayer1DefenseDown;
             }
 
             // 训练营Player2
             {
-                bool isPlayer2JumpDown = world.Player2Jump.WasPressedThisFrame();
+                bool isPlayer2JumpDown = player2.Player2Jump.WasPressedThisFrame();
                 isPlayer2Jump = isPlayer2JumpDown;
 
-                bool isPlayer2AttackDown = world.Player2Attack.WasPressedThisFrame();
+                bool isPlayer2AttackDown = player2.Player2Attack.WasPressedThisFrame();
                 isPlayer2Attack = isPlayer2AttackDown;
 
-                bool isPlayer2DefenseDown = world.Player2Defense.WasPressedThisFrame();
+                bool isPlayer2DefenseDown = player2.Player2Defense.WasPressedThisFrame();
                 isPlayer2Defense = isPlayer2DefenseDown;
             }
 
@@ -175,13 +177,13 @@ namespace UF {
         }
         // ==== Save ====
         public string ToJson() {
-            string json = player1.SaveBindingOverridesAsJson();
+            string json = player.SaveBindingOverridesAsJson();
             return json;
         }
 
         public void FromJson(string json) {
             if (!string.IsNullOrEmpty(json)) {
-                player1.LoadBindingOverridesFromJson(json, true);
+                player.LoadBindingOverridesFromJson(json, true);
             }
         }
 
