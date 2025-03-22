@@ -30,11 +30,18 @@ namespace UF {
             ctx.appUI.Panel_Login_Open();
         }
 
+
         public void Enter() {
             ctx.isRunning = true;
         }
 
         public void Exit() {
+            AppUI appUI = ctx.appUI;
+            appUI.Panel_Training_Select_Close();
+            appUI.Panel_CardSelection_Close();
+            appUI.Panel_WatchTower_Close();
+            appUI.Panel_Login_Close();
+
             ctx.isRunning = false;
         }
 

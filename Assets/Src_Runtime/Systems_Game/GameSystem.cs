@@ -50,11 +50,16 @@ namespace UF {
             appUI.Panel_Eliminate_Button_Close();
         }
 
-        public void Enter(int stageID, int selectedRoleTypeID, int[] skillorTypeIDArray, int sciType) {
+        public void Enter() {
+            var appUI = ctx.appUI;
+            var game = ctx.gameEntity;
+            appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
+            int[] typeIDsArray = typeIDs.ToArray();
+            int roleTypeID = appUI.selectedInFormation.roleSelectedTypeID;
+            int sciType = appUI.selectedInFormation.scienceTypeID;
+            int stageID = game.playerSaveData.GetStageCurID();
 
             ctx.isRunning = true;
-            var game = ctx.gameEntity;
-            //stageID ;
             bool has = ctx.templateCore.Stage_TryGet(stageID, out StageTM tm);
             if (!has) {
                 Debug.LogError("StageID not found");
@@ -66,14 +71,14 @@ namespace UF {
 
             if (game.isDefendWar) {
                 Debug.Log("进入防守战");
-                DefendWarController.Enter(ctx, stageID, selectedRoleTypeID, skillorTypeIDArray, sciType, tm);
+                DefendWarController.Enter(ctx, stageID, roleTypeID, typeIDsArray, sciType, tm);
             } else if (game.isOffensiveWar) {
                 // 进攻战和防守战的Enter一样
-                DefendWarController.Enter(ctx, stageID, selectedRoleTypeID, skillorTypeIDArray, sciType, tm);
+                DefendWarController.Enter(ctx, stageID, roleTypeID, typeIDsArray, sciType, tm);
                 RoleEntity owner = ctx.Get_Owner();
                 owner.moveType = RoleMoveType.OffensiveUDRL;
             } else if (game.isEliminateWar) {
-                EliminateWarController.Enter(ctx, stageID, selectedRoleTypeID, skillorTypeIDArray, sciType, tm);
+                EliminateWarController.Enter(ctx, stageID, roleTypeID, typeIDsArray, sciType, tm);
             }
 
         }

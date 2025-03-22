@@ -120,24 +120,20 @@ namespace UF {
 
             loginEvent.OnLoginStartHandle += () => {
                 // 进入游戏
-                GameMainDomain.Slot_LoadGame(0, gameEntity, saveCore);
-                appUI.Panel_Login_Close();
+                GameDomain.Slot_LoadGame(0, gameEntity, saveCore);
                 UIDomain.Panel_StageSelectionEnter(appUI);
             };
 
             loginEvent.OnTrainingHandle += () => {
-                appUI.Panel_Login_Close();
                 UIDomain.Panel_Training_Select_Open(appUI, assetsModule, templateModule);
             };
 
             loginEvent.OnSettingHandle += () => {
-                appUI.Panel_Setting_Open();
-                appUI.Panel_Login_Close();
+                UIDomain.Panel_Setting_Open(appUI);
             };
 
             loginEvent.OnQuitHandle += () => {
                 Application.Quit();
-                Debug.Log("Game Quit");
             };
 
             // StageSelection
@@ -164,47 +160,31 @@ namespace UF {
 
             // CardSelection
             loginEvent.OnSelectHeroClickHandle += () => {
-                appUI.Panel_SetCardType(CardType.Hero);
-                UIDomain.Panel_OneCardSelection_Update(appUI);
+                UIDomain.Panel_OneCardSelection_Update(appUI, CardType.Hero);
             };
 
             loginEvent.OnSelectAgrClickHandle += () => {
-                appUI.Panel_SetCardType(CardType.Agriculture);
-                UIDomain.Panel_OneCardSelection_Update(appUI);
+                UIDomain.Panel_OneCardSelection_Update(appUI, CardType.Agriculture);
             };
 
             loginEvent.OnSelectIndClickHandle += () => {
-                appUI.Panel_SetCardType(CardType.Industry);
-                UIDomain.Panel_OneCardSelection_Update(appUI);
+                UIDomain.Panel_OneCardSelection_Update(appUI, CardType.Industry);
             };
 
             loginEvent.OnSelectSciClickHandle += () => {
-                appUI.Panel_SetCardType(CardType.Science);
-                UIDomain.Panel_OneCardSelection_Update(appUI);
+                UIDomain.Panel_OneCardSelection_Update(appUI, CardType.Science);
             };
 
             loginEvent.OnSelectEnterGameClickHandle += () => {
                 // 放到UIDomain里
                 appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
-
                 appUI.selectedInFormation.typeIDs = typeIDs;
-                int stageID = appUI.playerSaveData.GetStageCurID();
-                int roleTypeID = appUI.selectedInFormation.roleSelectedTypeID;
-                int sciType = appUI.selectedInFormation.scienceTypeID;
-                int slotMax = appUI.playerSaveData.GetSlotMax();
-
-                appUI.Panel_CardSelection_Close();
-                appUI.Panel_WatchTower_Close();
+                
                 loginSystem.Exit();
-
-                gameSystem.Enter(stageID, roleTypeID, typeIDs.ToArray(), sciType);
+                gameSystem.Enter();
             };
 
             loginEvent.OnSelectBackClickHandle += () => {
-                Debug.Log("SelectBack");
-
-                appUI.Panel_CardSelection_Close();
-                appUI.Panel_WatchTower_Close();
                 UIDomain.Panel_StageSelectionEnter(appUI);
             };
 
@@ -258,7 +238,6 @@ namespace UF {
                     appUI.Panel_Training_Select_TakeAll(out List<int> typeIDs);
                     appUI.selectedInTrain.typeIDs = typeIDs;
 
-                    appUI.Panel_Training_Select_Close();
 
                     loginSystem.Exit();
                     trainSystem.Enter(typeIDs);

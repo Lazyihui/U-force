@@ -89,7 +89,8 @@ namespace UF {
             }
         }
 
-        public static void Panel_OneCardSelection_Update(AppUI appUI) {
+        public static void Panel_OneCardSelection_Update(AppUI appUI, CardType type) {
+            appUI.Panel_SetCardType(type);
 
             // 1.先清空卡片选择界面 
             appUI.Panel_OneCardSelection_Clear();
@@ -206,7 +207,9 @@ namespace UF {
         }
 
         public static void Panel_StageSelectionEnter(AppUI appUI) {
-
+            appUI.Panel_Login_Close();
+            appUI.Panel_CardSelection_Close();
+            appUI.Panel_WatchTower_Close();
             // 1.清空之前的数据
             appUI.Reset();
 
@@ -326,6 +329,7 @@ namespace UF {
 
         #region Train
         public static void Panel_Training_Select_Open(AppUI appUI, AssetsModule assetsModule, TemplateMoudle templateModule) {
+            appUI.Panel_Login_Close();
             appUI.Panel_Training_Select_Open();
 
             CardModel model = GameFactory.Card_Create(assetsModule, templateModule, 500);
@@ -421,6 +425,15 @@ namespace UF {
                 appUI.Panel_Illustrated_Add(tm.typeID, tm.sprite, true);
             }
         }
+        #endregion
+
+        #region 设置
+        public static void Panel_Setting_Open(AppUI appUI) {
+            appUI.Panel_Login_Close();
+            appUI.Panel_Setting_Open();
+        }
+
+
         #endregion
 
     }
