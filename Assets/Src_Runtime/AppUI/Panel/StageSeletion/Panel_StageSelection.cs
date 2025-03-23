@@ -194,10 +194,13 @@ namespace UF.UIApplication {
 
             Button selectedBtn = selectedStage.GetComponent<Button>();
             Selectable selectable = selectedBtn.FindSelectable(moveAxis);
-            Button newSelectedBtn = selectable as Button;
 
-            if (newSelectedBtn == null) { return; }
+            if (selectable == null) { return; }
+
+            Button newSelectedBtn = selectable as Button;
             var newSelectedStage = newSelectedBtn.GetComponent<Panel_StageSelection_OneStage>();
+
+            if (newSelectedStage == null) { return; }
             SetSelectedStage(newSelectedStage);
         }
 
