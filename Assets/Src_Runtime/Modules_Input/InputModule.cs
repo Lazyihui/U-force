@@ -51,6 +51,10 @@ namespace UF {
         Vector2 moveDir;
         public Vector2 MoveDir => moveDir;
 
+        // UI
+        public Vector2 uiAxis;
+        public bool isConfirm;
+
         public void Ctor() {
             player = new InputControls_Player();
             player.Enable();
@@ -68,10 +72,8 @@ namespace UF {
         public void Process(float dt) {
             UnButtonPress();
 
+            #region World
             var world = player.World;
-            var player1 = player.Player1;
-            var player2 = player.Player2;
-
             // -Input
             {
                 bool isJumpDown = world.Jump.WasPressedThisFrame();
@@ -141,6 +143,15 @@ namespace UF {
                 }
             }
 
+            // 进攻战Move
+            {
+                moveDir.x = world.MoveRight.ReadValue<float>() - world.MoveLeft.ReadValue<float>();
+                moveDir.y = world.MoveUp.ReadValue<float>() - world.MoveDown.ReadValue<float>();
+            }
+            #endregion
+
+            #region Player1
+            var player1 = player.Player1;
             // 训练营Player1
             {
                 bool isPlayer1JumpDown = player1.Player1Jump.WasPressedThisFrame();
@@ -152,7 +163,10 @@ namespace UF {
                 bool isPlayer1DefenseDown = player1.Player1Defense.WasPressedThisFrame();
                 isPlayer1Defense = isPlayer1DefenseDown;
             }
+            #endregion
 
+            #region Player2
+            var player2 = player.Player2;
             // 训练营Player2
             {
                 bool isPlayer2JumpDown = player2.Player2Jump.WasPressedThisFrame();
@@ -164,12 +178,24 @@ namespace UF {
                 bool isPlayer2DefenseDown = player2.Player2Defense.WasPressedThisFrame();
                 isPlayer2Defense = isPlayer2DefenseDown;
             }
+            #endregion
 
-            // 进攻战Move
+            #region UI
+            var ui = player.UI;
+            // UI: Move
             {
-                moveDir.x = world.MoveRight.ReadValue<float>() - world.MoveLeft.ReadValue<float>();
-                moveDir.y = world.MoveUp.ReadValue<float>() - world.MoveDown.ReadValue<float>();
+                if (ui.Navigate.WasPressedThisFrame()) {
+                    uiAxis = ui.Navigate.ReadValue<Vector2>();
+                } else {
+                    uiAxis = Vector2.zero;
+                }
             }
+
+            // UI: Confirm
+            {
+                isConfirm = ui.Submit.WasPressedThisFrame();
+            }
+            #endregion
         }
 
         public void Set_InputCastKey(InputKeyFlag flag) {
