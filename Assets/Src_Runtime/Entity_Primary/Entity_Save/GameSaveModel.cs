@@ -25,7 +25,6 @@ namespace UF {
         public void FromDTO(in GameSaveDTO dto) {
             slotID = dto.slotID;
             unLockChapterID = dto.unLockChapterID;
-            Debug.Log($"FromDTO: slotID={slotID}, unLockChapterID={unLockChapterID}");
             stages.Clear();
             foreach (var stageDTO in dto.all) {
                 StageInfoModel stage = new StageInfoModel();

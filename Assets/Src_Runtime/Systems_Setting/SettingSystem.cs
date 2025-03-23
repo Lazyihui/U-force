@@ -13,13 +13,23 @@ namespace UF {
         SettingSystemEvents events;
         public SettingSystemEvents Events => events;
 
-        public void  Ctor() {
+        public void Ctor() {
             ctx = new SettingContext();
             events = new SettingSystemEvents();
         }
 
         public void Inject(AppUI appUI) {
             ctx.Inject(appUI);
+        }
+
+        public void Enter() {
+            ctx.isRunning = true;
+            var appUI = ctx.appUI;
+            appUI.Panel_Setting_Open();
+        }
+
+        public void Exit() {
+            ctx.isRunning = false;
         }
 
     }

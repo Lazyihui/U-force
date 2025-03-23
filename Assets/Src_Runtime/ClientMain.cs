@@ -134,7 +134,8 @@ namespace UF {
             };
 
             loginEvent.OnSettingHandle += () => {
-                UIDomain.Panel_Setting_Open(appUI);
+                appUI.Panel_Login_Close();
+                settingSystem.Enter();
             };
 
             loginEvent.OnQuitHandle += () => {
@@ -546,6 +547,9 @@ namespace UF {
 
         #region Screen Coordinate
 
+        void Screen_Coordinate() {
+            
+        }
 
         #endregion
     }

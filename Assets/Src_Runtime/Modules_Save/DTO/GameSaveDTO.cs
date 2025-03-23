@@ -11,7 +11,7 @@ namespace UF {
 
         public void Creat(int slotID) {
             this.slotID = slotID;
-            unLockChapterID = 3;
+            unLockChapterID = 2;
             all = new List<StageInfoDTO>();
         }
         public void WriteTo(byte[] dst, ref int offset) {
