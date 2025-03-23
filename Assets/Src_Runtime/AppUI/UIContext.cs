@@ -12,6 +12,7 @@ namespace UF {
         public Canvas screenCanvas;
         public AssetsModule assetsCore;
         public TemplateMoudle templateMoudle;
+        public InputModule inputModule;
 
         // panel
         public Panel_Login panel_Login;
@@ -59,10 +60,11 @@ namespace UF {
             noticeTimer = 1;
         }
 
-        public void Inject(Canvas screenCanvas, AssetsModule assetsCore, TemplateMoudle templateMoudle) {
+        public void Inject(Canvas screenCanvas, AssetsModule assetsCore, TemplateMoudle templateMoudle, InputModule inputModule) {
             this.screenCanvas = screenCanvas;
             this.assetsCore = assetsCore;
             this.templateMoudle = templateMoudle;
+            this.inputModule = inputModule;
         }
 
 

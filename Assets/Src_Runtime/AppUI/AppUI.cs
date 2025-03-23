@@ -24,8 +24,8 @@ namespace UF {
             selectedInFormation.Reset();
         }
 
-        public void Inject(Canvas screenCanvas, AssetsModule assetsCore, TemplateMoudle templateMoudle, GameSaveModel playerSaveData) {
-            ctx.Inject(screenCanvas, assetsCore, templateMoudle);
+        public void Inject(Canvas screenCanvas, AssetsModule assetsCore, TemplateMoudle templateMoudle, InputModule inputModule, GameSaveModel playerSaveData) {
+            ctx.Inject(screenCanvas, assetsCore, templateMoudle, inputModule);
             this.playerSaveData = playerSaveData;
         }
         public CardModel Get_CardModel() {
@@ -41,10 +41,13 @@ namespace UF {
             ctx.isEscDown = isEscDown;
         }
 
-        public void Tick(float dt, InputModule inputModule) {
+        public void Tick(float dt) {
             // input
+            var inputModule = ctx.inputModule;
+
             Set_InputDown(inputModule.IsTabDown, inputModule.IsEscDown);
             Panel_StageSelection_Tick(ctx.isTabDown, ctx.isEscDown);
+            Panel_Login_Update_Tick(ctx.screenCanvas, inputModule.uiAxis, inputModule.isConfirm);
         }
 
         #region Login
@@ -91,6 +94,14 @@ namespace UF {
             ctx.panel_Login = null;
         }
 
+        public void Panel_Login_Update_Tick(Canvas canvas, Vector2 axis, bool isConfirm) {
+            Panel_Login panel = ctx.panel_Login;
+            if (panel == null) {
+                return;
+            }
+
+            panel.Update_Tick(canvas, axis, isConfirm);
+        }
         #endregion
 
         #region GameDefend

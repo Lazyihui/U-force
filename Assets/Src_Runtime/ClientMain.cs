@@ -94,7 +94,7 @@ namespace UF {
             pauseSystem.Inject(appUI, roleRepository, bulletRepository, propRepository);
             trainSystem.Inject(appUI, templateModule, assetsModule, inputModule, roleRepository, bulletRepository, propRepository);
 
-            appUI.Inject(screenCanvas, assetsModule, templateModule, playerSaveData);
+            appUI.Inject(screenCanvas, assetsModule, templateModule, inputModule, playerSaveData);
             // ---  Binding  ---
             // Binding_Login();
             Login_Binding();

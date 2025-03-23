@@ -75,10 +75,8 @@ namespace UF {
 
         void PreTick(float dt) {
             // panel
-            var input = ctx.inputModule;
-
             var ui = ctx.appUI;
-            ui.Tick(dt, input);
+            ui.Tick(dt);
 
 
         }
