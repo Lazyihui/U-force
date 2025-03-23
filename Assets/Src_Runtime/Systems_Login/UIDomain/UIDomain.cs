@@ -217,9 +217,9 @@ namespace UF {
             int unLockChapterID = appUI.playerSaveData.GetUnLockChapterID();//解锁关卡
             int unLockStageCount = appUI.playerSaveData.unLockStageCount;//解锁关卡数量
             int starAllCount = appUI.playerSaveData.GetstarAllCount();
-
+            Debug.Log($"unLockChapterID={unLockChapterID}");
             appUI.Panel_StageSelection_Open(curChapterID, unLockChapterID);
-            appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, curChapterID, unLockChapterID);
+            appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, curChapterID, 2);
             appUI.Panel_StageSelection_SetStarNum(starAllCount);
 
             for (int i = 0; i < unLockStageCount; i += 1) {

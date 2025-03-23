@@ -11,8 +11,6 @@ namespace UF {
         public Dictionary<int, StageInfoModel> stages;
 
         // 关卡信息
-        public int unLockChapterID;//解锁的章节2
-        public int GetUnLockChapterID() => unLockChapterID;
         public int GetstarAllCount() {
             int count = 0;
             foreach (var stage in stages.Values) {
@@ -24,7 +22,6 @@ namespace UF {
 
         public void FromDTO(in GameSaveDTO dto) {
             slotID = dto.slotID;
-            unLockChapterID = dto.unLockChapterID;
             stages.Clear();
             foreach (var stageDTO in dto.all) {
                 StageInfoModel stage = new StageInfoModel();
@@ -36,7 +33,6 @@ namespace UF {
         public GameSaveDTO ToDTO() {
             GameSaveDTO dto;
             dto.slotID = slotID;
-            dto.unLockChapterID = unLockChapterID;
             dto.all = new List<StageInfoDTO>();
             foreach (var stage in stages.Values) {
                 dto.all.Add(stage.ToDTO());
@@ -44,6 +40,8 @@ namespace UF {
             return dto;
         }
 
+        public int unLockChapterID;//解锁的章节2
+        public int GetUnLockChapterID() => unLockChapterID;
         public int unLockStageCount;//解锁的关卡数量
         public int stageCurID;//当前关卡
         public int GetStageCurID() => stageCurID;
@@ -178,7 +176,6 @@ namespace UF {
             stageCurID = 0;
             stageCurType = 0;
             chapterCurID = 1;
-            unLockChapterID = 0;
 
             stages.Clear();
         }
