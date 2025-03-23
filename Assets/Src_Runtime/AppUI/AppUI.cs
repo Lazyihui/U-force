@@ -48,6 +48,7 @@ namespace UF {
             Set_InputDown(inputModule.IsTabDown, inputModule.IsEscDown);
             Panel_StageSelection_Tick(ctx.isTabDown, ctx.isEscDown);
             Panel_Login_Update_Tick(ctx.screenCanvas, inputModule.uiAxis, inputModule.isConfirm);
+            Panel_StageSelection_Update_Tick(ctx.screenCanvas, inputModule.uiAxis, inputModule.isConfirm);
         }
 
         #region Login
@@ -520,6 +521,14 @@ namespace UF {
                 return;
             }
             panel.Set_StarNum(starNum);
+        }
+
+        public void Panel_StageSelection_Update_Tick(Canvas canvas, Vector2 axis, bool isConfirm) {
+            Panel_StageSelection panel = ctx.panel_StageSelection;
+            if (panel == null) {
+                return;
+            }
+            panel.Update_Tick(canvas, axis, isConfirm);
         }
 
         // 当前关卡的星星
@@ -1079,7 +1088,7 @@ namespace UF {
             var weaponSpeed = bulletTM.moveSpeed.ToString();
             var damage = bulletTM.attackDamage.ToString();
             var attackSpeed = skill.tm.cd.ToString();
-            
+
             panel.SetPlayer(typeID, sprite, feature, weaponSpeed, damage, attackSpeed);
         }
 

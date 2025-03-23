@@ -20,6 +20,8 @@ namespace UF.UIApplication {
         [SerializeField] Sprite bg_Unlock;
         [SerializeField] Sprite bg_Lock;
 
+        [SerializeField] Image img_Pointer;
+
         public int stageID;
         public Action<int> OnStageClickHandle;
 
@@ -75,5 +77,16 @@ namespace UF.UIApplication {
             }
         }
 
+        public void OnSelected() {
+            img_Pointer.gameObject.SetActive(true);
+        }
+
+        public void OnDeselected() {
+            img_Pointer.gameObject.SetActive(false);
+        }
+
+        public void OnClick() {
+            btn_stage.onClick.Invoke();
+        }
     }
 }

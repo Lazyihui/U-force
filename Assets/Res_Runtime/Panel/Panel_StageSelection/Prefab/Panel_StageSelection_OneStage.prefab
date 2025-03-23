@@ -115,6 +115,7 @@ MonoBehaviour:
   img_Bg: {fileID: 7591559823028520660}
   bg_Unlock: {fileID: 21300000, guid: f73a7ef2c86e30b41bedd27b9c24e8af, type: 3}
   bg_Lock: {fileID: 21300000, guid: 6c9174590026f7242a6cd7705af9e0e6, type: 3}
+  img_Pointer: {fileID: 5665325397115357921}
   stageID: 0
 --- !u!1 &2482069127509797454
 GameObject:
