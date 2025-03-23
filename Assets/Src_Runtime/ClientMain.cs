@@ -1,8 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UF.System_Train;
+using System.Linq; 
+
 
 namespace UF {
 
@@ -36,9 +38,10 @@ namespace UF {
         public BulletRepository bulletRepository;
         public PropRepository propRepository;
 
-        // 
+        // Entity
         public SaveSlotFullDTO saveSlotFullDTO;
         public GameEntity gameEntity;
+        static ProgramEntity programEntity;
 
         void Start() {
             // ---  UI
@@ -80,6 +83,7 @@ namespace UF {
             saveSlotFullDTO = new SaveSlotFullDTO();
             saveCore = new SaveCore();
             gameEntity = new GameEntity();
+            programEntity = new ProgramEntity();
 
             #region 存档
             // 1.加载存档
@@ -111,6 +115,8 @@ namespace UF {
 
                 // ---  Enter  ---
                 loginSystem.EnterPanel_Login();
+
+                programEntity.isAssetBundleLoaded = true;
             };
 
             action.Invoke();
@@ -525,6 +531,7 @@ namespace UF {
                 saveCore.DeleteSlot(0);
                 Debug.Log("删除存档");
             }
+            Screen_Coordinate();
         }
 
         void OnDestroy() {
@@ -548,9 +555,97 @@ namespace UF {
         #region Screen Coordinate
 
         void Screen_Coordinate() {
-            
-        }
 
+            // 计算当前屏幕的宽高比 比例 比如16:9
+            float ratioDisplay = (float)Screen.width / Screen.height;
+
+            if (ratioDisplay == programEntity.ratioDisplay) {
+                return;
+            }
+
+            float targetRatio = 16f / 9f;// 目标比例
+            float orthographicSize = 11.25f;// 目标正交相机大小
+            float matchHeightPercent = 1;// 目标高度占比
+            var mode = AspectRatioFitter.AspectMode.EnvelopeParent;
+            if ((targetRatio - ratioDisplay).IsAlmostZero(0.0001f)) {
+                // 16:9
+                ratioDisplay = targetRatio;
+            } else if (ratioDisplay < targetRatio) {
+                // 宽/高 = 20/11.25
+                // 宽 = ratio * 高
+                // 高 = 宽 / ratio
+                // 以宽为准, 上下留黑边
+                orthographicSize = 20f / ratioDisplay;
+                matchHeightPercent = 0;
+            } else if (ratioDisplay > targetRatio) {
+                // 更宽(带鱼屏)
+                // 以高为准, 左右留黑边
+                mode = AspectRatioFitter.AspectMode.FitInParent;
+            }
+
+            Canvas_SetMatchWidthOrHeightAll(matchHeightPercent);
+            Canvas_SetFitRatioAll(mode, targetRatio);
+
+            // Camera
+            Camera_Orthographic_SetBaseSize(orthographicSize, ratioDisplay);
+
+            programEntity.ratioDisplay = ratioDisplay;
+
+        }
+        void Canvas_SetMatchWidthOrHeightAll(float matchHeightPercent) {
+            // 获取所有 UI Canvas
+            Canvas[] allCanvases = GameObject.FindObjectsOfType<Canvas>();
+
+            // 遍历所有 Canvas
+            foreach (Canvas canvas in allCanvases) {
+                // 获取 Canvas 的 CanvasScaler 组件
+                CanvasScaler scaler = canvas.GetComponent<CanvasScaler>();
+                if (scaler != null) {
+                    // 设置 CanvasScaler 的匹配模式
+                    scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+                    scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
+                    scaler.matchWidthOrHeight = matchHeightPercent;
+                }
+            }
+        }
+        void Canvas_SetFitRatioAll(AspectRatioFitter.AspectMode mode, float targetRatio) {
+            // 获取所有 UI Canvas
+            Canvas[] allCanvases = GameObject.FindObjectsOfType<Canvas>();
+
+            // 遍历所有 Canvas
+            foreach (Canvas canvas in allCanvases) {
+                // 获取或添加 AspectRatioFitter 组件
+                AspectRatioFitter fitter = canvas.GetComponent<AspectRatioFitter>();
+                if (fitter == null) {
+                    fitter = canvas.gameObject.AddComponent<AspectRatioFitter>();
+                }
+
+                // 设置 AspectRatioFitter 的适配模式和目标宽高比
+                fitter.aspectMode = mode;
+                fitter.aspectRatio = targetRatio;
+            }
+        }
+        void Camera_Orthographic_SetBaseSize(float orthographicSize, float ratioDisplay) {
+            // 获取所有正交相机
+            Camera[] orthographicCameras = GameObject.FindObjectsOfType<Camera>()
+                .Where(camera => camera.orthographic) // 过滤出正交相机
+                .ToArray();
+
+            // 遍历所有正交相机
+            foreach (Camera camera in orthographicCameras) {
+                // 设置正交相机的 orthographicSize
+                camera.orthographicSize = orthographicSize;
+
+                // 根据宽高比调整相机的视野范围
+                float aspectRatio = ratioDisplay;
+                camera.aspect = aspectRatio;
+
+                // 如果需要，可以进一步调整相机的其他参数
+                // 例如：设置相机的近裁剪面和远裁剪面
+                camera.nearClipPlane = 0.1f; // 近裁剪面
+                camera.farClipPlane = 100f;  // 远裁剪面
+            }
+        }
         #endregion
     }
 }
