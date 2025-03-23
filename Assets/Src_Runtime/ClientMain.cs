@@ -21,6 +21,7 @@ namespace UF {
         public static LoginSystem loginSystem;
         public static PauseSystem pauseSystem;
         public static TrainSystem trainSystem;
+        public static SettingSystem settingSystem;
 
         // ==== Cores ====
         public static AppUI appUI;
@@ -56,6 +57,9 @@ namespace UF {
 
             trainSystem = GetComponentInChildren<TrainSystem>();
             trainSystem.Ctor();
+
+            settingSystem = GetComponentInChildren<SettingSystem>();
+            settingSystem.Ctor();
 
             // ---  Modules  ---
             assetsModule = GetComponentInChildren<AssetsModule>();
@@ -179,7 +183,7 @@ namespace UF {
                 // 放到UIDomain里
                 appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
                 appUI.selectedInFormation.typeIDs = typeIDs;
-                
+
                 loginSystem.Exit();
                 gameSystem.Enter();
             };
@@ -539,7 +543,9 @@ namespace UF {
             templateModule.UnLoadAll();
         }
 
+        #region Screen Coordinate
 
 
+        #endregion
     }
 }

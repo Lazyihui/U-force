@@ -34,6 +34,7 @@ MonoBehaviour:
     - so: {fileID: 11400000, guid: d8699dbf713c3fa4fba559e682df9a00, type: 2}
       position: {x: 16, y: -4, z: 0}
       rotation: {x: -0, y: 0, z: 0}
+    stuffSpawns: []
     mapPrefab: {fileID: 8604457340494701413, guid: 2cd8d121bf2722342812ef2db8be21bc, type: 3}
     gameTM:
       isDefendWar: 1
@@ -56,3 +57,7 @@ MonoBehaviour:
       bossSpawnMinionIntervalTimer: 0
       bossProgress: 0
       isEliminateWar: 0
+      gameMax: 0
+      stuffMax: 0
+      isTrainingWar: 0
+      sceneProps: []
