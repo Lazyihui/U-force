@@ -83,6 +83,7 @@ namespace UF {
 
             #region 存档
             // 1.加载存档
+            // saveCore.DeleteSlot(0);
             saveCore.Slot_Full_TryLoad(0, out saveSlotFullDTO);
             gameEntity.Init(0);
             // 2.将存档数据加载到游戏实体
