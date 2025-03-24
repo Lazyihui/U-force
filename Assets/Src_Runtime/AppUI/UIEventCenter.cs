@@ -488,6 +488,12 @@ namespace UF {
                 OnSettingReselustion640ClickHandle();
             }
         }
+        public Action<bool> OnSettingFullScreenToggleHandle;
+        public void OnSettingFullScreenToggle(bool isOn) {
+            if (OnSettingFullScreenToggleHandle != null) {
+                OnSettingFullScreenToggleHandle(isOn);
+            }
+        }
         #endregion
     }
 }

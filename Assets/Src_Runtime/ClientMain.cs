@@ -15,7 +15,7 @@ namespace UF {
         [SerializeField] Camera mainCamera;
         bool isInit = false;
         bool isTearDown = false;
-        bool isFullScreen = false;
+        bool isFullScreen = true;
 
         public GameSaveModel playerSaveData;
         public SaveCore saveCore;
@@ -520,18 +520,24 @@ namespace UF {
             };
 
             settingEvent.OnSettingReselustion1920ClickHandle += () => {
-                Screen.SetResolution(1920, 1080, true);
+                Screen.SetResolution(1920, 1080, isFullScreen);
                 Debug.Log("1920*1080");
             };
 
             settingEvent.OnSettingReselustion1600ClickHandle += () => {
-                Screen.SetResolution(1600, 900, true);
+                Screen.SetResolution(1600, 900, isFullScreen);
                 Debug.Log("1600*900");
             };
 
             settingEvent.OnSettingReselustion640ClickHandle += () => {
-                Screen.SetResolution(640, 360, true);
+                Screen.SetResolution(640, 360, isFullScreen);
                 Debug.Log("640*360");
+            };
+
+            settingEvent.OnSettingFullScreenToggleHandle += (isOn) => {
+                isFullScreen = isOn;
+                Screen.fullScreen = isOn;
+                Debug.Log("全屏" + isOn);
             };
         }
         #endregion
@@ -589,11 +595,6 @@ namespace UF {
         #region Screen Coordinate
 
         void Screen_Coordinate() {
-
-            // // bool isFullScreen = Screen.fullScreen;
-            // if (!isFullScreen) {
-            //     return;
-            // }
 
             // 计算当前屏幕的宽高比 比例 比如16:9
             float ratioDisplay = (float)Screen.width / Screen.height;

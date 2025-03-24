@@ -58,6 +58,10 @@ namespace UF {
                 events.OnSettingReselustion640Click();
                 Debug.Log("SettingSystem: OnSettingReselustion640ClickHandle");
             };
+            eventCenter.OnSettingFullScreenToggleHandle += (isOn) => { // 全屏
+                events.OnSettingFullScreenToggle(isOn);
+                Debug.Log("SettingSystem: OnSettingFullScreenToggleHandle" + isOn);
+            };
         }
 
     }

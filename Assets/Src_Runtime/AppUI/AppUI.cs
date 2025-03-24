@@ -1485,6 +1485,10 @@ namespace UF {
                     eventCenter.OnSettingReselustion640Click();
                 };
 
+                panel.OnFullScreenToggleHandle = (isOn) => {
+                    eventCenter.OnSettingFullScreenToggle(isOn);
+                };
+
             }
             ctx.panel_Setting = panel;
             panel.Show();
