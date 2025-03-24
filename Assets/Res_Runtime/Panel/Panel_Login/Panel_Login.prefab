@@ -827,6 +827,8 @@ MonoBehaviour:
   btn_Training: {fileID: 6875507543570990794}
   btn_Setting: {fileID: 7829433929713861076}
   btn_Quit: {fileID: 236729859590876639}
+  btnSelectedClip: {fileID: 8300000, guid: 35a0117c59e59d14484dd2aa5d7bac70, type: 3}
+  btnConfirmClip: {fileID: 8300000, guid: e6f01e5aa1aeb804ebdb6413a6f98534, type: 3}
 --- !u!1 &6224053613118277524
 GameObject:
   m_ObjectHideFlags: 0

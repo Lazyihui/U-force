@@ -47,6 +47,10 @@ namespace UF.UIApplication {
         Panel_StageSelection_OneStage selectedStage;
         bool isMouseOver;
 
+        AudioSource audioSource;
+        [SerializeField] AudioClip btnSelectedClip;
+        [SerializeField] AudioClip btnConfirmClip;
+
         public void Ctor() {
             btn_c1.onClick.AddListener(() => OnChapterClickHandle.Invoke(1));
             btn_c2.onClick.AddListener(() => OnChapterClickHandle.Invoke(2));
@@ -65,6 +69,10 @@ namespace UF.UIApplication {
             };
 
             stage = new List<Panel_StageSelection_OneStage>();
+        }
+
+        public void Init(AudioSource audioSource) {
+            this.audioSource = audioSource;
         }
 
         public void Tick(bool isTabDown, bool isEscDown) {
@@ -212,12 +220,16 @@ namespace UF.UIApplication {
 
             selectedStage = newStage;
             newStage.OnSelected();
+
+            audioSource.PlayOneShot(btnSelectedClip);
         }
 
         void ConfirmSelectedStage() {
             if (selectedStage == null) { return; }
 
             selectedStage.OnClick();
+
+            audioSource.PlayOneShot(btnConfirmClip);
         }
 
         Panel_StageSelection_OneStage GetMouseOverStage(GameObject canvas) {
