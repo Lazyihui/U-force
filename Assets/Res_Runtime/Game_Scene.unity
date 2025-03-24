@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 734457123}
   - component: {fileID: 734457124}
   m_Layer: 0
-  m_Name: Bg_yellow
+  m_Name: Bg_white
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -376,8 +376,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -32768
-  m_Sprite: {fileID: 21300000, guid: 743de4eff4984fc418b8ba8342c118f5, type: 3}
-  m_Color: {r: 0.74670035, g: 0.7735849, b: 0.20872192, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 1b3788dd85657104bae4f371c3452589, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
