@@ -1478,6 +1478,23 @@ namespace UF {
                 panel.OnBackClickHandle = () => {
                     eventCenter.OnSettingBackClick();
                 };
+
+                panel.OnReselustion1920ClickHandle = () => {
+                    eventCenter.OnSettingReselustion1920Click();
+                };
+
+                panel.OnReselustion1600ClickHandle = () => {
+                    eventCenter.OnSettingReselustion1600Click();
+                };
+
+                panel.OnReselustion640ClickHandle = () => {
+                    eventCenter.OnSettingReselustion640Click();
+                };
+
+                panel.OnFullScreenToggleHandle = (isOn) => {
+                    eventCenter.OnSettingFullScreenToggle(isOn);
+                };
+
             }
             ctx.panel_Setting = panel;
             panel.Show();

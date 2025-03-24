@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UF.System_Train;
-using System.Linq; 
+using System.Linq;
 
 
 namespace UF {
@@ -15,6 +15,7 @@ namespace UF {
         [SerializeField] Camera mainCamera;
         bool isInit = false;
         bool isTearDown = false;
+        bool isFullScreen = true;
 
         public GameSaveModel playerSaveData;
         public SaveCore saveCore;
@@ -102,6 +103,9 @@ namespace UF {
             loginSystem.Inject(appUI, inputModule, saveCore);
             pauseSystem.Inject(appUI, roleRepository, bulletRepository, propRepository);
             trainSystem.Inject(appUI, templateModule, assetsModule, inputModule, roleRepository, bulletRepository, propRepository);
+            settingSystem.Inject(appUI);
+
+            appUI.Inject(screenCanvas, canvasRoot, assetsModule, templateModule, inputModule, playerSaveData);
 
             appUI.Inject(screenCanvas, canvasRoot,assetsModule, templateModule, inputModule, audioModule, playerSaveData);
             // ---  Binding  ---
@@ -110,6 +114,7 @@ namespace UF {
             Game_Binding();
             Pause_Binding();
             Train_Binding();
+            Setting_Binding();
 
             Action action = async () => {
 
@@ -507,6 +512,40 @@ namespace UF {
         }
         #endregion
 
+        #region Binding_Setting
+
+        void Setting_Binding() {
+            settingSystem.Setting_Binding();
+
+            var settingEvent = settingSystem.Events;
+
+            settingEvent.OnSettingBackClickHandle += () => {
+                appUI.Panel_Setting_Close();
+                loginSystem.EnterPanel_Login();
+            };
+
+            settingEvent.OnSettingReselustion1920ClickHandle += () => {
+                Screen.SetResolution(1920, 1080, isFullScreen);
+                Debug.Log("1920*1080");
+            };
+
+            settingEvent.OnSettingReselustion1600ClickHandle += () => {
+                Screen.SetResolution(1600, 900, isFullScreen);
+                Debug.Log("1600*900");
+            };
+
+            settingEvent.OnSettingReselustion640ClickHandle += () => {
+                Screen.SetResolution(640, 360, isFullScreen);
+                Debug.Log("640*360");
+            };
+
+            settingEvent.OnSettingFullScreenToggleHandle += (isOn) => {
+                isFullScreen = isOn;
+                Screen.fullScreen = isOn;
+                Debug.Log("全屏" + isOn);
+            };
+        }
+        #endregion
 
         void Update() {
             if (!isInit) {

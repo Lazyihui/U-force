@@ -206,10 +206,7 @@ namespace UF {
                 events.OnTrainTipCloseClick();
             };
 
-            // 设置
-            eventCenter.OnSettingBackClickHandle += () => { // 关闭设置
-                events.OnSettingBackClick();
-            };
+          
         }
     }
 }
