@@ -5940,6 +5940,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btn_Back: {fileID: 5634679712020234469}
+  btn_Reselustion1920: {fileID: 5920840900997343062}
+  btn_Reselustion1600: {fileID: 7451435134079405294}
+  btn_Reselustion640: {fileID: 1024031427945017020}
 --- !u!1 &8297342327272744087
 GameObject:
   m_ObjectHideFlags: 0
@@ -6101,8 +6104,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5347049647564152283}
   m_HandleRect: {fileID: 4457643535582729226}
   m_Direction: 2
-  m_Value: 1.0000002
-  m_Size: 0
+  m_Value: 1.0000006
+  m_Size: 0.40754718
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

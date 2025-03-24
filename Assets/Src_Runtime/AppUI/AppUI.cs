@@ -24,8 +24,8 @@ namespace UF {
             selectedInFormation.Reset();
         }
 
-        public void Inject(Canvas screenCanvas, Transform canvasRoot,AssetsModule assetsCore, TemplateMoudle templateMoudle, InputModule inputModule, GameSaveModel playerSaveData) {
-            ctx.Inject(screenCanvas, canvasRoot,assetsCore, templateMoudle, inputModule);
+        public void Inject(Canvas screenCanvas, Transform canvasRoot, AssetsModule assetsCore, TemplateMoudle templateMoudle, InputModule inputModule, GameSaveModel playerSaveData) {
+            ctx.Inject(screenCanvas, canvasRoot, assetsCore, templateMoudle, inputModule);
             this.playerSaveData = playerSaveData;
         }
         public CardModel Get_CardModel() {
@@ -1472,6 +1472,19 @@ namespace UF {
                 panel.OnBackClickHandle = () => {
                     eventCenter.OnSettingBackClick();
                 };
+
+                panel.OnReselustion1920ClickHandle = () => {
+                    eventCenter.OnSettingReselustion1920Click();
+                };
+
+                panel.OnReselustion1600ClickHandle = () => {
+                    eventCenter.OnSettingReselustion1600Click();
+                };
+
+                panel.OnReselustion640ClickHandle = () => {
+                    eventCenter.OnSettingReselustion640Click();
+                };
+
             }
             ctx.panel_Setting = panel;
             panel.Show();
