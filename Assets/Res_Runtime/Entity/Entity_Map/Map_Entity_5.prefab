@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 514329497316826417, guid: 58e2f39a2390da34ea49c2354776cf9b, type: 3}
       propertyPath: m_Name
-      value: Map_Entity
+      value: Map_Entity_5
       objectReference: {fileID: 0}
     - target: {fileID: 5688683732797928496, guid: 58e2f39a2390da34ea49c2354776cf9b, type: 3}
       propertyPath: m_LocalPosition.x
