@@ -43,6 +43,10 @@ namespace UF.UIApplication {
         public Action<int> OnStageClickHandle;
         public Action OnCloseHandle;//关闭
 
+        // 选择关卡
+        Panel_StageSelection_OneStage selectedStage;
+        bool isMouseOver;
+
         public void Ctor() {
             btn_c1.onClick.AddListener(() => OnChapterClickHandle.Invoke(1));
             btn_c2.onClick.AddListener(() => OnChapterClickHandle.Invoke(2));
@@ -161,6 +165,82 @@ namespace UF.UIApplication {
         }
         void OnStageClick(int stageID) {
             OnStageClickHandle.Invoke(stageID);
+        }
+
+        public void Update_Tick(Canvas canvas, Vector2 moveAxis, bool isConfirm) {
+            if (gameObject.activeSelf == false) { return; }
+
+            if (selectedStage == null) {
+                var zeroStage = stage[0];
+                SetSelectedStage(zeroStage);
+                return;
+            }
+
+            // 确认
+            if (isConfirm) {
+                ConfirmSelectedStage();
+                return;
+            }
+
+            // 鼠标悬停
+            var newStage = GetMouseOverStage(canvas.gameObject);
+            if (isMouseOver) {
+                SetSelectedStage(newStage);
+                return;
+            }
+
+            // 选中按钮检测
+            if (moveAxis == Vector2.zero) { return; }
+
+            Button selectedBtn = selectedStage.GetComponent<Button>();
+            Selectable selectable = selectedBtn.FindSelectable(moveAxis);
+
+            if (selectable == null) { return; }
+
+            Button newSelectedBtn = selectable as Button;
+            var newSelectedStage = newSelectedBtn.GetComponent<Panel_StageSelection_OneStage>();
+
+            if (newSelectedStage == null) { return; }
+            SetSelectedStage(newSelectedStage);
+        }
+
+        void SetSelectedStage(Panel_StageSelection_OneStage newStage) {
+            int len = stage.Count;
+            for (int i = 0; i < len; i++) {
+                stage[i].OnDeselected();
+            }
+
+            selectedStage = newStage;
+            newStage.OnSelected();
+        }
+
+        void ConfirmSelectedStage() {
+            if (selectedStage == null) { return; }
+
+            selectedStage.OnClick();
+        }
+
+        Panel_StageSelection_OneStage GetMouseOverStage(GameObject canvas) {
+            PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+            pointerEventData.position = Input.mousePosition;
+            GraphicRaycaster gr = canvas.GetComponent<GraphicRaycaster>();
+            List<RaycastResult> results = new List<RaycastResult>();
+            gr.Raycast(pointerEventData, results);
+
+            if (results.Count != 0) {
+                var len = results.Count;
+                for (int i = 0; i < len; i++) {
+                    if (results[i].gameObject.GetComponent<Panel_StageSelection_OneStage>() != null) {
+                        isMouseOver = true;
+
+                        var newStage = results[i].gameObject.GetComponent<Panel_StageSelection_OneStage>();
+                        return newStage;
+                    }
+                }
+            }
+
+            isMouseOver = false;
+            return null;
         }
     }
 }
