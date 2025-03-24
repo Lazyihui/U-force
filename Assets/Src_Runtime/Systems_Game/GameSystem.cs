@@ -126,6 +126,12 @@ namespace UF {
 
             if (game.state == GameState.GameOver) {
                 StopRole_AllMove();
+
+                int bulletLen = ctx.bulletRepository.TakeAll(out BulletEntity[] bullets);
+                for (int i = 0; i < bulletLen; i += 1) {
+                    BulletEntity bullet = bullets[i];
+                    bullet.Move_Stop();
+                }
                 return;
             }
 

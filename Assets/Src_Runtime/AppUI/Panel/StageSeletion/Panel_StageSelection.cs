@@ -230,10 +230,9 @@ namespace UF.UIApplication {
             if (results.Count != 0) {
                 var len = results.Count;
                 for (int i = 0; i < len; i++) {
-                    if (results[i].gameObject.GetComponent<Panel_StageSelection_OneStage>() != null) {
+                    var newStage = results[i].gameObject.GetComponent<Panel_StageSelection_OneStage>();
+                    if (newStage != null) {
                         isMouseOver = true;
-
-                        var newStage = results[i].gameObject.GetComponent<Panel_StageSelection_OneStage>();
                         return newStage;
                     }
                 }

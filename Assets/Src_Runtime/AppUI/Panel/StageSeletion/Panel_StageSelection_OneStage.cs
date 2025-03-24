@@ -78,6 +78,7 @@ namespace UF.UIApplication {
         }
 
         public void OnSelected() {
+            btn_stage.Select();
             img_Pointer.gameObject.SetActive(true);
         }
 
