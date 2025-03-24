@@ -5943,6 +5943,7 @@ MonoBehaviour:
   btn_Reselustion1920: {fileID: 5920840900997343062}
   btn_Reselustion1600: {fileID: 7451435134079405294}
   btn_Reselustion640: {fileID: 1024031427945017020}
+  toggle_isFullScreen: {fileID: 3464414364392803050}
 --- !u!1 &8297342327272744087
 GameObject:
   m_ObjectHideFlags: 0
