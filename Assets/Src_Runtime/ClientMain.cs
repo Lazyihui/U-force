@@ -342,6 +342,7 @@ namespace UF {
                 }
 
                 if (isWin) {
+                    Debug.Log("1");
                     gameSystem.ClearGame();
                     gameSystem.Exit();
                     loginSystem.Enter();

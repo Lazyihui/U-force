@@ -48,6 +48,7 @@ namespace UF {
             appUI.HUD_Eliminate_Close();
             appUI.Panel_Eliminate_Pause_Close();
             appUI.Panel_Eliminate_Button_Close();
+            appUI.Panel_Eliminate_GameOver_Close();
         }
 
         public void Enter() {
@@ -243,6 +244,10 @@ namespace UF {
 
             eventCenter.OnGameIllusStuffCardClickHandle += (int typeID) => {
                 events.OnGameIllusStuffCardClick(typeID);
+            };
+
+            eventCenter.OnEliminateGameOverButtonClickHandle += (bool isWin) => {
+                events.OnEliminateOverResetClick(isWin);
             };
         }
     }

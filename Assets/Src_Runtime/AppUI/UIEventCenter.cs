@@ -452,10 +452,10 @@ namespace UF {
             }
         }
 
-        public Action<bool> OnEliminateGameOverButtonClick;
+        public Action<bool> OnEliminateGameOverButtonClickHandle;
         public void OnEliminateOverResetClick(bool iswin) {
-            if (OnEliminateGameOverButtonClick != null) {
-                OnEliminateGameOverButtonClick(iswin);
+            if (OnEliminateGameOverButtonClickHandle != null) {
+                OnEliminateGameOverButtonClickHandle(iswin);
             }
         }
         #endregion
