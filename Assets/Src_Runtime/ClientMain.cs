@@ -34,6 +34,7 @@ namespace UF {
         public static AssetsModule assetsModule;
         public static TemplateMoudle templateModule;
         public static InputModule inputModule;
+        public static AudioModule audioModule;
 
         // repos
         public RoleRepository roleRepository;
@@ -76,6 +77,9 @@ namespace UF {
             inputModule = GetComponentInChildren<InputModule>();
             inputModule.Ctor();
 
+            audioModule = GetComponentInChildren<AudioModule>();
+            audioModule.Ctor();
+
             // repos
             roleRepository = new RoleRepository();
             bulletRepository = new BulletRepository();
@@ -103,6 +107,7 @@ namespace UF {
 
             appUI.Inject(screenCanvas, canvasRoot, assetsModule, templateModule, inputModule, playerSaveData);
 
+            appUI.Inject(screenCanvas, canvasRoot,assetsModule, templateModule, inputModule, audioModule, playerSaveData);
             // ---  Binding  ---
             // Binding_Login();
             Login_Binding();

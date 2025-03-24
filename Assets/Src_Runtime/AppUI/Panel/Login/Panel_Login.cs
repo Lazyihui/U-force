@@ -23,6 +23,11 @@ namespace UF {
         Button selectedBtn;
         bool isMouseOver;
 
+        // 按钮音效
+        public AudioSource audioSource;
+        [SerializeField] AudioClip btnSelectedClip;
+        [SerializeField] AudioClip btnConfirmClip;
+
         public void Ctor() {
 
             btn_Login.onClick.AddListener(() => {
@@ -49,6 +54,10 @@ namespace UF {
                 }
             });
 
+        }
+
+        public void Init(AudioSource audioSource) {
+            this.audioSource = audioSource;
         }
 
         public void Show() {
@@ -99,12 +108,16 @@ namespace UF {
             btn_Training.image.color = (selectedBtn == btn_Training) ? Color.red : Color.white;
             btn_Setting.image.color = (selectedBtn == btn_Setting) ? Color.red : Color.white;
             btn_Quit.image.color = (selectedBtn == btn_Quit) ? Color.red : Color.white;
+
+            audioSource.PlayOneShot(btnSelectedClip);
         }
 
         void ConfirmSelectedButton() {
             if (selectedBtn == null) { return; }
 
             selectedBtn.onClick.Invoke();
+
+            audioSource.PlayOneShot(btnConfirmClip);
         }
 
         Button GetMouseOverButton(GameObject canvas) {

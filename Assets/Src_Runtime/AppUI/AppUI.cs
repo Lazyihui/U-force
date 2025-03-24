@@ -24,8 +24,8 @@ namespace UF {
             selectedInFormation.Reset();
         }
 
-        public void Inject(Canvas screenCanvas, Transform canvasRoot, AssetsModule assetsCore, TemplateMoudle templateMoudle, InputModule inputModule, GameSaveModel playerSaveData) {
-            ctx.Inject(screenCanvas, canvasRoot, assetsCore, templateMoudle, inputModule);
+        public void Inject(Canvas screenCanvas, Transform canvasRoot, AssetsModule assetsCore, TemplateMoudle templateMoudle, InputModule inputModule, AudioModule audioModule, GameSaveModel playerSaveData) {
+            ctx.Inject(screenCanvas, canvasRoot, assetsCore, templateMoudle, inputModule, audioModule);
             this.playerSaveData = playerSaveData;
         }
         public CardModel Get_CardModel() {
@@ -63,6 +63,9 @@ namespace UF {
                 panel = go.GetComponent<Panel_Login>();
 
                 panel.Ctor();
+
+                AudioSource audioSource = ctx.audioModule.Get_SfxSource();
+                panel.Init(audioSource);
 
                 panel.OnLoginClickHandle += () => {
                     eventCenter.OnLoginStart();
@@ -475,6 +478,9 @@ namespace UF {
                 GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_StageSelection>();
                 panel.Ctor();
+
+                AudioSource audioSource = ctx.audioModule.Get_SfxSource();
+                panel.Init(audioSource);
 
                 panel.OnStageClickHandle = (stageID) => {
                     eventCenter.OnStageClick(stageID);

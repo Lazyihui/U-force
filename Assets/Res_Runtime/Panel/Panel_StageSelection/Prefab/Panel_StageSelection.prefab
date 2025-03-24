@@ -121,6 +121,8 @@ MonoBehaviour:
   spr_js: {fileID: 21300000, guid: 023a4ad8ab410fb47841cf234fda53fc, type: 3}
   img_keyPrompt: {fileID: 292572765279166492}
   btn_back: {fileID: 4698235396343524291}
+  btnSelectedClip: {fileID: 8300000, guid: 35a0117c59e59d14484dd2aa5d7bac70, type: 3}
+  btnConfirmClip: {fileID: 8300000, guid: e6f01e5aa1aeb804ebdb6413a6f98534, type: 3}
 --- !u!1 &771240299287987881
 GameObject:
   m_ObjectHideFlags: 0
