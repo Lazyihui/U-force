@@ -24,8 +24,8 @@ namespace UF {
             selectedInFormation.Reset();
         }
 
-        public void Inject(Canvas screenCanvas, AssetsModule assetsCore, TemplateMoudle templateMoudle, InputModule inputModule, GameSaveModel playerSaveData) {
-            ctx.Inject(screenCanvas, assetsCore, templateMoudle, inputModule);
+        public void Inject(Canvas screenCanvas, Transform canvasRoot,AssetsModule assetsCore, TemplateMoudle templateMoudle, InputModule inputModule, GameSaveModel playerSaveData) {
+            ctx.Inject(screenCanvas, canvasRoot,assetsCore, templateMoudle, inputModule);
             this.playerSaveData = playerSaveData;
         }
         public CardModel Get_CardModel() {
@@ -58,7 +58,7 @@ namespace UF {
 
                 GameObject prefab = ctx.assetsCore.Panel_GetLogin();
 
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_Login>();
 
                 panel.Ctor();
@@ -113,7 +113,7 @@ namespace UF {
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetGameDefend_Button();
 
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_GameDefend_Button>();
 
                 panel.Ctor(slotMax);
@@ -172,7 +172,7 @@ namespace UF {
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetGamePause();
 
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_GamePause>();
 
                 panel.Ctor();
@@ -211,7 +211,7 @@ namespace UF {
 
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetGameOver();
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_GameOver>();
                 panel.Ctor();
 
@@ -240,7 +240,7 @@ namespace UF {
 
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetEliminateGameOver();
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_EliminateGameOver>();
                 panel.Ctor();
 
@@ -268,7 +268,7 @@ namespace UF {
             if (hud == null) {
                 GameObject prefab = ctx.assetsCore.HUD_GetProgressbar();
 
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 hud = go.GetComponent<HUD_Progressbar>();
                 hud.Ctor();
             }
@@ -322,7 +322,7 @@ namespace UF {
             if (hud == null) {
                 GameObject prefab = ctx.assetsCore.HUD_GetTraining();
 
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 hud = go.GetComponent<HUD_Training>();
                 hud.Ctor();
             }
@@ -379,7 +379,7 @@ namespace UF {
 
             GameObject prefab = ctx.assetsCore.HUD_GetTraining_CD();
 
-            GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+            GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
             HUD_Training_CD hud = go.GetComponent<HUD_Training_CD>();
             hud.Ctor();
             hud.Show();
@@ -432,7 +432,7 @@ namespace UF {
             if (hud == null) {
                 GameObject prefab = ctx.assetsCore.HUD_GetEliminate();
 
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 hud = go.GetComponent<HUD_Eliminate>();
                 hud.Ctor();
             }
@@ -471,7 +471,7 @@ namespace UF {
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetStageSelection();
 
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_StageSelection>();
                 panel.Ctor();
 
@@ -559,7 +559,7 @@ namespace UF {
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetCardSelection();
 
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_CardSelection>();
                 panel.Ctor();
 
@@ -855,7 +855,7 @@ namespace UF {
 
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetNotice();
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_Notice>();
                 panel.Ctor();
             }
@@ -882,7 +882,7 @@ namespace UF {
 
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetBackSelection();
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_BackSelection>();
                 panel.Ctor();
 
@@ -923,7 +923,7 @@ namespace UF {
 
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetWatchTower();
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_WatchTower>();
                 panel.Ctor();
 
@@ -959,7 +959,7 @@ namespace UF {
 
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetWatchDetail();
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_WatchDetail>();
                 panel.Ctor();
 
@@ -985,7 +985,7 @@ namespace UF {
 
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetWatchDetail();
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_WatchDetail>();
                 panel.Ctor();
 
@@ -1019,7 +1019,7 @@ namespace UF {
 
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetTraining_Select();
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_Training_Select>();
                 panel.Ctor();
 
@@ -1113,7 +1113,7 @@ namespace UF {
 
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetTraining_Tip();
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_Training_Tip>();
                 panel.Ctor();
 
@@ -1140,7 +1140,7 @@ namespace UF {
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetTraining_Button();
 
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_Training_Button>();
 
                 panel.Ctor();
@@ -1170,7 +1170,7 @@ namespace UF {
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetTraining_Pause();
 
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_Training_Pause>();
 
                 panel.Ctor();
@@ -1211,7 +1211,7 @@ namespace UF {
 
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetTraining_GameOver();
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_Training_GameOver>();
                 panel.Ctor();
 
@@ -1262,7 +1262,7 @@ namespace UF {
 
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetTraining_Back();
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_Training_Back>();
                 panel.Ctor();
 
@@ -1299,7 +1299,7 @@ namespace UF {
 
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetIllustrated();
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_Illustrated>();
                 panel.Ctor();
 
@@ -1351,7 +1351,7 @@ namespace UF {
 
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetTrainIllustrated();
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_TrainIllustrated>();
                 panel.Ctor();
 
@@ -1391,7 +1391,7 @@ namespace UF {
 
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetEliminate_Button();
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_Eliminate_Button>();
                 panel.Ctor();
 
@@ -1417,7 +1417,7 @@ namespace UF {
 
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetEliminate_Pause();
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_Eliminate_Pause>();
                 panel.Ctor();
 
@@ -1456,7 +1456,7 @@ namespace UF {
 
             if (panel == null) {
                 GameObject prefab = ctx.assetsCore.Panel_GetSetting();
-                GameObject go = GameObject.Instantiate(prefab, ctx.screenCanvas.transform);
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_Setting>();
                 panel.Ctor();
 

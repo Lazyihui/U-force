@@ -11,6 +11,7 @@ namespace UF {
     public class ClientMain : MonoBehaviour {
 
         [SerializeField] Canvas screenCanvas;
+        [SerializeField] Transform canvasRoot;
         [SerializeField] Camera mainCamera;
         bool isInit = false;
         bool isTearDown = false;
@@ -98,7 +99,7 @@ namespace UF {
             pauseSystem.Inject(appUI, roleRepository, bulletRepository, propRepository);
             trainSystem.Inject(appUI, templateModule, assetsModule, inputModule, roleRepository, bulletRepository, propRepository);
 
-            appUI.Inject(screenCanvas, assetsModule, templateModule, inputModule, playerSaveData);
+            appUI.Inject(screenCanvas, canvasRoot,assetsModule, templateModule, inputModule, playerSaveData);
             // ---  Binding  ---
             // Binding_Login();
             Login_Binding();

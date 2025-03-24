@@ -10,6 +10,7 @@ namespace UF {
         public CardModel cardModel;
 
         public Canvas screenCanvas;
+        public Transform canvasRoot;
         public AssetsModule assetsCore;
         public TemplateMoudle templateMoudle;
         public InputModule inputModule;
@@ -60,11 +61,12 @@ namespace UF {
             noticeTimer = 1;
         }
 
-        public void Inject(Canvas screenCanvas, AssetsModule assetsCore, TemplateMoudle templateMoudle, InputModule inputModule) {
+        public void Inject(Canvas screenCanvas, Transform canvasRoot,AssetsModule assetsCore, TemplateMoudle templateMoudle, InputModule inputModule) {
             this.screenCanvas = screenCanvas;
             this.assetsCore = assetsCore;
             this.templateMoudle = templateMoudle;
             this.inputModule = inputModule;
+            this.canvasRoot = canvasRoot;
         }
 
 
