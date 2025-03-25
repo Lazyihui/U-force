@@ -108,7 +108,7 @@ namespace UF {
             settingSystem.Inject(appUI);
 
 
-            appUI.Inject(screenCanvas, canvasRoot,assetsModule, templateModule, inputModule, audioModule, playerSaveData);
+            appUI.Inject(screenCanvas, canvasRoot, assetsModule, templateModule, inputModule, audioModule, playerSaveData, settingSaveData);
             // ---  Binding  ---
             // Binding_Login();
             Login_Binding();
