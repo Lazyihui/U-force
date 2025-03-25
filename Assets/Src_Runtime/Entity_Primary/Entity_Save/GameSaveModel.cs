@@ -194,7 +194,11 @@ namespace UF {
         }
 
         public void SetStageCurID(int stageID) {
+            // 1 ->10
+            int multiple = chapterCurID - 1;
+            int stageid = stageID + multiple * 10;
             stageCurID = stageID;
+            Debug.Log(stageCurID);
         }//设置当前关卡
 
         public void SetChapterCurID(int chapterID) {

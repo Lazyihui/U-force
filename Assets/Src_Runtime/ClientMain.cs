@@ -174,7 +174,6 @@ namespace UF {
                 }
                 appUI.playerSaveData.SetChapterCurID(chapter);
                 appUI.playerSaveData.chapterCurID = chapter;
-                Debug.Log("ChapterID " + chapter);
                 UIDomain.Panel_StageSelection_ChangeChapter(appUI, chapter, maxChapter);
             };
 
@@ -210,6 +209,7 @@ namespace UF {
             };
 
             loginEvent.OnSelectBackClickHandle += () => {
+                appUI.Panel_CardSelection_Close();
                 UIDomain.Panel_StageSelectionEnter(appUI);
             };
 
@@ -318,6 +318,7 @@ namespace UF {
 
                 if (!isWin) {
                     Debug.Log("重新开始此关");
+
                     gameSystem.ClearGame();
                     gameSystem.Exit();
                     loginSystem.Enter();
@@ -325,6 +326,8 @@ namespace UF {
                 }
 
                 if (isWin) {
+                    Debug.Log("继续游戏");
+
                     gameSystem.ClearGame();
                     gameSystem.Exit();
                     loginSystem.Enter();
@@ -372,6 +375,7 @@ namespace UF {
             var pauseEvent = pauseSystem.events;
 
             pauseEvent.OnPauseContinueHandle += () => {
+                Debug.Log("继续游戏");
                 appUI.Panel_GamePause_Close();
 
                 pauseSystem.Exit();
@@ -395,6 +399,7 @@ namespace UF {
             };
 
             pauseEvent.OnContinueWarningHandle += () => {
+                Debug.Log("继续游戏");
                 appUI.Panel_BackSelection_Close();
 
                 pauseSystem.Exit();
@@ -429,6 +434,7 @@ namespace UF {
             };
 
             pauseEvent.OnTrainBackContinueClickHandle += () => {
+                Debug.Log("继续游戏");
                 appUI.Panel_Training_Back_Close();
 
                 pauseSystem.Exit();
@@ -451,6 +457,8 @@ namespace UF {
             };
 
             pauseEvent.OnEliminateContinueClickHandle += () => {
+                Debug.Log("继续游戏");
+
                 appUI.Panel_Eliminate_Pause_Close();
 
                 pauseSystem.Exit();
@@ -480,6 +488,8 @@ namespace UF {
             };
 
             trainEvent.OnTrainContinueClickHandle += () => {
+                Debug.Log("继续游戏");
+
                 trainSystem.ExitPause();
                 pauseSystem.Exit();
             };
