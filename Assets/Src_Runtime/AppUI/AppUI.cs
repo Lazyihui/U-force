@@ -495,7 +495,7 @@ namespace UF {
                 };
 
                 panel.OnCloseHandle = () => {
-                    Panel_StageSelection_Close();
+                    eventCenter.OnBackClick();
                 };
 
                 panel.OnBackHandle = () => {

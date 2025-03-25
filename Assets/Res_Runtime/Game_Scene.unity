@@ -1031,6 +1031,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 347263872}
   sfxSource: {fileID: 1000752111}
+  loginMusic: {fileID: 8300000, guid: 524e3a25f79d104459a4cc0e3a50e0b7, type: 3}
+  gameMusic: {fileID: 8300000, guid: 67a2e4cc966e46248a1b56951874f165, type: 3}
+  trainMusic: {fileID: 8300000, guid: 9bc3fe365f16d984f996c042aa22dae6, type: 3}
 --- !u!1 &1712753919
 GameObject:
   m_ObjectHideFlags: 0
