@@ -20,19 +20,23 @@ namespace UF {
             events = new LoginSystemEvents();
         }
 
-        public void Inject(AppUI appUI, InputModule input, SaveCore saveCore) {
-            ctx.Inject(appUI, input, saveCore);
+        public void Inject(AppUI appUI, InputModule input, AudioModule audio, SaveCore saveCore) {
+            ctx.Inject(appUI, input, audio, saveCore);
         }
 
         public void EnterPanel_Login() {
             ctx.isRunning = true;
             // ui
             ctx.appUI.Panel_Login_Open();
+
+            ctx.audioModule.PlayLoginMusic();
         }
 
 
         public void Enter() {
             ctx.isRunning = true;
+
+            ctx.audioModule.PlayLoginMusic();
         }
 
         public void Exit() {

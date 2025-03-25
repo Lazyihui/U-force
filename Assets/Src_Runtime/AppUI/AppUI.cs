@@ -1026,6 +1026,29 @@ namespace UF {
             panel.Init(sprite, name, feature);
         }
 
+        public void Panel_WatchDetail_Open_Prop(int typeID) {
+            Panel_WatchDetail panel = ctx.panel_WatchDetail;
+
+            if (panel == null) {
+                GameObject prefab = ctx.assetsCore.Panel_GetWatchDetail();
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
+                panel = go.GetComponent<Panel_WatchDetail>();
+                panel.Ctor();
+
+                panel.OnCloseClickHandle = () => {
+                    eventCenter.OnDetailClose();
+                };
+            }
+            ctx.panel_WatchDetail = panel;
+            panel.Show();
+
+            ctx.templateMoudle.Prop_TryGet(typeID, out PropTM tm);
+            var sprite = tm.sprite;
+            var name = tm.typeName;
+            var feature = tm.feature;
+            panel.Init(sprite, name, feature);
+        }
+
         public void Panel_WatchDetail_Close() {
             Panel_WatchDetail panel = ctx.panel_WatchDetail;
 

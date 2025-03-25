@@ -15,8 +15,8 @@ namespace UF {
             events = new PauseSystemEvents();
         }
 
-        public void Inject(AppUI appUI, RoleRepository roleRepository, BulletRepository bulletRepository, PropRepository propRepository) {
-            ctx.Inject(appUI, roleRepository, bulletRepository, propRepository);
+        public void Inject(AppUI appUI, RoleRepository roleRepository, BulletRepository bulletRepository, PropRepository propRepository, AudioModule audioModule) {
+            ctx.Inject(appUI, roleRepository, bulletRepository, propRepository, audioModule);
         }
 
         public void Enter() {
@@ -39,6 +39,8 @@ namespace UF {
                 PropEntity prop = props[i];
                 prop.Move_Stop();
             }
+
+            ctx.audioModule.PauseMusic();
         }
 
         public void Exit() {

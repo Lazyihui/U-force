@@ -17,8 +17,8 @@ namespace UF.System_Train {
             events = new TrainSystemEvents();
         }
 
-        public void Inject(AppUI appUI, TemplateMoudle templateMoudle, AssetsModule assetsModule, InputModule inputModule, RoleRepository roleRepository, BulletRepository bulletRepository, PropRepository propRepository) {
-            ctx.Inject(appUI, templateMoudle, assetsModule, inputModule, roleRepository, bulletRepository, propRepository);
+        public void Inject(AppUI appUI, TemplateMoudle templateMoudle, AssetsModule assetsModule, InputModule inputModule, AudioModule audioModule, RoleRepository roleRepository, BulletRepository bulletRepository, PropRepository propRepository) {
+            ctx.Inject(appUI, templateMoudle, assetsModule, inputModule, audioModule, roleRepository, bulletRepository, propRepository);
         }
 
         public void Enter(List<int> typeIDs) {
@@ -54,6 +54,8 @@ namespace UF.System_Train {
 
             train.gameTime = train.gameMax;
             train.propSpawnCD = 0;
+
+            ctx.audioModule.PlayTrainMusic();
         }
 
         public void Exit() {
@@ -280,6 +282,8 @@ namespace UF.System_Train {
             train.state = TrainState.None;
 
             ctx.appUI.Panel_Training_Pause_Close();
+
+            ctx.audioModule.ContinueMusic();
         }
 
         void HUD_Training_Update(float dt) {

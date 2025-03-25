@@ -15,6 +15,7 @@ namespace UF
         public TemplateMoudle templateMoudle;
         public AssetsModule assetsModule;
         public InputModule inputModule;
+        public AudioModule audioModule;
 
         public RoleRepository roleRepository;
         public BulletRepository bulletRepository;
@@ -30,12 +31,13 @@ namespace UF
             trainEntity = new TrainEntity();
         }
 
-        public void Inject(AppUI appUI, TemplateMoudle templateMoudle, AssetsModule assetsModule, InputModule inputModule, RoleRepository roleRepository, BulletRepository bulletRepository, PropRepository propRepository)
+        public void Inject(AppUI appUI, TemplateMoudle templateMoudle, AssetsModule assetsModule, InputModule inputModule, AudioModule audioModule, RoleRepository roleRepository, BulletRepository bulletRepository, PropRepository propRepository)
         {
             this.appUI = appUI;
             this.templateMoudle = templateMoudle;
             this.assetsModule = assetsModule;
             this.inputModule = inputModule;
+            this.audioModule = audioModule;
 
             this.roleRepository = roleRepository;
             this.bulletRepository = bulletRepository;

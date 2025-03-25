@@ -16,8 +16,8 @@ namespace UF {
             events = new GameSystemEvents();
         }
 
-        public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, RoleRepository roleRepository, BulletRepository bulletRepository, GameSaveModel playerSaveData, Camera camera, SaveCore saveCore, SaveSlotFullDTO saveSlotFullDTO, GameEntity gameEntity) {
-            ctx.Inject(ScreenCanvas, assetsCore, templateCore, appUI, inputModule, roleRepository, bulletRepository, playerSaveData, camera, saveCore, saveSlotFullDTO, gameEntity);
+        public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore, TemplateMoudle templateCore, AppUI appUI, InputModule inputModule, AudioModule audioModule, RoleRepository roleRepository, BulletRepository bulletRepository, GameSaveModel playerSaveData, Camera camera, SaveCore saveCore, SaveSlotFullDTO saveSlotFullDTO, GameEntity gameEntity) {
+            ctx.Inject(ScreenCanvas, assetsCore, templateCore, appUI, inputModule, audioModule, roleRepository, bulletRepository, playerSaveData, camera, saveCore, saveSlotFullDTO, gameEntity);
         }
 
         public void Exit() {
@@ -26,6 +26,8 @@ namespace UF {
 
         public void Continue() {
             ctx.isRunning = true;
+
+            ctx.audioModule.ContinueMusic();
         }
 
         // 清除游戏信息
@@ -82,6 +84,7 @@ namespace UF {
                 EliminateWarController.Enter(ctx, stageID, roleTypeID, typeIDsArray, sciType, tm);
             }
 
+            ctx.audioModule.PlayGameMusic();
         }
 
         public void Tick(float dt) {

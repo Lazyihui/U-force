@@ -21,6 +21,7 @@ namespace UF {
         public ModuleCamera moduleCamera;
 
         public InputModule inputModule;
+        public AudioModule audioModule;
 
         // ---  RoleRepository  ---
         public RoleRepository roleRepository;
@@ -45,12 +46,13 @@ namespace UF {
 
         public void Inject(Canvas ScreenCanvas, AssetsModule assetsCore,
          TemplateMoudle templateCore, AppUI appUI,
-         InputModule inputModule, RoleRepository roleRepository, BulletRepository bulletRepository,
+         InputModule inputModule, AudioModule audioModule, RoleRepository roleRepository, BulletRepository bulletRepository,
          GameSaveModel playerSaveData, Camera camera, SaveCore saveCore, SaveSlotFullDTO saveSlotFullDTO, GameEntity gameEntity) {
             this.assetsModule = assetsCore;
             this.templateCore = templateCore;
             this.appUI = appUI;
             this.inputModule = inputModule;
+            this.audioModule = audioModule;
 
             this.moduleCamera.Inject(camera);
 

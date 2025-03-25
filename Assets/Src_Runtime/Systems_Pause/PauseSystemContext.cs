@@ -7,6 +7,8 @@ namespace UF {
         public float restFixTime;
         public AppUI appUI;
 
+        public AudioModule audioModule;
+
         // repo
         public RoleRepository roleRepository;
         public BulletRepository bulletRepository;
@@ -16,11 +18,12 @@ namespace UF {
             isRunning = false;
         }
 
-        public void Inject(AppUI appUI, RoleRepository roleRepository, BulletRepository bulletRepository, PropRepository propRepository) {
+        public void Inject(AppUI appUI, RoleRepository roleRepository, BulletRepository bulletRepository, PropRepository propRepository, AudioModule audioModule) {
             this.appUI = appUI;
             this.roleRepository = roleRepository;
             this.bulletRepository = bulletRepository;
             this.propRepository = propRepository;
+            this.audioModule = audioModule;
         }
     }
 }

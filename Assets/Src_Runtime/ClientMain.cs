@@ -101,10 +101,10 @@ namespace UF {
             // 2.将存档数据加载到游戏实体
             #endregion
             // Inject
-            gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, roleRepository, bulletRepository, playerSaveData, mainCamera, saveCore, saveSlotFullDTO, gameEntity);
-            loginSystem.Inject(appUI, inputModule, saveCore);
-            pauseSystem.Inject(appUI, roleRepository, bulletRepository, propRepository);
-            trainSystem.Inject(appUI, templateModule, assetsModule, inputModule, roleRepository, bulletRepository, propRepository);
+            gameSystem.Inject(screenCanvas, assetsModule, templateModule, appUI, inputModule, audioModule, roleRepository, bulletRepository, playerSaveData, mainCamera, saveCore, saveSlotFullDTO, gameEntity);
+            loginSystem.Inject(appUI, inputModule, audioModule, saveCore);
+            pauseSystem.Inject(appUI, roleRepository, bulletRepository, propRepository, audioModule);
+            trainSystem.Inject(appUI, templateModule, assetsModule, inputModule, audioModule, roleRepository, bulletRepository, propRepository);
             settingSystem.Inject(appUI);
 
 
@@ -510,7 +510,7 @@ namespace UF {
             };
 
             trainEvent.OnTrainIllusCardClickHandle += (int typeID) => {
-                appUI.Panel_WatchDetail_Open_Stuff(typeID);
+                appUI.Panel_WatchDetail_Open_Prop(typeID);
             };
         }
         #endregion

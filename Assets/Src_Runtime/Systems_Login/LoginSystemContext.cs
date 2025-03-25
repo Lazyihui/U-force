@@ -8,6 +8,7 @@ namespace UF {
         public float restFixTime;
         public AppUI appUI;
         public InputModule inputModule;
+        public AudioModule audioModule;
 
         // model
         public SaveCore saveCore;
@@ -17,9 +18,10 @@ namespace UF {
 
         }
 
-        public void Inject(AppUI appUI, InputModule input, SaveCore saveCore) {
+        public void Inject(AppUI appUI, InputModule input, AudioModule audio, SaveCore saveCore) {
             this.appUI = appUI;
             this.inputModule = input;
+            this.audioModule = audio;
             this.saveCore = saveCore;
         }
 
