@@ -498,12 +498,14 @@ namespace UF {
             };
 
             trainEvent.OnTrainOverResetClickHandle += () => {
+                trainSystem.ClearGame();
                 trainSystem.Exit();
                 loginSystem.Enter();
                 UIDomain.Panel_Training_Select_Open(appUI, assetsModule, templateModule);
             };
 
             trainEvent.OnTrainOverBackClickHandle += () => {
+                trainSystem.ClearGame();
                 trainSystem.Exit();
                 loginSystem.Enter();
                 loginSystem.EnterPanel_Login();
