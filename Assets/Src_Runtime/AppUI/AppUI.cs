@@ -546,12 +546,12 @@ namespace UF {
             panel.Set_GetStar(stageID, starCount);
         }
 
-        public void Panel_StageSelection_Select(InputDeviceType deviceType, int chapter, int maxChapter) {
+        public void Panel_StageSelection_Select(InputDeviceType deviceType, int Curchapter, int maxChapter) {
             Panel_StageSelection panel = ctx.panel_StageSelection;
             if (panel == null) {
                 return;
             }
-            panel.SelectChapter(deviceType, chapter, maxChapter);
+            panel.SelectChapter(deviceType, Curchapter, maxChapter);
             panel.Clear();
         }
 

@@ -105,8 +105,6 @@ namespace UF {
             trainSystem.Inject(appUI, templateModule, assetsModule, inputModule, roleRepository, bulletRepository, propRepository);
             settingSystem.Inject(appUI);
 
-            appUI.Inject(screenCanvas, canvasRoot, assetsModule, templateModule, inputModule, playerSaveData);
-
             appUI.Inject(screenCanvas, canvasRoot,assetsModule, templateModule, inputModule, audioModule, playerSaveData);
             // ---  Binding  ---
             // Binding_Login();
@@ -172,6 +170,8 @@ namespace UF {
                     chapter = 1;
                 }
                 appUI.playerSaveData.SetChapterCurID(chapter);
+                appUI.playerSaveData.chapterCurID = chapter;
+                Debug.Log("ChapterID " + chapter);
                 UIDomain.Panel_StageSelection_ChangeChapter(appUI, chapter, maxChapter);
             };
 

@@ -86,7 +86,6 @@ namespace UF {
 
             UIDomain.isEnterGameButton(appUI);
             UIDomain.isOneCardSelectedButton(appUI);
-
         }
 
         void LastTick(float dt) {

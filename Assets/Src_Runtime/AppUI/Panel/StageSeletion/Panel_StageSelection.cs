@@ -127,9 +127,11 @@ namespace UF.UIApplication {
                 pair.Value.gameObject.SetActive(pair.Key <= maxChapter);
             }
 
+
             // 选择当前关卡图片
             this.chapter = chapter;
             txt_chapter.text = $"Chapter {chapter}";
+
             foreach (KeyValuePair<int, Button> pair in chapterBtns) {
                 if (pair.Key == chapter) {
                     pair.Value.image.sprite = spr_chapterSelected;

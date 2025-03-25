@@ -20,8 +20,6 @@ namespace UF {
             }
             return count;
         }
-        #endregion
-
         public void FromDTO(in GameSaveDTO dto) {
             slotID = dto.slotID;
             unLockChapterID = dto.unLockChapterID;
@@ -43,6 +41,8 @@ namespace UF {
             }
             return dto;
         }
+
+        #endregion
 
         public int unLockStageCount;//解锁的关卡数量
         public int stageCurID;//当前关卡
@@ -67,7 +67,6 @@ namespace UF {
         public int shootTimes;//射击次数
         public void SetShootTimes(int value) => shootTimes = value;
         public int HitTimes;//命中次数
-        public void SetHitTimes(int value) => HitTimes = value;
 
         // 资源战结算
         int energyCount; // 能量棒
@@ -143,14 +142,7 @@ namespace UF {
             unLockStageCount = 10;//最大就是10
 
             EnemyTypeIDs = new List<int>();
-
-            // // // 第一关先进去
-            // AddStageReached(1);
-            // AddStagePassed(1);
-
-            // 第一关先进去
             AddStageAll();
-
         }
 
         public void AddStageAll() {
@@ -182,8 +174,6 @@ namespace UF {
             stages.Clear();
         }
 
-
-
         public void ClearEnemyTypeID() {
             EnemyTypeIDs.Clear();
         }
@@ -192,7 +182,6 @@ namespace UF {
             int index = UnityEngine.Random.Range(0, EnemyTypeIDs.Count);
             return EnemyTypeIDs[index];
         }
-
 
         public int GetStagePassedCount() {
             int PassedCount = 0;

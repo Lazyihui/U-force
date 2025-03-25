@@ -219,7 +219,7 @@ namespace UF {
             int starAllCount = appUI.playerSaveData.GetstarAllCount();
 
             appUI.Panel_StageSelection_Open(curChapterID, unLockChapterID);
-            appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, curChapterID, 2);
+            appUI.Panel_StageSelection_Select(InputDeviceType.Keyboard, curChapterID, unLockChapterID);
             appUI.Panel_StageSelection_SetStarNum(starAllCount);
 
             for (int i = 0; i < unLockStageCount; i += 1) {
@@ -229,6 +229,7 @@ namespace UF {
                 int starCount = appUI.playerSaveData.GetStagePassedStar(stageid * curChapterID);
 
                 bool isPrassed = appUI.playerSaveData.IsStageReached(stageid * curChapterID);
+                Debug.Log($"stageid = {stageid}  isPrassed = {isPrassed} starCount = {starCount}" + $" chapterID = {curChapterID}");
                 appUI.Panel_StageSelectionOneStage_Add(stageid, isPrassed, starCount);
             }
 
