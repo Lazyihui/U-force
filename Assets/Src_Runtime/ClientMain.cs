@@ -163,7 +163,6 @@ namespace UF {
             loginEvent.OnStageClickHandle += (stageID) => {
                 appUI.Panel_StageSelection_Close();
                 appUI.playerSaveData.SetStageCurID(stageID);
-
                 UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule);
             };
 
@@ -598,6 +597,12 @@ namespace UF {
                 // 清除存档
                 saveCore.DeleteSlot(0);
                 Debug.Log("删除存档");
+            }
+            if (Input.GetKey(KeyCode.T)) {
+                // 遍历stageID 
+                playerSaveData.ForEachStage((s) => {
+                    Debug.Log("关卡ID:" + s.stageID+"星级:"+s.starCount+"状态:"+s.passStatus);
+                });
             }
             Screen_Coordinate();
         }

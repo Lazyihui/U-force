@@ -79,7 +79,7 @@ namespace UF {
                 RoleEntity owner = ctx.Get_Owner();
                 owner.moveType = RoleMoveType.OffensiveUDRL;
             } else if (game.isEliminateWar) {
-                EliminateWarController.Enter(ctx, stageID, roleTypeID, typeIDsArray, sciType, tm);
+                EliminateWarController.Enter(ctx, roleTypeID, typeIDsArray, sciType, tm);
             }
 
         }
@@ -201,14 +201,11 @@ namespace UF {
                     ctx.gameEntity.state = GameState.GameOver;
                     ctx.appUI.Panel_GameOver_Open(false, 0);
                 }
-                Debug.Log("当前关卡ID:" + playerData.GetStageCurID());
-                Debug.Log("当前关卡星级:" + playerData.GetStarCount());
-                Debug.Log("当前关卡星级:" + playerData.GetStarCount());
-                Debug.Log("当前章节" + playerData.GetChapterCurID());
                 owner.Jump_Stop();
                 owner.Move_Stop();
                 Exit();
                 int starCount = playerData.GetStarCount();
+                 
                 // 技术到达的关卡
                 ctx.appUI.Panel_GameOver_Open(true, starCount);
                 game.state = GameState.GameOver;
