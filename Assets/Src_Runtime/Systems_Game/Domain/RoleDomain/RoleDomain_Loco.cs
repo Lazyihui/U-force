@@ -170,7 +170,6 @@ namespace UF {
             }
 
             feaCom.AccelerateTimer -= dt;
-            Debug.Log(feaCom.AccelerateTimer);
             if (feaCom.AccelerateTimer <= 0) {
                 feaCom.SetFeatureType(FeatureType.None);
                 var attrCom = role.AttributeComponent;

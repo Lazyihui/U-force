@@ -74,14 +74,14 @@ namespace UF {
 
             if (game.isDefendWar) {
                 Debug.Log("进入防守战");
-                DefendWarController.Enter(ctx, stageID, roleTypeID, typeIDsArray, sciType, tm);
+                DefendWarController.Enter(ctx, roleTypeID, typeIDsArray, sciType, tm);
             } else if (game.isOffensiveWar) {
                 // 进攻战和防守战的Enter一样
-                DefendWarController.Enter(ctx, stageID, roleTypeID, typeIDsArray, sciType, tm);
+                DefendWarController.Enter(ctx, roleTypeID, typeIDsArray, sciType, tm);
                 RoleEntity owner = ctx.Get_Owner();
                 owner.moveType = RoleMoveType.OffensiveUDRL;
             } else if (game.isEliminateWar) {
-                EliminateWarController.Enter(ctx, stageID, roleTypeID, typeIDsArray, sciType, tm);
+                EliminateWarController.Enter(ctx, roleTypeID, typeIDsArray, sciType, tm);
             }
 
             ctx.audioModule.PlayGameMusic();
@@ -199,12 +199,11 @@ namespace UF {
 
             if (isGameWin) {
                 var playerData = ctx.gameEntity.playerSaveData;
-
+                Debug.Log("游戏胜利");
                 if (owner.state == RoleState.Dead) {
                     ctx.gameEntity.state = GameState.GameOver;
                     ctx.appUI.Panel_GameOver_Open(false, 0);
                 }
-
                 owner.Jump_Stop();
                 owner.Move_Stop();
                 Exit();

@@ -13,13 +13,8 @@ namespace UF {
         // 关卡信息
         public int unLockChapterID;//解锁的章节2
         public int GetUnLockChapterID() => unLockChapterID;
-        public int GetstarAllCount() {
-            int count = 0;
-            foreach (var stage in stages.Values) {
-                count += stage.starCount;
-            }
-            return count;
-        }
+
+
         public void FromDTO(in GameSaveDTO dto) {
             slotID = dto.slotID;
             unLockChapterID = dto.unLockChapterID;
@@ -85,7 +80,13 @@ namespace UF {
             }
             return (float)HitTimes / shootTimes;
         }
-
+        public int GetstarAllCount() {
+            int count = 0;
+            foreach (var stage in stages.Values) {
+                count += stage.starCount;
+            }
+            return count;
+        }
         public int GetStarCount() {
             int starCount = 1;
             if (ownerGetHurt == 0) {
@@ -97,23 +98,40 @@ namespace UF {
             }
 
             // 保存星级
-            Add_Stage_PassedStar(stageCurID, starCount, StagePassStatus.Passed);
             return starCount;
         }
 
         public void Add_Stage_PassedStar(int stageID, int starCount, StagePassStatus passStatus) {
             bool has = stages.TryGetValue(stageID, out var stage);
+
             if (has) {
+                Debug.Log("stageID:" + stageID);
                 stage.starCount = starCount;
                 stage.passStatus = passStatus;
                 stages[stageID] = stage;
+                Debug.Log("更新关卡星级");
+                ForEachStage((s) => {
+                    Debug.Log("关卡ID:" + s.stageID);
+                });
             } else {
                 stage = new StageInfoModel {
                     stageID = stageID,
                     starCount = starCount,
                     passStatus = passStatus,
                 };
+                Debug.Log("stageID:" + stageID);
                 stages.Add(stageID, stage);
+                Debug.Log("添加关卡星级");
+                ForEachStage((s) => {
+                    Debug.Log("关卡ID:" + s.stageID);
+                });
+            }
+        }
+
+        // 遍历stage
+        public void ForEachStage(Action<StageInfoModel> action) {
+            foreach (var stage in stages.Values) {
+                action(stage);
             }
         }
 
@@ -157,7 +175,6 @@ namespace UF {
         public void Clear() {
 
             stageCurType = 0;
-            chapterCurID = 1;
             ownerGetHurt = 0;
             shootTimes = 0;
             HitTimes = 0;
@@ -194,7 +211,11 @@ namespace UF {
         }
 
         public void SetStageCurID(int stageID) {
+            // 1 ->10
+            int multiple = chapterCurID - 1;
+            int stageid = stageID + multiple * 10;
             stageCurID = stageID;
+            Debug.Log(stageCurID);
         }//设置当前关卡
 
         public void SetChapterCurID(int chapterID) {
@@ -207,6 +228,8 @@ namespace UF {
 
         public bool IsStageReached(int stageID) {
             bool isReach = false;
+            Debug.Log(stageID);
+
             foreach (var stage in stages.Values) {
                 if (stage.stageID == stageID) {
                     if (stage.passStatus == StagePassStatus.Reached || stage.passStatus == StagePassStatus.Passed) {

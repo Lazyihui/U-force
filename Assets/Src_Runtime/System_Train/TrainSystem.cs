@@ -30,6 +30,7 @@ namespace UF.System_Train {
 
         public void Enter(List<int> typeIDs) {
             ctx.isRunning = true;
+            ctx.trainEntity.state = TrainState.None;
 
             // UI
             ctx.appUI.Panel_Training_Button_Show();
@@ -125,9 +126,8 @@ namespace UF.System_Train {
             HUD_Training_Update(dt);
 
             // 所有角色逻辑
-            ctx.roleRepository.TakeAll(out RoleEntity[] roles);
-            //不知道为什么, 用length一直是3, 会有bug
-            for (int i = 0; i < 2; i++) {
+            var len = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
+            for (int i = 0; i < len; i++) {
                 RoleEntity role = roles[i];
 
                 HUD_Training_CD_Update(role);
@@ -261,6 +261,7 @@ namespace UF.System_Train {
         }
 
         public void ClearGame() {
+            Debug.Log("ClearGame");
             BulletDomain.Clear(ctx);
             PropDomain.Clear(ctx);
             RoleDomain.Clear(ctx);

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UF {
     public static class EliminateWarController { // 资源战
-        public static void Enter(GameSystemContext ctx, int stageID, int selectedRoleTypeID, int[] skillorTypeIDArray, int sciType, StageTM tm) {
+        public static void Enter(GameSystemContext ctx, int selectedRoleTypeID, int[] skillorTypeIDArray, int sciType, StageTM tm) {
 
             Debug.Log("EliminateWarController Enter");
             var game = ctx.gameEntity;
@@ -14,7 +14,6 @@ namespace UF {
 
             // Map
             MapEntity map = MapDomain.Spawn(ctx.assetsModule, ctx.idService, tm.mapPrefab);
-            ctx.gameEntity.playerSaveData.SetStageCurID(stageID);
             ctx.gameEntity.playerSaveData.mapEntity = map;
 
             // Role
