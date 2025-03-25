@@ -18,6 +18,7 @@ namespace UF {
         bool isFullScreen = true;
 
         public GameSaveModel playerSaveData;
+        public GameSettingModel settingSaveData;
         public SaveCore saveCore;
 
         // system
@@ -86,6 +87,7 @@ namespace UF {
             propRepository = new PropRepository();
 
             playerSaveData = new GameSaveModel();
+            settingSaveData = new GameSettingModel();
             saveSlotFullDTO = new SaveSlotFullDTO();
             saveCore = new SaveCore();
             gameEntity = new GameEntity();
@@ -104,6 +106,7 @@ namespace UF {
             pauseSystem.Inject(appUI, roleRepository, bulletRepository, propRepository);
             trainSystem.Inject(appUI, templateModule, assetsModule, inputModule, roleRepository, bulletRepository, propRepository);
             settingSystem.Inject(appUI);
+
 
             appUI.Inject(screenCanvas, canvasRoot,assetsModule, templateModule, inputModule, audioModule, playerSaveData);
             // ---  Binding  ---
@@ -543,6 +546,16 @@ namespace UF {
                 isFullScreen = isOn;
                 Screen.fullScreen = isOn;
                 Debug.Log("全屏" + isOn);
+            };
+
+            settingEvent.OnSettingMusicSliderChangeHandle += (value) => {
+                audioModule.SetMusicVolume(value);
+                settingSaveData.SetMusicVolume(value);
+            };
+
+            settingEvent.OnSettingSFXSliderChangeHandle += (value) => {
+                audioModule.SetSFXVolume(value);
+                settingSaveData.SetSFXVolume(value);
             };
         }
         #endregion

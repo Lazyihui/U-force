@@ -2,18 +2,21 @@ using System;
 using UnityEngine;
 
 public class AudioModule : MonoBehaviour {
-    AudioSource musicSource; // 音乐
+    [SerializeField] AudioSource musicSource; // 音乐
     public AudioSource Get_MusicSource() { return musicSource; }
-    AudioSource sfxSource; // 音效
+    [SerializeField] AudioSource sfxSource; // 音效
     public AudioSource Get_SfxSource() { return sfxSource; }
 
     public void Ctor() {
-        var audioArray = gameObject.GetComponents<AudioSource>();
-        musicSource = audioArray[0];
-        sfxSource = audioArray[1];
+        
+    }
 
-        musicSource.loop = true;
-        sfxSource.loop = false;
+    public void SetMusicVolume(float value) {
+        musicSource.volume = value;
+    }
+
+    public void SetSFXVolume(float value) {
+        sfxSource.volume = value;
     }
 
     public void PlayMusic(AudioClip clip) {

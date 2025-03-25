@@ -62,6 +62,16 @@ namespace UF {
                 events.OnSettingFullScreenToggle(isOn);
                 Debug.Log("SettingSystem: OnSettingFullScreenToggleHandle" + isOn);
             };
+
+            eventCenter.OnSettingMusicSliderChangeHandle += (value) => { // 音乐音量
+                events.OnSettingMusicSliderChange(value);
+                Debug.Log("SettingSystem: OnSettingMusicSliderChangeHandle" + value);
+            };
+
+            eventCenter.OnSettingSFXSliderChangeHandle += (value) => { // 音效音量
+                events.OnSettingSFXSliderChange(value);
+                Debug.Log("SettingSystem: OnSettingSFXSliderChangeHandle" + value);
+            };
         }
 
     }

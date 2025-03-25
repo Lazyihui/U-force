@@ -468,6 +468,7 @@ namespace UF {
             }
         }
 
+        // 分辨率
         public Action OnSettingReselustion1920ClickHandle;
         public void OnSettingReselustion1920Click() {
             if (OnSettingReselustion1920ClickHandle != null) {
@@ -492,6 +493,21 @@ namespace UF {
         public void OnSettingFullScreenToggle(bool isOn) {
             if (OnSettingFullScreenToggleHandle != null) {
                 OnSettingFullScreenToggleHandle(isOn);
+            }
+        }
+
+        // 声音
+        public Action<float> OnSettingMusicSliderChangeHandle;
+        public void OnSettingMusicSliderChange(float value) {
+            if (OnSettingMusicSliderChangeHandle != null) {
+                OnSettingMusicSliderChangeHandle(value);
+            }
+        }
+
+        public Action<float> OnSettingSFXSliderChangeHandle;
+        public void OnSettingSFXSliderChange(float value) {
+            if (OnSettingSFXSliderChangeHandle != null) {
+                OnSettingSFXSliderChangeHandle(value);
             }
         }
         #endregion

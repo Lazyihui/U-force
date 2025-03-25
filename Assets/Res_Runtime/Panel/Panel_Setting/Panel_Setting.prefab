@@ -3210,7 +3210,7 @@ GameObject:
   - component: {fileID: 6871898723553504838}
   - component: {fileID: 4626003899328665166}
   m_Layer: 5
-  m_Name: txt_Sound
+  m_Name: txt_SFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4142,7 +4142,7 @@ GameObject:
   - component: {fileID: 703067268101472356}
   - component: {fileID: 789045900880195011}
   m_Layer: 5
-  m_Name: sli_Sound
+  m_Name: sli_SFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5944,6 +5944,8 @@ MonoBehaviour:
   btn_Reselustion1600: {fileID: 7451435134079405294}
   btn_Reselustion640: {fileID: 1024031427945017020}
   toggle_isFullScreen: {fileID: 3464414364392803050}
+  sli_Music: {fileID: 125559949104032131}
+  sli_SFX: {fileID: 789045900880195011}
 --- !u!1 &8297342327272744087
 GameObject:
   m_ObjectHideFlags: 0

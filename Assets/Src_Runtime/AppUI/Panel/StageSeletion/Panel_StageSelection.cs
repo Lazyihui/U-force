@@ -47,9 +47,9 @@ namespace UF.UIApplication {
         Panel_StageSelection_OneStage selectedStage;
         bool isMouseOver;
 
-        AudioSource audioSource;
         [SerializeField] AudioClip btnSelectedClip;
         [SerializeField] AudioClip btnConfirmClip;
+        public Action<AudioClip> OnBtnClipPlayHandle;
 
         public void Ctor() {
             btn_c1.onClick.AddListener(() => OnChapterClickHandle.Invoke(1));
@@ -69,10 +69,6 @@ namespace UF.UIApplication {
             };
 
             stage = new List<Panel_StageSelection_OneStage>();
-        }
-
-        public void Init(AudioSource audioSource) {
-            this.audioSource = audioSource;
         }
 
         public void Tick(bool isTabDown, bool isEscDown) {
@@ -194,8 +190,12 @@ namespace UF.UIApplication {
 
             // 鼠标悬停
             var newStage = GetMouseOverStage(canvas.gameObject);
-            if (isMouseOver) {
+
+            if (newStage != null) {
                 SetSelectedStage(newStage);
+            }
+
+            if (isMouseOver) {
                 return;
             }
 
@@ -223,7 +223,7 @@ namespace UF.UIApplication {
             selectedStage = newStage;
             newStage.OnSelected();
 
-            audioSource.PlayOneShot(btnSelectedClip);
+            OnBtnClipPlayHandle.Invoke(btnSelectedClip);
         }
 
         void ConfirmSelectedStage() {
@@ -231,7 +231,7 @@ namespace UF.UIApplication {
 
             selectedStage.OnClick();
 
-            audioSource.PlayOneShot(btnConfirmClip);
+            OnBtnClipPlayHandle.Invoke(btnConfirmClip);
         }
 
         Panel_StageSelection_OneStage GetMouseOverStage(GameObject canvas) {
@@ -247,6 +247,8 @@ namespace UF.UIApplication {
                     var newStage = results[i].gameObject.GetComponent<Panel_StageSelection_OneStage>();
                     if (newStage != null) {
                         isMouseOver = true;
+
+                        if (newStage == selectedStage) { return null; }
                         return newStage;
                     }
                 }
