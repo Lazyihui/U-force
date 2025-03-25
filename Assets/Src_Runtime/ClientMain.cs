@@ -425,14 +425,14 @@ namespace UF {
                 appUI.Panel_Training_Back_Close();
 
                 pauseSystem.Exit();
-                trainSystem.ExitPause();
+                trainSystem.Continue();
             };
 
             pauseEvent.OnTrainBackContinueClickHandle += () => {
                 appUI.Panel_Training_Back_Close();
 
                 pauseSystem.Exit();
-                trainSystem.ExitPause();
+                trainSystem.Continue();
             };
 
             pauseEvent.OnTrainBackQuitClickHandle += () => {
@@ -475,13 +475,17 @@ namespace UF {
             var trainEvent = trainSystem.Events;
 
             trainEvent.OnTrainPauseClickHandle += () => {
-                trainSystem.EnterPause();
+                trainSystem.Exit();
                 pauseSystem.Enter();
+
+                appUI.Panel_Training_Pause_Show();
             };
 
             trainEvent.OnTrainContinueClickHandle += () => {
-                trainSystem.ExitPause();
+                trainSystem.Continue();
                 pauseSystem.Exit();
+
+                appUI.Panel_Training_Pause_Close();
             };
 
             trainEvent.OnTrainIllustratedClickHandle += () => {

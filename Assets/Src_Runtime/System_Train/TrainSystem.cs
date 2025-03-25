@@ -21,6 +21,13 @@ namespace UF.System_Train {
             ctx.Inject(appUI, templateMoudle, assetsModule, inputModule, audioModule, roleRepository, bulletRepository, propRepository);
         }
 
+        public void Continue() {
+            ctx.isRunning = true;
+            ctx.trainEntity.state = TrainState.None;
+
+            ctx.audioModule.ContinueMusic();
+        }
+
         public void Enter(List<int> typeIDs) {
             ctx.isRunning = true;
 
@@ -60,8 +67,7 @@ namespace UF.System_Train {
 
         public void Exit() {
             ctx.isRunning = false;
-
-            ClearGame();
+            ctx.trainEntity.state = TrainState.Pause;
         }
 
         public void Tick(float dt) {
@@ -267,23 +273,6 @@ namespace UF.System_Train {
             ctx.appUI.Panel_Training_Button_Close();
             ctx.appUI.Panel_Training_Pause_Close();
             ctx.appUI.Panel_Training_GameOver_Close();
-        }
-
-        // 绝对不是这样写, 这是一种最傻瓜的办法
-        public void EnterPause() {
-            var train = ctx.trainEntity;
-            train.state = TrainState.Pause;
-
-            ctx.appUI.Panel_Training_Pause_Show();
-        }
-
-        public void ExitPause() {
-            var train = ctx.trainEntity;
-            train.state = TrainState.None;
-
-            ctx.appUI.Panel_Training_Pause_Close();
-
-            ctx.audioModule.ContinueMusic();
         }
 
         void HUD_Training_Update(float dt) {
