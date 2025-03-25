@@ -173,6 +173,7 @@ namespace UF {
                 }
                 appUI.playerSaveData.SetChapterCurID(chapter);
                 appUI.playerSaveData.chapterCurID = chapter;
+                Debug.Log("chapter:" + chapter);
                 UIDomain.Panel_StageSelection_ChangeChapter(appUI, chapter, maxChapter);
             };
 

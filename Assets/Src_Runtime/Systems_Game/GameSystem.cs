@@ -205,7 +205,6 @@ namespace UF {
                 owner.Move_Stop();
                 Exit();
                 int starCount = playerData.GetStarCount();
-                 
                 // 技术到达的关卡
                 ctx.appUI.Panel_GameOver_Open(true, starCount);
                 game.state = GameState.GameOver;

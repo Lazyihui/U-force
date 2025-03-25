@@ -228,6 +228,8 @@ namespace UF {
 
         public bool IsStageReached(int stageID) {
             bool isReach = false;
+            Debug.Log(stageID);
+
             foreach (var stage in stages.Values) {
                 if (stage.stageID == stageID) {
                     if (stage.passStatus == StagePassStatus.Reached || stage.passStatus == StagePassStatus.Passed) {
