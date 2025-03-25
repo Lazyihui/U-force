@@ -65,7 +65,6 @@ namespace UF {
                 panel.Ctor();
 
                 AudioSource audioSource = ctx.audioModule.Get_SfxSource();
-                panel.Init(audioSource);
 
                 panel.OnLoginClickHandle += () => {
                     eventCenter.OnLoginStart();
@@ -83,6 +82,10 @@ namespace UF {
                     eventCenter.OnQuit();
                 };
 
+                // 播放音效
+                panel.OnBtnClipPlay += (clip) => {
+                    ctx.audioModule.PlaySfx(clip);
+                };
             }
             ctx.panel_Login = panel;
             panel.Show();
@@ -480,7 +483,6 @@ namespace UF {
                 panel.Ctor();
 
                 AudioSource audioSource = ctx.audioModule.Get_SfxSource();
-                panel.Init(audioSource);
 
                 panel.OnStageClickHandle = (stageID) => {
                     eventCenter.OnStageClick(stageID);
@@ -498,6 +500,10 @@ namespace UF {
                     eventCenter.OnBackClick();
                 };
 
+                // 音效
+                panel.OnBtnClipPlay += (clip) => {
+                    ctx.audioModule.PlaySfx(clip);
+                };
             }
 
             ctx.panel_StageSelection = panel;

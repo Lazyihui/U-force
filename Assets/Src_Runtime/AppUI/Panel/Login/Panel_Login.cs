@@ -24,9 +24,9 @@ namespace UF {
         bool isMouseOver;
 
         // 按钮音效
-        public AudioSource audioSource;
         [SerializeField] AudioClip btnSelectedClip;
         [SerializeField] AudioClip btnConfirmClip;
+        public Action<AudioClip> OnBtnClipPlay;
 
         public void Ctor() {
 
@@ -56,10 +56,6 @@ namespace UF {
 
         }
 
-        public void Init(AudioSource audioSource) {
-            this.audioSource = audioSource;
-        }
-
         public void Show() {
             SetSelectedButton(btn_Login);
 
@@ -86,8 +82,12 @@ namespace UF {
 
             // 鼠标悬停
             Button btn = GetMouseOverButton(canvas.gameObject);
-            if (isMouseOver) {
+
+            if (btn != null) {
                 SetSelectedButton(btn);
+            }
+
+            if (isMouseOver) {
                 return;
             }
 
@@ -109,7 +109,7 @@ namespace UF {
             btn_Setting.image.color = (selectedBtn == btn_Setting) ? Color.red : Color.white;
             btn_Quit.image.color = (selectedBtn == btn_Quit) ? Color.red : Color.white;
 
-            audioSource.PlayOneShot(btnSelectedClip);
+            OnBtnClipPlay.Invoke(btnSelectedClip);
         }
 
         void ConfirmSelectedButton() {
@@ -117,7 +117,7 @@ namespace UF {
 
             selectedBtn.onClick.Invoke();
 
-            audioSource.PlayOneShot(btnConfirmClip);
+            OnBtnClipPlay.Invoke(btnConfirmClip);
         }
 
         Button GetMouseOverButton(GameObject canvas) {
@@ -130,10 +130,11 @@ namespace UF {
             if (results.Count != 0) {
                 var len = results.Count;
                 for (int i = 0; i < len; i++) {
-                    if (results[i].gameObject.GetComponent<Button>() != null) {
+                    Button btn = results[i].gameObject.GetComponent<Button>();
+                    if (btn != null) {
                         isMouseOver = true;
 
-                        Button btn = results[i].gameObject.GetComponent<Button>();
+                        if (btn == selectedBtn) { return null; }
                         return btn;
                     }
                 }
