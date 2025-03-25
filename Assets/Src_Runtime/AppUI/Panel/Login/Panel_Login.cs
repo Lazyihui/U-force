@@ -26,7 +26,7 @@ namespace UF {
         // 按钮音效
         [SerializeField] AudioClip btnSelectedClip;
         [SerializeField] AudioClip btnConfirmClip;
-        public Action<AudioClip> OnBtnClipPlay;
+        public Action<AudioClip> OnBtnClipPlayHandle;
 
         public void Ctor() {
 
@@ -109,7 +109,7 @@ namespace UF {
             btn_Setting.image.color = (selectedBtn == btn_Setting) ? Color.red : Color.white;
             btn_Quit.image.color = (selectedBtn == btn_Quit) ? Color.red : Color.white;
 
-            OnBtnClipPlay.Invoke(btnSelectedClip);
+            OnBtnClipPlayHandle.Invoke(btnSelectedClip);
         }
 
         void ConfirmSelectedButton() {
@@ -117,7 +117,7 @@ namespace UF {
 
             selectedBtn.onClick.Invoke();
 
-            OnBtnClipPlay.Invoke(btnConfirmClip);
+            OnBtnClipPlayHandle.Invoke(btnConfirmClip);
         }
 
         Button GetMouseOverButton(GameObject canvas) {

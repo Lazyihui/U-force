@@ -49,7 +49,7 @@ namespace UF.UIApplication {
 
         [SerializeField] AudioClip btnSelectedClip;
         [SerializeField] AudioClip btnConfirmClip;
-        public Action<AudioClip> OnBtnClipPlay;
+        public Action<AudioClip> OnBtnClipPlayHandle;
 
         public void Ctor() {
             btn_c1.onClick.AddListener(() => OnChapterClickHandle.Invoke(1));
@@ -221,7 +221,7 @@ namespace UF.UIApplication {
             selectedStage = newStage;
             newStage.OnSelected();
 
-            OnBtnClipPlay.Invoke(btnSelectedClip);
+            OnBtnClipPlayHandle.Invoke(btnSelectedClip);
         }
 
         void ConfirmSelectedStage() {
@@ -229,7 +229,7 @@ namespace UF.UIApplication {
 
             selectedStage.OnClick();
 
-            OnBtnClipPlay.Invoke(btnConfirmClip);
+            OnBtnClipPlayHandle.Invoke(btnConfirmClip);
         }
 
         Panel_StageSelection_OneStage GetMouseOverStage(GameObject canvas) {

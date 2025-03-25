@@ -12,6 +12,7 @@ namespace UF {
         public SelectedInFormation selectedInFormation;
         public SelectedInFormation selectedInTrain;
         public GameSaveModel playerSaveData;
+        public GameSettingModel settingSaveData;
 
         public void Ctor() {
             ctx = new UIContext();
@@ -24,9 +25,10 @@ namespace UF {
             selectedInFormation.Reset();
         }
 
-        public void Inject(Canvas screenCanvas, Transform canvasRoot, AssetsModule assetsCore, TemplateMoudle templateMoudle, InputModule inputModule, AudioModule audioModule, GameSaveModel playerSaveData) {
+        public void Inject(Canvas screenCanvas, Transform canvasRoot, AssetsModule assetsCore, TemplateMoudle templateMoudle, InputModule inputModule, AudioModule audioModule, GameSaveModel playerSaveData, GameSettingModel settingSaveData) {
             ctx.Inject(screenCanvas, canvasRoot, assetsCore, templateMoudle, inputModule, audioModule);
             this.playerSaveData = playerSaveData;
+            this.settingSaveData = settingSaveData;
         }
         public CardModel Get_CardModel() {
             return ctx.cardModel;
@@ -83,7 +85,7 @@ namespace UF {
                 };
 
                 // 播放音效
-                panel.OnBtnClipPlay += (clip) => {
+                panel.OnBtnClipPlayHandle += (clip) => {
                     ctx.audioModule.PlaySfx(clip);
                 };
             }
@@ -501,7 +503,7 @@ namespace UF {
                 };
 
                 // 音效
-                panel.OnBtnClipPlay += (clip) => {
+                panel.OnBtnClipPlayHandle += (clip) => {
                     ctx.audioModule.PlaySfx(clip);
                 };
             }
@@ -1485,6 +1487,7 @@ namespace UF {
                     eventCenter.OnSettingBackClick();
                 };
 
+                // 分辨率
                 panel.OnReselustion1920ClickHandle = () => {
                     eventCenter.OnSettingReselustion1920Click();
                 };
@@ -1501,8 +1504,19 @@ namespace UF {
                     eventCenter.OnSettingFullScreenToggle(isOn);
                 };
 
+                // 声音
+                panel.OnMusicSliderChangeHandle = (value) => {
+                    eventCenter.OnSettingMusicSliderChange(value);
+                };
+
+                panel.OnSFXSliderChangeHandle = (value) => {
+                    eventCenter.OnSettingSFXSliderChange(value);
+                };
             }
             ctx.panel_Setting = panel;
+
+            Panel_Setting_SetSliderValue();
+
             panel.Show();
         }
 
@@ -1513,6 +1527,16 @@ namespace UF {
 
             panel.TearDown();
             ctx.panel_Setting = null;
+        }
+
+        void Panel_Setting_SetSliderValue() {
+            Panel_Setting panel = ctx.panel_Setting;
+
+            if (panel == null) { return; }
+
+            var musicValue = settingSaveData.GetMusicVolume();
+            var sfxValue = settingSaveData.GetSFXVolume();
+            panel.SetSliderValue(musicValue, sfxValue);
         }
         #endregion
     }
