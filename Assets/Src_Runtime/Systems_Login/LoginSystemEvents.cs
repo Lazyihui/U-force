@@ -49,13 +49,6 @@ namespace UF {
             }
         }
 
-        public Action OnSelectCloseHandle;
-        public void OnSelectClose() {
-            if (OnSelectCloseHandle != null) {
-                OnSelectCloseHandle();
-            }
-        }
-
         public Action OnSelectBackHandle;
         public void OnSelectBack() {
             if (OnSelectBackHandle != null) {
@@ -135,13 +128,6 @@ namespace UF {
         public void OnCardSelectedClick(int a) {
             if (OnCardSelectedClickHandle != null) {
                 OnCardSelectedClickHandle(a);
-            }
-        }
-
-        public Action OnSelectCloseClickHandle;
-        public void OnSelectCloseClick() {
-            if (OnSelectCloseClickHandle != null) {
-                OnSelectCloseClickHandle();
             }
         }
 

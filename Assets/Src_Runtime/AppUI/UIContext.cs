@@ -50,6 +50,8 @@ namespace UF {
         // input
         public bool isTabDown;
         public bool isEscDown;
+        public float inputTimer; // 防止unity按键重复检测的计时器
+        public float inputDelay; // 延迟时间
 
         // temp
         public bool isNoticeOpen;
@@ -60,6 +62,8 @@ namespace UF {
             isTabDown = false;
             isNoticeOpen = false;
             noticeTimer = 1;
+            inputTimer = 0;
+            inputDelay = 0.2f;
         }
 
         public void Inject(Canvas screenCanvas, Transform canvasRoot,AssetsModule assetsCore, TemplateMoudle templateMoudle, InputModule inputModule, AudioModule audioModule) {

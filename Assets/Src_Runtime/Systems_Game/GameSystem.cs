@@ -121,6 +121,7 @@ namespace UF {
         void PreTick(float dt) {
             var game = ctx.gameEntity;
             var ui = ctx.appUI;
+            ui.Tick(dt);
 
             if (!game.isEliminateWar) {
                 RoleEntity owner = ctx.Get_Owner();

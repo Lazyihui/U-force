@@ -16,6 +16,8 @@ namespace UF {
         [SerializeField] Button btn_Quit;
         public Action OnQuitClickHandle;
 
+        public Action OnCloseHandle;
+
         public void Ctor() {
             btn_Continue.onClick.AddListener(() => {
                 if (OnContinueClickHandle != null) {

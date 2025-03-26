@@ -62,12 +62,6 @@ namespace UF.UIApplication {
 
         }
 
-        public void Tick(bool isEscDown) {
-            if (isEscDown) {
-                OnCloseHandle.Invoke();
-            }
-        }
-
         public void Set_Text(int stageID, int chapterID) {
 
             txt_StageName.text = stageID.ToString() + "战";

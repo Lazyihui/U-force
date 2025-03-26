@@ -139,13 +139,6 @@ namespace UF {
             }
         }
 
-        public Action OnSelectCloseHandle;
-        public void OnCloseClick() {
-            if (OnSelectCloseHandle != null) {
-                OnSelectCloseHandle();
-            }
-        }
-
         public Action OnSelectBackHandle;
         public void OnBackClick() {
             if (OnSelectBackHandle != null) {
@@ -220,13 +213,6 @@ namespace UF {
         public void OnCardSelectedClick(int a) {
             if (OnCardSelectedClickHandle != null) {
                 OnCardSelectedClickHandle(a);
-            }
-        }
-
-        public Action OnSelectCloseClickHandle;//选择返回
-        public void OnSelectCloseClick() {
-            if (OnSelectCloseClickHandle != null) {
-                OnSelectCloseClickHandle();
             }
         }
 

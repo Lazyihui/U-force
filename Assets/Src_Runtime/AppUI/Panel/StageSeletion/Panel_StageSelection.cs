@@ -71,14 +71,10 @@ namespace UF.UIApplication {
             stage = new List<Panel_StageSelection_OneStage>();
         }
 
-        public void Tick(bool isTabDown, bool isEscDown, Canvas canvas, Vector2 moveAxis, bool isConfirm) {
+        public void Tick(bool isTabDown, Canvas canvas, Vector2 moveAxis, bool isConfirm) {
 
             if (isTabDown) {
                 OnChapterClickHandle.Invoke(chapter + 1);
-            }
-
-            if (isEscDown) {
-                OnCloseHandle.Invoke();
             }
 
             // 键盘选择

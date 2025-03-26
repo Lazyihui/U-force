@@ -81,8 +81,6 @@ namespace UF {
             // panel
             var ui = ctx.appUI;
             ui.Tick(dt);
-
-
         }
 
         void LogicTick(float dt) {
@@ -134,10 +132,6 @@ namespace UF {
                 events.OnChapterClick(ChapterID);
             };
 
-            eventCenter.OnSelectCloseHandle += () => {
-                events.OnSelectClose();
-            };
-
             eventCenter.OnSelectBackHandle += () => {
                 events.OnSelectBack();
             };
@@ -177,10 +171,6 @@ namespace UF {
 
             eventCenter.OnCardSelectedClickHandle += (typeID) => {
                 events.OnCardSelectedClick(typeID);
-            };
-
-            eventCenter.OnSelectCloseClickHandle += () => {
-                events.OnSelectCloseClick();
             };
 
             // 瞭望塔

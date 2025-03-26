@@ -46,12 +46,41 @@ namespace UF {
         public void Tick(float dt) {
             // input
             var inputModule = ctx.inputModule;
+            if (ctx.inputTimer > 0) {
+                ctx.inputTimer -= dt;
+            }
 
             Set_InputDown(inputModule.IsTabDown, inputModule.IsEscDown);
-            
+
+            // 按键选择按钮
             Panel_Login_Update_Tick(ctx.screenCanvas, inputModule.uiAxis, inputModule.isConfirm);
-            Panel_StageSelection_Tick(ctx.isTabDown, ctx.isEscDown, ctx.screenCanvas, inputModule.uiAxis, inputModule.isConfirm);
-            Panel_CardSelection_Tick(ctx.isEscDown);
+            Panel_StageSelection_Tick(ctx.isTabDown, ctx.screenCanvas, inputModule.uiAxis, inputModule.isConfirm);
+
+            // esc事件(这块架构实在不知道怎么写, 小重构了几次都感觉不太对劲, 现在是目前感觉最清晰的)
+            // 不是兄弟, 我按一下键你检测两次可还行
+            if (ctx.isEscDown && ctx.inputTimer <= 0) {
+                if (ctx.panel_GamePause != null) { // 游戏暂停时
+                    var panel = ctx.panel_GamePause;
+                    panel.OnCloseHandle?.Invoke();
+                    ctx.inputTimer = ctx.inputDelay;
+                    return;
+                } else if (ctx.panel_GameDefend_Button != null) { // 游戏正常运行时
+                    var panel = ctx.panel_GameDefend_Button;
+                    panel.OnCloseHandle?.Invoke();
+                    ctx.inputTimer = ctx.inputDelay;
+                    return;
+                } else if (ctx.panel_CardSelection != null) { // 卡片选择界面
+                    var panel = ctx.panel_CardSelection;
+                    panel.OnCloseHandle?.Invoke();
+                    ctx.inputTimer = ctx.inputDelay;
+                    return;
+                } else if (ctx.panel_StageSelection != null) { // 关卡选择界面
+                    var panel = ctx.panel_StageSelection;
+                    panel.OnBackHandle?.Invoke();
+                    ctx.inputTimer = ctx.inputDelay;
+                    return;
+                }
+            }
         }
 
         #region Login
@@ -133,6 +162,9 @@ namespace UF {
                     eventCenter.OnGamePause();
                 };
 
+                panel.OnCloseHandle += () => {
+                    eventCenter.OnGamePause();
+                };
             }
             ctx.panel_GameDefend_Button = panel;
 
@@ -197,6 +229,10 @@ namespace UF {
 
                 panel.OnQuitClickHandle += () => {
                     eventCenter.OnPauseExitGame();
+                };
+
+                panel.OnCloseHandle += () => {
+                    eventCenter.OnContinue();
                 };
             }
 
@@ -496,7 +532,7 @@ namespace UF {
                 };
 
                 panel.OnCloseHandle = () => {
-                    eventCenter.OnCloseClick();
+                    eventCenter.OnBackClick();
                 };
 
                 panel.OnBackHandle = () => {
@@ -514,12 +550,12 @@ namespace UF {
             panel.SetNativeSize();
         }
 
-        public void Panel_StageSelection_Tick(bool isTabDown, bool isEscDown, Canvas canvas, Vector2 axis, bool isConfirm) {
+        public void Panel_StageSelection_Tick(bool isTabDown, Canvas canvas, Vector2 axis, bool isConfirm) {
             Panel_StageSelection panel = ctx.panel_StageSelection;
             if (panel == null) {
                 return;
             }
-            panel.Tick(isTabDown, isEscDown, canvas, axis, isConfirm);
+            panel.Tick(isTabDown, canvas, axis, isConfirm);
         }
 
         public void Panel_StageSelectionOneStage_Add(int stageID, bool isPassed, int getStarCount) {
@@ -618,21 +654,13 @@ namespace UF {
                 };
 
                 panel.OnCloseHandle = () => {
-                    eventCenter.OnSelectCloseClick();
+                    eventCenter.OnSelectBackClick();
                 };
             }
 
             panel.Set_Text(stageID, ChapterID);
             panel.Show();
             ctx.panel_CardSelection = panel;
-        }
-
-        public void Panel_CardSelection_Tick(bool isEscDown) {
-            Panel_CardSelection panel = ctx.panel_CardSelection;
-
-            if (panel == null) { return; }
-
-            panel.Tick(isEscDown);
         }
 
         public void Panel_CardSelection_AddCard(int id, Sprite sprite) {

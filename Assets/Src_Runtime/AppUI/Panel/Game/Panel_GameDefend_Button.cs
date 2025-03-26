@@ -17,6 +17,8 @@ namespace UF {
 
         [SerializeField] GameObject weapPrefab;
         [SerializeField] Transform skillTrans;
+        
+        public Action OnCloseHandle;
 
         int slotmax;
         public void Set_SlotMax(int value) => slotmax = value;
