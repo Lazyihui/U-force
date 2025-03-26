@@ -71,7 +71,7 @@ namespace UF.UIApplication {
             stage = new List<Panel_StageSelection_OneStage>();
         }
 
-        public void Tick(bool isTabDown, bool isEscDown) {
+        public void Tick(bool isTabDown, bool isEscDown, Canvas canvas, Vector2 moveAxis, bool isConfirm) {
 
             if (isTabDown) {
                 OnChapterClickHandle.Invoke(chapter + 1);
@@ -80,6 +80,46 @@ namespace UF.UIApplication {
             if (isEscDown) {
                 OnCloseHandle.Invoke();
             }
+
+            // 键盘选择
+            if (gameObject.activeSelf == false) { return; }
+
+            if (selectedStage == null) {
+                var zeroStage = stage[0];
+                SetSelectedStage(zeroStage);
+                return;
+            }
+
+            // 确认
+            if (isConfirm) {
+                ConfirmSelectedStage();
+                return;
+            }
+
+            // 鼠标悬停
+            var newStage = GetMouseOverStage(canvas.gameObject);
+
+            if (newStage != null) {
+                SetSelectedStage(newStage);
+            }
+
+            if (isMouseOver) {
+                return;
+            }
+
+            // 选中按钮检测
+            if (moveAxis == Vector2.zero) { return; }
+
+            Button selectedBtn = selectedStage.GetComponent<Button>();
+            Selectable selectable = selectedBtn.FindSelectable(moveAxis);
+
+            if (selectable == null) { return; }
+
+            Button newSelectedBtn = selectable as Button;
+            var newSelectedStage = newSelectedBtn.GetComponent<Panel_StageSelection_OneStage>();
+
+            if (newSelectedStage == null) { return; }
+            SetSelectedStage(newSelectedStage);
         }
 
 
@@ -171,47 +211,6 @@ namespace UF.UIApplication {
         }
         void OnStageClick(int stageID) {
             OnStageClickHandle.Invoke(stageID);
-        }
-
-        public void Update_Tick(Canvas canvas, Vector2 moveAxis, bool isConfirm) {
-            if (gameObject.activeSelf == false) { return; }
-
-            if (selectedStage == null) {
-                var zeroStage = stage[0];
-                SetSelectedStage(zeroStage);
-                return;
-            }
-
-            // 确认
-            if (isConfirm) {
-                ConfirmSelectedStage();
-                return;
-            }
-
-            // 鼠标悬停
-            var newStage = GetMouseOverStage(canvas.gameObject);
-
-            if (newStage != null) {
-                SetSelectedStage(newStage);
-            }
-
-            if (isMouseOver) {
-                return;
-            }
-
-            // 选中按钮检测
-            if (moveAxis == Vector2.zero) { return; }
-
-            Button selectedBtn = selectedStage.GetComponent<Button>();
-            Selectable selectable = selectedBtn.FindSelectable(moveAxis);
-
-            if (selectable == null) { return; }
-
-            Button newSelectedBtn = selectable as Button;
-            var newSelectedStage = newSelectedBtn.GetComponent<Panel_StageSelection_OneStage>();
-
-            if (newSelectedStage == null) { return; }
-            SetSelectedStage(newSelectedStage);
         }
 
         void SetSelectedStage(Panel_StageSelection_OneStage newStage) {

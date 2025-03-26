@@ -48,6 +48,8 @@ namespace UF.UIApplication {
 
         CardType cardType;
 
+        public Action OnCloseHandle;
+
         public void Ctor() {
             cards = new List<Panel_OneCardSelection>();
 
@@ -58,6 +60,12 @@ namespace UF.UIApplication {
             btn_SelectInd.onClick.AddListener(() => OnSelectIndClickHandle.Invoke());
             btn_SelectSci.onClick.AddListener(() => OnSelectSciClickHandle.Invoke());
 
+        }
+
+        public void Tick(bool isEscDown) {
+            if (isEscDown) {
+                OnCloseHandle.Invoke();
+            }
         }
 
         public void Set_Text(int stageID, int chapterID) {

@@ -48,9 +48,10 @@ namespace UF {
             var inputModule = ctx.inputModule;
 
             Set_InputDown(inputModule.IsTabDown, inputModule.IsEscDown);
-            Panel_StageSelection_Tick(ctx.isTabDown, ctx.isEscDown);
+            
             Panel_Login_Update_Tick(ctx.screenCanvas, inputModule.uiAxis, inputModule.isConfirm);
-            Panel_StageSelection_Update_Tick(ctx.screenCanvas, inputModule.uiAxis, inputModule.isConfirm);
+            Panel_StageSelection_Tick(ctx.isTabDown, ctx.isEscDown, ctx.screenCanvas, inputModule.uiAxis, inputModule.isConfirm);
+            Panel_CardSelection_Tick(ctx.isEscDown);
         }
 
         #region Login
@@ -513,12 +514,12 @@ namespace UF {
             panel.SetNativeSize();
         }
 
-        public void Panel_StageSelection_Tick(bool isTabDown, bool isEscDown) {
+        public void Panel_StageSelection_Tick(bool isTabDown, bool isEscDown, Canvas canvas, Vector2 axis, bool isConfirm) {
             Panel_StageSelection panel = ctx.panel_StageSelection;
             if (panel == null) {
                 return;
             }
-            panel.Tick(isTabDown, isEscDown);
+            panel.Tick(isTabDown, isEscDown, canvas, axis, isConfirm);
         }
 
         public void Panel_StageSelectionOneStage_Add(int stageID, bool isPassed, int getStarCount) {
@@ -535,14 +536,6 @@ namespace UF {
                 return;
             }
             panel.Set_StarNum(starNum);
-        }
-
-        public void Panel_StageSelection_Update_Tick(Canvas canvas, Vector2 axis, bool isConfirm) {
-            Panel_StageSelection panel = ctx.panel_StageSelection;
-            if (panel == null) {
-                return;
-            }
-            panel.Update_Tick(canvas, axis, isConfirm);
         }
 
         // 当前关卡的星星
@@ -624,11 +617,22 @@ namespace UF {
                     eventCenter.OnCardSelectedClick(typeID);
                 };
 
+                panel.OnCloseHandle = () => {
+                    eventCenter.OnSelectBackClick();
+                };
             }
 
             panel.Set_Text(stageID, ChapterID);
             panel.Show();
             ctx.panel_CardSelection = panel;
+        }
+
+        public void Panel_CardSelection_Tick(bool isEscDown) {
+            Panel_CardSelection panel = ctx.panel_CardSelection;
+
+            if (panel == null) { return; }
+
+            panel.Tick(isEscDown);
         }
 
         public void Panel_CardSelection_AddCard(int id, Sprite sprite) {
