@@ -32,7 +32,9 @@ namespace UF {
             ctx.isRunning = false;
         }
 
-
+        public void Tick(float dt){
+            
+        }
         public void Setting_Binding() {
             var appUI = ctx.appUI;
             Debug.Assert(appUI != null, "appUI is null");

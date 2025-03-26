@@ -27,6 +27,7 @@ namespace UF {
         public static PauseSystem pauseSystem;
         public static TrainSystem trainSystem;
         public static SettingSystem settingSystem;
+        public static InputBindingSystem inputBindingSystem;
 
         // ==== Cores ====
         public static AppUI appUI;
@@ -68,6 +69,9 @@ namespace UF {
             settingSystem = GetComponentInChildren<SettingSystem>();
             settingSystem.Ctor();
 
+            inputBindingSystem = GetComponentInChildren<InputBindingSystem>();
+            inputBindingSystem.Ctor();
+
             // ---  Modules  ---
             assetsModule = GetComponentInChildren<AssetsModule>();
             assetsModule.Ctor();
@@ -106,6 +110,7 @@ namespace UF {
             pauseSystem.Inject(appUI, roleRepository, bulletRepository, propRepository, audioModule);
             trainSystem.Inject(appUI, templateModule, assetsModule, inputModule, audioModule, roleRepository, bulletRepository, propRepository);
             settingSystem.Inject(appUI);
+            inputBindingSystem.Inject(appUI, inputModule);
 
 
             appUI.Inject(screenCanvas, canvasRoot, assetsModule, templateModule, inputModule, audioModule, playerSaveData, settingSaveData);
@@ -588,6 +593,8 @@ namespace UF {
             loginSystem.Tick(dt);
             pauseSystem.Tick(dt);
             trainSystem.Tick(dt);
+            settingSystem.Tick(dt);
+            inputBindingSystem.Tick(dt);
 
             if (appUI.ctx.isNoticeOpen) {
                 appUI.ctx.noticeTimer -= dt;
