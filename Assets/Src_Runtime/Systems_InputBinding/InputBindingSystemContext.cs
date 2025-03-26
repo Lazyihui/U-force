@@ -10,13 +10,16 @@ namespace UF {
         public bool isRunning;
 
         public AppUI appUI;
+        public InputModule inputModule;
+        public InputBindingSystemProcessEntity processEntity;
 
         public InputBindingSystemContext() {
             isRunning = false;
         }
 
-        public void Inject(AppUI appUI) {
+        public void Inject(AppUI appUI, InputModule inputModule) {
             this.appUI = appUI;
+            this.inputModule = inputModule;
         }
     }
 }

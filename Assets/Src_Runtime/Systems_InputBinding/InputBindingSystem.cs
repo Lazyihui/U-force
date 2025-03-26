@@ -16,8 +16,8 @@ namespace UF {
             events = new InputBindingSystemEvents();
         }
 
-        public void Inject(AppUI appUI) {
-            ctx.Inject(appUI);
+        public void Inject(AppUI appUI, InputModule input) {
+            ctx.Inject(appUI, input);
         }
 
         public void Enter() {
@@ -26,6 +26,17 @@ namespace UF {
 
         public void Exit() {
             ctx.isRunning = false;
+        }
+        public void Tick(float dt) {
+
+        }
+
+        public void BindingTip_Start() {
+            var appUI = ctx.appUI;
+            var inputModule = ctx.inputModule;
+            var processEntity = ctx.processEntity;
+            // 鼠标不能绑定
+
         }
     }
 }
