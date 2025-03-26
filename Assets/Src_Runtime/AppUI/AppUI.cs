@@ -496,7 +496,7 @@ namespace UF {
                 };
 
                 panel.OnCloseHandle = () => {
-                    eventCenter.OnBackClick();
+                    eventCenter.OnCloseClick();
                 };
 
                 panel.OnBackHandle = () => {
@@ -618,7 +618,7 @@ namespace UF {
                 };
 
                 panel.OnCloseHandle = () => {
-                    eventCenter.OnSelectBackClick();
+                    eventCenter.OnSelectCloseClick();
                 };
             }
 

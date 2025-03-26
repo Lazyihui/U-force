@@ -177,6 +177,11 @@ namespace UF {
                 UIDomain.Panel_StageSelection_ChangeChapter(appUI, chapter, maxChapter);
             };
 
+            loginEvent.OnSelectCloseHandle += () => {
+                appUI.Panel_StageSelection_Close();
+                appUI.Panel_Login_Open();
+            };
+
             loginEvent.OnSelectBackHandle += () => {
                 appUI.Panel_StageSelection_Close();
                 appUI.Panel_Login_Open();
@@ -232,6 +237,11 @@ namespace UF {
             loginEvent.OnCardSelectedClickHandle += (typeID) => {
                 appUI.Panel_CardSelection_RemoveCardSelected(typeID);
                 appUI.Panel_OneCardSelection_UnLock(typeID);
+            };
+
+            loginEvent.OnSelectCloseClickHandle += () => {
+                appUI.Panel_CardSelection_Close();
+                UIDomain.Panel_StageSelectionEnter(appUI);
             };
 
             loginEvent.OnViewClickHandle += () => {
@@ -606,7 +616,7 @@ namespace UF {
             if (Input.GetKey(KeyCode.T)) {
                 // 遍历stageID 
                 playerSaveData.ForEachStage((s) => {
-                    Debug.Log("关卡ID:" + s.stageID+"星级:"+s.starCount+"状态:"+s.passStatus);
+                    Debug.Log("关卡ID:" + s.stageID + "星级:" + s.starCount + "状态:" + s.passStatus);
                 });
             }
             Screen_Coordinate();

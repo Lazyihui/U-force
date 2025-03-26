@@ -139,7 +139,12 @@ namespace UF {
             }
         }
 
-
+        public Action OnSelectCloseHandle;
+        public void OnCloseClick() {
+            if (OnSelectCloseHandle != null) {
+                OnSelectCloseHandle();
+            }
+        }
 
         public Action OnSelectBackHandle;
         public void OnBackClick() {
@@ -162,7 +167,6 @@ namespace UF {
         }
 
         public Action OnSelectAgrClickHandle;//选择农业
-
         public void OnSelectAgrClick() {
             if (OnSelectAgrClickHandle != null) {
                 OnSelectAgrClickHandle();
@@ -170,7 +174,6 @@ namespace UF {
         }
 
         public Action OnSelectIndClickHandle;//选择工业
-
         public void OnSelectIndClick() {
             if (OnSelectIndClickHandle != null) {
                 OnSelectIndClickHandle();
@@ -178,7 +181,6 @@ namespace UF {
         }
 
         public Action OnSelectSciClickHandle;//选择科技
-
         public void OnSelectSciClick() {
             if (OnSelectSciClickHandle != null) {
                 OnSelectSciClickHandle();
@@ -186,7 +188,6 @@ namespace UF {
         }
 
         public Action OnSelectEnterClickHandle;//选择进入
-
         public void OnSelectEnterClick() {
             if (OnSelectEnterClickHandle != null) {
                 OnSelectEnterClickHandle();
@@ -194,7 +195,6 @@ namespace UF {
         }
 
         public Action OnSelectBackClickHandle;//选择返回
-
         public void OnSelectBackClick() {
             if (OnSelectBackClickHandle != null) {
                 OnSelectBackClickHandle();
@@ -202,7 +202,6 @@ namespace UF {
         }
 
         public Action<int> OnSelectionCardClickHandle;//选择卡片
-
         public void OnSelectionCardClick(int a) {
             if (OnSelectionCardClickHandle != null) {
                 OnSelectionCardClickHandle(a);
@@ -221,6 +220,13 @@ namespace UF {
         public void OnCardSelectedClick(int a) {
             if (OnCardSelectedClickHandle != null) {
                 OnCardSelectedClickHandle(a);
+            }
+        }
+
+        public Action OnSelectCloseClickHandle;//选择返回
+        public void OnSelectCloseClick() {
+            if (OnSelectCloseClickHandle != null) {
+                OnSelectCloseClickHandle();
             }
         }
 
