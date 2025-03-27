@@ -50,6 +50,8 @@ namespace UF.UIApplication {
 
         public Action OnCloseHandle;
 
+        Button selectedBtn;
+
         public void Ctor() {
             cards = new List<Panel_OneCardSelection>();
 
@@ -247,5 +249,34 @@ namespace UF.UIApplication {
             OnCardSelectedClickHandle.Invoke(typeID);
         }
 
+        public void Tick() {
+            if (gameObject.activeSelf == false) { return; }
+
+            if (selectedBtn == null) {
+                selectedBtn = btn_SelectHero;
+                SetSelectedBtn(selectedBtn);
+                return;
+            }
+        }
+
+        void SetSelectedBtn(Button newBtn) {
+            selectedBtn = newBtn;
+            var newOneCard = newBtn.GetComponent<Panel_OneCardSelection>();
+            
+            if (newOneCard == null) { // 分类按钮
+                btn_SelectHero.image.color = (selectedBtn == btn_SelectHero) ? Color.red : Color.white;
+                btn_SelectAgr.image.color = (selectedBtn == btn_SelectAgr) ? Color.red : Color.white;
+                btn_SelectInd.image.color = (selectedBtn == btn_SelectInd) ? Color.red : Color.white;
+                btn_SelectSci.image.color = (selectedBtn == btn_SelectSci) ? Color.red : Color.white;
+            } else {
+                int len = cards.Count;
+                for (int i = 0; i < len; i += 1) {
+                    var card = cards[i];
+                    card.gameObject.GetComponent<Image>().color = Color.white;
+                }
+
+                newBtn.gameObject.GetComponent<Image>().color = Color.red;
+            }
+        }
     }
 }

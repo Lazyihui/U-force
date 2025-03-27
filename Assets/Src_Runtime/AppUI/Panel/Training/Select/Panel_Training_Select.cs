@@ -29,6 +29,8 @@ namespace UF
 
         public Action<int> OnSelectionTrainCardClickHandle;
 
+        public Action OnCloseHandle;
+
         public void Ctor()
         {
             cards = new List<Panel_OneCardTrain>();

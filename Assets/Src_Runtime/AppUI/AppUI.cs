@@ -59,6 +59,7 @@ namespace UF {
             // esc事件(这块架构实在不知道怎么写, 小重构了几次都感觉不太对劲, 现在是目前感觉最清晰的)
             // 不是兄弟, 我按一下键你检测两次可还行
             if (ctx.isEscDown && ctx.inputTimer <= 0) {
+                // Game
                 if (ctx.panel_GamePause != null) { // 游戏暂停时
                     var panel = ctx.panel_GamePause;
                     panel.OnCloseHandle?.Invoke();
@@ -76,7 +77,23 @@ namespace UF {
                     return;
                 } else if (ctx.panel_StageSelection != null) { // 关卡选择界面
                     var panel = ctx.panel_StageSelection;
-                    panel.OnBackHandle?.Invoke();
+                    panel.OnCloseHandle?.Invoke();
+                    ctx.inputTimer = ctx.inputDelay;
+                    return;
+                }
+
+                // Train
+                if (ctx.panel_Training_Select != null) {
+                    var panel = ctx.panel_Training_Select;
+                    panel.OnCloseHandle?.Invoke();
+                    ctx.inputTimer = ctx.inputDelay;
+                    return;
+                }
+
+                // Setting
+                if (ctx.panel_Setting != null) {
+                    var panel = ctx.panel_Setting;
+                    panel.OnCloseHandle?.Invoke();
                     ctx.inputTimer = ctx.inputDelay;
                     return;
                 }
@@ -1120,6 +1137,10 @@ namespace UF {
                 panel.OnSelectionTrainCardClickHandle = (typeID) => {
                     eventCenter.OnSelectionTrainCardClick(typeID);
                 };
+
+                panel.OnCloseHandle = () => {
+                    eventCenter.OnTrainBackClick();
+                };
             }
             ctx.panel_Training_Select = panel;
             panel.Show();
@@ -1566,6 +1587,10 @@ namespace UF {
 
                 panel.OnSFXSliderChangeHandle = (value) => {
                     eventCenter.OnSettingSFXSliderChange(value);
+                };
+
+                panel.OnCloseHandle = () => {
+                    eventCenter.OnSettingBackClick();
                 };
             }
             ctx.panel_Setting = panel;
