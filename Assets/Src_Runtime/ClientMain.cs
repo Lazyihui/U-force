@@ -589,6 +589,7 @@ namespace UF {
             var input = inputModule;
             input.Process(dt);
 
+            appUI.Tick(dt);
             gameSystem.Tick(dt);
             loginSystem.Tick(dt);
             pauseSystem.Tick(dt);

@@ -78,9 +78,7 @@ namespace UF {
         }
 
         void PreTick(float dt) {
-            // panel
-            var ui = ctx.appUI;
-            ui.Tick(dt);
+            
         }
 
         void LogicTick(float dt) {

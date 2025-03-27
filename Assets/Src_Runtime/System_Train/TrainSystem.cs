@@ -100,8 +100,7 @@ namespace UF.System_Train {
         }
 
         void PreTick(float dt) {
-            var ui = ctx.appUI;
-            ui.Tick(dt);
+            
         }
 
         void LogicTick(TrainSystemContext ctx, float dt) {
