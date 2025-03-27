@@ -26,6 +26,8 @@ public class Panel_Setting : MonoBehaviour {
     [SerializeField] Slider sli_SFX;
     public Action<float> OnSFXSliderChangeHandle;
 
+    public Action OnCloseHandle;
+
     public void Ctor() {
 
         btn_Back.onClick.AddListener(() => OnBackClickHandle?.Invoke());
