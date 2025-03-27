@@ -87,7 +87,7 @@ namespace UF {
             }
             // K
             {
-                bool isGrapDown = world.K.WasPressedThisFrame();
+                bool isGrapDown = world.Grap.WasPressedThisFrame();
                 isGrap = isGrapDown;
             }
 
@@ -131,7 +131,7 @@ namespace UF {
             }
             // k
             {
-                bool isTechDown = world.K.WasPressedThisFrame();
+                bool isTechDown = world.Tech.WasPressedThisFrame();
                 if (isTechDown) {
                     inputCastKey |= InputKeyFlag.Tech;
                 }

@@ -51,6 +51,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Tech",
+                    "type": "Value",
+                    "id": "6f4b90e0-d70a-4034-a5a1-8a3afed414b2",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Esc",
                     "type": "Value",
                     "id": "e1e1d689-ece1-44e0-8131-3497795469e4",
@@ -105,7 +114,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "K",
+                    "name": "Grap",
                     "type": "Value",
                     "id": "12996acc-956a-400c-89ed-3108343777c3",
                     "expectedControlType": "Axis",
@@ -287,7 +296,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "K",
+                    "action": "Grap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "14059f38-c78e-43cc-9ea5-6f1dbd5df9f4",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tech",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

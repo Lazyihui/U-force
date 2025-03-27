@@ -73,6 +73,15 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Tech"",
+                    ""type"": ""Value"",
+                    ""id"": ""6f4b90e0-d70a-4034-a5a1-8a3afed414b2"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Esc"",
                     ""type"": ""Value"",
                     ""id"": ""e1e1d689-ece1-44e0-8131-3497795469e4"",
@@ -127,7 +136,7 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""K"",
+                    ""name"": ""Grap"",
                     ""type"": ""Value"",
                     ""id"": ""12996acc-956a-400c-89ed-3108343777c3"",
                     ""expectedControlType"": ""Axis"",
@@ -309,7 +318,18 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""K"",
+                    ""action"": ""Grap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""14059f38-c78e-43cc-9ea5-6f1dbd5df9f4"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tech"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -608,13 +628,14 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
         m_World_Weap2 = m_World.FindAction("Weap2", throwIfNotFound: true);
         m_World_Weap3 = m_World.FindAction("Weap3", throwIfNotFound: true);
         m_World_Weap4 = m_World.FindAction("Weap4", throwIfNotFound: true);
+        m_World_Tech = m_World.FindAction("Tech", throwIfNotFound: true);
         m_World_Esc = m_World.FindAction("Esc", throwIfNotFound: true);
         m_World_Tab = m_World.FindAction("Tab", throwIfNotFound: true);
         m_World_MoveLeft = m_World.FindAction("MoveLeft", throwIfNotFound: true);
         m_World_MoveRight = m_World.FindAction("MoveRight", throwIfNotFound: true);
         m_World_MoveUp = m_World.FindAction("MoveUp", throwIfNotFound: true);
         m_World_MoveDown = m_World.FindAction("MoveDown", throwIfNotFound: true);
-        m_World_K = m_World.FindAction("K", throwIfNotFound: true);
+        m_World_Grap = m_World.FindAction("Grap", throwIfNotFound: true);
         // Player1
         m_Player1 = asset.FindActionMap("Player1", throwIfNotFound: true);
         m_Player1_Player1Jump = m_Player1.FindAction("Player1Jump", throwIfNotFound: true);
@@ -695,13 +716,14 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
     private readonly InputAction m_World_Weap2;
     private readonly InputAction m_World_Weap3;
     private readonly InputAction m_World_Weap4;
+    private readonly InputAction m_World_Tech;
     private readonly InputAction m_World_Esc;
     private readonly InputAction m_World_Tab;
     private readonly InputAction m_World_MoveLeft;
     private readonly InputAction m_World_MoveRight;
     private readonly InputAction m_World_MoveUp;
     private readonly InputAction m_World_MoveDown;
-    private readonly InputAction m_World_K;
+    private readonly InputAction m_World_Grap;
     public struct WorldActions
     {
         private @InputControls_Player m_Wrapper;
@@ -711,13 +733,14 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
         public InputAction @Weap2 => m_Wrapper.m_World_Weap2;
         public InputAction @Weap3 => m_Wrapper.m_World_Weap3;
         public InputAction @Weap4 => m_Wrapper.m_World_Weap4;
+        public InputAction @Tech => m_Wrapper.m_World_Tech;
         public InputAction @Esc => m_Wrapper.m_World_Esc;
         public InputAction @Tab => m_Wrapper.m_World_Tab;
         public InputAction @MoveLeft => m_Wrapper.m_World_MoveLeft;
         public InputAction @MoveRight => m_Wrapper.m_World_MoveRight;
         public InputAction @MoveUp => m_Wrapper.m_World_MoveUp;
         public InputAction @MoveDown => m_Wrapper.m_World_MoveDown;
-        public InputAction @K => m_Wrapper.m_World_K;
+        public InputAction @Grap => m_Wrapper.m_World_Grap;
         public InputActionMap Get() { return m_Wrapper.m_World; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -742,6 +765,9 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
             @Weap4.started += instance.OnWeap4;
             @Weap4.performed += instance.OnWeap4;
             @Weap4.canceled += instance.OnWeap4;
+            @Tech.started += instance.OnTech;
+            @Tech.performed += instance.OnTech;
+            @Tech.canceled += instance.OnTech;
             @Esc.started += instance.OnEsc;
             @Esc.performed += instance.OnEsc;
             @Esc.canceled += instance.OnEsc;
@@ -760,9 +786,9 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
             @MoveDown.started += instance.OnMoveDown;
             @MoveDown.performed += instance.OnMoveDown;
             @MoveDown.canceled += instance.OnMoveDown;
-            @K.started += instance.OnK;
-            @K.performed += instance.OnK;
-            @K.canceled += instance.OnK;
+            @Grap.started += instance.OnGrap;
+            @Grap.performed += instance.OnGrap;
+            @Grap.canceled += instance.OnGrap;
         }
 
         private void UnregisterCallbacks(IWorldActions instance)
@@ -782,6 +808,9 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
             @Weap4.started -= instance.OnWeap4;
             @Weap4.performed -= instance.OnWeap4;
             @Weap4.canceled -= instance.OnWeap4;
+            @Tech.started -= instance.OnTech;
+            @Tech.performed -= instance.OnTech;
+            @Tech.canceled -= instance.OnTech;
             @Esc.started -= instance.OnEsc;
             @Esc.performed -= instance.OnEsc;
             @Esc.canceled -= instance.OnEsc;
@@ -800,9 +829,9 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
             @MoveDown.started -= instance.OnMoveDown;
             @MoveDown.performed -= instance.OnMoveDown;
             @MoveDown.canceled -= instance.OnMoveDown;
-            @K.started -= instance.OnK;
-            @K.performed -= instance.OnK;
-            @K.canceled -= instance.OnK;
+            @Grap.started -= instance.OnGrap;
+            @Grap.performed -= instance.OnGrap;
+            @Grap.canceled -= instance.OnGrap;
         }
 
         public void RemoveCallbacks(IWorldActions instance)
@@ -1005,13 +1034,14 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
         void OnWeap2(InputAction.CallbackContext context);
         void OnWeap3(InputAction.CallbackContext context);
         void OnWeap4(InputAction.CallbackContext context);
+        void OnTech(InputAction.CallbackContext context);
         void OnEsc(InputAction.CallbackContext context);
         void OnTab(InputAction.CallbackContext context);
         void OnMoveLeft(InputAction.CallbackContext context);
         void OnMoveRight(InputAction.CallbackContext context);
         void OnMoveUp(InputAction.CallbackContext context);
         void OnMoveDown(InputAction.CallbackContext context);
-        void OnK(InputAction.CallbackContext context);
+        void OnGrap(InputAction.CallbackContext context);
     }
     public interface IPlayer1Actions
     {
