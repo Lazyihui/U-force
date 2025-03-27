@@ -12,5 +12,7 @@ namespace UF {
         Weap3 = 1 << 4,
         Weap4 = 1 << 5,
         Tech = 1 << 6,
+
+        
     }
 }

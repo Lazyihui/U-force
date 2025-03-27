@@ -6,15 +6,6 @@
             "id": "ac0e7bd4-e35e-4f1c-a53d-5d5fce9b57cb",
             "actions": [
                 {
-                    "name": "Jump",
-                    "type": "Value",
-                    "id": "18e7af7d-5f44-4470-ad0f-ad8a764f447d",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Attack",
                     "type": "Value",
                     "id": "50c63afa-8dff-4d7f-bd26-80a1310bb069",
@@ -124,17 +115,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "393c2e6e-a098-44c2-a73d-f9bdab928c16",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "e32c0500-a009-48ec-97f6-2def0c0fe38e",

@@ -28,15 +28,6 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
             ""id"": ""ac0e7bd4-e35e-4f1c-a53d-5d5fce9b57cb"",
             ""actions"": [
                 {
-                    ""name"": ""Jump"",
-                    ""type"": ""Value"",
-                    ""id"": ""18e7af7d-5f44-4470-ad0f-ad8a764f447d"",
-                    ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""Attack"",
                     ""type"": ""Value"",
                     ""id"": ""50c63afa-8dff-4d7f-bd26-80a1310bb069"",
@@ -146,17 +137,6 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""393c2e6e-a098-44c2-a73d-f9bdab928c16"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""e32c0500-a009-48ec-97f6-2def0c0fe38e"",
@@ -623,7 +603,6 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
 }");
         // World
         m_World = asset.FindActionMap("World", throwIfNotFound: true);
-        m_World_Jump = m_World.FindAction("Jump", throwIfNotFound: true);
         m_World_Attack = m_World.FindAction("Attack", throwIfNotFound: true);
         m_World_Weap1 = m_World.FindAction("Weap1", throwIfNotFound: true);
         m_World_Weap2 = m_World.FindAction("Weap2", throwIfNotFound: true);
@@ -711,7 +690,6 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
     // World
     private readonly InputActionMap m_World;
     private List<IWorldActions> m_WorldActionsCallbackInterfaces = new List<IWorldActions>();
-    private readonly InputAction m_World_Jump;
     private readonly InputAction m_World_Attack;
     private readonly InputAction m_World_Weap1;
     private readonly InputAction m_World_Weap2;
@@ -728,7 +706,6 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
     {
         private @InputControls_Player m_Wrapper;
         public WorldActions(@InputControls_Player wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Jump => m_Wrapper.m_World_Jump;
         public InputAction @Attack => m_Wrapper.m_World_Attack;
         public InputAction @Weap1 => m_Wrapper.m_World_Weap1;
         public InputAction @Weap2 => m_Wrapper.m_World_Weap2;
@@ -750,9 +727,6 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_WorldActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_WorldActionsCallbackInterfaces.Add(instance);
-            @Jump.started += instance.OnJump;
-            @Jump.performed += instance.OnJump;
-            @Jump.canceled += instance.OnJump;
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
@@ -793,9 +767,6 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IWorldActions instance)
         {
-            @Jump.started -= instance.OnJump;
-            @Jump.performed -= instance.OnJump;
-            @Jump.canceled -= instance.OnJump;
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
@@ -1029,7 +1000,6 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
     public UIActions @UI => new UIActions(this);
     public interface IWorldActions
     {
-        void OnJump(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnWeap1(InputAction.CallbackContext context);
         void OnWeap2(InputAction.CallbackContext context);
