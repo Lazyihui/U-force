@@ -105,6 +105,8 @@ MonoBehaviour:
   btn_SelectSci: {fileID: 7440514667617652930}
   txt_ChapterName: {fileID: 7933227440037288919}
   txt_StageName: {fileID: 2247614660124838130}
+  btnSelectedClip: {fileID: 8300000, guid: 35a0117c59e59d14484dd2aa5d7bac70, type: 3}
+  btnConfirmClip: {fileID: 8300000, guid: e6f01e5aa1aeb804ebdb6413a6f98534, type: 3}
 --- !u!1 &664669561755098910
 GameObject:
   m_ObjectHideFlags: 0

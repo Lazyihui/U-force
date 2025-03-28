@@ -35,5 +35,8 @@ namespace UF {
             btn_confirm.interactable = true;
         }
 
+        public void OnConfirmClick() {
+            btn_confirm.onClick.Invoke();
+        }
     }
 }
