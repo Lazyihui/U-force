@@ -15,6 +15,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Jump",
+                    "type": "Value",
+                    "id": "7c8c4d9b-5ab5-43c7-ad79-83f1cc62019f",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Weap1",
                     "type": "Value",
                     "id": "1c538e83-1f34-42e5-9d00-ed45f4d942ba",
@@ -308,6 +317,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Tech",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ebb1f95-bd25-44bc-8113-349e21afd936",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

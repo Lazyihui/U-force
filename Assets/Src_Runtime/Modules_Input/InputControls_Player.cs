@@ -37,6 +37,15 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Jump"",
+                    ""type"": ""Value"",
+                    ""id"": ""7c8c4d9b-5ab5-43c7-ad79-83f1cc62019f"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Weap1"",
                     ""type"": ""Value"",
                     ""id"": ""1c538e83-1f34-42e5-9d00-ed45f4d942ba"",
@@ -332,6 +341,17 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
                     ""action"": ""Tech"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8ebb1f95-bd25-44bc-8113-349e21afd936"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -624,6 +644,7 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
         // World
         m_World = asset.FindActionMap("World", throwIfNotFound: true);
         m_World_Attack = m_World.FindAction("Attack", throwIfNotFound: true);
+        m_World_Jump = m_World.FindAction("Jump", throwIfNotFound: true);
         m_World_Weap1 = m_World.FindAction("Weap1", throwIfNotFound: true);
         m_World_Weap2 = m_World.FindAction("Weap2", throwIfNotFound: true);
         m_World_Weap3 = m_World.FindAction("Weap3", throwIfNotFound: true);
@@ -712,6 +733,7 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_World;
     private List<IWorldActions> m_WorldActionsCallbackInterfaces = new List<IWorldActions>();
     private readonly InputAction m_World_Attack;
+    private readonly InputAction m_World_Jump;
     private readonly InputAction m_World_Weap1;
     private readonly InputAction m_World_Weap2;
     private readonly InputAction m_World_Weap3;
@@ -729,6 +751,7 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
         private @InputControls_Player m_Wrapper;
         public WorldActions(@InputControls_Player wrapper) { m_Wrapper = wrapper; }
         public InputAction @Attack => m_Wrapper.m_World_Attack;
+        public InputAction @Jump => m_Wrapper.m_World_Jump;
         public InputAction @Weap1 => m_Wrapper.m_World_Weap1;
         public InputAction @Weap2 => m_Wrapper.m_World_Weap2;
         public InputAction @Weap3 => m_Wrapper.m_World_Weap3;
@@ -753,6 +776,9 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
             @Weap1.started += instance.OnWeap1;
             @Weap1.performed += instance.OnWeap1;
             @Weap1.canceled += instance.OnWeap1;
@@ -796,6 +822,9 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
             @Weap1.started -= instance.OnWeap1;
             @Weap1.performed -= instance.OnWeap1;
             @Weap1.canceled -= instance.OnWeap1;
@@ -1030,6 +1059,7 @@ public partial class @InputControls_Player: IInputActionCollection2, IDisposable
     public interface IWorldActions
     {
         void OnAttack(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
         void OnWeap1(InputAction.CallbackContext context);
         void OnWeap2(InputAction.CallbackContext context);
         void OnWeap3(InputAction.CallbackContext context);
