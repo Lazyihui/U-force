@@ -14,6 +14,7 @@ namespace UF {
         InputKeyFlag inputCastKey;
         public InputKeyFlag InputCastKey => inputCastKey;
 
+
         bool isGrap;
         public bool IsGrap => isGrap;
 
@@ -53,7 +54,7 @@ namespace UF {
         public bool isConfirm;
 
         // 存ActionMap
-        // Dictionary<InputKey, InputAction> keyToActionMap;
+        Dictionary<InputKeyFlag, InputAction> keyToActionMap;
 
 
 
@@ -61,6 +62,42 @@ namespace UF {
             player = new InputControls_Player();
             player.Enable();
 
+            var world = player.World;
+            var player1 = player.Player1;
+            var Player2 = player.Player2;
+            var UI = player.UI;
+
+            keyToActionMap = new Dictionary<InputKeyFlag, InputAction>{
+
+                {InputKeyFlag.Attack, world.Attack},
+                {InputKeyFlag.Jump, world.Jump},
+                {InputKeyFlag.Weap1, world.Weap1},
+                {InputKeyFlag.Weap2, world.Weap2},
+                {InputKeyFlag.Weap3, world.Weap3},
+                {InputKeyFlag.Weap4, world.Weap4},
+                {InputKeyFlag.Tech,world.Tech},
+                {InputKeyFlag.Esc,world.Esc},
+                {InputKeyFlag.Tab,world.Tab},
+                {InputKeyFlag.MoveLeft,world.MoveLeft},
+                {InputKeyFlag.MoveRight,world.MoveRight},
+                {InputKeyFlag.MoveUp,world.MoveUp},
+                {InputKeyFlag.MoveDown,world.MoveDown},
+                {InputKeyFlag.Grap,world.Grap},
+
+                // Player1
+                {InputKeyFlag.Player1Jump,player1.Player1Jump},
+                {InputKeyFlag.Player1Attack,player1.Player1Attack},
+                {InputKeyFlag.Player1Defense,player1.Player1Defense},
+
+                // player2
+                {InputKeyFlag.Player2Jump,Player2.Player2Jump},
+                {InputKeyFlag.Player2Attack,Player2.Player2Attack},
+                {InputKeyFlag.Player2Defense,Player2.Player2Defense},
+
+                // UI
+                {InputKeyFlag.Navigate,UI.Navigate},
+                {InputKeyFlag.Submit,UI.Submit},
+            };
         }
 
 
@@ -206,6 +243,60 @@ namespace UF {
                 player.LoadBindingOverridesFromJson(json, true);
             }
         }
+
+        // InputKeyFlag
+
+        #region InputKeyFlag
+        // public bool TryGetFirstFlag(InputKeyFlag flag, out InputKeyFlag firstFlag) {
+        //     firstFlag = InputKeyFlag.None;
+        //     if (flag == InputKeyFlag.None) {
+        //         return false;
+        //     }
+
+        //     var flags = Enum.GetValues(typeof(InputKeyFlag)).Cast<InputKeyFlag>().Where(f => f != InputKeyFlag.None && (flag & f) == f).ToArray();
+        //     if (flags.Length > 0) {
+        //         firstFlag = flags[0];
+        //         return true;
+        //     }
+        //     return false;
+        // }
+        // InputDevice currentInputDevice;
+
+        // public bool TryGetFirstBindingKeyPath(InputKeyFlag key, out string keyPath) {
+        //     string keyName = key.ToInputKeyString();
+
+        //     // 用于检查字符串是否为 null 或空字符串。
+        //     if (string.IsNullOrEmpty(keyName)) {
+        //         keyPath = "";
+        //         return false;
+        //     }
+
+        //     InputAction action = player.FindAction(keyName);
+        //     if (action == null || action.bindings.Count == 0) {
+        //         keyPath = "";
+        //         Debug.LogWarning("InputEntity.TryGetFirstBinding: Action not found: " + keyName);
+        //         return false;
+        //     }
+
+        //     bool isKeyboardOrMouse = currentInputDevice is Keyboard || currentInputDevice is Mouse;
+        //     string group = isKeyboardOrMouse ? "Keyboard" : "Gamepad";
+
+        //     foreach (var binding in action.bindings) {
+        //         keyPath = binding.effectivePath;
+        //         if (binding.groups == group) {
+        //             return true;
+        //         }
+        //     }
+
+        //     keyPath = "";
+        //     return false;
+        // }
+
+        public bool TryGetToAction(InputKeyFlag key, out InputAction action) {
+            return keyToActionMap.TryGetValue(key, out action);
+        }
+
+        #endregion
 
     }
 }
