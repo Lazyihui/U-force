@@ -15,6 +15,8 @@ namespace UF {
 
         public InputBindingSystemContext() {
             isRunning = false;
+
+            processEntity = new InputBindingSystemProcessEntity();
         }
 
         public void Inject(AppUI appUI, InputModule inputModule) {

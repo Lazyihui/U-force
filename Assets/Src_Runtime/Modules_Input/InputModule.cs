@@ -303,7 +303,6 @@ namespace UF {
         public bool TryGetToAction(InputKeyFlag key, out InputAction action) {
             return keyToActionMap.TryGetValue(key, out action);
         }
-
         #endregion
 
     }
