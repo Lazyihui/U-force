@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 namespace UF.UIApplication {
 
@@ -50,7 +51,15 @@ namespace UF.UIApplication {
 
         public Action OnCloseHandle;
 
+        // 按键选择
         Button selectedBtn;
+        Button selectedBtn_Mouse;
+        bool isMouseOver;
+        float mouseDelay; // 鼠标延迟
+
+        [SerializeField] AudioClip btnSelectedClip;
+        [SerializeField] AudioClip btnConfirmClip;
+        public Action<AudioClip> OnBtnClipPlayHandle;
 
         public void Ctor() {
             cards = new List<Panel_OneCardSelection>();
@@ -62,6 +71,7 @@ namespace UF.UIApplication {
             btn_SelectInd.onClick.AddListener(() => OnSelectIndClickHandle.Invoke());
             btn_SelectSci.onClick.AddListener(() => OnSelectSciClickHandle.Invoke());
 
+            mouseDelay = 0.1f;
         }
 
         public void Set_Text(int stageID, int chapterID) {
@@ -249,34 +259,138 @@ namespace UF.UIApplication {
             OnCardSelectedClickHandle.Invoke(typeID);
         }
 
-        public void Tick() {
+        public void Tick(Canvas canvas, Vector2 moveAxis, bool isConfirm, float dt) {
             if (gameObject.activeSelf == false) { return; }
+
+            if (isMouseOver) {
+                mouseDelay = 0.1f;
+            } else {
+                if (mouseDelay > 0) {
+                    mouseDelay -= dt;
+                }
+            }
 
             if (selectedBtn == null) {
                 selectedBtn = btn_SelectHero;
                 SetSelectedBtn(selectedBtn);
                 return;
             }
+
+            if (isConfirm) {
+                ConfirmSelectedBtn();
+                return;
+            }
+
+            var newBtn = GetMouseOverButton(canvas.gameObject);
+            if (newBtn != null) {
+                SetSelectedBtn_Mouse(newBtn);
+            }
+            if (isMouseOver) {
+                return;
+            }
+            if (selectedBtn != selectedBtn_Mouse && mouseDelay <= 0) {
+                SetSelectedBtn_Mouse(selectedBtn);
+            }
+
+            if (moveAxis == Vector2.zero) { return; }
+
+            Selectable selectable = selectedBtn.FindSelectable(moveAxis);
+            if (selectable == null) { return; }
+            Button newSelectedBtn = selectable as Button;
+            SetSelectedBtn(newSelectedBtn);
         }
 
         void SetSelectedBtn(Button newBtn) {
+            if (!newBtn.IsInteractable()) { return; }
+            if (newBtn == btn_back) { return; }
+            if (newBtn == btn_EnterGame) { return; }
+
             selectedBtn = newBtn;
             var newOneCard = newBtn.GetComponent<Panel_OneCardSelection>();
-            
+
+            int len = cards.Count;
+            for (int i = 0; i < len; i += 1) {
+                var card = cards[i];
+                card.gameObject.GetComponent<Image>().color = Color.white;
+            }
+
             if (newOneCard == null) { // 分类按钮
                 btn_SelectHero.image.color = (selectedBtn == btn_SelectHero) ? Color.red : Color.white;
                 btn_SelectAgr.image.color = (selectedBtn == btn_SelectAgr) ? Color.red : Color.white;
                 btn_SelectInd.image.color = (selectedBtn == btn_SelectInd) ? Color.red : Color.white;
                 btn_SelectSci.image.color = (selectedBtn == btn_SelectSci) ? Color.red : Color.white;
-            } else {
-                int len = cards.Count;
-                for (int i = 0; i < len; i += 1) {
-                    var card = cards[i];
-                    card.gameObject.GetComponent<Image>().color = Color.white;
-                }
 
+                selectedBtn.onClick.Invoke();
+            } else {
                 newBtn.gameObject.GetComponent<Image>().color = Color.red;
+                newBtn.onClick.Invoke();
             }
+
+            OnBtnClipPlayHandle.Invoke(btnSelectedClip);
+        }
+
+        void SetSelectedBtn_Mouse(Button newBtn) {
+            if (!newBtn.IsInteractable() && newBtn != selectedBtn) { return; }
+            if (newBtn == btn_back) { return; }
+            if (newBtn == btn_EnterGame) { return; }
+
+            selectedBtn_Mouse = newBtn;
+            var newOneCard = newBtn.GetComponent<Panel_OneCardSelection>();
+
+            int len = cards.Count;
+            for (int i = 0; i < len; i += 1) {
+                var card = cards[i];
+                card.gameObject.GetComponent<Image>().color = Color.white;
+            }
+
+            if (newOneCard == null) { // 分类按钮
+                btn_SelectHero.image.color = (selectedBtn_Mouse == btn_SelectHero) ? Color.red : Color.white;
+                btn_SelectAgr.image.color = (selectedBtn_Mouse == btn_SelectAgr) ? Color.red : Color.white;
+                btn_SelectInd.image.color = (selectedBtn_Mouse == btn_SelectInd) ? Color.red : Color.white;
+                btn_SelectSci.image.color = (selectedBtn_Mouse == btn_SelectSci) ? Color.red : Color.white;
+            } else {
+                newBtn.gameObject.GetComponent<Image>().color = Color.red;
+                newBtn.onClick.Invoke();
+            }
+
+            OnBtnClipPlayHandle.Invoke(btnSelectedClip);
+        }
+
+        void ConfirmSelectedBtn() {
+            if (selectedBtn == null) { return; }
+
+            var selectedOneCard = selectedBtn.GetComponent<Panel_OneCardSelection>();
+            if (selectedOneCard == null) {
+                selectedBtn.onClick.Invoke();
+            } else {
+                cardDetailsPrefab.OnConfirmClick();
+            }
+
+            OnBtnClipPlayHandle.Invoke(btnConfirmClip);
+        }
+
+        Button GetMouseOverButton(GameObject canvas) {
+            PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+            pointerEventData.position = Input.mousePosition;
+            GraphicRaycaster gr = canvas.GetComponent<GraphicRaycaster>();
+            List<RaycastResult> results = new List<RaycastResult>();
+            gr.Raycast(pointerEventData, results);
+
+            if (results.Count != 0) {
+                var len = results.Count;
+                for (int i = 0; i < len; i++) {
+                    Button btn = results[i].gameObject.GetComponent<Button>();
+                    if (btn != null) {
+                        isMouseOver = true;
+
+                        if (btn == selectedBtn) { return null; }
+                        return btn;
+                    }
+                }
+            }
+
+            isMouseOver = false;
+            return null;
         }
     }
 }
