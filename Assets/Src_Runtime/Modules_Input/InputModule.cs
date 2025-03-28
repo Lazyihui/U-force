@@ -15,6 +15,9 @@ namespace UF {
         public InputKeyFlag InputCastKey => inputCastKey;
 
 
+        bool isJump;
+        public bool IsJump => isJump;
+
         bool isGrap;
         public bool IsGrap => isGrap;
 
@@ -110,6 +113,11 @@ namespace UF {
 
             #region World
             var world = player.World;
+            // jump
+            {
+                bool isJumpDown = world.Jump.WasPerformedThisFrame();
+                this.isJump = isJumpDown;
+            }
 
             // -Pause Exc
             {
