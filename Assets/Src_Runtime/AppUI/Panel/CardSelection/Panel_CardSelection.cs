@@ -301,9 +301,8 @@ namespace UF.UIApplication {
         }
 
         void SetSelectedBtn(Button newBtn) {
-            if (!newBtn.IsInteractable()) { return; }
-            if (newBtn == btn_back) { return; }
-            if (newBtn == btn_EnterGame) { return; }
+            bool check = CheckSelectedBtn(newBtn);
+            if (!check) { return; }
 
             selectedBtn = newBtn;
             var newOneCard = newBtn.GetComponent<Panel_OneCardSelection>();
@@ -330,9 +329,8 @@ namespace UF.UIApplication {
         }
 
         void SetSelectedBtn_Mouse(Button newBtn) {
-            if (!newBtn.IsInteractable() && newBtn != selectedBtn) { return; }
-            if (newBtn == btn_back) { return; }
-            if (newBtn == btn_EnterGame) { return; }
+            bool check = CheckSelectedBtn(newBtn);
+            if (!check) { return; }
 
             selectedBtn_Mouse = newBtn;
             var newOneCard = newBtn.GetComponent<Panel_OneCardSelection>();
@@ -363,7 +361,7 @@ namespace UF.UIApplication {
             if (selectedOneCard == null) {
                 selectedBtn.onClick.Invoke();
             } else {
-                cardDetailsPrefab.OnConfirmClick();
+                cardDetails.OnConfirmClick();
             }
 
             OnBtnClipPlayHandle.Invoke(btnConfirmClip);
@@ -391,6 +389,20 @@ namespace UF.UIApplication {
 
             isMouseOver = false;
             return null;
+        }
+
+        bool CheckSelectedBtn(Button newBtn) {
+            if (!newBtn.IsInteractable() && newBtn != selectedBtn) { return false; }
+            
+            if (newBtn == btn_SelectHero) { return true; }
+            if (newBtn == btn_SelectAgr) { return true; }
+            if (newBtn == btn_SelectInd) { return true; }
+            if (newBtn == btn_SelectSci) { return true; }
+
+            var newOneCard = newBtn.GetComponent<Panel_OneCardSelection>();
+            if (newOneCard != null) { return true; }
+
+            return false;
         }
     }
 }
