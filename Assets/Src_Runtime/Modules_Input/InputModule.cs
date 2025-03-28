@@ -14,9 +14,6 @@ namespace UF {
         InputKeyFlag inputCastKey;
         public InputKeyFlag InputCastKey => inputCastKey;
 
-        bool isJump;
-        public bool IsJump => isJump;
-
         bool isGrap;
         public bool IsGrap => isGrap;
 
@@ -55,15 +52,17 @@ namespace UF {
         public Vector2 uiAxis;
         public bool isConfirm;
 
+        // 存ActionMap
+        // Dictionary<InputKey, InputAction> keyToActionMap;
+
+
+
         public void Ctor() {
             player = new InputControls_Player();
             player.Enable();
 
         }
 
-        public void ReSetJump() {
-            isJump = false;
-        }
 
         void UnButtonPress() {
             isPressStuff1 = false;
@@ -74,11 +73,6 @@ namespace UF {
 
             #region World
             var world = player.World;
-            // -Input
-            {
-                bool isJumpDown = world.Jump.WasPressedThisFrame();
-                isJump = isJumpDown;
-            }
 
             // -Pause Exc
             {
@@ -93,7 +87,7 @@ namespace UF {
             }
             // K
             {
-                bool isGrapDown = world.K.WasPressedThisFrame();
+                bool isGrapDown = world.Grap.WasPressedThisFrame();
                 isGrap = isGrapDown;
             }
 
@@ -137,7 +131,7 @@ namespace UF {
             }
             // k
             {
-                bool isTechDown = world.K.WasPressedThisFrame();
+                bool isTechDown = world.Tech.WasPressedThisFrame();
                 if (isTechDown) {
                     inputCastKey |= InputKeyFlag.Tech;
                 }

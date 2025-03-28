@@ -45,7 +45,6 @@ namespace UF {
             var game = ctx.gameEntity;
             var inputCom = role.InputComponent;
             var inputModule = ctx.inputModule;
-            inputCom.Jump_Set(inputModule.IsJump);
             if (game.isEliminateWar) {
                 inputCom.Grap_Set(inputModule.IsGrap);
             }
