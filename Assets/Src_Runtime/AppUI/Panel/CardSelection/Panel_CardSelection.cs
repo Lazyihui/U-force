@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 namespace UF.UIApplication {
 
@@ -55,10 +56,10 @@ namespace UF.UIApplication {
         Button selectedBtn; // 当前选择按钮
         Button selectedLeftBtn; // 分类
         Button selectedRightBtn; // OneCard
-        Button selectedLeftBtn_Mouse;
-        Button selectedRightBtn_Mouse;
-        bool isMouseOver;
-        float mouseDelay; // 鼠标延迟
+        // Button selectedLeftBtn_Mouse;
+        // Button selectedRightBtn_Mouse;
+        // bool isMouseOver;
+        // float mouseDelay; // 鼠标延迟
 
         [SerializeField] AudioClip btnSelectedClip;
         [SerializeField] AudioClip btnConfirmClip;
@@ -69,12 +70,28 @@ namespace UF.UIApplication {
 
             btn_back.onClick.AddListener(() => OnSelectBackClickHandle.Invoke());
             btn_EnterGame.onClick.AddListener(() => OnSelectEnterClickHandle.Invoke());
-            btn_SelectHero.onClick.AddListener(() => OnSelectHeroClickHandle.Invoke());
-            btn_SelectAgr.onClick.AddListener(() => OnSelectAgrClickHandle.Invoke());
-            btn_SelectInd.onClick.AddListener(() => OnSelectIndClickHandle.Invoke());
-            btn_SelectSci.onClick.AddListener(() => OnSelectSciClickHandle.Invoke());
 
-            mouseDelay = 0.1f;
+            btn_SelectHero.onClick.AddListener(() => {
+                ClickSelectedBtn(btn_SelectHero);
+                OnSelectHeroClickHandle.Invoke();
+            });
+
+            btn_SelectAgr.onClick.AddListener(() => {
+                ClickSelectedBtn(btn_SelectAgr);
+                OnSelectAgrClickHandle.Invoke();
+            });
+
+            btn_SelectInd.onClick.AddListener(() => {
+                ClickSelectedBtn(btn_SelectInd);
+                OnSelectIndClickHandle.Invoke();
+            });
+
+            btn_SelectSci.onClick.AddListener(() => {
+                ClickSelectedBtn(btn_SelectSci);
+                OnSelectSciClickHandle.Invoke();
+            });
+
+            // mouseDelay = 0.1f;
         }
 
         public void Set_Text(int stageID, int chapterID) {
@@ -251,6 +268,11 @@ namespace UF.UIApplication {
         }
 
         void OnCardClick(int stageID) {
+            var card = cards.FirstOrDefault(ele => ele.GetID() == stageID);
+            if (card == null) { return; }
+            var btn = card.GetComponent<Button>();
+            ClickSelectedBtn(btn);
+
             OnSelectionCardClickHandle.Invoke(stageID);
         }
 
@@ -265,13 +287,13 @@ namespace UF.UIApplication {
         public void Tick(Canvas canvas, Vector2 moveAxis, bool isConfirm, float dt) {
             if (gameObject.activeSelf == false) { return; }
 
-            if (isMouseOver) {
-                mouseDelay = 0.1f;
-            } else {
-                if (mouseDelay > 0) {
-                    mouseDelay -= dt;
-                }
-            }
+            // if (isMouseOver) {
+            //     mouseDelay = 0.1f;
+            // } else {
+            //     if (mouseDelay > 0) {
+            //         mouseDelay -= dt;
+            //     }
+            // }
 
             if (selectedBtn == null) {
                 SetSelectedBtn(btn_SelectHero, Vector2.zero);
@@ -283,23 +305,26 @@ namespace UF.UIApplication {
                 return;
             }
 
-            //     var newBtn = GetMouseOverButton(canvas.gameObject);
-            //     if (newBtn != null) {
-            //         SetSelectedBtn_Mouse(newBtn);
-            //     }
-            //     if (isMouseOver) {
-            //         return;
-            //     }
-            //     if (selectedBtn != selectedBtn_Mouse && mouseDelay <= 0) {
+            // 感觉不要鼠标检测手感会好点
+            // var newBtn = GetMouseOverButton(canvas.gameObject);
+            // if (newBtn != null) {
+            //     SetSelectedBtn_Mouse(newBtn);
+            // }
+            // if (isMouseOver) {
+            //     return;
+            // }
+            // if (selectedBtn != selectedLeftBtn_Mouse && mouseDelay <= 0) {
+            //     if (selectedBtn != selectedRightBtn_Mouse) {
             //         SetSelectedBtn_Mouse(selectedBtn);
             //     }
+            // }
 
             if (moveAxis == Vector2.zero) { return; }
 
             int check = CheckSelectedBtn(selectedBtn);
             if (check == 1 && moveAxis.x > 0) { // 防止导航太瞎找不到按钮(其实是夹角角度太大)
-                var newBtn = cards[0].GetComponent<Button>();
-                SetSelectedBtn(newBtn, moveAxis);
+                var btn = cards[0].GetComponent<Button>();
+                SetSelectedBtn(btn, moveAxis);
                 return;
             }
 
@@ -356,30 +381,20 @@ namespace UF.UIApplication {
             OnBtnClipPlayHandle.Invoke(btnSelectedClip);
         }
 
-        void SetSelectedBtn_Mouse(Button newBtn) {
-            int newCheck = CheckSelectedBtn(newBtn);
-            if (newCheck == -1) { return; }
+        void ClickSelectedBtn(Button btn) {
+            selectedBtn = btn;
 
-            // selectedBtn_Mouse = newBtn;
-            // var newOneCard = newBtn.GetComponent<Panel_OneCardSelection>();
+            var check = CheckSelectedBtn(selectedBtn);
+            if (check == 1) {
+                selectedLeftBtn = selectedBtn;
+                selectedRightBtn = null;
+            } else if (check == 2) {
+                selectedRightBtn = selectedBtn;
+            }
 
-            // int len = cards.Count;
-            // for (int i = 0; i < len; i += 1) {
-            //     var card = cards[i];
-            //     card.gameObject.GetComponent<Image>().color = Color.white;
-            // }
+            SetBtnColor(btn);
 
-            // if (newOneCard == null) { // 分类按钮
-            //     btn_SelectHero.image.color = (selectedBtn_Mouse == btn_SelectHero) ? Color.red : Color.white;
-            //     btn_SelectAgr.image.color = (selectedBtn_Mouse == btn_SelectAgr) ? Color.red : Color.white;
-            //     btn_SelectInd.image.color = (selectedBtn_Mouse == btn_SelectInd) ? Color.red : Color.white;
-            //     btn_SelectSci.image.color = (selectedBtn_Mouse == btn_SelectSci) ? Color.red : Color.white;
-            // } else {
-            //     newBtn.gameObject.GetComponent<Image>().color = Color.red;
-            //     newBtn.onClick.Invoke();
-            // }
-
-            // OnBtnClipPlayHandle.Invoke(btnSelectedClip);
+            OnBtnClipPlayHandle.Invoke(btnConfirmClip);
         }
 
         void ConfirmSelectedBtn() {
@@ -395,34 +410,51 @@ namespace UF.UIApplication {
             OnBtnClipPlayHandle.Invoke(btnConfirmClip);
         }
 
-        Button GetMouseOverButton(GameObject canvas) {
-            // PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
-            // pointerEventData.position = Input.mousePosition;
-            // GraphicRaycaster gr = canvas.GetComponent<GraphicRaycaster>();
-            // List<RaycastResult> results = new List<RaycastResult>();
-            // gr.Raycast(pointerEventData, results);
+        // void SetSelectedBtn_Mouse(Button newBtn) {
+        //     int check = CheckSelectedBtn(newBtn);
+        //     if (check == -1) { return; }
 
-            // if (results.Count != 0) {
-            //     var len = results.Count;
-            //     for (int i = 0; i < len; i++) {
-            //         Button btn = results[i].gameObject.GetComponent<Button>();
-            //         if (btn != null) {
-            //             isMouseOver = true;
+        //     if (check == 1) {
+        //         selectedLeftBtn_Mouse = newBtn;
+        //         selectedRightBtn_Mouse = null;
+        //     } else if (check == 2) {
+        //         selectedLeftBtn_Mouse = selectedLeftBtn;
+        //         selectedRightBtn_Mouse = newBtn;
+        //     }
 
-            //             if (btn == selectedBtn) { return null; }
-            //             return btn;
-            //         }
-            //     }
-            // }
+        //     SetBtnColor(newBtn);
 
-            // isMouseOver = false;
-            return null;
-        }
+        //     OnBtnClipPlayHandle.Invoke(btnSelectedClip);
+        // }
+
+        // Button GetMouseOverButton(GameObject canvas) {
+        //     PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+        //     pointerEventData.position = Input.mousePosition;
+        //     GraphicRaycaster gr = canvas.GetComponent<GraphicRaycaster>();
+        //     List<RaycastResult> results = new List<RaycastResult>();
+        //     gr.Raycast(pointerEventData, results);
+
+        //     if (results.Count != 0) {
+        //         var len = results.Count;
+        //         for (int i = 0; i < len; i++) {
+        //             Button btn = results[i].gameObject.GetComponent<Button>();
+        //             if (btn != null) {
+        //                 isMouseOver = true;
+
+        //                 if (btn == selectedBtn) { return null; }
+        //                 return btn;
+        //             }
+        //         }
+        //     }
+
+        //     isMouseOver = false;
+        //     return null;
+        // }
 
         int CheckSelectedBtn(Button newBtn) { // 1 分类, 2 OneCard
             if (newBtn == null) { return -1; }
             if (!newBtn.IsInteractable() && newBtn != selectedLeftBtn) {
-                if (newBtn == selectedRightBtn) { return -1; }
+                if (newBtn != selectedRightBtn) { return -1; }
             }
 
             if (newBtn == btn_SelectHero) { return 1; }
@@ -457,6 +489,11 @@ namespace UF.UIApplication {
             }
 
             if (check == 2) {
+                btn_SelectHero.image.color = (selectedLeftBtn == btn_SelectHero) ? Color.red : Color.white;
+                btn_SelectAgr.image.color = (selectedLeftBtn == btn_SelectAgr) ? Color.red : Color.white;
+                btn_SelectInd.image.color = (selectedLeftBtn == btn_SelectInd) ? Color.red : Color.white;
+                btn_SelectSci.image.color = (selectedLeftBtn == btn_SelectSci) ? Color.red : Color.white;
+
                 newBtn.gameObject.GetComponent<Image>().color = Color.red;
             }
         }
