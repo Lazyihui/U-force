@@ -56,6 +56,7 @@ namespace UF {
             Panel_Login_Update_Tick(ctx.screenCanvas, inputModule.uiAxis, inputModule.isConfirm);
             Panel_StageSelection_Tick(ctx.isTabDown, ctx.screenCanvas, inputModule.uiAxis, inputModule.isConfirm);
             Panel_CardSelection_Tick(ctx.screenCanvas, inputModule.uiAxis, inputModule.isConfirm, dt);
+            Panel_Training_Select_Tick(ctx.screenCanvas, inputModule.uiAxis, inputModule.isConfirm);
 
             // esc事件(这块架构实在不知道怎么写, 小重构了几次都感觉不太对劲, 现在是目前感觉最清晰的)
             // 不是兄弟, 我按一下键你检测两次可还行
@@ -1155,10 +1156,22 @@ namespace UF {
                 panel.OnCloseHandle = () => {
                     eventCenter.OnTrainBackClick();
                 };
+
+                panel.OnBtnClipPlayHandle += (clip) => {
+                    ctx.audioModule.PlaySfx(clip);
+                };
             }
             ctx.panel_Training_Select = panel;
             panel.Show();
             panel.Init();
+        }
+
+        public void Panel_Training_Select_Tick(Canvas canvas, Vector2 axis, bool isConfirm) {
+            Panel_Training_Select panel = ctx.panel_Training_Select;
+            if (panel == null) {
+                return;
+            }
+            panel.Tick(canvas, axis, isConfirm);
         }
 
         public void Panel_Training_Select_Add(int id, Sprite sprite, string name) {

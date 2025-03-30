@@ -1220,3 +1220,5 @@ MonoBehaviour:
   btn_Ready_Player2: {fileID: 8481874634439236131}
   btn_Tip: {fileID: 767876932866556858}
   btn_Back: {fileID: 2859629464360841567}
+  btnSelectedClip: {fileID: 8300000, guid: 35a0117c59e59d14484dd2aa5d7bac70, type: 3}
+  btnConfirmClip: {fileID: 8300000, guid: e6f01e5aa1aeb804ebdb6413a6f98534, type: 3}
