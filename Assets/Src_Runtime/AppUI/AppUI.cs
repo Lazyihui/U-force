@@ -100,6 +100,22 @@ namespace UF {
                     return;
                 }
             }
+
+            // Tab事件
+            if (ctx.isTabDown && ctx.inputTimer <= 0) {
+                // Train
+                if (ctx.panel_Training_Select != null) {
+                    if (ctx.panel_Training_Tip == null) {
+                        var panel = ctx.panel_Training_Select;
+                        panel.OnTipClickHandle?.Invoke();
+                        ctx.inputTimer = ctx.inputDelay;
+                    } else {
+                        var panel = ctx.panel_Training_Tip;
+                        panel.OnCloseClickHandle?.Invoke();
+                        ctx.inputTimer = ctx.inputDelay;
+                    }
+                }
+            }
         }
 
         #region Login

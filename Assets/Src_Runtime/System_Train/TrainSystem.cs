@@ -213,6 +213,8 @@ namespace UF.System_Train {
         void GameOver() {
             var train = ctx.trainEntity;
 
+            Exit();
+
             ctx.roleRepository.TakeAll(out var roles);
             var player1 = roles[0];
             var player2 = roles[1];

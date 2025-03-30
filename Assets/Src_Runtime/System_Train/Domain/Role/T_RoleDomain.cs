@@ -59,11 +59,14 @@ namespace UF.System_Train {
                 for (int i = 0; i < len; i++) {
                     role = roles[i];
 
-                    if (role.AttributeComponent.hp != 0) {
+                    if (role.AttributeComponent.hp > 0) {
                         string text = "玩家" + (i + 1) + "胜利!";
                         ctx.templateMoudle.Role_TryGet(role.typeID, out var tm);
 
                         ctx.appUI.Panel_Training_GameOver_Open(text, tm.sprite);
+
+                        ctx.isRunning = false;
+                        ctx.trainEntity.state = TrainState.Pause;
                     }
                 }
             }
