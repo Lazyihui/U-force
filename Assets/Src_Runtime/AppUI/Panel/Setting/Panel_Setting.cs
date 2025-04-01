@@ -56,22 +56,15 @@ namespace UF {
             sli_SFX.onValueChanged.AddListener((value) => OnSFXSliderChangeHandle?.Invoke(value));
         }
 
-        public void AddInputBindElement(InputKeyFlag key) {
-            // InputKeyFlagExtension enumToString = new InputKeyFlagExtension();
-            // string keyName = enumToString.GetEnumString(key);
-            // if (string.IsNullOrEmpty(keyName)) {
-            //     Debug.LogError("AddInputBindElement keyName is null or empty " + key.ToString());
-            //     return;
-            // }
-            //Debug.Log("AddInputBindElement keyName " + keyName + " key " + key.ToString());
+        public void AddInputBindElement(InputBindingOneInputKeyModel key) {
             InputBindElement ele = Instantiate(bindElementPrefab, inputElementRoot);
             ele.Ctor();
-            ele.Init(key.ToString(), key.ToString(), key.ToString());
+            ele.Init(key.keyName, key.kbBindName, key.gamepadBindName);
             ele.OnKbBindClickHandle = () => {
-                Debug.Log("OnKbBindClickHandle " + key.ToString());
+                Debug.Log("OnKbBindClickHandle " + key.kbBindName);
             };
             ele.OnGamepadBindClickHandle = () => {
-                Debug.Log("OnGamepadBindClickHandle " + key.ToString());
+                Debug.Log("OnGamepadBindClickHandle " + key.gamepadBindName);
             };
             inputBindEles.Add(ele);
         }

@@ -1601,7 +1601,6 @@ namespace UF {
                 GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_Setting>();
                 panel.Ctor();
-                panel.AddInputBindElement(InputKeyFlag.Attack);
 
                 panel.OnBackClickHandle = () => {
                     eventCenter.OnSettingBackClick();
@@ -1642,6 +1641,14 @@ namespace UF {
             Panel_Setting_SetSliderValue();
 
             panel.Show();
+        }
+
+        public void Panel_SettingAddInputbindElement(InputBindingOneInputKeyModel key) {
+            Panel_Setting panel = ctx.panel_Setting;
+
+            if (panel == null) { return; }
+
+            panel.AddInputBindElement(key);
         }
 
         public void Panel_Setting_Close() {

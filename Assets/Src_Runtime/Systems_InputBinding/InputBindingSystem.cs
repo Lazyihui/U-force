@@ -13,7 +13,6 @@ namespace UF {
 
         InputControls_Player playerControls => ctx.inputModule.Player;
 
-
         public void Ctor() {
             ctx = new InputBindingSystemContext();
             events = new InputBindingSystemEvents();
@@ -39,43 +38,45 @@ namespace UF {
         public void AddAllInputKey() {
             // 添加所有按键
             string keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Attack);
-            InputBindOneInputKeyAdd(keyName, "World", 0);
+            string kbBindName = "<Keyboard>/" + keyName;
+            string gamepadBindName = "<Gamepad>/" + keyName;
+            InputBindOneInputKeyAdd(keyName, "World", 0, kbBindName, gamepadBindName);
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Weap1);
-            InputBindOneInputKeyAdd(keyName, "World", 0);
+            InputBindOneInputKeyAdd(keyName, "World", 0, kbBindName, gamepadBindName);
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Weap2);
-            InputBindOneInputKeyAdd(keyName, "World", 0);
+            InputBindOneInputKeyAdd(keyName, "World", 0, kbBindName, gamepadBindName);
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Weap3);
-            InputBindOneInputKeyAdd(keyName, "World", 0);
+            InputBindOneInputKeyAdd(keyName, "World", 0, kbBindName, gamepadBindName);
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Weap4);
-            InputBindOneInputKeyAdd(keyName, "World", 0);
+            InputBindOneInputKeyAdd(keyName, "World", 0, kbBindName, gamepadBindName);
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Tech);
-            InputBindOneInputKeyAdd(keyName, "World", 0);
+            InputBindOneInputKeyAdd(keyName, "World", 0, kbBindName, gamepadBindName);
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Esc);
-            InputBindOneInputKeyAdd(keyName, "World", 0);
+            InputBindOneInputKeyAdd(keyName, "World", 0, kbBindName, gamepadBindName);
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Tab);
-            InputBindOneInputKeyAdd(keyName, "World", 0);
+            InputBindOneInputKeyAdd(keyName, "World", 0, kbBindName, gamepadBindName);
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.MoveLeft);
-            InputBindOneInputKeyAdd(keyName, "World", 0);
+            InputBindOneInputKeyAdd(keyName, "World", 0, kbBindName, gamepadBindName);
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.MoveRight);
-            InputBindOneInputKeyAdd(keyName, "World", 0);
+            InputBindOneInputKeyAdd(keyName, "World", 0, kbBindName, gamepadBindName);
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.MoveUp);
-            InputBindOneInputKeyAdd(keyName, "World", 0);
+            InputBindOneInputKeyAdd(keyName, "World", 0, kbBindName, gamepadBindName);
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.MoveDown);
-            InputBindOneInputKeyAdd(keyName, "World", 0);
+            InputBindOneInputKeyAdd(keyName, "World", 0, kbBindName, gamepadBindName);
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Grap);
-            InputBindOneInputKeyAdd(keyName, "World", 0);
+            InputBindOneInputKeyAdd(keyName, "World", 0, kbBindName, gamepadBindName);
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Player1Jump);
-            InputBindOneInputKeyAdd(keyName, "World", 0);
+            InputBindOneInputKeyAdd(keyName, "World", 0, kbBindName, gamepadBindName);
 
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Player1Attack);
-            InputBindOneInputKeyAdd(keyName, "Player1", 0);
+            InputBindOneInputKeyAdd(keyName, "Player1", 0, kbBindName, gamepadBindName);
         }
 
-        void InputBindOneInputKeyAdd(string keyName, string keyMapName, int keyIndex) {
+        void InputBindOneInputKeyAdd(string keyName, string keyMapName, int keyIndex, string kbBindName, string gamepadBindName) {
             var processEntity = ctx.processEntity;
             // 添加一个按键
             InputBindingOneInputKeyModel inputKey = new InputBindingOneInputKeyModel();
-            inputKey.Init(keyName, keyMapName, keyIndex);
+            inputKey.Init(keyName, keyMapName, keyIndex, kbBindName, gamepadBindName);
             processEntity.AddInputKey(inputKey);
         }
 
