@@ -33,6 +33,13 @@ namespace UF {
 
         }
 
+        public void InputBindOneInputKeyAdd(string keyName, string keyMapName, string keyName_KB, string keyName_Gamepad, int keyIndex) {
+            var processEntity = ctx.processEntity;
+            // 添加一个按键
+            InputBindingOneInputKeyModel inputKey = new InputBindingOneInputKeyModel();
+            inputKey.Init(keyName, keyMapName, keyName_KB, keyName_Gamepad, keyIndex);
+            processEntity.AddInputKey(inputKey);
+        }
 
     }
 }

@@ -15,7 +15,6 @@ namespace UF {
 
         public InputBindingSystemContext() {
             isRunning = false;
-
             processEntity = new InputBindingSystemProcessEntity();
         }
 

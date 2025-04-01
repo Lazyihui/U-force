@@ -50,15 +50,20 @@ namespace UF {
             btn_Reselustion1920.onClick.AddListener(() => OnReselustion1920ClickHandle?.Invoke());
             btn_Reselustion1600.onClick.AddListener(() => OnReselustion1600ClickHandle?.Invoke());
             btn_Reselustion640.onClick.AddListener(() => OnReselustion640ClickHandle?.Invoke());
-            toggle_isFullScreen.onValueChanged.AddListener((isOn) => {
-                OnFullScreenToggleHandle?.Invoke(isOn);
-            });
+            toggle_isFullScreen.onValueChanged.AddListener((isOn) => OnFullScreenToggleHandle?.Invoke(isOn));
             // 声音
             sli_Music.onValueChanged.AddListener((value) => OnMusicSliderChangeHandle?.Invoke(value));
             sli_SFX.onValueChanged.AddListener((value) => OnSFXSliderChangeHandle?.Invoke(value));
         }
 
         public void AddInputBindElement(InputKeyFlag key) {
+            // InputKeyFlagExtension enumToString = new InputKeyFlagExtension();
+            // string keyName = enumToString.GetEnumString(key);
+            // if (string.IsNullOrEmpty(keyName)) {
+            //     Debug.LogError("AddInputBindElement keyName is null or empty " + key.ToString());
+            //     return;
+            // }
+            //Debug.Log("AddInputBindElement keyName " + keyName + " key " + key.ToString());
             InputBindElement ele = Instantiate(bindElementPrefab, inputElementRoot);
             ele.Ctor();
             ele.Init(key.ToString(), key.ToString(), key.ToString());
