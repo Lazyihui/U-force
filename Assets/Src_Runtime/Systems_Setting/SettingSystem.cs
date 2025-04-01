@@ -26,6 +26,7 @@ namespace UF {
             ctx.isRunning = true;
             var appUI = ctx.appUI;
             appUI.Panel_Setting_Open();
+            // appUI.Panel_SettingAddInputbindElement(ctx.inputBindEles);
         }
 
         public void Exit() {

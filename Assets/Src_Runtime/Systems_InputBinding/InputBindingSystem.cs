@@ -16,11 +16,11 @@ namespace UF {
         public void Ctor() {
             ctx = new InputBindingSystemContext();
             events = new InputBindingSystemEvents();
-            AddAllInputKey();
         }
 
         public void Inject(AppUI appUI, InputModule input) {
             ctx.Inject(appUI, input);
+            AddAllInputKey();
         }
 
         public void Enter() {
@@ -38,8 +38,8 @@ namespace UF {
         public void AddAllInputKey() {
             // 添加所有按键
             string keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Attack);
-            string kbBindName = "<Keyboard>/" + keyName;
-            string gamepadBindName = "<Gamepad>/" + keyName;
+            string kbBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Keyboard);
+            string gamepadBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Gamepad);
             InputBindOneInputKeyAdd(keyName, "World", 0, kbBindName, gamepadBindName);
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Weap1);
             InputBindOneInputKeyAdd(keyName, "World", 0, kbBindName, gamepadBindName);
