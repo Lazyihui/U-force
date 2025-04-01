@@ -13,28 +13,38 @@ namespace UF {
         SettingSystemEvents events;
         public SettingSystemEvents Events => events;
 
+        InputControls_Player playerControls => ctx.inputModule.Player;
+
+
         public void Ctor() {
             ctx = new SettingContext();
             events = new SettingSystemEvents();
         }
 
-        public void Inject(AppUI appUI) {
-            ctx.Inject(appUI);
+        public void Inject(AppUI appUI, InputModule inputModule) {
+            ctx.Inject(appUI, inputModule);
+
+            InputBindingDomain.AddAllInputKey(playerControls, ctx.processEntity);
         }
 
         public void Enter() {
             ctx.isRunning = true;
             var appUI = ctx.appUI;
             appUI.Panel_Setting_Open();
-            // appUI.Panel_SettingAddInputbindElement(ctx.inputBindEles);
+
+            var processEntity = ctx.processEntity;
+
+            foreach (var inputKey in processEntity.inputKeyList) {
+                appUI.Panel_SettingAddInputbindElement(inputKey);
+            }
         }
 
         public void Exit() {
             ctx.isRunning = false;
         }
 
-        public void Tick(float dt){
-            
+        public void Tick(float dt) {
+
         }
         public void Setting_Binding() {
             var appUI = ctx.appUI;
