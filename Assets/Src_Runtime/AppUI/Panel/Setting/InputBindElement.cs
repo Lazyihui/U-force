@@ -22,6 +22,12 @@ namespace UF {
             btn_GamepadBind.onClick.AddListener(() => OnGamepadBindClickHandle?.Invoke());
         }
 
+        public void Init(string bindName, string kbBindName, string gamepadBindName) {
+            Set_TextBindName(bindName);
+            Set_TextBindName_Kb(kbBindName);
+            Set_TextBindName_Gamepad(gamepadBindName);
+        }
+
         public void Set_TextBindName(string bindName) {
             txt_BindName.text = bindName;
         }

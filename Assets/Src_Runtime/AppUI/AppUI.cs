@@ -1601,6 +1601,7 @@ namespace UF {
                 GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_Setting>();
                 panel.Ctor();
+                panel.AddInputBindElement(InputKeyFlag.Attack);
 
                 panel.OnBackClickHandle = () => {
                     eventCenter.OnSettingBackClick();

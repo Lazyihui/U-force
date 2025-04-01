@@ -78,8 +78,7 @@ namespace UF {
             { InputKeyFlag.Navigate, "Navigate" },
             { InputKeyFlag.Submit, "Submit" },
 
-
-        };
+            };
 
         public static string ToInputKeyString(this InputKeyFlag key) {
             if (enumToStringDict.TryGetValue(key, out string value)) {
