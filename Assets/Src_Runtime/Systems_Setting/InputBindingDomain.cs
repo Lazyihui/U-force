@@ -6,49 +6,103 @@ using UnityEngine.InputSystem.Controls;
 
 namespace UF {
     public static class InputBindingDomain {
+
         public static void AddAllInputKey(InputControls_Player playerControls, InputBindingSystemProcessEntity processEntity) {
+            // TODO：功能实现了再来优化
             // 添加所有按键
             string keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Attack);
             string kbBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Keyboard, playerControls);
             string gamepadBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Gamepad, playerControls);
             InputBindOneInputKeyAdd(processEntity, keyName, "World", 0, kbBindName, gamepadBindName);
+
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Weap1);
+            kbBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Keyboard, playerControls);
+            gamepadBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Gamepad, playerControls);
             InputBindOneInputKeyAdd(processEntity, keyName, "World", 0, kbBindName, gamepadBindName);
+
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Weap2);
+            kbBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Keyboard, playerControls);
+            gamepadBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Gamepad, playerControls);
             InputBindOneInputKeyAdd(processEntity, keyName, "World", 0, kbBindName, gamepadBindName);
+
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Weap3);
+            kbBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Keyboard, playerControls);
+            gamepadBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Gamepad, playerControls);
             InputBindOneInputKeyAdd(processEntity, keyName, "World", 0, kbBindName, gamepadBindName);
+
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Weap4);
+            kbBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Keyboard, playerControls);
+            gamepadBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Gamepad, playerControls);
             InputBindOneInputKeyAdd(processEntity, keyName, "World", 0, kbBindName, gamepadBindName);
+
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Tech);
+            kbBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Keyboard, playerControls);
+            gamepadBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Gamepad, playerControls);
             InputBindOneInputKeyAdd(processEntity, keyName, "World", 0, kbBindName, gamepadBindName);
+
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Esc);
+            kbBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Keyboard, playerControls);
+            gamepadBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Gamepad, playerControls);
             InputBindOneInputKeyAdd(processEntity, keyName, "World", 0, kbBindName, gamepadBindName);
+
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Tab);
+            kbBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Keyboard, playerControls);
+            gamepadBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Gamepad, playerControls);
             InputBindOneInputKeyAdd(processEntity, keyName, "World", 0, kbBindName, gamepadBindName);
+
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.MoveLeft);
+            kbBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Keyboard, playerControls);
+            gamepadBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Gamepad, playerControls);
             InputBindOneInputKeyAdd(processEntity, keyName, "World", 0, kbBindName, gamepadBindName);
+
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.MoveRight);
+            kbBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Keyboard, playerControls);
+            gamepadBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Gamepad, playerControls);
             InputBindOneInputKeyAdd(processEntity, keyName, "World", 0, kbBindName, gamepadBindName);
+
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.MoveUp);
+            kbBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Keyboard, playerControls);
+            gamepadBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Gamepad, playerControls);
             InputBindOneInputKeyAdd(processEntity, keyName, "World", 0, kbBindName, gamepadBindName);
+
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.MoveDown);
+            kbBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Keyboard, playerControls);
+            gamepadBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Gamepad, playerControls);
             InputBindOneInputKeyAdd(processEntity, keyName, "World", 0, kbBindName, gamepadBindName);
+
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Grap);
+            kbBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Keyboard, playerControls);
+            gamepadBindName = GetBindingDisplayString("World", keyName, 0, InputDeviceType.Gamepad, playerControls);
             InputBindOneInputKeyAdd(processEntity, keyName, "World", 0, kbBindName, gamepadBindName);
+
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Player1Jump);
+            kbBindName = GetBindingDisplayString("Player1", keyName, 0, InputDeviceType.Keyboard, playerControls);
+            gamepadBindName = GetBindingDisplayString("Player1", keyName, 0, InputDeviceType.Gamepad, playerControls);
             InputBindOneInputKeyAdd(processEntity, keyName, "World", 0, kbBindName, gamepadBindName);
 
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Player1Attack);
+            kbBindName = GetBindingDisplayString("Player1", keyName, 0, InputDeviceType.Keyboard, playerControls);
+            gamepadBindName = GetBindingDisplayString("Player1", keyName, 0, InputDeviceType.Gamepad, playerControls);
             InputBindOneInputKeyAdd(processEntity, keyName, "Player1", 0, kbBindName, gamepadBindName);
+
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Player1Defense);
+            kbBindName = GetBindingDisplayString("Player1", keyName, 0, InputDeviceType.Keyboard, playerControls);
+            gamepadBindName = GetBindingDisplayString("Player1", keyName, 0, InputDeviceType.Gamepad, playerControls);
             InputBindOneInputKeyAdd(processEntity, keyName, "Player1", 0, kbBindName, gamepadBindName);
 
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Player2Jump);
+            kbBindName = GetBindingDisplayString("Player2", keyName, 0, InputDeviceType.Keyboard, playerControls);
+            gamepadBindName = GetBindingDisplayString("Player2", keyName, 0, InputDeviceType.Gamepad, playerControls);
             InputBindOneInputKeyAdd(processEntity, keyName, "Player2", 0, kbBindName, gamepadBindName);
+
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Player2Attack);
+            kbBindName = GetBindingDisplayString("Player2", keyName, 0, InputDeviceType.Keyboard, playerControls);
+            gamepadBindName = GetBindingDisplayString("Player2", keyName, 0, InputDeviceType.Gamepad, playerControls);
             InputBindOneInputKeyAdd(processEntity, keyName, "Player2", 0, kbBindName, gamepadBindName);
+
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Player2Defense);
+            kbBindName = GetBindingDisplayString("Player2", keyName, 0, InputDeviceType.Keyboard, playerControls);
+            gamepadBindName = GetBindingDisplayString("Player2", keyName, 0, InputDeviceType.Gamepad, playerControls);
             InputBindOneInputKeyAdd(processEntity, keyName, "Player2", 0, kbBindName, gamepadBindName);
 
         }
