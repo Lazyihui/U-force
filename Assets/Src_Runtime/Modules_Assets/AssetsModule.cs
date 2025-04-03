@@ -209,6 +209,14 @@ namespace UF {
             return panel;
         }
 
+        public GameObject Panel_GetInputNotice() {
+            panels.TryGetValue("Panel_InputNotice", out GameObject panel);
+            if(panel == null) {
+                Debug.LogError("Panel_InputNotice is null");
+            }
+            return panel;
+        }
+
         // HUD
         public GameObject HUD_GetProgressbar() {
             panels.TryGetValue("HUD_Progressbar", out GameObject hud);

@@ -95,7 +95,7 @@ namespace UF {
                     return;
                 }
 
-                InputBindingDomain.OnReBindAction(ctx.inputModule.Player, oneInputModel.keyMapName, oneInputModel.keyName, oneInputModel.keyIndex, InputDeviceType.Keyboard, processEntity);
+                InputBindingDomain.OnReBindAction(ctx.appUI, ctx.inputModule.Player, oneInputModel.keyMapName, oneInputModel.keyName, oneInputModel.keyIndex, InputDeviceType.Keyboard, processEntity);
                 // Debug.Log("SettingSystem: OnSettingInputBindKbClickHandle" + keyName);
             };
             eventCenter.OnSettingInputBindClickGamepadHandle += (keyName) => { // 手柄绑定

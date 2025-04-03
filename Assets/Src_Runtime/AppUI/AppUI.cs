@@ -1676,13 +1676,40 @@ namespace UF {
 
         void Panel_Setting_SetSliderValue() {
             Panel_Setting panel = ctx.panel_Setting;
-
-            if (panel == null) { return; }
-
+            if (panel == null) {
+                return;
+            }
             var musicValue = settingSaveData.GetMusicVolume();
             var sfxValue = settingSaveData.GetSFXVolume();
             panel.SetSliderValue(musicValue, sfxValue);
         }
+        #endregion
+
+        #region  Panel_InputNotice
+
+        public void Panel_InputNotice_Open() {
+            Panel_InputNotice panel = ctx.panel_InputNotice;
+
+            if (panel == null) {
+                GameObject prefab = ctx.assetsCore.Panel_GetInputNotice();
+                Debug.Assert(prefab != null, "Panel_InputNotice prefab is null");
+                GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
+                panel = go.GetComponent<Panel_InputNotice>();
+                panel.Ctor();
+            }
+            ctx.panel_InputNotice = panel;
+            panel.Show();
+        }
+
+        public void Panel_InputNotice_Close() {
+            Panel_InputNotice panel = ctx.panel_InputNotice;
+
+            if (panel == null) { return; }
+
+            panel.TearDown();
+            ctx.panel_InputNotice = null;
+        }
+
         #endregion
     }
 }

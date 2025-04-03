@@ -142,7 +142,7 @@ namespace UF {
         }
 
         // 绑定
-        public static void OnReBindAction(InputControls_Player playerControls, string actionMapName, string actionName, int index, InputDeviceType deviceType, InputBindingSystemProcessEntity processEntity) {
+        public static void OnReBindAction(AppUI appUI, InputControls_Player playerControls, string actionMapName, string actionName, int index, InputDeviceType deviceType, InputBindingSystemProcessEntity processEntity) {
             var callback = processEntity.onRebindingSuccHandle;
 
             if (!CheckHaveOneBindInaction(playerControls, actionName)) {
@@ -164,7 +164,9 @@ namespace UF {
             var rebindOperation = temAction.PerformInteractiveRebinding(temIndex)
                     .WithCancelingThrough("<Keyboard>/escape") // 按ESC取消
                     .WithControlsExcluding("<Mouse>/")
-                    .OnMatchWaitForAnother(0.1f);
+                    .OnMatchWaitForAnother(0.1f)
+                    .WithTimeout(3.5f);
+            appUI.Panel_InputNotice_Open();
             if (deviceType == InputDeviceType.Keyboard) {
                 rebindOperation.WithControlsExcluding("<Gamepad>/*")
                     .WithControlsExcluding("<Mouse>/position")
@@ -181,11 +183,13 @@ namespace UF {
                 bool hasExit = IsBindingAlreadyUsed(playerControls, actionMapName, actionName, newBindingPath);
                 // 检查按键是否已被使用
                 if (hasExit) {
+                    appUI.Panel_InputNotice_Close();
                     Debug.LogWarning($"Key {newBindingPath} is already bound to another action.");
                     operation.Cancel();
                     Debug.Log("Cancel Rebinding" + " " + newBindingPath + " " + actionMapName + " " + actionName);
                     callback?.Invoke(hasExit, actionName);
                 } else {
+                    appUI.Panel_InputNotice_Close();
                     SaveBindings(playerControls);
                     callback?.Invoke(!hasExit, actionName);
                 }

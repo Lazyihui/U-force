@@ -39,6 +39,7 @@ namespace UF {
         public Panel_Eliminate_Pause panel_Eliminate_Pause;
         public Panel_EliminateGameOver panel_EliminateGameOver;
         public Panel_Setting panel_Setting;
+        public Panel_InputNotice panel_InputNotice;
 
         // HUD
         public HUD_Progressbar hud_Progressbar;
