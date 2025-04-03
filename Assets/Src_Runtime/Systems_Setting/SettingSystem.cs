@@ -85,6 +85,39 @@ namespace UF {
                 events.OnSettingSFXSliderChange(value);
                 Debug.Log("SettingSystem: OnSettingSFXSliderChangeHandle" + value);
             };
+
+            #region InputBind
+            eventCenter.OnSettingInputBindClickKbHandle += (keyName) => { // 键盘绑定
+                var processEntity = ctx.processEntity;
+                var oneInputModel = processEntity.GetInputKeyByIndex(keyName);
+                if (oneInputModel == null) {
+                    Debug.LogError("SettingSystem: OnSettingInputBindClickKbHandle" + keyName + " is null");
+                    return;
+                }
+
+                InputBindingDomain.OnReBindAction(ctx.inputModule.Player, oneInputModel.keyMapName, oneInputModel.keyName, oneInputModel.keyIndex, InputDeviceType.Keyboard, processEntity);
+                // Debug.Log("SettingSystem: OnSettingInputBindKbClickHandle" + keyName);
+            };
+            eventCenter.OnSettingInputBindClickGamepadHandle += (keyName) => { // 手柄绑定
+                // InputBindingDomain.OnReBindAction(keyName, InputDeviceType.Gamepad);
+                Debug.Log("SettingSystem: OnSettingInputBindGamepadClickHandle" + keyName);
+            };
+
+            ctx.processEntity.onRebindingSuccHandle += (isSucc, bindName) => {
+                var processEntity = ctx.processEntity;
+                var oneInputModel = processEntity.GetInputKeyByIndex(bindName);
+                if (isSucc) {
+                    Debug.Log("SettingSystem: OnRebindingSuccHandle" + isSucc);
+                    // 绑定成功
+                    // 更新UI
+                    appUI.Panel_SettingSetBindElement(oneInputModel.keyName, oneInputModel.kbBindName, oneInputModel.gamepadBindName);
+                } else {
+                    Debug.Log("SettingSystem: OnRebindingSuccHandle" + isSucc);
+                    // 绑定失败
+                }
+            };
+
+            #endregion
         }
 
     }

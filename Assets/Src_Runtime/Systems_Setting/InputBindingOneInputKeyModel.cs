@@ -23,5 +23,7 @@ namespace UF {
             this.kbBindName = kbBindName;
             this.gamepadBindName = gamepadBindName;
         }
+
+
     }
 }

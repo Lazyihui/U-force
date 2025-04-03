@@ -1635,27 +1635,41 @@ namespace UF {
                 panel.OnCloseHandle = () => {
                     eventCenter.OnSettingBackClick();
                 };
+
+                panel.OnInputBindKbClickHandle = (bindName) => {
+                    eventCenter.OnSettingInputBindClickKb(bindName);
+                };
+                panel.OnInputBindGamepadClickHandle = (bindName) => {
+                    eventCenter.OnSettingInputBindClickGamepad(bindName);
+                };
+
             }
             ctx.panel_Setting = panel;
-
             Panel_Setting_SetSliderValue();
-
             panel.Show();
         }
 
         public void Panel_SettingAddInputbindElement(InputBindingOneInputKeyModel key) {
             Panel_Setting panel = ctx.panel_Setting;
-
-            if (panel == null) { return; }
-
+            if (panel == null) {
+                return;
+            }
             panel.AddInputBindElement(key);
+        }
+
+        public void Panel_SettingSetBindElement(string bindName, string kbBindName, string gamepadBindName) {
+            Panel_Setting panel = ctx.panel_Setting;
+            if (panel == null) {
+                return;
+            }
+            panel.Set_TextBindName_KbAndGamepad(bindName, kbBindName, gamepadBindName);
         }
 
         public void Panel_Setting_Close() {
             Panel_Setting panel = ctx.panel_Setting;
-
-            if (panel == null) { return; }
-
+            if (panel == null) {
+                return;
+            }
             panel.TearDown();
             ctx.panel_Setting = null;
         }

@@ -39,7 +39,8 @@ namespace UF {
         public List<InputBindElement> inputBindEles;
 
 
-
+        public Action<string> OnInputBindKbClickHandle;
+        public Action<string> OnInputBindGamepadClickHandle;
         public void Ctor() {
             // == 初始化 ==
             inputBindEles = new List<InputBindElement>();
@@ -61,12 +62,22 @@ namespace UF {
             ele.Ctor();
             ele.Init(key.keyName, key.kbBindName, key.gamepadBindName);
             ele.OnKbBindClickHandle = () => {
-                Debug.Log("OnKbBindClickHandle " + key.kbBindName);
+                OnSettingInputBindClickKbHandle(key.keyName);
             };
             ele.OnGamepadBindClickHandle = () => {
-                Debug.Log("OnGamepadBindClickHandle " + key.gamepadBindName);
+                OnSettingInputBindClickGamepadHandle(key.keyName);
             };
             inputBindEles.Add(ele);
+        }
+
+        public void Set_TextBindName_KbAndGamepad(string keyName, string KbbindName, string GamepadBindName) {
+            for (int i = 0; i < inputBindEles.Count; i++) {
+                var ele = inputBindEles[i];
+                if (ele.name == keyName) {
+                    ele.Set_TextBindName_KbAndGamepad(KbbindName, GamepadBindName);
+                    break;
+                }
+            }
         }
 
         public void SetSliderValue(float musicValue, float sfxValue) {
@@ -80,6 +91,16 @@ namespace UF {
 
         public void TearDown() {
             Destroy(gameObject);
+        }
+
+        void OnSettingInputBindClickKbHandle(string keyName) {
+            Debug.Log("OnSettingInputBindClickKbHandle " + keyName);
+            OnInputBindKbClickHandle?.Invoke(keyName);
+        }
+
+        void OnSettingInputBindClickGamepadHandle(string keyName) {
+            Debug.Log("OnSettingInputBindClickGamepadHandle " + keyName);
+            OnInputBindGamepadClickHandle?.Invoke(keyName);
         }
     }
 }

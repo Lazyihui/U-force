@@ -503,5 +503,21 @@ namespace UF {
             }
         }
         #endregion
+
+        #region Setting Element
+        public Action<string> OnSettingInputBindClickKbHandle;
+        public void OnSettingInputBindClickKb(string key) {
+            if (OnSettingInputBindClickKbHandle != null) {
+                OnSettingInputBindClickKbHandle(key);
+            }
+        }
+
+        public Action<string> OnSettingInputBindClickGamepadHandle;
+        public void OnSettingInputBindClickGamepad(string key) {
+            if (OnSettingInputBindClickGamepadHandle != null) {
+                OnSettingInputBindClickGamepadHandle(key);
+            }
+        }
+        #endregion
     }
 }

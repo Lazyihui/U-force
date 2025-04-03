@@ -7,6 +7,8 @@ namespace UF {
 
     public class InputBindElement : MonoBehaviour {
 
+        // TODO:这里加一个ID比较好；
+
         [SerializeField] Button btn_KbBind;
         public Action OnKbBindClickHandle;
         [SerializeField] TextMeshProUGUI txt_KbBindName;
@@ -24,21 +26,18 @@ namespace UF {
 
         public void Init(string bindName, string kbBindName, string gamepadBindName) {
             Set_TextBindName(bindName);
-            Set_TextBindName_Kb(kbBindName);
-            Set_TextBindName_Gamepad(gamepadBindName);
+            Set_TextBindName_KbAndGamepad(kbBindName, gamepadBindName);
         }
 
         public void Set_TextBindName(string bindName) {
             txt_BindName.text = bindName;
         }
 
-        public void Set_TextBindName_Kb(string bindName) {
-            txt_KbBindName.text = bindName;
+        public void Set_TextBindName_KbAndGamepad(string KbbindName, string GamepadBindName) {
+            txt_KbBindName.text = KbbindName;
+            txt_GamepadBindName.text = GamepadBindName;
         }
 
-        public void Set_TextBindName_Gamepad(string bindName) {
-            txt_GamepadBindName.text = bindName;
-        }
 
     }
 }

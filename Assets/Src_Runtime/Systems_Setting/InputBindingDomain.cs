@@ -141,9 +141,95 @@ namespace UF {
             return action.GetBindingDisplayString(bindingIndex);
         }
 
+        // 绑定
+        public static void OnReBindAction(InputControls_Player playerControls, string actionMapName, string actionName, int index, InputDeviceType deviceType, InputBindingSystemProcessEntity processEntity) {
+            var callback = processEntity.onRebindingSuccHandle;
+
+            if (!CheckHaveOneBindInaction(playerControls, actionName)) {
+                Debug.LogWarning($"Action {actionName} has no bindings.");
+                return;
+            }
+
+            // TODO:下面这一行是为了测试用的，后面要删除
+            InputActionMap actionMap = playerControls.asset.FindActionMap(actionMapName);
+            InputAction temAction = GetAction(playerControls, actionMapName, actionName);
+            Debug.Log(actionMap.name + " " + actionName + " " + index);
+
+
+            int temIndex = GetAdjustedBindingIndex(temAction, index);
+
+            temAction.Disable();
+            playerControls.asset.Disable();
+
+            var rebindOperation = temAction.PerformInteractiveRebinding(temIndex)
+                    .WithCancelingThrough("<Keyboard>/escape") // 按ESC取消
+                    .WithControlsExcluding("<Mouse>/")
+                    .OnMatchWaitForAnother(0.1f);
+            if (deviceType == InputDeviceType.Keyboard) {
+                rebindOperation.WithControlsExcluding("<Gamepad>/*")
+                    .WithControlsExcluding("<Mouse>/position")
+                    .WithControlsExcluding("<Mouse>/delta");
+            } else if (deviceType == InputDeviceType.Gamepad) {
+                rebindOperation.WithControlsExcluding("<Keyboard>/*")
+                    .WithControlsExcluding("<Mouse>/*");
+            }
+            rebindOperation.OnComplete((operation) => {
+
+                string newBindingPath = temAction.bindings[temIndex].effectivePath;
+
+                // 是否存在相同的按键绑定
+                bool hasExit = IsBindingAlreadyUsed(playerControls, actionMapName, actionName, newBindingPath);
+                // 检查按键是否已被使用
+                if (hasExit) {
+                    Debug.LogWarning($"Key {newBindingPath} is already bound to another action.");
+                    operation.Cancel();
+                    Debug.Log("Cancel Rebinding" + " " + newBindingPath + " " + actionMapName + " " + actionName);
+                    callback?.Invoke(hasExit, actionName);
+                } else {
+                    SaveBindings(playerControls);
+                    callback?.Invoke(!hasExit, actionName);
+                }
+                // 保存绑定
+                temAction.Enable();
+                playerControls.asset.Enable();
+                operation.Dispose();
+            })
+            .OnCancel((operation) => {
+                temAction.Enable();
+                playerControls.asset.Enable();
+                callback?.Invoke(false, actionName);
+                operation.Dispose();
+            })
+                .Start();
+
+        }
+
         #region 基础函数
+        // 是否有相同的按键绑定
+        static bool IsBindingAlreadyUsed(InputControls_Player playerControls, string currentActionMap, string currentAction, string newBindingPath) {
+            if (string.IsNullOrEmpty(newBindingPath)) {
+                // 如果新绑定路径为空，则不进行检查
+                return false;
+            }
 
+            // 遍历所有actionMap
+            foreach (InputActionMap map in playerControls.asset.actionMaps) {
+                // 遍历所有action
+                foreach (InputAction action in map.actions) {
+                    // 跳过当前正在重绑定的action
+                    if (map.name == currentActionMap && action.name == currentAction)
+                        continue;
 
+                    // 检查当前action的所有绑定
+                    for (int i = 0; i < action.bindings.Count; i++) {
+                        if (action.bindings[i].effectivePath == newBindingPath) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
         //  检查是否有绑定的action
         public static bool CheckHaveOneBindInaction(InputControls_Player playerControls, string actionName) {
             //TOOD:
@@ -171,6 +257,12 @@ namespace UF {
 
             int baseIndex = action.GetBindingIndexForControl(action.controls[0]);
             return baseIndex + index;
+        }
+        // 保存绑定
+        static void SaveBindings(InputControls_Player playerControls) {
+            string json = playerControls.asset.SaveBindingOverridesAsJson();
+            PlayerPrefs.SetString("PlayerControls", json);
+            PlayerPrefs.Save();
         }
         #endregion
     }
