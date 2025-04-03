@@ -615,23 +615,23 @@ namespace UF {
             Screen_Coordinate();
         }
 
-        void OnDestroy() {
-            TearDown();
-        }
-
-        void OnApplicationQuit() {
-            TearDown();
-        }
-
-        void TearDown() {
-            if (isTearDown) {
-                return;
+            void OnDestroy() {
+                TearDown();
             }
-            isTearDown = true;
 
-            assetsModule.UnLoadAll();
-            templateModule.UnLoadAll();
-        }
+            void OnApplicationQuit() {
+                TearDown();
+            }
+
+            void TearDown() {
+                if (isTearDown) {
+                    return;
+                }
+                isTearDown = true;
+
+                assetsModule.UnLoadAll();
+                templateModule.UnLoadAll();
+            }
 
         #region Screen Coordinate
 
