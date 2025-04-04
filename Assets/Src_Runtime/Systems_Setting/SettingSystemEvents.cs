@@ -55,5 +55,13 @@ namespace UF {
             }
         }
         #endregion
+        #region InputNotice
+        public Action OnInputNoticeClickHandle;
+        public void OnInputNoticeClick() {
+            if (OnInputNoticeClickHandle != null) {
+                OnInputNoticeClickHandle();
+            }
+        }
+        #endregion
     }
 }

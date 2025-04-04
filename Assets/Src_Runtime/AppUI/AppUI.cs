@@ -1696,9 +1696,23 @@ namespace UF {
                 GameObject go = GameObject.Instantiate(prefab, ctx.canvasRoot);
                 panel = go.GetComponent<Panel_InputNotice>();
                 panel.Ctor();
+
+                panel.OnInputNoticeClickHandle = () => {
+                    eventCenter.OnInputNoticeClick();
+                };
+
             }
             ctx.panel_InputNotice = panel;
             panel.Show();
+        }
+
+        public void Panel_InputNoticeImg_Open() {
+            Panel_InputNotice panel = ctx.panel_InputNotice;
+
+            if (panel == null) {
+                return;
+            }
+            panel.img_confirmOpen();
         }
 
         public void Panel_InputNotice_Close() {
@@ -1709,6 +1723,7 @@ namespace UF {
             panel.TearDown();
             ctx.panel_InputNotice = null;
         }
+
 
         #endregion
     }

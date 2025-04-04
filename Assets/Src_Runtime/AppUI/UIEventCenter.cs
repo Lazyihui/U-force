@@ -518,6 +518,17 @@ namespace UF {
                 OnSettingInputBindClickGamepadHandle(key);
             }
         }
+
+        #endregion
+
+        #region InputNotice
+        public Action OnInputNoticeClickHandle;
+        public void OnInputNoticeClick() {
+            if (OnInputNoticeClickHandle != null) {
+                OnInputNoticeClickHandle();
+            }
+        }
+
         #endregion
     }
 }

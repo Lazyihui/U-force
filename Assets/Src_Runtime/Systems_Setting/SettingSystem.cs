@@ -117,6 +117,11 @@ namespace UF {
                 }
             };
 
+            eventCenter.OnInputNoticeClickHandle += () => { // 输入提示
+                appUI.Panel_InputNotice_Close();
+            };
+
+
             #endregion
         }
 

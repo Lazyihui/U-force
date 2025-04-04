@@ -183,8 +183,8 @@ namespace UF {
                 bool hasExit = IsBindingAlreadyUsed(playerControls, actionMapName, actionName, newBindingPath);
                 // 检查按键是否已被使用
                 if (hasExit) {
-                    appUI.Panel_InputNotice_Close();
-                    Debug.LogWarning($"Key {newBindingPath} is already bound to another action.");
+                    Debug.LogWarning($"Key {newBindingPath} is already bound to another action." + "这个按钮已经被绑定了！");
+                    appUI.Panel_InputNoticeImg_Open();
                     operation.Cancel();
                     Debug.Log("Cancel Rebinding" + " " + newBindingPath + " " + actionMapName + " " + actionName);
                     callback?.Invoke(hasExit, actionName);
