@@ -78,17 +78,15 @@ namespace UF {
         }
 
         public void Set_TextBindName_KbAndGamepad(string keyName, string KbbindName, string GamepadBindName) {
-            Debug.Log("设置按键名称" + keyName + " " + KbbindName + " " + GamepadBindName);
             for (int i = 0; i < inputBindEles.Count; i++) {
                 var ele = inputBindEles[i];
                 if (ele.Get_BindName == keyName) {
-
-                    Debug.Log("上一层原来的按键" + KbbindName + " 手柄 " + GamepadBindName);
                     ele.Set_TextBindName_KbAndGamepad(KbbindName, GamepadBindName);
                     break;
                 }
             }
         }
+
 
 
         public void SetSliderValue(float musicValue, float sfxValue) {

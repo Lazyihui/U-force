@@ -12,8 +12,10 @@ namespace UF {
         [SerializeField] Button btn_KbBind;
         public Action OnKbBindClickHandle;
         [SerializeField] TextMeshProUGUI txt_KbBindName;
+        public string Get_KbBindName => txt_KbBindName.text;
 
         [SerializeField] Button btn_GamepadBind;
+        public string Get_GamepadBindName => txt_GamepadBindName.text;
         public Action OnGamepadBindClickHandle;
         [SerializeField] TextMeshProUGUI txt_GamepadBindName;
 

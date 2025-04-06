@@ -78,7 +78,7 @@ namespace UF {
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Player1Jump);
             kbBindName = GetBindingDisplayString("Player1", keyName, 0, InputDeviceType.Keyboard, playerControls);
             gamepadBindName = GetBindingDisplayString("Player1", keyName, 0, InputDeviceType.Gamepad, playerControls);
-            InputBindOneInputKeyAdd(processEntity, keyName, "World", 0, kbBindName, gamepadBindName);
+            InputBindOneInputKeyAdd(processEntity, keyName, "Player1", 0, kbBindName, gamepadBindName);
 
             keyName = InputKeyFlagExtension.ToInputKeyString(InputKeyFlag.Player1Attack);
             kbBindName = GetBindingDisplayString("Player1", keyName, 0, InputDeviceType.Keyboard, playerControls);
@@ -120,6 +120,10 @@ namespace UF {
                 return "";
             }
             InputAction action = GetAction(playerControls, actionMapName, actionName);
+            if(action == null) {
+                Debug.LogError($"没找到action {actionName} 没找到Map {actionMapName}");
+                return "";
+            }
 
             int bindingIndex = GetAdjustedBindingIndex(action, index);
             if (bindingIndex < 0 || bindingIndex >= action.bindings.Count) {
@@ -152,11 +156,11 @@ namespace UF {
             }
 
             // TODO:下面这一行是为了测试用的，后面要删除
-            InputActionMap actionMap = playerControls.asset.FindActionMap(actionMapName);
             InputAction temAction = GetAction(playerControls, actionMapName, actionName);
-            Debug.Log(actionMap.name + " " + actionName + " " + index);
-
             int temIndex = GetAdjustedBindingIndex(temAction, index);
+
+            // 保存原始绑定路径以便恢复
+            string originalBindingPath = temAction.bindings[temIndex].effectivePath;
 
             temAction.Disable();
             playerControls.asset.Disable();
@@ -167,6 +171,8 @@ namespace UF {
                     .OnMatchWaitForAnother(0.1f)
                     .WithTimeout(3.5f);
             appUI.Panel_InputNotice_Open();
+
+            // 根据设备类型排除不相关的控制
             if (deviceType == InputDeviceType.Keyboard) {
                 rebindOperation.WithControlsExcluding("<Gamepad>/*")
                     .WithControlsExcluding("<Mouse>/position")
@@ -175,37 +181,46 @@ namespace UF {
                 rebindOperation.WithControlsExcluding("<Keyboard>/*")
                     .WithControlsExcluding("<Mouse>/*");
             }
+
             rebindOperation.OnComplete((operation) => {
 
                 string newBindingPath = temAction.bindings[temIndex].effectivePath;
+
+                if (newBindingPath == originalBindingPath) {
+                    Debug.Log("Same key binding, no change needed.");
+                    operation.Cancel();
+                    callback?.Invoke(false, actionName);
+                    return;
+                }
 
                 // 是否存在相同的按键绑定
                 bool hasExit = IsBindingAlreadyUsed(playerControls, actionMapName, actionName, newBindingPath);
                 // 检查按键是否已被使用
                 if (hasExit) {
                     Debug.LogWarning($"Key {newBindingPath} is already bound to another action." + "这个按钮已经被绑定了！");
+                    // 恢复原始绑定
+                    temAction.ApplyBindingOverride(temIndex, originalBindingPath);
                     appUI.Panel_InputNoticeImg_Open();
                     operation.Cancel();
-                    Debug.Log("Cancel Rebinding" + " " + newBindingPath + " " + actionMapName + " " + actionName);
                     callback?.Invoke(hasExit, actionName);
                 } else {
                     appUI.Panel_InputNotice_Close();
                     SaveBindings(playerControls);
                     callback?.Invoke(!hasExit, actionName);
                 }
+
                 // 保存绑定
-                temAction.Enable();
-                playerControls.asset.Enable();
                 operation.Dispose();
             })
+
             .OnCancel((operation) => {
-                temAction.Enable();
-                playerControls.asset.Enable();
+                temAction.ApplyBindingOverride(temIndex, originalBindingPath);
                 callback?.Invoke(false, actionName);
                 operation.Dispose();
             })
                 .Start();
-
+            temAction.Enable();
+            playerControls.asset.Enable();
         }
 
         // 重置所有绑定到默认设置
@@ -228,6 +243,7 @@ namespace UF {
                 playerControls.asset.Enable();
             }
         }
+
 
         #region 基础函数
         // 是否有相同的按键绑定
@@ -277,8 +293,12 @@ namespace UF {
 
         // 获取当前action的绑定索引
         static int GetAdjustedBindingIndex(InputAction action, int index) {
-            if (action.controls.Count == 0)
+            Debug.Assert(action != null, "Action is null");
+            Debug.Assert(index >= 0, "Index is negative");
+            Debug.Assert(index < action.controls.Count, "Index is out of range");
+            if (action.controls.Count == 0) {
                 return index;
+            }
 
             int baseIndex = action.GetBindingIndexForControl(action.controls[0]);
             return baseIndex + index;
