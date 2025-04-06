@@ -115,8 +115,6 @@ namespace UF {
                 string kbBindName = InputBindingDomain.GetBindingDisplayString(oneInputModel.keyMapName, oneInputModel.keyName, 0, InputDeviceType.Keyboard, playerControls);
                 string gamepadBindName = InputBindingDomain.GetBindingDisplayString(oneInputModel.keyMapName, oneInputModel.keyName, 0, InputDeviceType.Gamepad, playerControls);
                 appUI.Panel_SettingSetBindElement(oneInputModel.keyName, kbBindName, gamepadBindName);
-                Debug.Log("原来" + kbBindName);
-
                 // if (isSucc) {
                 //     Debug.Log("SettingSystem: OnRebindingSuccHandle" + isSucc);
                 //     // 绑定成功

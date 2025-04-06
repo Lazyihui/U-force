@@ -1664,10 +1664,8 @@ namespace UF {
         public void Panel_SettingSetBindElement(string bindName, string kbBindName, string gamepadBindName) {
             Panel_Setting panel = ctx.panel_Setting;
             if (panel == null) {
-                Debug.LogError("Panel_Setting is null, cannot set bind element.");
                 return;
             }
-            Debug.Assert(panel.inputBindEles != null, "panel.inputBindEles is null");
             panel.Set_TextBindName_KbAndGamepad(bindName, kbBindName, gamepadBindName);
         }
 

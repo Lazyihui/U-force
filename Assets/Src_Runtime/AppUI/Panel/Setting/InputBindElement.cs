@@ -18,6 +18,8 @@ namespace UF {
         [SerializeField] TextMeshProUGUI txt_GamepadBindName;
 
         [SerializeField] TextMeshProUGUI txt_BindName;
+        public string Get_BindName => txt_BindName.text;
+
 
         public void Ctor() {
             txt_KbBindName.text = "按键绑定";
@@ -37,7 +39,6 @@ namespace UF {
         public void Set_TextBindName_KbAndGamepad(string KbbindName, string GamepadBindName) {
             txt_KbBindName.text = KbbindName;
             txt_GamepadBindName.text = GamepadBindName;
-            Debug.Log("原来的按键" + KbbindName + " 手柄 " + GamepadBindName);
         }
 
     }
