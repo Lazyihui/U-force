@@ -54,6 +54,13 @@ namespace UF {
                 OnSettingSFXSliderChangeHandle(value);
             }
         }
+
+        public Action OnSettingResetInputBindClickHandle;
+        public void OnSettingResetInputBindClick() {
+            if (OnSettingResetInputBindClickHandle != null) {
+                OnSettingResetInputBindClickHandle();
+            }
+        }
         #endregion
         #region InputNotice
         public Action OnInputNoticeClickHandle;

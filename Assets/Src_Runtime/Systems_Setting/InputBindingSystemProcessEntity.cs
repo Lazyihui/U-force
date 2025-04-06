@@ -17,7 +17,6 @@ namespace UF {
 
         public Action<bool, string> onRebindingSuccHandle;// 绑定成功回调
 
-
         public InputBindingSystemProcessEntity() {
             inputKeyList = new List<InputBindingOneInputKeyModel>();
         }
@@ -37,9 +36,9 @@ namespace UF {
             }
         }
 
-        public InputBindingOneInputKeyModel GetInputKeyByIndex(string keyName) {
+        public InputBindingOneInputKeyModel GetInputKeyByIndex(string actionName) {
             foreach (var inputKey in inputKeyList) {
-                if (inputKey.keyName == keyName) {
+                if (inputKey.keyName == actionName) {
                     return inputKey;
                 }
             }

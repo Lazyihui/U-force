@@ -6392,6 +6392,7 @@ MonoBehaviour:
   bindElementPrefab: {fileID: 1782811349927753158, guid: d282142d0a920f040ba65c343072f123, type: 3}
   inputElementRoot: {fileID: 5372208660653884123}
   inputBindEles: []
+  btn_ResetInputBind: {fileID: 206936407638766049}
 --- !u!1 &8297342327272744087
 GameObject:
   m_ObjectHideFlags: 0

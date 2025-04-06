@@ -78,12 +78,16 @@ namespace UF {
 
             eventCenter.OnSettingMusicSliderChangeHandle += (value) => { // 音乐音量
                 events.OnSettingMusicSliderChange(value);
-                Debug.Log("SettingSystem: OnSettingMusicSliderChangeHandle" + value);
             };
 
             eventCenter.OnSettingSFXSliderChangeHandle += (value) => { // 音效音量
                 events.OnSettingSFXSliderChange(value);
-                Debug.Log("SettingSystem: OnSettingSFXSliderChangeHandle" + value);
+            };
+
+            eventCenter.OnResetInputBindClickHandle += () => { // 重置按键绑定
+                Debug.Log("重置按钮被点击了");
+                events.OnSettingResetInputBindClick();
+                InputBindingDomain.ResetAllToDefaultBindings(playerControls);
             };
 
             #region InputBind
@@ -103,18 +107,25 @@ namespace UF {
                 Debug.Log("SettingSystem: OnSettingInputBindGamepadClickHandle" + keyName);
             };
 
-            ctx.processEntity.onRebindingSuccHandle += (isSucc, bindName) => {
+            ctx.processEntity.onRebindingSuccHandle += (iskeyboard, actionName) => {
                 var processEntity = ctx.processEntity;
-                var oneInputModel = processEntity.GetInputKeyByIndex(bindName);
-                if (isSucc) {
-                    Debug.Log("SettingSystem: OnRebindingSuccHandle" + isSucc);
-                    // 绑定成功
-                    // 更新UI
-                    appUI.Panel_SettingSetBindElement(oneInputModel.keyName, oneInputModel.kbBindName, oneInputModel.gamepadBindName);
-                } else {
-                    Debug.Log("SettingSystem: OnRebindingSuccHandle" + isSucc);
-                    // 绑定失败
-                }
+                var oneInputModel = processEntity.GetInputKeyByIndex(actionName);
+
+                // Debug.Log("原来" + kbBindName);
+                string kbBindName = InputBindingDomain.GetBindingDisplayString(oneInputModel.keyMapName, oneInputModel.keyName, 0, InputDeviceType.Keyboard, playerControls);
+                string gamepadBindName = InputBindingDomain.GetBindingDisplayString(oneInputModel.keyMapName, oneInputModel.keyName, 0, InputDeviceType.Gamepad, playerControls);
+                appUI.Panel_SettingSetBindElement(oneInputModel.keyName, kbBindName, gamepadBindName);
+                Debug.Log("原来" + kbBindName);
+
+                // if (isSucc) {
+                //     Debug.Log("SettingSystem: OnRebindingSuccHandle" + isSucc);
+                //     // 绑定成功
+                //     // 更新UI
+                //     appUI.Panel_SettingSetBindElement(oneInputModel.keyName, oneInputModel.kbBindName, oneInputModel.gamepadBindName);
+                // } else {
+                //     Debug.Log("SettingSystem: OnRebindingSuccHandle" + isSucc);
+                //     // 绑定失败
+                // }
             };
 
             eventCenter.OnInputNoticeClickHandle += () => { // 输入提示

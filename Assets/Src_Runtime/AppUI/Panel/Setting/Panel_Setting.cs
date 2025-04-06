@@ -41,6 +41,11 @@ namespace UF {
 
         public Action<string> OnInputBindKbClickHandle;
         public Action<string> OnInputBindGamepadClickHandle;
+
+        // 重置按键
+        [SerializeField] Button btn_ResetInputBind;
+        public Action OnResetInputBindClickHandle;
+
         public void Ctor() {
             // == 初始化 ==
             inputBindEles = new List<InputBindElement>();
@@ -55,6 +60,8 @@ namespace UF {
             // 声音
             sli_Music.onValueChanged.AddListener((value) => OnMusicSliderChangeHandle?.Invoke(value));
             sli_SFX.onValueChanged.AddListener((value) => OnSFXSliderChangeHandle?.Invoke(value));
+            // 重置按键
+            btn_ResetInputBind.onClick.AddListener(() => OnResetInputBindClickHandle?.Invoke());
         }
 
         public void AddInputBindElement(InputBindingOneInputKeyModel key) {
@@ -80,6 +87,7 @@ namespace UF {
             }
         }
 
+
         public void SetSliderValue(float musicValue, float sfxValue) {
             sli_Music.value = musicValue;
             sli_SFX.value = sfxValue;
@@ -94,12 +102,10 @@ namespace UF {
         }
 
         void OnSettingInputBindClickKbHandle(string keyName) {
-            Debug.Log("OnSettingInputBindClickKbHandle " + keyName);
             OnInputBindKbClickHandle?.Invoke(keyName);
         }
 
         void OnSettingInputBindClickGamepadHandle(string keyName) {
-            Debug.Log("OnSettingInputBindClickGamepadHandle " + keyName);
             OnInputBindGamepadClickHandle?.Invoke(keyName);
         }
     }

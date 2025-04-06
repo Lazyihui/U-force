@@ -143,6 +143,7 @@ namespace UF {
 
         // 绑定
         public static void OnReBindAction(AppUI appUI, InputControls_Player playerControls, string actionMapName, string actionName, int index, InputDeviceType deviceType, InputBindingSystemProcessEntity processEntity) {
+
             var callback = processEntity.onRebindingSuccHandle;
 
             if (!CheckHaveOneBindInaction(playerControls, actionName)) {
@@ -154,7 +155,6 @@ namespace UF {
             InputActionMap actionMap = playerControls.asset.FindActionMap(actionMapName);
             InputAction temAction = GetAction(playerControls, actionMapName, actionName);
             Debug.Log(actionMap.name + " " + actionName + " " + index);
-
 
             int temIndex = GetAdjustedBindingIndex(temAction, index);
 
@@ -206,6 +206,27 @@ namespace UF {
             })
                 .Start();
 
+        }
+
+        // 重置所有绑定到默认设置
+        public static void ResetAllToDefaultBindings(InputControls_Player playerControls) {
+            // 首先禁用所有控制以防止冲突
+            playerControls.asset.Disable();
+
+            try {
+                // 遍历所有动作映射
+                foreach (InputActionMap map in playerControls.asset.actionMaps) {
+                    // 移除该动作映射中的所有绑定覆盖
+                    map.RemoveAllBindingOverrides();
+                }
+                // 从PlayerPrefs中删除保存的绑定设置
+                PlayerPrefs.DeleteKey("PlayerControls");
+                PlayerPrefs.Save();
+                Debug.Log("所有输入绑定已重置为默认设置");
+            } finally {
+                // 确保重新启用控制
+                playerControls.asset.Enable();
+            }
         }
 
         #region 基础函数
