@@ -120,7 +120,7 @@ namespace UF {
                 return "";
             }
             InputAction action = GetAction(playerControls, actionMapName, actionName);
-            if(action == null) {
+            if (action == null) {
                 Debug.LogError($"没找到action {actionName} 没找到Map {actionMapName}");
                 return "";
             }
@@ -187,26 +187,29 @@ namespace UF {
                 string newBindingPath = temAction.bindings[temIndex].effectivePath;
 
                 if (newBindingPath == originalBindingPath) {
-                    Debug.Log("Same key binding, no change needed.");
+                    Debug.Log("是相同的按键");
+                    appUI.Panel_InputNotice_Close();
                     operation.Cancel();
                     callback?.Invoke(false, actionName);
                     return;
                 }
 
                 // 是否存在相同的按键绑定
-                bool hasExit = IsBindingAlreadyUsed(playerControls, actionMapName, actionName, newBindingPath);
+                bool isConflict = IsBindingAlreadyUsed(playerControls, actionMapName, actionName, newBindingPath);
                 // 检查按键是否已被使用
-                if (hasExit) {
+                if (isConflict) {
+
                     Debug.LogWarning($"Key {newBindingPath} is already bound to another action." + "这个按钮已经被绑定了！");
                     // 恢复原始绑定
                     temAction.ApplyBindingOverride(temIndex, originalBindingPath);
                     appUI.Panel_InputNoticeImg_Open();
                     operation.Cancel();
-                    callback?.Invoke(hasExit, actionName);
+                    callback?.Invoke(isConflict, actionName);
                 } else {
+                    Debug.Log($"Key {newBindingPath} is bound to action {actionName}.绑定成功");
                     appUI.Panel_InputNotice_Close();
                     SaveBindings(playerControls);
-                    callback?.Invoke(!hasExit, actionName);
+                    callback?.Invoke(!isConflict, actionName);
                 }
 
                 // 保存绑定
