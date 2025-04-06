@@ -144,29 +144,36 @@ namespace UF {
 
             return action.GetBindingDisplayString(bindingIndex);
         }
-
-        // 绑定
         public static void OnReBindAction(AppUI appUI, InputControls_Player playerControls, string actionMapName, string actionName, int index, InputDeviceType deviceType, InputBindingSystemProcessEntity processEntity) {
-
             var callback = processEntity.onRebindingSuccHandle;
 
             if (!CheckHaveOneBindInaction(playerControls, actionName)) {
                 Debug.LogWarning($"Action {actionName} has no bindings.");
+                callback?.Invoke(false, actionName);
                 return;
             }
 
-            // TODO:下面这一行是为了测试用的，后面要删除
-            InputAction temAction = GetAction(playerControls, actionMapName, actionName);
-            int temIndex = GetAdjustedBindingIndex(temAction, index);
+            InputAction targetAction = GetAction(playerControls, actionMapName, actionName);
+            if (targetAction == null) {
+                callback?.Invoke(false, actionName);
+                return;
+            }
+
+            int bindingIndex = GetAdjustedBindingIndex(targetAction, index);
+            if (bindingIndex < 0 || bindingIndex >= targetAction.bindings.Count) {
+                Debug.LogError("Invalid binding index");
+                callback?.Invoke(false, actionName);
+                return;
+            }
 
             // 保存原始绑定路径以便恢复
-            string originalBindingPath = temAction.bindings[temIndex].effectivePath;
+            string originalBindingPath = targetAction.bindings[bindingIndex].effectivePath;
 
-            temAction.Disable();
+            targetAction.Disable();
             playerControls.asset.Disable();
 
-            var rebindOperation = temAction.PerformInteractiveRebinding(temIndex)
-                    .WithCancelingThrough("<Keyboard>/escape") // 按ESC取消
+            var rebindOperation = targetAction.PerformInteractiveRebinding(bindingIndex)
+                     .WithCancelingThrough("<Keyboard>/escape") // 按ESC取消
                     .WithControlsExcluding("<Mouse>/")
                     .OnMatchWaitForAnother(0.1f)
                     .WithTimeout(3.5f);
@@ -182,50 +189,73 @@ namespace UF {
                     .WithControlsExcluding("<Mouse>/*");
             }
 
-            rebindOperation.OnComplete((operation) => {
+            rebindOperation.OnComplete(operation => {
+                string newBindingPath = targetAction.bindings[bindingIndex].effectivePath;
 
-                string newBindingPath = temAction.bindings[temIndex].effectivePath;
-
+                // 检查是否是相同的按键绑定
                 if (newBindingPath == originalBindingPath) {
                     Debug.Log("是相同的按键");
                     appUI.Panel_InputNotice_Close();
                     operation.Cancel();
-                    callback?.Invoke(false, actionName);
+                    callback?.Invoke(true, actionName);
                     return;
                 }
 
-                // 是否存在相同的按键绑定
-                bool isConflict = IsBindingAlreadyUsed(playerControls, actionMapName, actionName, newBindingPath);
-                // 检查按键是否已被使用
-                if (isConflict) {
-
-                    Debug.LogWarning($"Key {newBindingPath} is already bound to another action." + "这个按钮已经被绑定了！");
+                // 检查按键是否已被其他动作使用
+                bool isAlreadyUsed = IsBindingAlreadyUsed(playerControls, actionMapName, actionName, newBindingPath, originalBindingPath);
+                if (isAlreadyUsed) {
+                    Debug.LogWarning($"Key {newBindingPath} is already bound to another action.");
                     // 恢复原始绑定
-                    temAction.ApplyBindingOverride(temIndex, originalBindingPath);
+                    targetAction.ApplyBindingOverride(bindingIndex, originalBindingPath);
                     appUI.Panel_InputNoticeImg_Open();
                     operation.Cancel();
-                    callback?.Invoke(isConflict, actionName);
+                    callback?.Invoke(false, actionName);
                 } else {
-                    Debug.Log($"Key {newBindingPath} is bound to action {actionName}.绑定成功");
+                    Debug.Log($"Key {newBindingPath} is bound to action {actionName}.");
                     appUI.Panel_InputNotice_Close();
                     SaveBindings(playerControls);
-                    callback?.Invoke(!isConflict, actionName);
+                    callback?.Invoke(true, actionName);
                 }
 
-                // 保存绑定
                 operation.Dispose();
             })
-
-            .OnCancel((operation) => {
-                temAction.ApplyBindingOverride(temIndex, originalBindingPath);
+            .OnCancel(operation => {
+                // 确保恢复原始绑定
+                targetAction.ApplyBindingOverride(bindingIndex, originalBindingPath);
                 callback?.Invoke(false, actionName);
                 operation.Dispose();
             })
-                .Start();
-            temAction.Enable();
+            .Start();
+
+            // 确保最终重新启用控制
+            targetAction.Enable();
             playerControls.asset.Enable();
         }
+        static bool IsBindingAlreadyUsed(InputControls_Player playerControls, string currentActionMap, string currentAction,
+            string newBindingPath,
+            string originalBindingPath = null) {
+            if (string.IsNullOrEmpty(newBindingPath)) {
+                return false;
+            }
 
+            foreach (InputActionMap map in playerControls.asset.actionMaps) {
+                foreach (InputAction action in map.actions) {
+                    // 跳过当前动作
+                    if (map.name == currentActionMap && action.name == currentAction)
+                        continue;
+
+                    for (int i = 0; i < action.bindings.Count; i++) {
+                        string bindingPath = action.bindings[i].effectivePath;
+                        // 新增条件：忽略原始绑定路径
+                        if (bindingPath == newBindingPath &&
+                            bindingPath != originalBindingPath) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
         // 重置所有绑定到默认设置
         public static void ResetAllToDefaultBindings(InputControls_Player playerControls) {
             // 首先禁用所有控制以防止冲突
