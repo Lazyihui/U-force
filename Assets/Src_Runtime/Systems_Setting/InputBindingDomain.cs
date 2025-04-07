@@ -202,7 +202,7 @@ namespace UF {
                 }
 
                 // 检查按键是否已被其他动作使用
-                bool isAlreadyUsed = IsBindingAlreadyUsed(playerControls, actionMapName, actionName, newBindingPath, originalBindingPath);
+                bool isAlreadyUsed = IsBindingAlreadyUsed(playerControls, actionMapName, actionName, newBindingPath);
                 if (isAlreadyUsed) {
                     Debug.LogWarning($"Key {newBindingPath} is already bound to another action.");
                     // 恢复原始绑定
@@ -241,14 +241,16 @@ namespace UF {
             foreach (InputActionMap map in playerControls.asset.actionMaps) {
                 foreach (InputAction action in map.actions) {
                     // 跳过当前动作
-                    if (map.name == currentActionMap && action.name == currentAction)
+                    if (map.name == currentActionMap && action.name == currentAction) {
                         continue;
+                    }
 
                     for (int i = 0; i < action.bindings.Count; i++) {
+
                         string bindingPath = action.bindings[i].effectivePath;
                         // 新增条件：忽略原始绑定路径
-                        if (bindingPath == newBindingPath &&
-                            bindingPath != originalBindingPath) {
+                        Debug.Log("原来的绑定路径" + bindingPath + "新绑定路径" + newBindingPath);
+                        if (bindingPath == newBindingPath && bindingPath != originalBindingPath) {
                             return true;
                         }
                     }
@@ -268,7 +270,8 @@ namespace UF {
                     map.RemoveAllBindingOverrides();
                 }
                 // 从PlayerPrefs中删除保存的绑定设置
-                PlayerPrefs.DeleteKey("PlayerControls");
+                PlayerPrefs.DeleteKey("InputControls_Player");
+                
                 PlayerPrefs.Save();
                 Debug.Log("所有输入绑定已重置为默认设置");
             } finally {
@@ -296,7 +299,9 @@ namespace UF {
 
                     // 检查当前action的所有绑定
                     for (int i = 0; i < action.bindings.Count; i++) {
+                        Debug.Log("原来的绑定路径" + action.bindings[i].effectivePath + "新绑定路径" + newBindingPath);
                         if (action.bindings[i].effectivePath == newBindingPath) {
+                            Debug.Log("相同的按键绑定" + action.bindings[i].effectivePath + "新绑定路径" + newBindingPath);
                             return true;
                         }
                     }
@@ -339,7 +344,9 @@ namespace UF {
         // 保存绑定
         static void SaveBindings(InputControls_Player playerControls) {
             string json = playerControls.asset.SaveBindingOverridesAsJson();
-            PlayerPrefs.SetString("PlayerControls", json);
+            PlayerPrefs.SetString("InputControls_Player", json);
+            Debug.Log("保存的绑定路径" + json);
+            Debug.Assert(!string.IsNullOrEmpty(json), "保存的绑定路径为空");
             PlayerPrefs.Save();
         }
         #endregion
