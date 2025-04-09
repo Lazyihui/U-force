@@ -35,8 +35,8 @@ namespace UF {
 
             var processEntity = ctx.processEntity;
 
+            appUI.Panel_SettingHideInputBindElement();
             foreach (var inputKey in processEntity.inputKeyListByMap) {
-                appUI.Panel_SettingHideInputBindElement();
                 appUI.Panel_SettingAddInputbindElement(inputKey);
             }
         }
@@ -105,10 +105,26 @@ namespace UF {
 
             eventCenter.OnInputBindMainClickHandle += () => { // 按键绑定切换主游戏按键
                 ctx.isInputBindMain = true;
+
+                var processEntity = ctx.processEntity;
+
+                InputBindingDomain.ShowInputKeyByMap(processEntity, ctx.isInputBindMain);
+                appUI.Panel_SettingHideInputBindElement();
+                foreach (var inputKey in processEntity.inputKeyListByMap) {
+                    appUI.Panel_SettingAddInputbindElement(inputKey);
+                }
             };
 
             eventCenter.OnInputBindTrainClickHandle += () => { // 按键绑定切换训练营按键
                 ctx.isInputBindMain = false;
+
+                var processEntity = ctx.processEntity;
+
+                InputBindingDomain.ShowInputKeyByMap(processEntity, ctx.isInputBindMain);
+                appUI.Panel_SettingHideInputBindElement();
+                foreach (var inputKey in processEntity.inputKeyListByMap) {
+                    appUI.Panel_SettingAddInputbindElement(inputKey);
+                }
             };
 
             #region InputBind
@@ -120,7 +136,7 @@ namespace UF {
                     return;
                 }
 
-                InputBindingDomain.OnReBindAction(ctx.appUI, ctx.inputModule.Player, oneInputModel.keyMapName, oneInputModel.keyName, oneInputModel.keyIndex, InputDeviceType.Keyboard, processEntity);
+                InputBindingDomain.OnReBindAction(ctx.appUI, ctx.inputModule.Player, oneInputModel.keyMapName, oneInputModel.keyName, oneInputModel.keyIndex, InputDeviceType.Keyboard, processEntity, ctx.isInputBindMain);
                 // Debug.Log("SettingSystem: OnSettingInputBindKbClickHandle" + keyName);
             };
             eventCenter.OnSettingInputBindClickGamepadHandle += (keyName) => { // 手柄绑定

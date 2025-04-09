@@ -148,7 +148,7 @@ namespace UF {
 
             return action.GetBindingDisplayString(bindingIndex);
         }
-        public static void OnReBindAction(AppUI appUI, InputControls_Player playerControls, string actionMapName, string actionName, int index, InputDeviceType deviceType, InputBindingSystemProcessEntity processEntity) {
+        public static void OnReBindAction(AppUI appUI, InputControls_Player playerControls, string actionMapName, string actionName, int index, InputDeviceType deviceType, InputBindingSystemProcessEntity processEntity, bool isInputBindMain) {
             var callback = processEntity.onRebindingSuccHandle;
 
             if (!CheckHaveOneBindInaction(playerControls, actionName)) {
@@ -206,7 +206,7 @@ namespace UF {
                 }
 
                 // 检查按键是否已被其他动作使用
-                bool isAlreadyUsed = IsBindingAlreadyUsed(playerControls, actionMapName, actionName, newBindingPath);
+                bool isAlreadyUsed = IsBindingAlreadyUsed(isInputBindMain, playerControls, actionMapName, actionName, newBindingPath);
                 if (isAlreadyUsed) {
                     Debug.LogWarning($"Key {newBindingPath} is already bound to another action.");
                     // 恢复原始绑定
@@ -235,33 +235,35 @@ namespace UF {
             targetAction.Enable();
             playerControls.asset.Enable();
         }
-        static bool IsBindingAlreadyUsed(InputControls_Player playerControls, string currentActionMap, string currentAction,
-            string newBindingPath,
-            string originalBindingPath = null) {
-            if (string.IsNullOrEmpty(newBindingPath)) {
-                return false;
-            }
 
-            foreach (InputActionMap map in playerControls.asset.actionMaps) {
-                foreach (InputAction action in map.actions) {
-                    // 跳过当前动作
-                    if (map.name == currentActionMap && action.name == currentAction) {
-                        continue;
-                    }
+        // 没引用, 先注释掉一下
+        // static bool IsBindingAlreadyUsed(InputControls_Player playerControls, string currentActionMap, string currentAction,
+        //     string newBindingPath,
+        //     string originalBindingPath = null) {
+        //     if (string.IsNullOrEmpty(newBindingPath)) {
+        //         return false;
+        //     }
 
-                    for (int i = 0; i < action.bindings.Count; i++) {
+        //     foreach (InputActionMap map in playerControls.asset.actionMaps) {
+        //         foreach (InputAction action in map.actions) {
+        //             // 跳过当前动作
+        //             if (map.name == currentActionMap && action.name == currentAction) {
+        //                 continue;
+        //             }
 
-                        string bindingPath = action.bindings[i].effectivePath;
-                        // 新增条件：忽略原始绑定路径
-                        Debug.Log("原来的绑定路径" + bindingPath + "新绑定路径" + newBindingPath);
-                        if (bindingPath == newBindingPath && bindingPath != originalBindingPath) {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
+        //             for (int i = 0; i < action.bindings.Count; i++) {
+
+        //                 string bindingPath = action.bindings[i].effectivePath;
+        //                 // 新增条件：忽略原始绑定路径
+        //                 Debug.Log("原来的绑定路径" + bindingPath + "新绑定路径" + newBindingPath);
+        //                 if (bindingPath == newBindingPath && bindingPath != originalBindingPath) {
+        //                     return true;
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     return false;
+        // }
         // 重置所有绑定到默认设置
         public static void ResetAllToDefaultBindings(InputControls_Player playerControls) {
             // 首先禁用所有控制以防止冲突
@@ -287,7 +289,7 @@ namespace UF {
 
         #region 基础函数
         // 是否有相同的按键绑定
-        static bool IsBindingAlreadyUsed(InputControls_Player playerControls, string currentActionMap, string currentAction, string newBindingPath) {
+        static bool IsBindingAlreadyUsed(bool isInputBindMain, InputControls_Player playerControls, string currentActionMap, string currentAction, string newBindingPath) {
             if (string.IsNullOrEmpty(newBindingPath)) {
                 // 如果新绑定路径为空，则不进行检查
                 return false;
@@ -295,6 +297,18 @@ namespace UF {
 
             // 遍历所有actionMap
             foreach (InputActionMap map in playerControls.asset.actionMaps) {
+
+                // 傻瓜版map检测, 因为这里没用到processEntity, 不想研究怎么加了, 感觉会蹦出来很多冲突
+                if (isInputBindMain) {
+                    if (map.name != "World") {
+                        continue;
+                    }
+                } else {
+                    if (map.name == "World") {
+                        continue;
+                    }
+                }
+
                 // 遍历所有action
                 foreach (InputAction action in map.actions) {
                     // 跳过当前正在重绑定的action
