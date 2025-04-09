@@ -12,6 +12,8 @@ namespace UF.Systems_Setting {
         public InputModule inputModule;
         public InputBindingSystemProcessEntity processEntity;
 
+        public bool isInputBindMain; // 按键绑定是否为主游戏按键
+
         public void Inject(AppUI appUI,InputModule inputModule) {
             this.appUI = appUI;
             this.inputModule = inputModule;
@@ -20,6 +22,8 @@ namespace UF.Systems_Setting {
         public SettingContext() {
             isRunning = false;
             processEntity = new InputBindingSystemProcessEntity();
+
+            isInputBindMain = true; // flase代表是训练营按键
         }
 
     }

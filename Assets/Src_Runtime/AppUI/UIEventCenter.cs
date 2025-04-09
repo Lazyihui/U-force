@@ -509,6 +509,20 @@ namespace UF {
                 OnResetInputBindClickHandle();
             }
         }
+
+        public Action OnInputBindMainClickHandle;
+        public void OnInputBindMainClick() {
+            if (OnInputBindMainClickHandle != null) {
+                OnInputBindMainClickHandle();
+            }
+        }
+
+        public Action OnInputBindTrainClickHandle;
+        public void OnInputBindTrainClick() {
+            if (OnInputBindTrainClickHandle != null) {
+                OnInputBindTrainClickHandle();
+            }
+        }
         #endregion
 
         #region Setting Element

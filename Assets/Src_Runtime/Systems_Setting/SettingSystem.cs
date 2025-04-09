@@ -25,6 +25,7 @@ namespace UF {
             ctx.Inject(appUI, inputModule);
 
             InputBindingDomain.AddAllInputKey(playerControls, ctx.processEntity);
+            InputBindingDomain.ShowInputKeyByMap(ctx.processEntity, ctx.isInputBindMain);
         }
 
         public void Enter() {
@@ -34,7 +35,8 @@ namespace UF {
 
             var processEntity = ctx.processEntity;
 
-            foreach (var inputKey in processEntity.inputKeyList) {
+            foreach (var inputKey in processEntity.inputKeyListByMap) {
+                appUI.Panel_SettingHideInputBindElement();
                 appUI.Panel_SettingAddInputbindElement(inputKey);
             }
         }
@@ -92,13 +94,21 @@ namespace UF {
                 var processEntity = ctx.processEntity;
                 // var oneInputModel = processEntity.GetInputKeyByIndex(actionName);
                 // 遍历所有的按键绑定
-                foreach (var oneInputModel in processEntity.inputKeyList) {
+                foreach (var oneInputModel in processEntity.inputKeyListByMap) {
                     // Debug.Log("原来" + kbBindName);
                     string kbBindName = InputBindingDomain.GetBindingDisplayString(oneInputModel.keyMapName, oneInputModel.keyName, 0, InputDeviceType.Keyboard, playerControls);
                     string gamepadBindName = InputBindingDomain.GetBindingDisplayString(oneInputModel.keyMapName, oneInputModel.keyName, 0, InputDeviceType.Gamepad, playerControls);
                     appUI.Panel_SettingSetBindElement(oneInputModel.keyName, kbBindName, gamepadBindName);
                 }
 
+            };
+
+            eventCenter.OnInputBindMainClickHandle += () => { // 按键绑定切换主游戏按键
+                ctx.isInputBindMain = true;
+            };
+
+            eventCenter.OnInputBindTrainClickHandle += () => { // 按键绑定切换训练营按键
+                ctx.isInputBindMain = false;
             };
 
             #region InputBind

@@ -107,6 +107,10 @@ namespace UF {
 
         }
 
+        public static void ShowInputKeyByMap(InputBindingSystemProcessEntity processEntity, bool isInputBindMain) {
+            processEntity.ShowInputKeyByMap(isInputBindMain);
+        }
+
         static void InputBindOneInputKeyAdd(InputBindingSystemProcessEntity processEntity, string keyName, string keyMapName, int keyIndex, string kbBindName, string gamepadBindName) {
             // 添加一个按键
             InputBindingOneInputKeyModel inputKey = new InputBindingOneInputKeyModel();
@@ -271,7 +275,7 @@ namespace UF {
                 }
                 // 从PlayerPrefs中删除保存的绑定设置
                 PlayerPrefs.DeleteKey("InputControls_Player");
-                
+
                 PlayerPrefs.Save();
                 Debug.Log("所有输入绑定已重置为默认设置");
             } finally {
