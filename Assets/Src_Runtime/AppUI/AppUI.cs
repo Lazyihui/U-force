@@ -1640,6 +1640,14 @@ namespace UF {
                     eventCenter.OnSettingBackClick();
                 };
 
+                panel.OnInputBindMainClickHandle = () => {
+                    eventCenter.OnInputBindMainClick();
+                };
+
+                panel.OnInputBindTrainClickHandle = () => {
+                    eventCenter.OnInputBindTrainClick();
+                };
+
                 panel.OnInputBindKbClickHandle = (bindName) => {
                     eventCenter.OnSettingInputBindClickKb(bindName);
                 };
@@ -1659,6 +1667,14 @@ namespace UF {
                 return;
             }
             panel.AddInputBindElement(key);
+        }
+
+        public void Panel_SettingHideInputBindElement() {
+            Panel_Setting panel = ctx.panel_Setting;
+            if (panel == null) {
+                return;
+            }
+            panel.HideInputBindElement();
         }
 
         public void Panel_SettingSetBindElement(string bindName, string kbBindName, string gamepadBindName) {

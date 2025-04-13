@@ -34,6 +34,11 @@ namespace UF {
         public Action OnCloseHandle;
 
         // InputElement 
+        [SerializeField] Button btn_Main;
+        [SerializeField] Button btn_Train;
+        public Action OnInputBindMainClickHandle;
+        public Action OnInputBindTrainClickHandle;
+
         [SerializeField] InputBindElement bindElementPrefab;//预制体
         [SerializeField] Transform inputElementRoot;//生成位置
         public List<InputBindElement> inputBindEles;
@@ -60,12 +65,29 @@ namespace UF {
             // 声音
             sli_Music.onValueChanged.AddListener((value) => OnMusicSliderChangeHandle?.Invoke(value));
             sli_SFX.onValueChanged.AddListener((value) => OnSFXSliderChangeHandle?.Invoke(value));
+            // 输入(按键绑定)
+            btn_Main.onClick.AddListener(() => OnInputBindMainClickHandle?.Invoke());
+            btn_Train.onClick.AddListener(() => OnInputBindTrainClickHandle?.Invoke());
             // 重置按键
             btn_ResetInputBind.onClick.AddListener(() => OnResetInputBindClickHandle?.Invoke());
         }
 
         public void AddInputBindElement(InputBindingOneInputKeyModel key) {
-            InputBindElement ele = Instantiate(bindElementPrefab, inputElementRoot);
+            InputBindElement ele = null;
+            for (int i = 0; i < inputBindEles.Count; i++) {
+                var inputBindEle = inputBindEles[i];
+                if (inputBindEle.Get_BindName == key.keyName) {
+                    ele = inputBindEle;
+                    break;
+                }
+            }
+
+            if (ele != null) {
+                ele.gameObject.SetActive(true);
+                return;
+            }
+
+            ele = Instantiate(bindElementPrefab, inputElementRoot);
             ele.Ctor();
             ele.Init(key.keyName, key.kbBindName, key.gamepadBindName);
             ele.OnKbBindClickHandle = () => {
@@ -75,6 +97,13 @@ namespace UF {
                 OnSettingInputBindClickGamepadHandle(key.keyName);
             };
             inputBindEles.Add(ele);
+        }
+
+        public void HideInputBindElement() {
+            for (int i = 0; i < inputBindEles.Count; i++) {
+                var inputBindEle = inputBindEles[i];
+                inputBindEle.gameObject.SetActive(false);
+            }
         }
 
         public void Set_TextBindName_KbAndGamepad(string keyName, string KbbindName, string GamepadBindName) {

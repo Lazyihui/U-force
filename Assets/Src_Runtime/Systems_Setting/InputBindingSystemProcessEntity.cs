@@ -10,6 +10,7 @@ namespace UF {
     public class InputBindingSystemProcessEntity {
 
         public List<InputBindingOneInputKeyModel> inputKeyList;// 输入按键列表
+        public List<InputBindingOneInputKeyModel> inputKeyListByMap;// 显示的按键列表
 
         public bool isKB;//是否是键盘   
         public InputActionRebindingExtensions.RebindingOperation rebindOperation;// 绑定操作
@@ -19,6 +20,7 @@ namespace UF {
 
         public InputBindingSystemProcessEntity() {
             inputKeyList = new List<InputBindingOneInputKeyModel>();
+            inputKeyListByMap = new List<InputBindingOneInputKeyModel>();
         }
 
         public void AddInputKey(InputBindingOneInputKeyModel inputKey) {
@@ -45,6 +47,24 @@ namespace UF {
             return null;
         }
 
+        // Map分离
+        public void ShowInputKeyByMap(bool isInputBindMain) {
+            inputKeyListByMap.Clear();
 
+            if (isInputBindMain) {
+                foreach (var inputKey in inputKeyList) {
+                    if (inputKey.keyMapName == "World") {
+                        inputKeyListByMap.Add(inputKey);
+                    }
+                }
+            } else {
+                foreach (var inputKey in inputKeyList) {
+                    if (inputKey.keyMapName == "World") {
+                        continue;
+                    }
+                    inputKeyListByMap.Add(inputKey);
+                }
+            }
+        }
     }
 }
