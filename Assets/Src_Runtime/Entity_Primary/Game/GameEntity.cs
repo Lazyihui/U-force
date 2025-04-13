@@ -124,7 +124,6 @@ namespace UF {
             }
 
         }
-
         public void Clear() {
             isOwnerDying = false;
             isRunning = false;
@@ -137,7 +136,6 @@ namespace UF {
             gameTime = 0;
             energyNumber = 0;
         }
-
 
         public void Inject(GameSaveModel playerSaveData) {
             this.playerSaveData = playerSaveData;
