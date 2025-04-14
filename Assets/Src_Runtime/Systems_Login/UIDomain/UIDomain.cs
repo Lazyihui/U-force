@@ -229,9 +229,7 @@ namespace UF {
                 int stageid = stageID + multiple * 10;
                 int starCount = appUI.playerSaveData.GetStagePassedStar(stageid);
 
-                Debug.Log(stageid);
                 bool isPrassed = appUI.playerSaveData.IsStageReached(stageid);
-                Debug.Log($"stageid: {stageid}, isPrassed: {isPrassed}, starCount: {starCount}");
                 appUI.Panel_StageSelectionOneStage_Add(stageid, isPrassed, starCount);
             }
 
