@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace UF {
     public static class DefendWarController { // 防守战
+
         public static void Enter(GameSystemContext ctx, int selectedRoleTypeID, int[] skillorTypeIDArray, int sciType, StageTM tm) {
             var game = ctx.gameEntity;
             var playerData = game.playerSaveData;
@@ -11,7 +12,7 @@ namespace UF {
             ctx.appUI.Panel_GameDefend_Button_Open(playerData.slotMax);
             ctx.appUI.HUD_Progressbar_Open(game.maxWaves);
             int stageID = playerData.stageCurID;
-            Debug.Log("进入游戏"+ stageID); 
+            Debug.Log("进入游戏" + stageID);
             if (stageID == 1) {
                 ctx.appUI.Panel_GameDefend_SetBtnTech_Hide();
             }

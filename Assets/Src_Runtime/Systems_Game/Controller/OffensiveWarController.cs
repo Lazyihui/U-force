@@ -3,8 +3,64 @@ using UnityEngine;
 
 namespace UF {
     public static class OffensiveWarController { // boos战
-        public static void Enter(GameSystemContext ctx, int stageID, int selectedRoleTypeID, int[] skillorTypeIDArray, int selectSciTypeID, StageTM tm) {
 
+        public static void Enter(GameSystemContext ctx, int selectedRoleTypeID, int[] skillorTypeIDArray, int sciType, StageTM tm) {
+
+            var game = ctx.gameEntity;
+            var playerData = game.playerSaveData;
+
+            // UI
+            ctx.appUI.Panel_GameDefend_Button_Open(playerData.slotMax);
+            ctx.appUI.HUD_Progressbar_Open(game.maxWaves);
+            int stageID = playerData.stageCurID;
+            Debug.Log("进入游戏" + stageID);
+
+            if (stageID == 1) {
+                ctx.appUI.Panel_GameDefend_SetBtnTech_Hide();
+            }
+            // 这里没有地图
+
+            // Role
+            RoleEntity owner = null;
+            if (selectedRoleTypeID == -1) {
+                // 没有自己选择的角色的情况
+                for (int i = 0; i < tm.roleSpawns.Length; i += 1) {
+                    RoleSpawnerTM spawnerTM = tm.roleSpawns[i];
+                    owner = RoleDomain.SpawnBySpawner(ctx, spawnerTM);
+                    if (owner.roleType == RoleType.Player) {
+                        game.OwnerIDsig = owner.idSig;
+                    }
+                }
+            }
+
+            owner = RoleDomain.SpawnByPos(ctx, selectedRoleTypeID, new Vector3(-15, 0, 0));
+            game.OwnerIDsig = owner.idSig;
+
+            var skillorCom = owner.skillorSlotComponent;
+
+            // 大招
+            if (sciType != -2 && sciType != -1) {
+                SkillModel skillorSci = GameFactory.Skillor_Create(ctx.assetsModule, ctx.templateCore, ctx.idService, sciType);
+                skillorSci.Set_InputCastKey(InputKeyFlag.Tech);
+                skillorCom.Add(skillorSci);
+            }
+
+
+            // 道具
+            if (skillorTypeIDArray != null) {
+                for (int i = 0; i < skillorTypeIDArray.Length; i += 1) {
+                    var skilltypeID = skillorTypeIDArray[i];
+                    SkillModel skillor = GameFactory.Skillor_Create(ctx.assetsModule, ctx.templateCore, ctx.idService, skilltypeID);
+                    skillor.Set_InputCastKeyWeap(i);
+                    skillorCom.Add(skillor);
+                }
+            }
+
+            // Tower
+            for (int i = 0; i < tm.towerSpawns.Length; i += 1) {
+                CaveSpawnerTM spawnerTM = tm.towerSpawns[i];
+                CaveDomain.SpawnBySpawner(ctx, spawnerTM);
+            }
         }
 
         public static void PreTick(GameSystemContext ctx, float dt) {

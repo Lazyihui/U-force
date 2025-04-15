@@ -77,7 +77,7 @@ namespace UF {
                 DefendWarController.Enter(ctx, roleTypeID, typeIDsArray, sciType, tm);
             } else if (game.isOffensiveWar) {
                 // 进攻战和防守战的Enter一样
-                DefendWarController.Enter(ctx, roleTypeID, typeIDsArray, sciType, tm);
+                OffensiveWarController.Enter(ctx, roleTypeID, typeIDsArray, sciType, tm);
                 RoleEntity owner = ctx.Get_Owner();
                 owner.moveType = RoleMoveType.OffensiveUDRL;
             } else if (game.isEliminateWar) {
