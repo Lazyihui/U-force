@@ -108,8 +108,6 @@ namespace UF {
                     // 更新右边详情页
                     RoleTM roleTM0 = cardModel.roleTMs[0];
                     appUI.Panel_CardDetails_Update(roleTM0.sprite, roleTM0.feature, roleTM0.typeID);
-
-
                 }
             } else if (cardType == CardType.Agriculture) {
                 for (int i = 0; i < cardModel.bulletAgrTMs.Count; i += 1) {
@@ -139,6 +137,17 @@ namespace UF {
             }
 
             // 3.看那些卡片被选择了
+            int stageCurType = cardModel.stageCurType;
+
+            if (stageCurType == 2) { // 进攻战
+                for (int i = 0; i < cardModel.roleTMs.Count; i += 1) {
+                    RoleTM roleTM = cardModel.roleTMs[i];
+
+                    if (roleTM.isMale) {
+                        appUI.Panel_OneCardSelection_Lock(roleTM.typeID);
+                    }
+                }
+            }
 
             if (selectedInFormation.roleSelectedTypeID != -1) {
                 appUI.Panel_OneCardSelection_Lock(selectedInFormation.roleSelectedTypeID);
