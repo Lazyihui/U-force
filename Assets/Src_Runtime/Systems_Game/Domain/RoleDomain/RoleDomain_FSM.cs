@@ -86,10 +86,13 @@ namespace UF {
 
         public static void FSM_AllOffensive_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
             var game = ctx.gameEntity;
-
-            // 任何状态都运行的逻辑
+            // 任何状态都运行的逻辑 所有角色的移动逻辑
             Loco_MoveOffensive(role, dt);
-            // skill
+        }
+
+        public static void FSM_OwnerOffensive_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
+            // 任何状态主角都要运行的逻辑
+
             int skillLen = role.skillorSlotComponent.TakeAll(out var skills);
             for (int i = 0; i < skillLen; i += 1) {
                 var skill = skills[i];

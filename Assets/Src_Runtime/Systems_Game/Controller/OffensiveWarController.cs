@@ -102,6 +102,9 @@ namespace UF {
                 RoleDomain.FSM_AllOffensive_Execute(ctx, role, dt);
             }
 
+            // 主角一直要执行的逻辑
+            RoleDomain.FSM_OwnerOffensive_Execute(ctx, owner, dt);
+
             // 这里是主角的逻辑
             if (state == RoleFSMStatus.Normal) {
                 RoleDomain.FSM_Normal_Execute(ctx, owner, dt);

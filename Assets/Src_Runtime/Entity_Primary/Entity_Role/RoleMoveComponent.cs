@@ -77,12 +77,27 @@ public class RoleMoveComponent {
     }
 
     public void Move_Attack(Vector2 dir, float moveSpeed) { // 进攻战 玩家移动
+        Vector2 mapMinBounds = new Vector2(-29, -15);
+        Vector2 mapMaxBounds = new Vector2(29, 15);
+
         Vector2 oldVelo = rb.velocity;
         oldVelo = dir * moveSpeed;
         rb.velocity = oldVelo;
 
         rb.gravityScale = 0;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        // 边界限制
+        if (rb.position.x < mapMinBounds.x) {
+            rb.position = new Vector2(mapMinBounds.x, rb.position.y);
+        } else if (rb.position.x > mapMaxBounds.x) {
+            rb.position = new Vector2(mapMaxBounds.x, rb.position.y);
+        }
+        if (rb.position.y < mapMinBounds.y) {
+            rb.position = new Vector2(rb.position.x, mapMinBounds.y);
+        } else if (rb.position.y > mapMaxBounds.y) {
+            rb.position = new Vector2(rb.position.x, mapMaxBounds.y);
+        }
     }
 
     public void Move_Regular(Vector2 pos, float moveSpeed) {

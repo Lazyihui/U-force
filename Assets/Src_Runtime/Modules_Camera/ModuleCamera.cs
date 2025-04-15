@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 
-
 namespace UF {
 
     public class ModuleCamera {
@@ -14,14 +13,14 @@ namespace UF {
         public float smoothSpeed = 0.125f; // 相机跟随的平滑速度
         public Vector3 offset; // 相机与目标的偏移量
 
-        float halfCameraWidth;//相机视口的一半宽度
-        float halfCameraHeight;//相机视口的一半高度
+        float halfCameraWidth;//相机视口的一半宽度 
+        float halfCameraHeight;//相机视口的一半高度 
 
         public ModuleCamera() {
             offset = new Vector3(15, 0, -10);
 
-            mapMinBounds = new Vector2(-20, -12);
-            mapMaxBounds = new Vector2(20, 30);
+            mapMinBounds = new Vector2(-30, -16.875f);
+            mapMaxBounds = new Vector2(30, 16.875f);
         }
 
         public void Inject(Camera camera) {
@@ -39,6 +38,7 @@ namespace UF {
             // 计算目标位置
             Vector3 desiredPosition = target.position + offset;
 
+            // 场景大小(相机范围) = (屏幕宽*1.5) * (屏幕高*1.5)
             // 限制相机位置在地图边界内
             desiredPosition.x = Mathf.Clamp(desiredPosition.x, mapMinBounds.x + halfCameraWidth, mapMaxBounds.x - halfCameraWidth);
             desiredPosition.y = Mathf.Clamp(desiredPosition.y, mapMinBounds.y + halfCameraHeight, mapMaxBounds.y - halfCameraHeight);
