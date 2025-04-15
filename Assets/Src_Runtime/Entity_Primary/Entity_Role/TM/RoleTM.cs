@@ -11,6 +11,7 @@ namespace UF {
         public RoleMoveType moveType;
         public RoleState roleState;
         public int typeID;
+        [ShowIf(nameof(roleType), RoleType.Player)] public bool isMale;
 
         [Title("Life")]
         public int hp;
