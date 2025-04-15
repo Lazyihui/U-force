@@ -48,6 +48,10 @@ namespace UF {
         static ProgramEntity programEntity;
 
         void Start() {
+
+            int a = UnityEngine.Random.Range(0, 100);
+            Debug.Log(a);
+
             // ---  UI
             appUI = GetComponentInChildren<AppUI>();
             appUI.Ctor();

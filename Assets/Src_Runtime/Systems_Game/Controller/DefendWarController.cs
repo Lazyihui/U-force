@@ -69,8 +69,9 @@ namespace UF {
             var game = ctx.gameEntity;
             var ui = ctx.appUI;
             RoleEntity owner = ctx.Get_Owner();
-            // 生成怪物 不需要循环
-            CaveDomain.TrySpawnMinion(ctx, dt);
+            // 生成怪物 不需要高频率的执行
+            // CaveDomain.TrySpawnMinion(ctx, dt); 这里不用塔来生成 直接生成小怪因为随机的位置
+
             // UI
             var attrCom = owner.AttributeComponent;
             UIDomain.HUD_Progressbar_Update(ctx.appUI, attrCom, game.wavesProgress);

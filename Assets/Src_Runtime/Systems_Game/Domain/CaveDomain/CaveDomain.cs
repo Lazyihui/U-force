@@ -12,7 +12,6 @@ namespace UF {
 
         public static CaveEntity Spawn(GameSystemContext ctx, int typeID, Vector2 pos) {
             CaveEntity entity = GameFactory.Tower_Create(ctx.assetsModule, ctx.templateCore, ctx.idService, typeID, pos);
-
             ctx.towerRepository.Add(entity);
             return entity;
         }
