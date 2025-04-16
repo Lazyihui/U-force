@@ -181,6 +181,7 @@ namespace UF {
                 return;
             }
 
+            // TODO：要改 改成用Rb来写
             // Vector2 dir = (targetPos - pos).normalized;
             // moveComponent.Move(dir, moveSpeed);
             transform.position = Vector3.MoveTowards(

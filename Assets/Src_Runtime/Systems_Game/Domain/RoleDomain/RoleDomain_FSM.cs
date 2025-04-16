@@ -88,7 +88,10 @@ namespace UF {
             var game = ctx.gameEntity;
             // 任何状态都运行的逻辑 所有角色的移动逻辑
             RoleEntity owner = ctx.Get_Owner();
-            Loco_MoveOffensive(role,owner ,dt);
+            Loco_MoveOffensive(role, owner, dt);
+
+            // 遍历所有角色 碰到角色扣血
+            RoleDomain.DetectionOwnerAndEnemy(ctx, owner);
         }
 
         public static void FSM_OwnerOffensive_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
