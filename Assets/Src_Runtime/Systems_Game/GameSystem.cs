@@ -77,7 +77,7 @@ namespace UF {
                 DefendWarController.Enter(ctx, roleTypeID, typeIDsArray, sciType, tm);
             } else if (game.isOffensiveWar) {
                 // 进攻战和防守战的Enter一样
-                OffensiveWarController.Enter(ctx, roleTypeID, typeIDsArray, sciType, tm);
+                BossWarController.Enter(ctx, roleTypeID, typeIDsArray, sciType, tm);
                 RoleEntity owner = ctx.Get_Owner();
                 owner.moveType = RoleMoveType.OffensiveUDRL;
             } else if (game.isEliminateWar) {
@@ -143,7 +143,7 @@ namespace UF {
             if (game.isDefendWar) {
                 DefendWarController.PreTick(ctx, dt);
             } else if (game.isOffensiveWar) {
-                OffensiveWarController.PreTick(ctx, dt);
+                BossWarController.PreTick(ctx, dt);
             } else if (game.isEliminateWar) {
                 EliminateWarController.PreTick(ctx, dt);
             }
@@ -156,7 +156,7 @@ namespace UF {
             if (game.isDefendWar) {
                 DefendWarController.Tick(ctx, dt);
             } else if (game.isOffensiveWar) {
-                OffensiveWarController.Tick(ctx, dt);
+                BossWarController.Tick(ctx, dt);
             } else if (game.isEliminateWar) {
                 EliminateWarController.Tick(ctx, dt);
             }
@@ -168,7 +168,7 @@ namespace UF {
             if (game.isDefendWar) {
                 DefendWarController.LastTick(ctx, dt);
             } else if (game.isOffensiveWar) {
-                OffensiveWarController.LastTick(ctx, dt);
+                BossWarController.LastTick(ctx, dt);
             } else if (game.isEliminateWar) {
                 EliminateWarController.LastTick(ctx, dt);
             }
