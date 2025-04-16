@@ -8,4 +8,6 @@ public enum RoleMoveType {
     Regular, // 动态障碍-固定
     Random, // 动态障碍-随机
     AI, // AI移动
+
+    MoveTarget, // 目标点移动
 }

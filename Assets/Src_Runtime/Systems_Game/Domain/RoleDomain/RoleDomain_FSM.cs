@@ -87,7 +87,8 @@ namespace UF {
         public static void FSM_AllOffensive_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
             var game = ctx.gameEntity;
             // 任何状态都运行的逻辑 所有角色的移动逻辑
-            Loco_MoveOffensive(role, dt);
+            RoleEntity owner = ctx.Get_Owner();
+            Loco_MoveOffensive(role,owner ,dt);
         }
 
         public static void FSM_OwnerOffensive_Execute(GameSystemContext ctx, RoleEntity role, float dt) {

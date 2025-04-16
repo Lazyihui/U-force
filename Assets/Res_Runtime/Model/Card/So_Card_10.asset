@@ -28,4 +28,4 @@ MonoBehaviour:
     - {fileID: 11400000, guid: ed460d7d5c7d2e74c814c4a6b706fd43, type: 2}
     - {fileID: 11400000, guid: f39f978c37b8dbb4e9068e529c9d2443, type: 2}
     roleEnemySoArray:
-    - {fileID: 11400000, guid: 464275325087f874a8bb23f071e8d880, type: 2}
+    - {fileID: 11400000, guid: 758429f43f0cae843a2ed54e12a96f95, type: 2}

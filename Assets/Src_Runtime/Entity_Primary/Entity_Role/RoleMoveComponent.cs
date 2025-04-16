@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UF;
 using Unity.VisualScripting;
+using UnityEngine.Video;
 
 public class RoleMoveComponent {
     Rigidbody2D rb;
@@ -68,12 +69,18 @@ public class RoleMoveComponent {
 
     public void Move_Ghost(float moveSpeed) {
         rb.gravityScale = 0;
+
         const float xAxis = -1;
 
         Vector2 oldVelo = rb.velocity;
         oldVelo.x = xAxis * moveSpeed;
         // oldVelo.y = 0;
         rb.velocity = oldVelo;
+    }
+
+    public void Move(Vector2 dir, float moveSpeed) {
+        rb.gravityScale = 0;
+        rb.AddForce(dir * moveSpeed);
     }
 
     public void Move_Attack(Vector2 dir, float moveSpeed) { // 进攻战 玩家移动
@@ -146,7 +153,11 @@ public class RoleMoveComponent {
         rb.velocity = oldVelo;
     }
 
+
+
+
     public void Move_Stop() {
+        Debug.Log("Move_Stop 将rigidbody设置为静态");
         pauseVelo = rb.velocity;
         rb.bodyType = RigidbodyType2D.Static;
     }

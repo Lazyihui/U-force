@@ -32,7 +32,7 @@ MonoBehaviour:
       isOffensiveWar: 1
       spanwBossTimer: 1
       spanwBossCount: 1
-      bossMaxWaves: 3
+      bossMaxWaves: 4
       bossCdMinion: 1
       bossSpawnMinionInterval: 1
       bossSpawnMinionIntervalTimer: 0

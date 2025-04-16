@@ -21,10 +21,12 @@ namespace UF {
         }
 
         // 进攻战
-        static void Loco_MoveOffensive(RoleEntity role, float dt) {
+        static void Loco_MoveOffensive(RoleEntity role, RoleEntity target, float dt) {
 
             var inputCom = role.InputComponent;
             var attrCom = role.AttributeComponent;
+
+            // RoleEntity onwer = role.Get_Owner();
 
             if (role.moveType == RoleMoveType.OffensiveUDRL) {
                 role.Move_Offensive(inputCom.MoveDir, attrCom.GetMoveSpeed());
@@ -34,6 +36,8 @@ namespace UF {
 
             } else if (role.moveType == RoleMoveType.Prohibit) {
                 role.Move_Stop();
+            } else if (role.moveType == RoleMoveType.MoveTarget) {
+                role.Move_Target(target.GetPos(), attrCom.GetMoveSpeed(),dt);
             }
 
 

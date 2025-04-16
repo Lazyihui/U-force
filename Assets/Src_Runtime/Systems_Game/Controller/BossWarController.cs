@@ -113,6 +113,7 @@ namespace UF {
                 RoleDomain.FSM_Casting_Execute(ctx, owner, dt);
             } else if (state == RoleFSMStatus.Dead) {
 
+
             }
 
             //   bullet
@@ -131,7 +132,6 @@ namespace UF {
             //     CaveEntity tower = towers[i];
             //     CaveDomain.FSM_All_Execute(ctx, tower, dt);
             // }
-
         }
 
         public static void LastTick(GameSystemContext ctx, float dt) {
