@@ -21,8 +21,8 @@ namespace UF {
             var playerSaveData = appUI.playerSaveData;
             playerSaveData.ClearEnemyTypeID();
             for (int i = 0; i < card.roleEnemyTMs.Count; i += 1) {
-                RoleTM roleTM = card.roleEnemyTMs[i];
-                playerSaveData.EnemyTypeIDs.Add(roleTM.typeID);
+                RoleTM enemyTM = card.roleEnemyTMs[i];
+                playerSaveData.EnemyTypeIDs.Add(enemyTM.typeID);
             }
 
             // 记录卡槽数

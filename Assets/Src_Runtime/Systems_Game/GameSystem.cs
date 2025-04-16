@@ -75,7 +75,7 @@ namespace UF {
             if (game.isDefendWar) {
                 Debug.Log("进入防守战");
                 DefendWarController.Enter(ctx, roleTypeID, typeIDsArray, sciType, tm);
-            } else if (game.isOffensiveWar) {
+            } else if (game.isBossWar) {
                 // 进攻战和防守战的Enter一样
                 BossWarController.Enter(ctx, roleTypeID, typeIDsArray, sciType, tm);
                 RoleEntity owner = ctx.Get_Owner();
@@ -142,7 +142,7 @@ namespace UF {
 
             if (game.isDefendWar) {
                 DefendWarController.PreTick(ctx, dt);
-            } else if (game.isOffensiveWar) {
+            } else if (game.isBossWar) {
                 BossWarController.PreTick(ctx, dt);
             } else if (game.isEliminateWar) {
                 EliminateWarController.PreTick(ctx, dt);
@@ -155,7 +155,7 @@ namespace UF {
 
             if (game.isDefendWar) {
                 DefendWarController.Tick(ctx, dt);
-            } else if (game.isOffensiveWar) {
+            } else if (game.isBossWar) {
                 BossWarController.Tick(ctx, dt);
             } else if (game.isEliminateWar) {
                 EliminateWarController.Tick(ctx, dt);
@@ -167,7 +167,7 @@ namespace UF {
 
             if (game.isDefendWar) {
                 DefendWarController.LastTick(ctx, dt);
-            } else if (game.isOffensiveWar) {
+            } else if (game.isBossWar) {
                 BossWarController.LastTick(ctx, dt);
             } else if (game.isEliminateWar) {
                 EliminateWarController.LastTick(ctx, dt);
@@ -197,6 +197,7 @@ namespace UF {
             }
 
             if (isGameWin) {
+                
                 var playerData = ctx.gameEntity.playerSaveData;
                 Debug.Log("游戏胜利");
                 if (owner.state == RoleState.Dead) {

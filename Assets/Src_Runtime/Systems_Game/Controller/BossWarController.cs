@@ -66,9 +66,10 @@ namespace UF {
         public static void PreTick(GameSystemContext ctx, float dt) {
             var game = ctx.gameEntity;
 
-            CaveDomain.TrySpawnBoss(ctx, dt);
-            RoleEntity owner = ctx.Get_Owner();
+            //  boss战不从cave生成怪物 因为怪物是随机生成的
+            CaveDomain.TrySpawnEnemyRandomPos(ctx, dt);
 
+            RoleEntity owner = ctx.Get_Owner();
             // 输入记录
             RoleDomain.Input_Record(ctx, owner, dt);
             // UI
@@ -124,12 +125,12 @@ namespace UF {
             }
 
             //  tower
-            int towerLen = ctx.towerRepository.TakeAll(out CaveEntity[] towers);
+            // int towerLen = ctx.towerRepository.TakeAll(out CaveEntity[] towers);
 
-            for (int i = 0; i < towerLen; i += 1) {
-                CaveEntity tower = towers[i];
-                CaveDomain.FSM_All_Execute(ctx, tower, dt);
-            }
+            // for (int i = 0; i < towerLen; i += 1) {
+            //     CaveEntity tower = towers[i];
+            //     CaveDomain.FSM_All_Execute(ctx, tower, dt);
+            // }
 
         }
 

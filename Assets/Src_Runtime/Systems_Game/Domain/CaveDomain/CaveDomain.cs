@@ -32,7 +32,8 @@ namespace UF {
             ctx.towerRepository.Clear();
         }
 
-        public static void TrySpawnMinion(GameSystemContext ctx, float dt) {
+        // 从塔里生成小怪
+        public static void TrySpawnMinionbyCave(GameSystemContext ctx, float dt) {
 
             var game = ctx.gameEntity;
             CaveEntity tower = ctx.towerRepository.GetRandom();
@@ -42,12 +43,10 @@ namespace UF {
             }
 
             game.cdEnemy -= dt;
-
             if (game.curWaves >= game.maxWaves) {
                 game.wavesProgress = 1;
                 return;
             }
-
             if (game.cdEnemy >= 0) {
                 return;
             }
@@ -74,7 +73,6 @@ namespace UF {
 
             if (game.spawnEnemyTimer <= 0) {
                 game.curWaves += 1;
-
                 game.spawnEnemyTimer = game.spawnEnemyCount;
                 game.cdEnemy = game.cdEnemyMax;
                 game.cdEnemy = game.cdEnemyMax;
@@ -82,6 +80,54 @@ namespace UF {
 
         }
 
+        // 随机位置生成小怪
+        public static void TrySpawnEnemyRandomPos(GameSystemContext ctx, float dt) {
+
+            var game = ctx.gameEntity;
+
+            game.cdEnemy -= dt;
+            if (game.curWaves >= game.maxWaves) {
+                game.wavesProgress = 1;
+                return;
+            }
+
+            if (game.cdEnemy >= 0) {
+                return;
+            }
+
+            game.spawnEnemyIntervalTimer -= dt;
+            if (game.spawnEnemyIntervalTimer < 0) {
+                ctx.towerRepository.tempTower = null;
+
+                game.spawnEnemyTimer -= 1;
+
+                // TODO:怪物类型还没有
+                var playerData = game.playerSaveData;
+                int typeID = playerData.GetRandomEnemyTypeID();
+
+                // 这里要得到坐标
+                Vector2 pos = Extension.GetSquareAnnulusRandomPos(new Vector2(0, 0), 60, 33.75f);
+                RoleDomain.SpawnByPos(ctx, typeID, pos);
+
+                Debug.Log("随机生成小怪" + typeID + " 位置" + pos);
+                
+                game.spawnEnemyIntervalTimer = game.spawnEnemyInterval;
+            } else {
+                // 进度条逻辑
+                float pro = game.progress;
+                float minionMax = game.spawnEnemyInterval;
+                float progress = pro * dt / minionMax;
+                game.wavesProgress += progress;
+            }
+
+            if (game.spawnEnemyTimer <= 0) {
+                game.curWaves += 1;
+                game.spawnEnemyTimer = game.spawnEnemyCount;
+                game.cdEnemy = game.cdEnemyMax;
+                game.cdEnemy = game.cdEnemyMax;
+            }
+
+        }
         public static void TrySpawnBoss(GameSystemContext ctx, float dt) {
             var game = ctx.gameEntity;
             var playerDate = game.playerSaveData;
