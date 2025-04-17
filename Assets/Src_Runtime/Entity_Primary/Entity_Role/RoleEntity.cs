@@ -174,6 +174,23 @@ namespace UF {
             moveComponent.Move_Random(pos, moveSpeed);
         }
 
+        public void Move_Target(Vector2 targetPos, float moveSpeed,float dt) { // 资源战目标点移动
+            var pos = GetPos();
+
+            if (targetPos == null) {
+                return;
+            }
+
+            // TODO：要改 改成用Rb来写
+            // Vector2 dir = (targetPos - pos).normalized;
+            // moveComponent.Move(dir, moveSpeed);
+            transform.position = Vector3.MoveTowards(
+                        transform.position,
+                        targetPos,
+                        moveSpeed * dt
+                    );
+        }
+
         public void Move_Stop() {
             moveComponent.Move_Stop();
         }
@@ -232,8 +249,7 @@ namespace UF {
             moveComponent.SetRbType(type);
         }
 
-        public void SetRbGravityScale (int value)
-        {
+        public void SetRbGravityScale(int value) {
             moveComponent.Set_Garvity(value);
         }
 

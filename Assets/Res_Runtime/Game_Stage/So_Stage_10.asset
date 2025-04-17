@@ -19,13 +19,12 @@ MonoBehaviour:
     - so: {fileID: 11400000, guid: d8699dbf713c3fa4fba559e682df9a00, type: 2}
       position: {x: 10, y: 0, z: 0}
       rotation: {x: -0, y: 0, z: 0}
+    stuffSpawns: []
     mapPrefab: {fileID: 7992499427466167066, guid: 62a1446a399665144b7086324a8786fe, type: 3}
     gameTM:
       isDefendWar: 0
       spawnEnemyCount: 4
       maxWaves: 4
-      curWaves: 0
-      cdEnemy: 0
       cdEnemyMax: 1
       spawnEnemyInterval: 2
       spawnEnemyIntervalTimer: 0
@@ -33,11 +32,13 @@ MonoBehaviour:
       isOffensiveWar: 1
       spanwBossTimer: 1
       spanwBossCount: 1
-      bossMaxWaves: 1
-      bossCurWaves: 0
-      bossCdMinion: 0
-      bossCd: 0
+      bossMaxWaves: 4
+      bossCdMinion: 1
       bossSpawnMinionInterval: 1
-      bossSpawnMinionIntervalTimer: 1
+      bossSpawnMinionIntervalTimer: 0
       bossProgress: 0.0625
       isEliminateWar: 0
+      gameMax: 0
+      stuffMax: 0
+      isTrainingWar: 0
+      sceneProps: []

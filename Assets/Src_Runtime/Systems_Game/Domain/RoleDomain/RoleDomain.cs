@@ -107,6 +107,27 @@ namespace UF {
             }
         }
 
+        // 角色碰到敌人扣血
+        public static void DetectionOwnerAndEnemy(GameSystemContext ctx, RoleEntity owner) {
+            int len = ctx.roleRepository.TakeAll(out RoleEntity[] enemys);
+            for (int i = 0; i < len; i++) {
+                var enemy = enemys[i];
+                if (enemy == owner) {
+                    continue;
+                }
+                float dis = Vector2.Distance(enemy.TF_GetPos(), owner.TF_GetPos());
+                if (dis < 1.5f) {
+                    var attCom = enemy.AttributeComponent;
+                    int damage = attCom.GetBaseDamage();
+                    Debug.Log("碰到敌人了" + damage);
+                    HpReduce_Role(ctx, owner, damage);
+
+                    // TODO:先这样写
+                    UnSpawn(ctx, enemy);
+                }
+            }
+        }
+
         public static void HpReduce_Minion(GameSystemContext ctx, RoleEntity role, int damage) {
 
             var attCom = role.AttributeComponent;
@@ -164,7 +185,7 @@ namespace UF {
                 if (role.roleType == RoleType.Player || role.roleType == RoleType.Core) {
                     continue;
                 }
-                
+
                 role.SetRoleState(RoleState.Fall);
                 role.Fall();
                 role.Set_RbConstraints();

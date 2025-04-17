@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 namespace UF {
-    public static class OffensiveWarController { // 进攻战
+    public static class BossWarController { // boos战
 
         public static void Enter(GameSystemContext ctx, int selectedRoleTypeID, int[] skillorTypeIDArray, int sciType, StageTM tm) {
 
@@ -66,9 +66,10 @@ namespace UF {
         public static void PreTick(GameSystemContext ctx, float dt) {
             var game = ctx.gameEntity;
 
-            CaveDomain.TrySpawnBoss(ctx, dt);
-            RoleEntity owner = ctx.Get_Owner();
+            //  boss战不从cave生成怪物 因为怪物是随机生成的
+            CaveDomain.TrySpawnEnemyRandomPos(ctx, dt);
 
+            RoleEntity owner = ctx.Get_Owner();
             // 输入记录
             RoleDomain.Input_Record(ctx, owner, dt);
             // UI
@@ -102,12 +103,16 @@ namespace UF {
                 RoleDomain.FSM_AllOffensive_Execute(ctx, role, dt);
             }
 
+            // 主角一直要执行的逻辑
+            RoleDomain.FSM_OwnerOffensive_Execute(ctx, owner, dt);
+
             // 这里是主角的逻辑
             if (state == RoleFSMStatus.Normal) {
                 RoleDomain.FSM_Normal_Execute(ctx, owner, dt);
             } else if (state == RoleFSMStatus.Casting) {
                 RoleDomain.FSM_Casting_Execute(ctx, owner, dt);
             } else if (state == RoleFSMStatus.Dead) {
+
 
             }
 
@@ -120,15 +125,13 @@ namespace UF {
                 BulletDomain.FSM_All_Execute(ctx, bullet, dt);
             }
 
-
             //  tower
-            int towerLen = ctx.towerRepository.TakeAll(out CaveEntity[] towers);
+            // int towerLen = ctx.towerRepository.TakeAll(out CaveEntity[] towers);
 
-            for (int i = 0; i < towerLen; i += 1) {
-                CaveEntity tower = towers[i];
-                CaveDomain.FSM_All_Execute(ctx, tower, dt);
-            }
-
+            // for (int i = 0; i < towerLen; i += 1) {
+            //     CaveEntity tower = towers[i];
+            //     CaveDomain.FSM_All_Execute(ctx, tower, dt);
+            // }
         }
 
         public static void LastTick(GameSystemContext ctx, float dt) {

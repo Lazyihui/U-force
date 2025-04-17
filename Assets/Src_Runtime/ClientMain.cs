@@ -48,6 +48,10 @@ namespace UF {
         static ProgramEntity programEntity;
 
         void Start() {
+
+            int a = UnityEngine.Random.Range(0, 100);
+            Debug.Log(a);
+
             // ---  UI
             appUI = GetComponentInChildren<AppUI>();
             appUI.Ctor();
@@ -615,23 +619,23 @@ namespace UF {
             Screen_Coordinate();
         }
 
-            void OnDestroy() {
-                TearDown();
-            }
+        void OnDestroy() {
+            TearDown();
+        }
 
-            void OnApplicationQuit() {
-                TearDown();
-            }
+        void OnApplicationQuit() {
+            TearDown();
+        }
 
-            void TearDown() {
-                if (isTearDown) {
-                    return;
-                }
-                isTearDown = true;
-
-                assetsModule.UnLoadAll();
-                templateModule.UnLoadAll();
+        void TearDown() {
+            if (isTearDown) {
+                return;
             }
+            isTearDown = true;
+
+            assetsModule.UnLoadAll();
+            templateModule.UnLoadAll();
+        }
 
         #region Screen Coordinate
 

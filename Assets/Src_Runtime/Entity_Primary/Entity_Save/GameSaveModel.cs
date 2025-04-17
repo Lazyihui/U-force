@@ -109,10 +109,6 @@ namespace UF {
                 stage.starCount = starCount;
                 stage.passStatus = passStatus;
                 stages[stageID] = stage;
-                Debug.Log("更新关卡星级");
-                ForEachStage((s) => {
-                    Debug.Log("关卡ID:" + s.stageID);
-                });
             } else {
                 stage = new StageInfoModel {
                     stageID = stageID,

@@ -10,6 +10,9 @@ namespace UF {
         }
 
         public static void UnSpawn(MapEntity map) {
+            if (map == null) {
+                return;
+            }
             map.TearDown();
         }
         public static void Clear(MapEntity map) {

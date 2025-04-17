@@ -165,7 +165,6 @@ namespace UF {
                             star = 0;
                             break;
                     }
-
                     ctx.appUI.HUD_Eliminate_Update(progress, game.energyNumber);
                     ctx.appUI.Panel_EliminateGameOver_Open(true, star);
 

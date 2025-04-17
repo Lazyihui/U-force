@@ -28,6 +28,7 @@ namespace UF {
         public float spawnEnemyInterval;//生成小怪的间隔
         public float spawnEnemyIntervalTimer; //生成小怪计时器
 
+        //TODO: 公式 最后得到的怪物数量
         public float progress; //每小波次进度条占比
         public float wavesProgress; //进度条数值
 
@@ -43,7 +44,7 @@ namespace UF {
         #endregion
 
         public bool isDefendWar;
-        public bool isOffensiveWar;
+        public bool isBossWar;
         public bool isEliminateWar;
 
         public GameEntity() {
@@ -90,28 +91,30 @@ namespace UF {
 
         public void InitFromTM(GameTM tm) {
             isDefendWar = tm.isDefendWar;
-            isOffensiveWar = tm.isOffensiveWar;
+            isBossWar = tm.isOffensiveWar;
             isEliminateWar = tm.isEliminateWar;
 
+            // 防守战   
             if (isDefendWar) {
                 spawnEnemyTimer = tm.spawnEnemyCount;
                 spawnEnemyCount = tm.spawnEnemyCount;
                 maxWaves = tm.maxWaves;
-                curWaves = tm.curWaves;
-                cdEnemy = tm.cdEnemy;
+                curWaves = 0;
+                cdEnemy = 0;
                 cdEnemyMax = tm.cdEnemyMax;
                 spawnEnemyInterval = tm.spawnEnemyInterval;
                 spawnEnemyIntervalTimer = tm.spawnEnemyIntervalTimer;
                 progress = tm.progress;
             }
-            if (isOffensiveWar) {
+
+            if (isBossWar) {
                 Debug.Log("进入进攻战");
                 spawnEnemyTimer = tm.spanwBossTimer;
                 spawnEnemyCount = tm.spanwBossCount;
                 maxWaves = tm.bossMaxWaves;
-                curWaves = tm.bossCurWaves;
+                curWaves = 0;
                 cdEnemy = tm.bossCdMinion;
-                cdEnemyMax = tm.bossCd;
+                cdEnemyMax = 0;
                 spawnEnemyInterval = tm.bossSpawnMinionInterval;
                 spawnEnemyIntervalTimer = tm.bossSpawnMinionIntervalTimer;
                 progress = tm.bossProgress;
