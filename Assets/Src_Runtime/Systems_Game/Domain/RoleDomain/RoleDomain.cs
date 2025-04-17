@@ -51,6 +51,7 @@ namespace UF {
             }
             inputCom.RecoredCastKey(inputModule.InputCastKey);
             inputCom.MoveDir_Set(inputModule.MoveDir);
+            inputCom.XAxis_Set(inputModule.XAxis);
         }
         #endregion
 

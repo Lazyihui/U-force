@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 namespace UF {
-    public static class OffensiveWarController { // boos战
+    public static class OffensiveWarController { // 进攻战
 
         public static void Enter(GameSystemContext ctx, int selectedRoleTypeID, int[] skillorTypeIDArray, int sciType, StageTM tm) {
 

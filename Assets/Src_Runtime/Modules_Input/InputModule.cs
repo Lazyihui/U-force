@@ -52,6 +52,9 @@ namespace UF {
         Vector2 moveDir;
         public Vector2 MoveDir => moveDir;
 
+        float xAxis;
+        public float XAxis => xAxis;
+
         // UI
         public Vector2 uiAxis;
         public bool isConfirm;
@@ -186,6 +189,10 @@ namespace UF {
             {
                 moveDir.x = world.MoveRight.ReadValue<float>() - world.MoveLeft.ReadValue<float>();
                 moveDir.y = world.MoveUp.ReadValue<float>() - world.MoveDown.ReadValue<float>();
+
+                if (moveDir.x > 0 || moveDir.x < 0) {
+                    xAxis = moveDir.x;
+                }
             }
             #endregion
 
