@@ -124,6 +124,15 @@ namespace UF {
                     spawnTM.spawnPos.position = GetNearestEnemyPosition(ctx, role);
                 }
                 BulletEntity bullet = BulletDomain.SpawnByRole_Spawner(ctx, role, spawnTM);
+
+                if (ctx.gameEntity.isBossWar) {
+                    if (role.InputComponent.XAxis > 0) {
+                        bullet.Set_MoveType(BulletMoveType.Shaped);
+                    } else {
+                        bullet.Set_MoveType(BulletMoveType.ToLeft);
+                    }
+                }
+
                 // 记录一共发射了多少次
                 ctx.gameEntity.playerSaveData.shootTimes += 1;
                 ctx.gameEntity.playerSaveData.eliShootTimes += 1;
