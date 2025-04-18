@@ -24,6 +24,11 @@ namespace UF {
         public Vector2 MoveDir => moveDir;
         public void MoveDir_Set(Vector2 value) => moveDir = value;
 
+        // 进攻战朝向
+        float xAxis;
+        public float XAxis => xAxis;
+        public void XAxis_Set(float value) => xAxis = value;
+
         // 训练营
         bool isPlayer1Jump;
         public bool IsPlayer1Jump => isPlayer1Jump;

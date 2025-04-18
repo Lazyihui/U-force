@@ -453,9 +453,6 @@ namespace UF.UIApplication {
 
         int CheckSelectedBtn(Button newBtn) { // 1 分类, 2 OneCard
             if (newBtn == null) { return -1; }
-            if (!newBtn.IsInteractable() && newBtn != selectedLeftBtn) {
-                if (newBtn != selectedRightBtn) { return -1; }
-            }
 
             if (newBtn == btn_SelectHero) { return 1; }
             if (newBtn == btn_SelectAgr) { return 1; }
@@ -464,6 +461,10 @@ namespace UF.UIApplication {
 
             var newOneCard = newBtn.GetComponent<Panel_OneCardSelection>();
             if (newOneCard != null) { return 2; }
+
+            if (!newBtn.IsInteractable() && newBtn != selectedLeftBtn) {
+                if (newBtn != selectedRightBtn) { return -1; }
+            }
 
             return -1;
         }
