@@ -103,6 +103,7 @@ namespace UF {
             attributeComponent = new RoleAttributeComponent();
             featureComponent = new RoleFeatureComponent();
             moveComponent.Inject(rb);
+            moveComponent.Ctor();
         }
 
         public void TearDown() {
@@ -160,8 +161,17 @@ namespace UF {
             }
         }
 
-        public void Move_Offensive(Vector2 dir, float moveSpeed) {
+        public void Move_Offensive(Vector2 dir, float moveSpeed, float dt) {
             moveComponent.Move_Attack(dir, moveSpeed);
+            // rb.gravityScale = 0;
+            // rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            // // 移动Transform
+            // transform.position = Vector3.MoveTowards(
+            //             transform.position,
+            //             transform.position + (Vector3)dir,
+            //             moveSpeed * dt
+            //         );
+
         }
 
         public void Move_Regular(float moveSpeed) { // 资源战动态障碍-固定

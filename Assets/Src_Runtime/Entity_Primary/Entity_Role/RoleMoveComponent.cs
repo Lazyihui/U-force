@@ -33,14 +33,20 @@ public class RoleMoveComponent {
 
     public RoleMoveComponent() {
         isGround = false;
-
         pos1 = new Vector2(9, 9);
         pos2 = new Vector2(0, 0);
         pos3 = new Vector2(9, -9);
         posArr = new Vector2[] { pos1, pos2, pos3 };
         index = 0;
-
         isMoveToPoint = false;
+    }
+
+    public void Ctor() {
+        // 
+        rb.interpolation = (RigidbodyInterpolation2D)RigidbodyInterpolation.Interpolate;
+        rb.collisionDetectionMode = (CollisionDetectionMode2D)CollisionDetectionMode.ContinuousDynamic;
+        rb.gravityScale = 0;
+
     }
 
     public void Set_PlayerRbConstraints() {
@@ -67,8 +73,8 @@ public class RoleMoveComponent {
         isGround = false;
     }
 
+    // 直线运动
     public void Move_Ghost(float moveSpeed) {
-        rb.gravityScale = 0;
 
         const float xAxis = -1;
 
@@ -79,11 +85,11 @@ public class RoleMoveComponent {
     }
 
     public void Move(Vector2 dir, float moveSpeed) {
-        rb.gravityScale = 0;
         rb.AddForce(dir * moveSpeed);
     }
 
-    public void Move_Attack(Vector2 dir, float moveSpeed) { // 进攻战 玩家移动
+    // 进攻战 玩家移动
+    public void Move_Attack(Vector2 dir, float moveSpeed) {
         Vector2 mapMinBounds = new Vector2(-29, -15);
         Vector2 mapMaxBounds = new Vector2(29, 15);
 
@@ -91,7 +97,7 @@ public class RoleMoveComponent {
         oldVelo = dir * moveSpeed;
         rb.velocity = oldVelo;
 
-        rb.gravityScale = 0;
+        // TODO:这一行要像一下优化 别放这里
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         // 边界限制

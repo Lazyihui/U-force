@@ -29,7 +29,7 @@ namespace UF {
             // RoleEntity onwer = role.Get_Owner();
 
             if (role.moveType == RoleMoveType.OffensiveUDRL) {
-                role.Move_Offensive(inputCom.MoveDir, attrCom.GetMoveSpeed());
+                role.Move_Offensive(inputCom.MoveDir, attrCom.GetMoveSpeed(), dt);
             } else if (role.moveType == RoleMoveType.Ghost) {
 
             } else if (role.moveType == RoleMoveType.PlayerUpDown) {
@@ -37,7 +37,7 @@ namespace UF {
             } else if (role.moveType == RoleMoveType.Prohibit) {
                 role.Move_Stop();
             } else if (role.moveType == RoleMoveType.MoveTarget) {
-                role.Move_Target(target.GetPos(), attrCom.GetMoveSpeed(),dt);
+                role.Move_Target(target.GetPos(), attrCom.GetMoveSpeed(), dt);
             }
 
 
