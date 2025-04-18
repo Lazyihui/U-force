@@ -9,6 +9,13 @@ namespace UF {
 
         public static RoleEntity SpawnByTypeID(GameSystemContext ctx, int typeID) {
             RoleEntity role = GameFactory.Role_Create(ctx.assetsModule, ctx.templateCore, ctx.idService, typeID);
+
+            // Boss战玩家血量固定为3
+            var game = ctx.gameEntity;
+            if (game.isBossWar) {
+                role.BossWarPlayer();
+            }
+
             ctx.roleRepository.Add(role);
             return role;
         }

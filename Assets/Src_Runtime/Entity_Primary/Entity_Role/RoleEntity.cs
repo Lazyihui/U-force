@@ -174,7 +174,7 @@ namespace UF {
             moveComponent.Move_Random(pos, moveSpeed);
         }
 
-        public void Move_Target(Vector2 targetPos, float moveSpeed,float dt) { // 资源战目标点移动
+        public void Move_Target(Vector2 targetPos, float moveSpeed, float dt) { // 资源战目标点移动
             var pos = GetPos();
 
             if (targetPos == null) {
@@ -320,6 +320,13 @@ namespace UF {
                 minY = pos.y;
             }
             return minY;
+        }
+
+        public void BossWarPlayer() {
+            if (roleType == RoleType.Player) {
+                Attr_HpMax_Set(3);
+                Attr_Hp_Set(3);
+            }
         }
     }
 }
