@@ -68,8 +68,9 @@ namespace UF {
 
                 var minionPos = minion.TF_GetPos();
                 float homeX = -12; // 基地的x坐标
-                // TODO:可能要改成用 collider   
 
+                // TODO:可能要改成用 collider   
+                                
                 // 近基地死亡
                 if (minionPos.x <= homeX) {
                     if (minion.state == RoleState.Dead || minion.state == RoleState.Fall) {
