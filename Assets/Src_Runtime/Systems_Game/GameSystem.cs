@@ -22,17 +22,19 @@ namespace UF {
 
         public void Exit() {
             ctx.isRunning = false;
+            ctx.moduleCamera.ResetCamera();
         }
 
         public void Continue() {
             ctx.isRunning = true;
-
             ctx.audioModule.ContinueMusic();
         }
 
         // 清除游戏信息
         public void ClearGame() {
             var appUI = ctx.appUI;
+            ctx.moduleCamera.ResetCamera();
+
 
             BulletDomain.Clear(ctx);
             RoleDomain.Clear(ctx);

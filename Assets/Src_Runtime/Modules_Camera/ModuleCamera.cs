@@ -23,6 +23,10 @@ namespace UF {
             mapMaxBounds = new Vector2(30, 16.875f);
         }
 
+        public void ResetCamera() {
+            cam.transform.position = new Vector3(0, 0, -10);
+        }
+
         public void Inject(Camera camera) {
             this.cam = camera;
 
@@ -47,5 +51,6 @@ namespace UF {
             Vector3 smoothedPosition = Vector3.Lerp(cam.transform.position, desiredPosition, smoothSpeed);
             cam.transform.position = smoothedPosition;
         }
+
     }
 }
