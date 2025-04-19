@@ -127,7 +127,6 @@ namespace UF {
                 if (dis < 1.5f) {
                     var attCom = enemy.AttributeComponent;
                     int damage = attCom.GetBaseDamage();
-                    Debug.Log("碰到敌人了" + damage);
                     HpReduce_Role(ctx, owner, damage);
 
                     // TODO:先这样写
