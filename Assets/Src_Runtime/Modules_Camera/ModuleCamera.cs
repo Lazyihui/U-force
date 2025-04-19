@@ -10,14 +10,14 @@ namespace UF {
         public Vector2 mapMinBounds; // 地图的最小边界（左下角）
         public Vector2 mapMaxBounds; // 地图的最大边界（右上角）
 
-        public float smoothSpeed = 0.125f; // 相机跟随的平滑速度
+        // public float smoothSpeed = 0.125f; // 相机跟随的平滑速度
         public Vector3 offset; // 相机与目标的偏移量
 
         float halfCameraWidth;//相机视口的一半宽度 
         float halfCameraHeight;//相机视口的一半高度 
 
         public ModuleCamera() {
-            offset = new Vector3(15, 0, -10);
+            offset = new Vector3(0, 0, -10);
 
             mapMinBounds = new Vector2(-30, -16.875f);
             mapMaxBounds = new Vector2(30, 16.875f);
@@ -48,8 +48,8 @@ namespace UF {
             desiredPosition.y = Mathf.Clamp(desiredPosition.y, mapMinBounds.y + halfCameraHeight, mapMaxBounds.y - halfCameraHeight);
 
             // 平滑移动相机
-            Vector3 smoothedPosition = Vector3.Lerp(cam.transform.position, desiredPosition, smoothSpeed);
-            cam.transform.position = smoothedPosition;
+            // Vector3 smoothedPosition = Vector3.Lerp(cam.transform.position, desiredPosition, smoothSpeed);
+            cam.transform.position = desiredPosition;
         }
 
     }
