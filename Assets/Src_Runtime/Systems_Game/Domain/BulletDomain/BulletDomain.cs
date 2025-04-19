@@ -76,8 +76,15 @@ namespace UF {
         #region detection检测
         public static void CheckUnSpawn(GameSystemContext ctx, BulletEntity bullet, float dt) {
             Vector3 pos = bullet.TF_GetPos();
-            if (pos.x < -21 || pos.x > 21) {
-                UnSpawn(ctx, bullet);
+            var game = ctx.gameEntity;
+            if (game.isBossWar) {
+                if (pos.x < -35 || pos.x > 35 || pos.y < -20 || pos.y > 20) {
+                    UnSpawn(ctx, bullet);
+                }
+            } else {
+                if (pos.x < -21 || pos.x > 21) {
+                    UnSpawn(ctx, bullet);
+                }
             }
 
             if (bullet.isStartBoomDamege || bullet.isStartContinueDamege) {
