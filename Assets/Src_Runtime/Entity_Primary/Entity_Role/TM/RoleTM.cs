@@ -29,14 +29,8 @@ namespace UF {
         public FeatureType featureType;
         [ShowIf(nameof(featureType), FeatureType.Accelerate)] public float accelerateTimer;
 
-
         [Title("sprite")]
         public Sprite sprite;
-
-        [Title("detail")]
-        public string feature; // 特征 / 介绍
-        public string skill; // 技能
-        public string restraint; // 相克武器
 
         [Title("Eliminate")]
         public bool isEliminateRole;
@@ -44,5 +38,10 @@ namespace UF {
         [Title("Train")]
         public bool isTrainAI;
         [ShowIf(nameof(isTrainAI))] public float AIDeviation; // AI偏差, 越小精度越高
+
+        [Title("detail")]
+        public string feature; // 特征 / 介绍
+        public string skill; // 技能
+        public string restraint; // 相克武器
     }
 }

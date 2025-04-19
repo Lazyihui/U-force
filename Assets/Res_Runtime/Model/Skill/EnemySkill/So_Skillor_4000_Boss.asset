@@ -16,7 +16,49 @@ MonoBehaviour:
     typeID: 4000
     typeName: Boss
     castKeys: 0
-    cd: 0
-    restUseTimes: 0
-    maxUseTimes: 0
-    actionTMs: []
+    cd: 2
+    restUseTimes: 1000
+    maxUseTimes: 1000
+    actionTMs:
+    - loopTM:
+        loopFlag: 0
+        maintainFrame: 0
+        triggerIntervalSec: 0
+        triggerTimesMax: 0
+      hasMove: 0
+      moveTM:
+        moveOffset: {x: 0, y: 0}
+        moveSpeed: 0
+      hasRoleBehaviour: 1
+      roleBehaviourTM:
+        belongWho:
+          value: 0
+          entityType: 0
+          entityID: 0
+        belongMap:
+          value: 0
+          entityType: 0
+          entityID: 0
+        isMoveTo: 0
+        isJump: 0
+        isRestoreSkillTimes: 0
+        isSpawnBullet: 0
+        bulletSpawnerTM:
+          bulletSo: {fileID: 0}
+          spawnPos: {fileID: 0}
+          spawnDir: {fileID: 0}
+        hasBulletTearDown: 1
+        tearDownBullets:
+        - {fileID: 11400000, guid: 669613ee5e0852b4c8d81f6ff150c760, type: 2}
+        isRestoreHp: 0
+        restoreHp: 0
+        isRestoreMp: 0
+        restoreMp: 0
+        isAttachBuff: 0
+      hasWorldBehaviour: 0
+      worldBehaviourTM:
+        isSpawnStuff: 0
+        stuffSo: {fileID: 0}
+        isSpawnBullet: 0
+        bulletSo: {fileID: 0}
+        isHaveCentred: 0

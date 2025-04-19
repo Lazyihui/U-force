@@ -6,7 +6,6 @@ namespace UF {
 
     public static partial class RoleDomain {
 
-
         #region Skill Cast
 
         public static void Skillor_Input_FlushKeys(GameSystemContext ctx, RoleEntity role, float dt) {

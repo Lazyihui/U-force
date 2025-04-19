@@ -84,10 +84,6 @@ public class RoleMoveComponent {
         rb.velocity = oldVelo;
     }
 
-    public void Move(Vector2 dir, float moveSpeed) {
-        rb.AddForce(dir * moveSpeed);
-    }
-
     // 进攻战 玩家移动
     public void Move_Attack(Vector2 dir, float moveSpeed) {
         Vector2 mapMinBounds = new Vector2(-29, -15);
@@ -153,7 +149,6 @@ public class RoleMoveComponent {
         }
 
         Vector2 dir = (point - pos).normalized;
-
         Vector2 oldVelo = rb.velocity;
         oldVelo = dir * moveSpeed;
         rb.velocity = oldVelo;
