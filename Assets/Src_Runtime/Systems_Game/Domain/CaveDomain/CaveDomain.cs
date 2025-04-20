@@ -104,14 +104,11 @@ namespace UF {
                 // TODO:怪物类型还没有
                 var playerData = game.playerSaveData;
                 int typeID = playerData.GetRandomEnemyTypeID();
-                Debug.Log("随机生成小怪" + typeID);
 
                 // 这里要得到坐标
                 Vector2 pos = Extension.GetSquareAnnulusRandomPos(new Vector2(0, 0), 60, 33.75f);
                 RoleDomain.SpawnByPos(ctx, typeID, pos);
 
-                Debug.Log("随机生成小怪" + typeID + " 位置" + pos);
-                
                 game.spawnEnemyIntervalTimer = game.spawnEnemyInterval;
             } else {
                 // 进度条逻辑

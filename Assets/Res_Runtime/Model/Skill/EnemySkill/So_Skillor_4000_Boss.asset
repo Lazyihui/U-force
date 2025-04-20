@@ -29,7 +29,7 @@ MonoBehaviour:
       moveTM:
         moveOffset: {x: 0, y: 0}
         moveSpeed: 0
-      hasRoleBehaviour: 1
+      hasRoleBehaviour: 0
       roleBehaviourTM:
         belongWho:
           value: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
           bulletSo: {fileID: 0}
           spawnPos: {fileID: 0}
           spawnDir: {fileID: 0}
-        hasBulletTearDown: 1
+        hasBulletTearDown: 0
         tearDownBullets:
         - {fileID: 11400000, guid: 669613ee5e0852b4c8d81f6ff150c760, type: 2}
         isRestoreHp: 0
@@ -55,10 +55,10 @@ MonoBehaviour:
         isRestoreMp: 0
         restoreMp: 0
         isAttachBuff: 0
-      hasWorldBehaviour: 0
+      hasWorldBehaviour: 1
       worldBehaviourTM:
         isSpawnStuff: 0
         stuffSo: {fileID: 0}
-        isSpawnBullet: 0
-        bulletSo: {fileID: 0}
+        isSpawnBullet: 1
+        bulletSo: {fileID: 11400000, guid: 1f9f04a0b7506374fa68a2662473a266, type: 2}
         isHaveCentred: 0

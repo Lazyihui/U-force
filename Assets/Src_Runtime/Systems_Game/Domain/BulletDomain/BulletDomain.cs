@@ -90,13 +90,17 @@ namespace UF {
             if (bullet.isStartBoomDamege || bullet.isStartContinueDamege) {
                 return;
             }
-            detectionMinionByPos(ctx, bullet, pos, 1);
+            // 检测到敌人
+
+            // TODO:这里要分开 Enemy和Player
+            // detectionMinionByPos(ctx, bullet, pos, 1);
             DetectionStuffByPos(ctx, bullet, pos);
         }
 
         static void detectionMinionByPos(GameSystemContext ctx, BulletEntity bullet, Vector3 pos, float range) {
             var game = ctx.gameEntity;
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] minions);
+            Debug.Log("detectionMinionByPos len:" + len);
             for (int i = 0; i < len; i += 1) {
                 RoleEntity minion = minions[i];
                 if (minion.roleType == RoleType.Player) {
@@ -115,7 +119,9 @@ namespace UF {
                         }
                     }
 
-                    if (minion.isHit && !game.isEliminateWar) { continue; }
+                    if (minion.isHit && !game.isEliminateWar) {
+                        continue;
+                    }
                     bullet.touchRoleIDSig = minion.idSig;
                     RoleDomain.HpReduce_Minion(ctx, minion, bullet.damage);
                     minion.isHit = true;
@@ -125,7 +131,9 @@ namespace UF {
                         UnSpawn(ctx, bullet, minion);
                     }
 
-                    if (bullet.isHit) { continue; }
+                    if (bullet.isHit) {
+                        continue;
+                    }
                     Bullet_HitRole(bullet.frames[bullet.frameIndex]);
                     var playerData = ctx.gameEntity.playerSaveData;
                     playerData.HitTimes += 1;

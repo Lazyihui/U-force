@@ -8,8 +8,10 @@ namespace UF {
 
         // 技能施放 role的技能施放在任何时候都要运行
         public static void FSM_Normal_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
-            // Skill Cast
+            // owner的施法
             Skillor_Input_FlushKeys(ctx, role, dt);
+
+
         }
 
         // 施法状态下的逻辑
@@ -23,7 +25,7 @@ namespace UF {
             var game = ctx.gameEntity;
 
             // 任何状态都运行的逻辑
-            LocoDefendAndOffensive_Execute(ctx, role, dt);
+            LocoDefendAndBossWar_Execute(ctx, role, dt);
 
             // skill
             int skillLen = role.skillorSlotComponent.TakeAll(out var skills);
@@ -59,11 +61,10 @@ namespace UF {
         static void FSM_Casting_Enter(GameSystemContext ctx, RoleEntity role, SkillModel skillor, float dt) {
             // 进入刷新状态
             skillor.Reset();
-
             // 完成
             var fsm = role.FSMComponent;
             fsm.Casting_Enter(skillor);
-
+            Debug.Log("进入施法状态" + skillor.name);
         }
 
         static void FSM_Normal_Enter(GameSystemContext ctx, RoleEntity role, float dt) {
@@ -160,6 +161,51 @@ namespace UF {
             }
 
             Skillor_Input_FlushKeys(ctx, role, dt);
+
+
+            var action = frames[stateModel.frameIndex];
+            // RoleDomain.Skillor_Act_Move(ctx, role, skillor, action, dt);
+
+            action.loopModel.Tick(dt, out bool istrigger, out bool isNextFrame);
+
+            if (istrigger) {
+                RoleDomain.Skillor_Act_Acting(ctx, role, stateModel, action, dt);
+            }
+
+            if (isNextFrame) {
+                actionIndex += 1;
+                if (actionIndex >= frames.Length) {
+                    // var nextFrame = frames[actionIndex];
+                    // RoleDomain.Skillor_Act_BeforeActing(ctx, role, stateModel, nextFrame, dt);// 重置
+                    FSM_Casting_Exit(ctx, role, dt);
+                }
+            }
+        }
+
+        public static void FSM_Casting_Cd_Execute(GameSystemContext ctx, RoleEntity role, RoleCastingStateModel stateModel, float dt) {
+            var skillor = stateModel.skillor;
+
+            if (skillor == null) {
+                Debug.Log("FSM_Casting_Hand_Execute skillor == null");
+                return;
+            }
+
+            if (stateModel.isEntering) {
+                stateModel.isEntering = false;
+            }
+
+            var frames = skillor.frames;
+            ref int actionIndex = ref stateModel.frameIndex;
+            if (actionIndex >= frames.Length) {
+                var handStateModel = role.FSMComponent.CastingStateModel;
+                if (handStateModel.skillor == null) {
+                    FSM_Casting_Exit(ctx, role, dt);
+                }
+                stateModel.skillor = null;
+                return;
+            }
+
+            Skillor_Cd(ctx, role, dt);
 
             var action = frames[stateModel.frameIndex];
             // RoleDomain.Skillor_Act_Move(ctx, role, skillor, action, dt);

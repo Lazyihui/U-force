@@ -7,10 +7,27 @@ namespace UF {
     public static partial class RoleDomain {
 
         #region Skill Cast
+        // 主角施法
         public static void Skillor_Input_FlushKeys(GameSystemContext ctx, RoleEntity role, float dt) {
+            // 技能施放 
             SkillModel skill = role.Skill_GetByInput();
             if (skill != null) {
                 bool succ = Skillor_Cast(ctx, role, skill, dt);
+                if (succ) {
+                    // 施法成功
+                    Debug.Log("施法成功");
+                } else {
+                    // 施法失败
+                    Debug.Log("施法失败");
+                }
+            }
+        }
+        // enemy施法
+        public static void Skillor_Cd(GameSystemContext ctx, RoleEntity enemy, float dt) {
+            // 技能施放 
+            SkillModel skill = enemy.Skill_GetByOneself();
+            if (skill != null) {
+                bool succ = Skillor_Cast(ctx, enemy, skill, dt);
             }
         }
 
@@ -43,7 +60,6 @@ namespace UF {
             // Remove Maintain Buff
             FSM_Casting_Enter(ctx, role, skill, dt);
             return true;
-
         }
 
         static bool Skillor_AllowCast(GameSystemContext ctx, RoleEntity role, SkillModel skillor, float dt) {
@@ -61,9 +77,11 @@ namespace UF {
             }
 
             if (skillor.cd > 0) {
+                // Debug.Log("Skillor_AllowCast skillor.cd > 0"+skillor.cd);
                 FSM_Casting_Exit(ctx, role, dt);
                 return false;
             }
+
             return true;
         }
 
@@ -159,13 +177,22 @@ namespace UF {
             if (model.isSpawnBullet) {
                 Debug.LogWarning("RoleDomain.SpawnBullet生成子弹");
                 // SpawnBullet
+                BulletEntity bullet = null;
+                Vector3 pos = Vector3.zero;
+                // 这里是否生成4固定点爆炸的子弹
                 if (model.bulletSo.tm.isFixedBoomPoint) {
                     for (int i = 0; i < 4; i++) {
                         // 得到随机的坐标
-                        Vector3 pos = new Vector3(UnityEngine.Random.Range(-7, 6), UnityEngine.Random.Range(12, -4), 0);
-                        BulletEntity bullet = BulletDomain.SpawnByPos(ctx, model.bulletSo.tm.typeID, pos, new Vector3(0, 0, 0));
+                        pos = new Vector3(UnityEngine.Random.Range(-7, 6), UnityEngine.Random.Range(12, -4), 0);
+                        bullet = BulletDomain.SpawnByPos(ctx, model.bulletSo.tm.typeID, pos, new Vector3(0, 0, 0));
                     }
+                    return;
                 }
+
+                // 这里是生成子弹
+                pos = role.GetMuzzlePos();
+                bullet = BulletDomain.SpawnByPos(ctx, model.bulletSo.tm.typeID, pos, new Vector3(0, 0, 0));
+
             }
 
             if (model.isHaveCentred) {

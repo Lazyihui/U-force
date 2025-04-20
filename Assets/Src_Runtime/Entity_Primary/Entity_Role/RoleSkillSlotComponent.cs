@@ -36,6 +36,18 @@ namespace UF {
             orderByInputTypeList.Add(skillor);
         }
 
+        // 获取技能槽中第一个技能
+        public SkillModel GetSkillModel() {
+            if (all.Count == 0) {
+                return null;
+            }
+            foreach (var skill in all.Values) {
+                currentSkill = skill;
+                return skill;
+            }
+            return null;
+        }
+
         SkillModel[] temp;
         public int TakeAll(out SkillModel[] result) {
             if (all.Count > temp.Length) {

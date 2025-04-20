@@ -82,7 +82,7 @@ namespace UF {
             ctx.appUI.Panel_Eliminate_Button_Open();
 
             // Player
-            RoleDomain.LocoDefendAndOffensive_Execute(ctx, owner, dt);
+            RoleDomain.LocoDefendAndBossWar_Execute(ctx, owner, dt);
             RoleDomain.FSM_All_Execute(ctx, owner, dt);
             var fsm = owner.FSMComponent;
             var state = fsm.Status;

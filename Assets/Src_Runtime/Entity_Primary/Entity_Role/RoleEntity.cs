@@ -312,6 +312,13 @@ namespace UF {
             return result;
         }
 
+        // 从自己身上获取技能 敌人
+        public SkillModel Skill_GetByOneself() {
+            var skillor = skillorSlotComponent;
+            SkillModel result = skillor.GetSkillModel();
+            return result;
+        }
+
         #region Feature
 
         public void Set_SpriteAppear() {
