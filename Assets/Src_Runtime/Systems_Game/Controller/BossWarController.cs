@@ -100,21 +100,33 @@ namespace UF {
             for (int i = 0; i < len; i += 1) {
                 RoleEntity role = roles[i];
                 // 这里是player和Minion的逻辑
-                RoleDomain.FSM_AllOffensive_Execute(ctx, role, dt);
+                RoleDomain.FSM_AllBossWar_Execute(ctx, role, dt);
+
+                var roleFSMStatus = role.FSMComponent.Status;
+
+                if (roleFSMStatus == RoleFSMStatus.Dead) {
+                    
+                } else if (roleFSMStatus == RoleFSMStatus.Normal) {
+                    // 正常状态的逻辑
+                    RoleDomain.FSM_Normal_Execute(ctx, role, dt);
+                } else if (roleFSMStatus == RoleFSMStatus.Casting) {
+                    // 施法状态的逻辑
+                    RoleDomain.FSM_Casting_Execute(ctx, role, dt);
+                }
+
             }
 
             // 主角一直要执行的逻辑
-            RoleDomain.FSM_OwnerOffensive_Execute(ctx, owner, dt);
+            RoleDomain.FSM_OwnerBossWar_Execute(ctx, owner, dt);
 
-            // 这里是主角的逻辑
-            if (state == RoleFSMStatus.Normal) {
-                RoleDomain.FSM_Normal_Execute(ctx, owner, dt);
-            } else if (state == RoleFSMStatus.Casting) {
-                RoleDomain.FSM_Casting_Execute(ctx, owner, dt);
-            } else if (state == RoleFSMStatus.Dead) {
+            // // 这里是主角的逻辑 这里是主角施法的逻辑 （）
+            // if (state == RoleFSMStatus.Normal) {
+            //     RoleDomain.FSM_Normal_Execute(ctx, owner, dt);
+            // } else if (state == RoleFSMStatus.Casting) {
+            //     RoleDomain.FSM_Casting_Execute(ctx, owner, dt);
+            // } else if (state == RoleFSMStatus.Dead) {
 
-
-            }
+            // }
 
             //   bullet
             int bulletLen = ctx.bulletRepository.TakeAll(out BulletEntity[] bullets);

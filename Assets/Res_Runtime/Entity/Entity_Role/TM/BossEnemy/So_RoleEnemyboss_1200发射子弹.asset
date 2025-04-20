@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1d72292fc95d6e41aba9cebe752d514, type: 3}
-  m_Name: "So_RoleEnemyboss_1200\u53D1\u5C04\u5B50\u5F39"
+  m_Name: "So_RoleEnemyBoss_1200\u53D1\u5C04\u5B50\u5F39"
   m_EditorClassIdentifier: 
   tm:
     typeName: 1200
@@ -19,20 +19,20 @@ MonoBehaviour:
     roleState: 1
     typeID: 1200
     isMale: 0
-    hp: 1
+    hp: 3
     moveSpeed: 5
     jumpForce: 0
     baseDamage: 1
-    fallDamage: 0
+    fallDamage: 1
     skillorSoArray:
     - {fileID: 11400000, guid: ec3dc63f87f878647a0ebcf044c8c032, type: 2}
     modPrefab: {fileID: 1504114801914746611, guid: 45a6abddd24423e4684de69cdafe10f0, type: 3}
-    featureType: 3
+    featureType: 0
     accelerateTimer: 0
     sprite: {fileID: 21300000, guid: 118bd6908eed6c84c95beca73b986fe4, type: 3}
     isEliminateRole: 0
     isTrainAI: 0
     AIDeviation: 0
-    feature: "\u8DDF\u8E2A"
+    feature: 
     skill: 
     restraint: 

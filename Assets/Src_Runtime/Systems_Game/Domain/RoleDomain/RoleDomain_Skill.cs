@@ -7,7 +7,6 @@ namespace UF {
     public static partial class RoleDomain {
 
         #region Skill Cast
-
         public static void Skillor_Input_FlushKeys(GameSystemContext ctx, RoleEntity role, float dt) {
             SkillModel skill = role.Skill_GetByInput();
             if (skill != null) {
@@ -15,6 +14,7 @@ namespace UF {
             }
         }
 
+        // 技能施放
         public static bool Skillor_Cast(GameSystemContext ctx, RoleEntity role, SkillModel skill, float dt) {
             if (skill == null) {
                 Debug.Log("Skillor_Cast skill == null");

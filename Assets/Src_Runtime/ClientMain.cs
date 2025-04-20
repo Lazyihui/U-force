@@ -170,6 +170,10 @@ namespace UF {
             loginEvent.OnStageClickHandle += (stageID) => {
                 appUI.Panel_StageSelection_Close();
                 appUI.playerSaveData.SetStageCurID(stageID);
+                Debug.Assert(stageID != -1, "stageID == -1");
+                Debug.Assert(appUI.playerSaveData.stageCurID != -1, "stageID == -1");
+                Debug.Log("stageID:" + stageID);
+                Debug.Assert(assetsModule != null, "assetsModule == null");
                 UIDomain.Panel_CardSelection_Open(appUI, assetsModule, templateModule);
             };
 

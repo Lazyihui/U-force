@@ -6,17 +6,19 @@ using UnityEngine;
 namespace UF {
     public static partial class RoleDomain {
 
-        #region  防守战
+        // 技能施放 role的技能施放在任何时候都要运行
         public static void FSM_Normal_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
             // Skill Cast
             Skillor_Input_FlushKeys(ctx, role, dt);
         }
 
+        // 施法状态下的逻辑
         public static void FSM_Casting_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
             var fsm = role.FSMComponent;
             FSM_Casting_Hand_Execute(ctx, role, fsm.CastingStateModel, dt);
         }
 
+        #region  防守战
         public static void FSM_All_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
             var game = ctx.gameEntity;
 
@@ -62,7 +64,6 @@ namespace UF {
             var fsm = role.FSMComponent;
             fsm.Casting_Enter(skillor);
 
-
         }
 
         static void FSM_Normal_Enter(GameSystemContext ctx, RoleEntity role, float dt) {
@@ -81,10 +82,9 @@ namespace UF {
         }
         #endregion
 
+        #region Boss战
 
-        #region 进攻战
-
-        public static void FSM_AllOffensive_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
+        public static void FSM_AllBossWar_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
             var game = ctx.gameEntity;
             // 任何状态都运行的逻辑 所有角色的移动逻辑
             RoleEntity owner = ctx.Get_Owner();
@@ -94,7 +94,7 @@ namespace UF {
             RoleDomain.DetectionOwnerAndEnemy(ctx, owner);
         }
 
-        public static void FSM_OwnerOffensive_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
+        public static void FSM_OwnerBossWar_Execute(GameSystemContext ctx, RoleEntity role, float dt) {
             // 任何状态主角都要运行的逻辑
 
             int skillLen = role.skillorSlotComponent.TakeAll(out var skills);

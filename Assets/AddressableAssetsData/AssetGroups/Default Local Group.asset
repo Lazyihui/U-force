@@ -35,17 +35,17 @@ MonoBehaviour:
     m_SerializedLabels:
     - So_Role
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3c82b1367943c2d40b5b2599e183dd79
-    m_Address: "So_RoleEnemyboss_1000\u53D1\u5C04\u5B50\u5F39"
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - So_Role
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ec3dc63f87f878647a0ebcf044c8c032
     m_Address: Assets/Res_Runtime/Model/Skill/EnemySkill/So_Skillor_4000_Boss.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7e771e6e625f1d4b9cfea91a7b59311
+    m_Address: "Assets/Res_Runtime/Entity/Entity_Role/TM/BossEnemy/So_RoleEnemyBoss_1200\u53D1\u5C04\u5B50\u5F39.asset"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Role
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 4b47acea7a70a444998ddd6e6fd8b9bf, type: 2}
