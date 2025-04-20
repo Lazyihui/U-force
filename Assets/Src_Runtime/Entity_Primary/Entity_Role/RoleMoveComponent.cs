@@ -64,8 +64,6 @@ public class RoleMoveComponent {
     }
 
     public void Move_Player(float moveSpeed) {
-        rb.gravityScale = 0;
-
         Vector2 oldVelo = rb.velocity;
         oldVelo.y = moveSpeed;
         rb.velocity = oldVelo;
@@ -87,7 +85,6 @@ public class RoleMoveComponent {
 
     // 进攻战 玩家移动
     public void Move_Attack(Vector2 dir, float moveSpeed) {
-        rb.gravityScale = 0;
 
         Vector2 mapMinBounds = new Vector2(-29, -15);
         Vector2 mapMaxBounds = new Vector2(29, 15);
@@ -97,6 +94,7 @@ public class RoleMoveComponent {
         rb.velocity = oldVelo;
 
         // TODO:这一行要像一下优化 别放这里
+        rb.gravityScale = 0;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         // 边界限制
