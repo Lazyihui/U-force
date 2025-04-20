@@ -33,8 +33,8 @@ MonoBehaviour:
       spanwBossTimer: 1
       spanwBossCount: 4
       bossMaxWaves: 4
-      bossCdMinion: 1
-      bossSpawnMinionInterval: 1
+      bossCdMinion: 2
+      bossSpawnMinionInterval: 2
       bossSpawnMinionIntervalTimer: 0
       bossProgress: 0.0625
       isEliminateWar: 0

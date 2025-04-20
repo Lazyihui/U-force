@@ -45,8 +45,6 @@ public class RoleMoveComponent {
         // 
         rb.interpolation = (RigidbodyInterpolation2D)RigidbodyInterpolation.Interpolate;
         rb.collisionDetectionMode = (CollisionDetectionMode2D)CollisionDetectionMode.ContinuousDynamic;
-        rb.gravityScale = 0;
-
     }
 
     public void Set_PlayerRbConstraints() {
@@ -66,6 +64,8 @@ public class RoleMoveComponent {
     }
 
     public void Move_Player(float moveSpeed) {
+        rb.gravityScale = 0;
+
         Vector2 oldVelo = rb.velocity;
         oldVelo.y = moveSpeed;
         rb.velocity = oldVelo;
@@ -75,6 +75,7 @@ public class RoleMoveComponent {
 
     // 直线运动
     public void Move_Ghost(float moveSpeed) {
+        rb.gravityScale = 0;
 
         const float xAxis = -1;
 
@@ -86,6 +87,8 @@ public class RoleMoveComponent {
 
     // 进攻战 玩家移动
     public void Move_Attack(Vector2 dir, float moveSpeed) {
+        rb.gravityScale = 0;
+
         Vector2 mapMinBounds = new Vector2(-29, -15);
         Vector2 mapMaxBounds = new Vector2(29, 15);
 

@@ -11,7 +11,8 @@ namespace UF {
 
         public int typeID;
         public IDSignature idSig;//自身唯一标识
-        public IDSignature belongIDSig;//属于谁的 玩家 还是 敌人
+        public BulletBelongType bltBelongType;//子弹类型
+        public IDSignature belongIDSig;//属于谁的 玩家 还是 敌人 
         public BulletMoveType moveType;
         public void Set_MoveType(BulletMoveType moveType) => this.moveType = moveType;
         public IDSignature touchRoleIDSig;//碰撞到的角色的ID

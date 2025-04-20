@@ -16,7 +16,7 @@ MonoBehaviour:
     typeID: 4000
     typeName: Boss
     castKeys: 0
-    cd: 2
+    cd: 5
     restUseTimes: 1000
     maxUseTimes: 1000
     actionTMs:

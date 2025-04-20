@@ -92,15 +92,17 @@ namespace UF {
             }
             // 检测到敌人
 
-            // TODO:这里要分开 Enemy和Player
-            // detectionMinionByPos(ctx, bullet, pos, 1);
-            DetectionStuffByPos(ctx, bullet, pos);
+            if (bullet.bltBelongType == BulletBelongType.Player) {
+                detectionMinionByPos(ctx, bullet, pos, 1);
+                DetectionStuffByPos(ctx, bullet, pos);
+            } else if (bullet.bltBelongType == BulletBelongType.Enemy) {
+            }
+
         }
 
         static void detectionMinionByPos(GameSystemContext ctx, BulletEntity bullet, Vector3 pos, float range) {
             var game = ctx.gameEntity;
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] minions);
-            Debug.Log("detectionMinionByPos len:" + len);
             for (int i = 0; i < len; i += 1) {
                 RoleEntity minion = minions[i];
                 if (minion.roleType == RoleType.Player) {
@@ -122,16 +124,21 @@ namespace UF {
                     if (minion.isHit && !game.isEliminateWar) {
                         continue;
                     }
+
                     bullet.touchRoleIDSig = minion.idSig;
                     RoleDomain.HpReduce_Minion(ctx, minion, bullet.damage);
                     minion.isHit = true;
 
                     bullet.hitTimes -= 1;
                     if (bullet.hitTimes <= 0) {
+                        Debug.Log("BulletDomain:Minion hitTimes <= 0");
                         UnSpawn(ctx, bullet, minion);
+                    }else {
+                        Debug.Log("BulletDomain:Minion hitTimes > 0");
                     }
 
                     if (bullet.isHit) {
+                        Debug.Log("BulletDomain:Minion isHit");
                         continue;
                     }
                     Bullet_HitRole(bullet.frames[bullet.frameIndex]);

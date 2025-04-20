@@ -15,6 +15,7 @@ MonoBehaviour:
   tm:
     typeID: 6000
     typeName: "\u5411\u89D2\u8272\u79FB\u52A8"
+    bltBelongType: 1
     hitTimes: 1
     attackDamage: 1
     continueDamege: 0

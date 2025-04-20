@@ -226,6 +226,7 @@ namespace UF {
 
             bullet.transform.position = new Vector3(-4, 0, 0);
             bullet.idSig = new IDSignature(EntityType.Bullet, idService.PickBulletID());
+            bullet.bltBelongType = tm.bltBelongType;
             bullet.typeID = typeID;
             bullet.moveType = tm.type;
             bullet.damage = tm.attackDamage;

@@ -8,6 +8,7 @@ namespace UF {
     public class BulletTM {
         public int typeID;
         public string typeName;
+        public BulletBelongType bltBelongType; // 子弹类型
 
         [Title("life")]
         public int hitTimes;
