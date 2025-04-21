@@ -63,35 +63,31 @@ namespace UF {
         #endregion
 
         #region Player physics
-        public static void DetectionMinionByPos(GameSystemContext ctx, RoleEntity role, Vector2 pos, int damage) {
-            // minion进入基地
-            int len = ctx.roleRepository.TakeAll(out RoleEntity[] minions);
 
-            for (int i = 0; i < len; i++) {
-
-                var minion = minions[i];
-                if (minion == role) {
-                    continue;
-                }
-
-                var minionPos = minion.TF_GetPos();
-                float homeX = -12; // 基地的x坐标
-
-                // TODO:可能要改成用 collider   
-
-                // 近基地死亡
-                if (minionPos.x <= homeX) {
-                    if (minion.state == RoleState.Dead || minion.state == RoleState.Fall) {
-                        return;
-                    }
-
-                    // player扣血 或者失败  
-                    HpReduce_Role(ctx, role, damage);
-                    // minion进基地死掉
-                    int hpMax = minion.AttributeComponent.GetHpMax();
-                    HpReduce_Role(ctx, minion, hpMax);
-                }
+        // 敌人进基地扣血（防守战用）
+        public static void EnemyEnterBaseHpReduce(GameSystemContext ctx, RoleEntity Enemy) {
+            if (Enemy == null) {
+                return;
             }
+            if (Enemy.roleType == RoleType.Player) {
+                return;
+            }
+            var owner = ctx.Get_Owner();
+
+            var pos = Enemy.TF_GetPos();
+            float homeX = -12; // 基地的x坐标
+
+            if (pos.x <= homeX) {
+                // 近基地死亡
+                if (Enemy.state == RoleState.Dead || Enemy.state == RoleState.Fall) {
+                    return;
+                }
+                // player扣血 或者失败  
+                HpReduce_Role(ctx, owner, Enemy.AttributeComponent.GetBaseDamage());
+                // minion进基地死掉（没有下落效果）
+                HpReduce_Role(ctx, Enemy, 1000);
+            }
+
         }
         public static void DetectionEnemyAndEnemyByPos(GameSystemContext ctx, RoleEntity Enemy, Vector2 pos, int damage) {
             // 检测周围的minion 碰到扣血
@@ -112,6 +108,8 @@ namespace UF {
                 if (dis < radius) {
                     HpReduce_Minion(ctx, touchMinion, damage);
                 }
+
+
             }
         }
 

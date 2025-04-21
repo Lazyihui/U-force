@@ -93,7 +93,7 @@ namespace UF {
             var fsm = owner.FSMComponent;
             var state = fsm.Status;
             var attrCom = owner.AttributeComponent;
-            RoleDomain.DetectionMinionByPos(ctx, owner, owner.TF_GetPos(), attrCom.GetBaseDamage());
+            // RoleDomain.DetectionMinionByPos(ctx, owner, owner.TF_GetPos(), attrCom.GetBaseDamage());
 
             if (game.state == GameState.GameOver) {
                 return;
@@ -104,6 +104,8 @@ namespace UF {
                 RoleEntity role = roles[i];
                 // 这里是player和Minion的逻辑
                 RoleDomain.FSM_All_Execute(ctx, role, dt);
+                RoleDomain.EnemyEnterBaseHpReduce(ctx, role);
+
             }
 
             // 这里是主角的逻辑
