@@ -44,6 +44,33 @@ namespace UF {
             }
             ctx.roleRepository.Clear();
         }
+        // 否是死亡状态 
+        public static void IsDeadState(GameSystemContext ctx, RoleEntity role) {
+            var game = ctx.gameEntity;
+            var pos = role.GetPos();
+            if (pos.x < -21 || pos.x > 21 || pos.y < -12 || pos.y > 12) {
+                role.SetRoleState(RoleState.Dead);
+            }
+            if (role.state != RoleState.Dead) {
+                return;
+            }
+
+            if (role.roleType == RoleType.Player) {
+                // TODO:L写这里其实不太好
+                var ui = ctx.appUI;
+                var attr = role.AttributeComponent;
+                UIDomain.HUD_Progressbar_Update(ui, attr, game.wavesProgress);
+
+                ctx.gameEntity.state = GameState.GameOver;
+                Debug.Log("GameOver");
+                var playerData = game.playerSaveData;
+                ctx.appUI.Panel_GameOver_Open(false, 0);
+
+                return;
+            }
+
+            UnSpawn(ctx, role);
+        }
 
         #endregion
 
@@ -87,33 +114,30 @@ namespace UF {
                 // minion进基地死掉（没有下落效果）
                 HpReduce_Role(ctx, Enemy, 1000);
             }
-
         }
-        public static void DetectionEnemyAndEnemyByPos(GameSystemContext ctx, RoleEntity Enemy, Vector2 pos, int damage) {
-            // 检测周围的minion 碰到扣血
-            int len = ctx.roleRepository.TakeAll(out RoleEntity[] touchMinions);
+        // 下落过程的检测 检测到地面状态变为死亡 和检测是否碰到敌人
+        public static void FallingtodeathCheck(GameSystemContext ctx, RoleEntity role) {
+            if (role.state != RoleState.Fall) {
+                return;
+            }
 
-            for (int i = 0; i < len; i++) {
-                var touchMinion = touchMinions[i];
-                if (touchMinion == Enemy) {
-                    continue;
-                }
-                var owner = ctx.Get_Owner(); // 检测是否碰到玩家
-                if (touchMinion == owner) {
-                    continue;
-                }
-                float dis = Vector2.Distance(touchMinion.TF_GetPos(), pos);
-                // TODO:可能要改成用 collider   
-                float radius = 2f;
-                if (dis < radius) {
-                    HpReduce_Minion(ctx, touchMinion, damage);
-                }
+            // TODO:感觉是这里的问题
+            // DetectionEnemyAndEnemyByPos(ctx, role, role.GetPos(), role.AttributeComponent.GetFallDamage());
 
+            // 和地面的交叉检测
+            RaycastHit2D[] hits = Physics2D.RaycastAll(role.GetPos(), Vector2.down, 1.1f);
+            Debug.DrawRay(role.GetPos(), Vector2.down * 0.6f, Color.gray, 0.1f);
 
+            for (int i = 0; i < hits.Length; i++) {
+                RaycastHit2D hit = hits[i];
+                if (hit.collider.gameObject.CompareTag("Ground")) {
+                    Debug.Log("死亡动画");
+                    role.SetRoleState(RoleState.Dead);
+                }
             }
         }
 
-        // 角色碰到敌人扣血
+        // 角色碰到敌人扣血（boss战的）
         public static void DetectionOwnerAndEnemy(GameSystemContext ctx, RoleEntity owner) {
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] enemys);
             for (int i = 0; i < len; i++) {
@@ -122,6 +146,7 @@ namespace UF {
                     continue;
                 }
                 float dis = Vector2.Distance(enemy.TF_GetPos(), owner.TF_GetPos());
+
                 if (dis < 1.5f) {
                     var attCom = enemy.AttributeComponent;
                     int damage = attCom.GetBaseDamage();
@@ -133,6 +158,7 @@ namespace UF {
             }
         }
 
+        // 敌人扣血（会有一个下落的过程）
         public static void HpReduce_Minion(GameSystemContext ctx, RoleEntity role, int damage) {
 
             var attCom = role.AttributeComponent;
@@ -160,6 +186,7 @@ namespace UF {
             }
         }
 
+        // 玩家扣血
         public static void HpReduce_Role(GameSystemContext ctx, RoleEntity role, int damage) {
             var playerData = ctx.gameEntity.playerSaveData;
             if (role.roleType == RoleType.Player) {
@@ -204,54 +231,6 @@ namespace UF {
 
                 stuff.Fall();
             }
-        }
-
-        // 下落过程的检测 检测到地面状态变为死亡 和检测是否碰到敌人
-        public static void FallingtodeathCheck(GameSystemContext ctx, RoleEntity role) {
-            if (role.state != RoleState.Fall) {
-                return;
-            }
-            // TODO:感觉是这里的问题
-            DetectionEnemyAndEnemyByPos(ctx, role, role.GetPos(), role.AttributeComponent.GetFallDamage());
-            // 和地面的交叉检测
-            RaycastHit2D[] hits = Physics2D.RaycastAll(role.GetPos(), Vector2.down, 1.1f);
-            Debug.DrawRay(role.GetPos(), Vector2.down * 0.6f, Color.gray, 0.1f);
-
-            for (int i = 0; i < hits.Length; i++) {
-                RaycastHit2D hit = hits[i];
-                if (hit.collider.gameObject.CompareTag("Ground")) {
-                    Debug.Log("死亡动画");
-                    role.SetRoleState(RoleState.Dead);
-                }
-            }
-        }
-
-        // 否是死亡状态 
-        public static void IsDeadState(GameSystemContext ctx, RoleEntity role) {
-            var game = ctx.gameEntity;
-            var pos = role.GetPos();
-            if (pos.x < -21 || pos.x > 21 || pos.y < -12 || pos.y > 12) {
-                role.SetRoleState(RoleState.Dead);
-            }
-            if (role.state != RoleState.Dead) {
-                return;
-            }
-
-            if (role.roleType == RoleType.Player) {
-                // TODO:L写这里其实不太好
-                var ui = ctx.appUI;
-                var attr = role.AttributeComponent;
-                UIDomain.HUD_Progressbar_Update(ui, attr, game.wavesProgress);
-
-                ctx.gameEntity.state = GameState.GameOver;
-                Debug.Log("GameOver");
-                var playerData = game.playerSaveData;
-                ctx.appUI.Panel_GameOver_Open(false, 0);
-
-                return;
-            }
-
-            UnSpawn(ctx, role);
         }
 
         #endregion

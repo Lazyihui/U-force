@@ -96,6 +96,8 @@ namespace UF {
             if (game.state == GameState.GameOver) {
                 return;
             }
+            // 遍历所有角色 碰到角色扣血
+            RoleDomain.DetectionOwnerAndEnemy(ctx, owner);
 
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
             for (int i = 0; i < len; i += 1) {
