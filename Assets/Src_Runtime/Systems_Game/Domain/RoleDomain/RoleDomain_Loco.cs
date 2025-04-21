@@ -37,6 +37,11 @@ namespace UF {
             } else if (role.moveType == RoleMoveType.Prohibit) {
                 role.Move_Stop();
             } else if (role.moveType == RoleMoveType.MoveTarget) {
+                // 这个检测我就不写在上面了, 因为没写玩家死亡, 玩家血量小于等于0后会卡输入, 看着难受
+                if (role.state == RoleState.Fall || role.state == RoleState.Dead) {
+                    return;
+                }
+
                 role.Move_Target(target.GetPos(), attrCom.GetMoveSpeed(), dt);
             }
 
