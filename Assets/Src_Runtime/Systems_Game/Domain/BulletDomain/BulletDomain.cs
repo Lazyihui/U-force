@@ -77,27 +77,31 @@ namespace UF {
         public static void CheckUnSpawn(GameSystemContext ctx, BulletEntity bullet, float dt) {
             Vector3 pos = bullet.TF_GetPos();
             var game = ctx.gameEntity;
+
             if (game.isBossWar) {
+                // boss战斗 子弹超出边界消失
                 if (pos.x < -35 || pos.x > 35 || pos.y < -20 || pos.y > 20) {
                     UnSpawn(ctx, bullet);
                 }
             } else {
+                // 其他战斗 子弹超出边界消失
                 if (pos.x < -21 || pos.x > 21) {
                     UnSpawn(ctx, bullet);
                 }
             }
 
             if (bullet.isStartBoomDamege || bullet.isStartContinueDamege) {
+                // 如果是持续伤害或者爆炸伤害的子弹 则不检测 到时间了就消失
                 return;
             }
             // 检测到敌人
-
             if (bullet.bltBelongType == BulletBelongType.Player) {
+                // 玩家子弹检测到敌人
                 detectionMinionByPos(ctx, bullet, pos, 1);
-                DetectionStuffByPos(ctx, bullet, pos);
+                // DetectionStuffByPos(ctx, bullet, pos);
             } else if (bullet.bltBelongType == BulletBelongType.Enemy) {
-            }
 
+            }
         }
 
         static void detectionMinionByPos(GameSystemContext ctx, BulletEntity bullet, Vector3 pos, float range) {
@@ -105,6 +109,7 @@ namespace UF {
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] minions);
             for (int i = 0; i < len; i += 1) {
                 RoleEntity minion = minions[i];
+
                 if (minion.roleType == RoleType.Player) {
                     continue;
                 }
@@ -113,7 +118,9 @@ namespace UF {
                 if (dis < range) {
                     var feaCom = minion.FeatureComponent;
                     if (feaCom.featureType == FeatureType.DisAppear) {
+
                         if (bullet.isMakeBulletAppear) {
+                            Debug.Log("使敌人出现的子弹");
                             feaCom.SetFeatureType(FeatureType.None);
                             minion.Set_SpriteDisappear();
                         } else {
@@ -126,19 +133,13 @@ namespace UF {
                     }
 
                     bullet.touchRoleIDSig = minion.idSig;
+                    
                     RoleDomain.HpReduce_Minion(ctx, minion, bullet.damage);
                     minion.isHit = true;
 
                     bullet.hitTimes -= 1;
-                    if (bullet.hitTimes <= 0) {
-                        Debug.Log("BulletDomain:Minion hitTimes <= 0");
-                        UnSpawn(ctx, bullet, minion);
-                    }else {
-                        Debug.Log("BulletDomain:Minion hitTimes > 0");
-                    }
 
                     if (bullet.isHit) {
-                        Debug.Log("BulletDomain:Minion isHit");
                         continue;
                     }
                     Bullet_HitRole(bullet.frames[bullet.frameIndex]);
@@ -246,12 +247,13 @@ namespace UF {
                     Debug.Log("Bullet_FixedBltHitBullet");
                 }
 
-
-
             }
 
         }
 
+        #endregion
+
+        #region 汇聚
         static void Bullet_Converge(GameSystemContext ctx, BulletEntity bullet, float dt) {
             if (bullet.convergeTimes <= 0) { return; }
 
@@ -306,7 +308,5 @@ namespace UF {
             return y;
         }
         #endregion
-
-
     }
 }

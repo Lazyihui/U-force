@@ -166,20 +166,21 @@ namespace UF {
             int finalHp = attCom.hp - damage;
             var game = ctx.gameEntity;
             role.Attr_Hp_Set(finalHp);
+
             if (attCom.hp <= 0) {
                 if (feaCom.featureType == FeatureType.HurtOneself) {
+                    // 自我伤害
                     BulletEntity bullet = BulletDomain.SpawnByPos(ctx, 5000, role.TF_GetPos(), new Vector3(0, 0, 0));
                     role.SetRoleState(RoleState.Dead); //TODO:这样写其实不好
 
                 } else if (game.isEliminateWar) {
                     role.SetRoleState(RoleState.Dead);
-
                     if (role.roleType == RoleType.Core) {
                         CoreDead(ctx);
                     }
-
                 } else {
                     role.SetRoleState(RoleState.Fall);
+                    
                     role.Fall();
                     role.Set_RbConstraints();
                 }
