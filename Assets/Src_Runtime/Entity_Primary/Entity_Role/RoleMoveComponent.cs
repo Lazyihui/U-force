@@ -89,6 +89,30 @@ public class RoleMoveComponent {
         Vector2 mapMinBounds = new Vector2(-29, -15);
         Vector2 mapMaxBounds = new Vector2(29, 15);
 
+        // 边界限制
+        if (rb.position.x < mapMinBounds.x) {
+            // rb.position = new Vector2(mapMinBounds.x, rb.position.y);
+            if (dir.x < 0) {
+                dir.x = 0;
+            }
+        } else if (rb.position.x > mapMaxBounds.x) {
+            // rb.position = new Vector2(mapMaxBounds.x, rb.position.y);
+            if (dir.x > 0) {
+                dir.x = 0;
+            }
+        }
+        if (rb.position.y < mapMinBounds.y) {
+            // rb.position = new Vector2(rb.position.x, mapMinBounds.y);
+            if (dir.y < 0) {
+                dir.y = 0;
+            }
+        } else if (rb.position.y > mapMaxBounds.y) {
+            // rb.position = new Vector2(rb.position.x, mapMaxBounds.y);
+            if (dir.y > 0) {
+                dir.y = 0;
+            }
+        }
+
         Vector2 oldVelo = rb.velocity;
         oldVelo = dir * moveSpeed;
         rb.velocity = oldVelo;
@@ -96,18 +120,6 @@ public class RoleMoveComponent {
         // TODO:这一行要像一下优化 别放这里
         rb.gravityScale = 0;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-
-        // 边界限制
-        if (rb.position.x < mapMinBounds.x) {
-            rb.position = new Vector2(mapMinBounds.x, rb.position.y);
-        } else if (rb.position.x > mapMaxBounds.x) {
-            rb.position = new Vector2(mapMaxBounds.x, rb.position.y);
-        }
-        if (rb.position.y < mapMinBounds.y) {
-            rb.position = new Vector2(rb.position.x, mapMinBounds.y);
-        } else if (rb.position.y > mapMaxBounds.y) {
-            rb.position = new Vector2(rb.position.x, mapMaxBounds.y);
-        }
     }
 
     public void Move_Regular(Vector2 pos, float moveSpeed) {
