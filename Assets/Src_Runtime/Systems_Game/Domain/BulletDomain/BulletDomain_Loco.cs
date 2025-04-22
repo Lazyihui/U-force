@@ -77,6 +77,7 @@ namespace UF {
             }
 
             bltTgtCom.foundTargetOriginPos = owner.TF_GetPos() - bullet.TF_GetPos();
+            bltTgtCom.foundTargetOriginPos.Normalize();
             bullet.Loco_MoveDir(bltTgtCom.foundTargetOriginPos);
             bltTgtCom.isFound = true;
 

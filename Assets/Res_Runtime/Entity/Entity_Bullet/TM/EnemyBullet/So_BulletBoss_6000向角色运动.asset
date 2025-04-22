@@ -45,7 +45,7 @@ MonoBehaviour:
     frames:
     - loopTM:
         loopFlag: 0
-        maintainFrame: 1.1111112e+16
+        maintainFrame: 1e+15
         triggerIntervalSec: 24
         triggerTimesMax: 24
       hasBulletBehaviour: 1

@@ -156,26 +156,28 @@ namespace UF {
 
             if (dis < range) {
 
-                if (owner.isHit) {
+                if (bullet.isHit) {
                     return;
                 }
 
                 bullet.touchRoleIDSig = owner.idSig;
                 RoleDomain.HpReduce_Role(ctx, owner, bullet.damage);
                 owner.isHit = true;
-                
-                // 
-                Bullet_HitRole(bullet.frames[bullet.frameIndex]);
+
+                Bullet_HitRole(bullet.frames[bullet.frameIndex-1]);
 
                 bullet.hitTimes -= 1;
+                bullet.isHit = true;
                 if (bullet.hitTimes <= 0) {
                     UnSpawn(ctx, bullet, owner);
-                }else{
+                } else {
                     Debug.Log("子弹攻击了主角" + bullet.hitTimes);
                 }
 
-                bullet.isHit = true;
+            }
 
+            if (dis > 1) {
+                bullet.isHit = false;
             }
 
         }
