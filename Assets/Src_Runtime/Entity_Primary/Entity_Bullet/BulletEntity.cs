@@ -77,6 +77,17 @@ namespace UF {
         // 固定爆炸点
         public bool isFixedBoomPoint;
 
+        // BulletTragetComponent 子弹向目标移动的组件
+        BulletTragetComponent bulletTragetComponent;
+        public BulletTragetComponent BulletTragetComponent => bulletTragetComponent;
+
+        public void Ctor() {
+            frames = new List<BulletFrameModel>();
+            isHit = false;
+
+            bulletTragetComponent = new BulletTragetComponent();
+            bulletTragetComponent.Release();
+        }
         public bool IsDead() {
             bool isDead = hitTimes <= 0;
             // Debug.Log(hp + frameIndex + hitMaxTimes);
@@ -109,11 +120,7 @@ namespace UF {
 
         #endregion
 
-        public void Ctor() {
-            frames = new List<BulletFrameModel>();
 
-            isHit = false;
-        }
 
         public void Inject(BulletMod mod) {
             this.mod = mod;

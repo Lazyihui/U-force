@@ -7,20 +7,31 @@ namespace UF {
     public static partial class BulletDomain {
 
         public static void Bullet_Loco(GameSystemContext ctx, BulletEntity bullet, float dt) {
-            if (ctx.gameEntity.state == GameState.GameOver)
-            {
+            if (ctx.gameEntity.state == GameState.GameOver) {
                 Bullet_Loco_Stop(bullet, dt);
                 return;
             }
 
-            if (bullet.moveType == BulletMoveType.None) {
-                Bullet_Loco_Stop(bullet, dt);
-            } else if (bullet.moveType == BulletMoveType.Shaped) {
-                Bullet_Loco_Shaped(bullet, dt);
-            } else if (bullet.moveType == BulletMoveType.ToLeft) {
-                Bullet_Loco_ToLeft(bullet, dt);
-            } else if (bullet.moveType == BulletMoveType.Track) {
-                Bullet_Loco_Track(ctx, bullet, dt);
+            if (bullet.bltBelongType == BulletBelongType.Player) {
+                if (bullet.moveType == BulletMoveType.None) {
+                    Bullet_Loco_Stop(bullet, dt);
+                } else if (bullet.moveType == BulletMoveType.Shaped) {
+                    Bullet_Loco_Shaped(bullet, dt);
+                } else if (bullet.moveType == BulletMoveType.ToLeft) {
+                    Bullet_Loco_ToLeft(bullet, dt);
+                } else if (bullet.moveType == BulletMoveType.Track) {
+                    Bullet_Loco_Track(ctx, bullet, dt);
+                }
+            } else if (bullet.bltBelongType == BulletBelongType.Enemy) {
+                if (bullet.moveType == BulletMoveType.None) {
+                    Bullet_Loco_Stop(bullet, dt);
+                } else if (bullet.moveType == BulletMoveType.Shaped) {
+                    Bullet_Loco_Shaped(bullet, dt);
+                } else if (bullet.moveType == BulletMoveType.ToLeft) {
+                    Bullet_Loco_ToLeft(bullet, dt);
+                } else if (bullet.moveType == BulletMoveType.Track) {
+                    Bullet_Loco_MoveToOwner(ctx, bullet, dt);
+                }
             }
 
         }
@@ -53,7 +64,22 @@ namespace UF {
             }
             var dir = target.TF_GetPos() - bullet.TF_GetPos();
             bullet.Loco_MoveDir(dir);
-            
+
+        }
+
+        public static void Bullet_Loco_MoveToOwner(GameSystemContext ctx, BulletEntity bullet, float dt) {
+            RoleEntity owner = ctx.Get_Owner();
+            var bltTgtCom = bullet.BulletTragetComponent;
+
+            if (bltTgtCom.isFound) {
+                bullet.Loco_MoveDir(bltTgtCom.foundTargetOriginPos);
+                return;
+            }
+
+            bltTgtCom.foundTargetOriginPos = owner.TF_GetPos() - bullet.TF_GetPos();
+            bullet.Loco_MoveDir(bltTgtCom.foundTargetOriginPos);
+            bltTgtCom.isFound = true;
+
         }
 
     }

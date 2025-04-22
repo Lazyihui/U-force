@@ -10,6 +10,7 @@ namespace UF {
         public IDSignature foundTargetUniqueSig;
         public Vector2 foundTargetOriginPos;
 
+
         public void Release() {
             isFound = false;
             foundTargetUniqueSig = new IDSignature(EntityType.None, 0);

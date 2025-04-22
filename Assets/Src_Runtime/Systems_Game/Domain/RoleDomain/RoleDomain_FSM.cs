@@ -66,7 +66,6 @@ namespace UF {
             // 完成
             var fsm = role.FSMComponent;
             fsm.Casting_Enter(skillor);
-            Debug.Log("进入施法状态" + skillor.name);
         }
 
         static void FSM_Normal_Enter(GameSystemContext ctx, RoleEntity role, float dt) {

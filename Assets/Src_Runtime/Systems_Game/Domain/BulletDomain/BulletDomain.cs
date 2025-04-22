@@ -93,60 +93,91 @@ namespace UF {
             // 检测到敌人
 
             if (bullet.bltBelongType == BulletBelongType.Player) {
-                detectionMinionByPos(ctx, bullet, pos, 1);
+                DetectionOwnerAttackEnemy(ctx, bullet, pos, 1);
                 DetectionStuffByPos(ctx, bullet, pos);
             } else if (bullet.bltBelongType == BulletBelongType.Enemy) {
+                DetectionEnemyAttackOwner(ctx, bullet, pos, 1);
             }
 
         }
 
-        static void detectionMinionByPos(GameSystemContext ctx, BulletEntity bullet, Vector3 pos, float range) {
+        //  子弹检测到敌人 子弹攻击敌人（主角的子弹攻击敌人）
+        static void DetectionOwnerAttackEnemy(GameSystemContext ctx, BulletEntity bullet, Vector3 pos, float range) {
             var game = ctx.gameEntity;
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] minions);
             for (int i = 0; i < len; i += 1) {
-                RoleEntity minion = minions[i];
-                if (minion.roleType == RoleType.Player) {
+                RoleEntity enemy = minions[i];
+                if (enemy.roleType == RoleType.Player) {
                     continue;
                 }
 
-                float dis = Vector3.Distance(minion.TF_GetPos(), pos);
+                float dis = Vector3.Distance(enemy.TF_GetPos(), pos);
                 if (dis < range) {
-                    var feaCom = minion.FeatureComponent;
+
+                    var feaCom = enemy.FeatureComponent;
                     if (feaCom.featureType == FeatureType.DisAppear) {
                         if (bullet.isMakeBulletAppear) {
                             feaCom.SetFeatureType(FeatureType.None);
-                            minion.Set_SpriteDisappear();
+                            enemy.Set_SpriteDisappear();
                         } else {
                             continue;
                         }
                     }
 
-                    if (minion.isHit && !game.isEliminateWar) {
+                    if (enemy.isHit && !game.isEliminateWar) {
                         continue;
                     }
 
-                    bullet.touchRoleIDSig = minion.idSig;
-                    RoleDomain.HpReduce_Minion(ctx, minion, bullet.damage);
-                    minion.isHit = true;
+                    bullet.touchRoleIDSig = enemy.idSig;
+                    RoleDomain.HpReduce_Enemy(ctx, enemy, bullet.damage);
+                    enemy.isHit = true;
 
                     bullet.hitTimes -= 1;
                     if (bullet.hitTimes <= 0) {
-                        Debug.Log("BulletDomain:Minion hitTimes <= 0");
-                        UnSpawn(ctx, bullet, minion);
-                    }else {
-                        Debug.Log("BulletDomain:Minion hitTimes > 0");
+                        UnSpawn(ctx, bullet, enemy);
                     }
 
                     if (bullet.isHit) {
-                        Debug.Log("BulletDomain:Minion isHit");
                         continue;
                     }
+
                     Bullet_HitRole(bullet.frames[bullet.frameIndex]);
                     var playerData = ctx.gameEntity.playerSaveData;
                     playerData.HitTimes += 1;
                     bullet.isHit = true;
                 }
             }
+        }
+
+        // 敌人的子弹攻击owner
+        static void DetectionEnemyAttackOwner(GameSystemContext ctx, BulletEntity bullet, Vector3 pos, float range) {
+            var owner = ctx.Get_Owner();
+            float dis = Vector3.Distance(owner.TF_GetPos(), pos);
+
+            if (dis < range) {
+
+                if (owner.isHit) {
+                    return;
+                }
+
+                bullet.touchRoleIDSig = owner.idSig;
+                RoleDomain.HpReduce_Role(ctx, owner, bullet.damage);
+                owner.isHit = true;
+                
+                // 
+                Bullet_HitRole(bullet.frames[bullet.frameIndex]);
+
+                bullet.hitTimes -= 1;
+                if (bullet.hitTimes <= 0) {
+                    UnSpawn(ctx, bullet, owner);
+                }else{
+                    Debug.Log("子弹攻击了主角" + bullet.hitTimes);
+                }
+
+                bullet.isHit = true;
+
+            }
+
         }
 
         public static void DetectionStuffByPos(GameSystemContext ctx, BulletEntity bullet, Vector3 pos) {
@@ -195,7 +226,7 @@ namespace UF {
                     bullet.damageTimer += dt;
                     if (bullet.damageTimer > bullet.damageInterval) {
                         bullet.damageTimer = 0;
-                        RoleDomain.HpReduce_Minion(ctx, minion, bullet.continueDamege);
+                        RoleDomain.HpReduce_Enemy(ctx, minion, bullet.continueDamege);
                     }
 
                 }
@@ -221,7 +252,7 @@ namespace UF {
                         if (feaCom.featureType == FeatureType.DisAppear) {
                             continue;
                         }
-                        RoleDomain.HpReduce_Minion(ctx, minion, bullet.continueDamege);
+                        RoleDomain.HpReduce_Enemy(ctx, minion, bullet.continueDamege);
                     }
                 }
 
@@ -240,7 +271,9 @@ namespace UF {
                 float dis = Vector3.Distance(bullet.TF_GetPos(), fixBlt.TF_GetPos());
 
                 if (dis < 1) {
-                    if (fixBlt.isHit) { continue; }
+                    if (fixBlt.isHit) {
+                        continue;
+                    }
                     Bullet_HitBullet(fixBlt.frames[fixBlt.frameIndex]);
                     fixBlt.isHit = true;
                     Debug.Log("Bullet_FixedBltHitBullet");

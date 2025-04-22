@@ -10,6 +10,8 @@ namespace UF {
         public string typeName;
         public BulletBelongType bltBelongType; // 子弹类型
 
+        public BulletMoveType type;
+
         [Title("life")]
         public int hitTimes;
         public int attackDamage;
@@ -43,7 +45,6 @@ namespace UF {
         [ShowIf(nameof(isRepelled))] public float repeLength; // 击退距离
 
         [Title("Locomotion")]
-        public BulletMoveType type;
         public float moveSpeed;
 
         public BulletMod modPrefab;

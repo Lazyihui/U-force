@@ -199,7 +199,7 @@ namespace UF {
                 role.elecTimer -= dt;
 
                 if (role.elecTimer <= 0) {
-                    HpReduce_Minion(ctx, role, role.elecDamage);
+                    HpReduce_Enemy(ctx, role, role.elecDamage);
                     role.elecTimes -= 1;
                     role.elecTimer = role.elecMax;
                 }

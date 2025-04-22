@@ -175,7 +175,6 @@ namespace UF {
             }
 
             if (model.isSpawnBullet) {
-                Debug.LogWarning("RoleDomain.SpawnBullet生成子弹");
                 // SpawnBullet
                 BulletEntity bullet = null;
                 Vector3 pos = Vector3.zero;

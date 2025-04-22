@@ -82,7 +82,6 @@ namespace UF {
             }
 
             if (loopFlag == FrameLoopFlag.Once) {
-                Debug.Log("结束Once");
                 isDone = true;
             }
 

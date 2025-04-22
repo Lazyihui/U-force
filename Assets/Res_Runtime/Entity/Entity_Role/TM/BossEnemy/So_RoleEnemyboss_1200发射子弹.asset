@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1d72292fc95d6e41aba9cebe752d514, type: 3}
-  m_Name: "So_RoleEnemyBoss_1200\u53D1\u5C04\u5B50\u5F39"
+  m_Name: "So_RoleEnemyboss_1200\u53D1\u5C04\u5B50\u5F39"
   m_EditorClassIdentifier: 
   tm:
     typeName: 1200
     roleType: 1
-    moveType: 7
-    roleState: 1
+    moveType: 3
+    roleState: 0
     typeID: 1200
     isMale: 0
     hp: 3

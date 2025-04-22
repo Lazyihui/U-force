@@ -168,10 +168,7 @@ public class RoleMoveComponent {
     }
 
 
-
-
     public void Move_Stop() {
-        Debug.Log("Move_Stop 将rigidbody设置为静态");
         pauseVelo = rb.velocity;
         rb.bodyType = RigidbodyType2D.Static;
     }

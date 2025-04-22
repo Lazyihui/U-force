@@ -116,13 +116,11 @@ namespace UF {
             }
             if (roleType == RoleType.Minion) {
                 if (state == RoleState.Fall) {
-                    Debug.Log("fall");
                     moveComponent.Set_FallRbConstraints();
                 } else {
                     moveComponent.Set_MinionRbConstraints();
                 }
             }
-            Debug.Log("Set_RbConstraints"  + state);
         }
 
         public void Inject(RoleMod mod) {
