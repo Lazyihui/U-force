@@ -37,6 +37,8 @@ namespace UF {
             owner = RoleDomain.SpawnByPos(ctx, selectedRoleTypeID, new Vector3(-15, 0, 0));
             game.OwnerIDsig = owner.idSig;
 
+            owner.invincibilityMax = 1.5f;
+
             var skillorCom = owner.skillorSlotComponent;
 
             // 大招
@@ -98,6 +100,7 @@ namespace UF {
             }
             // 遍历所有角色 碰到角色扣血
             RoleDomain.DetectionOwnerAndEnemy(ctx, owner);
+            RoleDomain.CheckInvincible(ctx, owner, dt);
 
             int len = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
             for (int i = 0; i < len; i += 1) {

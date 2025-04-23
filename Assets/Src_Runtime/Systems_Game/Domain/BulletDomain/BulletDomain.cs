@@ -134,6 +134,7 @@ namespace UF {
 
                     bullet.hitTimes -= 1;
                     if (bullet.hitTimes <= 0) {
+                        enemy.isHit = false;
                         UnSpawn(ctx, bullet, enemy);
                     }
 
@@ -146,6 +147,11 @@ namespace UF {
                     var playerData = ctx.gameEntity.playerSaveData;
                     playerData.HitTimes += 1;
                     bullet.isHit = true;
+                }
+
+                if (dis > 1) {
+                    enemy.isHit = false;
+                    bullet.isHit = false;
                 }
             }
         }
@@ -170,12 +176,14 @@ namespace UF {
                 bullet.hitTimes -= 1;
                 bullet.isHit = true;
                 if (bullet.hitTimes <= 0) {
+                    owner.isHit = false;
                     UnSpawn(ctx, bullet, owner);
                 } 
 
             }
 
             if (dis > 1) {
+                owner.isHit = false;
                 bullet.isHit = false;
             }
 

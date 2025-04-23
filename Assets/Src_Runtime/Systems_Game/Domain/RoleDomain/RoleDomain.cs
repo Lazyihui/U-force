@@ -180,7 +180,7 @@ namespace UF {
                     }
                 } else {
                     role.SetRoleState(RoleState.Fall);
-                    
+
                     role.Fall();
                     role.Set_RbConstraints();
                 }
@@ -189,17 +189,49 @@ namespace UF {
 
         // 玩家扣血
         public static void HpReduce_Role(GameSystemContext ctx, RoleEntity role, int damage) {
+            if (ctx.gameEntity.isBossWar) {
+                if (role.roleType == RoleType.Player && role.isInvincible) {
+                    return;
+                }
+
+                role.isInvincible = true;
+                role.invincibilityTimer = 0;
+            }
+
             var playerData = ctx.gameEntity.playerSaveData;
             if (role.roleType == RoleType.Player) {
                 // 受到的伤害
                 playerData.SetOwnerGetHurt(playerData.GetRoleGetHurt() + damage);
             }
             var attCom = role.AttributeComponent;
-            int finalHp = attCom.hp - damage;
+
+            int finalHp = 0;
+            if (ctx.gameEntity.isBossWar) {
+                finalHp = attCom.hp - 1;
+            } else {
+                finalHp = attCom.hp - damage;
+            }
             role.Attr_Hp_Set(finalHp);
 
             if (attCom.hp <= 0) {
                 role.SetRoleState(RoleState.Dead);
+            }
+        }
+        
+        // 检测boss战无敌
+        public static void CheckInvincible(GameSystemContext ctx, RoleEntity owner, float dt) {
+            if (!ctx.gameEntity.isBossWar) {
+                return;
+            }
+
+            if (!owner.isInvincible) {
+                return;
+            }
+
+            owner.invincibilityTimer += dt;
+            if (owner.invincibilityTimer > owner.invincibilityMax) {
+                owner.isInvincible = false;
+                owner.invincibilityTimer = 0;
             }
         }
 
