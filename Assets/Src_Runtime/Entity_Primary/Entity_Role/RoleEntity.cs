@@ -306,10 +306,15 @@ namespace UF {
 
             SkillModel result = null;
             int len = skillor.TakeSkillsByFlushInput(out SkillModel[] skills, inputKeys);
+            if (inputKeys != InputKeyFlag.None) {
+                Debug.Log("inputKeys != InputKeyFlag.None" + " inputKeys = " + inputKeys);
+
+            }
             for (int i = 0; i < len; i++) {
                 var skill = skills[i];
                 if (skill != null) {
                     result = skill;
+                    Debug.Log("result = skill" + " result = " + result+ " skill = " + skill);
                     break;
                 }
             }

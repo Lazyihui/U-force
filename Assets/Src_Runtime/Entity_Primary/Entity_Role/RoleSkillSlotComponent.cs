@@ -58,11 +58,13 @@ namespace UF {
             return all.Count;
         }
 
-        public int TakeSkillsByFlushInput(out SkillModel[] result, InputKeyFlag inputKeys/*flush不知道啥意思*/) {
+        // 获取技能槽中第一个技能
+        public int TakeSkillsByFlushInput(out SkillModel[] result, InputKeyFlag inputKeys) {
             int count = 0;
 
             for (int i = 0; i < orderByInputTypeList.Count; i++) {
                 var skill = orderByInputTypeList[i];
+                
                 if (skill.isFitInputKey(inputKeys)) {
                     tempOrderByInputType[count] = skill;
                     currentSkill = skill;

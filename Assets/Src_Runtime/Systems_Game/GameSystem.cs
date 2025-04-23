@@ -58,8 +58,7 @@ namespace UF {
         public void Enter() {
             var appUI = ctx.appUI;
             var game = ctx.gameEntity;
-            appUI.Panel_CardSelected_TakeAll(out List<int> typeIDs);
-            int[] typeIDsArray = typeIDs.ToArray();
+            int[] typeIDsArray = appUI.selectedInFormation.typeIDs.ToArray();
             int roleTypeID = appUI.selectedInFormation.roleSelectedTypeID;
             int sciType = appUI.selectedInFormation.scienceTypeID;
             int stageID = game.playerSaveData.GetStageCurID();
@@ -199,7 +198,7 @@ namespace UF {
             }
 
             if (isGameWin) {
-                
+
                 var playerData = ctx.gameEntity.playerSaveData;
                 Debug.Log("游戏胜利");
                 if (owner.state == RoleState.Dead) {

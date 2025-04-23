@@ -145,6 +145,7 @@ namespace UF {
             {
                 bool isAttackDown = world.Attack.WasPressedThisFrame();
                 if (isAttackDown) {
+                    Debug.Log("按下j");
                     inputCastKey |= InputKeyFlag.Attack;
                 }
             }

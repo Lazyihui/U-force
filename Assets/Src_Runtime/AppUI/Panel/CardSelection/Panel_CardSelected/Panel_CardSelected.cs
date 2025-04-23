@@ -35,6 +35,7 @@ namespace UF {
             }
         }
 
+        // 初始化
         public void Init(int slotMax) {
             if (slotMax <= 0) {
                 return;
@@ -47,6 +48,7 @@ namespace UF {
                 eles.Add(ele);
             }
         }
+        // 设置道具
         public bool Set_Addprop(int typeID, Sprite sprite) {
             for (int i = 0; i < eles.Count; i += 1) {
                 var ele = eles[i];
