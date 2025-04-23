@@ -95,8 +95,9 @@ namespace UF {
         public bool isHit;
 
         // Boss战无敌
+        public bool isInvincible;
         public float invincibilityTimer;
-        public float invincibilityTime;
+        public float invincibilityMax; // 不想从tm里读, 因为所有角色都是1.5s
 
         public void Ctor() {
             fsmComponent = new RoleFSMConponent();
