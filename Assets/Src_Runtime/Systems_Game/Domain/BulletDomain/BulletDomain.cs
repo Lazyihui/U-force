@@ -190,23 +190,6 @@ namespace UF {
 
         }
 
-        // // 检测子弹没有接触到role(重置isHit)
-        // public static void DetectionNoRoleByPos(GameSystemContext ctx, BulletEntity bullet, Vector3 pos) {
-        //     int len = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
-        //     for (int i = 0; i < len; i += 1) {
-        //         RoleEntity role = roles[i];
-        //         if (!role.isHit) {
-        //             continue;
-        //         }
-
-        //         float dis = Vector3.Distance(role.TF_GetPos(), pos);
-        //         if (dis > 1) {
-        //             role.isHit = false;
-        //         }
-        //     }
-        // }
-
-
         public static void DetectionStuffByPos(GameSystemContext ctx, BulletEntity bullet, Vector3 pos) {
             int len = ctx.stuffRepository.TakeAll(out StuffEntity[] stuffs);
             for (int i = 0; i < len; i += 1) {

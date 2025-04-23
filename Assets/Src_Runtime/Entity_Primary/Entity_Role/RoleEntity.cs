@@ -94,6 +94,10 @@ namespace UF {
         // 判断是否被子弹击中
         public bool isHit;
 
+        // Boss战无敌
+        public float invincibilityTimer;
+        public float invincibilityTime;
+
         public void Ctor() {
             fsmComponent = new RoleFSMConponent();
             skillorSlotComponent = new RoleSkillSlotComponent();

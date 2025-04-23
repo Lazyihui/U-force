@@ -161,8 +161,6 @@ namespace UF {
         // 敌人扣血（会有一个下落的过程）
         public static void HpReduce_Enemy(GameSystemContext ctx, RoleEntity role, int damage) {
 
-            Debug.LogWarning(damage);
-
             var attCom = role.AttributeComponent;
             var feaCom = role.FeatureComponent;
             int finalHp = attCom.hp - damage;
@@ -182,7 +180,7 @@ namespace UF {
                     }
                 } else {
                     role.SetRoleState(RoleState.Fall);
-                    
+
                     role.Fall();
                     role.Set_RbConstraints();
                 }
@@ -197,7 +195,13 @@ namespace UF {
                 playerData.SetOwnerGetHurt(playerData.GetRoleGetHurt() + damage);
             }
             var attCom = role.AttributeComponent;
-            int finalHp = attCom.hp - damage;
+
+            int finalHp = 0;
+            if (ctx.gameEntity.isBossWar) {
+                finalHp = attCom.hp - 1;
+            } else {
+                finalHp = attCom.hp - damage;
+            }
             role.Attr_Hp_Set(finalHp);
 
             if (attCom.hp <= 0) {
