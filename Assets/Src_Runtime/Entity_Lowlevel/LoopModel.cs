@@ -10,7 +10,7 @@ namespace UF {
         // maintain 和 triggerInterval 是两个不同的概念(是分开用的)
         float maintainSec;//持续时间
         float maintainTimer;//倒计时
-            
+
         float triggerIntervalSec;//触发间隔
         float triggerIntervalTimer;
         float triggerTimes;//触发时间
@@ -82,6 +82,7 @@ namespace UF {
             }
 
             if (loopFlag == FrameLoopFlag.Once) {
+                Debug.Log("结束" + isDone);
                 isDone = true;
             }
 

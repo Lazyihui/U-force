@@ -141,6 +141,7 @@ namespace UF {
                         continue;
                     }
 
+                    // 就是要从0开始 这里是为了让子弹的特效从0开始 不知道为什么下面是从1开始
                     Bullet_HitRole(bullet.frames[bullet.frameIndex]);
                     var playerData = ctx.gameEntity.playerSaveData;
                     playerData.HitTimes += 1;
@@ -164,15 +165,13 @@ namespace UF {
                 RoleDomain.HpReduce_Role(ctx, owner, bullet.damage);
                 owner.isHit = true;
 
-                Bullet_HitRole(bullet.frames[bullet.frameIndex-1]);
+                Bullet_HitRole(bullet.frames[bullet.frameIndex - 1]);
 
                 bullet.hitTimes -= 1;
                 bullet.isHit = true;
                 if (bullet.hitTimes <= 0) {
                     UnSpawn(ctx, bullet, owner);
-                } else {
-                    Debug.Log("子弹攻击了主角" + bullet.hitTimes);
-                }
+                } 
 
             }
 

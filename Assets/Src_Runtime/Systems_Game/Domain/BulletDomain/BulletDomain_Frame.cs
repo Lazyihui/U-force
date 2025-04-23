@@ -28,6 +28,7 @@ namespace UF {
             frame.loopModel.CheckDone();//检测是否结束
 
             if (frame.loopModel.isDone) {
+                Debug.Log("frameIndex" + frameIndex + " 结束了");
                 frameIndex += 1;
             }
 

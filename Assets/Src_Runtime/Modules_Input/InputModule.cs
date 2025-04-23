@@ -152,6 +152,7 @@ namespace UF {
             {
                 bool isWeap1Down = world.Weap1.WasPressedThisFrame();
                 if (isWeap1Down) {
+                    Debug.Log("按下1");
                     inputCastKey |= InputKeyFlag.Weap1;
                 }
             }
