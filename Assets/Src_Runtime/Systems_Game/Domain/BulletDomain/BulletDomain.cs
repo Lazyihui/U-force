@@ -134,6 +134,7 @@ namespace UF {
 
                     bullet.hitTimes -= 1;
                     if (bullet.hitTimes <= 0) {
+                        enemy.isHit = false;
                         UnSpawn(ctx, bullet, enemy);
                     }
 
@@ -145,6 +146,11 @@ namespace UF {
                     var playerData = ctx.gameEntity.playerSaveData;
                     playerData.HitTimes += 1;
                     bullet.isHit = true;
+                }
+
+                if (dis > 1) {
+                    enemy.isHit = false;
+                    bullet.isHit = false;
                 }
             }
         }
@@ -164,11 +170,12 @@ namespace UF {
                 RoleDomain.HpReduce_Role(ctx, owner, bullet.damage);
                 owner.isHit = true;
 
-                Bullet_HitRole(bullet.frames[bullet.frameIndex-1]);
+                Bullet_HitRole(bullet.frames[bullet.frameIndex - 1]);
 
                 bullet.hitTimes -= 1;
                 bullet.isHit = true;
                 if (bullet.hitTimes <= 0) {
+                    owner.isHit = false;
                     UnSpawn(ctx, bullet, owner);
                 } else {
                     Debug.Log("子弹攻击了主角" + bullet.hitTimes);
@@ -177,10 +184,28 @@ namespace UF {
             }
 
             if (dis > 1) {
+                owner.isHit = false;
                 bullet.isHit = false;
             }
 
         }
+
+        // // 检测子弹没有接触到role(重置isHit)
+        // public static void DetectionNoRoleByPos(GameSystemContext ctx, BulletEntity bullet, Vector3 pos) {
+        //     int len = ctx.roleRepository.TakeAll(out RoleEntity[] roles);
+        //     for (int i = 0; i < len; i += 1) {
+        //         RoleEntity role = roles[i];
+        //         if (!role.isHit) {
+        //             continue;
+        //         }
+
+        //         float dis = Vector3.Distance(role.TF_GetPos(), pos);
+        //         if (dis > 1) {
+        //             role.isHit = false;
+        //         }
+        //     }
+        // }
+
 
         public static void DetectionStuffByPos(GameSystemContext ctx, BulletEntity bullet, Vector3 pos) {
             int len = ctx.stuffRepository.TakeAll(out StuffEntity[] stuffs);

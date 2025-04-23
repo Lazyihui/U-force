@@ -161,6 +161,8 @@ namespace UF {
         // 敌人扣血（会有一个下落的过程）
         public static void HpReduce_Enemy(GameSystemContext ctx, RoleEntity role, int damage) {
 
+            Debug.LogWarning(damage);
+
             var attCom = role.AttributeComponent;
             var feaCom = role.FeatureComponent;
             int finalHp = attCom.hp - damage;
