@@ -28,7 +28,6 @@ namespace UF {
         public float spawnEnemyInterval;//生成小怪的间隔
         public float spawnEnemyIntervalTimer; //生成小怪计时器
 
-        //TODO: 公式 最后得到的怪物数量
         public float progress; //每小波次进度条占比
         public float wavesProgress; //进度条数值
 
@@ -104,7 +103,7 @@ namespace UF {
                 cdEnemyMax = tm.cdEnemyMax;
                 spawnEnemyInterval = tm.spawnEnemyInterval;
                 spawnEnemyIntervalTimer = tm.spawnEnemyIntervalTimer;
-                progress = tm.progress;
+                progress = 1 / (float)spawnEnemyCount / maxWaves;
             }
 
             if (isBossWar) {
@@ -117,7 +116,7 @@ namespace UF {
                 cdEnemyMax = 0;
                 spawnEnemyInterval = tm.bossSpawnMinionInterval;
                 spawnEnemyIntervalTimer = tm.bossSpawnMinionIntervalTimer;
-                progress = tm.bossProgress;
+                progress = 1 / (float)spawnEnemyCount / maxWaves;
             }
 
             if (isEliminateWar) {
