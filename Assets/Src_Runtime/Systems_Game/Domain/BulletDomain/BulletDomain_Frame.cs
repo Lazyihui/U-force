@@ -134,6 +134,10 @@ namespace UF {
                 Debug.Log("生成子弹");
                 BulletDomain.SpawnByPos(ctx, model.bulletSo.tm.typeID, bullet.TF_GetPos(), new Vector3(0, 0, 0));
             }
+
+            if (model.isSpawnLaser) {
+                Debug.Log("生成激光");
+            }
         }
 
         #endregion

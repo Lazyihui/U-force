@@ -11,6 +11,8 @@ namespace UF {
         public bool isSpawnBullet;
         public BulletSo bulletSo;
 
+        public bool isSpawnLaser;
+
         public bool isHaveCentred;
 
         public void FromTM(WorldBehaviourTM tm) {
@@ -19,6 +21,8 @@ namespace UF {
 
             isSpawnBullet = tm.isSpawnBullet;
             bulletSo = tm.bulletSo;
+
+            isSpawnLaser = tm.isSpawnLaser;
 
             isHaveCentred = tm.isHaveCentred;
         }

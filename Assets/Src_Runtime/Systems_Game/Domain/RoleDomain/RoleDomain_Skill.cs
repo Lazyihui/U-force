@@ -194,6 +194,12 @@ namespace UF {
 
             }
 
+            if (model.isSpawnLaser) {
+                Debug.LogWarning("RoleDomain.SpawnLaser");
+                // SpawnLaser
+                Vector3 pos = role.GetMuzzlePos();
+            }
+
             if (model.isHaveCentred) {
                 Debug.LogWarning("RoleDomain.Bullet_Centred集中位置");
                 Bullet_Centred(ctx);
