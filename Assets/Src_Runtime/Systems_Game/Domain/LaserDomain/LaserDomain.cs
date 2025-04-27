@@ -6,7 +6,7 @@ namespace UF {
         public static LaserEntity Spawn(GameSystemContext ctx, int typeID, Vector2 startPos, Vector2 endPos) {
             LaserEntity entity = GameFactory.Laser_Create(ctx.assetsModule, ctx.templateCore, ctx.idService, typeID, startPos, endPos);
             entity.TF_SetPos(startPos, endPos);
-            
+
             ctx.laserRepository.Add(entity);
             return entity;
         }
@@ -37,6 +37,8 @@ namespace UF {
 
             if (laser.state == LaserState.Laser) {
                 laser.HideTimer += dt;
+
+                DetectionEnemyAttackOwner(ctx, laser);
             }
 
             if (laser.showTimer >= laser.showTime) {
@@ -51,19 +53,29 @@ namespace UF {
         }
 
         // 检测是否击中玩家
-        public static void DetectionEnemyAttackOwner(LaserEntity laser) {
-            if (laser.state != LaserState.Laser) {
-                return;
-            }
-
+        public static void DetectionEnemyAttackOwner(GameSystemContext ctx, LaserEntity laser) {
             if (laser.isHit) {
                 return;
             }
 
-            var dir = laser.endPos - laser.startPos;
+            var dir = (laser.endPos - laser.startPos).normalized;
             Ray ray = new Ray(laser.startPos, dir);
             RaycastHit hit;
-            Physics.Raycast(ray, out hit, 50);
+            if (Physics.Raycast(ray, out hit, 50)) {
+                GameObject go = hit.collider.gameObject;
+                var role = go.GetComponent<RoleEntity>();
+
+                if (role == null) {
+                    return;
+                }
+
+                if (role.roleType != RoleType.Player) {
+                    return;
+                }
+
+                RoleDomain.HpReduce_Role(ctx, role, laser.damage);
+                laser.isHit = true;
+            }
         }
     }
 }

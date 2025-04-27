@@ -200,6 +200,8 @@ namespace UF {
                 Vector3 startPos = role.GetMuzzlePos();
                 var owner = ctx.Get_Owner();
                 Vector3 endPos = owner.GetMuzzlePos();
+                var dir = (endPos - startPos).normalized;
+                endPos = startPos + dir * 50;
 
                 LaserEntity laser = LaserDomain.Spawn(ctx, model.laserSo.tm.typeID, startPos, endPos);
             }

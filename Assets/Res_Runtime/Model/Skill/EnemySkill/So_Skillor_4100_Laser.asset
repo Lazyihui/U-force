@@ -16,7 +16,7 @@ MonoBehaviour:
     typeID: 4100
     typeName: Laser
     castKeys: 0
-    cd: 2
+    cd: 10
     restUseTimes: 1000
     maxUseTimes: 1000
     actionTMs:
