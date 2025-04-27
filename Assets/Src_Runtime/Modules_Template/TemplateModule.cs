@@ -108,6 +108,17 @@ namespace UF {
                 }
                 ctx.propPtr = handle;
             }
+            {
+                AssetLabelReference labelReference = new AssetLabelReference();
+                labelReference.labelString = "So_Laser";
+                var handle = Addressables.LoadAssetsAsync<LaserSo>(labelReference, null);
+                var all = await handle.Task;
+                foreach (var so in all) {
+                    var tm = so.tm;
+                    ctx.Laser_Add(tm);
+                }
+                ctx.laserPtr = handle;
+            }
         }
         // 找种类的Role
         public bool Role_TryGet(int typeID, out RoleTM role) {
@@ -142,6 +153,10 @@ namespace UF {
             return ctx.props.TryGetValue(typeID, out prop);
         }
 
+        public bool Laser_TryGet(int typeID, out LaserTM laser) {
+            return ctx.lasers.TryGetValue(typeID, out laser);
+        }
+
         #region UnLoad
         public void UnLoadAll() {
             if (ctx.rolePtr.IsValid()) {
@@ -164,6 +179,9 @@ namespace UF {
             }
             if (ctx.propPtr.IsValid()) {
                 Addressables.Release(ctx.propPtr);
+            }
+            if (ctx.laserPtr.IsValid()) {
+                Addressables.Release(ctx.laserPtr);
             }
         }
         #endregion

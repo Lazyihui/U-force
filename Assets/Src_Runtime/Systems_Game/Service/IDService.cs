@@ -7,6 +7,7 @@ namespace UF {
         public int StuffID;
         public int PropID;
         public int RopeID;
+        public int LaserID;
 
 
         // 唯一 看看之后要不要改
@@ -20,6 +21,7 @@ namespace UF {
             mapID = 1;
             PropID = 1;
             RopeID = 1;
+            LaserID = 1;
         }
 
         public void Reset() {
@@ -31,6 +33,7 @@ namespace UF {
             mapID = 1;
             PropID = 1;
             RopeID = 1;
+            LaserID = 1;
         }
 
         public int PickRoleID() {
@@ -58,6 +61,10 @@ namespace UF {
 
         public int PickRopeID() {
             return ++RopeID;
+        }
+        
+        public int PickLaserID() {
+            return ++LaserID;
         }
     }
 }

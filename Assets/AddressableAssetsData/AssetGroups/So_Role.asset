@@ -137,6 +137,24 @@ MonoBehaviour:
     m_SerializedLabels:
     - So_Role
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5b202bef857109c4e803eb5bcf5a3498
+    m_Address: "So_RoleEnemyboss_1300\u6FC0\u5149"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Role
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7e771e6e625f1d4b9cfea91a7b59311
+    m_Address: "So_RoleEnemyBoss_1200\u53D1\u5C04\u5B50\u5F39"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Role
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 758429f43f0cae843a2ed54e12a96f95
+    m_Address: "So_RoleEnemyboss_1100\u8DDF\u8E2A"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Role
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 4b47acea7a70a444998ddd6e6fd8b9bf, type: 2}
   m_SchemaSet:

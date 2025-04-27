@@ -94,6 +94,11 @@ namespace UF {
             return rope;
         }
 
+        public GameObject Entity_GetLaser() {
+            entities.TryGetValue("Entity_Laser", out GameObject laser);
+            return laser;
+        }
+
         //  ---  Panel  ---
         public GameObject Panel_GetLogin() {
             panels.TryGetValue("Panel_Login", out GameObject panel);

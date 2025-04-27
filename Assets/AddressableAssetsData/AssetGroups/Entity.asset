@@ -47,12 +47,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Entity
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d8699dbf713c3fa4fba559e682df9a00
-    m_Address: So_Tower_100
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - So_Tower
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 87770cce7e276cd448551548cd081b5a
     m_Address: Entity_tower
     m_ReadOnly: 0
@@ -73,6 +67,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1baefc5aed89c1646a9e302ae4749414
     m_Address: Entity_Rope
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Entity
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7de836b66c58773449e1db089ae84191
+    m_Address: Entity_Laser
     m_ReadOnly: 0
     m_SerializedLabels:
     - Entity

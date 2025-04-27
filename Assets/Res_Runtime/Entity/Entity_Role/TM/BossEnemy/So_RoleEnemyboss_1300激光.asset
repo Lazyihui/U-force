@@ -25,7 +25,7 @@ MonoBehaviour:
     baseDamage: 1
     fallDamage: 1
     skillorSoArray:
-    - {fileID: 11400000, guid: ec3dc63f87f878647a0ebcf044c8c032, type: 2}
+    - {fileID: 11400000, guid: 27e2aae3095835e4fb76c004a5fd4a05, type: 2}
     modPrefab: {fileID: 1504114801914746611, guid: 2cf75375f228b55438fe918bc4565b52, type: 3}
     featureType: 0
     accelerateTimer: 0

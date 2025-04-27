@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: So_Skillor_4100_Laser
   m_EditorClassIdentifier: 
   tm:
-    typeID: 4000
-    typeName: Boss
+    typeID: 4100
+    typeName: Laser
     castKeys: 0
     cd: 2
     restUseTimes: 1000
@@ -59,6 +59,7 @@ MonoBehaviour:
       worldBehaviourTM:
         isSpawnStuff: 0
         stuffSo: {fileID: 0}
-        isSpawnBullet: 1
+        isSpawnBullet: 0
         bulletSo: {fileID: 11400000, guid: 1f9f04a0b7506374fa68a2662473a266, type: 2}
+        isSpawnLaser: 1
         isHaveCentred: 0

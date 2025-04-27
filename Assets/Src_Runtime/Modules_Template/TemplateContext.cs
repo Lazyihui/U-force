@@ -32,6 +32,9 @@ namespace UF.TemplateInternal {
         public Dictionary<int, PropTM> props;
         public AsyncOperationHandle propPtr;
 
+        public Dictionary<int, LaserTM> lasers;
+        public AsyncOperationHandle laserPtr;
+
         public TemplateContext() {
             roles = new Dictionary<int, RoleTM>();
             bullets = new Dictionary<int, BulletTM>();
@@ -41,6 +44,7 @@ namespace UF.TemplateInternal {
             stuffs = new Dictionary<int, StuffTM>();
             cards = new Dictionary<int, CardTM>();
             props = new Dictionary<int, PropTM>();
+            lasers = new Dictionary<int, LaserTM>();
         }
 
 
@@ -74,6 +78,10 @@ namespace UF.TemplateInternal {
 
         public void Prop_Add(PropTM prop) {
             props.Add(prop.typeID, prop);
+        }
+
+        public void Laser_Add(LaserTM laser) {
+            lasers.Add(laser.typeID, laser);
         }
     }
 }

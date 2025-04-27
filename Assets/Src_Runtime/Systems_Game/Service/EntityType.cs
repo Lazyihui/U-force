@@ -17,7 +17,7 @@ namespace UF {
         OneStage,
         Prop,
         Rope,
-
+        Laser,
     }
 
 }

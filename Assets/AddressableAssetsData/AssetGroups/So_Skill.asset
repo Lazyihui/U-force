@@ -155,6 +155,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - So_Skill
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec3dc63f87f878647a0ebcf044c8c032
+    m_Address: So_Skillor_4000_Boss
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 27e2aae3095835e4fb76c004a5fd4a05
+    m_Address: So_Skillor_4100_Laser
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Skill
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 4b47acea7a70a444998ddd6e6fd8b9bf, type: 2}
   m_SchemaSet:

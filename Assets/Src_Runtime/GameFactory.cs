@@ -444,6 +444,32 @@ namespace UF {
 
         #endregion
 
+        #region Laser
+        public static LaserEntity Laser_Create(AssetsModule assetsCore, TemplateMoudle templateCore, IDService idService, int typeID, Vector2 startPos, Vector2 endPos) {
+            bool has = templateCore.Laser_TryGet(typeID, out var tm);
+            if (!has) {
+                Debug.LogError("Laser_Create: tm is null" + typeID);
+                return null;
+            }
+
+            // - go
+            GameObject prefab = assetsCore.Entity_GetLaser();
+            GameObject go = GameObject.Instantiate(prefab);
+            LaserEntity laser = go.GetComponent<LaserEntity>();
+
+            laser.idSig = new IDSignature(EntityType.Laser, idService.PickLaserID());
+            laser.typeID = typeID;
+            laser.damage = tm.damage;
+            laser.showTime = tm.showTime;
+            laser.HideTime = tm.HideTime;
+
+            laser.Ctor();
+            laser.TF_SetPos(startPos, endPos);
+
+            return laser;
+        }
+        #endregion
+
         #region Model
 
 

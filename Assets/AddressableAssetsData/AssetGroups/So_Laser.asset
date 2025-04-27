@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: So_Laser
+  m_EditorClassIdentifier: 
+  m_GroupName: So_Laser
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 69fbac977f34c1345bd8a3e7879d866f
+  m_SerializeEntries:
+  - m_GUID: a2e672179a50a664c915ba3c36910427
+    m_Address: So_Laser_100
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - So_Laser
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 4b47acea7a70a444998ddd6e6fd8b9bf, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 048d078fbb23f3840abf6a76a43c5933, type: 2}
+    - {fileID: 11400000, guid: cf829d696bf457746a58a2225ae8b5e2, type: 2}
