@@ -20,6 +20,7 @@ namespace UF {
 
             frame.loopModel.Tick(dt, out bool istrigger, out bool isNextFrame);
 
+
             if (istrigger) {
                 BulletDomain.Frame_Acting(ctx, bullet, frame, dt);
                 // Debug.Log("frameIndex" + frameIndex);
@@ -28,9 +29,17 @@ namespace UF {
             frame.loopModel.CheckDone();//检测是否结束
 
             if (frame.loopModel.isDone) {
-                Debug.Log("frameIndex" + frameIndex + " 结束了");
                 frameIndex += 1;
             }
+
+            // if (isNextFrame) {
+            //     Debug.LogError("frameIndex" + frameIndex + " 结束了");
+            //     frameIndex += 1;
+            //     if (frameIndex >= frames.Count) {
+            //         Debug.LogError("frameIndex" + frameIndex + " 结束了");
+            //         UnSpawn(ctx, bullet);
+            //     }
+            // }
 
         }
 
@@ -48,6 +57,7 @@ namespace UF {
         static void Frame_Acting(GameSystemContext ctx, BulletEntity bullet, BulletFrameModel frame, float dt) {
             ref var loopModel = ref frame.loopModel;
             if (loopModel.isDone) {
+                Debug.LogError("frameIndex" + bullet.frameIndex + " 结束了");
                 return;
             }
 

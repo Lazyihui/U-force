@@ -15,6 +15,8 @@ MonoBehaviour:
   tm:
     typeID: 5000
     typeName: "\u81EA\u4F245000"
+    bltBelongType: 0
+    type: 0
     hitTimes: 10000000
     attackDamage: 1
     continueDamege: 1
@@ -36,7 +38,6 @@ MonoBehaviour:
     isFixedBoomPoint: 0
     isRepelled: 0
     repeLength: 0
-    type: 0
     moveSpeed: 0
     modPrefab: {fileID: 431577423833956408, guid: fd88d8c754b667d42b923d4fb9775d61, type: 3}
     sprite: {fileID: 21300000, guid: 4ff72ebbe5cb8cb44aec81cc78e7c3fa, type: 3}
@@ -44,9 +45,9 @@ MonoBehaviour:
     frames:
     - loopTM:
         loopFlag: 3
-        maintainFrame: 1e+12
-        triggerIntervalSec: 360
-        triggerTimesMax: 360
+        maintainFrame: 120
+        triggerIntervalSec: 5
+        triggerTimesMax: 5
       hasBulletBehaviour: 1
       bulletBehaviourTM:
         isMove: 0
@@ -65,12 +66,13 @@ MonoBehaviour:
         stuffSo: {fileID: 0}
         isSpawnBullet: 0
         bulletSo: {fileID: 0}
+        isSpawnLaser: 0
         isHaveCentred: 0
     - loopTM:
         loopFlag: 3
-        maintainFrame: 1e+12
-        triggerIntervalSec: 360
-        triggerTimesMax: 360
+        maintainFrame: 0
+        triggerIntervalSec: 0
+        triggerTimesMax: 0
       hasBulletBehaviour: 1
       bulletBehaviourTM:
         isMove: 0
@@ -89,4 +91,5 @@ MonoBehaviour:
         stuffSo: {fileID: 0}
         isSpawnBullet: 0
         bulletSo: {fileID: 0}
+        isSpawnLaser: 0
         isHaveCentred: 0
