@@ -162,7 +162,7 @@ MonoBehaviour:
     - So_Bullet
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1f9f04a0b7506374fa68a2662473a266
-    m_Address: "So_Bullet_1200\u5411\u89D2\u8272\u8FD0\u52A8"
+    m_Address: "So_Bullet_6000\u5411\u89D2\u8272\u8FD0\u52A8"
     m_ReadOnly: 0
     m_SerializedLabels:
     - So_Bullet

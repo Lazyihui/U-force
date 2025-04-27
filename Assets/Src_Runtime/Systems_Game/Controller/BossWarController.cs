@@ -164,6 +164,13 @@ namespace UF {
                 BulletDomain.CheckUnSpawn(ctx, bullet, dt);
             }
 
+            // Laser
+            int laserLen = ctx.laserRepository.TakeAll(out LaserEntity[] lasers);
+            for (int i = 0; i < laserLen; i += 1) {
+                LaserEntity laser = lasers[i];
+                LaserDomain.FSM_All_Execute(ctx, laser, dt);
+            }
+
             //  tower
             // int towerLen = ctx.towerRepository.TakeAll(out CaveEntity[] towers);
 

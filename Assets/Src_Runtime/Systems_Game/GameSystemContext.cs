@@ -28,6 +28,7 @@ namespace UF {
         public BulletRepository bulletRepository;
         public CaveRepository towerRepository;
         public StuffRepository stuffRepository;
+        public LaserRepository laserRepository;
 
         public RopeEntity ropeEntity;
 
@@ -39,6 +40,7 @@ namespace UF {
 
             towerRepository = new CaveRepository();
             stuffRepository = new StuffRepository();
+            laserRepository = new LaserRepository();
 
             //  module
             moduleCamera = new ModuleCamera();

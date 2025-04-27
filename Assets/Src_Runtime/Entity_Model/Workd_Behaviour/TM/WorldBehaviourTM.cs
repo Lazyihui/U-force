@@ -13,6 +13,7 @@ namespace UF {
         [ShowIf(nameof(isSpawnBullet))] public BulletSo bulletSo;
         
         public bool isSpawnLaser;
+        [ShowIf(nameof(isSpawnLaser))] public LaserSo laserSo;
 
         public bool isHaveCentred;
     }

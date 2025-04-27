@@ -12,6 +12,7 @@ namespace UF {
         public BulletSo bulletSo;
 
         public bool isSpawnLaser;
+        public LaserSo laserSo;
 
         public bool isHaveCentred;
 
@@ -23,6 +24,7 @@ namespace UF {
             bulletSo = tm.bulletSo;
 
             isSpawnLaser = tm.isSpawnLaser;
+            laserSo = tm.laserSo;
 
             isHaveCentred = tm.isHaveCentred;
         }
