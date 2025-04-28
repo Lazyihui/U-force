@@ -75,6 +75,7 @@ namespace UF {
             RoleEntity owner = ctx.Get_Owner();
             // 输入记录
             RoleDomain.Input_Record(ctx, owner, dt);
+            Debug.Log("坐标" + owner.GetPos());
             // UI
             var attrCom = owner.AttributeComponent;
             UIDomain.HUD_Progressbar_Update(ctx.appUI, attrCom, game.wavesProgress);

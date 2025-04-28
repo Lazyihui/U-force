@@ -106,7 +106,7 @@ namespace UF {
                 int typeID = playerData.GetRandomEnemyTypeID();
 
                 // 这里要得到坐标
-                Vector2 pos = Extension.GetSquareAnnulusRandomPos(new Vector2(0, 0), 60, 33.75f);
+                Vector2 pos = Extension.GetSquareAnnulusRandomPos(new Vector2(0, 0), 60, 30f);
                 RoleDomain.SpawnByPos(ctx, typeID, pos);
 
                 game.spawnEnemyIntervalTimer = game.spawnEnemyInterval;

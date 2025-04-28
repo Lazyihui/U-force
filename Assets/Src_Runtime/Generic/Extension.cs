@@ -1,4 +1,5 @@
 using System;
+using PlasticGui.WorkspaceWindow.Diff;
 using UnityEngine;
 
 namespace UF {
@@ -47,6 +48,58 @@ namespace UF {
 
             return new Vector2(x, y);
 
+        }
+
+        public static Vector2 GetRandomPositionInRingOptimized(Vector2 outerMin, Vector2 outerMax, Vector2 innerMin, Vector2 innerMax) {
+            // 计算环形区域的四个矩形部分
+            float leftWidth = innerMin.x - outerMin.x;
+            float rightWidth = outerMax.x - innerMax.x;
+            float middleWidth = innerMax.x - innerMin.x;
+
+            float bottomHeight = innerMin.y - outerMin.y;
+            float topHeight = outerMax.y - innerMax.y;
+            float middleHeight = innerMax.y - innerMin.y;
+
+            // 计算各区域面积
+            float leftArea = leftWidth * (outerMax.y - outerMin.y);
+            float rightArea = rightWidth * (outerMax.y - outerMin.y);
+            float bottomArea = middleWidth * bottomHeight;
+            float topArea = middleWidth * topHeight;
+
+            float totalArea = leftArea + rightArea + bottomArea + topArea;
+
+            // 按面积比例随机选择区域
+            float randomValue = UnityEngine.Random.Range(0f, totalArea);
+
+            Vector2 randomPoint;
+
+            if (randomValue < leftArea) {
+                // 左侧区域
+                randomPoint = new Vector2(
+                   UnityEngine.Random.Range(outerMin.x, innerMin.x),
+                   UnityEngine.Random.Range(outerMin.y, outerMax.y)
+                );
+            } else if (randomValue < leftArea + rightArea) {
+                // 右侧区域
+                randomPoint = new Vector2(
+                   UnityEngine.Random.Range(innerMax.x, outerMax.x),
+                   UnityEngine.Random.Range(outerMin.y, outerMax.y)
+                );
+            } else if (randomValue < leftArea + rightArea + bottomArea) {
+                // 底部区域
+                randomPoint = new Vector2(
+                   UnityEngine.Random.Range(innerMin.x, innerMax.x),
+                   UnityEngine.Random.Range(outerMin.y, innerMin.y)
+                );
+            } else {
+                // 顶部区域
+                randomPoint = new Vector2(
+                   UnityEngine.Random.Range(innerMin.x, innerMax.x),
+                   UnityEngine.Random.Range(innerMax.y, outerMax.y)
+                );
+            }
+
+            return randomPoint;
         }
 
     }
