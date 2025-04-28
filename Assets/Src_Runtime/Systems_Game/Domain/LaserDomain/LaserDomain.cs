@@ -58,22 +58,13 @@ namespace UF {
                 return;
             }
 
+            var owner = ctx.Get_Owner();
+            var ownerPos = owner.GetPos();
             var dir = (laser.endPos - laser.startPos).normalized;
-            Ray ray = new Ray(laser.startPos, dir);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 50)) {
-                GameObject go = hit.collider.gameObject;
-                var role = go.GetComponent<RoleEntity>();
+            var ownerDir = (ownerPos - laser.startPos).normalized;
 
-                if (role == null) {
-                    return;
-                }
-
-                if (role.roleType != RoleType.Player) {
-                    return;
-                }
-
-                RoleDomain.HpReduce_Role(ctx, role, laser.damage);
+            if (Vector2.Angle(dir, ownerDir) < 0.1f) {
+                RoleDomain.HpReduce_Role(ctx, owner, laser.damage);
                 laser.isHit = true;
             }
         }
