@@ -16,7 +16,7 @@ MonoBehaviour:
     typeID: 4100
     typeName: Laser
     castKeys: 0
-    cd: 2
+    cd: 10
     restUseTimes: 1000
     maxUseTimes: 1000
     actionTMs:
@@ -62,4 +62,5 @@ MonoBehaviour:
         isSpawnBullet: 0
         bulletSo: {fileID: 11400000, guid: 1f9f04a0b7506374fa68a2662473a266, type: 2}
         isSpawnLaser: 1
+        laserSo: {fileID: 11400000, guid: a2e672179a50a664c915ba3c36910427, type: 2}
         isHaveCentred: 0

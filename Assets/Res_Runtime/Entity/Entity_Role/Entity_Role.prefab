@@ -152,8 +152,24 @@ MonoBehaviour:
   bodyRoot: {fileID: 8857208792887799831}
   rb: {fileID: 7245125749636645257}
   t_roleType: 0
-  isControlledDown: 0
-  isControlledRight: 0
-  downPos: {x: 0, y: 0}
-  rightPos: {x: 0, y: 0}
+  AIDeviation: 0
+  minY: 0
+  isChangeLine: 0
+  changeLineDir: {x: 0, y: 0}
+  changeLineLength: 0
+  isRepulsed: 0
+  repulsedLength: 0
+  changeLinePos: {x: 0, y: 0}
+  repulsedPos: {x: 0, y: 0}
+  hasChangeLinePos: 0
+  hasRepulsedPos: 0
+  isElectricity: 0
+  elecDamage: 0
+  elecTimes: 0
+  elecMax: 0
+  elecTimer: 0
   isEliminateRole: 0
+  isHit: 0
+  isInvincible: 0
+  invincibilityTimer: 0
+  invincibilityMax: 0

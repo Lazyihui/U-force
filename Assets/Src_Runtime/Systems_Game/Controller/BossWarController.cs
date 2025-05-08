@@ -75,7 +75,6 @@ namespace UF {
             RoleEntity owner = ctx.Get_Owner();
             // 输入记录
             RoleDomain.Input_Record(ctx, owner, dt);
-            Debug.Log("坐标" + owner.GetPos());
             // UI
             var attrCom = owner.AttributeComponent;
             UIDomain.HUD_Progressbar_Update(ctx.appUI, attrCom, game.wavesProgress);
@@ -163,6 +162,13 @@ namespace UF {
                 BulletEntity bullet = bullets[i];
                 BulletDomain.FSM_All_Execute(ctx, bullet, dt);
                 BulletDomain.CheckUnSpawn(ctx, bullet, dt);
+            }
+
+            // Laser
+            int laserLen = ctx.laserRepository.TakeAll(out LaserEntity[] lasers);
+            for (int i = 0; i < laserLen; i += 1) {
+                LaserEntity laser = lasers[i];
+                LaserDomain.FSM_All_Execute(ctx, laser, dt);
             }
 
             //  tower

@@ -40,6 +40,8 @@ namespace UF {
         public void TF_SetPos(Vector2 startPos, Vector2 endPos) {
             this.startPos = startPos;
             this.endPos = endPos;
+
+            ShowLaserWarning();
         }
 
         public void ShowLaserWarning() {

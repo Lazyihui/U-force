@@ -195,9 +195,15 @@ namespace UF {
             }
 
             if (model.isSpawnLaser) {
-                Debug.LogWarning("RoleDomain.SpawnLaser");
+                // Debug.LogWarning("RoleDomain.SpawnLaser");
                 // SpawnLaser
-                Vector3 pos = role.GetMuzzlePos();
+                Vector3 startPos = role.GetMuzzlePos();
+                var owner = ctx.Get_Owner();
+                Vector3 endPos = owner.GetMuzzlePos();
+                var dir = (endPos - startPos).normalized;
+                endPos = startPos + dir * 50;
+
+                LaserEntity laser = LaserDomain.Spawn(ctx, model.laserSo.tm.typeID, startPos, endPos);
             }
 
             if (model.isHaveCentred) {

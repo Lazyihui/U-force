@@ -66,4 +66,6 @@ MonoBehaviour:
         stuffSo: {fileID: 0}
         isSpawnBullet: 0
         bulletSo: {fileID: 0}
+        isSpawnLaser: 0
+        laserSo: {fileID: 0}
         isHaveCentred: 0
