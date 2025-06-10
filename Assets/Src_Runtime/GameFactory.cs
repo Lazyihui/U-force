@@ -68,6 +68,7 @@ namespace UF {
 
             return role;
         }
+        
         public static RoleEntity Role_Create(AssetsModule assetsCore, TemplateMoudle templateCore, IDService idService, int typeID) {
 
             bool has = templateCore.Role_TryGet(typeID, out var tm);
