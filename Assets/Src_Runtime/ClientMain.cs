@@ -10,11 +10,6 @@ namespace UF {
 
     public class ClientMain : MonoBehaviour {
 
-
-
-
-        
-
         [SerializeField] Canvas screenCanvas;
         [SerializeField] Transform canvasRoot;
         [SerializeField] Camera mainCamera;
@@ -51,6 +46,11 @@ namespace UF {
         public SaveSlotFullDTO saveSlotFullDTO;
         public GameEntity gameEntity;
         static ProgramEntity programEntity;
+        void Add() {
+            if (programEntity == null) {
+                programEntity = new ProgramEntity();
+            }
+        }
 
         void Start() {
 
