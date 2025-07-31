@@ -50,6 +50,11 @@ namespace UF {
             if (programEntity == null) {
                 programEntity = new ProgramEntity();
             }
+
+            gameEntity = new GameEntity();
+            gameEntity.Init(0);
+
+
         }
 
         void Start() {
