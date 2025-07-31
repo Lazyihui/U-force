@@ -741,5 +741,9 @@ namespace UF {
             }
         }
         #endregion
+
+        void Happy() {
+            Debug.Log("XYR is very happy~");
+        }
     }
 }
