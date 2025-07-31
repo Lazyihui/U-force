@@ -10,6 +10,8 @@ namespace UF {
 
     public class ClientMain : MonoBehaviour {
 
+        
+
         [SerializeField] Canvas screenCanvas;
         [SerializeField] Transform canvasRoot;
         [SerializeField] Camera mainCamera;
