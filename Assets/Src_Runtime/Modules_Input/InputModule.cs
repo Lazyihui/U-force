@@ -16,7 +16,7 @@ namespace UF {
 
 
         bool isJump;
-        public bool IsJump => isJump;
+        public bool IsJump => isJump; 
 
         bool isGrap;
         public bool IsGrap => isGrap;
