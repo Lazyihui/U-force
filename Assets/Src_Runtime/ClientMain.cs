@@ -10,6 +10,9 @@ namespace UF {
 
     public class ClientMain : MonoBehaviour {
 
+
+
+
         
 
         [SerializeField] Canvas screenCanvas;
