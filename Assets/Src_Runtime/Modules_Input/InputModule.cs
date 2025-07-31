@@ -9,7 +9,7 @@ namespace UF {
     public class InputModule : MonoBehaviour {
 
         InputControls_Player player;
-        public InputControls_Player Player => player;
+        public InputControls_Player Player => player; 
 
         InputKeyFlag inputCastKey;
         public InputKeyFlag InputCastKey => inputCastKey;
