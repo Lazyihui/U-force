@@ -6,7 +6,8 @@ public class VerticalScroll : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     [SerializeField] private List<Item> items; // 4 个元素：[1, 2, 3, 1]
     private Vector3 lastPosition;
     private float offset;
-    private float itemHeight = 150f; // 100 (高度) + 50 (间隔)
+    private float itemHeight = 300f; // 100 (高度) + 100 (间隔)
+
 
     void Awake() {
         if (items == null || items.Count < 4) {
@@ -32,7 +33,7 @@ public class VerticalScroll : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
             // 上滑：检测第一个 Item 是否超出视野
             if (items[0].transform.localPosition.y >= itemHeight) {
                 Item firstItem = items[0];
-                firstItem.transform.localPosition = items[3].transform.localPosition - new Vector3(0, itemHeight, 0);
+                firstItem.transform.localPosition = items[3].transform.localPosition - new Vector3(0, itemHeight-50, 0);
                 
                 // 更新值：1→2, 2→3, 3→1
                 firstItem.value = (firstItem.value % 3) + 1;
@@ -45,7 +46,7 @@ public class VerticalScroll : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
             // 下滑：检测最后一个 Item 是否超出视野
             if (items[3].transform.localPosition.y <= -itemHeight) {
                 Item lastItem = items[3];
-                lastItem.transform.localPosition = items[0].transform.localPosition + new Vector3(0, itemHeight, 0);
+                lastItem.transform.localPosition = items[0].transform.localPosition + new Vector3(0, itemHeight-50, 0);
                 
                 // 更新值：1→3, 2→1, 3→2
                 lastItem.value = (lastItem.value + 1) % 3 + 1;
