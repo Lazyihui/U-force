@@ -28,6 +28,8 @@ namespace UF {
         [SerializeField] AudioClip btnConfirmClip;
         public Action<AudioClip> OnBtnClipPlayHandle;
 
+        [SerializeField] VerticalScroll verticalScroll;
+        public Action<int> OnItemSelectedHandle;
         public void Ctor() {
 
             btn_Login.onClick.AddListener(() => {
@@ -53,7 +55,11 @@ namespace UF {
                     OnQuitClickHandle.Invoke();
                 }
             });
-
+            
+            verticalScroll.onItemSelected = (value) => {
+                Debug.Log($"选中的Item值: {value}");
+                OnItemSelectedHandle?.Invoke(value);
+            };
         }
 
         public void Show() {
@@ -144,4 +150,5 @@ namespace UF {
             return null;
         }
     }
+
 }
