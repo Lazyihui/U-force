@@ -21,7 +21,7 @@ public class Item : MonoBehaviour {
     // 根据value值更新颜色
     public void UpdateColor() {
         if (image == null) return;
-        image.color = Color.gray;
+        image.color = Color.white;
     }
 
     // 重置为默认颜色（根据value）
