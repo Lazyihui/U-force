@@ -1,19 +1,18 @@
-using System.Collections;
 using System.Collections.Generic;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Vetical : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
-    [SerializeField] public RectTransform content;
-    [SerializeField] public List<Item> items;
-    Vector3 lastPosition;
-    float offset;
-    float index0y;
+public class VerticalScroll : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
+    [SerializeField] private List<Item> items; // 4 个元素：[1, 2, 3, 1]
+    private Vector3 lastPosition;
+    private float offset;
+    private float itemHeight = 150f; // 100 (高度) + 50 (间隔)
 
     void Awake() {
-        index0y = items[1].transform.localPosition.y;
+        if (items == null || items.Count < 4) {
+            Debug.LogError("需要 4 个 Item：[1, 2, 3, 1]");
+            return;
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData) {
@@ -24,55 +23,41 @@ public class Vetical : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         offset = eventData.position.y - lastPosition.y;
         lastPosition = eventData.position;
 
+        // 移动所有 Item
         for (int i = 0; i < items.Count; i++) {
-            var item = items[i];
-            item.transform.localPosition += new Vector3(0, offset, 0);
+            items[i].transform.localPosition += new Vector3(0, offset, 0);
         }
 
-
         if (offset > 0) {
-            // 上滑
-        //     if (items[0].transform.localPosition.y >= index0y) {
-        //         // 把最后一个出来
-        //         // 添加一个到末尾
-        //         items[items.Count - 1].transform.localPosition = items[items.Count - 2].transform.localPosition + new Vector3(0, sizey, 0);
-        //     }
-        //     if (items[0].transform.localPosition.y >= index0y + sizey) {
-        //         // 讲第一个放到末尾
-        //         //重置位置
-        //         Item temp = items[0];
-        //         temp.transform.localPosition = items[items.Count - 1].transform.localPosition + new Vector3(0, sizey, 0);
+            // 上滑：检测第一个 Item 是否超出视野
+            if (items[0].transform.localPosition.y >= itemHeight) {
+                Item firstItem = items[0];
+                firstItem.transform.localPosition = items[3].transform.localPosition - new Vector3(0, itemHeight, 0);
+                
+                // 更新值：1→2, 2→3, 3→1
+                firstItem.value = (firstItem.value % 3) + 1;
 
-        //         for (int i = 1; i < items.Count; i++) {
-        //             items[i - 1] = items[i];
-        //         }
-
-        //         items[items.Count - 1] = temp;
-        //     }
+                // 调整列表顺序
+                items.RemoveAt(0);
+                items.Add(firstItem);
+            }
         } else {
-        //     // 下滑 
-        //     if (items[0].transform.localPosition.y <= index0y) {
-        //         // 把最后一个出来
-        //         // 添加一个到开始
-        //         items[items.Count - 1].transform.localPosition = items[0].transform.localPosition - new Vector3(0, sizey, 0);
-        //     }
-        //     if (items[0].transform.localPosition.y <= index0y + sizey) {
-        //         // 讲第一个放到开始
-        //         //重置位置
-        //         Item temp = items[items.Count - 1];
+            // 下滑：检测最后一个 Item 是否超出视野
+            if (items[3].transform.localPosition.y <= -itemHeight) {
+                Item lastItem = items[3];
+                lastItem.transform.localPosition = items[0].transform.localPosition + new Vector3(0, itemHeight, 0);
+                
+                // 更新值：1→3, 2→1, 3→2
+                lastItem.value = (lastItem.value + 1) % 3 + 1;
 
-        //         temp.transform.localPosition = items[0].transform.localPosition - new Vector3(0, sizey, 0);
-        //         for (int i = 0; i < items.Count - 1; i++) {
-        //             items[i] = items[i - 1];
-        //         }
-        //         items[0] = temp;
-        //     }
-
-
+                // 调整列表顺序
+                items.RemoveAt(3);
+                items.Insert(0, lastItem);
+            }
         }
     }
 
     public void OnEndDrag(PointerEventData eventData) {
+        // 可以添加惯性滑动逻辑
     }
 }
-

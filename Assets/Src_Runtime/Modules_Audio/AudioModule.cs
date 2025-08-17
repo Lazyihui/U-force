@@ -28,21 +28,21 @@ public class AudioModule : MonoBehaviour {
         if (musicSource.clip == loginMusic && musicSource.isPlaying) { return; }
 
         musicSource.clip = loginMusic;
-        musicSource.Play();
+        // musicSource.Play();
     }
 
     public void PlayGameMusic() {
         if (musicSource.clip == gameMusic && musicSource.isPlaying) { return; }
 
         musicSource.clip = gameMusic;
-        musicSource.Play();
+        // musicSource.Play();
     }
 
     public void PlayTrainMusic() {
         if (musicSource.clip == trainMusic && musicSource.isPlaying) { return; }
 
         musicSource.clip = trainMusic;
-        musicSource.Play();
+        // musicSource.Play();
     }
 
     public void PauseMusic() {
@@ -54,6 +54,6 @@ public class AudioModule : MonoBehaviour {
     }
 
     public void PlaySfx(AudioClip clip) {
-        sfxSource.PlayOneShot(clip);
+        // sfxSource.PlayOneShot(clip);
     }
 }
